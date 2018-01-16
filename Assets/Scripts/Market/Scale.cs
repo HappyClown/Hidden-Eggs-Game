@@ -7,6 +7,8 @@ public class Scale : MonoBehaviour
 	public bool isAnItemOnScale;
 	public GameObject itemOnScale;
 
+	public Scale scaleScript;
+
 	public GameObject arrow;
 	public float arrowRotation;
 
