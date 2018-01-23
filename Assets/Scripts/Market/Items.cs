@@ -22,5 +22,6 @@ public class Items : MonoBehaviour
 	public void BackToInitialPos ()
 	{
 		this.transform.position = initialPos;
+		this.inCrate = false;
 	}
 }

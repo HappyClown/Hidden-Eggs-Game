@@ -145,6 +145,9 @@ public class GrabItem : MonoBehaviour
 			Debug.Log("Next level!");
 			crateScript.curntLvl += 1;
 
+			curntPounds = 0;
+			curntAmnt = 0;
+
 			// TEMPORARY UNTIL WE DECIDE ON IF WE WANT DIFFERENT ITEMS EACH LEVEL //
 
 			resetItemsButtonScript.ResetItemsToTable();
