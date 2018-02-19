@@ -6,6 +6,8 @@ public class EggGoToCorner : MonoBehaviour
 {
 	public Transform cornerPos;
 
+	public Vector3 cornerRot;
+
 	public float timeToMove;
 
 	public bool moveThisEgg;
@@ -22,6 +24,8 @@ public class EggGoToCorner : MonoBehaviour
 		if (moveThisEgg == true)
 		{
 			this.transform.position = Vector3.Lerp(this.transform.position, cornerPos.position, timeToMove * Time.deltaTime);
+
+			this.transform.eulerAngles = Vector3.Lerp(this.transform.eulerAngles, cornerRot, timeToMove * Time.deltaTime);
 		}
 	}
 	
