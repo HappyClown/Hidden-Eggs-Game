@@ -15,6 +15,7 @@ public class GrabItem : MonoBehaviour
 	public GameObject heldItem;
 
 	public GameObject scaleSnapPos;
+	public GameObject itemHolder;
 
 	public Scale scaleScript;
 	public Items itemsScript;
@@ -60,11 +61,12 @@ public class GrabItem : MonoBehaviour
 
 				holdingItem = true;
 				heldItem = hit.collider.gameObject;
+				heldItem.transform.parent = itemHolder.transform;
 
 				if (heldItem == scaleScript.itemOnScale)
 				{
-					scaleScript.itemOnScale = null;
 					scaleScript.isAnItemOnScale = false;
+					scaleScript.itemOnScale = null;
 				}
 
 				if (heldItem.GetComponent<Items>().inCrate == true)
@@ -112,6 +114,7 @@ public class GrabItem : MonoBehaviour
 						scaleScript.itemOnScale.transform.position = scaleScript.itemOnScale.GetComponent<Items>().initialPos;
 					}
 					heldItem.transform.position = new Vector3(scaleSnapPos.transform.position.x, scaleSnapPos.transform.position.y, -5f);
+					heldItem.transform.parent = scaleSnapPos.transform;
 					scaleScript.itemOnScale = heldItem;
 					scaleScript.isAnItemOnScale = true;
 				}
