@@ -7,33 +7,55 @@ public class Scale : MonoBehaviour
 	public bool isAnItemOnScale;
 	public GameObject itemOnScale;
 
-	//public Scale scaleScript;
-
 	public GameObject arrow;
 	public float arrowRotation;
+	public float arrowRotSpd;
+	public AnimationCurve arwAnimCurve;
+
+	public Animator anim;
+
+	public Transform[] arwRots;
+
+
 
 	void Start () 
 	{
 		isAnItemOnScale = false;
 	}
 	
+
+
 	void Update () 
 	{
-		//float itemRotZ = itemOnScale.transform.rotation.z;
+		anim.SetInteger("Weight", 11);
 
 		if (itemOnScale != null)
 		{
-			if (itemOnScale.GetComponent<Items>().weight == 0) { arrowRotation = 0f; }
-			if (itemOnScale.GetComponent<Items>().weight == 1) { arrowRotation = -36.75f; }
-			if (itemOnScale.GetComponent<Items>().weight == 2) { arrowRotation = -72.75f; }
-			if (itemOnScale.GetComponent<Items>().weight == 3) { arrowRotation = -108.75f; }
-			if (itemOnScale.GetComponent<Items>().weight == 4) { arrowRotation = -144.75f; }
-			if (itemOnScale.GetComponent<Items>().weight == 5) { arrowRotation = -180.75f; }
-			if (itemOnScale.GetComponent<Items>().weight == 6) { arrowRotation = -216.75f; }
+			if (itemOnScale.GetComponent<Items>().weight == 0) 
+			//{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[0].rotation, Time.deltaTime * arrowRotSpd); }
+			{anim.SetInteger("Weight", 0); itemOnScale = null; return;}
+			if (itemOnScale.GetComponent<Items>().weight == 1)
+			//{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[1].rotation, Time.deltaTime * arrowRotSpd); }
+			{anim.SetInteger("Weight", 1); itemOnScale = null; return;}
+			if (itemOnScale.GetComponent<Items>().weight == 2)
+			//{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[2].rotation, Time.deltaTime * arrowRotSpd); }
+			{anim.SetInteger("Weight", 2); itemOnScale = null; return;}
+			if (itemOnScale.GetComponent<Items>().weight == 3)
+			//{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[3].rotation, Time.deltaTime * arrowRotSpd); }
+			{anim.SetInteger("Weight", 3); itemOnScale = null; return;}
+			if (itemOnScale.GetComponent<Items>().weight == 4)
+			//{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[4].rotation, Time.deltaTime * arrowRotSpd); }
+			{anim.SetInteger("Weight", 4); itemOnScale = null; return;}
+			if (itemOnScale.GetComponent<Items>().weight == 5)
+			//{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[5].rotation, Time.deltaTime * arrowRotSpd); }
+			{anim.SetInteger("Weight", 5); itemOnScale = null; return;}
+			if (itemOnScale.GetComponent<Items>().weight == 6)
+			//{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[6].rotation, Time.deltaTime * arrowRotSpd); }
+			{anim.SetInteger("Weight", 6); itemOnScale = null; return;}
 			
 		}
-		else { arrowRotation = 0f; }
+		//else //{ arrow.transform.rotation = Quaternion.Lerp(arrow.transform.rotation, arwRots[0].rotation, Time.deltaTime * arrowRotSpd); }
+		//{anim.SetInteger("Weight", 0); itemOnScale = null;}
 
-		arrow.transform.eulerAngles = new Vector3(arrow.transform.rotation.x, arrow.transform.rotation.y, arrowRotation);
 	}
 }

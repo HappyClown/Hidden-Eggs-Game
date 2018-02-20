@@ -11,6 +11,7 @@ public class ClickOnEggs : MonoBehaviour
 	Vector2 mousePos2D;
 	Vector3 mousePos;
 
+	[Header("Egg Info")]
 	public int eggsLeft;
 	private int eggsFound;
 	private int totalEggs;
@@ -71,6 +72,7 @@ public class ClickOnEggs : MonoBehaviour
 		if (hit.collider.CompareTag("Puzzle") && Input.GetMouseButtonDown(0))
 		{
 			SceneManager.LoadScene(puzzleSceneName);
+			PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
 		}
 
 
