@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class EggGoToCorner : MonoBehaviour 
 {
-	public Transform cornerPos;
+	public Vector3 cornerPos;
+
+	public ClickOnEggs clickOnEggsScript;
 
 	public Vector3 cornerRot;
+
+	public Vector3 cornerEggScale;
 
 	public float timeToMove;
 
@@ -23,9 +27,11 @@ public class EggGoToCorner : MonoBehaviour
 	{
 		if (moveThisEgg == true)
 		{
-			this.transform.position = Vector3.Lerp(this.transform.position, cornerPos.position, timeToMove * Time.deltaTime);
+			this.transform.position = Vector3.Lerp(this.transform.position, cornerPos, timeToMove * Time.deltaTime);
 
 			this.transform.eulerAngles = Vector3.Lerp(this.transform.eulerAngles, cornerRot, timeToMove * Time.deltaTime);
+
+			this.transform.localScale = Vector3.Lerp(this.transform.localScale, cornerEggScale, timeToMove * Time.deltaTime);
 		}
 	}
 	
@@ -33,5 +39,6 @@ public class EggGoToCorner : MonoBehaviour
 	public void GoToCorner () 
 	{
 		moveThisEgg = true;
+		cornerPos = clickOnEggsScript.newCornerPos;
 	}
 }
