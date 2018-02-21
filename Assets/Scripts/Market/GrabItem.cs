@@ -11,23 +11,31 @@ public class GrabItem : MonoBehaviour
 	Vector3 mousePos;
 
 	public bool holdingItem;
-
 	public GameObject heldItem;
 
 	public GameObject scaleSnapPos;
+	public Transform crateSnapPos;
+
+	[Header("Item Parents")]
+	public GameObject lvlOneItmHolder;
+	public GameObject lvlTwoItmHolder;
+	public GameObject lvlThreeItmHolder;
 	public GameObject itemHolder;
 
+	[Header("Scripts")]
 	public Scale scaleScript;
 	public Items itemsScript;
 	public Crate crateScript;
 	public ResetItemsButton resetItemsButtonScript;
 
-	public Transform crateSnapPos;
-
+	[Header("Text")]
 	public Text pounds;
 	public Text amntOfItems;
+
+	[Header("In Crate")]
 	public float curntPounds;
 	public float curntAmnt;
+
 
 
 	void Start ()
@@ -112,6 +120,7 @@ public class GrabItem : MonoBehaviour
 					if (scaleScript.itemOnScale != null)
 					{
 						scaleScript.itemOnScale.transform.position = scaleScript.itemOnScale.GetComponent<Items>().initialPos;
+						scaleScript.itemOnScale.transform.parent = itemHolder.transform;
 					}
 					heldItem.transform.position = new Vector3(scaleSnapPos.transform.position.x, scaleSnapPos.transform.position.y, -5f);
 					heldItem.transform.parent = scaleSnapPos.transform;
@@ -151,9 +160,29 @@ public class GrabItem : MonoBehaviour
 			curntPounds = 0;
 			curntAmnt = 0;
 
-			// TEMPORARY UNTIL WE DECIDE ON IF WE WANT DIFFERENT ITEMS EACH LEVEL //
+			if(crateScript.curntLvl > 1) resetItemsButtonScript.ResetItemsToTable();
 
-			resetItemsButtonScript.ResetItemsToTable();
+			if (crateScript.curntLvl == 1) 
+			{ 
+				itemHolder = lvlOneItmHolder;
+			}
+
+			if (crateScript.curntLvl == 2) 
+			{
+				 itemHolder = lvlTwoItmHolder; 
+				 lvlTwoItmHolder.SetActive(true);
+				 lvlOneItmHolder.SetActive(false);
+			}
+
+			if (crateScript.curntLvl == 3) 
+			{
+				 itemHolder = lvlThreeItmHolder; 
+				 lvlThreeItmHolder.SetActive(true);
+				 lvlTwoItmHolder.SetActive(false);
+			}
+
+			resetItemsButtonScript.FillItemResetArray();
+			
 		}
 	}
 }

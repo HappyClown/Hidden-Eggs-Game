@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Items : MonoBehaviour 
 {
-	public float weight;
+	public int weight;
 	public Vector3 initialPos;
 	public bool inCrate;
 

@@ -9,6 +9,9 @@ public class ResetItemsButton : MonoBehaviour
 	public GameObject[] items; 
 
 	public Scale scaleScript;
+	public GrabItem grabItemScript;
+
+
 
 	void Start () 
 	{
@@ -18,7 +21,14 @@ public class ResetItemsButton : MonoBehaviour
 
 		scaleScript = GameObject.FindGameObjectWithTag("Scale").GetComponent<Scale>();
 	}
+
+	public void FillItemResetArray ()
+	{
+		items = GameObject.FindGameObjectsWithTag("Item");
+	}
 	
+
+
 	public void ResetItemsToTable () 
 	{
 		//Debug.Log("Reseting Items to table blip bloop.");
@@ -28,6 +38,7 @@ public class ResetItemsButton : MonoBehaviour
 		for (int i = 0; i < items.Length; i ++)
 		{
 			items[i].GetComponent<Items>().BackToInitialPos();
+			items[i].transform.parent = grabItemScript.itemHolder.transform;
 		}
 	}
 }
