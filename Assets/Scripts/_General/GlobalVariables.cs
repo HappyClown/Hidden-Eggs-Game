@@ -24,6 +24,9 @@ public class GlobalVariables : MonoBehaviour
 			Destroy(this.gameObject);
 			return;
 		}
+
+		//In builds, lock cursor in the screen window. May wanna change if windowed mode is a possibility.
+		Cursor.lockState = CursorLockMode.Confined;
 	}
 	
 
