@@ -7,11 +7,11 @@ public class Items : MonoBehaviour
 	public int weight;
 	public Vector3 initialPos;
 	public bool inCrate;
-	public float fadeSpeed;
+	//public float fadeSpeed;
 	public bool fadingOut;
-	private bool fadingIn;
+	public bool fadingIn;
 	public float t;
-	private float startTime;
+	//private float startTime;
 	public float fadeDuration;
 	private SpriteRenderer sprite;
 
@@ -19,8 +19,12 @@ public class Items : MonoBehaviour
 	{
 		initialPos = this.transform.position;
 		inCrate = false;
-		startTime = Time.time;
+		//startTime = Time.time;
 		sprite = this.gameObject.GetComponent<SpriteRenderer>();
+
+		sprite.color = new Color(1f, 1f, 1f, 0f);
+
+		FadeIn ();
 	}
 	
 	void Update () 
@@ -41,6 +45,7 @@ public class Items : MonoBehaviour
 			sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, t));
 			if (t >= 1f)
 			{
+				this.gameObject.SetActive(false);
 				fadingOut = false;
 			}
 		}
@@ -72,7 +77,7 @@ public class Items : MonoBehaviour
 		{
 			fadingOut = true;
 			t = 0f;
-			Debug.Log("Should Fade Out");
+			//Debug.Log("Should Fade Out");
 		}
 	}
 
@@ -80,7 +85,7 @@ public class Items : MonoBehaviour
 
 	public void FadeIn ()
 	{
-		if (fadingIn == false && sprite.color.a <= 0.01f)
+		if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
 		{
 			fadingIn = true;
 			t = 0f;

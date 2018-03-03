@@ -15,6 +15,15 @@ public class GrabItem : MonoBehaviour
 	public bool holdingItem;
 	public GameObject heldItem;
 
+	[Header("Crate Movement")]
+	public bool crateToRight;
+	public bool crateToDown;
+	public bool crateStop;
+	public Transform crateRightTransform;
+	public Transform crateTopTransform;
+	public Transform crateInSceneTransform;
+	public float crateMoveSpeed;
+
 	[Header("Tagged Colliders & Position Snaps")]
 	public GameObject scaleSnapPos;
 	public Transform crateSnapPos;
@@ -79,37 +88,41 @@ public class GrabItem : MonoBehaviour
 		{
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
 
-			if (hit.collider.CompareTag("Item") && canPickUpItems)
+			if (hit)
 			{
-				//Debug.Log(hit.collider.name);
-
-				holdingItem = true;
-				heldItem = hit.collider.gameObject;
-				heldItem.transform.parent = itemHolder.transform;
-
-				if (heldItem == scaleScript.itemOnScale)
+				if (hit.collider.CompareTag("Item") && !inBetweenLvls)
 				{
-					scaleScript.isAnItemOnScale = false;
-					scaleScript.itemOnScale = null;
-				}
+					//Debug.Log(hit.collider.name);
 
-				if (heldItem.GetComponent<Items>().inCrate == true)
+					holdingItem = true;
+					heldItem = hit.collider.gameObject;
+					heldItem.transform.parent = itemHolder.transform;
+
+					if (heldItem == scaleScript.itemOnScale)
+					{
+						scaleScript.isAnItemOnScale = false;
+						scaleScript.itemOnScale = null;
+					}
+
+					if (heldItem.GetComponent<Items>().inCrate == true)
+					{
+						//pounds.text = curntPounds - heldItem.GetComponent<Items>().weight + " /" + crateScript.reqPounds + " pounds";
+						curntPounds -= heldItem.GetComponent<Items>().weight;
+						//amntOfItems.text = curntAmnt - 1 + " /" + crateScript.reqItems + " items";
+						curntAmnt -= 1;
+						heldItem.GetComponent<Items>().inCrate = false;
+					}
+				}
+			
+
+				// Pick up silver Eggs //
+				if (hit.collider.CompareTag("Egg") && inBetweenLvls)
 				{
-					//pounds.text = curntPounds - heldItem.GetComponent<Items>().weight + " /" + crateScript.reqPounds + " pounds";
-					curntPounds -= heldItem.GetComponent<Items>().weight;
-					//amntOfItems.text = curntAmnt - 1 + " /" + crateScript.reqItems + " items";
-					curntAmnt -= 1;
-					heldItem.GetComponent<Items>().inCrate = false;
+					silverEggs.Add(hit.collider.gameObject);
+					Debug.Log("Thats Silver Egg #" + silverEggs.Count +" mate");
+					hit.collider.enabled = false;
+					hit.collider.gameObject.SetActive(false); // redundant with the previous line but what happens to the eggs remains to be thought of.
 				}
-			}
-
-			// Pick up silver Eggs //
-			if (hit.collider.CompareTag("Egg") && inBetweenLvls == true)
-			{
-				silverEggs.Add(hit.collider.gameObject);
-				Debug.Log("Thats Silver Egg #" + silverEggs.Count +" mate");
-				hit.collider.enabled = false;
-				hit.collider.gameObject.SetActive(false); // redundant with the previous line but what happens to the eggs remains to be thought of.
 			}
 		}
 
@@ -140,7 +153,7 @@ public class GrabItem : MonoBehaviour
 
 			for (int i =0; i < hits.Length; i++)
 			{
-				Debug.Log(hits[i].collider.gameObject.name);
+				//Debug.Log(hits[i].collider.gameObject.name);
 					
 				// ON THE SCALE //
 				if (hits[i].collider.gameObject.CompareTag("Scale"))
@@ -189,10 +202,13 @@ public class GrabItem : MonoBehaviour
 		// NEXT LEVEL OF THE PUZZLE WHEN REQUIREMENTS ARE MET //
 		if (curntPounds == crateScript.reqPounds && curntAmnt == crateScript.reqItems)
 		{
+			inBetweenLvls = true;
+
+			crateToRight = true;
+
 			crateCol.enabled = false; //disable crate collider (cannot drop items on crate anymore)
 			//tell crate to do moveright animation (MoveRight settrigger)
-			//
-			inBetweenLvls = true;
+			
 
 			//Debug.Log("Next level!");
 			crateScript.curntLvl += 1;	
@@ -214,32 +230,154 @@ public class GrabItem : MonoBehaviour
 				resetItemsButtonScript.FillItemResetArray();
 			}
 
+
+			if (crateScript.curntLvl == 2 && lvlTwoSlvrEggs.activeSelf == false && inBetweenLvls == true && silverEggs.Count < 1)// after level 1 is done but before level 2 gets set up
+			{
+				Items[] childrenItemScripts;
+
+				childrenItemScripts = lvlOneItmHolder.transform.GetComponentsInChildren<Items>();
+
+				for (int i = 0; i <childrenItemScripts.Length; i++)
+				{
+					childrenItemScripts[i].FadeOut();
+				}
+
+				if (crateToRight == true)
+				{
+					StartCoroutine(MoveCrateRight());
+				}
+				crateToRight = false;
+			}
+
+
 			if (crateScript.curntLvl == 2 && lvlTwoSlvrEggs.activeSelf == false && inBetweenLvls == true && silverEggs.Count == 1) // and silver egg is picked up 
 			{
 				Debug.Log("Setting up level 2");
 				//resetItemsButtonScript.ResetItemsToTable();
+				StartCoroutine(MoveCrateDown());	
 				 itemHolder = lvlTwoItmHolder; // would it be wiser to put if statements before these ie: if itemholder != lvlTwoItmHolder -> itemHolder = lvlTwoItmHolder
 				 lvlTwoItmHolder.SetActive(true);
 				 lvlOneItmHolder.SetActive(false);
 				 lvlTwoSlvrEggs.SetActive(true); //set active the new level 2 silver eggs WHEN THE CRATE IS BACK IN POSITION
 				 lvlOneSlvrEggs.SetActive(false);
 				 crateCol.enabled = true; //re-enable crate collider
+				 resetItemsButtonScript.FillItemResetArray();
 				 inBetweenLvls = false;
 				 
 			}
+
+
+			if (crateScript.curntLvl == 3 && lvlThreeSlvrEggs.activeSelf == false && inBetweenLvls == true && silverEggs.Count < 3 && silverEggs.Count >= 1)// after level 2 is done but before level 3 gets set up
+			{
+				Items[] childrenItemScripts;
+
+				childrenItemScripts = lvlTwoItmHolder.transform.GetComponentsInChildren<Items>();
+
+				for (int i = 0; i <childrenItemScripts.Length; i++)
+				{
+					childrenItemScripts[i].FadeOut();
+				}
+
+				if (crateToRight == true)
+				{
+					StartCoroutine(MoveCrateRight());
+				}
+				crateToRight = false;
+			}
+
 
 			if (crateScript.curntLvl == 3 && lvlThreeSlvrEggs.activeSelf == false && inBetweenLvls == true && silverEggs.Count == 3) // and silver eggs are picked up
 			{
 				Debug.Log("Setting up level 3");
 				//resetItemsButtonScript.ResetItemsToTable();
+				StartCoroutine(MoveCrateDown());
 				 itemHolder = lvlThreeItmHolder; 
 				 lvlThreeItmHolder.SetActive(true);
 				 lvlTwoItmHolder.SetActive(false);
 				 lvlThreeSlvrEggs.SetActive(true); //set active the new level 3 silver eggs WHEN THE CRATE IS BACK IN POSITION
 				 lvlTwoSlvrEggs.SetActive(false);
-				 crateCol.enabled = false; //re-enable crate collider
-				 inBetweenLvls = false;
+				 crateCol.enabled = true; //re-enable crate collider
 				 resetItemsButtonScript.FillItemResetArray();
+				 inBetweenLvls = false;
+			}
+
+
+			if (crateScript.curntLvl == 4 && lvlThreeSlvrEggs.activeSelf == true && inBetweenLvls == true && silverEggs.Count < 6 && silverEggs.Count >= 3)// after level 2 is done but before level 3 gets set up
+			{
+				Items[] childrenItemScripts;
+
+				childrenItemScripts = lvlThreeItmHolder.transform.GetComponentsInChildren<Items>();
+
+				for (int i = 0; i <childrenItemScripts.Length; i++)
+				{
+					childrenItemScripts[i].FadeOut();
+				}
+
+				if (crateToRight == true)
+				{
+					StartCoroutine(MoveCrateRight());
+				}
+				crateToRight = false;
+			}
+	}
+
+
+	// public void MoveCrateRight ()
+	// {
+	// 	if (crateToRight == true)
+	// 	{
+	// 		crateParent.transform.position = Vector3.MoveTowards(crateParent.transform.position, crateRightTransform.position, crateMoveSpeed * Time.deltaTime);
+	// 	}
+
+	// 	if (crateParent.transform.position.x >= crateRightTransform.position.x - 0.25f)
+	// 	{
+	// 		foreach (Transform item in crateParent.transform)
+	// 		{
+	// 			//Debug.Log("Going through the keeds");
+	// 			if(item.gameObject.CompareTag("Item"))
+	// 			{
+	// 				item.gameObject.SetActive(false);
+	// 			}
+	// 		}
+	// 		crateToRight = false;
+	// 		crateStop = true;
+	// 		crateParent.transform.position = crateTopTransform.position;
+	// 	}
+	// }
+
+
+	public IEnumerator MoveCrateRight ()
+	{
+			while (Vector3.Distance(crateParent.transform.position, crateRightTransform.position) > 0.25f)
+			{
+				crateParent.transform.position = Vector3.MoveTowards(crateParent.transform.position, crateRightTransform.position, crateMoveSpeed * Time.deltaTime);
+
+				//Debug.Log("Not at Right position yet.");
+
+				yield return null;
+			}
+
+			foreach (Transform item in crateParent.transform)
+			{
+				//Debug.Log("Going through the keeds");
+				if(item.gameObject.CompareTag("Item"))
+				{
+					item.gameObject.SetActive(false);
+				}
+			}
+		crateParent.transform.position = crateTopTransform.position;
+	}
+
+
+	public IEnumerator MoveCrateDown ()
+	{
+		crateParent.transform.position = crateTopTransform.position;
+
+			while (Vector3.Distance(crateParent.transform.position, crateInSceneTransform.position) > 0.25f)
+			{
+				crateParent.transform.position = Vector3.MoveTowards(crateParent.transform.position, crateInSceneTransform.position, crateMoveSpeed * Time.deltaTime);
+
+				yield return null;
 			}
 	}
 }

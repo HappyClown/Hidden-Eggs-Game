@@ -31,14 +31,17 @@ public class ResetItemsButton : MonoBehaviour
 
 	public void ResetItemsToTable () 
 	{
-		//Debug.Log("Reseting Items to table blip bloop.");
-		scaleScript.itemOnScale = null;
-		scaleScript.isAnItemOnScale = false;
-		
-		for (int i = 0; i < items.Length; i ++)
+		if (grabItemScript.inBetweenLvls == false)
 		{
-			items[i].GetComponent<Items>().BackToInitialPos();
-			items[i].transform.parent = grabItemScript.itemHolder.transform;
+			//Debug.Log("Reseting Items to table blip bloop.");
+			scaleScript.itemOnScale = null;
+			scaleScript.isAnItemOnScale = false;
+			
+			for (int i = 0; i < items.Length; i ++)
+			{
+				items[i].GetComponent<Items>().BackToInitialPos();
+				items[i].transform.parent = grabItemScript.itemHolder.transform;
+			}
 		}
 	}
 }
