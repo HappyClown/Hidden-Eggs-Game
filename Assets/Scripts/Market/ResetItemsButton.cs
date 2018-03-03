@@ -39,6 +39,11 @@ public class ResetItemsButton : MonoBehaviour
 			
 			for (int i = 0; i < items.Length; i ++)
 			{
+				if (items[i].transform.parent.name == "MarketPuzzle_Crate")
+				{
+					grabItemScript.curntAmnt--;
+					grabItemScript.curntPounds -= items[i].GetComponent<Items>().weight;
+				}
 				items[i].GetComponent<Items>().BackToInitialPos();
 				items[i].transform.parent = grabItemScript.itemHolder.transform;
 			}

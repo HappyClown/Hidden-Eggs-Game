@@ -57,22 +57,24 @@ public class ClickOnEggs : MonoBehaviour
 		eggsLeft = eggsCount.Length;
 		eggCounterText.text = (eggsFound) + "/" + totalEggs + " Eggs";
 
-
-		if (hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
+		if (hit)
 		{
-			Debug.Log(hit.collider.name);
-			newCornerPos = new Vector3(cornerPos.position.x + (eggsFound * cornerExtraPos), cornerPos.position.y, cornerPos.position.z - (eggsFound * 0.01f));  
-			hit.collider.gameObject.GetComponent<EggGoToCorner>().GoToCorner();
-			hit.collider.enabled = false;
+			if (hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
+			{
+				Debug.Log(hit.collider.name);
+				newCornerPos = new Vector3(cornerPos.position.x + (eggsFound * cornerExtraPos), cornerPos.position.y, cornerPos.position.z - (eggsFound * 0.01f));  
+				hit.collider.gameObject.GetComponent<EggGoToCorner>().GoToCorner();
+				hit.collider.enabled = false;
 
-			eggsFound += 1;
-		}
+				eggsFound += 1;
+			}
 
 
-		if (hit.collider.CompareTag("Puzzle") && Input.GetMouseButtonDown(0))
-		{
-			SceneManager.LoadScene(puzzleSceneName);
-			PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
+			if (hit.collider.CompareTag("Puzzle") && Input.GetMouseButtonDown(0))
+			{
+				SceneManager.LoadScene(puzzleSceneName);
+				PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
+			}
 		}
 
 
@@ -81,6 +83,4 @@ public class ClickOnEggs : MonoBehaviour
 			puzzleClickArea.SetActive(true);
 		}
 	}
-
-
 }

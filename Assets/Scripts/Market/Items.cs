@@ -89,7 +89,7 @@ public class Items : MonoBehaviour
 		{
 			fadingIn = true;
 			t = 0f;
-			Debug.Log("Should Fade In");
+			//Debug.Log("Should Fade In");
 		}
 	}
 }

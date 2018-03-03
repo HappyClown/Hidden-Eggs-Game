@@ -22,7 +22,7 @@ public class Crate : MonoBehaviour
 	public float reqPounds;
 	public float reqItems;
 
-	public float curntLvl;
+	public int curntLvl;
 
 
 	void Start () 
