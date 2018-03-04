@@ -240,7 +240,7 @@ public class GrabItem : MonoBehaviour
 
 				if (crateToRight == true)
 				{
-					crateAnim.SetTrigger("MoveRight");
+					//crateAnim.SetTrigger("MoveRight");
 					StartCoroutine(MoveCrateRight());
 				}
 				crateToRight = false;
@@ -274,7 +274,7 @@ public class GrabItem : MonoBehaviour
 
 				if (crateToRight == true)
 				{
-					crateAnim.SetTrigger("MoveRight");
+					//crateAnim.SetTrigger("MoveRight");
 					StartCoroutine(MoveCrateRight());
 				}
 				crateToRight = false;
@@ -308,7 +308,7 @@ public class GrabItem : MonoBehaviour
 
 				if (crateToRight == true)
 				{
-					crateAnim.SetTrigger("MoveRight");
+					//crateAnim.SetTrigger("MoveRight");
 					StartCoroutine(MoveCrateRight());
 				}
 				crateToRight = false;
@@ -327,6 +327,27 @@ public class GrabItem : MonoBehaviour
 	public IEnumerator MoveCrateRight ()
 	{
 		//Make it skip a frame to make sure that the animation has time to start.
+		yield return new WaitForSeconds(0.0001f);
+		//yield return new WaitUntil(!crateAnim.IsInTransition(0));
+		
+
+		while (crateAnim.transform.parent.rotation != crateInSceneTransform.rotation)
+		{
+			// crateAnim.transform.parent.eulerAngles = Vector3.Lerp(crateAnim.transform.parent.eulerAngles, crateInSceneTransform.eulerAngles, Time.deltaTime);
+			float Zangle = crateAnim.transform.parent.eulerAngles.z;
+			Zangle = Mathf.LerpAngle(crateAnim.transform.parent.eulerAngles.z, 0f, Time.deltaTime * crateMoveSpeed);
+			crateAnim.transform.parent.eulerAngles = new Vector3(0, 0, Zangle);
+			Debug.Log(crateAnim.transform.parent.eulerAngles);
+
+			if (Vector3.Distance(crateAnim.transform.parent.eulerAngles, crateInSceneTransform.eulerAngles) <= 0.1f)
+			{
+				crateAnim.transform.parent.rotation = crateInSceneTransform.rotation;
+			}
+
+			yield return null;
+		}
+		crateAnim.SetTrigger("MoveRight");
+
 		yield return new WaitForSeconds(0.0001f);
 
 		while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveRight"))
@@ -386,7 +407,8 @@ public class GrabItem : MonoBehaviour
 			yield return null;
 		}
 
-		//crateParent.transform.parent.position = crateAnim.transform.position;
+		crateParent.transform.parent.position = crateAnim.transform.position;
+		crateParent.transform.parent.rotation = crateAnim.transform.rotation;
 
 		lvlSilverEggs[crateScript.curntLvl - 2].SetActive(false);
 		lvlSilverEggs[crateScript.curntLvl - 1].SetActive(true);
