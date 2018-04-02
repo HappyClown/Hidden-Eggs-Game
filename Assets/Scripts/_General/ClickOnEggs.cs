@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class ClickOnEggs : MonoBehaviour 
 {
@@ -18,7 +19,7 @@ public class ClickOnEggs : MonoBehaviour
 	private int totalEggs;
 	private GameObject[] eggsCount;
 
-	public Text eggCounterText;
+	public TextMeshProUGUI eggCounterText;
 
 	[Header("Picked Up Eggs")]
 	public Vector3 newCornerPos;
@@ -28,6 +29,8 @@ public class ClickOnEggs : MonoBehaviour
 	[Header("Puzzle")]
 	public GameObject puzzleClickArea;
 	public string puzzleSceneName;
+	public Animation scaleAnim;
+	public float puzzleUnlock;
 
 	[Header("Egg Panel")]
 	public GameObject eggPanel;
@@ -56,7 +59,7 @@ public class ClickOnEggs : MonoBehaviour
 		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
 		eggsLeft = eggsCount.Length;
 		totalEggs = eggsLeft;
-		eggCounterText.text = "Eggs Found: 0/" + totalEggs;
+		eggCounterText.text = "Eggs Found: 0/" + (totalEggs + 7);
 		newCornerPos = cornerPos.position;
 
 		// foreach (Transform child in eggPanel.transform)
@@ -83,7 +86,7 @@ public class ClickOnEggs : MonoBehaviour
 
 		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
 		eggsLeft = eggsCount.Length;
-		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + totalEggs;
+		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + (totalEggs + 7);
 
 		if (hit)
 		{
@@ -159,9 +162,10 @@ public class ClickOnEggs : MonoBehaviour
 		}
 
 
-		if (puzzleClickArea.activeSelf == false && eggsFound == Mathf.Ceil(totalEggs*0.5f))
+		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlock)
 		{
 			puzzleClickArea.SetActive(true);
+			scaleAnim.Play();
 		}
 	}
 
