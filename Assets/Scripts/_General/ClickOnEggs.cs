@@ -107,7 +107,7 @@ public class ClickOnEggs : MonoBehaviour
 			if (hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
 			{
 				Debug.Log(hit.collider.name);
-				newCornerPos = eggSpots[eggsFound].transform.position;
+				//newCornerPos = eggSpots[eggsFound].transform.position;
 				//hit.collider.gameObject.transform.parent = eggPanel.transform;
 				hit.collider.gameObject.GetComponent<EggGoToCorner>().StartEggAnim();
 				hit.collider.enabled = false;

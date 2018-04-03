@@ -86,7 +86,15 @@ public class GlobalVariables : MonoBehaviour
 	{
 		if (!clickOnEggsScript)
 		{
-			clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>();
+			Debug.Log("no click on egg");
+			if (GameObject.Find("Game Engine"))
+			{
+				clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>();
+			}
+			else
+			{
+				clickOnEggsScript = null;
+			}
 		}
 
 		if (!eggHolder)
