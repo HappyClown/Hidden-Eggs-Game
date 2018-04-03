@@ -58,7 +58,7 @@ public class GrabItem : MonoBehaviour
 
 	[Header("Silver Eggs")]
 	public List<GameObject> lvlSilverEggs;
-	public List<GameObject> silverEggsPickedUp;
+	public int silverEggsPickedUp;
 
 
 	void Start ()
@@ -118,10 +118,12 @@ public class GrabItem : MonoBehaviour
 				// Pick up silver Eggs //
 				if (hit.collider.CompareTag("Egg") && inBetweenLvls)
 				{
-					silverEggsPickedUp.Add(hit.collider.gameObject);
-					Debug.Log("Thats Silver Egg #" + silverEggsPickedUp.Count +" mate");
+					silverEggsPickedUp += 1;
+					Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
 					hit.collider.enabled = false;
 					hit.collider.gameObject.SetActive(false); // redundant with the previous line but what happens to the eggs remains to be thought of.
+					GlobalVariables.globVarScript.silverEggsCount = silverEggsPickedUp;
+					GlobalVariables.globVarScript.SaveEggState();
 				}
 			}
 		}
@@ -227,7 +229,7 @@ public class GrabItem : MonoBehaviour
 			}
 
 
-			if (crateScript.curntLvl == 2 && lvlSilverEggs[1].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp.Count < 1)// after level 1 is done but before level 2 gets set up
+			if (crateScript.curntLvl == 2 && lvlSilverEggs[1].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp < 1)// after level 1 is done but before level 2 gets set up
 			{
 				Items[] childrenItemScripts;
 
@@ -247,7 +249,7 @@ public class GrabItem : MonoBehaviour
 			}
 
 
-			if (crateScript.curntLvl == 2 && lvlSilverEggs[1].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp.Count == 1 && !crateToRight)
+			if (crateScript.curntLvl == 2 && lvlSilverEggs[1].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp == 1 && !crateToRight)
 			{
 				Debug.Log("Setting up level 2");
 				crateAnim.SetTrigger("MoveDown");
@@ -261,7 +263,7 @@ public class GrabItem : MonoBehaviour
 			}
 
 
-			if (crateScript.curntLvl == 3 && lvlSilverEggs[2].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp.Count < 3 && silverEggsPickedUp.Count >= 1)// after level 2 is done but before level 3 gets set up
+			if (crateScript.curntLvl == 3 && lvlSilverEggs[2].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp < 3 && silverEggsPickedUp >= 1)// after level 2 is done but before level 3 gets set up
 			{
 				Items[] childrenItemScripts;
 
@@ -281,7 +283,7 @@ public class GrabItem : MonoBehaviour
 			}
 
 
-			if (crateScript.curntLvl == 3 && lvlSilverEggs[2].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp.Count == 3 && !crateToRight)
+			if (crateScript.curntLvl == 3 && lvlSilverEggs[2].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp == 3 && !crateToRight)
 			{
 				Debug.Log("Setting up level 3");
 				crateAnim.SetTrigger("MoveDown");
@@ -295,7 +297,7 @@ public class GrabItem : MonoBehaviour
 			}
 
 
-			if (crateScript.curntLvl == 4 && lvlSilverEggs[2].activeSelf == true && inBetweenLvls == true && silverEggsPickedUp.Count < 6 && silverEggsPickedUp.Count >= 3)// after level 3 is done
+			if (crateScript.curntLvl == 4 && lvlSilverEggs[2].activeSelf == true && inBetweenLvls == true && silverEggsPickedUp < 6 && silverEggsPickedUp >= 3)// after level 3 is done
 			{
 				Items[] childrenItemScripts;
 
@@ -316,7 +318,7 @@ public class GrabItem : MonoBehaviour
 
 
 			// Last level completed and all 6 eggs picked up.
-			if (crateScript.curntLvl == 4 && silverEggsPickedUp.Count == 6)
+			if (crateScript.curntLvl == 4 && silverEggsPickedUp == 6)
 			{
 				StartCoroutine(PuzzleComplete());
 			}

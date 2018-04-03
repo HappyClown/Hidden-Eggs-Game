@@ -31,6 +31,7 @@ public class ClickOnEggs : MonoBehaviour
 	public string puzzleSceneName;
 	public Animation scaleAnim;
 	public float puzzleUnlock;
+	public ParticleSystem puzzleParticles;
 
 	[Header("Egg Panel")]
 	public GameObject eggPanel;
@@ -42,6 +43,9 @@ public class ClickOnEggs : MonoBehaviour
 	public GameObject eggPanelShown;
 	public float panelMoveSpeed;
 	public float panelOpenTime;
+	public List<GameObject> silverEggsInPanel;
+
+	public List<GameObject> eggs;
 
 	public float timer;
 
@@ -61,6 +65,16 @@ public class ClickOnEggs : MonoBehaviour
 		totalEggs = eggsLeft;
 		eggCounterText.text = "Eggs Found: 0/" + (totalEggs + 7);
 		newCornerPos = cornerPos.position;
+		MakeSilverEggsAppear ();
+
+		if (GlobalVariables.globVarScript.rainbowRiddleSolved == true)
+		{
+			foreach (GameObject basket in fruitBaskets)
+			{
+				basket.SetActive(false);
+			}
+			goldenEgg.SetActive(true);
+		}
 
 		// foreach (Transform child in eggPanel.transform)
 		// {
@@ -124,29 +138,38 @@ public class ClickOnEggs : MonoBehaviour
 
 			if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
 			{
-				if (hit.collider.gameObject == fruitBaskets[basketNumber])
+
+				basketNumber += 1;
+
+				hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+				
+				if (basketNumber >= 6)
 				{
-					basketNumber += 1;
-					if (basketNumber >= 6)
+					RiddleSolved ();
+					//SpawnGoldenEgg;
+					goldenEgg.SetActive(true);
+					//Disable/destroy all basket colliders;
+					foreach (GameObject basket in fruitBaskets)
 					{
-						//SpawnGoldenEgg;
-						goldenEgg.SetActive(true);
-						//Disable/destroy all basket colliders;
-						foreach (GameObject basket in fruitBaskets)
-						{
-							basket.SetActive(false);
-						}	
-						return;
-					}
-					hit.collider.GetComponent<CircleCollider2D>().radius = smallBasketCollSize;
-					fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = largeBasketCollSize;
+						basket.SetActive(false);
+					}	
+					return;
 				}
 				else
 				{
-					fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = smallBasketCollSize;
-					basketNumber = 0;
-					fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = largeBasketCollSize;
+					fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().enabled = true;
 				}
+			}
+			
+
+			if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
+			{
+				basketNumber = 0;
+				foreach (GameObject basket in fruitBaskets)
+				{
+					basket.GetComponent<CircleCollider2D>().enabled = false;
+				}	
+				fruitBaskets[0].GetComponent<CircleCollider2D>().enabled = true;
 			}
 		}
 
@@ -165,13 +188,17 @@ public class ClickOnEggs : MonoBehaviour
 		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlock)
 		{
 			puzzleClickArea.SetActive(true);
+			var emission = puzzleParticles.emission;
+			emission.enabled = true;
 			scaleAnim.Play();
 		}
+
+
 	}
 
 
 
-	public IEnumerator MoveEggPanelTimer()
+	public IEnumerator MoveEggPanelTimer ()
 	{
 		Debug.Log("Hello.");
 		while (timer < panelOpenTime)
@@ -186,4 +213,52 @@ public class ClickOnEggs : MonoBehaviour
 		Debug.Log("Hello.");
 		timer = 0f;
 	}
+
+
+
+	public void MakeSilverEggsAppear ()
+	{
+		for (int i = 0; i < GlobalVariables.globVarScript.silverEggsCount; i++)
+		{
+			silverEggsInPanel[i].SetActive(true);
+		}
+	}
+
+
+
+	public void RiddleSolved ()
+	{
+		GlobalVariables.globVarScript.rainbowRiddleSolved = true;
+		GlobalVariables.globVarScript.SaveEggState();
+	}
 }
+
+
+
+
+			// if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
+			// {
+			// 	if (hit.collider.gameObject == fruitBaskets[basketNumber])
+			// 	{
+			// 		basketNumber += 1;
+			// 		if (basketNumber >= 6)
+			// 		{
+			// 			//SpawnGoldenEgg;
+			// 			goldenEgg.SetActive(true);
+			// 			//Disable/destroy all basket colliders;
+			// 			foreach (GameObject basket in fruitBaskets)
+			// 			{
+			// 				basket.SetActive(false);
+			// 			}	
+			// 			return;
+			// 		}
+			// 		hit.collider.GetComponent<CircleCollider2D>().radius = smallBasketCollSize;
+			// 		fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = largeBasketCollSize;
+			// 	}
+			// 	else
+			// 	{
+			// 		fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = smallBasketCollSize;
+			// 		basketNumber = 0;
+			// 		fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = largeBasketCollSize;
+			// 	}
+			// }

@@ -10,6 +10,18 @@ public class GlobalVariables : MonoBehaviour
 	public string previousScene;
 	public string currentScene;
 
+	public List<bool> eggsFoundBools;
+
+	public int silverEggsCount;
+	
+	public bool eggToSave;
+
+	public GameObject eggHolder;
+
+	public ClickOnEggs clickOnEggsScript;
+
+	public bool rainbowRiddleSolved;
+
 
 
 	void OnEnable () 
@@ -25,19 +37,70 @@ public class GlobalVariables : MonoBehaviour
 			return;
 		}
 
+
+		// if (!eggs[1])
+		// {
+		// 	eggHolder = GameObject.FindGameObjectWithTag("EggPanel");
+		// 	foreach(Transform childEgg in eggHolder.transform)
+		// 	{
+		// 		eggs.Add(childEgg.gameObject);
+		// 	}
+		// }
 		//In builds, lock cursor in the screen window. May wanna change if windowed mode is a possibility.
 		Cursor.lockState = CursorLockMode.Confined;
+
+		eggsFoundBools = SaveLoadManager.LoadEggs();
+
+		silverEggsCount = SaveLoadManager.LoadSilverEggs();
+
+		rainbowRiddleSolved = SaveLoadManager.LoadRainbowRiddle();
+
+
+
+		foreach(GameObject egg in clickOnEggsScript.eggs)
+		{
+			Debug.Log("should be filling eggsfoundbool array");
+			eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+		}
+		
+		
+		List<bool> loadedEggs = SaveLoadManager.LoadEggs();
+
+		if (loadedEggs.Count > 2)
+		{
+			eggsFoundBools = loadedEggs;
+		}
 	}
 	
 
 
-	void Update () 
+	public void SaveEggState () 
 	{
-		if (currentScene != SceneManager.GetActiveScene().name)
+		SaveLoadManager.SaveEggs(this);
+		Debug.Log("Save Variables");
+	}
+
+
+
+	void Update ()
+	{
+		if (!clickOnEggsScript)
 		{
-			previousScene = currentScene;
+			clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>();
 		}
 
-		currentScene = SceneManager.GetActiveScene().name;
+		if (!eggHolder)
+		{
+			eggHolder = GameObject.FindGameObjectWithTag("EggHolder");
+		}
 	}
 }
+
+
+
+		// if (currentScene != SceneManager.GetActiveScene().name)
+		// {
+		// 	previousScene = currentScene;
+		// }
+
+		// currentScene = SceneManager.GetActiveScene().name;

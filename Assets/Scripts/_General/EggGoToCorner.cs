@@ -20,11 +20,38 @@ public class EggGoToCorner : MonoBehaviour
 
 	public Animator eggAnim;
 
+	public bool eggFound;
+
+
+
+	void Awake ()
+	{
+
+	}
+
 
 
 	void Start () 
 	{
 		eggAnim = this.GetComponent<Animator>();
+
+		if (GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
+		{
+			eggFound = GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+		}
+
+		if (eggFound)
+		{
+			eggAnim.enabled = false;
+			this.transform.position = mySpotInPanel.transform.position;
+			this.transform.eulerAngles = cornerRot;
+			this.transform.localScale = cornerEggScale;
+			clickOnEggsScript.eggsFound += 1;
+			//moveThisEgg = true;
+			//clickOnEggsScript.eggMoving -= 1;
+			this.transform.parent = clickOnEggsScript.eggPanel.transform;
+			Debug.Log(this.gameObject.name + " has been loaded as found already.");
+		}
 	}
 
 
@@ -48,6 +75,7 @@ public class EggGoToCorner : MonoBehaviour
 				this.transform.parent = clickOnEggsScript.eggPanel.transform;
 			}
 		}
+
 	}
 	
 
@@ -60,7 +88,13 @@ public class EggGoToCorner : MonoBehaviour
 		{
 			mySpotInPanel = clickOnEggsScript.eggSpots[clickOnEggsScript.eggsFound];
 		}
-		//StartCoroutine(MakeEggPop());
+
+		eggFound = true;
+
+		GlobalVariables.globVarScript.eggToSave = this.eggFound;
+		Debug.Log(GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+		GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
+		GlobalVariables.globVarScript.SaveEggState();
 	}
 
 
