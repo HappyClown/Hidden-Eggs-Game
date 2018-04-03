@@ -122,7 +122,7 @@ public class GrabItem : MonoBehaviour
 					Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
 					hit.collider.enabled = false;
 					hit.collider.gameObject.SetActive(false); // redundant with the previous line but what happens to the eggs remains to be thought of.
-					GlobalVariables.globVarScript.silverEggsCount = silverEggsPickedUp;
+					if (silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) { GlobalVariables.globVarScript.silverEggsCount = silverEggsPickedUp; }
 					GlobalVariables.globVarScript.SaveEggState();
 				}
 			}

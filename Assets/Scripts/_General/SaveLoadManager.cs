@@ -58,6 +58,12 @@ public class SaveLoadManager : MonoBehaviour
 		}
 	}
 
+	public static void DeleteSaveFile ()
+	{
+		File.Delete(Application.persistentDataPath + "/eggSaver.sav");
+		Debug.Log("Save file deleted.");
+	}
+
 
 
 	public static bool LoadRainbowRiddle()

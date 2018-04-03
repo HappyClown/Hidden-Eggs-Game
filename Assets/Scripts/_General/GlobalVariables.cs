@@ -93,6 +93,11 @@ public class GlobalVariables : MonoBehaviour
 		{
 			eggHolder = GameObject.FindGameObjectWithTag("EggHolder");
 		}
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			SaveLoadManager.DeleteSaveFile();
+		}
 	}
 }
 

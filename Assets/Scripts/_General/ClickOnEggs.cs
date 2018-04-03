@@ -221,6 +221,7 @@ public class ClickOnEggs : MonoBehaviour
 		for (int i = 0; i < GlobalVariables.globVarScript.silverEggsCount; i++)
 		{
 			silverEggsInPanel[i].SetActive(true);
+			eggsFound += 1;
 		}
 	}
 

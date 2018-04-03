@@ -89,12 +89,12 @@ public class SlideInHelpBird : MonoBehaviour
 		}
 
 
-		if (!riddleBtn.enabled && riddleBtnAlpha > 0)
+		if (riddleBtnAlpha > 0f)
 		{
 			riddleBtnAlpha -= Time.deltaTime * riddleBtnFadeTime;
 			riddleBtnObj.GetComponent<Image>().color = new Color(1,1,1, riddleBtnAlpha);
 		}
-		else if (riddleShow)
+		else if (riddleShow && riddleBtnAlpha <= 0)
 		{
 			riddleShow = false;
 			int random = Random.Range(0, riddleHints.Count);
@@ -118,8 +118,8 @@ public class SlideInHelpBird : MonoBehaviour
 
 	public void ShowRiddleText ()
 	{
-		riddleBtn.enabled = false;
-		riddleBtnAlpha = 1f;
+		riddleBtnAlpha = 1.05f;
+		riddleBtn.enabled = false;	
 		riddleShow = true;
 	}
 }
