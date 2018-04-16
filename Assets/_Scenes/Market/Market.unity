@@ -715,7 +715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73628755}
   - component: {fileID: 73628754}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Yellow Fruit Basket Collider
   m_TagString: FruitBasket
   m_Icon: {fileID: 0}
@@ -895,7 +895,7 @@ GameObject:
   m_Component:
   - component: {fileID: 128888107}
   - component: {fileID: 128888106}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blue Fruit Basket Collider
   m_TagString: FruitBasket
   m_Icon: {fileID: 0}
@@ -2792,7 +2792,7 @@ GameObject:
   - component: {fileID: 495121054}
   m_Layer: 0
   m_Name: GoldenEgg01
-  m_TagString: Egg
+  m_TagString: GoldenEgg
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4172,6 +4172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 712647446}
   - component: {fileID: 712647447}
+  - component: {fileID: 712647448}
   m_Layer: 0
   m_Name: Game Engine
   m_TagString: Untagged
@@ -4286,6 +4287,17 @@ MonoBehaviour:
   - {fileID: 241383894}
   - {fileID: 495121049}
   timer: 0
+--- !u!114 &712647448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712647445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0090467e3760640a90db2224e40d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   fruitBaskets:
   - {fileID: 928656636}
   - {fileID: 1985364055}
@@ -4297,6 +4309,9 @@ MonoBehaviour:
   smallBasketCollSize: 0.7
   largeBasketCollSize: 1.4
   goldenEgg: {fileID: 495121049}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &726719290
 GameObject:
   m_ObjectHideFlags: 0
@@ -9127,7 +9142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928656638}
   - component: {fileID: 928656637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Red Fruit Basket Collider
   m_TagString: FruitBasket
   m_Icon: {fileID: 0}
@@ -10654,7 +10669,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1305538150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Baskets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11726,7 +11741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1537016573}
   - component: {fileID: 1537016572}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Purple Fruit Basket Collider
   m_TagString: FruitBasket
   m_Icon: {fileID: 0}
@@ -14226,7 +14241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985364057}
   - component: {fileID: 1985364056}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orange Fruit Basket Collider
   m_TagString: FruitBasket
   m_Icon: {fileID: 0}
@@ -14977,7 +14992,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2054357947}
   - component: {fileID: 2054357946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Green Fruit Basket Collider
   m_TagString: FruitBasket
   m_Icon: {fileID: 0}

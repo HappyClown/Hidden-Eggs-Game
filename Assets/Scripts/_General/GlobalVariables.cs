@@ -10,17 +10,27 @@ public class GlobalVariables : MonoBehaviour
 	public string previousScene;
 	public string currentScene;
 
+	[Header("Eggs")]
 	public List<bool> eggsFoundBools;
-
 	public int silverEggsCount;
-	
 	public bool eggToSave;
+	public bool RiddleSolved;
 
-	public GameObject eggHolder;
+	[Header("Market Eggs")]
+	public List<bool> marketEggsFoundBools;
+	public int marketSilverEggsCount;
+	public bool marketEggToSave;
+	public bool rainbowRiddleSolved;
+
+	[Header("Park Eggs")]
+	public List<bool> parkEggsFoundBools;
+	public int parkSilverEggsCount;
+	public bool parkEggToSave;
+	public bool hopscotchRiddleSolved;
 
 	public ClickOnEggs clickOnEggsScript;
 
-	public bool rainbowRiddleSolved;
+	public GameObject eggHolder;
 
 
 
@@ -36,47 +46,73 @@ public class GlobalVariables : MonoBehaviour
 			Destroy(this.gameObject);
 			return;
 		}
-
-
-		// if (!eggs[1])
-		// {
-		// 	eggHolder = GameObject.FindGameObjectWithTag("EggPanel");
-		// 	foreach(Transform childEgg in eggHolder.transform)
-		// 	{
-		// 		eggs.Add(childEgg.gameObject);
-		// 	}
-		// }
-		//In builds, lock cursor in the screen window. May wanna change if windowed mode is a possibility.
+		
 		Cursor.lockState = CursorLockMode.Confined;
 
-		eggsFoundBools = SaveLoadManager.LoadEggs();
+		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
+		if (SceneManager.GetActiveScene().name == "Market") 
+		{ 
+			eggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
 
-		silverEggsCount = SaveLoadManager.LoadSilverEggs();
+			silverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
+			
+			rainbowRiddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
 
-		rainbowRiddleSolved = SaveLoadManager.LoadRainbowRiddle();
+
+			// List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
+
+			// if (loadedEggs.Count > 2)
+			// {
+			// 	eggsFoundBools = loadedEggs;
+			// }
+			
+		}	
 
 
+		if (SceneManager.GetActiveScene().name == "Park") 
+		{ 
+			eggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
 
-		foreach(GameObject egg in clickOnEggsScript.eggs)
+			silverEggsCount = ParkSaveLoadManager.LoadParkSilverEggs();
+			
+			hopscotchRiddleSolved = ParkSaveLoadManager.LoadHopscotchRiddle(); 
+
+
+			List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
+
+			if (loadedEggs.Count > 2)
+			{
+				eggsFoundBools = loadedEggs;
+			}
+			
+		}	
+
+
+		if(eggsFoundBools.Count < 1)
 		{
-			Debug.Log("should be filling eggsfoundbool array");
-			eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+			foreach(GameObject egg in clickOnEggsScript.eggs)
+			{
+				Debug.Log("should be filling eggsfoundbool array");
+				eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+			}
 		}
 		
 		
-		List<bool> loadedEggs = SaveLoadManager.LoadEggs();
+		// eggsFoundBools = marketEggsFoundBools;
 
-		if (loadedEggs.Count > 2)
-		{
-			eggsFoundBools = loadedEggs;
-		}
+		// silverEggsCount = marketSilverEggsCount;
 	}
 	
 
 
 	public void SaveEggState () 
 	{
-		SaveLoadManager.SaveEggs(this);
+		if (SceneManager.GetActiveScene().name == "Market") { MarketSaveLoadManager.SaveMarketEggs(this); }
+
+		if (SceneManager.GetActiveScene().name == "Park") { ParkSaveLoadManager.SaveParkEggs(this); }
+		
+		//if (SceneManager.GetActiveScene().name == "Beach") { ParkSaveLoadManager.SaveBeachEggs(this); }
+
 		Debug.Log("Save Variables");
 	}
 
@@ -104,7 +140,8 @@ public class GlobalVariables : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			SaveLoadManager.DeleteSaveFile();
+			MarketSaveLoadManager.DeleteMarketSaveFile();
+			ParkSaveLoadManager.DeleteParkSaveFile();
 		}
 	}
 }

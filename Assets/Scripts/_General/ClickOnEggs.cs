@@ -49,13 +49,6 @@ public class ClickOnEggs : MonoBehaviour
 
 	public float timer;
 
-	[Header("Rainbow Riddle")]
-	public List<GameObject> fruitBaskets;
-	public int basketNumber;
-	public float smallBasketCollSize;
-	public float largeBasketCollSize;
-	public GameObject goldenEgg;
-
 
 
 	void Start () 
@@ -66,20 +59,6 @@ public class ClickOnEggs : MonoBehaviour
 		eggCounterText.text = "Eggs Found: 0/" + (totalEggs + 7);
 		newCornerPos = cornerPos.position;
 		MakeSilverEggsAppear ();
-
-		if (GlobalVariables.globVarScript.rainbowRiddleSolved == true)
-		{
-			foreach (GameObject basket in fruitBaskets)
-			{
-				basket.SetActive(false);
-			}
-			goldenEgg.SetActive(true);
-		}
-
-		// foreach (Transform child in eggPanel.transform)
-		// {
-		// 	eggSpots.Add(child.gameObject);
-		// }
 	}
 
 
@@ -104,7 +83,7 @@ public class ClickOnEggs : MonoBehaviour
 
 		if (hit)
 		{
-			if (hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
+			if (hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0) || (hit.collider.CompareTag("GoldenEgg") && Input.GetMouseButtonDown(0)))
 			{
 				Debug.Log(hit.collider.name);
 				//newCornerPos = eggSpots[eggsFound].transform.position;
@@ -133,43 +112,6 @@ public class ClickOnEggs : MonoBehaviour
 					StartCoroutine(MoveEggPanelTimer());
 					Debug.Log("Hello.");
 				}
-			}
-
-
-			if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
-			{
-
-				basketNumber += 1;
-
-				hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-				
-				if (basketNumber >= 6)
-				{
-					RiddleSolved ();
-					//SpawnGoldenEgg;
-					goldenEgg.SetActive(true);
-					//Disable/destroy all basket colliders;
-					foreach (GameObject basket in fruitBaskets)
-					{
-						basket.SetActive(false);
-					}	
-					return;
-				}
-				else
-				{
-					fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().enabled = true;
-				}
-			}
-			
-
-			if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
-			{
-				basketNumber = 0;
-				foreach (GameObject basket in fruitBaskets)
-				{
-					basket.GetComponent<CircleCollider2D>().enabled = false;
-				}	
-				fruitBaskets[0].GetComponent<CircleCollider2D>().enabled = true;
 			}
 		}
 
@@ -224,42 +166,4 @@ public class ClickOnEggs : MonoBehaviour
 			eggsFound += 1;
 		}
 	}
-
-
-
-	public void RiddleSolved ()
-	{
-		GlobalVariables.globVarScript.rainbowRiddleSolved = true;
-		GlobalVariables.globVarScript.SaveEggState();
-	}
 }
-
-
-
-
-			// if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
-			// {
-			// 	if (hit.collider.gameObject == fruitBaskets[basketNumber])
-			// 	{
-			// 		basketNumber += 1;
-			// 		if (basketNumber >= 6)
-			// 		{
-			// 			//SpawnGoldenEgg;
-			// 			goldenEgg.SetActive(true);
-			// 			//Disable/destroy all basket colliders;
-			// 			foreach (GameObject basket in fruitBaskets)
-			// 			{
-			// 				basket.SetActive(false);
-			// 			}	
-			// 			return;
-			// 		}
-			// 		hit.collider.GetComponent<CircleCollider2D>().radius = smallBasketCollSize;
-			// 		fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = largeBasketCollSize;
-			// 	}
-			// 	else
-			// 	{
-			// 		fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = smallBasketCollSize;
-			// 		basketNumber = 0;
-			// 		fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().radius = largeBasketCollSize;
-			// 	}
-			// }

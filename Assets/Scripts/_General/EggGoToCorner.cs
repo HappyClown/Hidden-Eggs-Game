@@ -46,6 +46,7 @@ public class EggGoToCorner : MonoBehaviour
 			this.transform.position = mySpotInPanel.transform.position;
 			this.transform.eulerAngles = cornerRot;
 			this.transform.localScale = cornerEggScale;
+			this.GetComponent<Collider2D>().enabled = false;
 			clickOnEggsScript.eggsFound += 1;
 			//moveThisEgg = true;
 			//clickOnEggsScript.eggMoving -= 1;

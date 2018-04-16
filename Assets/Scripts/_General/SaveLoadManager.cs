@@ -5,25 +5,28 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-public class SaveLoadManager : MonoBehaviour 
+public class MarketSaveLoadManager : MonoBehaviour 
 {
-	public static void SaveEggs(GlobalVariables eggSaver)
+	public static void SaveMarketEggs(GlobalVariables marketEggSaver)
 	{
 		BinaryFormatter bf = new BinaryFormatter();
-		FileStream stream = new FileStream(Application.persistentDataPath + "/eggSaver.sav", FileMode.Create);
+		//Directory.CreateDirectory("/eggSaver");
+		FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Create);
 
-		MarketEggsData data = new MarketEggsData(eggSaver);
+		MarketEggsData data = new MarketEggsData(marketEggSaver);
 
 		bf.Serialize(stream, data);
 		stream.Close();
 	}
 
-	public static List<bool> LoadEggs()
+
+
+	public static List<bool> LoadMarketEggs()
 	{
-		if (File.Exists(Application.persistentDataPath + "/eggSaver.sav"))
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
 		{
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream stream = new FileStream(Application.persistentDataPath + "/eggSaver.sav", FileMode.Open);
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
 
 			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
 
@@ -39,12 +42,12 @@ public class SaveLoadManager : MonoBehaviour
 
 
 
-	public static int LoadSilverEggs()
+	public static int LoadMarketSilverEggs()
 	{
-		if (File.Exists(Application.persistentDataPath + "/eggSaver.sav"))
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
 		{
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream stream = new FileStream(Application.persistentDataPath + "/eggSaver.sav", FileMode.Open);
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
 
 			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
 
@@ -58,20 +61,14 @@ public class SaveLoadManager : MonoBehaviour
 		}
 	}
 
-	public static void DeleteSaveFile ()
-	{
-		File.Delete(Application.persistentDataPath + "/eggSaver.sav");
-		Debug.Log("Save file deleted.");
-	}
-
 
 
 	public static bool LoadRainbowRiddle()
 	{
-		if (File.Exists(Application.persistentDataPath + "/eggSaver.sav"))
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
 		{
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream stream = new FileStream(Application.persistentDataPath + "/eggSaver.sav", FileMode.Open);
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
 
 			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
 
@@ -85,6 +82,102 @@ public class SaveLoadManager : MonoBehaviour
 		}
 	}
 
+
+
+	public static void DeleteMarketSaveFile ()
+	{
+		File.Delete(Application.persistentDataPath + "/marketEggSaver.sav");
+		Debug.Log("Save file deleted.");
+	}
+
+
+	
+}
+
+public class ParkSaveLoadManager : MonoBehaviour 
+{
+	public static void SaveParkEggs(GlobalVariables parkEggSaver)
+	{
+		BinaryFormatter bf = new BinaryFormatter();
+		//Directory.CreateDirectory("/eggSaver");
+		FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Create);
+
+		ParkEggsData data = new ParkEggsData(parkEggSaver);
+
+		bf.Serialize(stream, data);
+		stream.Close();
+	}
+
+
+
+	public static List<bool> LoadParkEggs()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.eggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return new List<bool>();
+		}
+	}
+
+
+
+	public static int LoadParkSilverEggs()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.silverEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+
+	public static bool LoadHopscotchRiddle()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.hopscotchRiddle;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
+
+	public static void DeleteParkSaveFile ()
+	{
+		File.Delete(Application.persistentDataPath + "/parkEggSaver.sav");
+		Debug.Log("Save file deleted.");
+	}
 
 
 	
@@ -101,22 +194,29 @@ public class MarketEggsData
 
 	public MarketEggsData(GlobalVariables eggSaver)
 	{
-		// foreach(GameObject egg in eggSaver.eggs)
-		// {
-		// 	eggsFound.Add(egg.GetComponent<EggGoToCorner>().eggFound);
-		// }
 		eggsFound = eggSaver.eggsFoundBools;
 
 		silverEggsFound = eggSaver.silverEggsCount;
 
 		rainbowRiddle = eggSaver.rainbowRiddleSolved;
 	}
-	//public List<GameObject> marketEggs;
+}
 
-	// public EggData(EggGoToCorner eggSaver)
-	// {
-	// 	eggs = new bool[eggSaver.]
-	// }
+[Serializable]
+public class ParkEggsData 
+{
+	public List<bool> eggsFound;
 
+	public int silverEggsFound;
 
+	public bool hopscotchRiddle;
+
+	public ParkEggsData(GlobalVariables eggSaver)
+	{
+		eggsFound = eggSaver.eggsFoundBools;
+
+		silverEggsFound = eggSaver.silverEggsCount;
+
+		hopscotchRiddle = eggSaver.hopscotchRiddleSolved;
+	}
 }
