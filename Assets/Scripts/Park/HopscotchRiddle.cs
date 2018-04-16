@@ -17,10 +17,22 @@ public class HopscotchRiddle : MonoBehaviour
 
     public LayerMask layerMask;
 
+	public bool desktopDevice = false;
+	public bool handheldDevice = false;
+
 
 
 	void Start () 
 	{
+		if (SystemInfo.deviceType == DeviceType.Handheld)
+		{
+			handheldDevice = true;
+		}
+		else if (SystemInfo.deviceType == DeviceType.Desktop)
+		{
+			desktopDevice = true;
+		}
+
 		if (GlobalVariables.globVarScript.hopscotchRiddleSolved == true)
 		{
 			foreach (GameObject number in numbers)
@@ -35,54 +47,72 @@ public class HopscotchRiddle : MonoBehaviour
 
 	void FixedUpdate () 
 	{
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+		if (desktopDevice)
+		{
+			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 
-		hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+		}
 	}
 
 
 
 	void Update ()
-    {
-        if (hit)
-        {
-            if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
+    { 
+		if (desktopDevice)
+		{
+			if (hit)
 			{
-
-				numberAmount += 1;
-
-				hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-				
-				if (numberAmount >= 10)
+				if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
 				{
-					HopscotchRiddleSolved ();
-					//SpawnGoldenEgg;
-					goldenEgg.SetActive(true);
-					//Disable/destroy all basket colliders;
+
+					numberAmount += 1;
+
+					hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+					
+					if (numberAmount >= 10)
+					{
+						HopscotchRiddleSolved ();
+						//SpawnGoldenEgg;
+						goldenEgg.SetActive(true);
+						//Disable/destroy all basket colliders;
+						foreach (GameObject number in numbers)
+						{
+							number.SetActive(false);
+						}	
+						return;
+					}
+					else
+					{
+						numbers[numberAmount].GetComponent<CircleCollider2D>().enabled = true;
+					}
+				}
+				
+
+				if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
+				{
+					numberAmount = 0;
 					foreach (GameObject number in numbers)
 					{
-						number.SetActive(false);
+						number.GetComponent<CircleCollider2D>().enabled = false;
 					}	
-					return;
-				}
-				else
-				{
-					numbers[numberAmount].GetComponent<CircleCollider2D>().enabled = true;
+					numbers[0].GetComponent<CircleCollider2D>().enabled = true;
 				}
 			}
-			
+		}
 
-			if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
+		if (handheldDevice)
+		{
+			Touch myTouch = Input.GetTouch(0);
+			
+			Touch[] myTouches = Input.touches;
+
+			for (int i = 0; i < Input.touchCount; i++)
 			{
-				numberAmount = 0;
-				foreach (GameObject number in numbers)
-				{
-					number.GetComponent<CircleCollider2D>().enabled = false;
-				}	
-				numbers[0].GetComponent<CircleCollider2D>().enabled = true;
+				// If one of my touches touches 2 and the other touches 3
 			}
-        }   
+		}  
     }
 
 
