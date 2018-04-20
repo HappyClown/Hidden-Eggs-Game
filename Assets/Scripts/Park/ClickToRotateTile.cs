@@ -63,7 +63,7 @@ public class ClickToRotateTile : MonoBehaviour
 
 	void Update()
 	{
-		if (connections >= connectionsNeeded)
+		if (connections == connectionsNeeded)
 		{
 			Debug.Log("ya win m8!");
 			inBetweenLvls = true;
