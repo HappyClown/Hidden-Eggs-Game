@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class Crate : MonoBehaviour 
 {
 	public GameObject crateSnapPos;
 
-	public Text pounds;
-	public Text amntOfItems;
+	public TextMeshProUGUI pounds;
+	public TextMeshProUGUI amntOfItems;
 
 	public float reqPoundsLvl1;
 	public float reqItemsLvl1;

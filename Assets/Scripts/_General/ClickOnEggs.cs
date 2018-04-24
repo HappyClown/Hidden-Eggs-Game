@@ -12,6 +12,8 @@ public class ClickOnEggs : MonoBehaviour
 	Vector2 mousePos2D;
 	Vector3 mousePos;
 
+	//public List<GameObject> eggTrailPool;
+
 	[Header("Egg Info")]
 	public int eggsLeft;
 	[HideInInspector]
@@ -44,10 +46,13 @@ public class ClickOnEggs : MonoBehaviour
 	public float panelMoveSpeed;
 	public float panelOpenTime;
 	public List<GameObject> silverEggsInPanel;
+	public GameObject dropDrowArrow;
 
 	public List<GameObject> eggs;
 
 	public float timer;
+
+	public bool lockDropDownPanel;
 
 
 
@@ -86,13 +91,13 @@ public class ClickOnEggs : MonoBehaviour
 			if (hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0) || (hit.collider.CompareTag("GoldenEgg") && Input.GetMouseButtonDown(0)))
 			{
 				Debug.Log(hit.collider.name);
-				//newCornerPos = eggSpots[eggsFound].transform.position;
-				//hit.collider.gameObject.transform.parent = eggPanel.transform;
+
 				hit.collider.gameObject.GetComponent<EggGoToCorner>().StartEggAnim();
 				hit.collider.enabled = false;
 
 				eggsFound += 1;
 				eggMoving += 1;
+				lockDropDownPanel = true;
 			}
 
 
@@ -105,12 +110,16 @@ public class ClickOnEggs : MonoBehaviour
 
 			if (hit.collider.CompareTag("EggPanel") && Input.GetMouseButtonDown(0))
 			{
+				if (eggMoving > 0 && !lockDropDownPanel)
+				{
+					eggMoving  = 0;
+					return;
+				}
+
 				if (eggMoving <= 0)
 				{
 					eggMoving += 1;
-					Debug.Log("Hello.");
 					StartCoroutine(MoveEggPanelTimer());
-					Debug.Log("Hello.");
 				}
 			}
 		}
@@ -119,11 +128,14 @@ public class ClickOnEggs : MonoBehaviour
 		if (eggMoving <= 0)
 		{
 			eggPanel.transform.position = Vector3.MoveTowards(eggPanel.transform.position, eggPanelHidden.transform.position, Time.deltaTime * panelMoveSpeed);
+			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y , 180);
+			lockDropDownPanel = false;
 		}
 
 		if (eggMoving > 0)
 		{
 			eggPanel.transform.position = Vector3.MoveTowards(eggPanel.transform.position, eggPanelShown.transform.position, Time.deltaTime * panelMoveSpeed);
+			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y , 0);
 		}
 
 
@@ -142,9 +154,13 @@ public class ClickOnEggs : MonoBehaviour
 
 	public IEnumerator MoveEggPanelTimer ()
 	{
-		Debug.Log("Hello.");
 		while (timer < panelOpenTime)
 		{
+			if (eggMoving == 0)
+			{
+				timer = 0f;
+				break;
+			}
 			timer += Time.deltaTime;
 			if (timer >= panelOpenTime)
 			{
@@ -152,7 +168,7 @@ public class ClickOnEggs : MonoBehaviour
 			}
 		yield return null;
 		}	
-		Debug.Log("Hello.");
+
 		timer = 0f;
 	}
 

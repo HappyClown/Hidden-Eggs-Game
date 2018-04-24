@@ -17,6 +17,9 @@ public class RainbowRiddle : MonoBehaviour
 
     public LayerMask layerMask;
 
+	public ParticleSystem firework01; 
+	public ParticleSystem firework02; 
+
 
 
     void Start ()
@@ -35,10 +38,13 @@ public class RainbowRiddle : MonoBehaviour
 
 void FixedUpdate () 
 	{
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+		if (!GlobalVariables.globVarScript.rainbowRiddleSolved)
+		{
+			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 
-		hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+		}
 	}
 
 
@@ -59,6 +65,9 @@ void FixedUpdate ()
 					RainbowRiddleSolved ();
 					//SpawnGoldenEgg;
 					goldenEgg.SetActive(true);
+
+					firework01.Play(true);
+					firework02.Play(true);
 					//Disable/destroy all basket colliders;
 					foreach (GameObject basket in fruitBaskets)
 					{

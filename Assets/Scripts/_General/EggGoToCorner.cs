@@ -22,6 +22,8 @@ public class EggGoToCorner : MonoBehaviour
 
 	public bool eggFound;
 
+	public GameObject eggTrail;
+
 
 
 	void Awake ()
@@ -66,6 +68,7 @@ public class EggGoToCorner : MonoBehaviour
 
 			this.transform.localScale = Vector3.Lerp(this.transform.localScale, cornerEggScale, timeToMove * Time.deltaTime);
 
+			// Arrived at corner spot.
 			if (Vector3.Distance(this.transform.position, mySpotInPanel.transform.position) <= 0.005f)
 			{
 				this.transform.position = mySpotInPanel.transform.position;
@@ -74,6 +77,7 @@ public class EggGoToCorner : MonoBehaviour
 				moveThisEgg = false;
 				clickOnEggsScript.eggMoving -= 1;
 				this.transform.parent = clickOnEggsScript.eggPanel.transform;
+				eggTrail.SetActive(false);
 			}
 		}
 
@@ -89,6 +93,8 @@ public class EggGoToCorner : MonoBehaviour
 		{
 			mySpotInPanel = clickOnEggsScript.eggSpots[clickOnEggsScript.eggsFound];
 		}
+
+		eggTrail.SetActive(true);
 
 		eggFound = true;
 

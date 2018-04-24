@@ -22,6 +22,9 @@ public class SlideInHelpBird : MonoBehaviour
 	private bool riddleShow;
 	private GameObject riddleCurntActive;
 
+	public GameObject closeMenuOnClick;
+	public GameObject blockClickingOnEggs;
+
 	public List<GameObject> riddleHints;
 
 	public bool moveUp = false;
@@ -58,6 +61,7 @@ public class SlideInHelpBird : MonoBehaviour
 		
 		if (moveUp == false)
 		{
+			closeMenuOnClick.SetActive(false);
 			this.transform.position = Vector3.MoveTowards(this.transform.position, hiddenHelpBirdPos.position, speed * Time.deltaTime);
 
 			if (riddleCurntActive) { riddleCurntActive.SetActive(false); }
@@ -66,9 +70,16 @@ public class SlideInHelpBird : MonoBehaviour
 			shadow.GetComponent<Image>().color = new Color(1,1,1, shadowAlpha);
 		}
 
+		if (moveUp == false && Vector2.Distance(this.transform.position, hiddenHelpBirdPos.position) <= 0.1f)
+		{
+			blockClickingOnEggs.SetActive(false);
+		}
+
 
 		if (moveUp == true && Vector2.Distance(this.transform.position, shownHelpBirdPos.position) <= 0.1f)
 		{
+			blockClickingOnEggs.SetActive(true);
+
 			if (txtBubAlpha < 1) { txtBubAlpha += Time.deltaTime * txtBubFadeTime; }
 			txtBubble.GetComponent<Image>().color = new Color(1,1,1, txtBubAlpha);
 
@@ -121,5 +132,6 @@ public class SlideInHelpBird : MonoBehaviour
 		riddleBtnAlpha = 1.05f;
 		riddleBtn.enabled = false;	
 		riddleShow = true;
+		closeMenuOnClick.SetActive(true);
 	}
 }

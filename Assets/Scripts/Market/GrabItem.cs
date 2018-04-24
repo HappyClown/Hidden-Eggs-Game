@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class GrabItem : MonoBehaviour 
 {
@@ -15,6 +16,10 @@ public class GrabItem : MonoBehaviour
 
 	public bool holdingItem;
 	public GameObject heldItem;
+
+	public float itemScaleMult;
+
+	public GameObject inCrateCollider;
 
 	[Header("Crate Movement")]
 	public bool crateToRight;
@@ -49,8 +54,8 @@ public class GrabItem : MonoBehaviour
 	public ResetItemsButton resetItemsButtonScript;
 
 	[Header("Text")]
-	public Text pounds;
-	public Text amntOfItems;
+	public TextMeshProUGUI pounds;
+	public TextMeshProUGUI amntOfItems;
 
 	[Header("In Crate")]
 	public float curntPounds;
@@ -97,6 +102,7 @@ public class GrabItem : MonoBehaviour
 					holdingItem = true;
 					heldItem = hit.collider.gameObject;
 					heldItem.transform.parent = itemHolder.transform;
+					heldItem.transform.localScale = heldItem.transform.localScale * itemScaleMult;
 
 					if (heldItem == scaleScript.itemOnScale)
 					{
@@ -149,6 +155,8 @@ public class GrabItem : MonoBehaviour
 		{
 			holdingItem = false;
 
+			heldItem.transform.localScale = heldItem.transform.localScale / itemScaleMult;
+
 			RaycastHit2D[] hits;
 			
 			hits = Physics2D.RaycastAll(mousePos2D, Vector3.forward, 50f);
@@ -157,7 +165,7 @@ public class GrabItem : MonoBehaviour
 			{
 				//Debug.Log(hits[i].collider.gameObject.name);
 					
-				// ON THE SCALE //
+				// ON THE SCALE AREA//
 				if (hits[i].collider.gameObject.CompareTag("Scale"))
 				{
 					if (scaleScript.itemOnScale != null)
@@ -167,17 +175,31 @@ public class GrabItem : MonoBehaviour
 					}
 					heldItem.transform.position = new Vector3(scaleSnapPos.transform.position.x, scaleSnapPos.transform.position.y, -5f);
 					heldItem.transform.parent = scaleSnapPos.transform;
+					
 					scaleScript.itemOnScale = heldItem;
 					scaleScript.isAnItemOnScale = true;
 				}
 
-				// ON THE TABLE //
+				// ON THE TABLE AREA//
 				if (hits[i].collider.gameObject.CompareTag("Table"))
 				{
 					heldItem.transform.position = heldItem.GetComponent<Items>().initialPos;
 				}
 
-				// IN THE CRATE //
+				// IN THE CRATE DIRECTLY//
+				if (hits[i].collider.gameObject.CompareTag("InCrate"))
+				{
+					heldItem.GetComponent<Items>().inCrate = true;
+					heldItem.transform.position = new Vector3(heldItem.transform.position.x, heldItem.transform.position.y, -5f);
+					heldItem.transform.parent = crateParent.transform;
+					//pounds.text = curntPounds + heldItem.GetComponent<Items>().weight + " /" + crateScript.reqPounds + " pounds";
+					curntPounds += heldItem.GetComponent<Items>().weight;
+					//amntOfItems.text = curntAmnt + 1 + " /" + crateScript.reqItems + " items";
+					curntAmnt += 1;
+					return;
+				}
+
+				// IN THE CRATE AREA//
 				if (hits[i].collider.gameObject.CompareTag("Crate"))
 				{
 					heldItem.GetComponent<Items>().inCrate = true;
@@ -210,6 +232,7 @@ public class GrabItem : MonoBehaviour
 
 			crateScript.curntLvl += 1;	
 
+			inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z + 1);
 			//curveTimer = 0f;
 			totalDist = Vector3.Distance(crateParent.transform.position, crateRightTransform.position);
 
@@ -217,7 +240,7 @@ public class GrabItem : MonoBehaviour
 			curntAmnt = 0;
 		}
 
-
+			// SET UP LEVEL 1
 			if (crateScript.curntLvl == 1 && lvlSilverEggs[0].activeSelf == false && inBetweenLvls == true )
 			{ 
 				Debug.Log("Setting up level 1");
@@ -226,9 +249,10 @@ public class GrabItem : MonoBehaviour
 				lvlItemHolders[0].SetActive(true);
 				inBetweenLvls = false;
 				resetItemsButtonScript.FillItemResetArray();
+				inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z - 1);
 			}
 
-
+			// IN BETWEEN LEVEL 1 - 2
 			if (crateScript.curntLvl == 2 && lvlSilverEggs[1].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp < 1)// after level 1 is done but before level 2 gets set up
 			{
 				Items[] childrenItemScripts;
@@ -248,7 +272,7 @@ public class GrabItem : MonoBehaviour
 				crateToRight = false;
 			}
 
-
+			// SET UP LEVEL 2
 			if (crateScript.curntLvl == 2 && lvlSilverEggs[1].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp == 1 && !crateToRight)
 			{
 				Debug.Log("Setting up level 2");
@@ -260,9 +284,10 @@ public class GrabItem : MonoBehaviour
 				//lvlTwoItmHolder.SetActive(true);
 				//lvlOneItmHolder.SetActive(false);
 				inBetweenLvls = false;
+				inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z - 1);
 			}
 
-
+			// IN BETWEEN LEVEL 2 - 3
 			if (crateScript.curntLvl == 3 && lvlSilverEggs[2].activeSelf == false && inBetweenLvls == true && silverEggsPickedUp < 3 && silverEggsPickedUp >= 1)// after level 2 is done but before level 3 gets set up
 			{
 				Items[] childrenItemScripts;
@@ -294,6 +319,7 @@ public class GrabItem : MonoBehaviour
 				//lvlThreeItmHolder.SetActive(true);
 				//lvlTwoItmHolder.SetActive(false);
 				inBetweenLvls = false;
+				inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z - 1);
 			}
 
 
