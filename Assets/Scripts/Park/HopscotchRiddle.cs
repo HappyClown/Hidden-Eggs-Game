@@ -20,6 +20,11 @@ public class HopscotchRiddle : MonoBehaviour
 	public bool desktopDevice = false;
 	public bool handheldDevice = false;
 
+	public ParticleSystem firework01; 
+	public ParticleSystem firework02;
+
+	public bool fireworksFired;
+
 
 
 	void Start () 
@@ -76,6 +81,13 @@ public class HopscotchRiddle : MonoBehaviour
 						HopscotchRiddleSolved ();
 						//SpawnGoldenEgg;
 						goldenEgg.SetActive(true);
+
+						if (!fireworksFired)
+						{
+							firework01.Play(true);
+							firework02.Play(true);
+							fireworksFired = true;
+						}
 						//Disable/destroy all basket colliders;
 						foreach (GameObject number in numbers)
 						{

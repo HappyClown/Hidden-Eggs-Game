@@ -18,7 +18,9 @@ public class RainbowRiddle : MonoBehaviour
     public LayerMask layerMask;
 
 	public ParticleSystem firework01; 
-	public ParticleSystem firework02; 
+	public ParticleSystem firework02;
+
+	public bool fireworksFired;
 
 
 
@@ -66,8 +68,12 @@ void FixedUpdate ()
 					//SpawnGoldenEgg;
 					goldenEgg.SetActive(true);
 
-					firework01.Play(true);
-					firework02.Play(true);
+					if (!fireworksFired)
+					{
+						firework01.Play(true);
+						firework02.Play(true);
+						fireworksFired = true;
+					}
 					//Disable/destroy all basket colliders;
 					foreach (GameObject basket in fruitBaskets)
 					{

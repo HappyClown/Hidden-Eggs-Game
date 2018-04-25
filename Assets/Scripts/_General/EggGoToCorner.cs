@@ -24,6 +24,10 @@ public class EggGoToCorner : MonoBehaviour
 
 	public GameObject eggTrail;
 
+	public ParticleSystem eggClickFX;
+
+	public bool eggClickFXPlayed;
+
 
 
 	void Awake ()
@@ -113,5 +117,14 @@ public class EggGoToCorner : MonoBehaviour
 		moveThisEgg = true;
 
 		eggAnim.enabled = false;
+	}
+
+	public void PlayEggClickFX()
+	{
+		if (!eggClickFXPlayed) 
+			{ 
+				eggClickFX.Play(true); 
+				eggClickFXPlayed = true;
+			}
 	}
 }
