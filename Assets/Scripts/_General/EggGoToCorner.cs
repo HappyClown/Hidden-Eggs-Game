@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EggGoToCorner : MonoBehaviour 
 {
@@ -41,10 +42,7 @@ public class EggGoToCorner : MonoBehaviour
 	{
 		eggAnim = this.GetComponent<Animator>();
 
-		if (GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
-		{
-			eggFound = GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
-		}
+		LoadEggFromCorrectScene();
 
 		if (eggFound)
 		{
@@ -102,10 +100,7 @@ public class EggGoToCorner : MonoBehaviour
 
 		eggFound = true;
 
-		GlobalVariables.globVarScript.eggToSave = this.eggFound;
-		Debug.Log(GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
-		GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
-		GlobalVariables.globVarScript.SaveEggState();
+		SaveEggToCorrectFile();
 	}
 
 
@@ -126,5 +121,46 @@ public class EggGoToCorner : MonoBehaviour
 				eggClickFX.Play(true); 
 				eggClickFXPlayed = true;
 			}
+	}
+
+
+	public void LoadEggFromCorrectScene()
+	{
+		if (SceneManager.GetActiveScene().name == "Market")
+		{
+			if (GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
+			{
+				eggFound = GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+			}
+		}
+
+		if (SceneManager.GetActiveScene().name == "Park")
+		{
+			if (GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
+			{
+				eggFound = GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+			}
+		}
+	}
+
+
+
+	public void SaveEggToCorrectFile()
+	{
+		if (SceneManager.GetActiveScene().name == "Market")
+		{
+			GlobalVariables.globVarScript.marketEggToSave = this.eggFound;
+			Debug.Log(GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
+			GlobalVariables.globVarScript.SaveEggState();
+		}
+
+		if (SceneManager.GetActiveScene().name == "Park")
+		{
+			GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
+			Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
+			GlobalVariables.globVarScript.SaveEggState();
+		}
 	}
 }

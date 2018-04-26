@@ -176,10 +176,22 @@ public class ClickOnEggs : MonoBehaviour
 
 	public void MakeSilverEggsAppear ()
 	{
-		for (int i = 0; i < GlobalVariables.globVarScript.silverEggsCount; i++)
+		if (SceneManager.GetActiveScene().name == "Market")
 		{
-			silverEggsInPanel[i].SetActive(true);
-			eggsFound += 1;
+			for (int i = 0; i < GlobalVariables.globVarScript.marketSilverEggsCount; i++)
+			{
+				silverEggsInPanel[i].SetActive(true);
+				eggsFound += 1;
+			}
+		}
+
+		if (SceneManager.GetActiveScene().name == "Park")
+		{
+			for (int i = 0; i < GlobalVariables.globVarScript.parkSilverEggsCount; i++)
+			{
+				silverEggsInPanel[i].SetActive(true);
+				eggsFound += 1;
+			}
 		}
 	}
 }

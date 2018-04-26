@@ -192,13 +192,13 @@ public class MarketEggsData
 
 	public bool rainbowRiddle;
 
-	public MarketEggsData(GlobalVariables eggSaver)
+	public MarketEggsData(GlobalVariables marketEggSaver)
 	{
-		eggsFound = eggSaver.eggsFoundBools;
+		eggsFound = marketEggSaver.marketEggsFoundBools;
 
-		silverEggsFound = eggSaver.silverEggsCount;
+		silverEggsFound = marketEggSaver.marketSilverEggsCount;
 
-		rainbowRiddle = eggSaver.rainbowRiddleSolved;
+		rainbowRiddle = marketEggSaver.rainbowRiddleSolved;
 	}
 }
 
@@ -211,12 +211,12 @@ public class ParkEggsData
 
 	public bool hopscotchRiddle;
 
-	public ParkEggsData(GlobalVariables eggSaver)
+	public ParkEggsData(GlobalVariables parkEggSaver)
 	{
-		eggsFound = eggSaver.eggsFoundBools;
+		eggsFound = parkEggSaver.parkEggsFoundBools;
 
-		silverEggsFound = eggSaver.silverEggsCount;
+		silverEggsFound = parkEggSaver.parkSilverEggsCount;
 
-		hopscotchRiddle = eggSaver.hopscotchRiddleSolved;
+		hopscotchRiddle = parkEggSaver.hopscotchRiddleSolved;
 	}
 }

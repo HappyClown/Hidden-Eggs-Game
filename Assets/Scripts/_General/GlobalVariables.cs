@@ -28,8 +28,8 @@ public class GlobalVariables : MonoBehaviour
 	public bool parkEggToSave;
 	public bool hopscotchRiddleSolved;
 
+	[Header("Script References")]
 	public ClickOnEggs clickOnEggsScript;
-
 	public GameObject eggHolder;
 
 
@@ -49,67 +49,29 @@ public class GlobalVariables : MonoBehaviour
 		
 		Cursor.lockState = CursorLockMode.Confined;
 
-		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
-		if (SceneManager.GetActiveScene().name == "Market") 
-		{ 
-			eggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
-
-			silverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
-			
-			rainbowRiddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
+		FindClickOnEggScript();
+		FindEggHolderScript();
+		LoadCorrectEggs();
+	}
 
 
-			// List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
 
-			// if (loadedEggs.Count > 2)
-			// {
-			// 	eggsFoundBools = loadedEggs;
-			// }
-			
-		}	
+	void OnLevelWasLoaded()
+	{
+		FindClickOnEggScript();
+		FindEggHolderScript();
+		LoadCorrectEggs();
 
-
-		if (SceneManager.GetActiveScene().name == "Park") 
-		{ 
-			eggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
-
-			silverEggsCount = ParkSaveLoadManager.LoadParkSilverEggs();
-			
-			hopscotchRiddleSolved = ParkSaveLoadManager.LoadHopscotchRiddle(); 
-
-
-			List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
-
-			if (loadedEggs.Count > 2)
-			{
-				eggsFoundBools = loadedEggs;
-			}
-			
-		}	
-
-
-		if(eggsFoundBools.Count < 1)
-		{
-			foreach(GameObject egg in clickOnEggsScript.eggs)
-			{
-				Debug.Log("should be filling eggsfoundbool array");
-				eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
-			}
-		}
-		
-		
-		// eggsFoundBools = marketEggsFoundBools;
-
-		// silverEggsCount = marketSilverEggsCount;
+		Debug.Log("OnLevelWasLoaded has been called.");
 	}
 	
 
 
 	public void SaveEggState () 
 	{
-		if (SceneManager.GetActiveScene().name == "Market") { MarketSaveLoadManager.SaveMarketEggs(this); }
+		if (SceneManager.GetActiveScene().name == "Market" || SceneManager.GetActiveScene().name == "WeightPuzzle") { MarketSaveLoadManager.SaveMarketEggs(this); }
 
-		if (SceneManager.GetActiveScene().name == "Park") { ParkSaveLoadManager.SaveParkEggs(this); }
+		if (SceneManager.GetActiveScene().name == "Park" || SceneManager.GetActiveScene().name == "KitePuzzle") { ParkSaveLoadManager.SaveParkEggs(this); }
 		
 		//if (SceneManager.GetActiveScene().name == "Beach") { ParkSaveLoadManager.SaveBeachEggs(this); }
 
@@ -118,39 +80,93 @@ public class GlobalVariables : MonoBehaviour
 
 
 
-	void Update ()
+	public void Update()
 	{
-		if (!clickOnEggsScript)
-		{
-			Debug.Log("no click on egg");
-			if (GameObject.Find("Game Engine"))
-			{
-				clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>();
-			}
-			else
-			{
-				clickOnEggsScript = null;
-			}
-		}
-
-		if (!eggHolder)
-		{
-			eggHolder = GameObject.FindGameObjectWithTag("EggHolder");
-		}
-
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			MarketSaveLoadManager.DeleteMarketSaveFile();
 			ParkSaveLoadManager.DeleteParkSaveFile();
 		}
 	}
+
+
+
+	public void FindEggHolderScript()
+	{
+		eggHolder = null;
+
+		if (GameObject.FindGameObjectWithTag("EggHolder")) { eggHolder = GameObject.FindGameObjectWithTag("EggHolder"); }
+	}
+
+
+
+	public void FindClickOnEggScript()
+	{
+		clickOnEggsScript = null;
+		
+		if (GameObject.Find("Game Engine")) { clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>(); }
+	}
+
+
+
+	public void LoadCorrectEggs()
+	{
+		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
+		if (SceneManager.GetActiveScene().name == "Market") 
+		{ 
+			marketEggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
+
+			marketSilverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
+				
+			rainbowRiddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
+
+
+			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
+
+			if (loadedEggs.Count > 2)
+			{
+				marketEggsFoundBools = loadedEggs;
+			}
+
+
+			if(marketEggsFoundBools.Count < 1)
+			{
+				foreach(GameObject egg in clickOnEggsScript.eggs)
+				{
+					Debug.Log("should be filling eggsfoundbool array");
+					marketEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+				}
+			}
+		}	
+
+
+
+
+		if (SceneManager.GetActiveScene().name == "Park") 
+		{ 
+			parkEggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
+
+			parkSilverEggsCount = ParkSaveLoadManager.LoadParkSilverEggs();
+				
+			hopscotchRiddleSolved = ParkSaveLoadManager.LoadHopscotchRiddle(); 
+
+
+			List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
+
+			if (loadedEggs.Count > 2)
+			{
+				parkEggsFoundBools = loadedEggs;
+			}	
+
+		
+			if(parkEggsFoundBools.Count < 1)
+			{
+				foreach(GameObject egg in clickOnEggsScript.eggs)
+				{
+					Debug.Log("should be filling eggsfoundbool array");
+					parkEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+				}
+			}
+		}
+	}
 }
-
-
-
-		// if (currentScene != SceneManager.GetActiveScene().name)
-		// {
-		// 	previousScene = currentScene;
-		// }
-
-		// currentScene = SceneManager.GetActiveScene().name;

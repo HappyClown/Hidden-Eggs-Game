@@ -128,8 +128,8 @@ public class GrabItem : MonoBehaviour
 					Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
 					hit.collider.enabled = false;
 					hit.collider.gameObject.SetActive(false); // redundant with the previous line but what happens to the eggs remains to be thought of.
-					if (silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) { GlobalVariables.globVarScript.silverEggsCount = silverEggsPickedUp; }
-					GlobalVariables.globVarScript.SaveEggState();
+
+					SaveSilverEggsToCorrectFile();
 				}
 			}
 		}
@@ -365,7 +365,7 @@ public class GrabItem : MonoBehaviour
 			float Zangle = crateAnim.transform.parent.eulerAngles.z;
 			Zangle = Mathf.LerpAngle(crateAnim.transform.parent.eulerAngles.z, 0f, Time.deltaTime * crateMoveSpeed);
 			crateAnim.transform.parent.eulerAngles = new Vector3(0, 0, Zangle);
-			Debug.Log(crateAnim.transform.parent.eulerAngles);
+			//Debug.Log(crateAnim.transform.parent.eulerAngles);
 
 			if (Vector3.Distance(crateAnim.transform.parent.eulerAngles, crateInSceneTransform.eulerAngles) <= 0.1f)
 			{
@@ -380,7 +380,7 @@ public class GrabItem : MonoBehaviour
 
 		while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveRight"))
 		{
-			Debug.Log("Playing anim move right.");
+			//Debug.Log("Playing anim move right.");
 			yield return null;
 		}
 		// while (Vector3.Distance(crateParent.transform.position, crateRightTransform.position) > 0.25f)
@@ -431,7 +431,7 @@ public class GrabItem : MonoBehaviour
 
 		while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveDown"))
 		{
-			Debug.Log("Playing anim move down.");
+			//Debug.Log("Playing anim move down.");
 			yield return null;
 		}
 
@@ -454,5 +454,18 @@ public class GrabItem : MonoBehaviour
 		yield return new WaitForSeconds(1);
 
 		SceneManager.LoadScene("Market");
+	}
+
+
+
+	public void SaveSilverEggsToCorrectFile()
+	{
+		if (silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount) 
+		{ 
+			GlobalVariables.globVarScript.marketSilverEggsCount = silverEggsPickedUp; 
+			GlobalVariables.globVarScript.SaveEggState();
+		}
+		
+		
 	}
 }
