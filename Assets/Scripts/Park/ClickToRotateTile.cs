@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ClickToRotateTile : MonoBehaviour 
 {
@@ -51,15 +52,15 @@ public class ClickToRotateTile : MonoBehaviour
 
 		// for (int i = 0; i < lvlConnectionAmnts.Count; i++)
 		// {
-			foreach(Transform tile in lvlTiles[0].transform)
+			foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
 			{
 				Debug.Log("Counter");
 				if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
 				if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
 				if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
 				if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
-		//	}
-		}
+			}
+		// }
 	}	
 
 
@@ -80,7 +81,10 @@ public class ClickToRotateTile : MonoBehaviour
 			Debug.Log("ya win m8!");
 			inBetweenLvls = true;
 			curntLvl += 1;
+			//connectionsNeeded = 1;
+
 		}
+
 
 		if (!inBetweenLvls)
 		{
@@ -97,6 +101,7 @@ public class ClickToRotateTile : MonoBehaviour
 				//hit.collider.transform.eulerAngles = new Vector3(hit.collider.transform.eulerAngles.x, hit.collider.transform.eulerAngles.y, hit.collider.transform.eulerAngles.z - 90);
 				//return;
 			}
+
 
 			if (Input.GetMouseButton(0) && tileClicked != null)
 			{
@@ -121,6 +126,7 @@ public class ClickToRotateTile : MonoBehaviour
 					tileClicked.transform.position = new Vector3(tileClickedX, tileClickedY, -5f);
 				}
 			}
+
 
 			if (hit.collider != null && Input.GetMouseButtonUp(0) && hit.collider.CompareTag("Tile") && tileClicked != null)
 			{
@@ -149,6 +155,8 @@ public class ClickToRotateTile : MonoBehaviour
 				}
 
 			}
+
+
 			if (hit.collider == null && Input.GetMouseButtonUp(0) && tileClicked != null)
 			{
 				Debug.Log("Click released after click");
@@ -179,8 +187,13 @@ public class ClickToRotateTile : MonoBehaviour
 		{
 			connections = 0;
 
+				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
+				{
+					lvlTile.gameObject.GetComponent<FadeInOut>().FadeOut();
+				}
+
 			//spawn silver eggs
-			//lvlSilverEggs[curntLvl - 1]
+			lvlSilverEggs[curntLvl - 2].SetActive(true);
 
 			if (hit.collider != null && hit.collider.CompareTag("Egg") && Input.GetMouseButton(0))
 			{
@@ -188,21 +201,21 @@ public class ClickToRotateTile : MonoBehaviour
 				hit.collider.gameObject.SetActive(false);
 			}
 
-			if (silverEggsPickedUp == curntLvl -1)
+			// if (silverEggsPickedUp == (curntLvl - 1) + (curntLvl - 2))
+			// {
+				
+			// }
+
+			if (silverEggsPickedUp == 1)
 			{
-				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, ogCamSize * curntLvl, Time.deltaTime * camSizeIncSpeed);
+				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, ogCamSize + (curntLvl-1), Time.deltaTime * camSizeIncSpeed);
 			}
 
-			if (curntLvl == 2)
+			if (curntLvl == 2 && silverEggsPickedUp == 1 && cam.orthographicSize == ogCamSize + (curntLvl - 1))
 			{
-				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
-				{
-					lvlTile.gameObject.GetComponent<FadeInOut>().FadeOut();
-				}
-
 				//wait until   faded out && cam zoomed out.
 				//lvlTwoTiles		 //should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
-				if (((ogCamSize * curntLvl) - cam.orthographicSize) <= 0.001f) //&& eggs picked up
+				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f) //&& eggs picked up
 				{
 					lvlTiles[curntLvl - 1].SetActive(true);
 
@@ -211,16 +224,77 @@ public class ClickToRotateTile : MonoBehaviour
 						lvlTile.gameObject.SetActive(true);
 					}
 
-					connectionsNeeded = lvlConnectionAmnts[curntLvl - 1];
+					connectionsNeeded = 0;
+					foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
+					{
+						Debug.Log("Counter");
+						if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
+						if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
+						if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
+						if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
+					}
+
 					inBetweenLvls = false;
 					return;
 				}
 			}
 
-			// insert lvl 3 stuff
+			if (silverEggsPickedUp == 3)
+			{
+				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, ogCamSize + (curntLvl-1), Time.deltaTime * camSizeIncSpeed);
 
-			//insert puzzle done stuff
+				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
+				{
+					lvlTile.gameObject.GetComponent<FadeInOut>().FadeOut();
+				}
+			}
+
+			if (curntLvl == 3 && silverEggsPickedUp == 3 && cam.orthographicSize == ogCamSize + (curntLvl - 1))
+			{
+				//wait until   faded out && cam zoomed out.
+				//lvlTwoTiles		 //should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
+				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f) //&& eggs picked up
+				{
+					lvlTiles[curntLvl - 1].SetActive(true);
+
+					foreach(Transform lvlTile in lvlTiles[curntLvl - 1].transform)
+					{
+						lvlTile.gameObject.SetActive(true);
+					}
+
+					connectionsNeeded = 0;
+
+					foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
+					{
+						Debug.Log("Counter");
+						if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
+						if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
+						if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
+						if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
+					}
+
+					inBetweenLvls = false;
+
+					return;
+				}
+			}
+
+			if (curntLvl == 4 && silverEggsPickedUp == 5)
+			{
+				StartCoroutine(PuzzleComplete());
+			}
 		}
 		
+	}
+
+		public IEnumerator PuzzleComplete ()
+	{
+		yield return new WaitForSeconds(0.5f);
+
+		Debug.Log("Puzzle Completed cognraturations!!!");
+
+		yield return new WaitForSeconds(0.5f);
+
+		SceneManager.LoadScene("Park");
 	}
 }
