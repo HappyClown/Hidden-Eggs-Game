@@ -33,12 +33,19 @@ public class TileRotation : MonoBehaviour
 
 
 
-	void Start () 
+	void Awake () 
 	{
-		myConnections.Add(topConnection);
-		myConnections.Add(rightConnection);
-		myConnections.Add(bottomConnection);
-		myConnections.Add(leftConnection);
+		if(!this.GetComponent<SpriteRenderer>().enabled)
+		{
+			topConnection = false;
+			rightConnection = false;
+			bottomConnection = false;
+			leftConnection = false;
+		}
+		// myConnections.Add(topConnection);
+		// myConnections.Add(rightConnection);
+		// myConnections.Add(bottomConnection);
+		// myConnections.Add(leftConnection);
 
 		// zRotation = this.transform.rotation.z;
 

@@ -47,7 +47,19 @@ public class ClickToRotateTile : MonoBehaviour
 
 	void Start ()
 	{
-		connectionsNeeded = lvlConnectionAmnts[curntLvl - 1];
+		//connectionsNeeded = lvlConnectionAmnts[curntLvl - 1];
+
+		// for (int i = 0; i < lvlConnectionAmnts.Count; i++)
+		// {
+			foreach(Transform tile in lvlTiles[0].transform)
+			{
+				Debug.Log("Counter");
+				if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
+				if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
+				if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
+				if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
+		//	}
+		}
 	}	
 
 
