@@ -14,6 +14,9 @@ public class ClickToRotateTile : MonoBehaviour
 	public bool mouseClickHeld;
 	public bool mouseClick;
 
+	public float distToDrag;
+	public Vector3 mouseClickOGPos;
+
 	public GameObject tileClicked;
 	public Vector3 tileClickedOGPos;
 
@@ -22,17 +25,12 @@ public class ClickToRotateTile : MonoBehaviour
 
 	public int connections;
 	public int connectionsNeeded;
+
 	public List <int> lvlConnectionAmnts;
-	// public int lvlOneConnectionAmnt;
-	// public int lvlTwoConnectionAmnt;
-	// public int lvlThreeConnectionAmnt;
-
 	public List<GameObject> lvlTiles;
-	// public List<GameObject> lvlOneTiles;
-	// public List<GameObject> lvlTwoTiles;
-	// public List<GameObject> lvlThreeTiles;
-
 	public List<GameObject> lvlSilverEggs;
+	public List<GameObject> lvlBackShadows;
+	public List<GameObject> lvlKites;
 
 	public int silverEggsPickedUp;
 
@@ -88,7 +86,7 @@ public class ClickToRotateTile : MonoBehaviour
 
 		if (!inBetweenLvls)
 		{
-
+			// --- Click detected check to see what tile is hit
 			if (hit.collider != null && Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated)
 			{
 				Debug.Log("Click pressed");
@@ -97,12 +95,14 @@ public class ClickToRotateTile : MonoBehaviour
 				tileClicked = hit.collider.gameObject;
 				tileClickedOGPos = tileClicked.transform.position;
 				tileClicked.GetComponent<BoxCollider2D>().enabled = false;
+
+				mouseClickOGPos = mousePos;
 				//Debug.Log(hit.collider.name);
 				//hit.collider.transform.eulerAngles = new Vector3(hit.collider.transform.eulerAngles.x, hit.collider.transform.eulerAngles.y, hit.collider.transform.eulerAngles.z - 90);
 				//return;
 			}
 
-
+			// --- Check to see if holding click
 			if (Input.GetMouseButton(0) && tileClicked != null)
 			{
 				if (mouseClickHeld == false)
@@ -110,7 +110,13 @@ public class ClickToRotateTile : MonoBehaviour
 					timer += Time.deltaTime;
 				}
 
-				if (timer >= nowHoldingTime || mouseClickHeld)
+				// if (Vector3.Distance(mouseClickOGPos, mousePos) > distToDrag)
+				// {
+
+				// }
+
+				// --- Clicked long enough 
+				if (timer >= nowHoldingTime || mouseClickHeld || Vector3.Distance(mouseClickOGPos, mousePos) > distToDrag) // OR MOVED MOUSE FARTHER THEN xx
 				{
 					Debug.Log("Click now held");
 					mouseClickHeld = true;
@@ -127,7 +133,7 @@ public class ClickToRotateTile : MonoBehaviour
 				}
 			}
 
-
+			// --- Click released after holding
 			if (hit.collider != null && Input.GetMouseButtonUp(0) && hit.collider.CompareTag("Tile") && tileClicked != null)
 			{
 				Debug.Log("Click released after held");
@@ -156,7 +162,7 @@ public class ClickToRotateTile : MonoBehaviour
 
 			}
 
-
+			// --- Click released just a click
 			if (hit.collider == null && Input.GetMouseButtonUp(0) && tileClicked != null)
 			{
 				Debug.Log("Click released after click");
@@ -183,29 +189,41 @@ public class ClickToRotateTile : MonoBehaviour
 				}
 			}
 		}
+		// --- IN BETWEEN LEVELS --- //
 		else if (inBetweenLvls)
 		{
 			connections = 0;
-
-				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
+			foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
+			{
+				lvlTile.gameObject.GetComponent<FadeInOut>().FadeOut();
+				if (lvlTile.transform.childCount > 0)
 				{
-					lvlTile.gameObject.GetComponent<FadeInOut>().FadeOut();
+					lvlTile.transform.GetChild(0).GetComponent<FadeInOut>().FadeOut();
 				}
+			}
+			lvlBackShadows[curntLvl - 2].GetComponent<FadeInOut>().FadeOut();
+			if (lvlKites[curntLvl - 2].transform.childCount > 0)
+			{
+				foreach(Transform lvlKite in lvlKites[curntLvl - 2].transform)
+				{
+					lvlKite.GetComponent<FadeInOut>().FadeOut();
+				}
+			}
+			lvlKites[curntLvl - 2].GetComponent<FadeInOut>().FadeOut();
 
-			//spawn silver eggs
+
+			// -- SPAWN SILVER EGGS -- //
 			lvlSilverEggs[curntLvl - 2].SetActive(true);
 
 			if (hit.collider != null && hit.collider.CompareTag("Egg") && Input.GetMouseButton(0))
 			{
 				silverEggsPickedUp += 1;
 				hit.collider.gameObject.SetActive(false);
+				SaveSilverEggsToCorrectFile();
 			}
 
-			// if (silverEggsPickedUp == (curntLvl - 1) + (curntLvl - 2))
-			// {
-				
-			// }
 
+			// - SET UP LEVEL 02 - //
 			if (silverEggsPickedUp == 1)
 			{
 				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, ogCamSize + (curntLvl-1), Time.deltaTime * camSizeIncSpeed);
@@ -213,17 +231,19 @@ public class ClickToRotateTile : MonoBehaviour
 
 			if (curntLvl == 2 && silverEggsPickedUp == 1 && cam.orthographicSize == ogCamSize + (curntLvl - 1))
 			{
-				//wait until   faded out && cam zoomed out.
-				//lvlTwoTiles		 //should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
-				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f) //&& eggs picked up
+				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
+				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f)
 				{
+					lvlBackShadows[curntLvl - 1].SetActive(true);
 					lvlTiles[curntLvl - 1].SetActive(true);
+					lvlKites[curntLvl - 1].SetActive(true);
 
 					foreach(Transform lvlTile in lvlTiles[curntLvl - 1].transform)
 					{
 						lvlTile.gameObject.SetActive(true);
 					}
 
+					// Calculate connections needed in the new level //
 					connectionsNeeded = 0;
 					foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
 					{
@@ -239,6 +259,8 @@ public class ClickToRotateTile : MonoBehaviour
 				}
 			}
 
+
+			// - SET UP LEVEL 03 - //
 			if (silverEggsPickedUp == 3)
 			{
 				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, ogCamSize + (curntLvl-1), Time.deltaTime * camSizeIncSpeed);
@@ -251,19 +273,22 @@ public class ClickToRotateTile : MonoBehaviour
 
 			if (curntLvl == 3 && silverEggsPickedUp == 3 && cam.orthographicSize == ogCamSize + (curntLvl - 1))
 			{
-				//wait until   faded out && cam zoomed out.
-				//lvlTwoTiles		 //should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
-				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f) //&& eggs picked up
+				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
+				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f)
 				{
+					lvlBackShadows[curntLvl - 1].SetActive(true);
 					lvlTiles[curntLvl - 1].SetActive(true);
+					lvlKites[curntLvl - 1].SetActive(true);
+
+					
 
 					foreach(Transform lvlTile in lvlTiles[curntLvl - 1].transform)
 					{
 						lvlTile.gameObject.SetActive(true);
 					}
 
+					// Calculate connections needed in the new level //
 					connectionsNeeded = 0;
-
 					foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
 					{
 						Debug.Log("Counter");
@@ -279,7 +304,8 @@ public class ClickToRotateTile : MonoBehaviour
 				}
 			}
 
-			if (curntLvl == 4 && silverEggsPickedUp == 5)
+			// - PUZZLE COMPLETE - //
+			if (curntLvl == 4 && silverEggsPickedUp == 6)
 			{
 				StartCoroutine(PuzzleComplete());
 			}
@@ -287,7 +313,7 @@ public class ClickToRotateTile : MonoBehaviour
 		
 	}
 
-		public IEnumerator PuzzleComplete ()
+	public IEnumerator PuzzleComplete ()
 	{
 		yield return new WaitForSeconds(0.5f);
 
@@ -296,5 +322,16 @@ public class ClickToRotateTile : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 
 		SceneManager.LoadScene("Park");
+	}
+
+
+
+	public void SaveSilverEggsToCorrectFile()
+	{
+		if (silverEggsPickedUp > GlobalVariables.globVarScript.parkSilverEggsCount) 
+		{ 
+			GlobalVariables.globVarScript.parkSilverEggsCount = silverEggsPickedUp; 
+			GlobalVariables.globVarScript.SaveEggState();
+		}	
 	}
 }

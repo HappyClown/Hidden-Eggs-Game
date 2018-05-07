@@ -447,11 +447,11 @@ public class GrabItem : MonoBehaviour
 	// All silver eggs picked up, what happenes?
 	public IEnumerator PuzzleComplete ()
 	{
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0.5f);
 
 		Debug.Log("Puzzle Completed cognraturations!!!");
 
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(0.5f);
 
 		SceneManager.LoadScene("Market");
 	}
