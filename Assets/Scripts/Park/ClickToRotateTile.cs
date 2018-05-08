@@ -90,13 +90,14 @@ public class ClickToRotateTile : MonoBehaviour
 			if (hit.collider != null && Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated)
 			{
 				Debug.Log("Click pressed");
+				mouseClickOGPos = mousePos;
+				timer = 0f;
 				// Select tile
 				mouseClick = true;
 				tileClicked = hit.collider.gameObject;
 				tileClickedOGPos = tileClicked.transform.position;
 				tileClicked.GetComponent<BoxCollider2D>().enabled = false;
-
-				mouseClickOGPos = mousePos;
+				
 				//Debug.Log(hit.collider.name);
 				//hit.collider.transform.eulerAngles = new Vector3(hit.collider.transform.eulerAngles.x, hit.collider.transform.eulerAngles.y, hit.collider.transform.eulerAngles.z - 90);
 				//return;
