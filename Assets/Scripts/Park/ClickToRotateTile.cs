@@ -31,6 +31,7 @@ public class ClickToRotateTile : MonoBehaviour
 	public List<GameObject> lvlSilverEggs;
 	public List<GameObject> lvlBackShadows;
 	public List<GameObject> lvlKites;
+	public List<float> lvlCamSizes;
 
 	public int silverEggsPickedUp;
 
@@ -227,13 +228,13 @@ public class ClickToRotateTile : MonoBehaviour
 			// - SET UP LEVEL 02 - //
 			if (silverEggsPickedUp == 1)
 			{
-				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, ogCamSize + (curntLvl-1), Time.deltaTime * camSizeIncSpeed);
+				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
 			}
 
-			if (curntLvl == 2 && silverEggsPickedUp == 1 && cam.orthographicSize == ogCamSize + (curntLvl - 1))
+			if (curntLvl == 2 && silverEggsPickedUp == 1 && cam.orthographicSize == lvlCamSizes[curntLvl-1])
 			{
 				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
-				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f)
+				if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
 				{
 					lvlBackShadows[curntLvl - 1].SetActive(true);
 					lvlTiles[curntLvl - 1].SetActive(true);
@@ -264,7 +265,7 @@ public class ClickToRotateTile : MonoBehaviour
 			// - SET UP LEVEL 03 - //
 			if (silverEggsPickedUp == 3)
 			{
-				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, ogCamSize + (curntLvl-1), Time.deltaTime * camSizeIncSpeed);
+				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
 
 				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
 				{
@@ -272,10 +273,10 @@ public class ClickToRotateTile : MonoBehaviour
 				}
 			}
 
-			if (curntLvl == 3 && silverEggsPickedUp == 3 && cam.orthographicSize == ogCamSize + (curntLvl - 1))
+			if (curntLvl == 3 && silverEggsPickedUp == 3 && cam.orthographicSize == lvlCamSizes[curntLvl-1])
 			{
 				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
-				if (((ogCamSize + (curntLvl-1)) - cam.orthographicSize) <= 0.001f)
+				if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
 				{
 					lvlBackShadows[curntLvl - 1].SetActive(true);
 					lvlTiles[curntLvl - 1].SetActive(true);
