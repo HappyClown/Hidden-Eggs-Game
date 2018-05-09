@@ -217,7 +217,7 @@ public class ClickToRotateTile : MonoBehaviour
 			// -- SPAWN SILVER EGGS -- //
 			lvlSilverEggs[curntLvl - 2].SetActive(true);
 
-			if (hit.collider != null && hit.collider.CompareTag("Egg") && Input.GetMouseButton(0))
+			if (hit.collider != null && hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
 			{
 				silverEggsPickedUp += 1;
 				hit.collider.gameObject.SetActive(false);
@@ -226,13 +226,14 @@ public class ClickToRotateTile : MonoBehaviour
 
 
 			// - SET UP LEVEL 02 - //
-			if (silverEggsPickedUp == 1)
+			// if (silverEggsPickedUp == 1)
+			// {
+				
+			// }
+
+			if (curntLvl == 2 && silverEggsPickedUp == 1/* && cam.orthographicSize == lvlCamSizes[curntLvl-1]*/)
 			{
 				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
-			}
-
-			if (curntLvl == 2 && silverEggsPickedUp == 1 && cam.orthographicSize == lvlCamSizes[curntLvl-1])
-			{
 				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
 				if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
 				{
@@ -265,7 +266,7 @@ public class ClickToRotateTile : MonoBehaviour
 			// - SET UP LEVEL 03 - //
 			if (silverEggsPickedUp == 3)
 			{
-				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
+				
 
 				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
 				{
@@ -273,8 +274,9 @@ public class ClickToRotateTile : MonoBehaviour
 				}
 			}
 
-			if (curntLvl == 3 && silverEggsPickedUp == 3 && cam.orthographicSize == lvlCamSizes[curntLvl-1])
+			if (curntLvl == 3 && silverEggsPickedUp == 3/* && cam.orthographicSize == lvlCamSizes[curntLvl-1]*/)
 			{
+				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
 				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
 				if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
 				{
