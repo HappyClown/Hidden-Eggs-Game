@@ -5891,6 +5891,7 @@ GameObject:
   - component: {fileID: 712647446}
   - component: {fileID: 712647447}
   - component: {fileID: 712647448}
+  - component: {fileID: 712647449}
   m_Layer: 0
   m_Name: Game Engine
   m_TagString: Untagged
@@ -6043,6 +6044,20 @@ MonoBehaviour:
   firework01: {fileID: 943497046}
   firework02: {fileID: 1100347439}
   fireworksFired: 0
+--- !u!114 &712647449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712647445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf4fe716f2b89c46a2846614a91cd04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perspectiveZoomSpeed: 0.5
+  orthoZoomSpeed: 0.5
+  cam: {fileID: 511196394}
 --- !u!1001 &734687723
 Prefab:
   m_ObjectHideFlags: 0
