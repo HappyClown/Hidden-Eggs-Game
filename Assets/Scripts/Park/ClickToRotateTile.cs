@@ -220,7 +220,8 @@ public class ClickToRotateTile : MonoBehaviour
 			if (hit.collider != null && hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
 			{
 				silverEggsPickedUp += 1;
-				hit.collider.gameObject.SetActive(false);
+				hit.collider.gameObject.GetComponent<SilverEggs>().StartSilverEggAnim();
+				//hit.collider.gameObject.SetActive(false);
 				SaveSilverEggsToCorrectFile();
 			}
 
