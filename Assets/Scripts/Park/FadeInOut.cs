@@ -8,6 +8,8 @@ public class FadeInOut : MonoBehaviour
 	public bool fadingIn;
 	public float t;
 	public float fadeDuration;
+
+	public bool fadeOnStart = true;
 	private SpriteRenderer sprite;
 
 
@@ -18,7 +20,7 @@ public class FadeInOut : MonoBehaviour
 
 		//sprite.color = new Color(1f, 1f, 1f, 0f);
 
-		FadeIn();
+		if (fadeOnStart) { FadeIn(); }
 	}
 
 

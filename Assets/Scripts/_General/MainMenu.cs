@@ -6,29 +6,50 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour 
 {
-	public Button btn01;
-	public Button btn02;
+	[Header("Summer")]
+	public bool summerUnlocked;
+	public SeasonDissolve summerDissolve;
 
-	public string btn01SceneName;
-	public string btn02SceneName;
+	public GameObject summerParkBtn;
+	public GameObject summerMarketBtn;
+	//public Button summerBeachBtn;
+
+	// public string summerParkBtnSceneName;
+	// public string summerMarketBtnSceneName;
+
+	[HeaderAttribute("Fall")]
+	public bool fallUnlocked;
 
 
 
 	void Start () 
 	{
-		if (btn01) { btn01.onClick.AddListener(OpenScene01); }
-		if (btn02) { btn02.onClick.AddListener(OpenScene02); }
+		//if (summerParkBtn) { summerParkBtn.onClick.AddListener(OpenScene01); }
+		//if (summerMarketBtn) { summerMarketBtn.onClick.AddListener(OpenScene02); }
 	}
 	
 
 
-	public void OpenScene01 () 
+	void Update ()
 	{
-		SceneManager.LoadScene(btn01SceneName);
+		if (summerDissolve.doneDissolving)
+		{
+			summerParkBtn.SetActive(true);
+			summerMarketBtn.SetActive(true);
+			//summerParkBtn.gameObject.SetActive(true);
+			//summerMarketBtn.gameObject.SetActive(true);
+			//summerBeachBtn.gameObject.SetActive(true);
+		}
 	}
 
-	public void OpenScene02 () 
-	{
-		SceneManager.LoadScene(btn02SceneName);
-	}
+
+	// public void OpenScene01 () 
+	// {
+	// 	SceneManager.LoadScene(summerParkBtnSceneName);
+	// }
+
+	// public void OpenScene02 () 
+	// {
+	// 	SceneManager.LoadScene(summerMarketBtnSceneName);
+	// }
 }
