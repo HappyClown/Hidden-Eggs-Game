@@ -183,6 +183,96 @@ public class ParkSaveLoadManager : MonoBehaviour
 	
 }
 
+
+public class BeachSaveLoadManager : MonoBehaviour 
+{
+	public static void SaveBeachEggs(GlobalVariables beachEggSaver)
+	{
+		BinaryFormatter bf = new BinaryFormatter();
+		//Directory.CreateDirectory("/eggSaver");
+		FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Create);
+
+		BeachEggsData data = new BeachEggsData(beachEggSaver);
+
+		bf.Serialize(stream, data);
+		stream.Close();
+	}
+
+
+
+	public static List<bool> LoadBeachEggs()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.eggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return new List<bool>();
+		}
+	}
+
+
+
+	public static int LoadBeachSilverEggs()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.silverEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+
+	public static bool LoadCrabRiddle()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.crabRiddle;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
+
+	public static void DeleteBeachSaveFile ()
+	{
+		File.Delete(Application.persistentDataPath + "/beachEggSaver.sav");
+		Debug.Log("Save file deleted.");
+	}
+
+
+	
+}
+
 [Serializable]
 public class MarketEggsData 
 {
@@ -218,5 +308,24 @@ public class ParkEggsData
 		silverEggsFound = parkEggSaver.parkSilverEggsCount;
 
 		hopscotchRiddle = parkEggSaver.hopscotchRiddleSolved;
+	}
+}
+
+[Serializable]
+public class BeachEggsData 
+{
+	public List<bool> eggsFound;
+
+	public int silverEggsFound;
+
+	public bool crabRiddle;
+
+	public BeachEggsData(GlobalVariables beachEggSaver)
+	{
+		eggsFound = beachEggSaver.beachEggsFoundBools;
+
+		silverEggsFound = beachEggSaver.beachSilverEggsCount;
+
+		crabRiddle = beachEggSaver.crabRiddleSolved;
 	}
 }

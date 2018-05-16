@@ -28,6 +28,12 @@ public class GlobalVariables : MonoBehaviour
 	public bool parkEggToSave;
 	public bool hopscotchRiddleSolved;
 
+	[Header("Beach Eggs")]
+	public List<bool> beachEggsFoundBools;
+	public int beachSilverEggsCount;
+	public bool beachEggToSave;
+	public bool crabRiddleSolved;
+
 	[Header("Script References")]
 	public ClickOnEggs clickOnEggsScript;
 	public GameObject eggHolder;
@@ -73,7 +79,7 @@ public class GlobalVariables : MonoBehaviour
 
 		if (SceneManager.GetActiveScene().name == "Park" || SceneManager.GetActiveScene().name == "KitePuzzle") { ParkSaveLoadManager.SaveParkEggs(this); }
 		
-		//if (SceneManager.GetActiveScene().name == "Beach") { ParkSaveLoadManager.SaveBeachEggs(this); }
+		if (SceneManager.GetActiveScene().name == "Beach" || SceneManager.GetActiveScene().name == "ClamPuzzle") { BeachSaveLoadManager.SaveBeachEggs(this); }
 
 		Debug.Log("Save Variables");
 	}
@@ -84,8 +90,7 @@ public class GlobalVariables : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			MarketSaveLoadManager.DeleteMarketSaveFile();
-			ParkSaveLoadManager.DeleteParkSaveFile();
+			DeleteEggData();
 		}
 	}
 
@@ -168,5 +173,42 @@ public class GlobalVariables : MonoBehaviour
 				}
 			}
 		}
+
+
+
+		if (SceneManager.GetActiveScene().name == "Beach") 
+		{ 
+			beachEggsFoundBools = BeachSaveLoadManager.LoadBeachEggs();
+
+			beachSilverEggsCount = BeachSaveLoadManager.LoadBeachSilverEggs();
+				
+			crabRiddleSolved = BeachSaveLoadManager.LoadCrabRiddle(); 
+
+
+			List<bool> loadedEggs = BeachSaveLoadManager.LoadBeachEggs();
+
+			if (loadedEggs.Count > 2)
+			{
+				beachEggsFoundBools = loadedEggs;
+			}	
+
+		
+			if(beachEggsFoundBools.Count < 1)
+			{
+				foreach(GameObject egg in clickOnEggsScript.eggs)
+				{
+					Debug.Log("should be filling eggsfoundbool array");
+					beachEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+				}
+			}
+		}
+	}
+
+
+	public void DeleteEggData()
+	{
+		MarketSaveLoadManager.DeleteMarketSaveFile();
+		ParkSaveLoadManager.DeleteParkSaveFile();
+		BeachSaveLoadManager.DeleteBeachSaveFile();
 	}
 }

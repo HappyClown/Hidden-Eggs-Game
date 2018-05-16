@@ -6,19 +6,30 @@ using TMPro;
 
 public class MainMenuPlay : MonoBehaviour 
 {
-	public Button playBtn;
 	
+
+	[Header("Reset Button")]
+	public Button resetBtn;
+	public Image resetBtnImg;
+	public TextMeshProUGUI resetBtnTMP;
+	
+	[Header("Background Stuff")]
 	public List<MoveCloud> cloudsToMove;
 	public FadeInOut titleFade;
 	public FadeInOut solidBGFade;
 	public SpriteRenderer solidBGSprite;
 
-	public bool fadeBtn;
-	public float fadeSpeed;
-	public float btnAlpha;
+	[Header("Play Button")]
+	public Button playBtn;
 	public Image btnImg;
 	public TextMeshProUGUI btnTMP;
 
+	[Header("Button Fade Attributes")]
+	public bool fadeBtn;
+	public float fadeSpeed;
+	public float btnAlpha;
+
+	[Header("What To Do Bools")]
 	public bool enableLevelSelection;
 
 
@@ -34,9 +45,26 @@ public class MainMenuPlay : MonoBehaviour
 	{
 		if (fadeBtn)
 		{
-			if (btnAlpha > 0) { btnAlpha -= fadeSpeed; }
-			btnImg.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, btnAlpha));
-			btnTMP.color = new Color(0.03f, 0.03f, 0.03f, Mathf.SmoothStep(0f, 1f, btnAlpha));
+			if (btnAlpha > 0) 
+			{ 
+				btnAlpha -= fadeSpeed; 
+
+				// - Play Button Fade - //
+				btnImg.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, btnAlpha));
+				btnTMP.color = new Color(0.03f, 0.03f, 0.03f, Mathf.SmoothStep(0f, 1f, btnAlpha));
+
+				// - Reset Button Fade - //
+				resetBtnImg.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, btnAlpha));
+				resetBtnTMP.color = new Color(0.03f, 0.03f, 0.03f, Mathf.SmoothStep(0f, 1f, btnAlpha));
+
+				if (btnAlpha <= 0)
+				{
+					playBtn.enabled = false;
+					resetBtn.enabled = false;
+				}
+			}
+			
+			
 		}
 
 		if(solidBGSprite.color.a <= 0.1f)
@@ -48,6 +76,7 @@ public class MainMenuPlay : MonoBehaviour
 
 	void MoveClouds () 
 	{
+		Debug.Log("Presssing Play Button");
 		// - MAKE THE CLOUDS PART - //
 		foreach(MoveCloud cloud in cloudsToMove)
 		{

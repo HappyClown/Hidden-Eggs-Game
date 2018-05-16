@@ -141,6 +141,14 @@ public class EggGoToCorner : MonoBehaviour
 				eggFound = GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
 			}
 		}
+
+		if (SceneManager.GetActiveScene().name == "Beach")
+		{
+			if (GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
+			{
+				eggFound = GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+			}
+		}
 	}
 
 
@@ -160,6 +168,14 @@ public class EggGoToCorner : MonoBehaviour
 			GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
 			Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
 			GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
+			GlobalVariables.globVarScript.SaveEggState();
+		}
+
+		if (SceneManager.GetActiveScene().name == "Beach")
+		{
+			GlobalVariables.globVarScript.beachEggToSave = this.eggFound;
+			Debug.Log(GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}

@@ -203,6 +203,15 @@ public class ClickOnEggs : MonoBehaviour
 				//eggsFound += 1;
 			}
 		}
+
+		if (SceneManager.GetActiveScene().name == "Beach")
+		{
+			for (int i = 0; i < GlobalVariables.globVarScript.beachSilverEggsCount; i++)
+			{
+				silverEggsInPanel[i].SetActive(true);
+				//eggsFound += 1;
+			}
+		}
 	}
 
 
@@ -217,6 +226,11 @@ public class ClickOnEggs : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == "Park")
 		{
 			silverEggCounterText.text = "Silver: " + (Mathf.Clamp(GlobalVariables.globVarScript.parkSilverEggsCount, 0, 6)) + "/6";
+		}
+
+		if (SceneManager.GetActiveScene().name == "Beach")
+		{
+			silverEggCounterText.text = "Silver: " + (Mathf.Clamp(GlobalVariables.globVarScript.beachSilverEggsCount, 0, 6)) + "/6";
 		}
 	}
 
@@ -234,6 +248,12 @@ public class ClickOnEggs : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == "Park")
 		{
 			if (GlobalVariables.globVarScript.hopscotchRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
+			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
+		}
+
+		if (SceneManager.GetActiveScene().name == "Beach")
+		{
+			if (GlobalVariables.globVarScript.crabRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
 			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
 		}
 	}

@@ -12,6 +12,10 @@ public class SeasonDissolve : MonoBehaviour
 	public bool doneDissolving;
 	public MainMenuPlay mainMenuPlayScript;
 
+	public GameObject parkButton;
+	public GameObject marketButton;
+	public GameObject beachButton;
+
 	public GameObject parkGlow;
 	public GameObject marketGlow;
 	public GameObject beachGlow; 
@@ -43,6 +47,9 @@ public class SeasonDissolve : MonoBehaviour
 
 		if (doneDissolving)
 		{
+			if (!parkButton.activeSelf) { parkButton.SetActive(true); }
+			if (!marketButton.activeSelf) { marketButton.SetActive(true); }
+			if (!beachButton.activeSelf) { beachButton.SetActive(true); }
 			if (!parkGlow.activeSelf) { parkGlow.SetActive(true); }
 			if (!marketGlow.activeSelf) { marketGlow.SetActive(true); }
 			if (!beachGlow.activeSelf) { beachGlow.SetActive(true); }

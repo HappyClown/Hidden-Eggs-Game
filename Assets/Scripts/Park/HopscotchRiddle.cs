@@ -17,8 +17,8 @@ public class HopscotchRiddle : MonoBehaviour
 
     public LayerMask layerMask;
 
-	public bool desktopDevice = false;
-	public bool handheldDevice = false;
+	// public bool desktopDevice = false;
+	// public bool handheldDevice = false;
 
 	public ParticleSystem firework01; 
 	public ParticleSystem firework02;
@@ -29,14 +29,14 @@ public class HopscotchRiddle : MonoBehaviour
 
 	void Start () 
 	{
-		if (SystemInfo.deviceType == DeviceType.Handheld)
-		{
-			handheldDevice = true;
-		}
-		else if (SystemInfo.deviceType == DeviceType.Desktop)
-		{
-			desktopDevice = true;
-		}
+		// if (SystemInfo.deviceType == DeviceType.Handheld)
+		// {
+		// 	handheldDevice = true;
+		// }
+		// else if (SystemInfo.deviceType == DeviceType.Desktop)
+		// {
+		// 	desktopDevice = true;
+		// }
 
 		if (GlobalVariables.globVarScript.hopscotchRiddleSolved == true)
 		{
@@ -52,21 +52,21 @@ public class HopscotchRiddle : MonoBehaviour
 
 	void FixedUpdate () 
 	{
-		if (desktopDevice)
-		{
+		// if (desktopDevice)
+		// {
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
-		}
+		//}
 	}
 
 
 
 	void Update ()
     { 
-		if (desktopDevice)
-		{
+		// if (desktopDevice)
+		// {
 			if (hit)
 			{
 				if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
@@ -112,19 +112,19 @@ public class HopscotchRiddle : MonoBehaviour
 					numbers[0].GetComponent<CircleCollider2D>().enabled = true;
 				}
 			}
-		}
+		//}
 
-		if (handheldDevice)
-		{
-			Touch myTouch = Input.GetTouch(0);
+		// if (handheldDevice)
+		// {
+		// 	Touch myTouch = Input.GetTouch(0);
 			
-			Touch[] myTouches = Input.touches;
+		// 	Touch[] myTouches = Input.touches;
 
-			for (int i = 0; i < Input.touchCount; i++)
-			{
-				// If one of my touches touches 2 and the other touches 3
-			}
-		}  
+		// 	for (int i = 0; i < Input.touchCount; i++)
+		// 	{
+		// 		// If one of my touches touches 2 and the other touches 3
+		// 	}
+		// }  
     }
 
 

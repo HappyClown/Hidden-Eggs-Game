@@ -127,7 +127,7 @@ public class GrabItem : MonoBehaviour
 					silverEggsPickedUp += 1;
 					Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
 					hit.collider.enabled = false;
-					hit.collider.gameObject.SetActive(false); // redundant with the previous line but what happens to the eggs remains to be thought of.
+					hit.collider.gameObject.GetComponent<SilverEggs>().StartSilverEggAnim();
 
 					SaveSilverEggsToCorrectFile();
 				}
