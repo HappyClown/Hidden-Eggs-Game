@@ -5,7 +5,8 @@ using UnityEngine;
 public class MoveCloud : MonoBehaviour 
 {
 	public float moveSpeed;
-	public bool doIMove;
+	public bool moveOut;
+	public bool moveIn;
 	public bool moveLeft;
 
 	public SpriteRenderer cloudSprite;
@@ -15,15 +16,18 @@ public class MoveCloud : MonoBehaviour
 
 	void Update ()
 	{
-		if (doIMove)
+		if (moveOut)
 		{
 			// - MOVE IN PROPER DIRECTION - //
-			if (moveLeft) { this.transform.Translate(Vector3.left*moveSpeed); }
-			else { this.transform.Translate(Vector3.right*moveSpeed); }
+			if (moveLeft) { this.transform.Translate(Vector3.left*moveSpeed*Time.deltaTime); }
+			else { this.transform.Translate(Vector3.right*moveSpeed*Time.deltaTime); }
 
 			// - FADE - //
-			if (cloudAlpha > 0) { cloudAlpha -= cloudFadeSpeed; }
+			if (cloudAlpha > 0) { cloudAlpha -= cloudFadeSpeed*Time.deltaTime; }
 			cloudSprite.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, cloudAlpha));
+
+			// - STOP MOVING IF FADED OUT - //
+			if (cloudAlpha <= 0) { moveOut = false; }
 		}
 
 	}

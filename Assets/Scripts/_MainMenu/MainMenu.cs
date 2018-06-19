@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MainMenuPlay : MonoBehaviour 
+public class MainMenu : MonoBehaviour 
 {
 	
 
@@ -15,7 +15,7 @@ public class MainMenuPlay : MonoBehaviour
 	
 	[Header("Background Stuff")]
 	public List<MoveCloud> cloudsToMove;
-	public FadeInOut titleFade;
+	public FadeInOutImg titleFade;
 	public FadeInOut solidBGFade;
 	public SpriteRenderer solidBGSprite;
 
@@ -25,25 +25,28 @@ public class MainMenuPlay : MonoBehaviour
 	public TextMeshProUGUI btnTMP;
 
 	[Header("Button Fade Attributes")]
-	public bool fadeBtn;
+	public bool fadeBtnOut;
 	public float fadeSpeed;
 	public float btnAlpha;
 
-	[Header("What To Do Bools")]
-	public bool enableLevelSelection;
+	// [Header("What To Do Bools")]
+	// public bool startSeasonDissolve;
+
+	[Header("References")]
+	public Hub hubScript;
 
 
 
 	void Start () 
 	{
-		playBtn.onClick.AddListener(MoveClouds);
+		playBtn.onClick.AddListener(GoToHub);
 	}
 	
 
 
 	void Update ()
 	{
-		if (fadeBtn)
+		if (fadeBtnOut)
 		{
 			if (btnAlpha > 0) 
 			{ 
@@ -69,18 +72,18 @@ public class MainMenuPlay : MonoBehaviour
 
 		if(solidBGSprite.color.a <= 0.1f)
 		{
-			enableLevelSelection = true;
+			hubScript.dissolving = true;
 		}
 	}
 
 
-	void MoveClouds () 
+	void GoToHub () 
 	{
 		Debug.Log("Presssing Play Button");
 		// - MAKE THE CLOUDS PART - //
 		foreach(MoveCloud cloud in cloudsToMove)
 		{
-			cloud.doIMove = true;
+			cloud.moveOut = true;
 		}
 
 		// - FADE TITLE - //
@@ -89,7 +92,7 @@ public class MainMenuPlay : MonoBehaviour
 		// - FADE SOLID BACKGROUND - //
 		solidBGFade.FadeOut();
 
-		// - FADE THIS BUTTON - //
-		fadeBtn = true;
+		// - FADE ALL BUTTONS - //
+		fadeBtnOut = true;
 	}
 }
