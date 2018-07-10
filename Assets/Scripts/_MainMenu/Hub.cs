@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hub : MonoBehaviour 
 {
@@ -10,6 +11,10 @@ public class Hub : MonoBehaviour
 	public List<Material> dissolveMats;
 	public List<bool> unlockedSeasons;
 	public bool doneDissolving;
+
+	[Header("Other Objects")]
+	public GameObject backToMenu;
+	public Button backToMenuBtn;
 
 	[Header("Summer Objects")]
 	public bool summerUnlocked;
@@ -75,10 +80,30 @@ public class Hub : MonoBehaviour
 
 	void DoneDissolving()
 	{
-		// - ENABLE GAMEOBJECTS - //
+		// - ENABLE GAMEOBJECTS - // (Seperation lines, buttons, etc)
 		foreach(GameObject summerObj in summerObjs)
-			{
-				if (!summerObj.activeSelf) { summerObj.SetActive(true); }
-			}
+		{
+			if (!summerObj.activeSelf) { summerObj.SetActive(true); }
+		}
+
+		backToMenu.SetActive(true);
+		backToMenuBtn.enabled = true;
+	}
+
+
+
+	public void ResetHubSeasons()
+	{
+		dissAmnt = 0f;
+
+		foreach(Material dissolveMat in dissolveMats)
+		{
+			dissolveMat.SetFloat ("_Threshold", 0f);
+		}
+
+		foreach(GameObject summerObj in summerObjs)
+		{
+			if (summerObj.activeSelf) { summerObj.SetActive(false); }
+		}
 	}
 }

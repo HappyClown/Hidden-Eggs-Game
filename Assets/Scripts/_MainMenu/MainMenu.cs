@@ -46,6 +46,7 @@ public class MainMenu : MonoBehaviour
 
 	void Update ()
 	{
+		// -- Fade Buttons Out -- //
 		if (fadeBtnOut)
 		{
 			if (btnAlpha > 0) 
@@ -64,10 +65,9 @@ public class MainMenu : MonoBehaviour
 				{
 					playBtn.enabled = false;
 					resetBtn.enabled = false;
+					fadeBtnOut = false;
 				}
 			}
-			
-			
 		}
 
 		if(solidBGSprite.color.a <= 0.1f)

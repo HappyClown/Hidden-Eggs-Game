@@ -30,6 +30,20 @@ public class MoveCloud : MonoBehaviour
 			if (cloudAlpha <= 0) { moveOut = false; }
 		}
 
+		if (moveIn)
+		{
+			// - MOVE IN PROPER DIRECTION - // (Reverse of moveOut directions)
+			if (moveLeft) { this.transform.Translate(Vector3.right*moveSpeed*Time.deltaTime); }
+			else { this.transform.Translate(Vector3.left*moveSpeed*Time.deltaTime); }
+
+			// - FADE IN - //
+			if (cloudAlpha < 1) { cloudAlpha += cloudFadeSpeed*Time.deltaTime; }
+			cloudSprite.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, cloudAlpha));
+
+			// - STOP MOVING IF FADED IN - //
+			if (cloudAlpha >= 1) { moveIn = false; }
+		}
+
 	}
 	
 }

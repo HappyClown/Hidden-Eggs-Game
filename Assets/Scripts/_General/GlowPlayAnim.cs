@@ -83,6 +83,16 @@ public class GlowPlayAnim : MonoBehaviour
 		// Adjust the sprite's alpha to newAlpha value.
 		spriteRend.color = new Color(1f, 1f, 1f, newAlpha);
 	}
+
+
+
+	public void ResetGlow ()
+	{
+		if (setStartAlphaZero) { spriteRend.color = new Color (1,1,1, 0); newAlpha = 0f;}
+		else { spriteRend.color = new Color (1,1,1, maxAlpha); newAlpha = maxAlpha; }
+
+		if (fadeOnStart) { fadingIn = true; }
+	}
 }
 
 

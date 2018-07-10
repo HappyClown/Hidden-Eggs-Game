@@ -66,6 +66,11 @@ public class FadeInOutImg : MonoBehaviour
 
 	public void FadeIn ()
 	{
+		if (!this.gameObject.activeSelf)
+		{
+			this.gameObject.SetActive(true);
+		}
+
 		if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
 		{
 			fadingIn = true;
