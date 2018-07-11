@@ -8,8 +8,8 @@ public class BackToMenu : MonoBehaviour
 {
 	[Header("Background Stuff")]
 	public List<MoveCloud> cloudsToMove;
-	public FadeInOutImg titleFade;
-	public FadeInOut solidBGFade;
+	public FadeInOutBoth titleFade;
+	public FadeInOutSprite solidBGFade;
 	public SpriteRenderer solidBGSprite;
 
 
@@ -39,6 +39,7 @@ public class BackToMenu : MonoBehaviour
 
 	[Header("Back To Menu Button")]
 	public Button backToMenuBtn;
+	public FadeInOutBoth backToMenuFadeScript;
 
 
 	void Start () 
@@ -50,7 +51,7 @@ public class BackToMenu : MonoBehaviour
 
 	void Update ()  
 	{
-		// -- Fade Buttons In -- //
+		// -- Fade Menu Buttons In -- //
 		if (fadeBtnIn)
 		{
 			btnWaitTimer += Time.deltaTime;
@@ -104,6 +105,9 @@ public class BackToMenu : MonoBehaviour
 		{
 			cloud.moveIn = true;
 		}
+
+		// - FADE OUT BACKTOMENU BTN - //
+		backToMenuFadeScript.FadeOut();
 
 		// - FADE IN TITLE - //
 		titleFade.FadeIn();

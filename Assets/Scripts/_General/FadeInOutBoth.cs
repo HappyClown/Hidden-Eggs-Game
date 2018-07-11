@@ -3,23 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeInOutImage : MonoBehaviour 
+public class FadeInOutBoth : MonoBehaviour 
 {
-	public bool fadingOut;
-	public bool fadingIn;
-	public float t;
+	public bool fadeOnStart = true;
 	public float fadeDuration;
 
-	public bool fadeOnStart = true;
-	private Image img;
+	[TooltipAttribute("Set inactive on fade out?")]
+	public bool setInactiveOnFadeOut;
+	
+	public enum MyDisplayType{Sprite, Image};
 
+	[TooltipAttribute("Chose what type of display the object uses.")]
+	public MyDisplayType myDisplayType;
+
+	private bool fadingOut;
+	private bool fadingIn;
+	private float t; 
+	private SpriteRenderer mySprite;
+	private Image myImg;
+	private Color myColor;
+	
 
 
 	void Start ()
 	{
-		img = this.gameObject.GetComponent<Image>();
+		if (myDisplayType == MyDisplayType.Sprite) { mySprite = this.gameObject.GetComponent<SpriteRenderer>(); }
+		else if (myDisplayType == MyDisplayType.Image) { myImg = this.gameObject.GetComponent<Image>(); }
 
-		if (fadeOnStart) { FadeIn(); img.color = new Color(1f, 1f, 1f, 0f); }
+		// - Assign The Object's Initial Color - //
+		if (mySprite) { myColor = mySprite.color; }
+		if (myImg) { myColor = myImg.color; }
+
+		if (fadeOnStart) { FadeIn(); myColor = new Color(myColor.r, myColor.g, myColor.b, 0f); }
+
+		// - Assign The Color To What is Appropriate - //
+		if (mySprite) { mySprite.color = myColor; }
+		if (myImg) { myImg.color = myColor; }
 	}
 
 
@@ -29,10 +48,10 @@ public class FadeInOutImage : MonoBehaviour
 		if (fadingOut == true)
 		{
 			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, t));
+			myColor = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, t));
 			if (t >= 1f)
 			{
-				this.gameObject.SetActive(false);
+				if (setInactiveOnFadeOut) { this.gameObject.SetActive(false); }
 				fadingOut = false;
 			}
 		}
@@ -40,23 +59,26 @@ public class FadeInOutImage : MonoBehaviour
 		if (fadingIn == true)
 		{
 			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0f, 1f, t));
+			myColor = new Color(1f, 1f, 1f, Mathf.SmoothStep(0f, 1f, t));
 			if (t >= 1f)
 			{
 				fadingIn = false;
 			}
 		}
+
+		// - Assign The Color To What is Appropriate - //
+		if (mySprite) { mySprite.color = myColor; }
+		if (myImg) { myImg.color = myColor; }
 	}
 
 
 
 	public void FadeOut ()
 	{
-		if (fadingOut == false && img.color.a >= 0.01f)
+		if (fadingOut == false && myColor.a >= 0.01f)
 		{
 			fadingOut = true;
 			t = 0f;
-			//Debug.Log("Should Fade Out");
 		}
 	}
 
@@ -68,12 +90,11 @@ public class FadeInOutImage : MonoBehaviour
 		{
 			this.gameObject.SetActive(true);
 		}
-		
+
 		if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
 		{
 			fadingIn = true;
 			t = 0f;
-			//Debug.Log("Should Fade In");
 		}
 	}
 }

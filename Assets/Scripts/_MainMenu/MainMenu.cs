@@ -6,18 +6,15 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour 
 {
-	
+	[Header("Background Stuff")]
+	public List<MoveCloud> cloudsToMove;
+	public FadeInOutBoth titleFade;
+	public FadeInOutSprite solidBGFade;
 
 	[Header("Reset Button")]
 	public Button resetBtn;
 	public Image resetBtnImg;
 	public TextMeshProUGUI resetBtnTMP;
-	
-	[Header("Background Stuff")]
-	public List<MoveCloud> cloudsToMove;
-	public FadeInOutImg titleFade;
-	public FadeInOut solidBGFade;
-	public SpriteRenderer solidBGSprite;
 
 	[Header("Play Button")]
 	public Button playBtn;
@@ -28,9 +25,6 @@ public class MainMenu : MonoBehaviour
 	public bool fadeBtnOut;
 	public float fadeSpeed;
 	public float btnAlpha;
-
-	// [Header("What To Do Bools")]
-	// public bool startSeasonDissolve;
 
 	[Header("References")]
 	public Hub hubScript;
@@ -53,11 +47,11 @@ public class MainMenu : MonoBehaviour
 			{ 
 				btnAlpha -= fadeSpeed; 
 
-				// - Play Button Fade - //
+				// - Play Button Fade Out - //
 				btnImg.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, btnAlpha));
 				btnTMP.color = new Color(0.03f, 0.03f, 0.03f, Mathf.SmoothStep(0f, 1f, btnAlpha));
 
-				// - Reset Button Fade - //
+				// - Reset Button Fade Out - //
 				resetBtnImg.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, btnAlpha));
 				resetBtnTMP.color = new Color(0.03f, 0.03f, 0.03f, Mathf.SmoothStep(0f, 1f, btnAlpha));
 
@@ -69,30 +63,24 @@ public class MainMenu : MonoBehaviour
 				}
 			}
 		}
-
-		if(solidBGSprite.color.a <= 0.1f)
-		{
-			hubScript.dissolving = true;
-		}
 	}
 
 
 	void GoToHub () 
 	{
-		Debug.Log("Presssing Play Button");
 		// - MAKE THE CLOUDS PART - //
 		foreach(MoveCloud cloud in cloudsToMove)
 		{
 			cloud.moveOut = true;
 		}
 
-		// - FADE TITLE - //
+		// - FADE OUT TITLE - //
 		titleFade.FadeOut();
 
-		// - FADE SOLID BACKGROUND - //
+		// - FADE OUT SOLID BACKGROUND - //
 		solidBGFade.FadeOut();
 
-		// - FADE ALL BUTTONS - //
+		// - FADE OUT ALL MENU BUTTONS - //
 		fadeBtnOut = true;
 	}
 }

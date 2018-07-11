@@ -15,6 +15,8 @@ public class Hub : MonoBehaviour
 	[Header("Other Objects")]
 	public GameObject backToMenu;
 	public Button backToMenuBtn;
+	public FadeInOutBoth backToMenuFadeScript;
+	public SpriteRenderer solidBGSprite;
 
 	[Header("Summer Objects")]
 	public bool summerUnlocked;
@@ -26,8 +28,8 @@ public class Hub : MonoBehaviour
 	[Header("What To Do Bools")]
 	public bool dissolving;
 
-	[Header("References")]
-	public MainMenu mainMenuScript;
+	// [Header("References")]
+	// public MainMenu mainMenuScript;
 
 	public class Season 
 	{
@@ -57,6 +59,7 @@ public class Hub : MonoBehaviour
 
 	void Update () 
 	{
+		// - Dissolve All Unlocked Seasons - //
 		if (dissolving)
 		{
 			foreach(Material dissolveMat in dissolveMats)
@@ -74,6 +77,12 @@ public class Hub : MonoBehaviour
 				DoneDissolving();
 			}
 		}
+
+		// - Start Dissolving Unlocked Seasons - //
+		if(solidBGSprite.color.a <= 0.1f && dissAmnt <= 1.01f)
+		{
+			dissolving = true;
+		}
 	}
 
 
@@ -86,7 +95,7 @@ public class Hub : MonoBehaviour
 			if (!summerObj.activeSelf) { summerObj.SetActive(true); }
 		}
 
-		backToMenu.SetActive(true);
+		backToMenuFadeScript.FadeIn();
 		backToMenuBtn.enabled = true;
 	}
 

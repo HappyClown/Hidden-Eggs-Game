@@ -73,68 +73,67 @@ public class ClickOnEggs : MonoBehaviour
 
 
 
-	void FixedUpdate () 
-	{
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-
-		hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-	}
-
-
-
 	void Update()
-	{		
-		Debug.DrawRay(mousePos2D, Vector3.forward, Color.red, 60f);
-
+	{
 		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
 		eggsLeft = eggsCount.Length;
 		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + (totalEggs);
 		AdjustSilverEggCount();
 		AdjustGoldenEggCount();
 
-		if (hit)
+		// -- ON CLICK/TAP -- //
+		if (Input.GetMouseButtonDown(0))
 		{
-			if (hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0) || (hit.collider.CompareTag("GoldenEgg") && Input.GetMouseButtonDown(0)))
+			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+
+			Debug.DrawRay(mousePos2D, Vector3.forward, Color.red, 60f);
+
+			if (hit)
 			{
-				Debug.Log(hit.collider.name);
-
-				hit.collider.gameObject.GetComponent<EggGoToCorner>().StartEggAnim();
-				hit.collider.enabled = false;
-
-				if (hit.collider.CompareTag("Egg"))
+				if (hit.collider.CompareTag("Egg") || (hit.collider.CompareTag("GoldenEgg")))
 				{
-					eggsFound += 1;
-				}
-				eggMoving += 1;
-				lockDropDownPanel = true;
-			}
+					Debug.Log(hit.collider.name);
 
+					hit.collider.gameObject.GetComponent<EggGoToCorner>().StartEggAnim();
+					hit.collider.enabled = false;
 
-			if (hit.collider.CompareTag("Puzzle") && Input.GetMouseButtonDown(0))
-			{
-				SceneManager.LoadScene(puzzleSceneName);
-				PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
-			}
-
-
-			if (hit.collider.CompareTag("EggPanel") && Input.GetMouseButtonDown(0))
-			{
-				if (eggMoving > 0 && !lockDropDownPanel)
-				{
-					eggMoving  = 0;
-					return;
-				}
-
-				if (eggMoving <= 0)
-				{
+					if (hit.collider.CompareTag("Egg"))
+					{
+						eggsFound += 1;
+					}
 					eggMoving += 1;
-					StartCoroutine(MoveEggPanelTimer());
+					lockDropDownPanel = true;
+				}
+
+
+				if (hit.collider.CompareTag("Puzzle"))
+				{
+					SceneManager.LoadScene(puzzleSceneName);
+					PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
+				}
+
+
+				if (hit.collider.CompareTag("EggPanel"))
+				{
+					if (eggMoving > 0 && !lockDropDownPanel)
+					{
+						eggMoving  = 0;
+						return;
+					}
+
+					if (eggMoving <= 0)
+					{
+						eggMoving += 1;
+						StartCoroutine(MoveEggPanelTimer());
+					}
 				}
 			}
 		}
 
-
+		// - Egg Panel - //
 		if (eggMoving <= 0)
 		{
 			eggPanel.transform.position = Vector3.MoveTowards(eggPanel.transform.position, eggPanelHidden.transform.position, Time.deltaTime * panelMoveSpeed);
@@ -148,7 +147,7 @@ public class ClickOnEggs : MonoBehaviour
 			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y , 0);
 		}
 
-
+		// - Activate Puzzle - //
 		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlock)
 		{
 			puzzleClickArea.SetActive(true);
@@ -156,8 +155,6 @@ public class ClickOnEggs : MonoBehaviour
 			emission.enabled = true;
 			scaleAnim.Play();
 		}
-
-
 	}
 
 

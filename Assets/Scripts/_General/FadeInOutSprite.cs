@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeInOut : MonoBehaviour 
+public class FadeInOutSprite : MonoBehaviour 
 {
 	public bool fadingOut;
 	public bool fadingIn;
@@ -18,9 +18,7 @@ public class FadeInOut : MonoBehaviour
 	{
 		sprite = this.gameObject.GetComponent<SpriteRenderer>();
 
-		//sprite.color = new Color(1f, 1f, 1f, 0f);
-
-		if (fadeOnStart) { FadeIn(); }
+		if (fadeOnStart) { FadeIn(); sprite.color = new Color(1f, 1f, 1f, 0f);}
 	}
 
 

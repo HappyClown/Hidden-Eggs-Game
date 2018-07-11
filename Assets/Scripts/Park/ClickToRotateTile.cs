@@ -214,21 +214,21 @@ public class ClickToRotateTile : MonoBehaviour
 			connections = 0;
 			foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
 			{
-				lvlTile.gameObject.GetComponent<FadeInOut>().FadeOut();
+				lvlTile.gameObject.GetComponent<FadeInOutSprite>().FadeOut();
 				if (lvlTile.transform.childCount > 0)
 				{
-					lvlTile.transform.GetChild(0).GetComponent<FadeInOut>().FadeOut();
+					lvlTile.transform.GetChild(0).GetComponent<FadeInOutSprite>().FadeOut();
 				}
 			}
-			lvlBackShadows[curntLvl - 2].GetComponent<FadeInOut>().FadeOut();
+			lvlBackShadows[curntLvl - 2].GetComponent<FadeInOutSprite>().FadeOut();
 			if (lvlKites[curntLvl - 2].transform.childCount > 0)
 			{
 				foreach(Transform lvlKite in lvlKites[curntLvl - 2].transform)
 				{
-					lvlKite.GetComponent<FadeInOut>().FadeOut();
+					lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
 				}
 			}
-			lvlKites[curntLvl - 2].GetComponent<FadeInOut>().FadeOut();
+			lvlKites[curntLvl - 2].GetComponent<FadeInOutSprite>().FadeOut();
 
 
 			// -- SPAWN SILVER EGGS -- //
@@ -288,7 +288,7 @@ public class ClickToRotateTile : MonoBehaviour
 
 				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
 				{
-					lvlTile.gameObject.GetComponent<FadeInOut>().FadeOut();
+					lvlTile.gameObject.GetComponent<FadeInOutSprite>().FadeOut();
 				}
 			}
 
