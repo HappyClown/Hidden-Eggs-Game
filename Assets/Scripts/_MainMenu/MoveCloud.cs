@@ -18,6 +18,7 @@ public class MoveCloud : MonoBehaviour
 	{
 		if (moveOut)
 		{
+			moveIn = false;
 			// - MOVE IN PROPER DIRECTION - //
 			if (moveLeft) { this.transform.Translate(Vector3.left*moveSpeed*Time.deltaTime); }
 			else { this.transform.Translate(Vector3.right*moveSpeed*Time.deltaTime); }
@@ -32,6 +33,7 @@ public class MoveCloud : MonoBehaviour
 
 		if (moveIn)
 		{
+			moveOut = false;
 			// - MOVE IN PROPER DIRECTION - // (Reverse of moveOut directions)
 			if (moveLeft) { this.transform.Translate(Vector3.right*moveSpeed*Time.deltaTime); }
 			else { this.transform.Translate(Vector3.left*moveSpeed*Time.deltaTime); }

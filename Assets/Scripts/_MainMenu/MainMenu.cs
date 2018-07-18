@@ -29,11 +29,13 @@ public class MainMenu : MonoBehaviour
 	[Header("References")]
 	public Hub hubScript;
 
+	public bool menuReady;
+
 
 
 	void Start () 
 	{
-		playBtn.onClick.AddListener(GoToHub);
+		playBtn.onClick.AddListener(PlayBtn);
 	}
 	
 
@@ -63,10 +65,14 @@ public class MainMenu : MonoBehaviour
 				}
 			}
 		}
+
+		// - Check If I Can Interact With The Menu - //
+
+
 	}
 
 
-	void GoToHub () 
+	void PlayBtn () 
 	{
 		// - MAKE THE CLOUDS PART - //
 		foreach(MoveCloud cloud in cloudsToMove)

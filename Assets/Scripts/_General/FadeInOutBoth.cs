@@ -48,7 +48,7 @@ public class FadeInOutBoth : MonoBehaviour
 		if (fadingOut == true)
 		{
 			t += Time.deltaTime / fadeDuration;
-			myColor = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, t));
+			myColor = new Color(myColor.r, myColor.g, myColor.b, Mathf.SmoothStep(1f, 0f, t));
 			if (t >= 1f)
 			{
 				if (setInactiveOnFadeOut) { this.gameObject.SetActive(false); }
@@ -59,7 +59,7 @@ public class FadeInOutBoth : MonoBehaviour
 		if (fadingIn == true)
 		{
 			t += Time.deltaTime / fadeDuration;
-			myColor = new Color(1f, 1f, 1f, Mathf.SmoothStep(0f, 1f, t));
+			myColor = new Color(myColor.r, myColor.g, myColor.b, Mathf.SmoothStep(0f, 1f, t));
 			if (t >= 1f)
 			{
 				fadingIn = false;
@@ -77,6 +77,7 @@ public class FadeInOutBoth : MonoBehaviour
 	{
 		if (fadingOut == false && myColor.a >= 0.01f)
 		{
+			fadingIn = false;
 			fadingOut = true;
 			t = 0f;
 		}
@@ -93,6 +94,7 @@ public class FadeInOutBoth : MonoBehaviour
 
 		if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
 		{
+			fadingOut = false;
 			fadingIn = true;
 			t = 0f;
 		}

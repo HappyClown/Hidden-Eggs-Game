@@ -29,7 +29,7 @@ public class FadeInOutImage : MonoBehaviour
 		if (fadingOut == true)
 		{
 			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, t));
+			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(1f, 0f, t));
 			if (t >= 1f)
 			{
 				this.gameObject.SetActive(false);
@@ -40,7 +40,7 @@ public class FadeInOutImage : MonoBehaviour
 		if (fadingIn == true)
 		{
 			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0f, 1f, t));
+			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(0f, 1f, t));
 			if (t >= 1f)
 			{
 				fadingIn = false;
@@ -54,6 +54,7 @@ public class FadeInOutImage : MonoBehaviour
 	{
 		if (fadingOut == false && img.color.a >= 0.01f)
 		{
+			fadingIn = false;
 			fadingOut = true;
 			t = 0f;
 			//Debug.Log("Should Fade Out");
@@ -71,6 +72,7 @@ public class FadeInOutImage : MonoBehaviour
 		
 		if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
 		{
+			fadingOut = false;
 			fadingIn = true;
 			t = 0f;
 			//Debug.Log("Should Fade In");

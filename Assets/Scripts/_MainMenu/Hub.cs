@@ -17,6 +17,7 @@ public class Hub : MonoBehaviour
 	public Button backToMenuBtn;
 	public FadeInOutBoth backToMenuFadeScript;
 	public SpriteRenderer solidBGSprite;
+	public Button playBtn;
 
 	[Header("Summer Objects")]
 	public bool summerUnlocked;
@@ -27,6 +28,8 @@ public class Hub : MonoBehaviour
 
 	[Header("What To Do Bools")]
 	public bool dissolving;
+
+	public bool hubReady;
 
 	// [Header("References")]
 	// public MainMenu mainMenuScript;
@@ -83,6 +86,10 @@ public class Hub : MonoBehaviour
 		{
 			dissolving = true;
 		}
+
+		// - Check If I Can Interact With The Hub - //
+		
+
 	}
 
 

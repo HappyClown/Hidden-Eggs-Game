@@ -31,6 +31,8 @@ public class BackToMenu : MonoBehaviour
 
 	[Header("To Turn Off")]
 	public List<GameObject> levelButtons;
+	public Image myImg;
+	public Button myBtn;
 
 	[Header("References")]
 	public Hub hubScript;
@@ -45,6 +47,9 @@ public class BackToMenu : MonoBehaviour
 	void Start () 
 	{
 		backToMenuBtn.onClick.AddListener(GoToMenu);
+
+		//myImg = this.GetComponent<Image>();
+		//myBtn = this.GetComponent<Button>();
 	}
 	
 
@@ -84,6 +89,10 @@ public class BackToMenu : MonoBehaviour
 				}
 			}
 		}
+
+		// - Only Enable Click When Fully Visible - //
+		if (myImg.color.a < 0.95f) { myBtn.enabled = false; }
+		else { myBtn.enabled = true; }
 	}
 
 
