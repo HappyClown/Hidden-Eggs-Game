@@ -9,8 +9,8 @@ public class CafePuzzleCell : MonoBehaviour {
 	public CafePuzzleCell cellDown;
 	public CafePuzzleCell cellLeft;
 	public CafePuzzleCell cellRight;
-	//the bools define if the cell is next to an edge of the board
-	public bool edgeUp, edgeDown, edgeLeft, edgeRight;
+	//the bools define if the cell is next to an edge of the board or if it is the goal;
+	public bool edgeUp, edgeDown, edgeLeft, edgeRight, goalCup;
 	//the ovvupied bool defines if the cell has something on it
 	public bool occupied;
 	// Use this for initialization
@@ -25,7 +25,7 @@ public class CafePuzzleCell : MonoBehaviour {
 	//when the player moves a cup, the cells will check by functions if its cells next to it are occupied
 	public CafePuzzleCell CheckUp(){
 		//The cell returns itself if the cell next to it in the selected direction is occupied or if there is an edge 
-		if(edgeUp){
+		if(edgeUp || goalCup){
 			return this;
 		}
 		else if(cellUp.occupied){
@@ -37,7 +37,7 @@ public class CafePuzzleCell : MonoBehaviour {
 		}
 	}
 	public CafePuzzleCell CheckDown(){
-		if(edgeDown){
+		if(edgeDown || goalCup){
 			return this;
 		}
 		else if(cellDown.occupied){
@@ -48,7 +48,7 @@ public class CafePuzzleCell : MonoBehaviour {
 		}
 	}
 	public CafePuzzleCell CheckLeft(){
-		if(edgeLeft){
+		if(edgeLeft || goalCup){
 			return this;
 		}
 		else if(cellLeft.occupied){
@@ -59,7 +59,7 @@ public class CafePuzzleCell : MonoBehaviour {
 		}
 	}
 	public CafePuzzleCell CheckRight(){
-		if(edgeRight){
+		if(edgeRight || goalCup){
 			return this;
 		}
 		else if(cellRight.occupied){
