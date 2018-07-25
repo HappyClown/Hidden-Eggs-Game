@@ -33,6 +33,6 @@ public class CustonButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
 	public void OpenScene ()
 	{
-		SceneManager.LoadScene(sceneName);
+		SceneFade.SwitchScene(sceneName);
 	}
 }
