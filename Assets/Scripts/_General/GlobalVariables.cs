@@ -46,7 +46,7 @@ public class GlobalVariables : MonoBehaviour
 		{
 			globVarScript = this;
 			DontDestroyOnLoad(this.gameObject);
-		} 
+		}
 		else if (globVarScript != this.gameObject)
 		{
 			Destroy(this.gameObject);

@@ -11,6 +11,7 @@ public class BackButton : MonoBehaviour
 	public string sceneName;
 
 
+
 	void Start () 
 	{
 		button = this.GetComponent<Button>();
@@ -18,9 +19,10 @@ public class BackButton : MonoBehaviour
 	}
 
 
+
 	public void OpenScene ()
 	{
-		SceneManager.LoadScene(sceneName);
+		SceneFade.SwitchScene(sceneName);
 	}
 
 }
