@@ -25,7 +25,7 @@ public class FadeInOutBoth : MonoBehaviour
 	
 
 
-	void Start ()
+	void Awake ()
 	{
 		if (myDisplayType == MyDisplayType.Sprite) { mySprite = this.gameObject.GetComponent<SpriteRenderer>(); }
 		else if (myDisplayType == MyDisplayType.Image) { myImg = this.gameObject.GetComponent<Image>(); }

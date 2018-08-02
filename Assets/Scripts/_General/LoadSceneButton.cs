@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadSceneButton : MonoBehaviour 
 {
-	public Button chngScnButton;
-	public string scene;
+	private Button button;
+
+	public string sceneName;
+
+
 
 	void Start () 
 	{
-		chngScnButton = this.GetComponent<Button>();
-		chngScnButton.onClick.AddListener(LoadScene);
+		button = this.GetComponent<Button>();
+		button.onClick.AddListener(OpenScene);
 	}
-	
-	public void LoadScene () 
+
+
+
+	public void OpenScene ()
 	{
-		SceneManager.LoadScene(scene);
+		SceneFade.SwitchScene(sceneName);
 	}
+
 }
