@@ -7,7 +7,7 @@ public class CafePuzzleCup : MonoBehaviour {
 	public CafePuzzleCell startingCell,curretCell, nextCell, lastCell;
 	public CafePuzzleLevel myLevel;
 	public bool moving, checkGoal, reverse, active;
-	public float animationSpeed;
+	public float animationSpeed, hMovingOrder, vMovingOrder;
 	public enum cupColor{
 		Red,
 		blue,
@@ -46,24 +46,28 @@ public class CafePuzzleCup : MonoBehaviour {
 			}
 		}
 	}
-	public void MoveCup(Vector2 target, string dir){
+	public void MoveCup(string dir){
 		if(!moving){
 			if(dir == "up"){
+				Debug.Log("Moving up!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckUp();
 				SetCell();					
 			}
 			else if(dir == "down"){
+				Debug.Log("Moving down!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckDown();
 				SetCell();			
 			}
 			else if(dir == "left"){
+				Debug.Log("Moving left!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckLeft();
 				SetCell();			
 			}
 			else if(dir == "right"){
+				Debug.Log("Moving right!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckRight();
 				SetCell();			
@@ -86,5 +90,41 @@ public class CafePuzzleCup : MonoBehaviour {
 		}
 		distToPoint = Vector2.Distance(transform.position,nextPos);
 		moving = true;
+	}
+	public void SetOrder()
+	{
+		float cupsWithColor = 0;
+		int lessX = 0;
+		int lessY = 0;
+		for (int i = 0; i < myLevel.myCups.Length; i++)
+		{
+			if(myLevel.myCups[i].myColor.ToString() == myColor.ToString())
+			{
+				cupsWithColor ++;
+				if(myLevel.myCups[i].gameObject.transform.position.x > gameObject.transform.position.x)
+				{
+					lessX ++;
+				}
+				else if(myLevel.myCups[i].gameObject.transform.position.x == gameObject.transform.position.x){
+					if(myLevel.myCups[i].gameObject.transform.position.y < gameObject.transform.position.y)
+					{
+						lessX ++;
+					}
+				}
+				if(myLevel.myCups[i].gameObject.transform.position.y > gameObject.transform.position.y)
+				{
+					lessY ++;
+				}
+				else if(myLevel.myCups[i].gameObject.transform.position.y == gameObject.transform.position.y){
+					
+					if(myLevel.myCups[i].gameObject.transform.position.x < gameObject.transform.position.x)
+					{
+						lessY ++;
+					}
+				}
+			}
+		}
+		hMovingOrder = cupsWithColor - lessX;
+		vMovingOrder = cupsWithColor - lessY;
 	}
 }

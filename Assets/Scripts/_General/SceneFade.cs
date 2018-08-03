@@ -86,6 +86,9 @@ public class SceneFade : MonoBehaviour
 			{
 				fadeSceneIn = true;
 				fadeSceneOut = false;
+<<<<<<< HEAD
+				SceneManager.LoadScene(sceneToLoad);
+=======
 				titleCardTimer = 0f;
 			}
 		}
@@ -105,6 +108,7 @@ public class SceneFade : MonoBehaviour
 			{
 				//if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; }
 				curveTime = 0;
+>>>>>>> master
 				newAlpha = 0;
 				fadeSceneIn = false;
 			}

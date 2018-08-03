@@ -7,12 +7,14 @@ public class SwipeDetector : MonoBehaviour {
 	private bool tap, swipeLeft, swipeRight, swipeUp, swipeDown; 
 	private bool isDraging = false;
 	public float deathzoneRadius;
-	private Vector2 startTouch, swipeDelta;
+	private Vector2 startTouch, swipeDelta, firstTouch;
 	public Vector2 SwipeDelta{ get {return swipeDelta;}}
 	public bool SwipeLeft{get {return swipeLeft;}}
 	public bool SwipeRight{get {return swipeRight;}}
 	public bool SwipeUp{get {return swipeUp;}}
 	public bool SwipeDown{get {return swipeDown;}}
+	public bool IsDraging{get {return isDraging;}}
+	public Vector2 FirstTouch{get {return firstTouch;}}
 	
 	// Update is called once per frame
 	private void Update () {
@@ -54,6 +56,7 @@ public class SwipeDetector : MonoBehaviour {
 		}
 		//Did we cross the deathzone?
 		if(swipeDelta.magnitude > deathzoneRadius){
+			firstTouch = startTouch;
 			//which direction?
 			float x = swipeDelta.x;
 			float y = swipeDelta.y;
