@@ -38,21 +38,18 @@ public class RainbowRiddle : MonoBehaviour
 
 
 
-void FixedUpdate () 
-	{
-		if (!GlobalVariables.globVarScript.rainbowRiddleSolved)
-		{
-			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-
-			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
-		}
-	}
-
-
-
     void Update ()
     {
+		hit = OnClickInput.hit;
+		
+		// if (!GlobalVariables.globVarScript.rainbowRiddleSolved)
+		// {
+		// 	mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		// 	mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+
+		// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+		// }
+
         if (hit)
         {
             if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
