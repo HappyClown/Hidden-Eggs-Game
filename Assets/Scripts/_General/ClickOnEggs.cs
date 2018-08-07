@@ -7,7 +7,6 @@ using TMPro;
 
 public class ClickOnEggs : MonoBehaviour 
 {
-	Ray2D ray;
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;

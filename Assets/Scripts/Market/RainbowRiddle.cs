@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class RainbowRiddle : MonoBehaviour 
 {
-    Ray2D ray;
 	RaycastHit2D hit;
+	RaycastHit2D hitFX;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
 
@@ -16,6 +16,7 @@ public class RainbowRiddle : MonoBehaviour
 	public GameObject goldenEgg;
 
     public LayerMask layerMask;
+	public LayerMask layerMaskFX;
 
 	public ParticleSystem firework01; 
 	public ParticleSystem firework02;
@@ -40,61 +41,72 @@ public class RainbowRiddle : MonoBehaviour
 
     void Update ()
     {
-		hit = OnClickInput.hit;
-		
-		// if (!GlobalVariables.globVarScript.rainbowRiddleSolved)
-		// {
-		// 	mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		// 	mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+		if (!GlobalVariables.globVarScript.rainbowRiddleSolved && Input.GetMouseButtonDown(0))
+		{
+			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 
-		// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
-		// }
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
 
-        if (hit)
-        {
-            if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
+			hitFX = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMaskFX);
+
+			
+			if (hitFX)
 			{
-
-				basketNumber += 1;
-
-				hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-				
-				if (basketNumber >= 6)
+				// - PLAY BASKET FX - // 
+				if (hitFX.collider.CompareTag("OnClickFX"))
 				{
-					RainbowRiddleSolved ();
-					//SpawnGoldenEgg;
-					goldenEgg.SetActive(true);
+					hitFX.collider.GetComponent<OnClickFX>().PlayFX();
+				}
+			}  
 
-					if (!fireworksFired)
+			if (hit)
+    		{
+				// -- HIT ACTIVE FRUITBASKET -- //
+				if (hit.collider.CompareTag("FruitBasket"))
+				{
+					basketNumber += 1;
+
+					hit.collider.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+					
+					// - PUZZLE SOLVED - //
+					if (basketNumber >= 6)
 					{
-						firework01.Play(true);
-						firework02.Play(true);
-						fireworksFired = true;
+						RainbowRiddleSolved ();
+						//SpawnGoldenEgg;
+						goldenEgg.SetActive(true);
+
+						if (!fireworksFired)
+						{
+							firework01.Play(true);
+							firework02.Play(true);
+							fireworksFired = true;
+						}
+						//Disable/destroy all basket colliders;
+						foreach (GameObject basket in fruitBaskets)
+						{
+							basket.SetActive(false);
+						}	
+						return;
 					}
-					//Disable/destroy all basket colliders;
+					else
+					{
+						fruitBaskets[basketNumber].GetComponent<PolygonCollider2D>().enabled = true;
+					}
+				}
+				
+				// - DID NOT HIT BASKET - //
+				if (!hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
+				{
+					basketNumber = 0;
 					foreach (GameObject basket in fruitBaskets)
 					{
-						basket.SetActive(false);
+						basket.GetComponent<PolygonCollider2D>().enabled = false;
 					}	
-					return;
+					fruitBaskets[0].GetComponent<PolygonCollider2D>().enabled = true;
 				}
-				else
-				{
-					fruitBaskets[basketNumber].GetComponent<CircleCollider2D>().enabled = true;
-				}
-			}
-			
-
-			if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
-			{
-				basketNumber = 0;
-				foreach (GameObject basket in fruitBaskets)
-				{
-					basket.GetComponent<CircleCollider2D>().enabled = false;
-				}	
-				fruitBaskets[0].GetComponent<CircleCollider2D>().enabled = true;
-			}
-        }   
+			} 
+		}   
     }
 
 

@@ -8,15 +8,11 @@ public class OnClickFX : MonoBehaviour
 
 
 
-	void Start () 
+	public void PlayFX()
 	{
-		
-	}
-	
-
-
-	void Update () 
-	{
-		
+		//if (!particle.isPlaying)
+		//{
+			particle.Play();
+		//}
 	}
 }
