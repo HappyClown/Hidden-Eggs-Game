@@ -23,7 +23,6 @@ public class CafePuzzleCup : MonoBehaviour {
 		transform.position = startingPos;
 		startingCell.occupied = true;
 		curretCell = startingCell;
-		checkGoal = false;
 		//should be activated after level intro
 		active = true;
 	}
@@ -31,15 +30,23 @@ public class CafePuzzleCup : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(moving){
+			if(reverse){
+				for (int i = 0; i < myLevel.myCups.Length; i++)
+				{
+					if(myLevel.myCups[i].myColor == myColor){
+						myLevel.myCups[i].nextCell = myLevel.myCups[i].lastCell;
+						myLevel.myCups[i].SetCell();
+					}
+				}
+				reverse = false;
+			}
 			if(Vector2.Distance(transform.position,nextPos) <  0.05f){
-				if(reverse){
-					nextCell = lastCell;
-					SetCell();
-				}else{
 					transform.position = nextPos;
 					moving = false;
 					curretCell = nextCell;
-				}
+					if(nextCell.goalCup){
+						active = false;
+					}
 			}
 			else{
 				transform.position = Vector2.MoveTowards(transform.position,nextPos,Time.deltaTime*(moveAnimation.Evaluate(Vector2.Distance(transform.position,nextPos)/distToPoint))*animationSpeed);
@@ -47,46 +54,47 @@ public class CafePuzzleCup : MonoBehaviour {
 		}
 	}
 	public void MoveCup(string dir){
-		if(!moving){
+		if(!moving && active){
 			if(dir == "up"){
-				Debug.Log("Moving up!");
+				//Debug.Log("Moving up!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckUp();
 				SetCell();					
 			}
 			else if(dir == "down"){
-				Debug.Log("Moving down!");
+				//Debug.Log("Moving down!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckDown();
 				SetCell();			
 			}
 			else if(dir == "left"){
-				Debug.Log("Moving left!");
+				//Debug.Log("Moving left!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckLeft();
 				SetCell();			
 			}
 			else if(dir == "right"){
-				Debug.Log("Moving right!");
+				//Debug.Log("Moving right!");
 				lastCell = curretCell;
 				nextCell = curretCell.CheckRight();
 				SetCell();			
 			}
 		}
 	}
-	void SetCell(){
+	public void SetCell(){
 		curretCell.occupied = false;
+		nextPos = nextCell.gameObject.transform.position;
 		if(nextCell.goalCup){
-			checkGoal = true;
 			if(myLevel.cupsOrder[myLevel.currentCup].ToString() == myColor.ToString()){
 				myLevel.currentCup ++;
-				active = false;
+				if(myLevel.currentCup == myLevel.cupsOrder.Length){
+					myLevel.currentCup = 0;
+				}
 			}else{
 				reverse = true;
 			}	
 		}else{
 			nextCell.occupied = true;
-			nextPos = nextCell.gameObject.transform.position;
 		}
 		distToPoint = Vector2.Distance(transform.position,nextPos);
 		moving = true;
