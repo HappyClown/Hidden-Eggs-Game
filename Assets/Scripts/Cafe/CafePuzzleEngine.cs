@@ -7,6 +7,7 @@ public class CafePuzzleEngine : MonoBehaviour {
 	// Use this for initialization
 	public SwipeDetector mySwipeControls;
 	private RaycastHit2D hit;
+	public CafePuzzleCell[] gridCells;
 	public GameObject[] mylevels;
 	public CafePuzzleLevel mylvl;
 	public int currentLevel;
@@ -16,10 +17,10 @@ public class CafePuzzleEngine : MonoBehaviour {
 		for (int i = 0; i < mylevels.Length; i++)
 		{
 			if(i == currentLevel){
+				mylevels[i].SetActive(true);
 				mylvl = mylevels[i].GetComponent<CafePuzzleLevel>();
-			}
-			else{
-				mylevels[i].SetActive(false);
+				CleanGrid();
+				mylvl.SetUp();
 			}
 		}
 	}
@@ -61,6 +62,20 @@ public class CafePuzzleEngine : MonoBehaviour {
 			}
 
 		}
+		if(Input.GetKey("r")){
+			ResetLevel();
+		}
+	}
+
+	void CleanGrid(){
+		for (int i = 0; i < gridCells.Length; i++)
+		{
+			gridCells[i].occupied = false;
+		}
+	}
+	void ResetLevel(){
+		CleanGrid();
+		mylvl.SetUp();
 	}
 		
 }

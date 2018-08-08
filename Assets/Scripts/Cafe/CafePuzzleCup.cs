@@ -18,7 +18,7 @@ public class CafePuzzleCup : MonoBehaviour {
 	private Vector2 nextPos,currentPos;
 	public AnimationCurve moveAnimation;
 	// Use this for initialization
-	void Start () {
+	public void SetUp() {
 		Vector2 startingPos = new Vector3(startingCell.gameObject.transform.position.x, startingCell.transform.position.y);
 		transform.position = startingPos;
 		startingCell.occupied = true;
@@ -45,7 +45,9 @@ public class CafePuzzleCup : MonoBehaviour {
 					moving = false;
 					curretCell = nextCell;
 					if(nextCell.goalCup){
+						myLevel.requiredCups --;
 						active = false;
+						lastCell = curretCell;
 					}
 			}
 			else{

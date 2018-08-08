@@ -6,6 +6,7 @@ public class CafePuzzleLevel : MonoBehaviour {
 
 	// Use this for initialization
 	public CafePuzzleCup[] myCups;
+	public CafePuzzleObstacle[] myObstacles;
 	public int levelNumber;
 	public bool starting, finishing, loaded,finished, movigCups, setOrder;
 	public int currentCup;
@@ -18,16 +19,16 @@ public class CafePuzzleLevel : MonoBehaviour {
 	public int requiredCups;
 	public float cupsToMove, order;
 	public string colorToMove, direction;
-	void Start () {
-		starting = finishing = false;
-		currentCup = 0;
-		cupsToMove = 0;
-		setOrder = false;
-		movigCups = false;
-	}
 	
 	// Update is called once per frame
 	void Update () {
+		if(requiredCups == 0){
+			//Space for finishing animation
+			if(!finishing){
+				finishing = true;
+				Debug.Log("Level Cleared!!");
+			}
+		}
 		if(cupsToMove > 0){
 			setOrder = false;
 			for (int i = 0; i < myCups.Length; i++)
@@ -83,6 +84,32 @@ public class CafePuzzleLevel : MonoBehaviour {
 				myCups[i].SetOrder();
 			}
 			setOrder = true;
+		}
+	}
+	public void SetUp(){
+		starting = finishing = false;
+		currentCup = 0;
+		cupsToMove = 0;
+		setOrder = false;
+		movigCups = false;
+		requiredCups = myCups.Length;
+		for (int i = 0; i < myCups.Length; i++)
+		{
+			myCups[i].SetUp();
+		}
+		for (int i = 0; i < myObstacles.Length; i++)
+		{
+			myObstacles[i].SetUp();
+		}
+	}
+	public void Reset(){
+		for (int i = 0; i < myCups.Length; i++)
+		{
+			myCups[i].SetUp();
+		}
+		for (int i = 0; i < myObstacles.Length; i++)
+		{
+			myObstacles[i].SetUp();
 		}
 	}
 	public void Swipe(string color, string dir){

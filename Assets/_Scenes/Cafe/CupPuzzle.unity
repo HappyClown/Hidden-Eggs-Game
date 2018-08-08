@@ -593,7 +593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &293816106
 Transform:
   m_ObjectHideFlags: 0
@@ -609,8 +609,9 @@ Transform:
   - {fileID: 1537444200}
   - {fileID: 553223394}
   - {fileID: 1621560783}
+  - {fileID: 1614428465}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &293816107
 MonoBehaviour:
@@ -629,6 +630,9 @@ MonoBehaviour:
   - {fileID: 1537444198}
   - {fileID: 553223392}
   - {fileID: 1621560781}
+  myObstacles:
+  - {fileID: 1969689466}
+  - {fileID: 403551352}
   levelNumber: 1
   starting: 0
   finishing: 0
@@ -1920,7 +1924,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1272416911
 MonoBehaviour:
@@ -1934,6 +1938,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySwipeControls: {fileID: 1272416912}
+  gridCells:
+  - {fileID: 1199437803}
+  - {fileID: 502703351}
+  - {fileID: 293636499}
+  - {fileID: 733388684}
+  - {fileID: 446171445}
+  - {fileID: 437439763}
+  - {fileID: 586354676}
+  - {fileID: 1967692530}
+  - {fileID: 488879423}
+  - {fileID: 1008766756}
+  - {fileID: 1666615118}
+  - {fileID: 75341768}
+  - {fileID: 1893347094}
+  - {fileID: 2021975467}
+  - {fileID: 296672339}
+  - {fileID: 113135014}
+  - {fileID: 46548661}
   mylevels:
   - {fileID: 293816105}
   mylvl: {fileID: 0}
@@ -2165,14 +2187,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1614428464}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1969689465}
   - {fileID: 403551351}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 293816106}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1621560780
 GameObject:

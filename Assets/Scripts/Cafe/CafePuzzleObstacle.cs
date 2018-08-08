@@ -6,7 +6,7 @@ public class CafePuzzleObstacle : MonoBehaviour {
 
 	public CafePuzzleCell myCell;
 	// Use this for initialization
-	void Start () {
+	public void SetUp () {
 		myCell.occupied = true;
 		Vector2 startingPos = new Vector3(myCell.gameObject.transform.position.x, myCell.transform.position.y);
 		transform.position = startingPos;
