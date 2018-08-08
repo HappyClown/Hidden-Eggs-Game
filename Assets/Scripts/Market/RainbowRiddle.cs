@@ -22,6 +22,7 @@ public class RainbowRiddle : MonoBehaviour
 	public ParticleSystem firework02;
 
 	public bool fireworksFired;
+	public GameObject appleBasket;
 
 
 
@@ -65,9 +66,19 @@ public class RainbowRiddle : MonoBehaviour
 				// -- HIT ACTIVE FRUITBASKET -- //
 				if (hit.collider.CompareTag("FruitBasket"))
 				{
-					basketNumber += 1;
+					if (basketNumber == 0 && hit.collider.gameObject == appleBasket)
+					{
+						basketNumber++;
+					}
+					else if (basketNumber >= 0 && hit.collider.gameObject != appleBasket)
+					{
+						basketNumber++;
+					}
 
-					hit.collider.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+					if (hit.collider.gameObject != appleBasket)
+					{
+						hit.collider.gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+					}
 					
 					// - PUZZLE SOLVED - //
 					if (basketNumber >= 6)
