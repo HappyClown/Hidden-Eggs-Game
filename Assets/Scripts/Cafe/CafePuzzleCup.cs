@@ -45,7 +45,7 @@ public class CafePuzzleCup : MonoBehaviour {
 					moving = false;
 					curretCell = nextCell;
 					if(nextCell.goalCup){
-						myLevel.requiredCups --;
+						myLevel.cupsLeft --;
 						active = false;
 						lastCell = curretCell;
 					}

@@ -7,8 +7,11 @@ public class CafePuzzleLevel : MonoBehaviour {
 	// Use this for initialization
 	public CafePuzzleCup[] myCups;
 	public CafePuzzleObstacle[] myObstacles;
+	public CafePuzzleCell cellGoal;
 	public int levelNumber;
 	public bool starting, finishing, loaded,finished, movigCups, setOrder;
+	public float introTime, exitTime;
+	private float currentintroTime, currentExitTime;
 	public int currentCup;
 	public enum cupColor{
 		Red,
@@ -16,18 +19,24 @@ public class CafePuzzleLevel : MonoBehaviour {
 		green
 	}
 	public cupColor[] cupsOrder;
-	public int requiredCups;
+	public int requiredCups, cupsLeft;
 	public float cupsToMove, order;
 	public string colorToMove, direction;
 	
 	// Update is called once per frame
 	void Update () {
-		if(requiredCups == 0){
+		if(starting){
+			introAnimation();
+		}
+		if(cupsLeft == 0){
 			//Space for finishing animation
 			if(!finishing){
+				loaded = false;
 				finishing = true;
-				Debug.Log("Level Cleared!!");
 			}
+		}
+		if(finishing){
+			exitAnimation();
 		}
 		if(cupsToMove > 0){
 			setOrder = false;
@@ -87,12 +96,16 @@ public class CafePuzzleLevel : MonoBehaviour {
 		}
 	}
 	public void SetUp(){
-		starting = finishing = false;
+		loaded = finishing =  finished = false;
 		currentCup = 0;
 		cupsToMove = 0;
 		setOrder = false;
 		movigCups = false;
-		requiredCups = myCups.Length;
+		starting = true;
+		currentintroTime = 0;
+		cupsLeft = requiredCups;
+		cellGoal.cellLeft.edgeRight = false;
+		cellGoal.cellLeft.cellRight = cellGoal;
 		for (int i = 0; i < myCups.Length; i++)
 		{
 			myCups[i].SetUp();
@@ -101,6 +114,7 @@ public class CafePuzzleLevel : MonoBehaviour {
 		{
 			myObstacles[i].SetUp();
 		}
+
 	}
 	public void Reset(){
 		for (int i = 0; i < myCups.Length; i++)
@@ -130,5 +144,22 @@ public class CafePuzzleLevel : MonoBehaviour {
 			order = cupsToMove + 1;
 		}
 		direction = dir;
+	}
+	public void introAnimation(){
+		currentintroTime += Time.deltaTime;
+		if(currentintroTime >= introTime){
+			starting = false;
+			loaded = true;
+		}
+	}
+	public void exitAnimation(){
+		currentExitTime += Time.deltaTime;
+		cellGoal.cellLeft.edgeRight = true;
+		cellGoal.cellLeft.cellRight = null;
+		if (currentExitTime >= exitTime)
+		{
+			finishing = false;
+			finished = true;
+		}
 	}
 }
