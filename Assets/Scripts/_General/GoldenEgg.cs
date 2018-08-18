@@ -26,6 +26,9 @@ public class GoldenEgg : MonoBehaviour
 	private float partShaftsA;
 	private float partTrailSize;
 
+	private bool clickDown;
+	private RaycastHit2D hit;
+
 
 
 	void Update () 
@@ -56,6 +59,30 @@ public class GoldenEgg : MonoBehaviour
 				partPop.Clear(true);
 				partTrail.Clear(true);
 			}
+		}
+
+		if (Input.GetMouseButtonDown(0))
+		{
+			clickDown = true;
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			hit = Physics2D.Raycast(mousePos, Vector3.forward, 50f);
+				if (hit)
+				{
+					if (hit.collider.CompareTag("GoldenEgg"))
+					{
+						Debug.Log("Hit Golden Egg yo.");
+						
+						anim.SetTrigger("TapAnim");
+
+						//if (anim.enabled) anim.enabled = false;
+						//else { anim.enabled = true; }
+					}
+				}
+		}
+
+		if (Input.GetMouseButtonUp(0))
+		{
+			clickDown = false;
 		}
 
 		// -- START GOLDEN EGG SEQUENCE -- //
@@ -137,7 +164,7 @@ public class GoldenEgg : MonoBehaviour
 
 
 
-	// - CALLED DURING ANIMATION - // (Animation Events)
+	// - CALLED DURING ANIMATIONS - // (Animation Events)
 	void StartGlow ()
 	{
 		if (!partGlow.isPlaying) { partGlow.Play(true); }
@@ -169,5 +196,12 @@ public class GoldenEgg : MonoBehaviour
 	void StartTrail()
 	{
 		if (!partTrail.isPlaying) { partTrail.Play(true); }
+	}
+
+
+
+	void StopAnim ()
+	{
+		anim.enabled = false;
 	}
 }
