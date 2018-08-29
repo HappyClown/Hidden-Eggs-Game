@@ -24,7 +24,7 @@ public class EggGoToCorner : MonoBehaviour
 	private float constantSpeed;
 	private float timeTest;
 	public float settleEggDist = 0.005f;
-
+//
 	private float animCurveTestTime;
 	private float animCurveTestAvVal;
 	private float animCurveTestVal;
@@ -33,14 +33,14 @@ public class EggGoToCorner : MonoBehaviour
 	private float distLeft;
 	private Vector3 startSpotInPanel;
 	private Vector3 myStartPos;
-
+//
 	private float openPanelSpotx, openPanelSpoty, openPanelSpotz;
 
 
 
 	void Start () 
 	{
-		eggAnim = this.GetComponent<Animator>();
+		if (!eggAnim) { eggAnim = this.GetComponent<Animator>(); }
 
 		LoadEggFromCorrectScene();
 
@@ -122,7 +122,7 @@ public class EggGoToCorner : MonoBehaviour
 
 	public void StartEggAnim () 
 	{
-		eggAnim.SetTrigger("EggPop");
+		if (!this.CompareTag("GoldenEgg")) { eggAnim.SetTrigger("EggPop"); }
 		
 		if (mySpotInPanel == null)
 		{

@@ -41,6 +41,7 @@ public class ClickOnEggs : MonoBehaviour
 	public List<GameObject> eggSpots;
 	public List<GameObject> silverEggSpots;
 	public GameObject goldenEggSpot;
+	public Animator goldenEggAnim;
 	public int goldenEggFound;
 	public int eggMoving;
 	public GameObject eggPanelHidden;
@@ -101,6 +102,11 @@ public class ClickOnEggs : MonoBehaviour
 
 					eggScript.StartEggAnim();
 					hit.collider.enabled = false;
+
+					if (hit.collider.CompareTag("GoldenEgg"))
+					{
+						goldenEggAnim.SetTrigger("TapAnim");
+					}
 
 					if (hit.collider.CompareTag("Egg"))
 					{

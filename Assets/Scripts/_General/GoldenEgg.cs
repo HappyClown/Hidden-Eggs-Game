@@ -3,10 +3,13 @@ using UnityEngine.UI;
 
 public class GoldenEgg : MonoBehaviour 
 {
-	private bool inGoldenEggSequence;
+	//[HideInInspector]
+	public bool inGoldenEggSequence;
+	public PolygonCollider2D goldenEggCollider;
+	public EggGoToCorner eggGoToCornerScript;
 
 	[Header("Egg Animation")]
-	public Animator anim; 
+	public Animator anim;
 	public float eggAnimStart;
 	private float eggAnimTimer;
 	private bool eggAnimPlayed;
@@ -61,24 +64,28 @@ public class GoldenEgg : MonoBehaviour
 			}
 		}
 
-		if (Input.GetMouseButtonDown(0))
-		{
-			clickDown = true;
-			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			hit = Physics2D.Raycast(mousePos, Vector3.forward, 50f);
-				if (hit)
-				{
-					if (hit.collider.CompareTag("GoldenEgg"))
-					{
-						Debug.Log("Hit Golden Egg yo.");
+		// if (Input.GetMouseButtonDown(0))
+		// {
+		// 	clickDown = true;
+		// 	Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		// 	hit = Physics2D.Raycast(mousePos, Vector3.forward, 50f);
+		// 		if (hit)
+		// 		{
+		// 			if (hit.collider.CompareTag("GoldenEgg"))
+		// 			{
+		// 				Debug.Log("Hit Golden Egg yo.");
 						
-						anim.SetTrigger("TapAnim");
+		// 				//anim.SetTrigger("TapAnim");
 
-						//if (anim.enabled) anim.enabled = false;
-						//else { anim.enabled = true; }
-					}
-				}
-		}
+		// 				//goldenEggCollider.enabled = false;
+
+		// 				//inGoldenEggSequence = false;
+
+		// 				//if (anim.enabled) anim.enabled = false;
+		// 				//else { anim.enabled = true; }
+		// 			}
+		// 		}
+		// }
 
 		if (Input.GetMouseButtonUp(0))
 		{
@@ -196,6 +203,27 @@ public class GoldenEgg : MonoBehaviour
 	void StartTrail()
 	{
 		if (!partTrail.isPlaying) { partTrail.Play(true); }
+	}
+
+
+
+	void ActivateCollider()
+	{
+		goldenEggCollider.enabled = true;
+	}
+
+
+
+	void SendEggToCorner()
+	{
+		eggGoToCornerScript.GoToCorner();
+	}
+
+
+
+	void ClickFX()
+	{
+		eggGoToCornerScript.PlayEggClickFX();
 	}
 
 

@@ -14,6 +14,7 @@ public class RainbowRiddle : MonoBehaviour
 	public List<GameObject> fruitBaskets;
 	public int basketNumber;
 	public GameObject goldenEgg;
+	public GoldenEgg goldenEggScript;
 
     public LayerMask layerMask;
 	public LayerMask layerMaskFX;
@@ -86,6 +87,8 @@ public class RainbowRiddle : MonoBehaviour
 						RainbowRiddleSolved ();
 						//SpawnGoldenEgg;
 						goldenEgg.SetActive(true);
+
+						goldenEggScript.inGoldenEggSequence = true;
 
 						if (!fireworksFired)
 						{
