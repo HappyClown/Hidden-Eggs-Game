@@ -32,7 +32,7 @@ public class EggGoToCorner : MonoBehaviour
 	private float distPercent;
 	private float distLeft;
 	private Vector3 startSpotInPanel;
-	private Vector3 myStartPos;
+	private Vector3 myStartPos, myStartRot, myStartScale;
 //
 	private float openPanelSpotx, openPanelSpoty, openPanelSpotz;
 
@@ -52,6 +52,11 @@ public class EggGoToCorner : MonoBehaviour
 			this.transform.localScale = cornerEggScale;
 			this.GetComponent<Collider2D>().enabled = false;
 			if (!this.CompareTag("GoldenEgg")) { clickOnEggsScript.eggsFound += 1; }
+			// else 
+			// { 
+			// 	GameObject gEgg = GameObject.Find("GoldenEgg");
+			// 	gEgg.transform.localScale
+			// }
 			//moveThisEgg = true;
 			//clickOnEggsScript.eggMoving -= 1;
 			this.transform.parent = clickOnEggsScript.eggPanel.transform;
@@ -65,6 +70,9 @@ public class EggGoToCorner : MonoBehaviour
 			startSpotInPanel = new Vector3(openPanelSpotx, openPanelSpoty, openPanelSpotz);
 
 			myStartPos = new Vector3 (this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f));
+			myStartRot = new Vector3 (this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z);
+			if (!this.CompareTag("GoldenEgg")) { myStartScale = new Vector3(1.4f ,1.4f ,1); } // Hardcoded, needs to be set to the end scale size of the egg in the "EggPop" animation which all the normal eggs use.
+			else { myStartScale = new Vector3 (this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z); }
 
 			// distToSpot = Vector3.Distance(new Vector3 (this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f)), startSpotInPanel);
 			// constantSpeed = (distToSpot + settleEggDist)/ timeToMove;
@@ -99,9 +107,9 @@ public class EggGoToCorner : MonoBehaviour
 
 			this.transform.position = Vector3.Lerp(myStartPos, startSpotInPanel, moveSpeed);
 
-			this.transform.eulerAngles = Vector3.Lerp(this.transform.eulerAngles, cornerRot, curveTime);
+			this.transform.eulerAngles = Vector3.Lerp(myStartRot, cornerRot, moveSpeed);
 
-			this.transform.localScale = Vector3.Lerp(this.transform.localScale, cornerEggScale, curveTime);
+			this.transform.localScale = Vector3.Lerp(myStartScale, cornerEggScale, moveSpeed);
 
 			// Arrived at corner spot.
 			if (Vector3.Distance(this.transform.position, mySpotInPanel.transform.position) <= 0.005f)
@@ -123,6 +131,7 @@ public class EggGoToCorner : MonoBehaviour
 	public void StartEggAnim () 
 	{
 		if (!this.CompareTag("GoldenEgg")) { eggAnim.SetTrigger("EggPop"); }
+		else { eggAnim.SetTrigger("TapAnim"); }
 		
 		if (mySpotInPanel == null)
 		{

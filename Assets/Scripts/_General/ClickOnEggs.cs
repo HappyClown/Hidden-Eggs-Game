@@ -48,7 +48,7 @@ public class ClickOnEggs : MonoBehaviour
 	public GameObject eggPanelShown;
 	public float panelMoveSpeed;
 	public float basePanelOpenTime;
-	private float panelOpenTime = 0f;
+	//private float panelOpenTime = 0f;
 	public List<GameObject> silverEggsInPanel;
 	public GameObject dropDrowArrow;
 
@@ -103,19 +103,14 @@ public class ClickOnEggs : MonoBehaviour
 					eggScript.StartEggAnim();
 					hit.collider.enabled = false;
 
-					if (hit.collider.CompareTag("GoldenEgg"))
-					{
-						goldenEggAnim.SetTrigger("TapAnim");
-					}
-
 					if (hit.collider.CompareTag("Egg"))
 					{
 						eggsFound += 1;
 					}
 					eggMoving += 1;
 					openEggPanel = true;
-					panelOpenTime = basePanelOpenTime + eggScript.timeToMove;
-					StartCoroutine(MoveEggPanelTimer(panelOpenTime));
+					//panelOpenTime = basePanelOpenTime + eggScript.timeToMove;
+					//StartCoroutine(MoveEggPanelTimer(panelOpenTime));
 				}
 
 
@@ -125,7 +120,7 @@ public class ClickOnEggs : MonoBehaviour
 					PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
 				}
 
-
+				// - Opening egg panel manually
 				if (hit.collider.CompareTag("EggPanel"))
 				{
 					if (lockDropDownPanel)
@@ -151,19 +146,29 @@ public class ClickOnEggs : MonoBehaviour
 			}
 		}
 
-		// - Egg Panel - //
+		// -- Egg Panel Movement -- //
 		if (eggMoving <= 0 && !lockDropDownPanel)
 		{
+			// - Hide Egg Panel - //
+			if (timer <= basePanelOpenTime && openEggPanel)
+			{
+				timer += Time.deltaTime;	
+			} else { openEggPanel = false; timer = 0f;}
+
 			eggPanel.transform.position = Vector3.MoveTowards(eggPanel.transform.position, eggPanelHidden.transform.position, Time.deltaTime * panelMoveSpeed);
 			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y , 180);
-			openEggPanel = false;
 		}
 
 		if (eggMoving > 0 || openEggPanel)
 		{
+			// - Show Egg Panel - //
 			eggPanel.transform.position = Vector3.MoveTowards(eggPanel.transform.position, eggPanelShown.transform.position, Time.deltaTime * panelMoveSpeed);
 			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y , 0);
 		}
+
+
+
+
 
 		// - Activate Puzzle - //
 		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlock)
@@ -177,25 +182,26 @@ public class ClickOnEggs : MonoBehaviour
 
 
 
-	public IEnumerator MoveEggPanelTimer (float panelOpenTime)
-	{
-		while (timer < panelOpenTime)
-		{
-			if (eggMoving == 0)
-			{
-				timer = 0f;
-				break;
-			}
-			timer += Time.deltaTime;
-			if (timer >= panelOpenTime)
-			{
-				openEggPanel = false;
-			}
-		yield return null;
-		}	
+	// public IEnumerator MoveEggPanelTimer (float panelOpenTime)
+	// {
+	// 	while (timer < panelOpenTime)
+	// 	{
+	// 		openEggPanel = true;
+	// 		// if (eggMoving == 0)
+	// 		// {
+	// 		// 	timer = 0f;
+	// 		// 	break;
+	// 		// }
+	// 		timer += Time.deltaTime;
+	// 		if (timer >= panelOpenTime)
+	// 		{
+	// 			openEggPanel = false;
+	// 		}
+	// 	yield return null;
+	// 	}	
 
-		timer = 0f;
-	}
+	// 	timer = 0f;
+	// }
 
 
 

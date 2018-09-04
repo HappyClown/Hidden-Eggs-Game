@@ -18,11 +18,4 @@ public class CloseMenu : MonoBehaviour
 		closeMenuOnClickButton.onClick.AddListener(birdScript.MoveBirdUp);
 		this.gameObject.SetActive(false);
 	}
-	
-
-
-	void Update () 
-	{
-		
-	}
 }

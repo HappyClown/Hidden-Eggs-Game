@@ -80,17 +80,17 @@ public class ClickToRotateTile : MonoBehaviour
 
 
 
-	void FixedUpdate () 
-	{
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-
-		hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-	}
-
-
 	void Update()
 	{
+		if (Input.GetMouseButton(0))
+		{
+			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+		}
+
+
 		if (handheldDevice) { if (Input.touchCount > 0) { updateMousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position); } }
 		if (desktopDevice) { updateMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); }
 
