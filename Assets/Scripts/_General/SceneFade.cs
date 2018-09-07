@@ -10,24 +10,30 @@ public class SceneFade : MonoBehaviour
 {
 	public static bool fadeSceneOut;
 	private bool fadeSceneIn;
-
 	private static string sceneToLoad;
+	private string currentScene;
 
+	[Header("Title Card")]
 	public GameObject titleCardObj;
+	public TextMeshProUGUI titleCardTxt;
+	[TooltipAttribute("The minimum amount of time that the title card will be fully shown.")]
+	public float minTitleCardShowTime;
+	[TooltipAttribute("When to start fading in the title card; based on the darkened background's alpha value.")]
+	public float startTitleCardFade;
 	private Image titleCardImg;
 	private FadeInOutBoth titleCardFadeScript;
-	public TextMeshProUGUI titleCardTxt;
-	[TooltipAttribute("The minimum amount of time that the title card will be shown.")]
-	public float minTitleCardShowTime;
 	private float titleCardTimer;
+
+	[Header("Background")]
 	public Image fadeImage;
 	[TooltipAttribute("The time it takes for the transition to fade in/out in seconds.")]
 	public float fadeTime;
+	[TooltipAttribute("When to start fading out the background; based on the darkened titlecard's alpha value.")]
+	public float startBackgroundFade;
 
+	public AnimationCurve animCurve;
 	private static float curveTime;
 	private static float newAlpha;
-	public AnimationCurve animCurve;
-	private string currentScene;
 
 
 
@@ -58,7 +64,7 @@ public class SceneFade : MonoBehaviour
 			newAlpha = animCurve.Evaluate(curveTime);
 			fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
 			
-			if (newAlpha >= 0.8)
+			if (newAlpha >= startTitleCardFade)
 			{
 				if (titleCardTxt.text != sceneToLoad) { titleCardTxt.text = sceneToLoad; }
 				// start playing music for the scene here
@@ -86,8 +92,9 @@ public class SceneFade : MonoBehaviour
 			{
 				fadeSceneIn = true;
 				fadeSceneOut = false;
-				SceneManager.LoadScene(sceneToLoad);
+				//SceneManager.LoadScene(sceneToLoad);
 				titleCardTimer = 0f;
+				curveTime = 0;
 			}
 		}
 
@@ -95,10 +102,10 @@ public class SceneFade : MonoBehaviour
 		if (fadeSceneIn)
 		{
 			titleCardFadeScript.FadeOut();
-			if (titleCardImg.color.a <= 0.5f);
+			if (titleCardImg.color.a <= startBackgroundFade)
 			{
-				curveTime -= Time.deltaTime / fadeTime;
-				newAlpha = animCurve.Evaluate(curveTime);
+				curveTime += Time.deltaTime / fadeTime;
+				newAlpha = 1-animCurve.Evaluate(curveTime);
 				fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
 			}
 			if (newAlpha <= 0.2) { if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; } }
