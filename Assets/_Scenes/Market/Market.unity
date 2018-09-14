@@ -11287,15 +11287,15 @@ RectTransform:
   m_GameObject: {fileID: 218670745}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 1550181128}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 367.9, y: 203.29292}
-  m_SizeDelta: {x: 225, y: 145}
+  m_AnchoredPosition: {x: 363.8, y: 182}
+  m_SizeDelta: {x: 248, y: 439}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &218670747
 MonoBehaviour:
@@ -11357,7 +11357,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: baeac273cd53f0a48ba114f1698972a5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 251f22a1e7e6a5641aef3635ca548a05, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16289,6 +16289,30 @@ Prefab:
         type: 2}
       propertyPath: startBackgroundFade
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645588745159412, guid: 3f7590356a743604fb777e4025228310, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114892419183357140, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: m_margin.x
+      value: -134.6678
+      objectReference: {fileID: 0}
+    - target: {fileID: 114892419183357140, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114892419183357140, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114892419183357140, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: m_margin.z
+      value: -134.4529
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}
@@ -39136,6 +39160,7 @@ MonoBehaviour:
   - {fileID: 37398166}
   - {fileID: 241383894}
   - {fileID: 1376974326}
+  openEggPanel: 0
 --- !u!114 &712647448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60037,7 +60062,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 939875670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.1}
+  m_LocalPosition: {x: 0, y: 0, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1600756371}
@@ -61504,6 +61529,7 @@ MonoBehaviour:
   inGoldenEggSequence: 0
   goldenEggCollider: {fileID: 1376974329}
   eggGoToCornerScript: {fileID: 1376974328}
+  clickOnEggsScript: {fileID: 712647447}
   anim: {fileID: 1127663414}
   eggAnimStart: 0.6
   coverScreen: {fileID: 538686087}

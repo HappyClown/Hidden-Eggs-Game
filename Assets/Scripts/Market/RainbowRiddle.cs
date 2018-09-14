@@ -110,8 +110,13 @@ public class RainbowRiddle : MonoBehaviour
 					}
 				}
 				
+				if (basketNumber > 1 && hit.collider.gameObject == appleBasket)
+				{
+					basketNumber = 1;
+				}
+
 				// - DID NOT HIT BASKET - //
-				if (!hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
+				if (!hit.collider.CompareTag("FruitBasket"))
 				{
 					basketNumber = 0;
 					foreach (GameObject basket in fruitBaskets)

@@ -8,6 +8,7 @@ public class GoldenEgg : MonoBehaviour
 	private bool inSendingToCorner;
 	public PolygonCollider2D goldenEggCollider;
 	public EggGoToCorner eggGoToCornerScript;
+	public ClickOnEggs clickOnEggsScript;
 
 	[Header("Egg Animation")]
 	public Animator anim;
@@ -182,7 +183,7 @@ public class GoldenEgg : MonoBehaviour
 			eggToCornerTimer += Time.deltaTime;
 			if (eggToCornerTimer >= coverOffTime) { LightenScreen(); }
 			if (eggToCornerTimer >= congratsOffTime) { congratsTxtOff = true; }
-			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); }
+			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); clickOnEggsScript.eggMoving += 1; clickOnEggsScript.openEggPanel = true; }
 
 			if (eggToCornerTimer > coverOffTime 
 			&& eggToCornerTimer > congratsOffTime 

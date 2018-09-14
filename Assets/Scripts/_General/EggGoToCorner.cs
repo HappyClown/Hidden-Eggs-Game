@@ -146,7 +146,7 @@ public class EggGoToCorner : MonoBehaviour
 	}
 
 
-
+	// Called  as an event in the egg animations
 	public void GoToCorner()
 	{	
 		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f));

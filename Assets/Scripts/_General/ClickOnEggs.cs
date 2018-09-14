@@ -56,7 +56,8 @@ public class ClickOnEggs : MonoBehaviour
 
 	private float timer;
 	private bool lockDropDownPanel;
-	private bool openEggPanel;
+	[HideInInspector]
+	public bool openEggPanel;
 
 
 
@@ -106,9 +107,9 @@ public class ClickOnEggs : MonoBehaviour
 					if (hit.collider.CompareTag("Egg"))
 					{
 						eggsFound += 1;
+						eggMoving += 1;
+						openEggPanel = true;
 					}
-					eggMoving += 1;
-					openEggPanel = true;
 					//panelOpenTime = basePanelOpenTime + eggScript.timeToMove;
 					//StartCoroutine(MoveEggPanelTimer(panelOpenTime));
 				}
@@ -116,7 +117,7 @@ public class ClickOnEggs : MonoBehaviour
 
 				if (hit.collider.CompareTag("Puzzle"))
 				{
-					SceneManager.LoadScene(puzzleSceneName);
+					SceneFade.SwitchScene(puzzleSceneName);
 					PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
 				}
 
