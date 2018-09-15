@@ -59,6 +59,7 @@ public class ClickOnEggs : MonoBehaviour
 	[HideInInspector]
 	public bool openEggPanel;
 
+	private bool firstEggload;
 
 
 	void Start () 
@@ -66,22 +67,21 @@ public class ClickOnEggs : MonoBehaviour
 		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
 		eggsLeft = eggsCount.Length;
 		totalEggs = eggsLeft;
-		eggCounterText.text = "Eggs Found: 0/" + (totalEggs);
 		silverEggCounterText.text = "Silver:" + (GlobalVariables.globVarScript.marketSilverEggsCount);
 		goldenEggCounterText.text = "Golden:" + (GlobalVariables.globVarScript.rainbowRiddleSolved);
 		newCornerPos = cornerPos.position;
 		MakeSilverEggsAppear ();
+		AdjustSilverEggCount();
+		AdjustGoldenEggCount();
+		firstEggload = false;		
 	}
 
 
 
 	void Update()
 	{
-		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
-		eggsLeft = eggsCount.Length;
-		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + (totalEggs);
-		AdjustSilverEggCount();
-		AdjustGoldenEggCount();
+		//eggsCount = GameObject.FindGameObjectsWithTag("Egg");
+		//eggsLeft = eggsCount.Length;
 
 		// -- ON CLICK/TAP -- //
 		if (Input.GetMouseButtonDown(0))
@@ -109,6 +109,7 @@ public class ClickOnEggs : MonoBehaviour
 						eggsFound += 1;
 						eggMoving += 1;
 						openEggPanel = true;
+						UpdateEggsString();
 					}
 					//panelOpenTime = basePanelOpenTime + eggScript.timeToMove;
 					//StartCoroutine(MoveEggPanelTimer(panelOpenTime));
@@ -278,5 +279,9 @@ public class ClickOnEggs : MonoBehaviour
 			if (GlobalVariables.globVarScript.crabRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
 			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
 		}
+	}
+
+	public void UpdateEggsString(){		
+		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + (totalEggs);
 	}
 }

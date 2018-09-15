@@ -61,6 +61,7 @@ public class EggGoToCorner : MonoBehaviour
 			//clickOnEggsScript.eggMoving -= 1;
 			this.transform.parent = clickOnEggsScript.eggPanel.transform;
 			Debug.Log(this.gameObject.name + " has been loaded as found already.");
+			clickOnEggsScript.UpdateEggsString();
 		}
 		else
 		{
