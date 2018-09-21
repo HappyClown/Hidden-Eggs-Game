@@ -19,20 +19,23 @@ public class GlobalVariables : MonoBehaviour
 	[Header("Market Eggs")]
 	public List<bool> marketEggsFoundBools;
 	public int marketSilverEggsCount;
-	public bool marketEggToSave;
+	//public bool marketEggToSave;
 	public bool rainbowRiddleSolved;
+	public int marketTotalEggsFound;
 
 	[Header("Park Eggs")]
 	public List<bool> parkEggsFoundBools;
 	public int parkSilverEggsCount;
-	public bool parkEggToSave;
+	//public bool parkEggToSave;
 	public bool hopscotchRiddleSolved;
+	public int parkTotalEggsFound;
 
 	[Header("Beach Eggs")]
 	public List<bool> beachEggsFoundBools;
 	public int beachSilverEggsCount;
-	public bool beachEggToSave;
+	//public bool beachEggToSave;
 	public bool crabRiddleSolved;
+	public int beachTotalEggsFound;
 
 	[Header("Script References")]
 	public ClickOnEggs clickOnEggsScript;
@@ -124,6 +127,8 @@ public class GlobalVariables : MonoBehaviour
 			marketSilverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
 				
 			rainbowRiddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
+
+			marketTotalEggsFound = MarketSaveLoadManager.LoadMarketTotalEggs();
 
 
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();

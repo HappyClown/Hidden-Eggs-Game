@@ -55,7 +55,7 @@ public class RainbowRiddle : MonoBehaviour
 			
 			if (hitFX)
 			{
-				Debug.Log(hitFX.collider.gameObject.name);
+				//Debug.Log(hitFX.collider.gameObject.name);
 				// - PLAY BASKET FX - // 
 				if (hitFX.collider.CompareTag("OnClickFX"))
 				{
@@ -85,6 +85,7 @@ public class RainbowRiddle : MonoBehaviour
 					// - PUZZLE SOLVED - //
 					if (basketNumber >= 6)
 					{
+						basketNumber = 0;
 						RainbowRiddleSolved ();
 
 						//SpawnGoldenEgg;

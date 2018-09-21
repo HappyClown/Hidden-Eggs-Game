@@ -62,6 +62,7 @@ public class EggGoToCorner : MonoBehaviour
 			this.transform.parent = clickOnEggsScript.eggPanel.transform;
 			Debug.Log(this.gameObject.name + " has been loaded as found already.");
 			clickOnEggsScript.UpdateEggsString();
+			clickOnEggsScript.AddEggsFound();
 		}
 		else
 		{
@@ -122,6 +123,7 @@ public class EggGoToCorner : MonoBehaviour
 				clickOnEggsScript.eggMoving -= 1;
 				this.transform.parent = clickOnEggsScript.eggPanel.transform;
 				eggTrail.SetActive(false);
+				//clickOnEggsScript.CheckIfLevelComplete();
 			}
 		}
 
@@ -129,25 +131,28 @@ public class EggGoToCorner : MonoBehaviour
 	
 
 
-	public void StartEggAnim () 
+	public void EggFound() 
 	{
+		// - Start Egg Found Animation - //
 		if (!this.CompareTag("GoldenEgg")) { eggAnim.SetTrigger("EggPop"); }
 		else { eggAnim.SetTrigger("TapAnim"); }
 		
-		if (mySpotInPanel == null)
-		{
-			mySpotInPanel = clickOnEggsScript.eggSpots[clickOnEggsScript.eggsFound];
-		}
+		if (mySpotInPanel == null) // Pretty much obsolete unless we were to forget to assign the egg's panel position in the inspector
+		{ mySpotInPanel = clickOnEggsScript.eggSpots[clickOnEggsScript.eggsFound]; }
 
 		eggTrail.SetActive(true);
 
 		eggFound = true;
 
-		SaveEggToCorrectFile();
+		//clickOnEggsScript.AddEggsFound();
+
+		//SaveEggToCorrectFile();
+
+		// 
 	}
 
 
-	// Called  as an event in the egg animations
+	// Called as an event in the egg animations
 	public void GoToCorner()
 	{	
 		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f));
@@ -200,24 +205,26 @@ public class EggGoToCorner : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == "Market")
 		{
-			GlobalVariables.globVarScript.marketEggToSave = this.eggFound;
-			Debug.Log(GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			//GlobalVariables.globVarScript.marketEggToSave = this.eggFound;
+			//Debug.Log(GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			Debug.Log(clickOnEggsScript.totalEggsFound);
+			GlobalVariables.globVarScript.marketTotalEggsFound = clickOnEggsScript.totalEggsFound;
 			GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 
 		if (SceneManager.GetActiveScene().name == "Park")
 		{
-			GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
-			Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			//GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
+			//Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
 			GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 
 		if (SceneManager.GetActiveScene().name == "Beach")
 		{
-			GlobalVariables.globVarScript.beachEggToSave = this.eggFound;
-			Debug.Log(GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			//GlobalVariables.globVarScript.beachEggToSave = this.eggFound;
+			//Debug.Log(GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
 			GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
 			GlobalVariables.globVarScript.SaveEggState();
 		}

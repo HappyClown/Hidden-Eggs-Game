@@ -462,6 +462,7 @@ public class GrabItem : MonoBehaviour
 	{
 		if (silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount) 
 		{ 
+			GlobalVariables.globVarScript.marketTotalEggsFound += 1;
 			GlobalVariables.globVarScript.marketSilverEggsCount = silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
 		}

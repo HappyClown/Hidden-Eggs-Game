@@ -63,33 +63,34 @@ public class GoldenEgg : MonoBehaviour
 
 	void Update () 
 	{
+		#region For Testing
 		// - FOR TESTING - //
-		if (Input.GetKeyDown("space"))
-		{
-			if (!inGoldenEggSequence) 
-			{ 
-				inGoldenEggSequence = true; 
-			}
-			else 
-			{ 
-				inGoldenEggSequence = false;
-				coverAlpha = 0;
-				coverScreen.color = new Color (coverScreen.color.r, coverScreen.color.g, coverScreen.color.b, coverAlpha);
-				anim.Play("Nothing", 0);
-				eggAnimTimer = 0;
-				eggAnimStarted = false;
-				partGlow.Stop(true);
-				partShafts.Stop(true);
-				partSparkles.Stop(true);
-				partPop.Stop(true);
-				partTrail.Stop(true);
-				partGlow.Clear(true);
-				partShafts.Clear(true);
-				partSparkles.Clear(true);
-				partPop.Clear(true);
-				partTrail.Clear(true);
-			}
-		}
+		// if (Input.GetKeyDown("space"))
+		// {
+		// 	if (!inGoldenEggSequence) 
+		// 	{ 
+		// 		inGoldenEggSequence = true; 
+		// 	}
+		// 	else 
+		// 	{ 
+		// 		inGoldenEggSequence = false;
+		// 		coverAlpha = 0;
+		// 		coverScreen.color = new Color (coverScreen.color.r, coverScreen.color.g, coverScreen.color.b, coverAlpha);
+		// 		anim.Play("Nothing", 0);
+		// 		eggAnimTimer = 0;
+		// 		eggAnimStarted = false;
+		// 		partGlow.Stop(true);
+		// 		partShafts.Stop(true);
+		// 		partSparkles.Stop(true);
+		// 		partPop.Stop(true);
+		// 		partTrail.Stop(true);
+		// 		partGlow.Clear(true);
+		// 		partShafts.Clear(true);
+		// 		partSparkles.Clear(true);
+		// 		partPop.Clear(true);
+		// 		partTrail.Clear(true);
+		// 	}
+		// }
 
 		// if (Input.GetMouseButtonDown(0))
 		// {
@@ -118,6 +119,8 @@ public class GoldenEgg : MonoBehaviour
 		// {
 		// 	clickDown = false;
 		// }
+		// - END TESTING - //
+		#endregion
 
 
 		// -- START GOLDEN EGG SEQUENCE -- //
