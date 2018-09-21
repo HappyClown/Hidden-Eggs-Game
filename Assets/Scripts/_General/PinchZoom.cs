@@ -14,16 +14,37 @@ public class PinchZoom : MonoBehaviour
 
 	public Vector3 lastPanPosition;
 	public float PanSpeed;
-	// private static readonly float[] BoundsX = new float[]{-10f, 5f};
-	// private static readonly float[] BoundsZ = new float[]{-18f, -4f};
-	// private static readonly float[] ZoomBounds = new float[]{10f, 85f};	
+	private static readonly float[] BoundsX = new float[]{-10f, 5f};
+	private static readonly float[] BoundsZ = new float[]{-18f, -4f};
+	private static readonly float[] ZoomBounds = new float[]{10f, 85f};	
 
-
-
+	public bool touching = false;
+	public Touch touchZero;
+	public Touch touchOne;
+	public float minCameraSize;
+	private float maxCameraSize;
+	public float currentCameraSize;
+	public float onTouchCameraSize;
+	public float minDeltaDif;
+	public float maxDeltaDif;
+	private float initialDeltaDif;
+	public float currentDeltaDif = 0;
+	public float myLastDelta;
+	public Vector2 initialCameraPosition;
+	void Start(){
+		maxCameraSize = cam.orthographicSize;
+		currentCameraSize = cam.orthographicSize;
+		initialCameraPosition = new Vector2(cam.transform.position.x, cam.transform.position.y);
+	}
 	void Update ()
 	{
-		if (Input.touchCount == 1) { touchZeroPos = cam.ScreenToWorldPoint(Input.GetTouch(0).position); }
-		if (Input.touchCount == 2) { touchOnePos = cam.ScreenToWorldPoint(Input.GetTouch(1).position); }
+		if (Input.touchCount == 2) { 
+			PinchCamZoom(); 
+		}else{
+			touching = false;
+			currentDeltaDif = 0;
+		}
+		
 		// if(Input.GetMouseButtonDown(0))
 		// {
 		// 	lastPanPosition = Input.mousePosition;
@@ -33,7 +54,6 @@ public class PinchZoom : MonoBehaviour
 		// 	PanCam(Input.mousePosition);
 		// }
 
-		PinchCamZoom();
 		//PanCam();
 	}
 
@@ -61,33 +81,45 @@ public class PinchZoom : MonoBehaviour
 
 	void PinchCamZoom()
 	{
-		if (Input.touchCount == 2)
-		{
-			Touch touchZero = Input.GetTouch(0);
-			Touch touchOne = Input.GetTouch(1);
-
+			touchZero = Input.GetTouch(0);
+			touchOne = Input.GetTouch(1);
+		if(!touching){
+			touchZeroPos = cam.ScreenToWorldPoint(touchZero.position);
+			touchOnePos = cam.ScreenToWorldPoint(touchOne.position);
+			centerPoint = (touchZeroPos + touchOnePos) * 0.5f;
+			initialDeltaDif = (touchZero.position - touchOne.position).magnitude;
+			touching = true;
+			onTouchCameraSize = cam.orthographicSize;
+		}
 			Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
 			Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
 
 			float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
 			float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
+			
+			currentDeltaDif = Mathf.Abs(touchDeltaMag - initialDeltaDif);
+			
+			float myDeltaDif = prevTouchDeltaMag - touchDeltaMag;
 
-			float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-
-			centerPoint = (touchZeroPos + touchOnePos) * 0.5f;
-
-			if (cam.orthographic)
+			if (cam.orthographic && currentDeltaDif > minDeltaDif)
 			{
-				cam.transform.Translate((centerPoint - new Vector2(cam.transform.position.x, cam.transform.position.y)).normalized * camZoomMoveSpeed, Space.World);
-				cam.orthographicSize += deltaMagnitudeDiff * orthoZoomSpeed;
-				cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, 1f, 10.789f);
+				if(prevTouchDeltaMag > touchDeltaMag){
+					cam.transform.Translate((initialCameraPosition - new Vector2(cam.transform.position.x, cam.transform.position.y)).normalized * (camZoomMoveSpeed * Vector2.Distance(centerPoint,cam.transform.position)), Space.World);
+				}
+				else{
+					cam.transform.Translate((centerPoint - new Vector2(cam.transform.position.x, cam.transform.position.y)).normalized * (camZoomMoveSpeed * Vector2.Distance(centerPoint,cam.transform.position)), Space.World);
+				}
+				currentCameraSize = currentCameraSize + (((myDeltaDif/maxDeltaDif))*(maxCameraSize - minCameraSize));
+				cam.orthographicSize = Mathf.Clamp(currentCameraSize, minCameraSize, maxCameraSize);
+				currentCameraSize = cam.orthographicSize;
 			}
+			myLastDelta = myDeltaDif;
 			// else
 			// {
 			// 	cam.fieldOfView += deltaMagnitudeDiff * perspectiveZoomSpeed;
 			// 	cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, 0.1f, 179.9f);
 			// }
-		}
+		
 	}
 	
 }
