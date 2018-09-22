@@ -64,6 +64,10 @@ public class PinchZoom : MonoBehaviour
 			touchOnePos = cam.ScreenToWorldPoint(touchOne.position);
 			//Set the center initial piont
 			centerPoint = (touchZeroPos + touchOnePos) * 0.5f;
+			if(centerPoint.x > maxX){centerPoint.x = maxX;}
+			if(centerPoint.x < (maxX*-1)){centerPoint.x =(maxX*-1);}
+			if(centerPoint.y > maxY){centerPoint.y = maxY;}
+			if(centerPoint.y < (maxY*-1)){centerPoint.y = (maxY*-1);}
 			//set the initial delta difference
 			initialDeltaDif = (touchZero.position - touchOne.position).magnitude;
 			//set the touch detector as true so the next frame the toucj wont be new

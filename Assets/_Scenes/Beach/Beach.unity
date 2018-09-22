@@ -649,8 +649,8 @@ MonoBehaviour:
   maxX: 10.1
   maxY: 5.75
   minCameraSize: 5
-  minDeltaDif: 40
-  maxDeltaDif: 100
+  minDeltaDif: 30
+  maxDeltaDif: 400
 --- !u!4 &65141971
 Transform:
   m_ObjectHideFlags: 0
@@ -5655,8 +5655,6 @@ MonoBehaviour:
   - {fileID: 964399329}
   - {fileID: 392366594}
   goldenEggSpot: {fileID: 1505701635}
-  goldenEggAnim: {fileID: 0}
-  goldenEggFound: 0
   eggMoving: 0
   eggPanelHidden: {fileID: 1695119048}
   eggPanelShown: {fileID: 1522037182}
@@ -5697,6 +5695,9 @@ MonoBehaviour:
   - {fileID: 1676183461}
   - {fileID: 213760943}
   openEggPanel: 0
+  totalEggsFound: 0
+  eggsNeeded: 0
+  levelComplete: 0
 --- !u!114 &712647448
 MonoBehaviour:
   m_ObjectHideFlags: 0
