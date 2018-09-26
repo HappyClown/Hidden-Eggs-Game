@@ -17161,7 +17161,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 319680133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.55, z: -1}
+  m_LocalPosition: {x: 0, y: 2.55, z: -3}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1}
   m_Children: []
   m_Father: {fileID: 2019188770}
@@ -17203,7 +17203,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 73eebf801a9021b41931f439fa7ec3d5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -39589,6 +39589,15 @@ MonoBehaviour:
   touchOnePos: {x: 0, y: 0}
   lastPanPosition: {x: 0, y: 0, z: 0}
   PanSpeed: 0
+  touching: 0
+  minCameraSize: 0
+  currentCameraSize: 0
+  onTouchCameraSize: 0
+  minDeltaDif: 0
+  maxDeltaDif: 0
+  currentDeltaDif: 0
+  myLastDelta: 0
+  initialCameraPosition: {x: 0, y: 0}
 --- !u!114 &712647450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39603,8 +39612,10 @@ MonoBehaviour:
   clickOnEggsScript: {fileID: 712647447}
   darkenScreen: 0.2
   showCongrats: 0.8
+  showEggs: 1.5
   lightenScreen: 0.8
   hideCongrats: 0.2
+  hideEggs: 0
   coverScreen: {fileID: 43999287}
   coverMaxAlpha: 0.5
   coverFadeTime: 1
@@ -39613,13 +39624,16 @@ MonoBehaviour:
   - {fileID: 1913588539}
   - {fileID: 1762977754}
   congratsFadeTime: 1
-  regularEgg: {fileID: 0}
-  silverEgg: {fileID: 0}
-  goldenEgg: {fileID: 0}
-  eggCounterSpeed: 0
-  regularEggTot: 0
-  silverEggTot: 0
-  goldenEggTot: 0
+  eggs: []
+  regularEgg: {fileID: 1891448181}
+  silverEgg: {fileID: 1088164427}
+  goldenEgg: {fileID: 319680135}
+  eggFadeTime: 1
+  eggShowDelay: 0.5
+  eggCounterSpeed: 0.5
+  regularEggTot: 23
+  silverEggTot: 6
+  goldenEggTot: 1
 --- !u!1 &721396915
 GameObject:
   m_ObjectHideFlags: 0
@@ -61697,7 +61711,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1088164425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.37, y: -0.01, z: -1}
+  m_LocalPosition: {x: 8.37, y: -0.01, z: -3}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children: []
   m_Father: {fileID: 2019188770}
@@ -61739,7 +61753,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7efde32d34410e64d961fe01ecad8e5a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86976,7 +86990,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1891448179}
   m_LocalRotation: {x: -0, y: -0, z: -0.37277263, w: 0.9279227}
-  m_LocalPosition: {x: -8.3, y: -0.94, z: -1}
+  m_LocalPosition: {x: -8.3, y: -0.94, z: -3}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 2019188770}
@@ -87018,7 +87032,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aae1be2745fb60d4dbf841dd25b5e810, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

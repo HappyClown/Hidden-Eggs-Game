@@ -7,8 +7,6 @@ using TMPro;
 
 public class LevelComplete : MonoBehaviour 
 {
-	//public int totalEggsFound;
-	//public int eggsNeeded;
 	public ClickOnEggs clickOnEggsScript;
 
 	private bool inLvlCompSeqSetup;
@@ -20,10 +18,13 @@ public class LevelComplete : MonoBehaviour
 	private bool darkenScreenStarted;
 	public float showCongrats;
 	private bool showCongratsStarted;
+	public float showEggs;
+	private bool showEggsStarted;
 
 	[Header("End - When to Play?")]
 	public float lightenScreen;
 	public float hideCongrats;
+	public float hideEggs;
 
 	[Header("Screen Cover")]
 	public Image coverScreen;
@@ -38,24 +39,19 @@ public class LevelComplete : MonoBehaviour
 	private float congratsA;
 
 	[Header("Eggs")]
+	public SpriteRenderer[] eggs;
 	public SpriteRenderer regularEgg;
 	public SpriteRenderer silverEgg;
 	public SpriteRenderer goldenEgg;
+	public float eggFadeTime;
+	public float eggShowDelay;
+	private bool eggsOn, eggsOff;
+	private float eggsA;
+
+	[Header("Egg Counters")]
 	public float eggCounterSpeed; // do i need one for each
 	public int regularEggTot, silverEggTot, goldenEggTot;
-	//public 
 
-
-
-
-
-
-	void Start () 
-	{
-		// CalculateTotalEggsFound();
-		// UpdateTotalEggsFound();
-	}
-	
 
 
 	void Update () 
@@ -84,6 +80,7 @@ public class LevelComplete : MonoBehaviour
 
 			if (timer > darkenScreen && !darkenScreenStarted) { DarkenScreenOnOff();}
 			if (timer > showCongrats && !showCongratsStarted) { CongratsOnOff();}
+			if (timer > showEggs && !showEggsStarted) { EggsOnOff();}
 		}
 		else if (inLvlCompSeqEnd)
 		{
@@ -91,6 +88,7 @@ public class LevelComplete : MonoBehaviour
 
 			if (timer > lightenScreen && !darkenScreenStarted) { DarkenScreenOnOff();}
 			if (timer > hideCongrats && !showCongratsStarted) { CongratsOnOff();}
+			if (timer > hideEggs && !showEggsStarted) { EggsOnOff(); }
 		}
 
 
@@ -123,7 +121,16 @@ public class LevelComplete : MonoBehaviour
 			if (congratsA <= 0) { congratsTxtOff = false; }
 		}
 
-			// regular egg appears
+		// Fade in regular eggs.
+		if (eggsOn)
+		{
+			eggsA += Time.deltaTime / eggFadeTime;
+			regularEgg.color = new Color (regularEgg.color.r, regularEgg.color.g, regularEgg.color.b, eggsA);
+			silverEgg.color = new Color (silverEgg.color.r, silverEgg.color.g, silverEgg.color.b, eggsA - eggShowDelay);
+			goldenEgg.color = new Color (goldenEgg.color.r, goldenEgg.color.g, goldenEgg.color.b, eggsA - (eggShowDelay * 2));
+			if (eggsA <= 0 - (eggShowDelay * 2)) { eggsOn = false; }
+		}
+
 			// regular egg count goes up incrementaly
 			// silver egg appears 
 			// silver egg count "++"
@@ -153,13 +160,6 @@ public class LevelComplete : MonoBehaviour
 		}
 	}
 
-	// void LightenScreen ()
-	// {
-	// 	coverA = coverScreen.color.a;
-	// 	coverOff = true;
-	// 	coverOn = false;
-	// }
-
 	void CongratsOnOff ()
 	{
 		if (congratsA <= 0) 
@@ -171,6 +171,20 @@ public class LevelComplete : MonoBehaviour
 		{
 			congratsTxtOff = true;
 			showCongratsStarted = true;
+		}
+	}
+
+	void EggsOnOff()
+	{
+		if (eggsA <= 0)
+		{
+			eggsOn = true;
+			showEggsStarted = true;
+		}
+		else if (eggsA >= 1)
+		{
+			eggsOff = true;
+			showEggsStarted = true;
 		}
 	}
 
