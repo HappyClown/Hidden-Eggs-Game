@@ -11,6 +11,8 @@ public class GrabItem : MonoBehaviour
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
+	public string sceneName;
+
 	public bool canPickUpItems;
 	public bool inBetweenLvls;
 
@@ -453,7 +455,7 @@ public class GrabItem : MonoBehaviour
 
 		yield return new WaitForSeconds(0.5f);
 
-		SceneManager.LoadScene("Market");
+		SceneManager.LoadScene(sceneName);
 	}
 
 

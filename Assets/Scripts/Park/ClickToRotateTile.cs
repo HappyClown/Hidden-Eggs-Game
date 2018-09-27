@@ -10,7 +10,7 @@ public class ClickToRotateTile : MonoBehaviour
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
-	
+	public string sceneName;
 
 	public bool mouseClickHeld;
 	public bool mouseClick;
@@ -343,7 +343,7 @@ public class ClickToRotateTile : MonoBehaviour
 
 		yield return new WaitForSeconds(0.5f);
 
-		SceneManager.LoadScene("Park");
+		SceneManager.LoadScene(sceneName);
 	}
 
 

@@ -205,7 +205,7 @@ public class ClickOnEggs : MonoBehaviour
 	// --- Dependant On Scene Name --- //
 	public void MakeSilverEggsAppear() // Could be merged with AdjustSilverEggCount since they will always be called together IF we implement the egg panel in the puzzle scene
 	{
-		if (SceneManager.GetActiveScene().name == "Market")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			for (int i = 0; i < GlobalVariables.globVarScript.marketSilverEggsCount; i++)
 			{
@@ -213,7 +213,7 @@ public class ClickOnEggs : MonoBehaviour
 			}
 		}
 
-		if (SceneManager.GetActiveScene().name == "Park")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 			for (int i = 0; i < GlobalVariables.globVarScript.parkSilverEggsCount; i++)
 			{
@@ -221,7 +221,7 @@ public class ClickOnEggs : MonoBehaviour
 			}
 		}
 
-		if (SceneManager.GetActiveScene().name == "Beach")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 			for (int i = 0; i < GlobalVariables.globVarScript.beachSilverEggsCount; i++)
 			{
@@ -234,19 +234,19 @@ public class ClickOnEggs : MonoBehaviour
 
 	public void AdjustSilverEggCount()
 	{
-		if (SceneManager.GetActiveScene().name == "Market")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			silverEggsFound = GlobalVariables.globVarScript.marketSilverEggsCount;
 			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
 		}
 
-		if (SceneManager.GetActiveScene().name == "Park")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 			silverEggsFound = GlobalVariables.globVarScript.parkSilverEggsCount;
 			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
 		}
 
-		if (SceneManager.GetActiveScene().name == "Beach")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 			silverEggsFound = GlobalVariables.globVarScript.beachSilverEggsCount;
 			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
@@ -257,19 +257,19 @@ public class ClickOnEggs : MonoBehaviour
 
 	public void AdjustGoldenEggCount()
 	{
-		if (SceneManager.GetActiveScene().name == "Market")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			if (GlobalVariables.globVarScript.rainbowRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
 			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
 		}
 
-		if (SceneManager.GetActiveScene().name == "Park")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 			if (GlobalVariables.globVarScript.hopscotchRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
 			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
 		}
 
-		if (SceneManager.GetActiveScene().name == "Beach")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 			if (GlobalVariables.globVarScript.crabRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
 			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
@@ -280,17 +280,17 @@ public class ClickOnEggs : MonoBehaviour
 
 	public void AdjustTotalEggsFound()
 	{
-		if (SceneManager.GetActiveScene().name == "Market")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			totalEggsFound = GlobalVariables.globVarScript.marketTotalEggsFound;
 		}
 
-		if (SceneManager.GetActiveScene().name == "Park")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 
 		}
 
-		if (SceneManager.GetActiveScene().name == "Beach")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 
 		}

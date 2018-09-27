@@ -174,7 +174,7 @@ public class EggGoToCorner : MonoBehaviour
 
 	public void LoadEggFromCorrectScene()
 	{
-		if (SceneManager.GetActiveScene().name == "Market")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			if (GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
 			{
@@ -182,7 +182,7 @@ public class EggGoToCorner : MonoBehaviour
 			}
 		}
 
-		if (SceneManager.GetActiveScene().name == "Park")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 			if (GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
 			{
@@ -190,7 +190,7 @@ public class EggGoToCorner : MonoBehaviour
 			}
 		}
 
-		if (SceneManager.GetActiveScene().name == "Beach")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 			if (GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
 			{
@@ -203,7 +203,7 @@ public class EggGoToCorner : MonoBehaviour
 
 	public void SaveEggToCorrectFile()
 	{
-		if (SceneManager.GetActiveScene().name == "Market")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			//GlobalVariables.globVarScript.marketEggToSave = this.eggFound;
 			//Debug.Log(GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
@@ -213,7 +213,7 @@ public class EggGoToCorner : MonoBehaviour
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 
-		if (SceneManager.GetActiveScene().name == "Park")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 			//GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
 			//Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
@@ -221,7 +221,7 @@ public class EggGoToCorner : MonoBehaviour
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 
-		if (SceneManager.GetActiveScene().name == "Beach")
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 			//GlobalVariables.globVarScript.beachEggToSave = this.eggFound;
 			//Debug.Log(GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);

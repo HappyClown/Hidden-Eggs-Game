@@ -10,6 +10,11 @@ public class GlobalVariables : MonoBehaviour
 	public string previousScene;
 	public string currentScene;
 
+	[Header("Scene Names")]
+	public string menuName;
+	public string marketName, parkName, beachName;
+	public string marketPuzName, parkPuzName, beachPuzName;
+
 	[Header("Eggs")]
 	public List<bool> eggsFoundBools;
 	public int silverEggsCount;
@@ -78,11 +83,11 @@ public class GlobalVariables : MonoBehaviour
 
 	public void SaveEggState () 
 	{
-		if (SceneManager.GetActiveScene().name == "Market" || SceneManager.GetActiveScene().name == "WeightPuzzle") { MarketSaveLoadManager.SaveMarketEggs(this); }
+		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName) { MarketSaveLoadManager.SaveMarketEggs(this); }
 
-		if (SceneManager.GetActiveScene().name == "Park" || SceneManager.GetActiveScene().name == "KitePuzzle") { ParkSaveLoadManager.SaveParkEggs(this); }
+		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName) { ParkSaveLoadManager.SaveParkEggs(this); }
 		
-		if (SceneManager.GetActiveScene().name == "Beach" || SceneManager.GetActiveScene().name == "ClamPuzzle") { BeachSaveLoadManager.SaveBeachEggs(this); }
+		if (SceneManager.GetActiveScene().name == beachName || SceneManager.GetActiveScene().name == beachPuzName) { BeachSaveLoadManager.SaveBeachEggs(this); }
 
 		Debug.Log("Save Variables");
 	}
@@ -120,7 +125,7 @@ public class GlobalVariables : MonoBehaviour
 	public void LoadCorrectEggs()
 	{
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
-		if (SceneManager.GetActiveScene().name == "Market") 
+		if (SceneManager.GetActiveScene().name == marketName) 
 		{ 
 			marketEggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
 
@@ -152,7 +157,7 @@ public class GlobalVariables : MonoBehaviour
 
 
 
-		if (SceneManager.GetActiveScene().name == "Park") 
+		if (SceneManager.GetActiveScene().name == parkName) 
 		{ 
 			parkEggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
 
@@ -181,7 +186,7 @@ public class GlobalVariables : MonoBehaviour
 
 
 
-		if (SceneManager.GetActiveScene().name == "Beach") 
+		if (SceneManager.GetActiveScene().name == beachName) 
 		{ 
 			beachEggsFoundBools = BeachSaveLoadManager.LoadBeachEggs();
 

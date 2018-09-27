@@ -136,7 +136,7 @@ public class CrabRiddle : MonoBehaviour
 				}
 				
 				// - Player clicks anywhere else - //
-				if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf && canClick)
+				if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && canClick)
 				{
 					if (moveAmount > 0)
 					{
