@@ -13,7 +13,8 @@ public class LevelTapMannager : MonoBehaviour {
 	private float tapCounter = 0 , tapTimer = 0, doubleTapTimer = 0;
 	//Death zone for panning move and min time for double tap and the speed
 	[Header("5 - 10 - 0.5 - 3 - 5")]
-	public float panningDeathZone, panningSpeed, minDoubleTapTime, dTapMoveSpeed, dTapZoomSpeed;
+	public float panningDeathZone;
+	public float panningSpeed, minDoubleTapTime, dTapMoveSpeed, dTapZoomSpeed;
 	//Panning Move bool nad doubleTapped
 	private bool panningNove, doubleTapped, zoomIn;
 	//movement vectors
@@ -25,13 +26,13 @@ public class LevelTapMannager : MonoBehaviour {
 	public float camZoomSpeed;
 	//touch position holders
 	private Vector2 centerPoint, touchZeroPos, touchOnePos;
-	[Header("Camera boudaries (usually 10.1 - 5.75)")]
+	[Header("Camera boudaries (usually 5.9 - 3.3)")]
 	public float maxX;public float maxY;
 	//touching screen detectors
 	private bool touching = false, zooming = false;
 	//touch variables holders
 	private Touch touchZero, touchOne;
-	[Header("Camera Min Ortho Size (usually 5)")]
+	[Header("Camera Min Ortho Size (usually 7.5)")]
 	public float minCameraSize;
 	//max camera orthographicsize is taken from the camera
 	private float maxCameraSize;
