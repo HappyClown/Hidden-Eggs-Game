@@ -10,8 +10,15 @@ public class SceneFade : MonoBehaviour
 {
 	public static bool fadeSceneOut;
 	private bool fadeSceneIn;
+
 	private static string sceneToLoad;
 	private string currentScene;
+	private static bool titCardSceneTrans, whtSceneTrans;
+	private Image fadeImage;
+	public AnimationCurve animCurve;
+	private static float curveTime;
+	private static float newAlpha;
+	
 
 	[Header("Title Card")]
 	public GameObject titleCardObj;
@@ -24,16 +31,19 @@ public class SceneFade : MonoBehaviour
 	private FadeInOutBoth titleCardFadeScript;
 	private float titleCardTimer;
 
-	[Header("Background")]
-	public Image fadeImage;
+	[Header("Fade To Black")]
+	public Image blckFadeImage;
 	[TooltipAttribute("The time it takes for the transition to fade in/out in seconds.")]
 	public float fadeTime;
-	[TooltipAttribute("When to start fading out the background; based on the darkened titlecard's alpha value.")]
+	[TooltipAttribute("When to start fading out the background; Based on the Darkened Titlecard's alpha value.")]
 	public float startBackgroundFade;
 
-	public AnimationCurve animCurve;
-	private static float curveTime;
-	private static float newAlpha;
+	[Header("Fade To White")]
+	public Image whtFadeImage;
+	[TooltipAttribute("The time it takes for the transition to fade in/out in seconds.")]
+	public float whtFadeTime;
+	[TooltipAttribute("When to start fading out the background; Based on the White Background Alpha value.")]
+	public float whtStartBackgroundFade;
 
 
 
@@ -54,69 +64,129 @@ public class SceneFade : MonoBehaviour
 
 		titleCardTxt.color = new Color(titleCardTxt.color.r, titleCardTxt.color.g, titleCardTxt.color.b, titleCardImg.color.a);
 
-		// -- FADE OUT CURRENT SCENE -- //
-		if (fadeSceneOut)
+		#region Title Card & Black Background scene transition.
+		if (titCardSceneTrans)
 		{
-			if (fadeSceneIn) { fadeSceneIn = false; }
-			// Set the transition image to raycast target to block the player from tapping on any buttons while it is transitioning.
-			if (!fadeImage.raycastTarget) { fadeImage.raycastTarget = true; }
-			curveTime += Time.deltaTime / fadeTime;
-			newAlpha = animCurve.Evaluate(curveTime);
-			fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
-			
-			if (newAlpha >= startTitleCardFade)
+			if (fadeImage != blckFadeImage) { fadeImage = blckFadeImage;}
+			// -- FADE OUT CURRENT SCENE -- //
+			if (fadeSceneOut)
 			{
-				if (titleCardTxt.text != sceneToLoad) { titleCardTxt.text = sceneToLoad; }
-				// start playing music for the scene here
-				if (!titleCardObj.activeInHierarchy) 
+				if (fadeSceneIn) { fadeSceneIn = false; }
+				// Set the transition image to raycast target to block the player from tapping on any buttons while it is transitioning.
+				if (!fadeImage.raycastTarget) { fadeImage.raycastTarget = true; }
+				curveTime += Time.deltaTime / fadeTime;
+				newAlpha = animCurve.Evaluate(curveTime);
+				fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
+				
+				if (newAlpha >= startTitleCardFade)
 				{
-					titleCardObj.SetActive(true); 
-					titleCardFadeScript.FadeIn();
+					if (titleCardTxt.text != sceneToLoad) { titleCardTxt.text = sceneToLoad; }
+					// start playing music for the scene here
+					if (!titleCardObj.activeInHierarchy) 
+					{
+						titleCardObj.SetActive(true); 
+						titleCardFadeScript.FadeIn();
+					}
+
+					if (titleCardImg.color.a >= 1 && titleCardTimer < minTitleCardShowTime)
+					{
+						titleCardTimer += Time.deltaTime;
+					}
 				}
 
-				if (titleCardImg.color.a >= 1 && titleCardTimer < minTitleCardShowTime)
+				// If transition and titlecard faded in completely.
+				if (newAlpha >= 1 && titleCardImg.color.a >= 1 && currentScene != sceneToLoad)
 				{
-					titleCardTimer += Time.deltaTime;
+					curveTime = 1;
+					newAlpha = 1;
+					SceneManager.LoadScene(sceneToLoad);
+				}
+				// If scene has been loaded and title card has been on long enough.
+				if (currentScene == sceneToLoad && titleCardTimer >= minTitleCardShowTime)
+				{
+					fadeSceneIn = true;
+					fadeSceneOut = false;
+					//SceneManager.LoadScene(sceneToLoad);
+					titleCardTimer = 0f;
+					curveTime = 0;
 				}
 			}
-
-			// If transition and titlecard faded in completely.
-			if (newAlpha >= 1 && titleCardImg.color.a >= 1 && currentScene != sceneToLoad)
+		
+			// -- FADE IN NEW SCENE -- //
+			if (fadeSceneIn)
 			{
-				curveTime = 1;
-				newAlpha = 1;		
-				SceneManager.LoadScene(sceneToLoad);
-			}
-			// If scene has been loaded and title card has been on long enough.
-			if (currentScene == sceneToLoad && titleCardTimer >= minTitleCardShowTime)
-			{
-				fadeSceneIn = true;
-				fadeSceneOut = false;
-				//SceneManager.LoadScene(sceneToLoad);
-				titleCardTimer = 0f;
-				curveTime = 0;
+				titleCardFadeScript.FadeOut();
+				if (titleCardImg.color.a <= startBackgroundFade)
+				{
+					curveTime += Time.deltaTime / fadeTime;
+					newAlpha = 1-animCurve.Evaluate(curveTime);
+					fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
+				}
+				if (newAlpha <= 0.2) { if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; } }
+				if (newAlpha <= 0)
+				{
+					//if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; }
+					curveTime = 0;
+					newAlpha = 0;
+					fadeSceneIn = false;
+					titCardSceneTrans = false;
+				}
 			}
 		}
-
-		// -- FADE IN NEW SCENE -- //
-		if (fadeSceneIn)
+		#endregion
+		#region White Background scene transition.
+		if (whtSceneTrans)
 		{
-			titleCardFadeScript.FadeOut();
-			if (titleCardImg.color.a <= startBackgroundFade)
+			if (fadeImage != whtFadeImage) { fadeImage = whtFadeImage;}
+			// -- FADE OUT CURRENT SCENE -- //
+			if (fadeSceneOut)
+			{
+				if (fadeSceneIn) { fadeSceneIn = false; }
+				// Set the transition image to raycast target to block the player from tapping on any buttons while it is transitioning.
+				if (!fadeImage.raycastTarget) { fadeImage.raycastTarget = true; }
+				curveTime += Time.deltaTime / fadeTime;
+				newAlpha = animCurve.Evaluate(curveTime);
+				fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
+
+				// If transition and titlecard faded in completely.
+				if (newAlpha >= 1 && currentScene != sceneToLoad)
+				{
+					curveTime = 1;
+					newAlpha = 1;
+					SceneManager.LoadScene(sceneToLoad);
+				}
+
+				if (titleCardTimer < minTitleCardShowTime) { titleCardTimer += Time.deltaTime;}
+
+				// If scene has been loaded and title card has been on long enough.
+				if (currentScene == sceneToLoad && titleCardTimer >= minTitleCardShowTime)
+				{
+					fadeSceneIn = true;
+					fadeSceneOut = false;
+					titleCardTimer = 0f;
+					curveTime = 0;
+				}
+			}
+		
+			// -- FADE IN NEW SCENE -- //
+			if (fadeSceneIn)
 			{
 				curveTime += Time.deltaTime / fadeTime;
 				newAlpha = 1-animCurve.Evaluate(curveTime);
 				fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
-			}
-			if (newAlpha <= 0.2) { if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; } }
-			if (newAlpha <= 0)
-			{
-				//if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; }
-				curveTime = 0;
-				newAlpha = 0;
-				fadeSceneIn = false;
+				if (newAlpha <= 0.2) { if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; } }
+				if (newAlpha <= 0)
+				{
+					//if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; }
+					curveTime = 0;
+					newAlpha = 0;
+					fadeSceneIn = false;
+					whtSceneTrans = false;
+				}
 			}
 		}
+		#endregion
+
 	}
 
 
@@ -124,6 +194,15 @@ public class SceneFade : MonoBehaviour
 	public static void SwitchScene (string sceneName)
 	{
 		newAlpha = 0f;
+		titCardSceneTrans = true;
+		fadeSceneOut = true;
+		sceneToLoad = sceneName;
+	}
+
+	public static void SwitchSceneWhiteFade (string sceneName)
+	{
+		newAlpha = 0f;
+		whtSceneTrans = true;
 		fadeSceneOut = true;
 		sceneToLoad = sceneName;
 	}
