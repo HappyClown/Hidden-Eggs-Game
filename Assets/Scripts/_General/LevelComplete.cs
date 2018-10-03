@@ -64,6 +64,17 @@ public class LevelComplete : MonoBehaviour
 		tapBtn.onClick.AddListener(TapBtnPress);
 	}
 
+
+
+
+	void Start () 
+	{
+		// CalculateTotalEggsFound();
+		// UpdateTotalEggsFound();
+	}
+	
+
+
 	void Update () 
 	{
 		#region Manually Start or End Sequence
@@ -264,6 +275,13 @@ public class LevelComplete : MonoBehaviour
 			coverOff = true;
 		}
 	}
+
+	// void LightenScreen ()
+	// {
+	// 	coverA = coverScreen.color.a;
+	// 	coverOff = true;
+	// 	coverOn = false;
+	// }
 
 	void CongratsOnOff ()
 	{
