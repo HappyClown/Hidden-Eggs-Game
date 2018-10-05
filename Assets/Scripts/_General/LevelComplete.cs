@@ -63,17 +63,7 @@ public class LevelComplete : MonoBehaviour
 		regEggWait = eggCountWait; silEggWait = eggCountWait; golEggWait = eggCountWait;
 		tapBtn.onClick.AddListener(TapBtnPress);
 	}
-
-
-
-
-	void Start () 
-	{
-		// CalculateTotalEggsFound();
-		// UpdateTotalEggsFound();
-	}
 	
-
 
 	void Update () 
 	{

@@ -47,6 +47,9 @@ public class LevelTapMannager : MonoBehaviour {
 	//initial camera position holder
 	private Vector3 initialCameraPosition;
 	private float currentX, currentY;
+	[HideInInspector]
+	public RaycastHit2D hit;
+
 	void Start(){
 		//set the max camera orthographic size from the start
 		maxCameraSize = cam.orthographicSize;
@@ -169,6 +172,8 @@ public class LevelTapMannager : MonoBehaviour {
 
 	void DetectEggs(){
 		Debug.Log("detecting eggs!!!");
+		hit = Physics2D.Raycast(touchZeroPos, Vector3.forward, 50f);
+		Debug.DrawRay(touchZeroPos, Vector3.forward, Color.red, 60f);
 	}
 	void DoubleTap(){
 		Debug.Log("doube tap!!!");

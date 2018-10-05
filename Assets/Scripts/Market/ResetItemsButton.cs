@@ -12,7 +12,6 @@ public class ResetItemsButton : MonoBehaviour
 	public GrabItem grabItemScript;
 
 
-
 	void Start () 
 	{
 		resetButton = this.GetComponent<Button>();
@@ -26,24 +25,20 @@ public class ResetItemsButton : MonoBehaviour
 	{
 		items = GameObject.FindGameObjectsWithTag("Item");
 	}
-	
-
 
 	public void ResetItemsToTable () 
 	{
-		if (grabItemScript.inBetweenLvls == false)
+		if (grabItemScript.canPlay)
 		{
 			//Debug.Log("Reseting Items to table blip bloop.");
 			scaleScript.itemOnScale = null;
 			scaleScript.isAnItemOnScale = false;
+
+			grabItemScript.curntAmnt = 0;
+			grabItemScript.curntPounds = 0;
 			
 			for (int i = 0; i < items.Length; i ++)
 			{
-				if (items[i].transform.parent.name == "MarketPuzzle_Crate")
-				{
-					grabItemScript.curntAmnt--;
-					grabItemScript.curntPounds -= items[i].GetComponent<Items>().weight;
-				}
 				items[i].GetComponent<Items>().BackToInitialPos();
 				items[i].transform.parent = grabItemScript.itemHolder.transform;
 			}

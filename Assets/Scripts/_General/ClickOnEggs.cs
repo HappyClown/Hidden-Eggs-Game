@@ -11,6 +11,8 @@ public class ClickOnEggs : MonoBehaviour
 	Vector2 mousePos2D;
 	Vector3 mousePos;
 
+	public LevelTapMannager levelTapManScript;
+
 	[Header("Egg Info")]
 	public int eggsLeft;
 	[HideInInspector]
@@ -91,7 +93,7 @@ public class ClickOnEggs : MonoBehaviour
 
 			Debug.DrawRay(mousePos2D, Vector3.forward, Color.red, 60f);
 
-			if (hit)
+			if (hit)//levelTapManScripthit
 			{
 				// - Egg Tapped - //
 				if (hit.collider.CompareTag("Egg") || (hit.collider.CompareTag("GoldenEgg")))

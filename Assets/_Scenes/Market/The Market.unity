@@ -23918,7 +23918,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 580830351}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
@@ -39157,6 +39157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelTapManScript: {fileID: 2122136860}
   eggsLeft: 0
   eggsFound: 0
   eggCounterText: {fileID: 2055232111}
@@ -60076,6 +60077,76 @@ Prefab:
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114044343380690650, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 223831612442374012, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 376
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 211.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 752
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 423
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224283730725040236, guid: d121846b7f3275b46a5e5239efbad4f3,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d121846b7f3275b46a5e5239efbad4f3, type: 2}
@@ -89456,6 +89527,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2122136859}
+  - component: {fileID: 2122136860}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -89485,6 +89557,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2122136860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2122136858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7153df4279937014f9908ab239ca2418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 511196394}
+  myClickOnEggs: {fileID: 0}
+  panningDeathZone: 5
+  panningSpeed: 10
+  minDoubleTapTime: 0.5
+  dTapMoveSpeed: 3
+  dTapZoomSpeed: 5
+  camMovSpeed: 2
+  camZoomSpeed: 50
+  maxX: 5.9
+  maxY: 3.3
+  minCameraSize: 7.5
+  minDeltaDif: 30
+  maxDeltaDif: 400
 --- !u!1 &2125112599 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1910638924771200, guid: ffc94fe78e676f34da6a03d632967891,

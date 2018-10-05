@@ -25,14 +25,7 @@ public class Crate : MonoBehaviour
 
 	public int curntLvl;
 
-
-	void Start () 
-	{
-		//curntLvl = 1;
-	}
-
-
-	void Update () 
+	public void UpdateRequirements()
 	{
 		if (curntLvl == 1) { reqPounds = reqPoundsLvl1; reqItems = reqItemsLvl1; }
 
