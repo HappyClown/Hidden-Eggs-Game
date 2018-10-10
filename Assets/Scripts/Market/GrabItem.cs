@@ -16,7 +16,13 @@ public class GrabItem : MonoBehaviour
 	[HideInInspector]
 	public float curntPounds, curntAmnt;
 	private bool initialSetupOn;
+	public int maxLvl;
+	public Items refItemScript;
 
+	private bool setupChsnLvl;
+	private float setupLvlWaitTime;
+	private int lvlToLoad;
+	private float chngLvlTimer;
 	private bool holdingItem;
 	private GameObject heldItem;
 
@@ -45,6 +51,7 @@ public class GrabItem : MonoBehaviour
 
 	[Header("Silver Eggs")]
 	public int silverEggsPickedUp;
+	public Sprite hollowSilEgg;
 	public List<GameObject> lvlSilverEggs, activeSilverEggs;
 	private bool silverEggsActive;
 	#endregion
@@ -54,12 +61,25 @@ public class GrabItem : MonoBehaviour
 		canPlay = false;
 		initialSetupOn = true;
 		heldItem = null;
+		maxLvl = GlobalVariables.globVarScript.marketPuzzMaxLvl;
+		silverEggsPickedUp = GlobalVariables.globVarScript.marketSilverEggsCount;
+		setupLvlWaitTime = refItemScript.fadeDuration;
 	}
 
 	void Update () 
 	{
 		if (canPlay)
 		{
+			//CHANGE LEVEL BUTTONS
+			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; }
+			else
+			{
+				if (Input.GetKeyDown("1") && crateScript.curntLvl != 1) { chngLvlTimer = 0f; lvlToLoad = 1; ChangeLevelSetup();}
+				if (Input.GetKeyDown("2") && crateScript.curntLvl != 2) { chngLvlTimer = 0f; lvlToLoad = 2; if (maxLvl >= 2) { ChangeLevelSetup();} }
+				if (Input.GetKeyDown("3") && crateScript.curntLvl != 3) { chngLvlTimer = 0f; lvlToLoad = 3; if (maxLvl >= 3) { ChangeLevelSetup();} }
+			}
+
+
 			// Current level complete.
 			if (curntPounds == crateScript.reqPounds && curntAmnt == crateScript.reqItems) { SilverEggsSetup(); }
 
@@ -184,6 +204,8 @@ public class GrabItem : MonoBehaviour
 			// When this Scene is loaded.
 			if (initialSetupOn) { InitialSetup(); }
 
+			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
+
 			#region Click On SilverEggs
 			// Clicking on a silver egg.
 			if (Input.GetMouseButtonDown(0))
@@ -195,7 +217,7 @@ public class GrabItem : MonoBehaviour
 					//Debug.Log(hit.collider.name);
 					if (hit.collider.CompareTag("Egg"))
 					{
-						silverEggsPickedUp += 1;
+						if (silverEggsPickedUp < GlobalVariables.globVarScript.marketSilverEggsCount) { silverEggsPickedUp += 1; }
 						Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
 						hit.collider.gameObject.GetComponent<SilverEggs>().StartSilverEggAnim();
 						hit.collider.enabled = false;
@@ -214,14 +236,13 @@ public class GrabItem : MonoBehaviour
 	void InitialSetup()
 	{
 		//Debug.Log("Initial Setup");
-		//totalDist = Vector3.Distance(crateParent.transform.position, crateRightTransform.position);
-		if(crateScript.curntLvl <= 0) crateScript.curntLvl = 1;
+		if(maxLvl > 3 || maxLvl < 1) { crateScript.curntLvl = 1; }
+		else { crateScript.curntLvl = maxLvl; }
 		curntPounds = 0;
 		curntAmnt = 0;
 		itemHolder = lvlItemHolders[crateScript.curntLvl - 1];
 		lvlItemHolders[crateScript.curntLvl - 1].SetActive(true);
 		resetItemsButtonScript.FillItemResetArray();
-		inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z - 1);
 		canPlay = true;
 		initialSetupOn = false;
 		crateScript.UpdateRequirements();
@@ -231,9 +252,18 @@ public class GrabItem : MonoBehaviour
 	{
 		//Debug.Log("New Level Setup");
 		canPlay = false;
+	
+		//Set the silver egg sprites to Hollow if level was completed previously.
+		if (maxLvl > crateScript.curntLvl)
+		{ 
+			foreach (Transform silEgg in lvlSilverEggs[crateScript.curntLvl - 1].transform)
+			{
+				silEgg.GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
+				Debug.Log(silEgg.name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
+			}
+		}
 
 		lvlSilverEggs[crateScript.curntLvl - 1].SetActive(true);
-
 		if (lvlSilverEggs[crateScript.curntLvl - 1].transform.childCount > 0)
 		{
 			//List<GameObject> activeSilverEggs = new List<GameObject>();
@@ -243,14 +273,18 @@ public class GrabItem : MonoBehaviour
 				//Debug.Log(silEgg.name + "has been added to the active Silver Egg List!");
 			}
 		}
-
 		silverEggsActive = true;
 
-		// Fade out the finished level's items.
-		Items[] childrenItemScripts;
-		childrenItemScripts = lvlItemHolders[crateScript.curntLvl - 1].transform.GetComponentsInChildren<Items>();
-		for (int i = 0; i <childrenItemScripts.Length; i++)
-		{ childrenItemScripts[i].FadeOut();}
+		// Fade out the finished level's items. (Except the ones in the crate.)
+		if (scaleScript.itemOnScale != null) { scaleScript.itemOnScale.transform.parent = itemHolder.transform; }
+		
+		// for (int i = 0; i < resetItemsButtonScript.items.Length; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// { resetItemsButtonScript.items[i].GetComponent<Items>().FadeOut(); }
+
+		Items[] childrenItemScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		childrenItemScripts = lvlItemHolders[crateScript.curntLvl - 1].transform.GetComponentsInChildren<Items>(); 
+		for (int i = 0; i < childrenItemScripts.Length; i++)
+		{ childrenItemScripts[i].FadeOut(); }
 
 		StartCoroutine(MoveCrateRight());
 
@@ -280,10 +314,15 @@ public class GrabItem : MonoBehaviour
 
 	void NextLevelSetup()
 	{
+		resetItemsButtonScript.EndOfLevelReset();
+		itemHolder.SetActive(false);
 		crateAnim.SetTrigger("MoveDown");
 		StartCoroutine(MoveCrateDown());
+		chngLvlTimer = 0f;
 
 		crateScript.curntLvl++;
+		if (crateScript.curntLvl > maxLvl) { maxLvl = crateScript.curntLvl; }
+		SaveMaxLvl();
 
 		if (crateScript.curntLvl >= winLvl) 
 		{
@@ -292,15 +331,56 @@ public class GrabItem : MonoBehaviour
 		}
 
 		itemHolder = lvlItemHolders[crateScript.curntLvl - 1];
-		lvlItemHolders[crateScript.curntLvl - 1].SetActive(true);
+		itemHolder.SetActive(true);
 
 		resetItemsButtonScript.FillItemResetArray();
-		inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z - 1);
 		canPlay = true;
 		crateScript.UpdateRequirements();
 	}
+	
+	void ChangeLevelSetup()
+	{
+		// Close up current level.
+		canPlay = false;
+
+		for (int i = 0; i < resetItemsButtonScript.items.Length; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeOut(); }
+		
+		setupChsnLvl = true;
+		// RESET SILVER EGGs ///////////////////////
+		
+
+	}
+
+	void ChosenLevelSetup(int lvlToLoad)
+	{
+		// Setup chosen level.
+		chngLvlTimer += Time.deltaTime;
+		if (chngLvlTimer > setupLvlWaitTime)
+		{
+			lvlItemHolders[crateScript.curntLvl - 1].SetActive(false);
+			resetItemsButtonScript.EndOfLevelReset();
+			crateScript.curntLvl = lvlToLoad;
+			curntPounds = 0;
+			curntAmnt = 0;
+			itemHolder = lvlItemHolders[crateScript.curntLvl - 1];
+			lvlItemHolders[crateScript.curntLvl - 1].SetActive(true);
+
+			resetItemsButtonScript.FillItemResetArray();
+			for (int i = 0; i < resetItemsButtonScript.items.Length; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+			{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
+
+			//inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z - 1);
+			canPlay = true;
+			crateScript.UpdateRequirements();
+
+			setupChsnLvl = false;
+			chngLvlTimer = 0;
+		}
+	}
 	#endregion
 
+	#region General Methods
 	public void SaveSilverEggsToCorrectFile()
 	{
 		if (silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount) 
@@ -311,11 +391,26 @@ public class GrabItem : MonoBehaviour
 		}
 	}
 
+	public void SaveMaxLvl()
+	{
+		if (maxLvl > GlobalVariables.globVarScript.marketPuzzMaxLvl)
+		{
+			GlobalVariables.globVarScript.marketPuzzMaxLvl = maxLvl;
+			GlobalVariables.globVarScript.SaveEggState();
+		}
+	}
+
+	//public void LoadMaxLvl()
+	//{
+	//	GlobalVariables.globVarScript.LoadCorrectPuzz();
+	//}
+
 	void UpdateMousePos()
 	{
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 	}
+	#endregion
 
 	#region Coroutines
 	// Move crate to the right.
@@ -351,14 +446,18 @@ public class GrabItem : MonoBehaviour
 			yield return null;
 		}
 
-		foreach (Transform item in crateParent.transform)
+		foreach (Transform item in crateParent.transform) // DONT THINK ITS NEEDED 
 		{
 			//Debug.Log("Going through the keeds");
 			if(item.gameObject.CompareTag("Item"))
 			{
-				item.gameObject.SetActive(false);
+				SpriteRenderer sprRen = item.GetComponent<SpriteRenderer>();
+				sprRen.color = new Color(sprRen.color.r, sprRen.color.g, sprRen.color.b, 0f);
 			}
-		}	
+		}
+		scaleScript.itemOnScale = null; // Deleted both scale lines if we want scale arrow to reset after silver eggs have been clicked. 
+		scaleScript.isAnItemOnScale = false; //
+
 		crateParent.transform.parent.position = crateTopTransform.position;
 		crateParent.transform.parent.rotation = crateTopTransform.rotation;
 	}

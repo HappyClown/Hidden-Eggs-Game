@@ -389,4 +389,42 @@ public class LevelComplete : MonoBehaviour
 		
 	// }
 	#endregion 
+	#region Examples to Reduce division amounts.
+		// ORIGINAL, divide every frame.
+		// void WhatATurnOn()
+		// {
+		// 	congratsTxtOn = true;
+		// }
+
+		// if (congratsTxtOn)
+		// {
+		// 	congratsA += Time.deltaTime / congratsFadeTime;
+		// }
+
+
+		// // EXAMPLE #01 Calculate it once. No multiply or dividde.
+		// void WhatATurnOn()
+		// {
+		// 	congratsTxtOn = true;
+		// 	timePerFrame = Time.deltaTime / congratsFadeTime;
+		// }
+
+		// if (congratsTxtOn)
+		// {
+		// 	congratsA += timePerFrame;
+		// }
+
+
+		// EXAMPLE #02 Calculate the multiplier once on bool true.
+		// void WhatATurnOn()
+		// {
+		// 	congratsTxtOn = true;
+		// 	multiplier = 1 / congratsFadeTime; 
+		// }
+
+		// if (congratsTxtOn)
+		// {
+		// 	congratsA += Time.deltaTime * multiplier;
+		// }
+		#endregion
 }

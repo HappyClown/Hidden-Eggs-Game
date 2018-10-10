@@ -26,7 +26,7 @@ public class ResetItemsButton : MonoBehaviour
 		items = GameObject.FindGameObjectsWithTag("Item");
 	}
 
-	public void ResetItemsToTable () 
+	public void ResetItemsToTable () // Used for the reset items button
 	{
 		if (grabItemScript.canPlay)
 		{
@@ -42,6 +42,20 @@ public class ResetItemsButton : MonoBehaviour
 				items[i].GetComponent<Items>().BackToInitialPos();
 				items[i].transform.parent = grabItemScript.itemHolder.transform;
 			}
+		}
+	}
+
+	public void EndOfLevelReset() // Used in new level setup
+	{
+		scaleScript.itemOnScale = null;
+		scaleScript.isAnItemOnScale = false;
+
+		for (int i = 0; i < items.Length; i ++)
+		{
+			Debug.Log("Should reset items");
+			//if (!items[i].gameObject.activeSelf){ items[i].gameObject.SetActive(true); Debug.Log("Should set to true");} 
+			items[i].GetComponent<Items>().BackToInitialPos();
+			items[i].transform.parent = grabItemScript.itemHolder.transform;
 		}
 	}
 }

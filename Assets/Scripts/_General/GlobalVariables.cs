@@ -26,6 +26,7 @@ public class GlobalVariables : MonoBehaviour
 	public int marketSilverEggsCount;
 	//public bool marketEggToSave;
 	public bool rainbowRiddleSolved;
+	public int marketPuzzMaxLvl;
 	public int marketTotalEggsFound;
 
 	[Header("Park Eggs")]
@@ -47,7 +48,6 @@ public class GlobalVariables : MonoBehaviour
 	public GameObject eggHolder;
 
 
-
 	void OnEnable () 
 	{
 		if (globVarScript == null)
@@ -66,20 +66,20 @@ public class GlobalVariables : MonoBehaviour
 		FindClickOnEggScript();
 		FindEggHolderScript();
 		LoadCorrectEggs();
+		//LoadCorrectPuzz();
 	}
-
 
 
 	void OnLevelWasLoaded()
 	{
 		FindClickOnEggScript();
 		FindEggHolderScript();
-		LoadCorrectEggs();
+		LoadCorrectEggs(); // Do I really wanna do this here every scene loaded ??? ***
+		//LoadCorrectPuzz(); // Do I really wanna do this here every scene loaded ??? ***
 
 		Debug.Log("OnLevelWasLoaded has been called.");
 	}
 	
-
 
 	public void SaveEggState () 
 	{
@@ -93,7 +93,6 @@ public class GlobalVariables : MonoBehaviour
 	}
 
 
-
 	public void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -103,15 +102,12 @@ public class GlobalVariables : MonoBehaviour
 	}
 
 
-
 	public void FindEggHolderScript()
 	{
 		eggHolder = null;
 
 		if (GameObject.FindGameObjectWithTag("EggHolder")) { eggHolder = GameObject.FindGameObjectWithTag("EggHolder"); }
 	}
-
-
 
 	public void FindClickOnEggScript()
 	{
@@ -121,19 +117,21 @@ public class GlobalVariables : MonoBehaviour
 	}
 
 
-
 	public void LoadCorrectEggs()
 	{
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
-		if (SceneManager.GetActiveScene().name == marketName) 
+		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName) 
 		{ 
 			marketEggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
 
 			marketSilverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
-				
+
 			rainbowRiddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
 
 			marketTotalEggsFound = MarketSaveLoadManager.LoadMarketTotalEggs();
+
+			marketPuzzMaxLvl = MarketSaveLoadManager.LoadMarketPuzzMaxLvl();
+			Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
 
 
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
@@ -144,7 +142,7 @@ public class GlobalVariables : MonoBehaviour
 			}
 
 
-			if(marketEggsFoundBools.Count < 1)
+			if(clickOnEggsScript != null && marketEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
@@ -153,8 +151,6 @@ public class GlobalVariables : MonoBehaviour
 				}
 			}
 		}	
-
-
 
 
 		if (SceneManager.GetActiveScene().name == parkName) 
@@ -185,7 +181,6 @@ public class GlobalVariables : MonoBehaviour
 		}
 
 
-
 		if (SceneManager.GetActiveScene().name == beachName) 
 		{ 
 			beachEggsFoundBools = BeachSaveLoadManager.LoadBeachEggs();
@@ -213,6 +208,15 @@ public class GlobalVariables : MonoBehaviour
 			}
 		}
 	}
+
+	// public void LoadCorrectPuzz()
+	// {
+	// 	// CHECK SCENE AND ASSIGN CORRECT MAX PUZZLE LEVEL
+	// 	if ()
+	// 	{
+
+	// 	}
+	// }
 
 
 	public void DeleteEggData()
