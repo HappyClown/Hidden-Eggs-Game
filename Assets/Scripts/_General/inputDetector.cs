@@ -79,21 +79,21 @@ public class inputDetector : MonoBehaviour {
 		#region Double Tap Code
 		if(detectDoubleTap){
 			doubleTapped = tapped = false;
-			if(Input.GetMouseButtonDown(0)){
-				if(doubleTapCounter == 0){					
-					tapPosition = Input.mousePosition;
-				}
-				doubleTapCounter ++;
-				if(doubleTapCounter == 2 ){
-					if(doubleTapTimer <= minDoubleTapTime){
-						doubleTapped = true;
-						ResetDoubleTap();
-					}else{
-						tapped = true;
-						ResetDoubleTap();
-					}
-				}
-			}
+			// if(Input.GetMouseButtonDown(0)){
+			// 	if(doubleTapCounter == 0){					
+			// 		tapPosition = Input.mousePosition;
+			// 	}
+			// 	doubleTapCounter ++;
+			// 	if(doubleTapCounter == 2 ){
+			// 		if(doubleTapTimer <= minDoubleTapTime){
+			// 			doubleTapped = true;
+			// 			ResetDoubleTap();
+			// 		}else{
+			// 			tapped = true;
+			// 			ResetDoubleTap();
+			// 		}
+			// 	}
+			// }
 			
 			if(Input.touches.Length > 0 ){
 				if(Input.touches[0].phase == TouchPhase.Began){	
@@ -126,30 +126,32 @@ public class inputDetector : MonoBehaviour {
 
 		#region Dragging Code
 		if(detectDrag){
-			if(Input.GetMouseButton(0)){
-				if(!dragStarted){
-					startDragTouch = Input.mousePosition;
-					dragStarted = true;
-				}
-				draggingPosition = Input.mousePosition;
-				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone){
-					isDragging = true;
-				}
-			}
-			if(Input.GetMouseButtonUp(0)){
-				ResetDragging();
-			}
+			// if(Input.GetMouseButton(0)){
+			// 	if(!dragStarted){
+			// 		startDragTouch = Input.mousePosition;
+			// 		dragStarted = true;
+			// 	}
+			// 	draggingPosition = Input.mousePosition;
+			// 	if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone){
+			// 		isDragging = true;
+			// 	}
+			// }
+			// if(Input.GetMouseButtonUp(0)){
+			// 	ResetDragging();
+			// }
 			if(Input.touches.Length > 0 ){
 				if(Input.touches[0].phase == TouchPhase.Began){
 					startDragTouch = Input.touches[0].position;
 					dragStarted = true;
-				}else if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
-					ResetDragging();
 				}
 				draggingPosition = Input.touches[0].position;
 				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone){
 					isDragging = true;
-				}				
+				}	
+				
+				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
+					ResetDragging();
+				}			
 			}
 		}
 		#endregion
