@@ -17,7 +17,7 @@ public class SwipeDetector : MonoBehaviour {
 	public Vector2 FirstTouch{get {return firstTouch;}}
 	
 	// Update is called once per frame
-	private void Update () {
+	void Update () {
 		tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
 		#region StandAlone
 		if(Input.GetMouseButtonDown(0)){
@@ -53,33 +53,34 @@ public class SwipeDetector : MonoBehaviour {
 			}else if(Input.GetMouseButton(0)){
 				swipeDelta = (Vector2)Input.mousePosition - startTouch;
 			}
+			if(swipeDelta.magnitude > deathzoneRadius){
+				firstTouch = startTouch;
+				//which direction?
+				float x = swipeDelta.x;
+				float y = swipeDelta.y;
+				if(Mathf.Abs(x) > Mathf.Abs(y)){
+					//left or right
+					if(x < 0){
+						swipeLeft = true;
+					}
+					else{
+						swipeRight = true;
+					}
+				}
+				else{
+					//up or down
+					if(y < 0){
+						swipeDown = true;
+					}
+					else{
+						swipeUp = true;
+					}
+				}
+				Reset();
+			}
 		}
 		//Did we cross the deathzone?
-		if(swipeDelta.magnitude > deathzoneRadius){
-			firstTouch = startTouch;
-			//which direction?
-			float x = swipeDelta.x;
-			float y = swipeDelta.y;
-			if(Mathf.Abs(x) > Mathf.Abs(y)){
-				//left or right
-				if(x < 0){
-					swipeLeft = true;
-				}
-				else{
-					swipeRight = true;
-				}
-			}
-			else{
-				//up or down
-				if(y < 0){
-					swipeDown = true;
-				}
-				else{
-					swipeUp = true;
-				}
-			}
-			Reset();
-		}
+		
 	}
 	private void Reset(){
 		startTouch = swipeDelta = Vector2.zero;
