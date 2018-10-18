@@ -35,7 +35,7 @@ public class Items : MonoBehaviour
 		{
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, t));
-			if (t >= 1f)
+			if (sprite.color.a <= 0f) 
 			{
 				//this.gameObject.SetActive(false);
 				fadingOut = false;
@@ -46,7 +46,7 @@ public class Items : MonoBehaviour
 		{
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0f, 1f, t));
-			if (t >= 1f)
+			if (sprite.color.a >= 1f)
 			{
 				fadingIn = false;
 			}
@@ -60,6 +60,7 @@ public class Items : MonoBehaviour
 		if (fadingOut == false/*  && sprite.color.a >= 0.01f */)
 		{
 			fadingOut = true;
+			fadingIn = false;
 			t = 0f;
 			//Debug.Log("Should Fade Out");
 		}
@@ -69,12 +70,13 @@ public class Items : MonoBehaviour
 	public void FadeIn ()
 	{
 		if (this.sprite) sprite.color = new Color(1f, 1f, 1f, 0f);
-		if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
-		{
+		//if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
+		//{
 			fadingIn = true;
+			fadingOut = false;
 			t = 0f;
 			//Debug.Log("Should Fade In");
-		}
+		//}
 	}
 
 

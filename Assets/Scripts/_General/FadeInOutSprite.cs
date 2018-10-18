@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class FadeInOutSprite : MonoBehaviour 
 {
-	public bool fadingOut;
-	public bool fadingIn;
-	public float t;
-	public float fadeDuration;
+	private bool fadingOut;
+	private bool fadingIn;
+	private float t;
 
+	public float fadeDuration;
 	public bool fadeOnStart = true;
-	private SpriteRenderer sprite;
+	public SpriteRenderer sprite;
 
 
 
 	void Start ()
 	{
-		sprite = this.gameObject.GetComponent<SpriteRenderer>();
+		if (sprite == null) sprite = this.gameObject.GetComponent<SpriteRenderer>();
+	}
 
+
+
+	void OnEnable() // Might need to go back in start.
+	{
 		if (fadeOnStart) { FadeIn(); sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0f);}
 	}
 
