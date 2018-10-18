@@ -20,7 +20,6 @@ public class MarketSaveLoadManager : MonoBehaviour
 	}
 
 
-
 	public static List<bool> LoadMarketEggs()
 	{
 		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
@@ -39,7 +38,6 @@ public class MarketSaveLoadManager : MonoBehaviour
 			return new List<bool>();
 		}
 	}
-
 
 
 	public static int LoadMarketSilverEggs()
@@ -62,7 +60,6 @@ public class MarketSaveLoadManager : MonoBehaviour
 	}
 
 
-
 	public static bool LoadRainbowRiddle()
 	{
 		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
@@ -83,15 +80,51 @@ public class MarketSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static int LoadMarketPuzzMaxLvl()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
 
-	public static void DeleteMarketSaveFile ()
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.puzzMaxLvl;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+	public static int LoadMarketTotalEggs()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.totalEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+	public static void DeleteMarketSaveFile()
 	{
 		File.Delete(Application.persistentDataPath + "/marketEggSaver.sav");
 		Debug.Log("Save file deleted.");
 	}
-
-
-	
 }
 
 public class ParkSaveLoadManager : MonoBehaviour 
@@ -107,7 +140,6 @@ public class ParkSaveLoadManager : MonoBehaviour
 		bf.Serialize(stream, data);
 		stream.Close();
 	}
-
 
 
 	public static List<bool> LoadParkEggs()
@@ -130,7 +162,6 @@ public class ParkSaveLoadManager : MonoBehaviour
 	}
 
 
-
 	public static int LoadParkSilverEggs()
 	{
 		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
@@ -149,7 +180,6 @@ public class ParkSaveLoadManager : MonoBehaviour
 			return 0;
 		}
 	}
-
 
 
 	public static bool LoadHopscotchRiddle()
@@ -172,15 +202,11 @@ public class ParkSaveLoadManager : MonoBehaviour
 	}
 
 
-
 	public static void DeleteParkSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/parkEggSaver.sav");
 		Debug.Log("Save file deleted.");
 	}
-
-
-	
 }
 
 
@@ -197,7 +223,6 @@ public class BeachSaveLoadManager : MonoBehaviour
 		bf.Serialize(stream, data);
 		stream.Close();
 	}
-
 
 
 	public static List<bool> LoadBeachEggs()
@@ -220,7 +245,6 @@ public class BeachSaveLoadManager : MonoBehaviour
 	}
 
 
-
 	public static int LoadBeachSilverEggs()
 	{
 		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
@@ -239,7 +263,6 @@ public class BeachSaveLoadManager : MonoBehaviour
 			return 0;
 		}
 	}
-
 
 
 	public static bool LoadCrabRiddle()
@@ -262,15 +285,11 @@ public class BeachSaveLoadManager : MonoBehaviour
 	}
 
 
-
 	public static void DeleteBeachSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/beachEggSaver.sav");
 		Debug.Log("Save file deleted.");
 	}
-
-
-	
 }
 
 [Serializable]
@@ -282,6 +301,10 @@ public class MarketEggsData
 
 	public bool rainbowRiddle;
 
+	public int puzzMaxLvl;
+
+	public int totalEggsFound;
+
 	public MarketEggsData(GlobalVariables marketEggSaver)
 	{
 		eggsFound = marketEggSaver.marketEggsFoundBools;
@@ -289,6 +312,10 @@ public class MarketEggsData
 		silverEggsFound = marketEggSaver.marketSilverEggsCount;
 
 		rainbowRiddle = marketEggSaver.rainbowRiddleSolved;
+
+		puzzMaxLvl = marketEggSaver.marketPuzzMaxLvl;
+
+		totalEggsFound = marketEggSaver.marketTotalEggsFound;
 	}
 }
 

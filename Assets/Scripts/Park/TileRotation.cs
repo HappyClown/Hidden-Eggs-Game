@@ -61,91 +61,95 @@ public class TileRotation : MonoBehaviour
 	public void CheckNeighbors ()
 	{
 		//mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		topRay = new Vector2 (this.transform.position.x, this.transform.position.y + neightborTileDist);
-		rightRay = new Vector2 (this.transform.position.x + neightborTileDist, this.transform.position.y);
-		bottomRay = new Vector2 (this.transform.position.x, this.transform.position.y - neightborTileDist);
-		leftRay = new Vector2 (this.transform.position.x - neightborTileDist, this.transform.position.y);
-
-		RaycastHit2D topHit = Physics2D.Raycast(topRay, Vector3.forward, 50f);
-		if (topHit)
-		{
-			if (topHit.collider.CompareTag("Tile"))
+		if(topConnection){
+			topRay = new Vector2 (this.transform.position.x, this.transform.position.y + neightborTileDist);
+			RaycastHit2D topHit = Physics2D.Raycast(topRay, Vector3.forward, 50f);
+			if (topHit)
 			{
-				GameObject topTile = topHit.collider.gameObject;
+				if (topHit.collider.CompareTag("Tile"))
+				{
+					GameObject topTile = topHit.collider.gameObject;
 
-				if (topTile.GetComponent<TileRotation>().bottomConnection == true && this.topConnection == true)
-				{
-					// add one to the connection count yo!
-					gameEngineScript.connections += 1;
+					if (topTile.GetComponent<TileRotation>().bottomConnection == true && this.topConnection == true)
+					{
+						// add one to the connection count yo!
+						gameEngineScript.connections += 1;
+					}
+					else 
+					{
+						// minus one to connection count but it wont work its ok tho :) maybe maybe
+						//gameEngineScript.connections -= 1;
+					}
 				}
-				else 
+			}
+		}
+		if(rightConnection){
+			rightRay = new Vector2 (this.transform.position.x + neightborTileDist, this.transform.position.y);
+			RaycastHit2D rightHit = Physics2D.Raycast(rightRay, Vector3.forward, 50f);
+			if (rightHit)
+			{
+				if (rightHit.collider.CompareTag("Tile"))
 				{
-					// minus one to connection count but it wont work its ok tho :) maybe maybe
-					//gameEngineScript.connections -= 1;
+					GameObject rightTile = rightHit.collider.gameObject;
+
+					if (rightTile.GetComponent<TileRotation>().leftConnection == true && this.rightConnection == true)
+					{
+						// add one to the connection count yo!
+						gameEngineScript.connections += 1;
+					}
+					else 
+					{
+						// minus one to connection count but it wont work its ok tho :) maybe maybe
+						//gameEngineScript.connections -= 1;
+					}
+				}
+			}
+		}
+		if(bottomConnection){
+			bottomRay = new Vector2 (this.transform.position.x, this.transform.position.y - neightborTileDist);
+			RaycastHit2D bottomHit = Physics2D.Raycast(bottomRay, Vector3.forward, 50f);
+			if (bottomHit)
+			{
+				if (bottomHit.collider.CompareTag("Tile"))
+				{
+					GameObject bottomTile = bottomHit.collider.gameObject;
+
+					if (bottomTile.GetComponent<TileRotation>().topConnection == true && this.bottomConnection == true)
+					{
+						// add one to the connection count yo!
+						gameEngineScript.connections += 1;
+					}
+					else 
+					{
+						// minus one to connection count but it wont work its ok tho :) maybe maybe
+						//gameEngineScript.connections -= 1;
+					}
 				}
 			}
 		}
 
-		RaycastHit2D rightHit = Physics2D.Raycast(rightRay, Vector3.forward, 50f);
-		if (rightHit)
-		{
-			if (rightHit.collider.CompareTag("Tile"))
+		if(leftConnection){
+			leftRay = new Vector2 (this.transform.position.x - neightborTileDist, this.transform.position.y);
+			RaycastHit2D leftHit = Physics2D.Raycast(leftRay, Vector3.forward, 50f);
+			if (leftHit)
 			{
-				GameObject rightTile = rightHit.collider.gameObject;
+				if (leftHit.collider.CompareTag("Tile"))
+				{
+					GameObject leftTile = leftHit.collider.gameObject;
 
-				if (rightTile.GetComponent<TileRotation>().leftConnection == true && this.rightConnection == true)
-				{
-					// add one to the connection count yo!
-					gameEngineScript.connections += 1;
-				}
-				else 
-				{
-					// minus one to connection count but it wont work its ok tho :) maybe maybe
-					//gameEngineScript.connections -= 1;
+					if (leftTile.GetComponent<TileRotation>().rightConnection == true && this.leftConnection == true)
+					{
+						// add one to the connection count yo!
+						gameEngineScript.connections += 1;
+					}
+					else 
+					{
+						// minus one to connection count but it wont work its ok tho :) maybe maybe
+						//gameEngineScript.connections -= 1;
+					}
 				}
 			}
 		}
-
-		RaycastHit2D bottomHit = Physics2D.Raycast(bottomRay, Vector3.forward, 50f);
-		if (bottomHit)
-		{
-			if (bottomHit.collider.CompareTag("Tile"))
-			{
-				GameObject bottomTile = bottomHit.collider.gameObject;
-
-				if (bottomTile.GetComponent<TileRotation>().topConnection == true && this.bottomConnection == true)
-				{
-					// add one to the connection count yo!
-					gameEngineScript.connections += 1;
-				}
-				else 
-				{
-					// minus one to connection count but it wont work its ok tho :) maybe maybe
-					//gameEngineScript.connections -= 1;
-				}
-			}
-		}
-
-		RaycastHit2D leftHit = Physics2D.Raycast(leftRay, Vector3.forward, 50f);
-		if (leftHit)
-		{
-			if (leftHit.collider.CompareTag("Tile"))
-			{
-				GameObject leftTile = leftHit.collider.gameObject;
-
-				if (leftTile.GetComponent<TileRotation>().rightConnection == true && this.leftConnection == true)
-				{
-					// add one to the connection count yo!
-					gameEngineScript.connections += 1;
-				}
-				else 
-				{
-					// minus one to connection count but it wont work its ok tho :) maybe maybe
-					//gameEngineScript.connections -= 1;
-				}
-			}
-		}
-
 
 	}
 

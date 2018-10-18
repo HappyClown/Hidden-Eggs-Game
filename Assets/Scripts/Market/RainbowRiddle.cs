@@ -14,6 +14,7 @@ public class RainbowRiddle : MonoBehaviour
 	public List<GameObject> fruitBaskets;
 	public int basketNumber;
 	public GameObject goldenEgg;
+	public GoldenEgg goldenEggScript;
 
     public LayerMask layerMask;
 	public LayerMask layerMaskFX;
@@ -54,6 +55,7 @@ public class RainbowRiddle : MonoBehaviour
 			
 			if (hitFX)
 			{
+				//Debug.Log(hitFX.collider.gameObject.name);
 				// - PLAY BASKET FX - // 
 				if (hitFX.collider.CompareTag("OnClickFX"))
 				{
@@ -83,9 +85,12 @@ public class RainbowRiddle : MonoBehaviour
 					// - PUZZLE SOLVED - //
 					if (basketNumber >= 6)
 					{
+						basketNumber = 0;
 						RainbowRiddleSolved ();
+
 						//SpawnGoldenEgg;
 						goldenEgg.SetActive(true);
+						goldenEggScript.inGoldenEggSequence = true;
 
 						if (!fireworksFired)
 						{
@@ -106,8 +111,13 @@ public class RainbowRiddle : MonoBehaviour
 					}
 				}
 				
+				if (basketNumber > 1 && hit.collider.gameObject == appleBasket)
+				{
+					basketNumber = 1;
+				}
+
 				// - DID NOT HIT BASKET - //
-				if (!hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
+				if (!hit.collider.CompareTag("FruitBasket"))
 				{
 					basketNumber = 0;
 					foreach (GameObject basket in fruitBaskets)

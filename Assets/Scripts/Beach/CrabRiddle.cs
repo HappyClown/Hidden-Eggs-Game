@@ -21,6 +21,8 @@ public class CrabRiddle : MonoBehaviour
 	public bool crabReturning = false;
 
 	public GameObject goldenEgg;
+	public GoldenEgg goldenEggScript;
+
     public LayerMask layerMask;
 	
 	public bool canClick = true;
@@ -112,6 +114,7 @@ public class CrabRiddle : MonoBehaviour
 						CrabRiddleSolved ();
 						//SpawnGoldenEgg;
 						goldenEgg.SetActive(true);
+						goldenEggScript.inGoldenEggSequence = true;
 
 						if (!fireworksFired)
 						{
@@ -133,7 +136,7 @@ public class CrabRiddle : MonoBehaviour
 				}
 				
 				// - Player clicks anywhere else - //
-				if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf && canClick)
+				if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && canClick)
 				{
 					if (moveAmount > 0)
 					{

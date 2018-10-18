@@ -15,6 +15,7 @@ public class Items : MonoBehaviour
 	public float fadeDuration;
 	private SpriteRenderer sprite;
 
+
 	void Start () 
 	{
 		initialPos = this.transform.position;
@@ -26,26 +27,17 @@ public class Items : MonoBehaviour
 
 		FadeIn ();
 	}
+
 	
 	void Update () 
 	{
-		// if (Input.GetMouseButtonDown(0))
-		// {
-		// 	FadeOut();
-		// }
-
-		// if (Input.GetMouseButtonDown(1))
-		// {
-		// 	FadeIn();
-		// }
-
 		if (fadingOut == true)
 		{
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(1f, 0f, t));
-			if (t >= 1f)
+			if (sprite.color.a <= 0f) 
 			{
-				this.gameObject.SetActive(false);
+				//this.gameObject.SetActive(false);
 				fadingOut = false;
 			}
 		}
@@ -54,7 +46,7 @@ public class Items : MonoBehaviour
 		{
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(0f, 1f, t));
-			if (t >= 1f)
+			if (sprite.color.a >= 1f)
 			{
 				fadingIn = false;
 			}
@@ -62,34 +54,35 @@ public class Items : MonoBehaviour
 	}
 
 
-
-	public void BackToInitialPos ()
-	{
-		this.transform.position = initialPos;
-		this.inCrate = false;
-	}
-
-
-
 	public void FadeOut ()
 	{
-		if (fadingOut == false && sprite.color.a >= 0.01f)
+		sprite.color = new Color(1f, 1f, 1f, 1f);
+		if (fadingOut == false/*  && sprite.color.a >= 0.01f */)
 		{
 			fadingOut = true;
+			fadingIn = false;
 			t = 0f;
 			//Debug.Log("Should Fade Out");
 		}
 	}
 
 
-
 	public void FadeIn ()
 	{
-		if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
-		{
+		if (this.sprite) sprite.color = new Color(1f, 1f, 1f, 0f);
+		//if (fadingIn == false/* && sprite.color.a <= 0.01f*/)
+		//{
 			fadingIn = true;
+			fadingOut = false;
 			t = 0f;
 			//Debug.Log("Should Fade In");
-		}
+		//}
+	}
+
+
+	public void BackToInitialPos ()
+	{
+		this.transform.position = initialPos;
+		this.inCrate = false;
 	}
 }

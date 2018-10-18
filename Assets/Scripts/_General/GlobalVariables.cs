@@ -10,6 +10,11 @@ public class GlobalVariables : MonoBehaviour
 	public string previousScene;
 	public string currentScene;
 
+	[Header("Scene Names")]
+	public string menuName;
+	public string marketName, parkName, beachName;
+	public string marketPuzName, parkPuzName, beachPuzName;
+
 	[Header("Eggs")]
 	public List<bool> eggsFoundBools;
 	public int silverEggsCount;
@@ -19,25 +24,28 @@ public class GlobalVariables : MonoBehaviour
 	[Header("Market Eggs")]
 	public List<bool> marketEggsFoundBools;
 	public int marketSilverEggsCount;
-	public bool marketEggToSave;
+	//public bool marketEggToSave;
 	public bool rainbowRiddleSolved;
+	public int marketPuzzMaxLvl;
+	public int marketTotalEggsFound;
 
 	[Header("Park Eggs")]
 	public List<bool> parkEggsFoundBools;
 	public int parkSilverEggsCount;
-	public bool parkEggToSave;
+	//public bool parkEggToSave;
 	public bool hopscotchRiddleSolved;
+	public int parkTotalEggsFound;
 
 	[Header("Beach Eggs")]
 	public List<bool> beachEggsFoundBools;
 	public int beachSilverEggsCount;
-	public bool beachEggToSave;
+	//public bool beachEggToSave;
 	public bool crabRiddleSolved;
+	public int beachTotalEggsFound;
 
 	[Header("Script References")]
 	public ClickOnEggs clickOnEggsScript;
 	public GameObject eggHolder;
-
 
 
 	void OnEnable () 
@@ -58,32 +66,31 @@ public class GlobalVariables : MonoBehaviour
 		FindClickOnEggScript();
 		FindEggHolderScript();
 		LoadCorrectEggs();
+		//LoadCorrectPuzz();
 	}
-
 
 
 	void OnLevelWasLoaded()
 	{
 		FindClickOnEggScript();
 		FindEggHolderScript();
-		LoadCorrectEggs();
+		LoadCorrectEggs(); // Do I really wanna do this here every scene loaded ??? ***
+		//LoadCorrectPuzz(); // Do I really wanna do this here every scene loaded ??? ***
 
 		Debug.Log("OnLevelWasLoaded has been called.");
 	}
 	
 
-
 	public void SaveEggState () 
 	{
-		if (SceneManager.GetActiveScene().name == "Market" || SceneManager.GetActiveScene().name == "WeightPuzzle") { MarketSaveLoadManager.SaveMarketEggs(this); }
+		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName) { MarketSaveLoadManager.SaveMarketEggs(this); }
 
-		if (SceneManager.GetActiveScene().name == "Park" || SceneManager.GetActiveScene().name == "KitePuzzle") { ParkSaveLoadManager.SaveParkEggs(this); }
+		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName) { ParkSaveLoadManager.SaveParkEggs(this); }
 		
-		if (SceneManager.GetActiveScene().name == "Beach" || SceneManager.GetActiveScene().name == "ClamPuzzle") { BeachSaveLoadManager.SaveBeachEggs(this); }
+		if (SceneManager.GetActiveScene().name == beachName || SceneManager.GetActiveScene().name == beachPuzName) { BeachSaveLoadManager.SaveBeachEggs(this); }
 
 		Debug.Log("Save Variables");
 	}
-
 
 
 	public void Update()
@@ -95,15 +102,12 @@ public class GlobalVariables : MonoBehaviour
 	}
 
 
-
 	public void FindEggHolderScript()
 	{
 		eggHolder = null;
 
 		if (GameObject.FindGameObjectWithTag("EggHolder")) { eggHolder = GameObject.FindGameObjectWithTag("EggHolder"); }
 	}
-
-
 
 	public void FindClickOnEggScript()
 	{
@@ -113,17 +117,21 @@ public class GlobalVariables : MonoBehaviour
 	}
 
 
-
 	public void LoadCorrectEggs()
 	{
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
-		if (SceneManager.GetActiveScene().name == "Market") 
+		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName) 
 		{ 
 			marketEggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
 
 			marketSilverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
-				
+
 			rainbowRiddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
+
+			marketTotalEggsFound = MarketSaveLoadManager.LoadMarketTotalEggs();
+
+			marketPuzzMaxLvl = MarketSaveLoadManager.LoadMarketPuzzMaxLvl();
+			Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
 
 
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
@@ -134,7 +142,7 @@ public class GlobalVariables : MonoBehaviour
 			}
 
 
-			if(marketEggsFoundBools.Count < 1)
+			if(clickOnEggsScript != null && marketEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
@@ -145,9 +153,7 @@ public class GlobalVariables : MonoBehaviour
 		}	
 
 
-
-
-		if (SceneManager.GetActiveScene().name == "Park") 
+		if (SceneManager.GetActiveScene().name == parkName) 
 		{ 
 			parkEggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
 
@@ -175,8 +181,7 @@ public class GlobalVariables : MonoBehaviour
 		}
 
 
-
-		if (SceneManager.GetActiveScene().name == "Beach") 
+		if (SceneManager.GetActiveScene().name == beachName) 
 		{ 
 			beachEggsFoundBools = BeachSaveLoadManager.LoadBeachEggs();
 
@@ -203,6 +208,15 @@ public class GlobalVariables : MonoBehaviour
 			}
 		}
 	}
+
+	// public void LoadCorrectPuzz()
+	// {
+	// 	// CHECK SCENE AND ASSIGN CORRECT MAX PUZZLE LEVEL
+	// 	if ()
+	// 	{
+
+	// 	}
+	// }
 
 
 	public void DeleteEggData()

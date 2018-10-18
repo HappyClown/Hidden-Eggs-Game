@@ -10,6 +10,7 @@ public class ClamPuzzle : MonoBehaviour
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
+	public string sceneName;
 
 	[Header("Level Lists")]
 	public List<GameObject> lvl01Clams;
@@ -405,7 +406,7 @@ public class ClamPuzzle : MonoBehaviour
 
 		yield return new WaitForSeconds(0.5f);
 
-		SceneManager.LoadScene("Beach");
+		SceneManager.LoadScene(sceneName);
 	}
 
 

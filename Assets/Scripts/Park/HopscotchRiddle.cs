@@ -14,6 +14,7 @@ public class HopscotchRiddle : MonoBehaviour
 	public List<GameObject> numbers;
 	public int numberAmount;
 	public GameObject goldenEgg;
+	public GoldenEgg goldenEggScript;
 
     public LayerMask layerMask;
 
@@ -81,6 +82,7 @@ public class HopscotchRiddle : MonoBehaviour
 						HopscotchRiddleSolved ();
 						//SpawnGoldenEgg;
 						goldenEgg.SetActive(true);
+						goldenEggScript.inGoldenEggSequence = true;
 
 						if (!fireworksFired)
 						{
