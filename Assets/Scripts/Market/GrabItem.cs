@@ -50,18 +50,25 @@ public class GrabItem : MonoBehaviour
 
 	[Header("Level Selection Buttons")]
 	[Tooltip("GameObjects - The level selection buttons, in ascending order.")] 
-	public List<GameObject> lvlSelectButtons; 
+	public List<GameObject> lvlSelectButtons;
 	[Tooltip("Scripts - The FadeInOutImage scripts, in ascending order.")] 
 	public List<FadeInOutImage> lvlSelectFades;
 	private bool noFadeDelay;
 	private bool buttonsOff;
+
+	[Header("Initial Sequence")]
+	public float seqTimer;
+	public float crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
+	private bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
+
 
 	[Header("Scripts")]
 	public Scale scaleScript;
 	public Crate crateScript;
 	public ResetItemsButton resetItemsButtonScript;
 	public Items refItemScript;
-	public FadeInOutImage scrnDarkImg;
+	public FadeInOutImage scrnDarkImgScript;
+	public ReqParchmentMove reqParchMoveScript;
 
 	[Header("Hide In Inspector ^_^")]
 	public bool canPlay;
@@ -222,6 +229,17 @@ public class GrabItem : MonoBehaviour
 			// When this Scene is loaded.
 			if (initialSetupOn) { InitialSetup(); }
 
+			// After the initial set up run the first sequence.
+			if (iniSeqStart)
+			{
+				seqTimer += Time.deltaTime;
+				if (seqTimer > crateDownF && !crateDownB) { crateDownB = true; crateAnim.SetTrigger("MoveDown"); StartCoroutine(MoveCrateDown()); }
+				if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; } 
+				if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); }
+				if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); }
+				if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+			}
+
 			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
 			// Turn off interaction for all three level select dots.
 			if (!buttonsOff) { buttonsOff = true; UninteractableThreeDots();}
@@ -270,13 +288,14 @@ public class GrabItem : MonoBehaviour
 		curntPounds = 0;
 		curntAmnt = 0;
 		itemHolder = lvlItemHolders[crateScript.curntLvl - 1];
-		lvlItemHolders[crateScript.curntLvl - 1].SetActive(true);
+		//lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); // IN THE INI SEQUENCE
 		resetItemsButtonScript.FillItemResetArray();
-		canPlay = true;
+		//canPlay = true; // IN THE INI SEQUENCE
 		initialSetupOn = false;
 		crateScript.UpdateRequirements();
-		EnabledThreeDots();
-		InteractableThreeDots();
+		iniSeqStart = true;
+		//EnabledThreeDots(); // IN THE INI SEQUENCE
+		//InteractableThreeDots(); // IN THE INI SEQUENCE
 	}
 	// Level complete, load silver eggs, start crate animation.
 	void SilverEggsSetup()
@@ -349,7 +368,7 @@ public class GrabItem : MonoBehaviour
 				activeSilverEggs.Clear();
 				silverEggsActive = false;
 				amntSilEggsTapped = 0;
-				scrnDarkImg.FadeOut();
+				scrnDarkImgScript.FadeOut();
 				
 				crateScript.curntLvl++;
 				if (crateScript.curntLvl > maxLvl) 
@@ -556,7 +575,7 @@ public class GrabItem : MonoBehaviour
 		lvlSilverEggs[crateScript.curntLvl - 1].SetActive(true);
 		resetItemsButtonScript.EndOfLevelReset();
 		itemHolder.SetActive(false);
-		scrnDarkImg.FadeIn();
+		scrnDarkImgScript.FadeIn();
 		crateAnim.SetTrigger("MoveDown");
 		StartCoroutine(MoveCrateDown());
 	}
@@ -565,12 +584,12 @@ public class GrabItem : MonoBehaviour
 	// Move crate down.
 	public IEnumerator MoveCrateDown ()
 	{
-		//Debug.Log("Entered Coroutine MoveCrateDown. Yo.");
+		Debug.Log("Entered Coroutine MoveCrateDown. Yo.");
 		yield return new WaitUntil(() => crateParent.transform.parent.position == crateTopTransform.position);
-		//Debug.Log("CrateParent pos = crateTop pos.");
+		Debug.Log("CrateParent pos = crateTop pos.");
 		while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveDown"))
 		{
-			//Debug.Log("MoveCrateDown Animating.");
+			Debug.Log("MoveCrateDown Animating.");
 			yield return null;
 		}
 		//Debug.Log("should take anim pos");

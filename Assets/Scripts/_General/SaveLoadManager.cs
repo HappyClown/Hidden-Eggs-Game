@@ -209,7 +209,6 @@ public class ParkSaveLoadManager : MonoBehaviour
 	}
 }
 
-
 public class BeachSaveLoadManager : MonoBehaviour 
 {
 	public static void SaveBeachEggs(GlobalVariables beachEggSaver)
