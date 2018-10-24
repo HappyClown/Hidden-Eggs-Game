@@ -19,7 +19,8 @@ public class FadeInOutImage : MonoBehaviour
 	public bool fadeInOnStart = true;
 	public bool fadeDelay;
 	
-	private Image img;
+	[HideInInspector]
+	public Image img;
 
 
 	void Start ()

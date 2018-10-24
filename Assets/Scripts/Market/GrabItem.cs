@@ -11,6 +11,9 @@ public class GrabItem : MonoBehaviour
 	[Header("General")]
 	public float itemScaleMult;
 	public int winLvl;
+	public bool itemsWait;
+	public float itemWaitAmnt;
+	private float itemWaitTimer;
 
 	private bool initialSetupOn;
 	private bool setupChsnLvl;
@@ -61,7 +64,6 @@ public class GrabItem : MonoBehaviour
 	public float crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
 	private bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
 
-
 	[Header("Scripts")]
 	public Scale scaleScript;
 	public Crate crateScript;
@@ -86,7 +88,7 @@ public class GrabItem : MonoBehaviour
 		heldItem = null;
 		maxLvl = GlobalVariables.globVarScript.marketPuzzMaxLvl;
 		silverEggsPickedUp = GlobalVariables.globVarScript.marketSilverEggsCount;
-		setupLvlWaitTime = refItemScript.fadeDuration;
+		if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 	}
 
 	void Update () 
@@ -235,9 +237,24 @@ public class GrabItem : MonoBehaviour
 				seqTimer += Time.deltaTime;
 				if (seqTimer > crateDownF && !crateDownB) { crateDownB = true; crateAnim.SetTrigger("MoveDown"); StartCoroutine(MoveCrateDown()); }
 				if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; } 
-				if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); }
+				if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+				{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); } }
 				if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); }
 				if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+			}
+
+			if (itemsWait)
+			{
+				itemWaitTimer += Time.deltaTime;
+				if (itemWaitTimer > itemWaitAmnt)
+				{
+					for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+					{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
+
+					itemsWait = false;
+					itemWaitTimer = 0f;
+					canPlay = true;
+				}
 			}
 
 			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
@@ -297,6 +314,7 @@ public class GrabItem : MonoBehaviour
 		//EnabledThreeDots(); // IN THE INI SEQUENCE
 		//InteractableThreeDots(); // IN THE INI SEQUENCE
 	}
+
 	// Level complete, load silver eggs, start crate animation.
 	void SilverEggsSetup()
 	{
@@ -347,10 +365,12 @@ public class GrabItem : MonoBehaviour
 		{ childrenItemScripts[i].FadeOut(); }
 
 		StartCoroutine(MoveCrateRight());
+		reqParchMoveScript.moveToHidden = true;
 
 		curntPounds = 0;
 		curntAmnt = 0;
 	}
+
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
 	public void SilverEggsCheck()
 	{
@@ -380,11 +400,13 @@ public class GrabItem : MonoBehaviour
 			}
 		}
 	}
+
 	// Lets you feed set a method as a parameter in a method.
 	void RunAfter(VoidDelegate methToRun)
 	{
 		methToRun();
 	}
+
 	// Once animations are finished, run the next level setup.
 	void NextLevelSetup()
 	{
@@ -407,12 +429,15 @@ public class GrabItem : MonoBehaviour
 		itemHolder.SetActive(true);
 
 		resetItemsButtonScript.FillItemResetArray();
-		for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
+		itemsWait = true;
+		//for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		//{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
 
-		canPlay = true;
+		//canPlay = true;
 		crateScript.UpdateRequirements();
+		reqParchMoveScript.moveToShown = true;
 	}
+
 	// Prepare to change level after a level selection button has been pressed.
 	public void ChangeLevelSetup()
 	{
@@ -423,10 +448,13 @@ public class GrabItem : MonoBehaviour
 
 		for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeOut(); }
+
+		reqParchMoveScript.moveToHidden = true;
 		
 		setupChsnLvl = true;
 		// RESET SILVER EGGs ///////////////////////
 	}
+
 	// Setup the chosen level after waiting for setupLvlWaitTime (minimum the fade out duration of the items).
 	void ChosenLevelSetup(int lvlToLoad)
 	{
@@ -444,12 +472,14 @@ public class GrabItem : MonoBehaviour
 			lvlItemHolders[crateScript.curntLvl - 1].SetActive(true);
 
 			resetItemsButtonScript.FillItemResetArray();
-			for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-			{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
+			itemsWait = true;
+			// for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+			// { resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
 
 			//inCrateCollider.transform.position = new Vector3(inCrateCollider.transform.position.x, inCrateCollider.transform.position.y, inCrateCollider.transform.position.z - 1);
-			canPlay = true;
+			//canPlay = true;
 			crateScript.UpdateRequirements();
+			reqParchMoveScript.moveToShown = true;
 
 			setupChsnLvl = false;
 			chngLvlTimer = 0;
@@ -467,6 +497,7 @@ public class GrabItem : MonoBehaviour
 			{ lvlSelectButtons[i].SetActive(true); } 
 		}
 	}
+
 	// Which of the three dots can be interacted with.
 	void InteractableThreeDots()
 	{
@@ -477,6 +508,7 @@ public class GrabItem : MonoBehaviour
 			else { lvlSelectButtons[i].GetComponent<Button>().interactable = true; }
 		}
 	}
+
 	// Make level select buttons uninteractable between levels.
 	void UninteractableThreeDots()
 	{
@@ -485,6 +517,7 @@ public class GrabItem : MonoBehaviour
 			if (lvlButton.activeSelf) { lvlButton.GetComponent<Button>().interactable = false; }	
 		}
 	}
+	
 	// After the initial level setup turn off the three dots fade delay.
 	void TurnFadeDelayOff()
 	{
@@ -584,12 +617,12 @@ public class GrabItem : MonoBehaviour
 	// Move crate down.
 	public IEnumerator MoveCrateDown ()
 	{
-		Debug.Log("Entered Coroutine MoveCrateDown. Yo.");
+		//Debug.Log("Entered Coroutine MoveCrateDown. Yo.");
 		yield return new WaitUntil(() => crateParent.transform.parent.position == crateTopTransform.position);
-		Debug.Log("CrateParent pos = crateTop pos.");
+		//Debug.Log("CrateParent pos = crateTop pos.");
 		while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveDown"))
 		{
-			Debug.Log("MoveCrateDown Animating.");
+			//Debug.Log("MoveCrateDown Animating.");
 			yield return null;
 		}
 		//Debug.Log("should take anim pos");
