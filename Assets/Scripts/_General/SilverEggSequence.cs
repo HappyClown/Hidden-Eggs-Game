@@ -25,20 +25,30 @@ public class SilverEggSequence : MonoBehaviour
 	public float hoverCurDur;
 	public float startHoverDelay;
 	public float hoverYMult;
-	//public Transform hoverTo; // For hover with lerp.
 	public AnimationCurve hoverAnimCurve;
-	private bool hoverSeq;
-	private bool hoverUp = true;
+	public bool hoverSeq;
+	public float iniHovCurDur;
+	public float iniStartHoverDelay;
 
+	private bool hoverUp = true;
 	private float lerpTime;
+
+	//public Transform hoverTo; // For hover with lerp.
+	
+
+	void Awake()
+	{
+		iniHovCurDur = hoverCurDur;
+		iniStartHoverDelay = startHoverDelay;
+	}
 
 
 	void Update () 
 	{
-		if (Input.GetKeyDown("space"))
-		{
-			StartSequence();
-		}
+		// if (Input.GetKeyDown("space"))
+		// {
+		// 	StartSequence();
+		// }
 
 		if (startSeq)
 		{
@@ -105,5 +115,14 @@ public class SilverEggSequence : MonoBehaviour
 		startPos = this.transform.localPosition;
 		startScale = this.transform.localScale;
 		trailFX.Play();
+	}
+
+
+	public void ResetHover()
+	{
+		hoverCurDur = iniHovCurDur;
+		startHoverDelay = iniStartHoverDelay;
+		hoverSeq = false;
+		lerpTime = 0f;
 	}
 }

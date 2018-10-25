@@ -52,10 +52,12 @@ public class GrabItem : MonoBehaviour
 	public int amntSilEggsTapped;
 
 	[Header("Level Selection Buttons")]
-	[Tooltip("GameObjects - The level selection buttons, in ascending order.")] 
+	[Tooltip("GameObjects - The level selection buttons, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
 	public List<GameObject> lvlSelectButtons;
-	[Tooltip("Scripts - The FadeInOutImage scripts, in ascending order.")] 
+	[Tooltip("Scripts - The FadeInOutImage scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
 	public List<FadeInOutImage> lvlSelectFades;
+	[Tooltip("Scripts - The Scaler scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
+	public List<Scaler> lvlSelectScalers;
 	private bool noFadeDelay;
 	private bool buttonsOff;
 
@@ -95,15 +97,7 @@ public class GrabItem : MonoBehaviour
 	{
 		if (canPlay)
 		{
-			//CHANGE LEVEL BUTTONS
 			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; }
-			// else
-			// {
-			// 	if (Input.GetKeyDown("1") && crateScript.curntLvl != 1) { chngLvlTimer = 0f; lvlToLoad = 1; ChangeLevelSetup();}
-			// 	if (Input.GetKeyDown("2") && crateScript.curntLvl != 2) { chngLvlTimer = 0f; lvlToLoad = 2; if (maxLvl >= 2) { ChangeLevelSetup();} }
-			// 	if (Input.GetKeyDown("3") && crateScript.curntLvl != 3) { chngLvlTimer = 0f; lvlToLoad = 3; if (maxLvl >= 3) { ChangeLevelSetup();} }
-			// }
-
 
 			// Current level complete.
 			if (curntPounds == crateScript.reqPounds && curntAmnt == crateScript.reqItems) { SilverEggsSetup(); }
@@ -248,12 +242,16 @@ public class GrabItem : MonoBehaviour
 				itemWaitTimer += Time.deltaTime;
 				if (itemWaitTimer > itemWaitAmnt)
 				{
+					itemHolder.SetActive(true);
+					resetItemsButtonScript.FillItemResetArray();
+
 					for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 					{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
 
 					itemsWait = false;
 					itemWaitTimer = 0f;
 					canPlay = true;
+					InteractableThreeDots();
 				}
 			}
 
@@ -286,7 +284,7 @@ public class GrabItem : MonoBehaviour
 			}
 			#endregion
 		}
-	
+
 		if (waitMethod) 
 		{
 			if (waitTime > 0) 
@@ -321,7 +319,7 @@ public class GrabItem : MonoBehaviour
 		//Debug.Log("New Level Setup");
 		canPlay = false;
 
-		 // Turn off interaction for all three level select dots.
+		// Turn off interaction for all three level select dots.
 		//UninteractableThreeDots();
 
 		//Set the silver egg sprites to Hollow if level was completed previously.
@@ -347,11 +345,10 @@ public class GrabItem : MonoBehaviour
 
 		silverEggsActive = true;
 
-		if (!noFadeDelay) { TurnFadeDelayOff(); noFadeDelay = true; } // Should only happen once.
+		if (!noFadeDelay) { TurnFadeDelayOff(); noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
 
 		if (crateScript.curntLvl >= maxLvl) { silverEggsPickedUp += activeSilverEggs.Count; }
 
-		
 
 		// Fade out the finished level's items. (Except the ones in the crate.)
 		if (scaleScript.itemOnScale != null) { scaleScript.itemOnScale.transform.parent = itemHolder.transform; }
@@ -411,7 +408,7 @@ public class GrabItem : MonoBehaviour
 	void NextLevelSetup()
 	{
 		foreach(SilverEggs silEggs in lvlSilverEggs[crateScript.curntLvl - 2].GetComponentsInChildren<SilverEggs>())
-		{ silEggs.SilverEggOn(); Debug.Log(silEggs.gameObject.name);}
+		{ silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);}
 		lvlSilverEggs[crateScript.curntLvl - 2].SetActive(false);
 		//resetItemsButtonScript.EndOfLevelReset();
 		//itemHolder.SetActive(false);
@@ -426,9 +423,7 @@ public class GrabItem : MonoBehaviour
 		}
 
 		itemHolder = lvlItemHolders[crateScript.curntLvl - 1];
-		itemHolder.SetActive(true);
-
-		resetItemsButtonScript.FillItemResetArray();
+		
 		itemsWait = true;
 		//for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		//{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
@@ -465,13 +460,12 @@ public class GrabItem : MonoBehaviour
 			lvlItemHolders[crateScript.curntLvl - 1].SetActive(false);
 			resetItemsButtonScript.EndOfLevelReset();
 			crateScript.curntLvl = lvlToLoad;
-			InteractableThreeDots();
 			curntPounds = 0;
 			curntAmnt = 0;
 			itemHolder = lvlItemHolders[crateScript.curntLvl - 1];
-			lvlItemHolders[crateScript.curntLvl - 1].SetActive(true);
 
-			resetItemsButtonScript.FillItemResetArray();
+			//lvlItemHolders[crateScript.curntLvl - 1].SetActive(true);
+			//resetItemsButtonScript.FillItemResetArray();
 			itemsWait = true;
 			// for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 			// { resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
@@ -504,8 +498,16 @@ public class GrabItem : MonoBehaviour
 		for (int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
 		{
 			if (lvlSelectButtons[i] == lvlSelectButtons[crateScript.curntLvl - 1])
-			{ lvlSelectButtons[i].GetComponent<Button>().interactable = false; }
-			else { lvlSelectButtons[i].GetComponent<Button>().interactable = true; }
+			{
+				lvlSelectButtons[i].GetComponent<Button>().interactable = false;
+				lvlSelectScalers[i].ScaleUp();
+
+			}
+			else 
+			{
+				lvlSelectButtons[i].GetComponent<Button>().interactable = true; 
+				lvlSelectScalers[i].ScaleDown();
+			}
 		}
 	}
 
