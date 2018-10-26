@@ -120,6 +120,26 @@ public class MarketSaveLoadManager : MonoBehaviour
 	}
 
 
+		public static int LoadMarketPuzzEggsPending()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.totalEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
 	public static void DeleteMarketSaveFile()
 	{
 		File.Delete(Application.persistentDataPath + "/marketEggSaver.sav");
