@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114853729246090638}
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   EditorEvents:
   - {fileID: 114623589016887506}
   - {fileID: 114279864217088716}
@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: 114639390490089508}
   - {fileID: 114920004481208270}
   - {fileID: 114736596661468480}
-  MasterBankRef: {fileID: 114377516542320360}
+  MasterBankRef: {fileID: 114154609469899448}
   StringsBankRef: {fileID: 114853729246090638}
   stringsBankWriteTime: 636711482783591692
   cacheVersion: 2
@@ -108,6 +108,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+--- !u!114 &114099736887181418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: NbEggFound
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114112474130368064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +138,40 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114129661092879170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114154609469899448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Assets\FmodAssets\Desktop\Master
+    Bank.bank
+  lastModified: 636711482786795023
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 9683264
+  Exists: 1
 --- !u!114 &114167557626126380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +235,7 @@ MonoBehaviour:
   Path: event:/Music/FromHubToPark
   guid: 47ff3b87636be640b6d4c17ec5a01bf5
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -223,7 +272,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/EggsPanel_Close
   guid: 95d03fd8335c7840ba07c7850697926f
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -260,7 +309,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/EggsTrail
   guid: a1d2e581a15af44697dc2365c5629b81
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -282,7 +331,7 @@ MonoBehaviour:
   Path: event:/Music/FromHubToMarket
   guid: 19d20ee05340904283b9ecb3486a3cb3
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -290,6 +339,55 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 20000
+--- !u!114 &114296025507165214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114314712510767602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: D:\GameProjects\Git_FeathersOfTime\Hidden-Eggs-Game\Assets\FmodAssets\Desktop\Master
+    Bank.bank
+  lastModified: 636709929227345323
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 9683264
+  Exists: 1
+--- !u!114 &114324784881049312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: NbEggFound
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114328976278056292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +400,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114354945124437966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
   Min: 0
   Max: 1
   Default: 0
@@ -319,7 +432,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/EggsClick
   guid: 1c0d35bd3e3ddf4ba323bf2e5a971cb9
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -390,7 +503,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/MapUncoverFX
   guid: 5c403f039a6c3049b0ded5f15c1740ed
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -412,12 +525,12 @@ MonoBehaviour:
   Path: event:/Music/Beach
   guid: 5a0072383fd987489f2023db45a83a2e
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114935079008900652}
+  - {fileID: 114324784881049312}
   MinDistance: 0
   MaxDistance: 0
   Length: 155666
@@ -619,15 +732,15 @@ MonoBehaviour:
   Path: event:/Music/Hub
   guid: 0c357a572991734da767e5e09934f0f0
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114177479545450436}
-  - {fileID: 114602200571934974}
-  - {fileID: 114673667415847098}
-  - {fileID: 114833427125907412}
+  - {fileID: 114354945124437966}
+  - {fileID: 114129661092879170}
+  - {fileID: 114965640890522672}
+  - {fileID: 114764402463829978}
   MinDistance: 0
   MaxDistance: 0
   Length: 65985
@@ -645,7 +758,7 @@ MonoBehaviour:
   Path: event:/Music/Market
   guid: b38a07bf7f691c42881bc159e0d34e33
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -667,7 +780,7 @@ MonoBehaviour:
   Path: event:/Music/FromHubToBeach
   guid: d3c0eb0d6a9bc640ad49bc59b55229cc
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -749,7 +862,7 @@ MonoBehaviour:
   Path: event:/Music/Menu
   guid: 3c979abb3c5cbf4f855ebf2ce340be40
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -771,7 +884,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Button
   guid: e37410c7cb097a4b9bb5e7de4b0562ee
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -813,6 +926,36 @@ MonoBehaviour:
   - Name: 
     Value: 9683264
   Exists: 1
+--- !u!114 &114762290680550446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114764402463829978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114812133563800922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,6 +986,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114826322013979948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114833427125907412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,6 +1117,21 @@ MonoBehaviour:
   - Name: 
     Value: 9683264
   Exists: 0
+--- !u!114 &114866869029756110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114880619829387652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,7 +1214,7 @@ MonoBehaviour:
   Path: event:/Music/Park
   guid: d8aeddf391423d46b7cf5f85d04f4320
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1079,6 +1252,21 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114965640890522672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114975689453156586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,7 +1281,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/EggsPanel_Open
   guid: d1ca407c1dcef24fab79d1514fc86949
   Banks:
-  - {fileID: 114377516542320360}
+  - {fileID: 114154609469899448}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1

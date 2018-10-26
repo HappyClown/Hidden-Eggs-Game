@@ -25,7 +25,7 @@ public class Items : MonoBehaviour
 
 		sprite.color = new Color(1f, 1f, 1f, 0f);
 
-		FadeIn ();
+		//FadeIn ();
 	}
 
 	
