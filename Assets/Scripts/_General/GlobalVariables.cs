@@ -24,6 +24,8 @@ public class GlobalVariables : MonoBehaviour
 	[Header("Market Eggs")]
 	public List<bool> marketEggsFoundBools;
 	public int marketSilverEggsCount;
+	public List<int> marketPuzzSilEggsCount;
+	public List<int> marketSceneSilEggsCount;
 	//public bool marketEggToSave;
 	public bool rainbowRiddleSolved;
 	public int marketPuzzMaxLvl;
@@ -132,6 +134,14 @@ public class GlobalVariables : MonoBehaviour
 
 			marketPuzzMaxLvl = MarketSaveLoadManager.LoadMarketPuzzMaxLvl();
 			Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
+
+			marketPuzzSilEggsCount = MarketSaveLoadManager.LoadMarketPuzzSilEggsCount();
+
+			Debug.Log(marketPuzzSilEggsCount);
+
+			marketSceneSilEggsCount = MarketSaveLoadManager.LoadMarketSceneSilEggsCount();
+
+			Debug.Log(marketSceneSilEggsCount);
 
 
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();

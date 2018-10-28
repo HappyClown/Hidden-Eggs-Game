@@ -120,6 +120,46 @@ public class MarketSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static List<int> LoadMarketPuzzSilEggsCount()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.puzzSilEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
+	public static List<int> LoadMarketSceneSilEggsCount()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.sceneSilEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
 	public static void DeleteMarketSaveFile()
 	{
 		File.Delete(Application.persistentDataPath + "/marketEggSaver.sav");
@@ -298,6 +338,10 @@ public class MarketEggsData
 
 	public int silverEggsFound;
 
+	public List<int> puzzSilEggsFound;
+
+	public List<int> sceneSilEggsFound;
+
 	public bool rainbowRiddle;
 
 	public int puzzMaxLvl;
@@ -309,6 +353,10 @@ public class MarketEggsData
 		eggsFound = marketEggSaver.marketEggsFoundBools;
 
 		silverEggsFound = marketEggSaver.marketSilverEggsCount;
+
+		puzzSilEggsFound = marketEggSaver.marketPuzzSilEggsCount;
+		
+		sceneSilEggsFound = marketEggSaver.marketSceneSilEggsCount;
 
 		rainbowRiddle = marketEggSaver.rainbowRiddleSolved;
 

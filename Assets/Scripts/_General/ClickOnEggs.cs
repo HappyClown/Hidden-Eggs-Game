@@ -40,6 +40,7 @@ public class ClickOnEggs : MonoBehaviour
 	public GameObject eggPanel;
 	public List<GameObject> eggSpots;
 	public List<GameObject> silverEggSpots;
+	public SceneSilverEggSpawner sceneSilEggSpaScript;
 	public GameObject goldenEggSpot;
 	private int goldenEggFound;
 	[HideInInspector]
@@ -49,6 +50,7 @@ public class ClickOnEggs : MonoBehaviour
 	public float panelMoveSpeed;
 	public float basePanelOpenTime;
 	public List<GameObject> silverEggsInPanel;
+	public List<GameObject> silEggs;
 	public GameObject dropDrowArrow;
 	public List<GameObject> eggs;
 	private float timer;
@@ -209,10 +211,19 @@ public class ClickOnEggs : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
-			for (int i = 0; i < GlobalVariables.globVarScript.marketSilverEggsCount; i++)
+			// for (int i = 0; i < GlobalVariables.globVarScript.marketSilverEggsCount; i++)
+			// {
+			// 	silverEggsInPanel[i].SetActive(true);
+			// }
+			if (GlobalVariables.globVarScript.marketSceneSilEggsCount.Count > 0)
 			{
-				silverEggsInPanel[i].SetActive(true);
+				foreach(int silEggInPanel in GlobalVariables.globVarScript.marketSceneSilEggsCount)
+				{
+					silverEggsInPanel[silEggInPanel].SetActive(true);
+				}
 			}
+
+			sceneSilEggSpaScript.SpawnNewSilverEggs();
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
