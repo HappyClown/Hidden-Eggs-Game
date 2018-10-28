@@ -47,7 +47,7 @@ public class GrabItem : MonoBehaviour
 	[Header("Silver Eggs")]
 	public int silverEggsPickedUp;
 	public Sprite hollowSilEgg;
-	public List<GameObject> lvlSilverEggs, activeSilverEggs;
+	public List<GameObject> lvlSilverEggs, activeSilverEggs, allSilEggs;
 	private bool silverEggsActive;
 	public int amntSilEggsTapped;
 
@@ -276,6 +276,7 @@ public class GrabItem : MonoBehaviour
 						hit.collider.enabled = false;
 						
 						SaveSilverEggsToCorrectFile();
+						SaveNewSilEggsFound(allSilEggs.IndexOf(hit.collider.gameObject));
 
 						amntSilEggsTapped++;
 						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
@@ -485,6 +486,7 @@ public class GrabItem : MonoBehaviour
 	// Which of the three dots are interactable based on the highest playable level.
 	void EnabledThreeDots()
 	{
+		if (maxLvl == 0) { lvlSelectButtons[0].SetActive(true); }
 		for(int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
 		{ 
 			if (!lvlSelectButtons[i].activeSelf) 
@@ -495,13 +497,13 @@ public class GrabItem : MonoBehaviour
 	// Which of the three dots can be interacted with.
 	void InteractableThreeDots()
 	{
+		if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
 		for (int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
 		{
 			if (lvlSelectButtons[i] == lvlSelectButtons[crateScript.curntLvl - 1])
 			{
 				lvlSelectButtons[i].GetComponent<Button>().interactable = false;
 				lvlSelectScalers[i].ScaleUp();
-
 			}
 			else 
 			{
@@ -535,6 +537,20 @@ public class GrabItem : MonoBehaviour
 			GlobalVariables.globVarScript.marketSilverEggsCount = silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
 		}
+	}
+
+	public void SaveNewSilEggsFound(int newSilEggFound)
+	{
+		//bool alreadySaved = false;
+		foreach (int silEggNumber in GlobalVariables.globVarScript.marketPuzzSilEggsCount)
+		{
+			if (silEggNumber == newSilEggFound)
+			{
+				return;
+			}
+		}
+		GlobalVariables.globVarScript.marketPuzzSilEggsCount.Add(newSilEggFound);
+		GlobalVariables.globVarScript.SaveEggState();
 	}
 
 	public void SaveMaxLvl()
