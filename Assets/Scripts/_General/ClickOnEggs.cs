@@ -24,7 +24,6 @@ public class ClickOnEggs : MonoBehaviour
 
 	[Header("Egg Info")]
 	public int eggsLeft;
-	[HideInInspector]
 	public int eggsFound;
 	private int totalEggs;
 	private GameObject[] eggsCount;
@@ -187,6 +186,10 @@ public class ClickOnEggs : MonoBehaviour
 							EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
 							eggScript.EggFound();
 							hit.collider.enabled = false;
+
+							scenTapEnabScript.canTapEggRidPanPuz = true;
+							scenTapEnabScript.canTapHelpBird = true;
+							scenTapEnabScript.canTapGoldEgg = false;
 
 							AdjustGoldenEggCount();
 

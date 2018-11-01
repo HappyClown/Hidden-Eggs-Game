@@ -90,6 +90,10 @@ public class RainbowRiddle : MonoBehaviour
 						basketNumber = 0;
 						RainbowRiddleSolved ();
 
+						scenTapEnabScript.canTapEggRidPanPuz = false;
+						scenTapEnabScript.canTapHelpBird = false;
+						//scenTapEnabScript.canTapPauseBtn = true;
+
 						//SpawnGoldenEgg;
 						goldenEgg.SetActive(true);
 						goldenEggScript.inGoldenEggSequence = true;
