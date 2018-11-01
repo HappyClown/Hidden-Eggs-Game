@@ -30,6 +30,7 @@ public class GlobalVariables : MonoBehaviour
 	public bool rainbowRiddleSolved;
 	public int marketPuzzMaxLvl;
 	public int marketTotalEggsFound;
+	public bool marketLevelComplete;
 
 	[Header("Park Eggs")]
 	public List<bool> parkEggsFoundBools;
@@ -136,12 +137,12 @@ public class GlobalVariables : MonoBehaviour
 			Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
 
 			marketPuzzSilEggsCount = MarketSaveLoadManager.LoadMarketPuzzSilEggsCount();
-
 			Debug.Log(marketPuzzSilEggsCount);
 
 			marketSceneSilEggsCount = MarketSaveLoadManager.LoadMarketSceneSilEggsCount();
-
 			Debug.Log(marketSceneSilEggsCount);
+
+			marketLevelComplete = MarketSaveLoadManager.LoadMarketLevelComplete();
 
 
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();

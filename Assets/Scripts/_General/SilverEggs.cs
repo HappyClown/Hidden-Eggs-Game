@@ -10,6 +10,7 @@ public class SilverEggs : MonoBehaviour
 	public CircleCollider2D col;
 	public SilverEggSequence silEggSeqScript;
 	private Vector3 iniPos, iniRot, iniScale;
+	public bool hollow;
 	//public GrabItem grabItemScript;
 
 	void Awake()

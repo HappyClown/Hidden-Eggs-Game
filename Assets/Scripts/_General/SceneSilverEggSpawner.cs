@@ -9,6 +9,7 @@ public class SceneSilverEggSpawner : MonoBehaviour
 	public int puzzSilEggCount;
 	public int sceneSilEggCount;
 	public ClickOnEggs clickOnEggsScript;
+	public List<GameObject> silEggs;
 
 	void Awake()
 	{
@@ -19,7 +20,7 @@ public class SceneSilverEggSpawner : MonoBehaviour
 	public void SpawnNewSilverEggs()
 	{
 		if (puzzSilEggCount > sceneSilEggCount) // Meaning I have new silver eggs to send to the panel.
-		{ 
+		{ 	
 			// for (int i = sceneSilverEggs; i < maxSilverEggs; i++)
 			// {
 			// 	silEggSpawned++;
@@ -30,12 +31,12 @@ public class SceneSilverEggSpawner : MonoBehaviour
 
 			for(int i = sceneSilEggCount; i < puzzSilEggCount; i++)
 			{
-				clickOnEggsScript.silEggs[i].GetComponent<SceneSilverEgg>().SendToPanel(i);
-				GlobalVariables.globVarScript.marketSceneSilEggsCount.Add(GlobalVariables.globVarScript.marketPuzzSilEggsCount[i]);
+				silEggSpawned++;
+				silEggs[GlobalVariables.globVarScript.marketPuzzSilEggsCount[i]].SetActive(true);
+				silEggs[GlobalVariables.globVarScript.marketPuzzSilEggsCount[i]].GetComponent<SceneSilverEgg>().SendToPanel(GlobalVariables.globVarScript.marketPuzzSilEggsCount[i], silverEggSpawnDelay * silEggSpawned);
 			}
-			GlobalVariables.globVarScript.SaveEggState();
+
+			clickOnEggsScript.checkLvlCompleteF = silverEggSpawnDelay * silEggSpawned;
 		}
-		// OR
-		// SAVE A LIST<> OF int THEN ACTIVATE THE SPECIFIC NUMBERS
 	}
 }

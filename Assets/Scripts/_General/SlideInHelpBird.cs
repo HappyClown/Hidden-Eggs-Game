@@ -22,6 +22,8 @@ public class SlideInHelpBird : MonoBehaviour
 	private bool riddleShow;
 	private GameObject riddleCurntActive;
 
+	public GameObject hintBtnObj;
+
 	public GameObject closeMenuOnClick;
 	public GameObject blockClickingOnEggs;
 
@@ -34,6 +36,9 @@ public class SlideInHelpBird : MonoBehaviour
 	private float totalDist;
 	private float distLeft;
 	private float distPercent;
+
+	public SceneTapEnabler scenTapEnabScript;
+	public ClickOnEggs clickOnEggsScript;
 	
 
 
@@ -87,8 +92,12 @@ public class SlideInHelpBird : MonoBehaviour
 			{
 				if (!riddleBtnObj.activeSelf) 
 				{ 
-					riddleBtnObj.SetActive(true); 
+					riddleBtnObj.SetActive(true);
 					riddleBtn.enabled = true;
+					if (clickOnEggsScript.goldenEggFound > 0)
+					{
+						riddleBtn.interactable = false;
+					}
 				}
 			}
 		}
@@ -116,15 +125,23 @@ public class SlideInHelpBird : MonoBehaviour
 	}
 
 
-
 	public void MoveBirdUp () 
 	{
-		if (moveUp == false)
-		{moveUp = true;}
-		else if (moveUp == true)
-		{moveUp = false;}
+		if(scenTapEnabScript.canTapHelpBird)
+		{
+			if (moveUp == false)
+			{ 
+				moveUp = true; 
+				scenTapEnabScript.canTapEggRidPanPuz = false; 
+				return; 
+			}
+			else if (moveUp == true)
+			{
+				moveUp = false; 
+				scenTapEnabScript.canTapEggRidPanPuz = true;
+			}
+		}
 	}
-
 
 
 	public void ShowRiddleText ()

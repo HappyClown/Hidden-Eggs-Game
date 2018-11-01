@@ -9,6 +9,7 @@ public class GoldenEgg : MonoBehaviour
 	public PolygonCollider2D goldenEggCollider;
 	public EggGoToCorner eggGoToCornerScript;
 	public ClickOnEggs clickOnEggsScript;
+	public SceneTapEnabler scenTapEnabScript;
 
 	[Header("Egg Animation")]
 	public Animator anim;
@@ -248,13 +249,11 @@ public class GoldenEgg : MonoBehaviour
 	}
 
 
-
 	void DarkenScreen ()
 	{
 		coverAlpha = 0f;
 		coverOn = true;
 	}
-
 
 
 	void LightenScreen ()
@@ -265,7 +264,6 @@ public class GoldenEgg : MonoBehaviour
 	}
 
 
-
 	void TextOnOff ()
 	{
 		if (congratsA <= 0) congratsTxtOn = true;
@@ -273,13 +271,11 @@ public class GoldenEgg : MonoBehaviour
 	}
 
 
-
 	void StartAnim ()
 	{
 		anim.SetTrigger("StartAnim");
 		eggAnimStarted = true;
 	}
-
 
 
 	public void EndGoldenEggSequences ()
@@ -293,14 +289,12 @@ public class GoldenEgg : MonoBehaviour
 	}
 
 
-
 	// - CALLED DURING ANIMATIONS - // (Animation Events)
 	void StartStopGlow ()
 	{
 		if (!partGlow.isPlaying) { partGlow.Play(true); }
 		else { partGlow.Stop(true); }
 	}
-
 
 
 	void StartStopShafts()
@@ -310,13 +304,11 @@ public class GoldenEgg : MonoBehaviour
 	}
 
 
-
 	void StartStopSparkles()
 	{
 		if (!partSparkles.isPlaying) { partSparkles.Play(true); }
 		else { partSparkles.Stop(true); }
 	}
-
 
 	
 	void StartPop()
@@ -325,19 +317,16 @@ public class GoldenEgg : MonoBehaviour
 	}
 
 
-
 	void StartTrail()
 	{
 		if (!partTrail.isPlaying) { partTrail.Play(true); }
 	}
 
 
-
 	void ActivateCollider()
 	{
 		goldenEggCollider.enabled = true;
 	}
-
 
 
 	void SendEggToCornerSequence()
@@ -347,16 +336,20 @@ public class GoldenEgg : MonoBehaviour
 	}
 
 
-
 	void ClickFX()
 	{
 		eggGoToCornerScript.PlayEggClickFX();
 	}
 
 
-
 	void StopAnim ()
 	{
 		anim.enabled = false;
+	}
+
+
+	public void CanTapGold ()
+	{
+		scenTapEnabScript.canTapGoldEgg = true;
 	}
 }
