@@ -132,7 +132,8 @@ public class SlideInHelpBird : MonoBehaviour
 			if (moveUp == false)
 			{ 
 				moveUp = true; 
-				scenTapEnabScript.canTapEggRidPanPuz = false; 
+				scenTapEnabScript.canTapEggRidPanPuz = false;
+				closeMenuOnClick.SetActive(true);
 				return; 
 			}
 			else if (moveUp == true)
@@ -149,6 +150,6 @@ public class SlideInHelpBird : MonoBehaviour
 		riddleBtnAlpha = 1.05f;
 		riddleBtn.enabled = false;	
 		riddleShow = true;
-		closeMenuOnClick.SetActive(true);
+		
 	}
 }

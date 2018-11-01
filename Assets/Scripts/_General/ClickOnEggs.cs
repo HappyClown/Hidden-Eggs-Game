@@ -13,6 +13,7 @@ public class ClickOnEggs : MonoBehaviour
 
 	public LevelTapMannager levelTapManScript;
 	public SceneTapEnabler scenTapEnabScript;
+	public SceneFade sceneFadeScript;
 
 	public bool iniSeq;
 	public float iniSeqTimer;
@@ -70,20 +71,21 @@ public class ClickOnEggs : MonoBehaviour
 	public int eggsNeeded;
 	public int silverEggsFound;
 	public bool levelComplete;
-	public LevelComplete levelCompleteScript; 
+	public LevelComplete levelCompleteScript;
 	
-	public AudioSceneGeneral audioSceneGenScript;
-
+	//public AudioSceneGeneral audioSceneGenScript;
 
 
 	void Start () 
 	{
+		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
 		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
 		eggsLeft = eggsCount.Length;
 		totalEggs = eggsLeft;
 		silverEggCounterText.text = "Silver:" + (GlobalVariables.globVarScript.marketSilverEggsCount);
 		goldenEggCounterText.text = "Golden:" + (GlobalVariables.globVarScript.rainbowRiddleSolved);
 		newCornerPos = cornerPos.position;
+		if (iniDelay < sceneFadeScript.fadeTime) { iniDelay = sceneFadeScript.fadeTime; }
 		AdjustLevelComplete(); // Check if level has already been completed. (bool)
 		MakeSilverEggsAppear(); // Make the silver eggs already found appear in the egg panel.
 		AdjustSilverEggCount(); // Silver egg text.
@@ -92,7 +94,6 @@ public class ClickOnEggs : MonoBehaviour
 		iniSeq = true;
 		//CheckIfLevelComplete(); // if "thisSceneName" level complete screen was not played, check to see if its complete. (probably for when the players last eggs are from the puzzle)
 	}
-
 
 
 	void Update()
@@ -106,7 +107,16 @@ public class ClickOnEggs : MonoBehaviour
 				iniSeqTimer += Time.deltaTime;
 				if (iniSeqTimer > checkNewSilEggsF && !iniSilEggCheckB) { sceneSilEggSpaScript.SpawnNewSilverEggs(); iniSilEggCheckB = true; allowTapF += checkLvlCompleteF; }
 				if (iniSeqTimer > checkLvlCompleteF && !iniLvlCompCheckB) { if (totalEggsFound == eggsNeeded && !levelComplete) { PlayLvlCompleteSeq(); } ; iniLvlCompCheckB = true; }
-				if (iniSeqTimer > allowTapF) { if (!levelCompleteScript.inLvlCompSeqSetup) { scenTapEnabScript.canTapEggRidPanPuz = true; } iniSeq = false; }
+				if (iniSeqTimer > allowTapF) 
+				{ 
+					if (!levelCompleteScript.inLvlCompSeqSetup) 
+					{
+						scenTapEnabScript.canTapEggRidPanPuz = true;
+						scenTapEnabScript.canTapHelpBird = true;
+						scenTapEnabScript.canTapPauseBtn = true; 
+					}
+					iniSeq = false; 
+				}
 			}
 		}
 		// -- ON CLICK/TAP -- //
@@ -188,9 +198,14 @@ public class ClickOnEggs : MonoBehaviour
 			}
 
 		// - Play the level complete sequence - //
-		if (totalEggsFound == eggsNeeded && !levelComplete)
+		if (totalEggsFound == eggsNeeded && !levelComplete  && !iniSeq)
 		{
-			PlayLvlCompleteSeq();
+			if (eggMoving <= 0)
+			{
+				openEggPanel = false;
+				lockDropDownPanel = false;
+				PlayLvlCompleteSeq();
+			}
 		}
 
 		// -- Egg Panel Movement -- //
@@ -231,8 +246,6 @@ public class ClickOnEggs : MonoBehaviour
 		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + (totalEggs);
 	}
 
-
-// // // // //
 
 	public void PlayLvlCompleteSeq()
 	{
