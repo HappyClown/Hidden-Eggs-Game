@@ -8,7 +8,7 @@ using TMPro;
 public class LevelComplete : MonoBehaviour 
 {
 	#region LevelComplete Script Variables
-	private bool inLvlCompSeqSetup;
+	public bool inLvlCompSeqSetup;
 	private bool inLvlCompSeqEnd;
 	private float timer;
 
@@ -68,23 +68,23 @@ public class LevelComplete : MonoBehaviour
 	void Update () 
 	{
 		#region Manually Start or End Sequence
-		if (Input.GetKeyDown("space"))
-		{
-			if (!inLvlCompSeqSetup) 
-			{ 
-				timer = 0; 
-				inLvlCompSeqSetup = true; 
-				inLvlCompSeqEnd = false; 
-				darkenScreenStarted = false; showCongratsStarted = false; showEggsStarted = false; showCountersStarted = false; showTapStarted = false;
-			}
-			else if (inLvlCompSeqSetup)
-			{ 
-				timer = 0; 
-				inLvlCompSeqSetup = false; 
-				inLvlCompSeqEnd = true; 
-				darkenScreenStarted = false; showCongratsStarted = false; showEggsStarted = false; showCountersStarted = false; showTapStarted = false;
-			}
-		}
+		// if (Input.GetKeyDown("space"))
+		// {
+		// 	if (!inLvlCompSeqSetup) 
+		// 	{ 
+		// 		timer = 0; 
+		// 		inLvlCompSeqSetup = true; 
+		// 		inLvlCompSeqEnd = false; 
+		// 		darkenScreenStarted = false; showCongratsStarted = false; showEggsStarted = false; showCountersStarted = false; showTapStarted = false;
+		// 	}
+		// 	else if (inLvlCompSeqSetup)
+		// 	{ 
+		// 		timer = 0; 
+		// 		inLvlCompSeqSetup = false; 
+		// 		inLvlCompSeqEnd = true; 
+		// 		darkenScreenStarted = false; showCongratsStarted = false; showEggsStarted = false; showCountersStarted = false; showTapStarted = false;
+		// 	}
+		// }
 		#endregion
 		
 		#region Start/End Level Complete Timer Sequence
@@ -343,6 +343,8 @@ public class LevelComplete : MonoBehaviour
 	{
 		Debug.Log("Level Completuruuuu! You go noew.");
 		btnPressed = true;
+		clickOnEggsScript.levelComplete = true;
+		clickOnEggsScript.SaveLevelComplete();
 		// play some FX
 		// Fade to white
 		// wait a certain amount of time OR on screen fully white, then load menu scene at the hub

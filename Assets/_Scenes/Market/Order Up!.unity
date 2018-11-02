@@ -1918,6 +1918,7 @@ MonoBehaviour:
   spriteRen: {fileID: 303953119}
   col: {fileID: 303953120}
   silEggSeqScript: {fileID: 303953124}
+  hollow: 0
 --- !u!114 &303953124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,7 +1932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 303953120}
   moveDuration: 3
-  startMoveDelay: 0.25
+  startMoveDelay: 0
   endPos: {fileID: 1611877575}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -2304,7 +2305,7 @@ RectTransform:
   - {fileID: 813671916}
   - {fileID: 1327687746}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2902,7 +2903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &423690087
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3046,7 +3047,7 @@ Transform:
   - {fileID: 493386228}
   - {fileID: 692258467}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &455701112
 GameObject:
@@ -3859,7 +3860,7 @@ RectTransform:
   - {fileID: 1227908979}
   - {fileID: 288248649}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4129,6 +4130,7 @@ MonoBehaviour:
   spriteRen: {fileID: 654986386}
   col: {fileID: 654986387}
   silEggSeqScript: {fileID: 654986391}
+  hollow: 0
 --- !u!114 &654986391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4142,7 +4144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 654986387}
   moveDuration: 3
-  startMoveDelay: 0.25
+  startMoveDelay: 0
   endPos: {fileID: 1896262692}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -4952,6 +4954,7 @@ MonoBehaviour:
   spriteRen: {fileID: 729657839}
   col: {fileID: 729657840}
   silEggSeqScript: {fileID: 729657844}
+  hollow: 0
 --- !u!114 &729657844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4965,7 +4968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 729657840}
   moveDuration: 3
-  startMoveDelay: 0.25
+  startMoveDelay: 0
   endPos: {fileID: 148384449}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -5491,7 +5494,7 @@ Transform:
   - {fileID: 148384449}
   - {fileID: 1154367797}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &839639335
 GameObject:
@@ -5805,7 +5808,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952176593
 GameObject:
@@ -6186,6 +6189,13 @@ MonoBehaviour:
   - {fileID: 1669234056}
   - {fileID: 303953117}
   - {fileID: 729657837}
+  allSilverEggsScripts:
+  - {fileID: 1523384246}
+  - {fileID: 654986390}
+  - {fileID: 1631480713}
+  - {fileID: 1669234062}
+  - {fileID: 303953123}
+  - {fileID: 729657843}
   amntSilEggsTapped: 0
   lvlSelectButtons:
   - {fileID: 1905070408}
@@ -6200,11 +6210,12 @@ MonoBehaviour:
   - {fileID: 5464531}
   - {fileID: 978307684}
   seqTimer: 0
-  crateDownF: 0.25
-  reqDownF: 3
-  itemSpawnF: 3.5
-  dotsSpawnF: 3.75
-  iniCanPlayF: 3.9
+  iniSeqDelay: 1.5
+  crateDownF: 0.75
+  reqDownF: 3.5
+  itemSpawnF: 4
+  dotsSpawnF: 4.25
+  iniCanPlayF: 4.4
   scaleScript: {fileID: 991551998}
   crateScript: {fileID: 991551999}
   resetItemsButtonScript: {fileID: 1327687750}
@@ -7250,6 +7261,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 567437507}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1282860259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1282860261}
+  - component: {fileID: 1282860260}
+  m_Layer: 0
+  m_Name: Scratches03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1282860260
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1282860259}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 1d46af56a67a84745999506a243fcd8d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 8.87, y: 14.9}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!4 &1282860261
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1282860259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.14, y: 3.17, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1308816278
 GameObject:
@@ -8308,6 +8393,7 @@ MonoBehaviour:
   spriteRen: {fileID: 1523384242}
   col: {fileID: 1523384243}
   silEggSeqScript: {fileID: 1523384247}
+  hollow: 0
 --- !u!114 &1523384247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8321,7 +8407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 1523384243}
   moveDuration: 3
-  startMoveDelay: 0.25
+  startMoveDelay: 0
   endPos: {fileID: 2084256355}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -8795,6 +8881,7 @@ MonoBehaviour:
   spriteRen: {fileID: 1631480709}
   col: {fileID: 1631480710}
   silEggSeqScript: {fileID: 1631480714}
+  hollow: 0
 --- !u!114 &1631480714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8808,7 +8895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 1631480710}
   moveDuration: 3
-  startMoveDelay: 0.25
+  startMoveDelay: 0
   endPos: {fileID: 952176594}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -9181,6 +9268,7 @@ MonoBehaviour:
   spriteRen: {fileID: 1669234058}
   col: {fileID: 1669234059}
   silEggSeqScript: {fileID: 1669234063}
+  hollow: 0
 --- !u!114 &1669234063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9194,7 +9282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 1669234059}
   moveDuration: 3
-  startMoveDelay: 0.25
+  startMoveDelay: 0
   endPos: {fileID: 1308816279}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -10032,7 +10120,7 @@ Transform:
   - {fileID: 1502931994}
   - {fileID: 1381440586}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1844565957
 MonoBehaviour:
@@ -10419,7 +10507,7 @@ RectTransform:
   - {fileID: 1925050543}
   - {fileID: 1860337869}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10533,6 +10621,16 @@ Prefab:
     - target: {fileID: 4044542282466906, guid: 3f7590356a743604fb777e4025228310, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114240250035061422, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: fadeTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114240250035061422, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: startBackgroundFade
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}
@@ -10672,7 +10770,7 @@ Transform:
   m_Children:
   - {fileID: 567437507}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2011548657
 GameObject:
@@ -10813,7 +10911,7 @@ Transform:
   - {fileID: 1749358259}
   - {fileID: 1453397848}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2059337711
 SpriteRenderer:

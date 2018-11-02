@@ -25,6 +25,8 @@ public class RainbowRiddle : MonoBehaviour
 	public bool fireworksFired;
 	public GameObject appleBasket;
 
+	public SceneTapEnabler scenTapEnabScript;
+
 
 
     void Start ()
@@ -43,7 +45,7 @@ public class RainbowRiddle : MonoBehaviour
 
     void Update ()
     {
-		if (!GlobalVariables.globVarScript.rainbowRiddleSolved && Input.GetMouseButtonDown(0))
+		if (!GlobalVariables.globVarScript.rainbowRiddleSolved && Input.GetMouseButtonDown(0) && scenTapEnabScript.canTapEggRidPanPuz)
 		{
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
@@ -87,6 +89,10 @@ public class RainbowRiddle : MonoBehaviour
 					{
 						basketNumber = 0;
 						RainbowRiddleSolved ();
+
+						scenTapEnabScript.canTapEggRidPanPuz = false;
+						scenTapEnabScript.canTapHelpBird = false;
+						//scenTapEnabScript.canTapPauseBtn = true;
 
 						//SpawnGoldenEgg;
 						goldenEgg.SetActive(true);

@@ -17,13 +17,19 @@ public class SlideInHelpBird : MonoBehaviour
 
 	public GameObject riddleBtnObj;
 	private Button riddleBtn;
+	private Image riddleImg;
 	private float riddleBtnAlpha;
 	public float riddleBtnFadeTime;
 	private bool riddleShow;
 	private GameObject riddleCurntActive;
 
+	public GameObject hintBtnObj;
+	public Button hintBtn;
+	private Image hintImg;
+
 	public GameObject closeMenuOnClick;
 	public GameObject blockClickingOnEggs;
+	public GameObject dontCloseMenu;
 
 	public List<GameObject> riddleHints;
 
@@ -34,6 +40,9 @@ public class SlideInHelpBird : MonoBehaviour
 	private float totalDist;
 	private float distLeft;
 	private float distPercent;
+
+	public SceneTapEnabler scenTapEnabScript;
+	public ClickOnEggs clickOnEggsScript;
 	
 
 
@@ -41,7 +50,10 @@ public class SlideInHelpBird : MonoBehaviour
 	{
 		totalDist = Vector2.Distance(hiddenHelpBirdPos.position, shownHelpBirdPos.position);
 		riddleBtn = riddleBtnObj.GetComponent<Button>();
+		riddleImg = riddleBtnObj.GetComponent<Image>();
 		riddleBtn.onClick.AddListener(ShowRiddleText);
+		hintBtn = hintBtnObj.GetComponent<Button>();
+		hintImg = hintBtnObj.GetComponent<Image>();
 	}
 
 
@@ -62,6 +74,7 @@ public class SlideInHelpBird : MonoBehaviour
 		if (moveUp == false)
 		{
 			closeMenuOnClick.SetActive(false);
+			dontCloseMenu.SetActive(false);
 			this.transform.position = Vector3.MoveTowards(this.transform.position, hiddenHelpBirdPos.position, speed * Time.deltaTime);
 
 			if (riddleCurntActive) { riddleCurntActive.SetActive(false); }
@@ -82,13 +95,33 @@ public class SlideInHelpBird : MonoBehaviour
 
 			if (txtBubAlpha < 1) { txtBubAlpha += Time.deltaTime * txtBubFadeTime; }
 			txtBubble.GetComponent<Image>().color = new Color(1,1,1, txtBubAlpha);
-
+			// Bird parchment has fully appeared
 			if (txtBubAlpha >= 1)
-			{
+			{	// Make the riddle button appear
 				if (!riddleBtnObj.activeSelf) 
 				{ 
-					riddleBtnObj.SetActive(true); 
+					riddleBtnObj.SetActive(true);
 					riddleBtn.enabled = true;
+					if (clickOnEggsScript.goldenEggFound > 0)
+					{
+						riddleBtn.interactable = false;
+					}
+					else 
+					{
+						riddleBtn.interactable = true;
+						riddleImg.raycastTarget = true;
+					}
+					// Make the hint button appear
+					hintBtnObj.SetActive(true);
+					if (clickOnEggsScript.eggsFound >= clickOnEggsScript.eggs.Count - 1) // -1 for the golden egg
+					{
+						hintBtn.interactable = false;
+					}
+					else
+					{
+						hintBtn.interactable = true;
+						hintImg.raycastTarget = true;
+					}
 				}
 			}
 		}
@@ -97,13 +130,15 @@ public class SlideInHelpBird : MonoBehaviour
 			if (txtBubAlpha > 0) { txtBubAlpha -= Time.deltaTime * txtBubFadeTime; }
 			txtBubble.GetComponent<Image>().color = new Color(1,1,1, txtBubAlpha);
 			if (riddleBtnObj.activeSelf) { riddleBtnObj.SetActive(false); }
+			if (hintBtnObj.activeSelf) { hintBtnObj.SetActive(false); }
 		}
 
-
+		// Riddle button alpha
 		if (riddleBtnAlpha > 0f)
 		{
 			riddleBtnAlpha -= Time.deltaTime * riddleBtnFadeTime;
-			riddleBtnObj.GetComponent<Image>().color = new Color(1,1,1, riddleBtnAlpha);
+			riddleImg.color = new Color(1,1,1, riddleBtnAlpha);
+			hintImg.color = new Color(1,1,1, riddleBtnAlpha);
 		}
 		else if (riddleShow && riddleBtnAlpha <= 0)
 		{
@@ -111,27 +146,44 @@ public class SlideInHelpBird : MonoBehaviour
 			int random = Random.Range(0, riddleHints.Count);
 			riddleHints[random].SetActive(true);
 			riddleCurntActive = riddleHints[random];
+			dontCloseMenu.SetActive(false);
+			riddleBtn.interactable = false;
+			riddleImg.raycastTarget = false;
+			hintBtn.interactable = false;
+			hintImg.raycastTarget = false;
 		}
 
 	}
 
 
-
 	public void MoveBirdUp () 
 	{
-		if (moveUp == false)
-		{moveUp = true;}
-		else if (moveUp == true)
-		{moveUp = false;}
+		if(scenTapEnabScript.canTapHelpBird)
+		{
+			if (moveUp == false)
+			{ 
+				moveUp = true; 
+				scenTapEnabScript.canTapEggRidPanPuz = false;
+				closeMenuOnClick.SetActive(true);
+				dontCloseMenu.SetActive(true);
+				return; 
+			}
+			else if (moveUp == true)
+			{
+				moveUp = false; 
+				scenTapEnabScript.canTapEggRidPanPuz = true;
+			}
+		}
 	}
-
 
 
 	public void ShowRiddleText ()
 	{
-		riddleBtnAlpha = 1.05f;
-		riddleBtn.enabled = false;	
-		riddleShow = true;
-		closeMenuOnClick.SetActive(true);
+		if (!riddleShow)
+		{
+			riddleBtnAlpha = 1.05f;
+			riddleBtn.enabled = false;	
+			riddleShow = true;
+		}
 	}
 }

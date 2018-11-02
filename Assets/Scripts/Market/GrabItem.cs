@@ -48,6 +48,7 @@ public class GrabItem : MonoBehaviour
 	public int silverEggsPickedUp;
 	public Sprite hollowSilEgg;
 	public List<GameObject> lvlSilverEggs, activeSilverEggs, allSilEggs;
+	public List<SilverEggs> allSilverEggsScripts;
 	private bool silverEggsActive;
 	public int amntSilEggsTapped;
 
@@ -63,7 +64,7 @@ public class GrabItem : MonoBehaviour
 
 	[Header("Initial Sequence")]
 	public float seqTimer;
-	public float crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
+	public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
 	private bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
 
 	[Header("Scripts")]
@@ -228,13 +229,17 @@ public class GrabItem : MonoBehaviour
 			// After the initial set up run the first sequence.
 			if (iniSeqStart)
 			{
-				seqTimer += Time.deltaTime;
-				if (seqTimer > crateDownF && !crateDownB) { crateDownB = true; crateAnim.SetTrigger("MoveDown"); StartCoroutine(MoveCrateDown()); }
-				if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; } 
-				if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-				{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); } }
-				if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); }
-				if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+				if (iniSeqDelay > 0) { iniSeqDelay -= Time.deltaTime; }
+				else
+				{
+					seqTimer += Time.deltaTime;
+					if (seqTimer > crateDownF && !crateDownB) { crateDownB = true; crateAnim.SetTrigger("MoveDown"); StartCoroutine(MoveCrateDown()); }
+					if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; } 
+					if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+					{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); } }
+					if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); }
+					if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+				}
 			}
 
 			if (itemsWait)
@@ -272,12 +277,14 @@ public class GrabItem : MonoBehaviour
 					{
 						//if (crateScript.curntLvl >= maxLvl) { silverEggsPickedUp += 1; }
 						Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
-						hit.collider.gameObject.GetComponent<SilverEggs>().StartSilverEggAnim();
+						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
+						silEggTappedScript.StartSilverEggAnim();
 						hit.collider.enabled = false;
 						
+						if (!silEggTappedScript.hollow) { silverEggsPickedUp++; }
 						SaveSilverEggsToCorrectFile();
 						SaveNewSilEggsFound(allSilEggs.IndexOf(hit.collider.gameObject));
-
+						
 						amntSilEggsTapped++;
 						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
 					}
@@ -323,15 +330,31 @@ public class GrabItem : MonoBehaviour
 		// Turn off interaction for all three level select dots.
 		//UninteractableThreeDots();
 
-		//Set the silver egg sprites to Hollow if level was completed previously.
-		if (maxLvl > crateScript.curntLvl)
+		// if (maxLvl > crateScript.curntLvl)
+		// {
+		// 	foreach (Transform silEgg in lvlSilverEggs[crateScript.curntLvl - 1].transform)
+		// 	{
+		// 		silEgg.GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
+		// 		allSilverEggsScripts.IndexOf(silEgg).hollow = true;
+		// 		Debug.Log(silEgg.name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
+		// 	}
+		// }
+
+		// foreach (Transform silEgg in GlobalVariables.globVarScript.marketPuzzSilEggsCount[crateScript.curntLvl - 1])
+		// {
+		// 	silEgg.GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
+		// 	Debug.Log(silEgg.name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
+		// }
+
+		//Set the silver egg sprites to Hollow if the egg was found already.
+		for (int i = 0; i < GlobalVariables.globVarScript.marketPuzzSilEggsCount.Count; i++)
 		{
-			foreach (Transform silEgg in lvlSilverEggs[crateScript.curntLvl - 1].transform)
-			{
-				silEgg.GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
-				Debug.Log(silEgg.name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
-			}
+			int eggNumber = GlobalVariables.globVarScript.marketPuzzSilEggsCount[i];
+			allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
+			allSilverEggsScripts[eggNumber].hollow = true;
+			Debug.Log(allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
+
 
 		//lvlSilverEggs[crateScript.curntLvl - 1].SetActive(true);
 		if (lvlSilverEggs[crateScript.curntLvl - 1].transform.childCount > 0)
@@ -348,7 +371,7 @@ public class GrabItem : MonoBehaviour
 
 		if (!noFadeDelay) { TurnFadeDelayOff(); noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
 
-		if (crateScript.curntLvl >= maxLvl) { silverEggsPickedUp += activeSilverEggs.Count; }
+		//if (crateScript.curntLvl >= maxLvl) { silverEggsPickedUp += activeSilverEggs.Count; }
 
 
 		// Fade out the finished level's items. (Except the ones in the crate.)
@@ -387,7 +410,7 @@ public class GrabItem : MonoBehaviour
 				silverEggsActive = false;
 				amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
-				
+				//silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount
 				crateScript.curntLvl++;
 				if (crateScript.curntLvl > maxLvl) 
 				{ maxLvl = crateScript.curntLvl; SaveMaxLvl(); EnabledThreeDots(); }
@@ -494,7 +517,7 @@ public class GrabItem : MonoBehaviour
 		}
 	}
 
-	// Which of the three dots can be interacted with.
+	// Which of the three dots can be interacted with, also adjust the scale accordingly.
 	void InteractableThreeDots()
 	{
 		if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
@@ -532,7 +555,7 @@ public class GrabItem : MonoBehaviour
 	public void SaveSilverEggsToCorrectFile()
 	{
 		if (silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount) 
-		{ 
+		{
 			GlobalVariables.globVarScript.marketTotalEggsFound += 1;
 			GlobalVariables.globVarScript.marketSilverEggsCount = silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
@@ -561,11 +584,6 @@ public class GrabItem : MonoBehaviour
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
-
-	//public void LoadMaxLvl()
-	//{
-	//	GlobalVariables.globVarScript.LoadCorrectPuzz();
-	//}
 
 	void UpdateMousePos()
 	{

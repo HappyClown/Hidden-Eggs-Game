@@ -12,10 +12,18 @@ public class ClickOnEggs : MonoBehaviour
 	Vector3 mousePos;
 
 	public LevelTapMannager levelTapManScript;
+	public SceneTapEnabler scenTapEnabScript;
+	public SceneFade sceneFadeScript;
+
+	public bool iniSeq;
+	public float iniSeqTimer;
+	public float iniDelay; // waiting for titlecard to fade away
+	public float checkNewSilEggsF;
+	public float checkLvlCompleteF, allowTapF;
+	public bool iniSilEggCheckB, iniLvlCompCheckB;
 
 	[Header("Egg Info")]
 	public int eggsLeft;
-	[HideInInspector]
 	public int eggsFound;
 	private int totalEggs;
 	private GameObject[] eggsCount;
@@ -42,7 +50,7 @@ public class ClickOnEggs : MonoBehaviour
 	public List<GameObject> silverEggSpots;
 	public SceneSilverEggSpawner sceneSilEggSpaScript;
 	public GameObject goldenEggSpot;
-	private int goldenEggFound;
+	public int goldenEggFound;
 	[HideInInspector]
 	public int eggMoving;
 	public GameObject eggPanelHidden;
@@ -50,7 +58,6 @@ public class ClickOnEggs : MonoBehaviour
 	public float panelMoveSpeed;
 	public float basePanelOpenTime;
 	public List<GameObject> silverEggsInPanel;
-	public List<GameObject> silEggs;
 	public GameObject dropDrowArrow;
 	public List<GameObject> eggs;
 	private float timer;
@@ -61,97 +68,146 @@ public class ClickOnEggs : MonoBehaviour
 	[Header("Level Complete")]
 	public int totalEggsFound;
 	public int eggsNeeded;
-	private int silverEggsFound;
+	public int silverEggsFound;
 	public bool levelComplete;
-
+	public LevelComplete levelCompleteScript;
+	
+	//public AudioSceneGeneral audioSceneGenScript;
 
 
 	void Start () 
 	{
+		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
 		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
 		eggsLeft = eggsCount.Length;
 		totalEggs = eggsLeft;
 		silverEggCounterText.text = "Silver:" + (GlobalVariables.globVarScript.marketSilverEggsCount);
 		goldenEggCounterText.text = "Golden:" + (GlobalVariables.globVarScript.rainbowRiddleSolved);
 		newCornerPos = cornerPos.position;
-		MakeSilverEggsAppear();
-		AdjustSilverEggCount();
-		AdjustGoldenEggCount();
-		AdjustTotalEggsFound();
+		if (iniDelay < sceneFadeScript.fadeTime) { iniDelay = sceneFadeScript.fadeTime; }
+		AdjustLevelComplete(); // Check if level has already been completed. (bool)
+		MakeSilverEggsAppear(); // Make the silver eggs already found appear in the egg panel.
+		AdjustSilverEggCount(); // Silver egg text.
+		AdjustGoldenEggCount(); // Golden egg text.
+		AdjustTotalEggsFound();	// Total eggs found = to what it was last time the scene was openned. // Not sure if this is needed.
+		iniSeq = true;
 		//CheckIfLevelComplete(); // if "thisSceneName" level complete screen was not played, check to see if its complete. (probably for when the players last eggs are from the puzzle)
 	}
 
 
-
 	void Update()
 	{
+		// initial delay  -> check silver eggs -> check lvl complete -> allow play
+		if (iniSeq)
+		{
+			if (iniDelay > 0) iniDelay -= Time.deltaTime;
+			else
+			{
+				iniSeqTimer += Time.deltaTime;
+				if (iniSeqTimer > checkNewSilEggsF && !iniSilEggCheckB) { sceneSilEggSpaScript.SpawnNewSilverEggs(); iniSilEggCheckB = true; allowTapF += checkLvlCompleteF; }
+				if (iniSeqTimer > checkLvlCompleteF && !iniLvlCompCheckB) { if (totalEggsFound == eggsNeeded && !levelComplete) { PlayLvlCompleteSeq(); } ; iniLvlCompCheckB = true; }
+				if (iniSeqTimer > allowTapF) 
+				{ 
+					if (!levelCompleteScript.inLvlCompSeqSetup) 
+					{
+						scenTapEnabScript.canTapEggRidPanPuz = true;
+						scenTapEnabScript.canTapHelpBird = true;
+						scenTapEnabScript.canTapPauseBtn = true; 
+					}
+					iniSeq = false; 
+				}
+			}
+		}
 		// -- ON CLICK/TAP -- //
 		if (Input.GetMouseButtonDown(0))
-		{
-			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-
-			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-
-			Debug.DrawRay(mousePos2D, Vector3.forward, Color.red, 60f);
-
-			if (hit)//levelTapManScripthit
 			{
-				// - Egg Tapped - //
-				if (hit.collider.CompareTag("Egg") || (hit.collider.CompareTag("GoldenEgg")))
+				mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+				//Debug.DrawRay(mousePos2D, Vector3.forward, Color.red, 60f);
+				if (hit)//levelTapManScripthit
 				{
-					Debug.Log(hit.collider.name);
-
-					EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
-
-					eggScript.EggFound();
-
-					hit.collider.enabled = false;
-
-					if (hit.collider.CompareTag("Egg"))
+					if (scenTapEnabScript.canTapEggRidPanPuz) // On regular eggs, puzzle, eggPanel
 					{
-						eggsFound += 1;
-						eggMoving += 1;
-						openEggPanel = true;
-						UpdateEggsString();
-					}
-					else
-					{
-						AdjustGoldenEggCount();
-					}
+						// - Egg Tapped - //
+						if (hit.collider.CompareTag("Egg"))
+						{
+							Debug.Log(hit.collider.name);
+							EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
+							eggScript.EggFound();
+							hit.collider.enabled = false;
 
-					AddEggsFound();
-					eggScript.SaveEggToCorrectFile();
+							eggsFound += 1;
+							eggMoving += 1;
+							openEggPanel = true;
+							UpdateEggsString();
+							//Play egg  click sound
+							//audioSceneGenScript.
+
+							AddEggsFound();
+							if (levelComplete) { levelCompleteScript.inLvlCompSeqSetup = true; }
+							eggScript.SaveEggToCorrectFile();
+						}
+
+						// - Go To Puzzle Scene - //
+						if (hit.collider.CompareTag("Puzzle"))
+						{
+							SceneFade.SwitchScene(puzzleSceneName);
+							PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
+						}
+
+						// - Opening Egg Panel Manually - //
+						if (hit.collider.CompareTag("EggPanel"))
+						{
+							if (lockDropDownPanel)
+							{
+								openEggPanel = false;
+								lockDropDownPanel = false;
+								return;
+							}
+
+							if (eggMoving <= 0)
+							{
+								openEggPanel = true;
+								lockDropDownPanel = true;
+							}
+
+							if (eggMoving > 0)
+							{
+								lockDropDownPanel = true;
+							}
+						}
+					}
+					if (scenTapEnabScript.canTapGoldEgg)
+					{
+						// - Golden Egg Tapped - //
+						if ((hit.collider.CompareTag("GoldenEgg")))
+						{
+							EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
+							eggScript.EggFound();
+							hit.collider.enabled = false;
+
+							scenTapEnabScript.canTapEggRidPanPuz = true;
+							scenTapEnabScript.canTapHelpBird = true;
+							scenTapEnabScript.canTapGoldEgg = false;
+
+							AdjustGoldenEggCount();
+
+							AddEggsFound();
+							eggScript.SaveEggToCorrectFile();
+						}
+					}
 				}
+			}
 
-				// - Go To Puzzle Scene - //
-				if (hit.collider.CompareTag("Puzzle"))
-				{
-					SceneFade.SwitchScene(puzzleSceneName);
-					PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
-				}
-
-				// - Opening Egg Panel Manually - //
-				if (hit.collider.CompareTag("EggPanel"))
-				{
-					if (lockDropDownPanel)
-					{
-						openEggPanel = false;
-						lockDropDownPanel = false;
-						return;
-					}
-
-					if (eggMoving <= 0)
-					{
-						openEggPanel = true;
-						lockDropDownPanel = true;
-					}
-
-					if (eggMoving > 0)
-					{
-						lockDropDownPanel = true;
-					}
-				}
+		// - Play the level complete sequence - //
+		if (totalEggsFound == eggsNeeded && !levelComplete  && !iniSeq)
+		{
+			if (eggMoving <= 0)
+			{
+				openEggPanel = false;
+				lockDropDownPanel = false;
+				PlayLvlCompleteSeq();
 			}
 		}
 
@@ -187,22 +243,33 @@ public class ClickOnEggs : MonoBehaviour
 	}
 
 
-
+	#region Methods
 	public void UpdateEggsString()
 	{
 		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + (totalEggs);
 	}
 
 
-// // // // //
+	public void PlayLvlCompleteSeq()
+	{
+		scenTapEnabScript.canTapEggRidPanPuz = false;
+		scenTapEnabScript.canTapHelpBird = false;
+		scenTapEnabScript.canTapPauseBtn = true;
+		scenTapEnabScript.canTapLvlComp = true;
+
+		levelCompleteScript.inLvlCompSeqSetup = true;
+	}
+
+
 	public void AddEggsFound()
 	{
 		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
 
-		if (totalEggsFound == eggsNeeded && !levelComplete)
-		{
-			levelComplete = true;
-		}
+		// if (totalEggsFound == eggsNeeded && !levelComplete)
+		// {
+		// 	levelComplete = true;
+		// 	SaveLevelComplete();
+		// }
 	}
 
 
@@ -211,19 +278,13 @@ public class ClickOnEggs : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
-			// for (int i = 0; i < GlobalVariables.globVarScript.marketSilverEggsCount; i++)
-			// {
-			// 	silverEggsInPanel[i].SetActive(true);
-			// }
 			if (GlobalVariables.globVarScript.marketSceneSilEggsCount.Count > 0)
 			{
 				foreach(int silEggInPanel in GlobalVariables.globVarScript.marketSceneSilEggsCount)
 				{
 					silverEggsInPanel[silEggInPanel].SetActive(true);
 				}
-			}
-
-			sceneSilEggSpaScript.SpawnNewSilverEggs();
+			}	
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
@@ -244,12 +305,11 @@ public class ClickOnEggs : MonoBehaviour
 	}
 
 
-
 	public void AdjustSilverEggCount()
 	{
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
-			silverEggsFound = GlobalVariables.globVarScript.marketSilverEggsCount;
+			silverEggsFound = GlobalVariables.globVarScript.marketSceneSilEggsCount.Count;
 			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
 		}
 
@@ -265,7 +325,6 @@ public class ClickOnEggs : MonoBehaviour
 			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
 		}
 	}
-
 
 
 	public void AdjustGoldenEggCount()
@@ -290,7 +349,6 @@ public class ClickOnEggs : MonoBehaviour
 	}
 
 
-
 	public void AdjustTotalEggsFound()
 	{
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
@@ -308,4 +366,44 @@ public class ClickOnEggs : MonoBehaviour
 
 		}
 	}
+
+
+	public void SaveLevelComplete()
+	{
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		{
+			GlobalVariables.globVarScript.marketLevelComplete = levelComplete;
+			GlobalVariables.globVarScript.SaveEggState();
+		}
+
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		{
+
+		}
+
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		{
+
+		}
+	}
+
+
+	public void AdjustLevelComplete()
+	{
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		{
+			levelComplete = GlobalVariables.globVarScript.marketLevelComplete;
+		}
+
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		{
+			
+		}
+
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		{
+
+		}
+	}
+	#endregion
 }
