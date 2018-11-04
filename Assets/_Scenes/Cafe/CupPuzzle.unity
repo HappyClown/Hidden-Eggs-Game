@@ -453,7 +453,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 2.72
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2752,6 +2752,7 @@ GameObject:
   - component: {fileID: 1272416910}
   - component: {fileID: 1272416911}
   - component: {fileID: 1272416912}
+  - component: {fileID: 1272416913}
   m_Layer: 0
   m_Name: PuzzleEngine
   m_TagString: Untagged
@@ -2818,7 +2819,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46ae370811206d04b99215314019bef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathzoneRadius: 125
+  deathzoneRadius: 50
+--- !u!114 &1272416913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1272416909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4357d18b7d2e474988964b80836e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectTap: 1
+  detectDoubleTap: 1
+  minDoubleTapTime: 0.5
+  detectDrag: 0
+  draggingDeathzone: 0
+  detectSwipe: 0
+  swipeDeathzoneRadius: 50
 --- !u!1 &1397453742
 GameObject:
   m_ObjectHideFlags: 0
