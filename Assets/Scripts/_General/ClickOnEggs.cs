@@ -289,10 +289,13 @@ public class ClickOnEggs : MonoBehaviour
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
-			for (int i = 0; i < GlobalVariables.globVarScript.parkSilverEggsCount; i++)
+			if (GlobalVariables.globVarScript.parkSceneSilEggsCount.Count > 0)
 			{
-				silverEggsInPanel[i].SetActive(true);
-			}
+				foreach(int silEggInPanel in GlobalVariables.globVarScript.parkSceneSilEggsCount)
+				{
+					silverEggsInPanel[silEggInPanel].SetActive(true);
+				}
+			}	
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
@@ -358,7 +361,7 @@ public class ClickOnEggs : MonoBehaviour
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
-
+			totalEggsFound = GlobalVariables.globVarScript.parkTotalEggsFound;
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
@@ -378,7 +381,8 @@ public class ClickOnEggs : MonoBehaviour
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
-
+			GlobalVariables.globVarScript.parkLevelComplete = levelComplete;
+			GlobalVariables.globVarScript.SaveEggState();
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
@@ -397,7 +401,7 @@ public class ClickOnEggs : MonoBehaviour
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
-			
+			levelComplete = GlobalVariables.globVarScript.parkLevelComplete;
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)

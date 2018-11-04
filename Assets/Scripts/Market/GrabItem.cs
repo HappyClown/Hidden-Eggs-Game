@@ -326,10 +326,7 @@ public class GrabItem : MonoBehaviour
 	{
 		//Debug.Log("New Level Setup");
 		canPlay = false;
-
-		// Turn off interaction for all three level select dots.
-		//UninteractableThreeDots();
-
+		
 		// if (maxLvl > crateScript.curntLvl)
 		// {
 		// 	foreach (Transform silEgg in lvlSilverEggs[crateScript.curntLvl - 1].transform)

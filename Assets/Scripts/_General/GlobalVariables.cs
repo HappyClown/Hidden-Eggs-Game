@@ -35,9 +35,13 @@ public class GlobalVariables : MonoBehaviour
 	[Header("Park Eggs")]
 	public List<bool> parkEggsFoundBools;
 	public int parkSilverEggsCount;
+	public List<int> parkPuzzSilEggsCount;
+	public List<int> parkSceneSilEggsCount;
 	//public bool parkEggToSave;
 	public bool hopscotchRiddleSolved;
+	public int parkPuzzMaxLvl;
 	public int parkTotalEggsFound;
+	public bool parkLevelComplete;
 
 	[Header("Beach Eggs")]
 	public List<bool> beachEggsFoundBools;
@@ -164,13 +168,26 @@ public class GlobalVariables : MonoBehaviour
 		}	
 
 
-		if (SceneManager.GetActiveScene().name == parkName) 
+		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName) 
 		{ 
 			parkEggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
 
 			parkSilverEggsCount = ParkSaveLoadManager.LoadParkSilverEggs();
 				
 			hopscotchRiddleSolved = ParkSaveLoadManager.LoadHopscotchRiddle(); 
+
+			parkTotalEggsFound = ParkSaveLoadManager.LoadParkTotalEggs();
+
+			parkPuzzMaxLvl = ParkSaveLoadManager.LoadParkPuzzMaxLvl();
+			Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
+
+			parkPuzzSilEggsCount = ParkSaveLoadManager.LoadParkPuzzSilEggsCount();
+			Debug.Log(marketPuzzSilEggsCount);
+
+			parkSceneSilEggsCount = ParkSaveLoadManager.LoadParkSceneSilEggsCount();
+			Debug.Log(marketSceneSilEggsCount);
+
+			parkLevelComplete = ParkSaveLoadManager.LoadParkLevelComplete();
 
 
 			List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
@@ -181,7 +198,7 @@ public class GlobalVariables : MonoBehaviour
 			}	
 
 		
-			if(parkEggsFoundBools.Count < 1)
+			if(clickOnEggsScript != null && parkEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{

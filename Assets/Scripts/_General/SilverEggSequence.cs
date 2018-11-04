@@ -5,6 +5,8 @@ using UnityEngine;
 public class SilverEggSequence : MonoBehaviour 
 {
 	public Collider2D myCol;
+	public ParticleSystem shimmerFX;
+	public SilverEggShimmerFXScaling silEggShimScript;
 
 	[Header("Move & Scale Up")]
 	public float moveDuration = 1f;
@@ -109,12 +111,21 @@ public class SilverEggSequence : MonoBehaviour
 	}
 
 
+	public void ShimmerFade() // In SilverEgg Pop anim
+	{
+		shimmerFX.gameObject.transform.parent = null;
+		var shimmerFXEm = shimmerFX.emission;
+		shimmerFXEm.enabled = false;
+		silEggShimScript.Refresh();
+	}
+
 	public void StartSequence()
 	{
 		startSeq = true;
 		startPos = this.transform.localPosition;
 		startScale = this.transform.localScale;
-		trailFX.Play();
+		//trailFX.Play();
+		//shimmerFX.Play();
 	}
 
 

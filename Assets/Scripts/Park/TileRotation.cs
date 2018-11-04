@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class TileRotation : MonoBehaviour 
 {
+	#region TileRotation Variables
+	[Header("Original Values")]
+
+	public Vector3 oGPos;
+	public Vector3 oGRot;
+	public List<bool> oGConnections;
+
+	[Header("Values")]
+
 	public int initialRot;
 
 	public float zRotation;
@@ -20,7 +29,7 @@ public class TileRotation : MonoBehaviour
 
 	public float neightborTileDist;
 
-	public ClickToRotateTile gameEngineScript;
+	public KitePuzzEngine gameEngineScript;
 
 	public bool canBeRotated;
 
@@ -30,7 +39,7 @@ public class TileRotation : MonoBehaviour
 	public bool newRightConnection;
 	public bool newBottomConnection;
 	public bool newLeftConnection;
-
+	#endregion
 
 
 	void Awake () 
@@ -42,6 +51,11 @@ public class TileRotation : MonoBehaviour
 			bottomConnection = false;
 			leftConnection = false;
 		}
+
+		oGPos = this.transform.localPosition;
+		oGRot = this.transform.localEulerAngles;
+		oGConnections.Add(topConnection); oGConnections.Add(rightConnection); oGConnections.Add(bottomConnection); oGConnections.Add(leftConnection);
+
 		// myConnections.Add(topConnection);
 		// myConnections.Add(rightConnection);
 		// myConnections.Add(bottomConnection);
@@ -168,6 +182,18 @@ public class TileRotation : MonoBehaviour
 		rightConnection = newRightConnection;
 		bottomConnection = newBottomConnection;
 		leftConnection = newLeftConnection;
+	}
+
+
+	public void ResetThisTile()
+	{
+		this.transform.localPosition = oGPos;
+		this.transform.localEulerAngles = oGRot;
+
+		topConnection = oGConnections[0];
+		rightConnection = oGConnections[1];
+		bottomConnection = oGConnections[2];
+		leftConnection = oGConnections[3];
 	}
 
 }

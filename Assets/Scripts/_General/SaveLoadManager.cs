@@ -262,6 +262,106 @@ public class ParkSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static int LoadParkPuzzMaxLvl()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.puzzMaxLvl;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+	public static int LoadParkTotalEggs()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.totalEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+	public static List<int> LoadParkPuzzSilEggsCount()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.puzzSilEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
+	public static List<int> LoadParkSceneSilEggsCount()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.sceneSilEggsFound;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
+	public static bool LoadParkLevelComplete()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.levelComplete;
+		}
+		else 
+		{
+			Debug.LogError("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
 	public static void DeleteParkSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/parkEggSaver.sav");
@@ -397,7 +497,17 @@ public class ParkEggsData
 
 	public int silverEggsFound;
 
+	public List<int> puzzSilEggsFound;
+
+	public List<int> sceneSilEggsFound;
+
 	public bool hopscotchRiddle;
+
+	public int puzzMaxLvl;
+
+	public int totalEggsFound;
+	
+	public bool levelComplete;
 
 	public ParkEggsData(GlobalVariables parkEggSaver)
 	{
@@ -405,7 +515,17 @@ public class ParkEggsData
 
 		silverEggsFound = parkEggSaver.parkSilverEggsCount;
 
+		puzzSilEggsFound = parkEggSaver.parkPuzzSilEggsCount;
+		
+		sceneSilEggsFound = parkEggSaver.parkSceneSilEggsCount;
+
 		hopscotchRiddle = parkEggSaver.hopscotchRiddleSolved;
+
+		puzzMaxLvl = parkEggSaver.parkPuzzMaxLvl;
+
+		totalEggsFound = parkEggSaver.parkTotalEggsFound;
+
+		levelComplete = parkEggSaver.parkLevelComplete;
 	}
 }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneSilverEggSpawner : MonoBehaviour 
 {
@@ -11,10 +12,15 @@ public class SceneSilverEggSpawner : MonoBehaviour
 	public ClickOnEggs clickOnEggsScript;
 	public List<GameObject> silEggs;
 
+	public List<int> puzzSilEggCountList;
+	public List<int> sceneSilEggCountList;
+
 	void Awake()
 	{
-		if (GlobalVariables.globVarScript.marketPuzzSilEggsCount.Count > 0) { puzzSilEggCount = GlobalVariables.globVarScript.marketPuzzSilEggsCount.Count; }
-		if (GlobalVariables.globVarScript.marketSceneSilEggsCount.Count > 0) { sceneSilEggCount = GlobalVariables.globVarScript.marketSceneSilEggsCount.Count; }
+		SetCorrectLevelLists();
+
+		if (puzzSilEggCountList.Count > 0) { puzzSilEggCount = puzzSilEggCountList.Count; }
+		if (sceneSilEggCountList.Count > 0) { sceneSilEggCount = sceneSilEggCountList.Count; }
 	}
 	
 	public void SpawnNewSilverEggs()
@@ -32,11 +38,27 @@ public class SceneSilverEggSpawner : MonoBehaviour
 			for(int i = sceneSilEggCount; i < puzzSilEggCount; i++)
 			{
 				silEggSpawned++;
-				silEggs[GlobalVariables.globVarScript.marketPuzzSilEggsCount[i]].SetActive(true);
-				silEggs[GlobalVariables.globVarScript.marketPuzzSilEggsCount[i]].GetComponent<SceneSilverEgg>().SendToPanel(GlobalVariables.globVarScript.marketPuzzSilEggsCount[i], silverEggSpawnDelay * silEggSpawned);
+				silEggs[puzzSilEggCountList[i]].SetActive(true);
+				silEggs[puzzSilEggCountList[i]].GetComponent<SceneSilverEgg>().SendToPanel(puzzSilEggCountList[i], silverEggSpawnDelay * silEggSpawned);
 			}
 
 			clickOnEggsScript.checkLvlCompleteF = silverEggSpawnDelay * silEggSpawned;
+		}
+	}
+
+
+	public void SetCorrectLevelLists()
+	{
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		{
+			puzzSilEggCountList = GlobalVariables.globVarScript.marketPuzzSilEggsCount;
+			sceneSilEggCountList = GlobalVariables.globVarScript.marketSceneSilEggsCount;
+		}
+
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		{
+			puzzSilEggCountList = GlobalVariables.globVarScript.parkPuzzSilEggsCount;
+			sceneSilEggCountList = GlobalVariables.globVarScript.parkSceneSilEggsCount;
 		}
 	}
 }

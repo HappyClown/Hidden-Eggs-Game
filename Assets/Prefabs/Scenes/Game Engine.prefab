@@ -1,0 +1,334 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1655060787240740}
+  m_IsPrefabParent: 1
+--- !u!1 &1655060787240740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4331515170276972}
+  - component: {fileID: 114502344275602404}
+  - component: {fileID: 114609925930497642}
+  - component: {fileID: 114291605857956252}
+  - component: {fileID: 114688266002926248}
+  - component: {fileID: 114365379720079432}
+  - component: {fileID: 114536814948326178}
+  m_Layer: 0
+  m_Name: Game Engine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4331515170276972
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.009605621}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114291605857956252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0090467e3760640a90db2224e40d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitBaskets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  basketNumber: 0
+  goldenEgg: {fileID: 0}
+  goldenEggScript: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 768
+  layerMaskFX:
+    serializedVersion: 2
+    m_Bits: 1536
+  firework01: {fileID: 0}
+  firework02: {fileID: 0}
+  fireworksFired: 0
+  appleBasket: {fileID: 0}
+  scenTapEnabScript: {fileID: 114502344275602404}
+--- !u!114 &114365379720079432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e155e8abc5f9c46ae7eee26fdab80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverEggSpawnDelay: 0.6
+  puzzSilEggCount: 0
+  sceneSilEggCount: 0
+  clickOnEggsScript: {fileID: 114609925930497642}
+  silEggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &114502344275602404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5eabd7921ccec4e93e45a2f0dc52ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTapEggRidPanPuz: 0
+  canTapHelpBird: 0
+  canTapPauseBtn: 0
+  canTapGoldEgg: 0
+  canTapLvlComp: 0
+--- !u!114 &114536814948326178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf4fe716f2b89c46a2846614a91cd04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  camMovSpeed: 0
+  camZoomSpeed: 0
+  maxX: 0
+  maxY: 0
+  minCameraSize: 0
+  minDeltaDif: 0
+  maxDeltaDif: 0
+--- !u!114 &114609925930497642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelTapManScript: {fileID: 0}
+  scenTapEnabScript: {fileID: 114502344275602404}
+  sceneFadeScript: {fileID: 0}
+  iniSeq: 0
+  iniSeqTimer: 0
+  iniDelay: 1
+  checkNewSilEggsF: 0
+  checkLvlCompleteF: 0
+  allowTapF: 0.5
+  iniSilEggCheckB: 0
+  iniLvlCompCheckB: 0
+  eggsLeft: 0
+  eggsFound: 0
+  eggCounterText: {fileID: 0}
+  silverEggCounterText: {fileID: 0}
+  goldenEggCounterText: {fileID: 0}
+  newCornerPos: {x: 0, y: 0, z: 0}
+  cornerExtraPos: 0.5
+  cornerPos: {fileID: 0}
+  puzzleClickArea: {fileID: 0}
+  puzzleSceneName: Order Up!
+  scaleAnim: {fileID: 0}
+  puzzleUnlock: 12
+  puzzleParticles: {fileID: 0}
+  eggPanel: {fileID: 0}
+  eggSpots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  silverEggSpots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  sceneSilEggSpaScript: {fileID: 114365379720079432}
+  goldenEggSpot: {fileID: 0}
+  goldenEggFound: 0
+  eggMoving: 0
+  eggPanelHidden: {fileID: 0}
+  eggPanelShown: {fileID: 0}
+  panelMoveSpeed: 7
+  basePanelOpenTime: 3
+  silverEggsInPanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dropDrowArrow: {fileID: 0}
+  eggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  openEggPanel: 0
+  totalEggsFound: 0
+  eggsNeeded: 30
+  silverEggsFound: 0
+  levelComplete: 0
+  levelCompleteScript: {fileID: 114688266002926248}
+--- !u!114 &114688266002926248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f884dfabdd3bca4ab7af7fc7a141290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inLvlCompSeqSetup: 0
+  clickOnEggsScript: {fileID: 114609925930497642}
+  darkenScreen: 0.2
+  showCongrats: 0.8
+  showEggs: 1.5
+  showCounters: 3.5
+  showTap: 11.5
+  lightenScreen: 0.5
+  hideCongrats: 0.5
+  hideEggs: 0.5
+  hideCounters: 0.5
+  hideTap: 0
+  coverMaxAlpha: 0.5
+  coverFadeTime: 1
+  coverScreen: {fileID: 0}
+  congratsFadeTime: 1
+  congratsSprts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  eggFadeTime: 1
+  eggShowDelay: 0.5
+  regEgg: {fileID: 0}
+  silEgg: {fileID: 0}
+  golEgg: {fileID: 0}
+  eggCounterSpeed: 2
+  eggCountWait: 0.5
+  eggCountFadeTime: 0.5
+  eggCountOffDelay: 0.75
+  eggCountOffDelayTimer: 0
+  animCur:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7860657
+      value: 0.91313106
+      inSlope: 0.82928896
+      outSlope: 0.7217237
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.04766535
+    - serializedVersion: 3
+      time: 1
+      value: 1.0001526
+      inSlope: 0.01745277
+      outSlope: 0.01745277
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.012944889
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  regEggTot: 23
+  silEggTot: 6
+  golEggTot: 1
+  regEggCounterTxt: {fileID: 0}
+  silEggCounterTxt: {fileID: 0}
+  golEggCounterTxt: {fileID: 0}
+  tapFadeTime: 1.5
+  tapBtn: {fileID: 0}
+  tapImg: {fileID: 0}

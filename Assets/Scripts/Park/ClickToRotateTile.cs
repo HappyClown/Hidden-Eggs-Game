@@ -10,7 +10,7 @@ public class ClickToRotateTile : MonoBehaviour
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
-	public string sceneName;
+	//public string sceneName;
 
 	public bool mouseClickHeld;
 	public bool mouseClick;
@@ -26,31 +26,33 @@ public class ClickToRotateTile : MonoBehaviour
 	public float timer;
 	public float nowHoldingTime;
 
-	public int connections;
+	//public int connections;
 	public int connectionsNeeded;
 
-	public List <int> lvlConnectionAmnts;
+	//public List <int> lvlConnectionAmnts;
 	public List<GameObject> lvlTiles;
-	public List<GameObject> lvlSilverEggs;
-	public List<GameObject> lvlBackShadows;
-	public List<GameObject> lvlKites;
-	public List<float> lvlCamSizes;
 
-	public int silverEggsPickedUp;
+	//public List<GameObject> lvlSilverEggs;
+	//public List<GameObject> lvlKites;
+	//public List<float> lvlCamSizes;
+	//public int silverEggsPickedUp;
+	//public bool inBetweenLvls;
+	//public Camera cam;
+	//public float ogCamSize;
+	//public float camSizeIncSpeed;
 
-	public bool inBetweenLvls;
-
-	public Camera cam;
-	public float ogCamSize;
-	public float camSizeIncSpeed;
-
-	public int curntLvl;
+	//public int curntLvl;
 
 	public bool desktopDevice = false;
 	public bool handheldDevice = false;
 
-	
+	public KitePuzzEngine kitePuzzEngineScript;
 
+	
+	void Awake ()
+	{
+		if (connectionsNeeded == 0) { connectionsNeeded = 99; }
+	}
 
 	void Start ()
 	{
@@ -62,19 +64,18 @@ public class ClickToRotateTile : MonoBehaviour
 		{
 			desktopDevice = true;
 		}
-
 		//connectionsNeeded = lvlConnectionAmnts[curntLvl - 1];
 
 		// for (int i = 0; i < lvlConnectionAmnts.Count; i++)
 		// {
-			foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
-			{
-				Debug.Log("Counter");
-				if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
-				if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
-				if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
-				if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
-			}
+			// foreach(Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
+			// {
+			// 	Debug.Log("Counter");
+			// 	if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
+			// 	if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
+			// 	if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
+			// 	if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
+			// }
 		// }
 	}	
 
@@ -94,17 +95,16 @@ public class ClickToRotateTile : MonoBehaviour
 		if (handheldDevice) { if (Input.touchCount > 0) { updateMousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position); } }
 		if (desktopDevice) { updateMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); }
 
-		if (connections == connectionsNeeded)
-		{
-			Debug.Log("ya win m8!");
-			inBetweenLvls = true;
-			curntLvl += 1;
-			//connectionsNeeded = 1;
+		// if (connections == connectionsNeeded)
+		// {
+		// 	Debug.Log("ya win m8!");
+		// 	inBetweenLvls = true;
+		// 	curntLvl += 1;
+		// 	//connectionsNeeded = 1;
+		// }
 
-		}
 
-
-		if (!inBetweenLvls)
+		if (kitePuzzEngineScript.canPlay)
 		{
 			// --- Click detected check to see what tile is hit
 			if (hit.collider != null && Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated)
@@ -167,9 +167,9 @@ public class ClickToRotateTile : MonoBehaviour
 				mouseClick = false;
 				tileClicked = null;
 				timer = 0f;
-				connections = 0;
+				kitePuzzEngineScript.connections = 0;
 
-				foreach (Transform tile in lvlTiles[curntLvl - 1].transform)
+				foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
 				{
 					//Debug.Log("make tiles check neighbors");
 					tile.gameObject.GetComponent<TileRotation>().CheckNeighbors();
@@ -196,9 +196,9 @@ public class ClickToRotateTile : MonoBehaviour
 				mouseClick = false;
 				tileClicked = null;
 				timer = 0f;
-				connections = 0;
+				kitePuzzEngineScript.connections = 0;
 
-				foreach (Transform tile in lvlTiles[curntLvl - 1].transform)
+				foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
 				{
 					Debug.Log("make tiles check neighbors");
 					tile.gameObject.GetComponent<TileRotation>().CheckNeighbors();
@@ -209,156 +209,170 @@ public class ClickToRotateTile : MonoBehaviour
 			
 		}
 		// --- IN BETWEEN LEVELS --- //
-		else if (inBetweenLvls)
-		{
-			connections = 0;
-			foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
-			{
-				lvlTile.gameObject.GetComponent<FadeInOutSprite>().FadeOut();
-				if (lvlTile.transform.childCount > 0)
-				{
-					lvlTile.transform.GetChild(0).GetComponent<FadeInOutSprite>().FadeOut();
-				}
-			}
-			lvlBackShadows[curntLvl - 2].GetComponent<FadeInOutSprite>().FadeOut();
-			if (lvlKites[curntLvl - 2].transform.childCount > 0)
-			{
-				foreach(Transform lvlKite in lvlKites[curntLvl - 2].transform)
-				{
-					lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
-				}
-			}
-			lvlKites[curntLvl - 2].GetComponent<FadeInOutSprite>().FadeOut();
+	// 	else if (inBetweenLvls)
+	// 	{
+	// 		connections = 0;
+	// 		foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
+	// 		{
+	// 			lvlTile.gameObject.GetComponent<FadeInOutSprite>().FadeOut();
+	// 			if (lvlTile.transform.childCount > 0)
+	// 			{
+	// 				lvlTile.transform.GetChild(0).GetComponent<FadeInOutSprite>().FadeOut();
+	// 			}
+	// 		}
+	// 		lvlBackShadows[curntLvl - 2].GetComponent<FadeInOutSprite>().FadeOut();
+	// 		if (lvlKites[curntLvl - 2].transform.childCount > 0)
+	// 		{
+	// 			foreach(Transform lvlKite in lvlKites[curntLvl - 2].transform)
+	// 			{
+	// 				lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
+	// 			}
+	// 		}
+	// 		lvlKites[curntLvl - 2].GetComponent<FadeInOutSprite>().FadeOut();
 
 
-			// -- SPAWN SILVER EGGS -- //
-			lvlSilverEggs[curntLvl - 2].SetActive(true);
+	// 		// -- SPAWN SILVER EGGS -- //
+	// 		lvlSilverEggs[curntLvl - 2].SetActive(true);
 
-			if (hit.collider != null && hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
-			{
-				silverEggsPickedUp += 1;
-				hit.collider.gameObject.GetComponent<SilverEggs>().StartSilverEggAnim();
-				//hit.collider.gameObject.SetActive(false);
-				SaveSilverEggsToCorrectFile();
-			}
+	// 		if (hit.collider != null && hit.collider.CompareTag("Egg") && Input.GetMouseButtonDown(0))
+	// 		{
+	// 			silverEggsPickedUp += 1;
+	// 			hit.collider.gameObject.GetComponent<SilverEggs>().StartSilverEggAnim();
+	// 			//hit.collider.gameObject.SetActive(false);
+	// 			SaveSilverEggsToCorrectFile();
+	// 		}
 
 
-			// - SET UP LEVEL 02 - //
-			// if (silverEggsPickedUp == 1)
-			// {
+	// 		// - SET UP LEVEL 02 - //
+	// 		// if (silverEggsPickedUp == 1)
+	// 		// {
 				
-			// }
+	// 		// }
 
-			if (curntLvl == 2 && silverEggsPickedUp == 1/* && cam.orthographicSize == lvlCamSizes[curntLvl-1]*/)
-			{
-				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
-				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
-				if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
-				{
-					lvlBackShadows[curntLvl - 1].SetActive(true);
-					lvlTiles[curntLvl - 1].SetActive(true);
-					lvlKites[curntLvl - 1].SetActive(true);
+	// 		if (curntLvl == 2 && silverEggsPickedUp == 1/* && cam.orthographicSize == lvlCamSizes[curntLvl-1]*/)
+	// 		{
+	// 			cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
+	// 			// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
+	// 			if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
+	// 			{
+	// 				lvlBackShadows[curntLvl - 1].SetActive(true);
+	// 				lvlTiles[curntLvl - 1].SetActive(true);
+	// 				lvlKites[curntLvl - 1].SetActive(true);
 
-					foreach(Transform lvlTile in lvlTiles[curntLvl - 1].transform)
-					{
-						lvlTile.gameObject.SetActive(true);
-					}
+	// 				foreach(Transform lvlTile in lvlTiles[curntLvl - 1].transform)
+	// 				{
+	// 					lvlTile.gameObject.SetActive(true);
+	// 				}
 
-					// Calculate connections needed in the new level //
-					connectionsNeeded = 0;
-					foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
-					{
-						Debug.Log("Counter");
-						if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
-						if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
-						if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
-						if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
-					}
+	// 				// Calculate connections needed in the new level //
+	// 				connectionsNeeded = 0;
+	// 				foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
+	// 				{
+	// 					Debug.Log("Counter");
+	// 					if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
+	// 					if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
+	// 					if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
+	// 					if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
+	// 				}
 
-					inBetweenLvls = false;
-					return;
-				}
-			}
+	// 				inBetweenLvls = false;
+	// 				return;
+	// 			}
+	// 		}
 
 
-			// - SET UP LEVEL 03 - //
-			if (silverEggsPickedUp == 3)
-			{
+	// 		// - SET UP LEVEL 03 - //
+	// 		if (silverEggsPickedUp == 3)
+	// 		{
 				
 
-				foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
-				{
-					lvlTile.gameObject.GetComponent<FadeInOutSprite>().FadeOut();
-				}
-			}
+	// 			foreach(Transform lvlTile in lvlTiles[curntLvl - 2].transform)
+	// 			{
+	// 				lvlTile.gameObject.GetComponent<FadeInOutSprite>().FadeOut();
+	// 			}
+	// 		}
 
-			if (curntLvl == 3 && silverEggsPickedUp == 3/* && cam.orthographicSize == lvlCamSizes[curntLvl-1]*/)
-			{
-				cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
-				// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
-				if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
-				{
-					lvlBackShadows[curntLvl - 1].SetActive(true);
-					lvlTiles[curntLvl - 1].SetActive(true);
-					lvlKites[curntLvl - 1].SetActive(true);
+	// 		if (curntLvl == 3 && silverEggsPickedUp == 3/* && cam.orthographicSize == lvlCamSizes[curntLvl-1]*/)
+	// 		{
+	// 			cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, lvlCamSizes[curntLvl-1], Time.deltaTime * camSizeIncSpeed);
+	// 			// Should I have a lvlXTiles holder gameobject reference or do a loop for each tile, does it matter really who knows. Not me.
+	// 			if (((lvlCamSizes[curntLvl-1]) - cam.orthographicSize) <= 0.001f)
+	// 			{
+	// 				lvlBackShadows[curntLvl - 1].SetActive(true);
+	// 				lvlTiles[curntLvl - 1].SetActive(true);
+	// 				lvlKites[curntLvl - 1].SetActive(true);
 
 					
 
-					foreach(Transform lvlTile in lvlTiles[curntLvl - 1].transform)
-					{
-						lvlTile.gameObject.SetActive(true);
-					}
+	// 				foreach(Transform lvlTile in lvlTiles[curntLvl - 1].transform)
+	// 				{
+	// 					lvlTile.gameObject.SetActive(true);
+	// 				}
 
-					// Calculate connections needed in the new level //
-					connectionsNeeded = 0;
-					foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
-					{
-						Debug.Log("Counter");
-						if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
-						if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
-						if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
-						if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
-					}
+	// 				// Calculate connections needed in the new level //
+	// 				connectionsNeeded = 0;
+	// 				foreach(Transform tile in lvlTiles[curntLvl - 1].transform)
+	// 				{
+	// 					Debug.Log("Counter");
+	// 					if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
+	// 					if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
+	// 					if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
+	// 					if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
+	// 				}
 
-					inBetweenLvls = false;
+	// 				inBetweenLvls = false;
 
-					return;
-				}
-			}
+	// 				return;
+	// 			}
+	// 		}
 
-			// - PUZZLE COMPLETE - //
-			if (curntLvl == 4 && silverEggsPickedUp == 6)
-			{
-				StartCoroutine(PuzzleComplete());
-			}
-		}
+	// 		// - PUZZLE COMPLETE - //
+	// 		if (curntLvl == 4 && silverEggsPickedUp == 6)
+	// 		{
+	// 			StartCoroutine(PuzzleComplete());
+	// 		}
+	// 	}
 		
+	// }
+
+	// public IEnumerator PuzzleComplete ()
+	// {
+	// 	yield return new WaitForSeconds(0.5f);
+
+	// 	Debug.Log("Puzzle Completed cognraturations!!!");
+
+	// 	yield return new WaitForSeconds(0.5f);
+
+	// 	SceneManager.LoadScene(sceneName);
+	// }
+
+
+
+	// public void SaveSilverEggsToCorrectFile()
+	// {
+	// 	if (silverEggsPickedUp > GlobalVariables.globVarScript.parkSilverEggsCount) 
+	// 	{ 
+	// 		GlobalVariables.globVarScript.parkSilverEggsCount = silverEggsPickedUp; 
+	// 		GlobalVariables.globVarScript.SaveEggState();
+	// 	}	
+	// }
+
 	}
 
-	public IEnumerator PuzzleComplete ()
+	public int CalculateConnectionsNeeded()
 	{
-		yield return new WaitForSeconds(0.5f);
+		connectionsNeeded = 0;
 
-		Debug.Log("Puzzle Completed cognraturations!!!");
-
-		yield return new WaitForSeconds(0.5f);
-
-		SceneManager.LoadScene(sceneName);
+		foreach(Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
+		{
+			Debug.Log("Counter");
+			if (tile.GetComponent<TileRotation>().topConnection == true) { connectionsNeeded += 1; }
+			if (tile.GetComponent<TileRotation>().rightConnection == true) { connectionsNeeded += 1; }
+			if (tile.GetComponent<TileRotation>().bottomConnection == true) { connectionsNeeded += 1; }
+			if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
+		}
+		return connectionsNeeded;
 	}
-
-
-
-	public void SaveSilverEggsToCorrectFile()
-	{
-		if (silverEggsPickedUp > GlobalVariables.globVarScript.parkSilverEggsCount) 
-		{ 
-			GlobalVariables.globVarScript.parkSilverEggsCount = silverEggsPickedUp; 
-			GlobalVariables.globVarScript.SaveEggState();
-		}	
-	}
-
-
-
 	public IEnumerator SkipAFrame()
 	{
 		yield return null;
