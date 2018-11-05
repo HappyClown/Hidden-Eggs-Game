@@ -5,6 +5,7 @@ using UnityEngine;
 public class HintManager : MonoBehaviour {
 
 	public GameObject feather;
+	public List<ParticleSystem> hintObjFXs;
 	public enum featherToGo{
 		center,firstPoint,secondPoion,thirdPoint,fourthPoint,exit
 	}
@@ -12,7 +13,7 @@ public class HintManager : MonoBehaviour {
 	public Transform featherInitialPos;
 	public HintQuadrant[] myQuadrants;
 	public HintQuadrant currentQuadrant;
-	public bool hintAvailable, movingFeather;
+	public bool hintAvailable, movingFeather, startHint;
 	public featherToGo myDirection;
 	public float minDistanceToPoint, featherMovSpeed;
 	public int turnsToDo, currentTurn;
@@ -26,7 +27,7 @@ public class HintManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(Input.GetKey(KeyCode.I) && myClickonEggs.eggsLeft > 0 && hintAvailable){
+		if(/* Input.GetKey(KeyCode.I) */startHint && myClickonEggs.eggsLeft > 0 && hintAvailable && !movingFeather){
 			Vector2 eggPos = Vector2.zero ;
 			for (int i = 0; i < myClickonEggs.eggs.Count; i++)
 			{
@@ -36,14 +37,23 @@ public class HintManager : MonoBehaviour {
 				}
 			}
 			movingFeather = true;
-			feather.SetActive(true);
+			//feather.SetActive(true); Only turning on the emission for the effects instead of the object.
+			foreach(ParticleSystem fx in hintObjFXs){
+				var em = fx.emission;
+				em.enabled = true;
+			}
 			SetQuadrant(eggPos);
+			startHint = false;
 		}
 		if(movingFeather){
 			MoveFeather();
 		}
 		else{
-			feather.SetActive(false);
+			//feather.SetActive(false);
+			foreach(ParticleSystem fx in hintObjFXs){
+				var em = fx.emission;
+				em.enabled = false;
+			}
 		}
 	}
 

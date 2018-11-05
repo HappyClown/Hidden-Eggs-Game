@@ -26,6 +26,7 @@ public class SlideInHelpBird : MonoBehaviour
 	public GameObject hintBtnObj;
 	public Button hintBtn;
 	private Image hintImg;
+	public HintManager hintManScript;
 
 	public GameObject closeMenuOnClick;
 	public GameObject blockClickingOnEggs;
@@ -54,6 +55,7 @@ public class SlideInHelpBird : MonoBehaviour
 		riddleBtn.onClick.AddListener(ShowRiddleText);
 		hintBtn = hintBtnObj.GetComponent<Button>();
 		hintImg = hintBtnObj.GetComponent<Image>();
+		hintBtn.onClick.AddListener(StartHint);
 	}
 
 
@@ -156,7 +158,7 @@ public class SlideInHelpBird : MonoBehaviour
 	}
 
 
-	public void MoveBirdUp () 
+	public void MoveBirdUp() 
 	{
 		if(scenTapEnabScript.canTapHelpBird)
 		{
@@ -177,7 +179,7 @@ public class SlideInHelpBird : MonoBehaviour
 	}
 
 
-	public void ShowRiddleText ()
+	public void ShowRiddleText()
 	{
 		if (!riddleShow)
 		{
@@ -185,5 +187,12 @@ public class SlideInHelpBird : MonoBehaviour
 			riddleBtn.enabled = false;	
 			riddleShow = true;
 		}
+	}
+
+
+	public void StartHint()
+	{
+		hintManScript.startHint = true;
+		MoveBirdUp();
 	}
 }
