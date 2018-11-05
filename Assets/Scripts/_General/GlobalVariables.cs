@@ -10,6 +10,8 @@ public class GlobalVariables : MonoBehaviour
 	public string previousScene;
 	public string currentScene;
 
+	public bool toHub;
+
 	[Header("Scene Names")]
 	public string menuName;
 	public string marketName, parkName, beachName;

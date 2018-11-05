@@ -286,7 +286,7 @@ public class KitePuzzEngine : MonoBehaviour
 				voidDelegate = NextLevelSetup;
 				if (!waitMethod) { waitMethod = true; } else { Debug.LogError("waitMethod IS ALREADY IN PROGRESS, DONT DO THAT!!"); }
 				waitTimer = waitTime;
-				bgScleScript.ScaleBG();
+				if (curntLvl  < winLvl) { bgScleScript.ScaleBG(); }
 			}
 		}
 	}

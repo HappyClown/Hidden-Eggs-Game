@@ -40,8 +40,9 @@ public class ClickOnEggs : MonoBehaviour
 	[Header("Puzzle")]
 	public GameObject puzzleClickArea;
 	public string puzzleSceneName;
-	public Animation scaleAnim;
-	public float puzzleUnlock;
+	public Animation unlockedAnim;
+	public float puzzleUnlockAmnt;
+	public bool puzzleUnlocked;
 	public ParticleSystem puzzleParticles;
 
 	[Header("Egg Panel")]
@@ -145,7 +146,7 @@ public class ClickOnEggs : MonoBehaviour
 							//audioSceneGenScript.
 
 							AddEggsFound();
-							if (levelComplete) { levelCompleteScript.inLvlCompSeqSetup = true; }
+							//if (levelComplete) { levelCompleteScript.inLvlCompSeqSetup = true; } ------------------------------------------------
 							eggScript.SaveEggToCorrectFile();
 						}
 
@@ -233,12 +234,13 @@ public class ClickOnEggs : MonoBehaviour
 
 
 		// - Activate Puzzle - //
-		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlock)
+		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlockAmnt)
 		{
 			puzzleClickArea.SetActive(true);
 			var emission = puzzleParticles.emission;
 			emission.enabled = true;
-			scaleAnim.Play();
+			if (unlockedAnim != null) { unlockedAnim.Play(); }
+			puzzleUnlocked = true;
 		}
 	}
 
@@ -254,7 +256,7 @@ public class ClickOnEggs : MonoBehaviour
 	{
 		scenTapEnabScript.canTapEggRidPanPuz = false;
 		scenTapEnabScript.canTapHelpBird = false;
-		scenTapEnabScript.canTapPauseBtn = true;
+		scenTapEnabScript.canTapPauseBtn = false;
 		scenTapEnabScript.canTapLvlComp = true;
 
 		levelCompleteScript.inLvlCompSeqSetup = true;

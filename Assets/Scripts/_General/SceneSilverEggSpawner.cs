@@ -51,14 +51,14 @@ public class SceneSilverEggSpawner : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
-			puzzSilEggCountList = GlobalVariables.globVarScript.marketPuzzSilEggsCount;
-			sceneSilEggCountList = GlobalVariables.globVarScript.marketSceneSilEggsCount;
+			if (GlobalVariables.globVarScript.marketPuzzSilEggsCount.Count > 0) { puzzSilEggCountList = GlobalVariables.globVarScript.marketPuzzSilEggsCount; }
+			if (GlobalVariables.globVarScript.marketSceneSilEggsCount.Count > 0) { sceneSilEggCountList = GlobalVariables.globVarScript.marketSceneSilEggsCount; }
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
-			puzzSilEggCountList = GlobalVariables.globVarScript.parkPuzzSilEggsCount;
-			sceneSilEggCountList = GlobalVariables.globVarScript.parkSceneSilEggsCount;
+			if (GlobalVariables.globVarScript.parkPuzzSilEggsCount.Count > 0) { puzzSilEggCountList = GlobalVariables.globVarScript.parkPuzzSilEggsCount; }
+			if (GlobalVariables.globVarScript.parkSceneSilEggsCount.Count > 0) { sceneSilEggCountList = GlobalVariables.globVarScript.parkSceneSilEggsCount; }
 		}
 	}
 }

@@ -13,6 +13,7 @@ public class HopscotchRiddle : MonoBehaviour
 	[Header("Hopscotch Riddle")]
 	public List<GameObject> numbers;
 	public int numberAmount;
+	public GameObject numberOne;
 	public GameObject goldenEgg;
 	public GoldenEgg goldenEggScript;
 
@@ -20,6 +21,7 @@ public class HopscotchRiddle : MonoBehaviour
 
 	// public bool desktopDevice = false;
 	// public bool handheldDevice = false;
+	public ParticleSystem hopscotchFX;
 
 	public ParticleSystem firework01; 
 	public ParticleSystem firework02;
@@ -55,10 +57,7 @@ public class HopscotchRiddle : MonoBehaviour
 	{
 		// if (desktopDevice)
 		// {
-			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-
-			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+			
 		//}
 	}
 
@@ -68,50 +67,84 @@ public class HopscotchRiddle : MonoBehaviour
     { 
 		// if (desktopDevice)
 		// {
-			if (hit)
+			if (!GlobalVariables.globVarScript.hopscotchRiddleSolved && Input.GetMouseButtonDown(0))
 			{
-				if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0))
+				mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+
+				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+				
+				if (hit)
 				{
-
-					numberAmount += 1;
-
-					hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-					
-					if (numberAmount >= 10)
+					if (hit.collider.CompareTag("OnClickFX"))
 					{
-						HopscotchRiddleSolved ();
-						//SpawnGoldenEgg;
-						goldenEgg.SetActive(true);
-						goldenEggScript.inGoldenEggSequence = true;
+						hopscotchFX.gameObject.transform.position = mousePos2D;
+						hopscotchFX.Play();
+					}
 
-						if (!fireworksFired)
+					if (hit.collider.CompareTag("FruitBasket"))
+					{
+						hopscotchFX.gameObject.transform.position = mousePos2D;
+						hopscotchFX.Play();
+
+						//numberAmount += 1;
+
+						//hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+						if (numberAmount == 0 && hit.collider.gameObject == numberOne)
 						{
-							firework01.Play(true);
-							firework02.Play(true);
-							fireworksFired = true;
+							numberAmount++;
 						}
-						//Disable/destroy all basket colliders;
+						else if (numberAmount >= 0 && hit.collider.gameObject != numberOne)
+						{
+							numberAmount++;
+						}
+
+						if (hit.collider.gameObject != numberOne)
+						{
+							hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+						}
+						
+						if (numberAmount >= 7)
+						{
+							HopscotchRiddleSolved ();
+							//SpawnGoldenEgg;
+							goldenEgg.SetActive(true);
+							goldenEggScript.inGoldenEggSequence = true;
+
+							if (!fireworksFired)
+							{
+								firework01.Play(true);
+								firework02.Play(true);
+								fireworksFired = true;
+							}
+							//Disable/destroy all basket colliders;
+							foreach (GameObject number in numbers)
+							{
+								number.SetActive(false);
+							}	
+							return;
+						}
+						else
+						{
+							numbers[numberAmount].GetComponent<CircleCollider2D>().enabled = true;
+						}
+					}
+
+					if (numberAmount > 1 && hit.collider.gameObject == numberOne)
+					{
+						numberAmount = 1;
+					}
+
+					if (!hit.collider.CompareTag("FruitBasket") && !GlobalVariables.globVarScript.hopscotchRiddleSolved)
+					{
+						numberAmount = 0;
 						foreach (GameObject number in numbers)
 						{
-							number.SetActive(false);
+							number.GetComponent<CircleCollider2D>().enabled = false;
 						}	
-						return;
+						numbers[0].GetComponent<CircleCollider2D>().enabled = true;
 					}
-					else
-					{
-						numbers[numberAmount].GetComponent<CircleCollider2D>().enabled = true;
-					}
-				}
-				
-
-				if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && !goldenEgg.activeSelf)
-				{
-					numberAmount = 0;
-					foreach (GameObject number in numbers)
-					{
-						number.GetComponent<CircleCollider2D>().enabled = false;
-					}	
-					numbers[0].GetComponent<CircleCollider2D>().enabled = true;
 				}
 			}
 		//}

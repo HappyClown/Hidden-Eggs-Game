@@ -4848,6 +4848,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a185edd90ff1c64dbeccf79a2dacb09, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &216449304
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &275273887
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,6 +4941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCol: {fileID: 0}
+  shimmerFX: {fileID: 0}
+  silEggShimScript: {fileID: 0}
   moveDuration: 3
   startMoveDelay: 0.5
   endPos: {fileID: 319143788}
@@ -5057,8 +5101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDelayDur: 0
+  maxAlpha: 1
   fadeDuration: 2
   fadeOnStart: 0
+  fadeDelay: 0
   sprite: {fileID: 275273893}
 --- !u!58 &275273892
 CircleCollider2D:
@@ -10247,8 +10294,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1739209455
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b914bc3454538254b978cafca2779665, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15292,8 +15339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDelayDur: 0
+  maxAlpha: 1
   fadeDuration: 2
   fadeOnStart: 0
+  fadeDelay: 0
   sprite: {fileID: 2135155034}
 --- !u!58 &2135155033
 CircleCollider2D:
@@ -15382,6 +15432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCol: {fileID: 0}
+  shimmerFX: {fileID: 0}
+  silEggShimScript: {fileID: 0}
   moveDuration: 3
   startMoveDelay: 0.25
   endPos: {fileID: 488974325}

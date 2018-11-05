@@ -32,12 +32,14 @@ public class MainMenu : MonoBehaviour
 	public bool menuReady;
 
 
-
 	void Start () 
 	{
 		playBtn.onClick.AddListener(PlayBtn);
+		resetBtn.onClick.AddListener(DeleteSaveFile);
+		resetBtn.onClick.AddListener(PlayBtn);
+
+		if (GlobalVariables.globVarScript.toHub) { PlayBtn(); } // Goes straight to hub
 	}
-	
 
 
 	void Update ()
@@ -88,5 +90,10 @@ public class MainMenu : MonoBehaviour
 
 		// - FADE OUT ALL MENU BUTTONS - //
 		fadeBtnOut = true;
+	}
+
+	public void DeleteSaveFile ()
+	{
+		GlobalVariables.globVarScript.DeleteEggData();
 	}
 }

@@ -7,9 +7,7 @@ using UnityEngine.SceneManagement;
 public class BackButton : MonoBehaviour 
 {
 	private Button button;
-
 	public string sceneName;
-
 
 
 	void Start () 
@@ -19,9 +17,12 @@ public class BackButton : MonoBehaviour
 	}
 
 
-
 	public void OpenScene ()
 	{
+		if (sceneName == GlobalVariables.globVarScript.menuName)
+		{
+			GlobalVariables.globVarScript.toHub = true;
+		}
 		SceneFade.SwitchScene(sceneName);
 	}
 
