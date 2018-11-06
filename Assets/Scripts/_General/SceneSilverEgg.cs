@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneSilverEgg : MonoBehaviour 
 {
@@ -28,7 +29,7 @@ public class SceneSilverEgg : MonoBehaviour
 				if (!silEggAdded) 
 				{ 
 					Debug.Log("Pssst, over here!" + posInPanel);
-					GlobalVariables.globVarScript.marketSceneSilEggsCount.Add(posInPanel); 
+					AddToSceneSilEgg();
 					GlobalVariables.globVarScript.SaveEggState();
 					clickOnEggsScript.silverEggsFound++;
 					clickOnEggsScript.AdjustSilverEggCount();
@@ -58,5 +59,24 @@ public class SceneSilverEgg : MonoBehaviour
 		spawnDelay = myDelay;
 		clickOnEggsScript.eggMoving++;
 		iniPos = this.transform.position;
+	}
+
+
+	public void AddToSceneSilEgg()
+	{
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		{
+			GlobalVariables.globVarScript.marketSceneSilEggsCount.Add(posInPanel); 
+		}
+
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		{
+			GlobalVariables.globVarScript.parkSceneSilEggsCount.Add(posInPanel); 
+		}
+
+		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		{
+
+		}
 	}
 }

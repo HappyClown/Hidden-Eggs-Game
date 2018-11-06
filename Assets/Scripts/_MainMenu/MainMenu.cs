@@ -28,8 +28,15 @@ public class MainMenu : MonoBehaviour
 
 	[Header("References")]
 	public Hub hubScript;
+	public HubEggcounts hubEggCountsScript;
 
 	public bool menuReady;
+
+
+	void Awake()
+	{
+		hubEggCountsScript.AdjustTotEggCount();
+	}
 
 
 	void Start () 
@@ -95,5 +102,8 @@ public class MainMenu : MonoBehaviour
 	public void DeleteSaveFile ()
 	{
 		GlobalVariables.globVarScript.DeleteEggData();
+
+		hubEggCountsScript.AdjustTotEggCount();
 	}
+
 }

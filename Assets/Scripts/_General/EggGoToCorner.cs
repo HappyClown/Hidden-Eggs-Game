@@ -217,6 +217,8 @@ public class EggGoToCorner : MonoBehaviour
 		{
 			//GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
 			//Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+			Debug.Log(clickOnEggsScript.totalEggsFound);
+			GlobalVariables.globVarScript.parkTotalEggsFound = clickOnEggsScript.totalEggsFound;
 			GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
 			GlobalVariables.globVarScript.SaveEggState();
 		}

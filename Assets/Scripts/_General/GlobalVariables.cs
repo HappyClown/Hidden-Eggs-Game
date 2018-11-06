@@ -129,7 +129,7 @@ public class GlobalVariables : MonoBehaviour
 	public void LoadCorrectEggs()
 	{
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
-		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName) 
+		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{ 
 			marketEggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
 
@@ -140,7 +140,7 @@ public class GlobalVariables : MonoBehaviour
 			marketTotalEggsFound = MarketSaveLoadManager.LoadMarketTotalEggs();
 
 			marketPuzzMaxLvl = MarketSaveLoadManager.LoadMarketPuzzMaxLvl();
-			Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
+			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
 
 			marketPuzzSilEggsCount = MarketSaveLoadManager.LoadMarketPuzzSilEggsCount();
 			Debug.Log(marketPuzzSilEggsCount);
@@ -170,7 +170,7 @@ public class GlobalVariables : MonoBehaviour
 		}	
 
 
-		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName) 
+		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{ 
 			parkEggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
 
@@ -181,7 +181,7 @@ public class GlobalVariables : MonoBehaviour
 			parkTotalEggsFound = ParkSaveLoadManager.LoadParkTotalEggs();
 
 			parkPuzzMaxLvl = ParkSaveLoadManager.LoadParkPuzzMaxLvl();
-			Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
+			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
 
 			parkPuzzSilEggsCount = ParkSaveLoadManager.LoadParkPuzzSilEggsCount();
 			Debug.Log(marketPuzzSilEggsCount);

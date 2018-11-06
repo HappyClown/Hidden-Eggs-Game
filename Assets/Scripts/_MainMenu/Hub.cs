@@ -42,8 +42,6 @@ public class Hub : MonoBehaviour
 		public List<GameObject> seasonObjs;
 	}
 
-	
-
 	void Start ()
 	{
 		for (int i = 0; i < unlockedSeasons.Count; i++)

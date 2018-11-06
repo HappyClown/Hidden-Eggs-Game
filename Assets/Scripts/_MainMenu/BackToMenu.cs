@@ -99,6 +99,7 @@ public class BackToMenu : MonoBehaviour
 
 	void GoToMenu ()
 	{
+		GlobalVariables.globVarScript.toHub = false;
 		//Debug.Log("Presssing Back To Menu Button");
 
 		// - TO TURN OFF IMMEDIATELY - //
