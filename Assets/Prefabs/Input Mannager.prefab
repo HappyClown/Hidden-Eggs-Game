@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1816563115253176}
+  m_IsPrefabParent: 1
+--- !u!1 &1816563115253176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4460020279528440}
+  - component: {fileID: 114880766594209746}
+  - component: {fileID: 114475228114338486}
+  m_Layer: 0
+  m_Name: Input Mannager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4460020279528440
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816563115253176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.257488, y: -1.164501, z: -0.003932478}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114475228114338486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816563115253176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7153df4279937014f9908ab239ca2418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  myClickOnEggs: {fileID: 0}
+  panningDeathZone: 5
+  panningSpeed: 10
+  minDoubleTapTime: 0.5
+  dTapMoveSpeed: 3
+  dTapZoomSpeed: 5
+  camMovSpeed: 2
+  camZoomSpeed: 50
+  maxX: 5.9
+  maxY: 3.3
+  minCameraSize: 7.5
+  minDeltaDif: 30
+  maxDeltaDif: 400
+  myInput: {fileID: 114880766594209746}
+--- !u!114 &114880766594209746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816563115253176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4357d18b7d2e474988964b80836e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhoneDevice: 0
+  detectTap: 1
+  singleTap: 0
+  detectDoubleTap: 1
+  minDoubleTapTime: 0.5
+  detectDrag: 1
+  draggingDeathzone: 5
+  startDragTouch: {x: 0, y: 0}
+  draggingPosition: {x: 0, y: 0}
+  prevDragPosition: {x: 0, y: 0}
+  isDragging: 0
+  dragStarted: 0
+  detectDoubleTouch: 1
+  touchOne: {x: 0, y: 0}
+  touchTwo: {x: 0, y: 0}
+  detectSwipe: 0
+  swipeDeathzoneRadius: 100

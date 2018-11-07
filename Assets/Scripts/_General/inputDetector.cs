@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class inputDetector : MonoBehaviour {
-	private bool isPhoneDevice;
+	public bool isPhoneDevice;
 	#region Tap Variables
 	[Header("Tap Detection")]
 	[Tooltip("Check if you want to detect Tap")]
-	public bool detectTap;
+	public bool detectTap, singleTap;
 	private Vector2 tapPosition;
 	private bool tapped;
 	public Vector3 TapPosition{get{return tapPosition;}}
@@ -31,9 +31,16 @@ public class inputDetector : MonoBehaviour {
 	public bool detectDrag;
 	[Tooltip("Dragging deathzone Radius")]
 	public float draggingDeathzone;
-	private Vector2 startDragTouch, draggingPosition;
-	private bool isDragging = false, dragStarted = false;
+	public Vector2 startDragTouch, draggingPosition, prevDragPosition;
+	public bool isDragging = false, dragStarted = false;
 	public Vector2 DraggingPosition{get{return draggingPosition;}}
+	#endregion
+
+	#region DoubleTouch
+	[Header("Double Touch")]
+	[Tooltip("Check if you want to detect Double touch (mobile only)")]
+	public bool detectDoubleTouch;
+	public Vector2 touchOne, touchTwo;
 	#endregion
 
 	#region Swipe Variables
@@ -71,12 +78,15 @@ public class inputDetector : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		#region TapCode without double tap
-		if(detectTap && !detectDoubleTap){
+		if(detectTap && !detectDoubleTap && !detectDrag){
 			tapped = false;
 			if(Input.GetMouseButtonDown(0) && !isPhoneDevice){
+				singleTap = true;
+				tapPosition = Input.mousePosition;
 				tapped = true;
 			}
-			if(Input.touches.Length > 0 && isPhoneDevice){
+			if(Input.touchCount == 1 && isPhoneDevice){
+				singleTap = true;
 				if(Input.touches[0].phase == TouchPhase.Began){					
 					tapPosition = Input.touches[0].position;
 					tapped = true;
@@ -89,6 +99,7 @@ public class inputDetector : MonoBehaviour {
 		if(detectDoubleTap){
 			doubleTapped = tapped = false;
 			if(Input.GetMouseButtonDown(0) && !isPhoneDevice){
+				singleTap = true;
 				if(doubleTapCounter == 0){					
 					tapPosition = Input.mousePosition;
 				}
@@ -104,7 +115,8 @@ public class inputDetector : MonoBehaviour {
 				}
 			}
 			
-			if(Input.touches.Length > 0 && isPhoneDevice){
+			if(Input.touchCount == 1 && isPhoneDevice){
+				singleTap = true;
 				if(Input.touches[0].phase == TouchPhase.Began){	
 					if(doubleTapCounter == 0){					
 						tapPosition = Input.touches[0].position;
@@ -136,35 +148,64 @@ public class inputDetector : MonoBehaviour {
 		#region Dragging Code
 		if(detectDrag){
 			if(Input.GetMouseButton(0) && !isPhoneDevice){
+				singleTap = true;
 				if(!dragStarted){
 					startDragTouch = Input.mousePosition;
 					dragStarted = true;
 				}
+				if(isDragging){
+					prevDragPosition = draggingPosition;
+				}
 				draggingPosition = Input.mousePosition;
-				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone){
+				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
 					isDragging = true;
+					prevDragPosition = startDragTouch;
 				}
 			}
 			if(Input.GetMouseButtonUp(0) && !isPhoneDevice){
-				ResetDragging();
+				if(isDragging){
+					ResetDragging();
+				}
+				else if(detectTap){
+					tapPosition = Input.mousePosition;
+					tapped = true;
+				}
 			}
-			if(Input.touches.Length > 0 && isPhoneDevice){
+
+			if(Input.touchCount == 1 && isPhoneDevice){
+				singleTap = true;
 				if(Input.touches[0].phase == TouchPhase.Began){
 					startDragTouch = Input.touches[0].position;
 					dragStarted = true;
 				}
+				if(isDragging){
+					prevDragPosition = draggingPosition;
+				}
 				draggingPosition = Input.touches[0].position;
-				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone){
+				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
 					isDragging = true;
+					prevDragPosition = startDragTouch;
 				}	
 				
 				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
-					ResetDragging();
+					if(isDragging){
+						ResetDragging();
+					}
+					else if(detectTap){
+						tapPosition = Input.mousePosition;
+						tapped = true;
+					}
 				}			
 			}
 		}
 		#endregion
-
+		#region DetectDouble Touch
+		if(detectDoubleTouch && Input.touchCount == 2){
+			singleTap = false;
+			touchOne = Input.touches[0].position;
+			touchTwo = Input.touches[1].position;
+		}
+		#endregion
 		if(tapped)Debug.Log("tapped");
 		if(doubleTapped)Debug.Log("D0ubleTapped");
 		if(isDragging)Debug.Log("Dragging");
@@ -185,7 +226,7 @@ public class inputDetector : MonoBehaviour {
 			#endregion
 			
 			#region Mobile Inputs
-			if(Input.touches.Length > 0 ){
+			if(Input.touchCount == 1 ){
 				if(Input.touches[0].phase == TouchPhase.Began){
 					swipeTap = true;
 					isSwiping = true;
@@ -201,7 +242,7 @@ public class inputDetector : MonoBehaviour {
 			//calculate the distance
 			swipeDelta = Vector2.zero;
 			if(isSwiping){
-				if(Input.touches.Length > 0){
+				if(Input.touchCount == 1){
 					swipeDelta = Input.touches[0].position - startSwipeTouch;
 				}else if(Input.GetMouseButton(0)){
 					swipeDelta = (Vector2)Input.mousePosition - startSwipeTouch;
