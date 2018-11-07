@@ -9,14 +9,12 @@ public class LevelTapMannager : MonoBehaviour {
 	//Tap and panning variables
 	//Click on egg script reference for the single tap
 	public ClickOnEggs myClickOnEggs;
-	//counter to know the amount of taps, and time between taps, and tap time
-	private float tapCounter = 0 , tapTimer = 0, doubleTapTimer = 0;
 	//Death zone for panning move and min time for double tap and the speed
 	[Header("5 - 10 - 0.5 - 3 - 5")]
 	public float panningDeathZone;
 	public float panningSpeed, minDoubleTapTime, dTapMoveSpeed, dTapZoomSpeed;
 	//Panning Move bool nad doubleTapped
-	private bool panningNove, doubleTapped, zoomIn;
+	private bool  doubleTapped, zoomIn;
 	//movement vectors
 	private Vector2 lastPosition;
 	//Zoom Variables
@@ -50,6 +48,9 @@ public class LevelTapMannager : MonoBehaviour {
 	[HideInInspector]
 	public RaycastHit2D hit;
 
+	//Input Detector
+	public inputDetector myInput;
+
 	void Start(){
 		//set the max camera orthographic size from the start
 		maxCameraSize = cam.orthographicSize;
@@ -57,55 +58,29 @@ public class LevelTapMannager : MonoBehaviour {
 		currentCameraSize = cam.orthographicSize;
 		//get the initial camera X and Y values
 		initialCameraPosition = cam.transform.position;
-		//panning move initialization in false
-		panningNove = false;
 	}
 	void Update ()
 	{
 		if(doubleTapped){
 			DoubleTap();
 		}
-		else if (Input.touchCount == 1){
-			touchZero = Input.GetTouch(0);
-			if(touchZero.phase == TouchPhase.Began){
-				tapCounter ++;
-				touchZeroPos = touchZero.position;
-				lastPosition = touchZeroPos;
-			}
-			if(Vector2.Distance(touchZeroPos,touchZero.position) > panningDeathZone){
-				panningNove = true;
-			}
-			if(touchZero.deltaTime > minDoubleTapTime && touchZero.phase == TouchPhase.Ended && !panningNove){				
-				DetectEggs();
-				tapCounter = 0;
-			}			
-			else if(tapCounter == 2 && doubleTapTimer < minDoubleTapTime){
+		else if (myInput.singleTap){
+			if(myInput.DoubleTapped){
+				touchZero.position = myInput.TapPosition;
 				DoubleTap();
-				tapCounter = 0;
-				doubleTapTimer = 0;
-			}else if(panningNove){
+			}
+			if(myInput.isDragging){
 				PanningCamera();
 			}
 		}
 		//check if the player is doing two contacts
-		else if (Input.touchCount == 2) { 
-			tapCounter = 0;
-			panningNove = false;
+		else if (Input.touchCount == 2 /*&& myInput.isPhoneDevice*/) { 
 			//activate the zoom function
 			PinchCamZoom(); 
 		}else{
 			//reset values when the player is not doing two contacts
 			zooming = false;
 			currentDeltaDif = 0;
-			panningNove = false;
-		}
-		if(tapCounter == 1){
-			doubleTapTimer += Time.deltaTime;
-			if(doubleTapTimer > minDoubleTapTime && !panningNove){
-				DetectEggs();
-				tapCounter = 0;
-				doubleTapTimer = 0;
-			}
 		}
 		
 		FixCameraPosition();		
@@ -169,12 +144,6 @@ public class LevelTapMannager : MonoBehaviour {
 				currentCameraSize = cam.orthographicSize;				
 			}
 	}
-
-	void DetectEggs(){
-		Debug.Log("detecting eggs!!!");
-		hit = Physics2D.Raycast(touchZeroPos, Vector3.forward, 50f);
-		Debug.DrawRay(touchZeroPos, Vector3.forward, Color.red, 60f);
-	}
 	void DoubleTap(){
 		Debug.Log("doube tap!!!");
 		if(!doubleTapped){
@@ -205,10 +174,9 @@ public class LevelTapMannager : MonoBehaviour {
 
 	}
 	void PanningCamera(){
-		if(touchZero.phase == TouchPhase.Moved && cam.orthographicSize < maxCameraSize){
-		Vector2 dir = (touchZero.position - lastPosition).normalized * -1;
+		if(cam.orthographicSize < maxCameraSize){
+		Vector2 dir = (myInput.draggingPosition - myInput.prevDragPosition).normalized * -1;
 		cam.transform.position += new Vector3(dir.x,dir.y,0)*Time.deltaTime*panningSpeed;
-		lastPosition = touchZero.position;
 		}
 	}
 	void FixCameraPosition(){
