@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 123505482}
   - component: {fileID: 123505486}
   - component: {fileID: 123505487}
+  - component: {fileID: 123505488}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -265,7 +266,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 123505481}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &123505483
 Behaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +351,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maintainWidth: 1
   adaptPosition: 0
+--- !u!114 &123505488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 123505481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!1 &210933477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,6 +1222,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totEggCount: {fileID: 1466924646}
+  marketPopUpRegCount: {fileID: 0}
+  marketPopUpSilCount: {fileID: 0}
+  marketPopUpGolCount: {fileID: 0}
+  parkPopUpRegCount: {fileID: 0}
+  parkPopUpSilCount: {fileID: 0}
+  parkPopUpGolCount: {fileID: 0}
 --- !u!1 &565124147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2477,6 +2496,76 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: The Park
+--- !u!1 &1042977691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1042977694}
+  - component: {fileID: 1042977693}
+  - component: {fileID: 1042977692}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1042977692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042977691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b5af8b637dbff4dbd233b83e24ea54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuEvent: event:/Music/MusicScenes/Menu
+  MusicEvent: event:/Music/MusicScenes/Hub
+  SummerOn: 1
+  AutumnOn: 0
+  WinterOn: 0
+  SpringOn: 0
+  BtnPlay: {fileID: 1727510752}
+  SFXPlayButton: event:/SFX/SFX_General/PlayButton
+  BtnReset: {fileID: 1272692221}
+  SFXResetButton: event:/SFX/SFX_General/PlayButton
+  BackMenuBtn: {fileID: 1901679803}
+  SFXBackButton: event:/SFX/SFX_General/Button
+  SFXMapUncover: event:/SFX/SFX_General/HubUncoverFX
+  nbEggsBySeason: 0
+--- !u!114 &1042977693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042977691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3e040c20ff2394495058fd01e6b4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXCustomButton: event:/SFX/SFX_General/Button
+  sceneScript: {fileID: 1945841290}
+  audioManHubScript: {fileID: 1042977692}
+  transEvent: event:/SFX/SFX_General/TransitionsSound
+--- !u!4 &1042977694
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042977691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1045973849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,9 +4725,20 @@ Prefab:
       propertyPath: toHub
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114240250035061422, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: audioTransScript
+      value: 
+      objectReference: {fileID: 1042977693}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1945841290 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114240250035061422, guid: 3f7590356a743604fb777e4025228310,
+    type: 2}
+  m_PrefabInternal: {fileID: 1945841289}
+  m_Script: {fileID: 11500000, guid: c6a18fc8d2822b0489db0165982230d4, type: 3}
 --- !u!1 &1993570791
 GameObject:
   m_ObjectHideFlags: 0

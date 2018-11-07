@@ -72,8 +72,9 @@ public class ClickOnEggs : MonoBehaviour
 	public int silverEggsFound;
 	public bool levelComplete;
 	public LevelComplete levelCompleteScript;
-	
-	//public AudioSceneGeneral audioSceneGenScript;
+
+	[Header("Audio Script References")]
+	public AudioSceneGeneral audioSceneGenScript;
 
 
 	void Start () 
@@ -142,6 +143,11 @@ public class ClickOnEggs : MonoBehaviour
 							eggMoving += 1;
 							openEggPanel = true;
 							UpdateEggsString();
+							// SFX Open Panel
+							if (!openEggPanel) { openEggPanel = true; audioSceneGenScript.openPanel(); }
+
+							// SFX Click Egg
+							audioSceneGenScript.ClickEggsSound();
 							//Play egg  click sound
 							//audioSceneGenScript.
 
@@ -155,6 +161,9 @@ public class ClickOnEggs : MonoBehaviour
 						{
 							SceneFade.SwitchScene(puzzleSceneName);
 							PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
+
+							//SFX puzz btn
+							audioSceneGenScript.TransitionPuzzle();
 						}
 
 						// - Opening Egg Panel Manually - //
@@ -164,6 +173,9 @@ public class ClickOnEggs : MonoBehaviour
 							{
 								openEggPanel = false;
 								lockDropDownPanel = false;
+
+								//SFX Play close panel sound
+								audioSceneGenScript.closePanel();
 								return;
 							}
 
@@ -171,6 +183,9 @@ public class ClickOnEggs : MonoBehaviour
 							{
 								openEggPanel = true;
 								lockDropDownPanel = true;
+
+								//SFX Play close panel sound
+								audioSceneGenScript.openPanel();
 							}
 
 							if (eggMoving > 0)
@@ -196,6 +211,10 @@ public class ClickOnEggs : MonoBehaviour
 
 							AddEggsFound();
 							eggScript.SaveEggToCorrectFile();
+
+							// SFX Click GOLD Egg
+							audioSceneGenScript.goldEggSound();
+							audioSceneGenScript.goldEggShimmerStopSound();
 						}
 					}
 				}
@@ -236,6 +255,8 @@ public class ClickOnEggs : MonoBehaviour
 		// - Activate Puzzle - //
 		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlockAmnt)
 		{
+			// SFX Puzz unlock
+			audioSceneGenScript.puzzleAnimation();
 			puzzleClickArea.SetActive(true);
 			var emission = puzzleParticles.emission;
 			emission.enabled = true;

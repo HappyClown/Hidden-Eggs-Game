@@ -28,6 +28,8 @@ public class HopscotchRiddle : MonoBehaviour
 
 	public bool fireworksFired;
 
+	public AudioScenePark audioSceneParkScript;
+
 
 
 	void Start () 
@@ -80,12 +82,17 @@ public class HopscotchRiddle : MonoBehaviour
 					{
 						hopscotchFX.gameObject.transform.position = mousePos2D;
 						hopscotchFX.Play();
+						//SFX hit number of Hopscotch puzzle
+						audioSceneParkScript.goldenEggGameSFX();
 					}
 
 					if (hit.collider.CompareTag("FruitBasket"))
 					{
 						hopscotchFX.gameObject.transform.position = mousePos2D;
 						hopscotchFX.Play();
+
+						//SFX hit number of Hopscotch puzzle
+						audioSceneParkScript.goldenEggGameSFX();
 
 						//numberAmount += 1;
 

@@ -27,6 +27,8 @@ public class RainbowRiddle : MonoBehaviour
 
 	public SceneTapEnabler scenTapEnabScript;
 
+	public AudioSceneMarket audioSceneMarket;
+
 
 
     void Start ()
@@ -62,6 +64,9 @@ public class RainbowRiddle : MonoBehaviour
 				if (hitFX.collider.CompareTag("OnClickFX"))
 				{
 					hitFX.collider.GetComponent<OnClickFX>().PlayFX();
+
+					//SFX Hit Baskets
+					audioSceneMarket.goldenEggBasketsSFX();
 				}
 			}  
 

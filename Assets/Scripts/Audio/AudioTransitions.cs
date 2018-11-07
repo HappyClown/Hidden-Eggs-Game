@@ -3,43 +3,100 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
-public class AudioTransitions : MonoBehaviour , IPointerClickHandler
+public class AudioTransitions : MonoBehaviour
 
-{
-    [Header("Custom Button")]
-    public GameObject Beach;
-    public GameObject Market;
-    public GameObject Park;
-	
+{	
     [Header("SFX Custom Button")]
     [FMODUnity.EventRef]
     public string SFXCustomButton;
     public FMOD.Studio.EventInstance CustomBtnSnd;
 
     [Header("Transition to Scene")]
-    public SceneFade TransitionScene;
+    public SceneFade sceneScript;
 
-       
+    [Header("Transition From Hub")]
+    public AudioManagerHubMenu audioManHubScript;
+
+    [Header("Cue Title Card Transition")]
+    [FMODUnity.EventRef]
+    public string transEvent;
+    public FMOD.Studio.EventInstance transMusic;
+
+
     void Start()
     {
+        transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
+        //currentScene = SceneManager.GetActiveScene().name; 
+        //Init_DictMusicTransitions();
+    }
+
+void Update()   
+    {
+	
 
     }
-	
-    /// ----- SCENES CUSTOM BUTTON  -----///
-    public void TransitionScenes()
+
+    /// ----- TRANSITIONS LINKED TO THE SCENE FADE SCRIPT  -----///
+    public void TransitionScenes(string sceneName)
     {
-        //select music of the next scene depending of the clicked custom button
-        //reference to Scenefade.cs 
+
+
+		if(audioManHubScript)
+		{
+			btnSound(); //for the custom button sound of the hub 
+            audioManHubScript.StopHubMusicFade();
+            transMusic.start();
+		}
+		
+		/*
+        if(sceneName == GlobalVariables.globVarScript.menuName)
+        {
+            btnSound(); //for the custom button sound of the hub 
+            audioManHubScript.StopHubMusicFade();
+            transMusic.start();
+
+        }
+		
+        if(sceneName == GlobalVariables.globVarScript.parkName)
+        {
+            transMusic.start();
+        }
+        if(sceneName == GlobalVariables.globVarScript.marketName)
+        {
+            transMusic.start();
+        }
+        if(sceneName == GlobalVariables.globVarScript.beachName)
+        {
+            transMusic.start();
+        }
+        if(sceneName == GlobalVariables.globVarScript.beachPuzName)
+        {
+            transMusic.start();
+        }
+        if(sceneName == GlobalVariables.globVarScript.parkPuzName)
+        {
+            transMusic.start();
+        }
+        if(sceneName == GlobalVariables.globVarScript.marketPuzName)
+        {
+            transMusic.start();
+        }
+		*/
     }
-    public void OnPointerClick(PointerEventData pointerEventData)
+ 
+    ////////////////////////////////
+    //   MUSIC STOP / PLAY
+    ////////////////////////////////
+
+    public void btnSound()
     {
-        ///not working
-        Debug.Log("Bouton Custom");
         CustomBtnSnd = FMODUnity.RuntimeManager.CreateInstance(SFXCustomButton);
         CustomBtnSnd.start();
-
-        //when clicked stop hub music
     }
+
+
+
 
 }

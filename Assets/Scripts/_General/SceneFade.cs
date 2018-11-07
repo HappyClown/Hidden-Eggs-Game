@@ -45,7 +45,8 @@ public class SceneFade : MonoBehaviour
 	[TooltipAttribute("When to start fading out the background; Based on the White Background Alpha value.")]
 	public float whtStartBackgroundFade;
 
-
+	public static AudioTransitions audioTransStaticScript;
+	public AudioTransitions audioTransScript;
 
 	void Awake () 
 	{
@@ -53,6 +54,7 @@ public class SceneFade : MonoBehaviour
 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
 		titleCardImg.color = new Color(titleCardImg.color.r, titleCardImg.color.g, titleCardImg.color.b, 0f);
 		titleCardTxt.color = new Color(titleCardTxt.color.r, titleCardTxt.color.g, titleCardTxt.color.b, titleCardImg.color.a);
+		audioTransStaticScript = audioTransScript;
 	}
 
 
@@ -197,6 +199,10 @@ public class SceneFade : MonoBehaviour
 		titCardSceneTrans = true;
 		fadeSceneOut = true;
 		sceneToLoad = sceneName;
+		if (audioTransStaticScript != null)
+		{
+			audioTransStaticScript.TransitionScenes(sceneName);
+		}
 	}
 
 	public static void SwitchSceneWhiteFade (string sceneName)
@@ -205,5 +211,9 @@ public class SceneFade : MonoBehaviour
 		whtSceneTrans = true;
 		fadeSceneOut = true;
 		sceneToLoad = sceneName;
+		if (audioTransStaticScript != null)
+		{
+			audioTransStaticScript.TransitionScenes(sceneName);
+		}
 	}
 }

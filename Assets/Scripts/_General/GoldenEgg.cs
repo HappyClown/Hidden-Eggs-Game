@@ -49,6 +49,8 @@ public class GoldenEgg : MonoBehaviour
 	private bool clickDown;
 	private RaycastHit2D hit;
 
+	public AudioSceneGeneral audioSceneGeneralScript;
+
 
 
 	void Start ()
@@ -351,5 +353,15 @@ public class GoldenEgg : MonoBehaviour
 	public void CanTapGold ()
 	{
 		scenTapEnabScript.canTapGoldEgg = true;
+	}
+
+	public void GoldEggAnimSound()
+	{
+		audioSceneGeneralScript.goldEggAnimSound();
+	}
+
+	public void GoldEggShimmerPlaySound()
+	{
+		audioSceneGeneralScript.goldEggShimmerStartSound();
 	}
 }

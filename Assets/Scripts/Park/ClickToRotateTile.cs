@@ -48,6 +48,8 @@ public class ClickToRotateTile : MonoBehaviour
 
 	public KitePuzzEngine kitePuzzEngineScript;
 
+	public AudioSceneParkPuzzle audioSceneParkPuz;
+
 	
 	void Awake ()
 	{
@@ -118,6 +120,9 @@ public class ClickToRotateTile : MonoBehaviour
 				tileClickedOGPos = tileClicked.transform.position;
 				tileClicked.GetComponent<BoxCollider2D>().enabled = false;
 
+				// SFX PICK UP TILE
+				if(mouseClick) { audioSceneParkPuz.pickupTile(); }
+
 				StartCoroutine(SkipAFrame());
 			
 			}
@@ -158,6 +163,9 @@ public class ClickToRotateTile : MonoBehaviour
 					//tileClicked.transform.eulerAngles = new Vector3(tileClicked.transform.eulerAngles.x, tileClicked.transform.eulerAngles.y, tileClicked.transform.eulerAngles.z - 90);
 					// make tile roo roororo tate
 					tileClicked.GetComponent<TileRotation>().RotateTile();
+
+					// SFX PICK UP TILE
+					audioSceneParkPuz.rotateTile();
 				}
 
 				tileClicked.transform.position = tileClickedOGPos;
@@ -180,6 +188,8 @@ public class ClickToRotateTile : MonoBehaviour
 			// --- Click released after holding
 			if (hit.collider != null && Input.GetMouseButtonUp(0) && hit.collider.CompareTag("Tile") && tileClicked != null)
 			{
+				// SFK DROP TILE
+				audioSceneParkPuz.dropTile();
 				Debug.Log("Click released after held");
 				if (mouseClickHeld && hit.collider.GetComponent<TileRotation>().canBeRotated)
 				{

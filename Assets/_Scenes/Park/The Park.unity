@@ -7207,6 +7207,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224045880510790872, guid: 5ba1db6bd74f4824ba477fdace661f73,
     type: 2}
   m_PrefabInternal: {fileID: 270745167}
+--- !u!114 &270745169 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114813850726728432, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 270745167}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &283887304
 GameObject:
   m_ObjectHideFlags: 0
@@ -13455,6 +13461,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4543114266839502, guid: ffc94fe78e676f34da6a03d632967891,
     type: 2}
   m_PrefabInternal: {fileID: 395370128}
+--- !u!114 &396974735 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114723601346682876, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 270745167}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &398126734
 GameObject:
   m_ObjectHideFlags: 0
@@ -19199,13 +19211,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &511196392
-AudioListener:
+--- !u!114 &511196392
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 511196391}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!124 &511196393
 Behaviour:
   m_ObjectHideFlags: 0
@@ -20985,6 +21002,88 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 677357012}
+--- !u!1001 &683836288
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.673231
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5812991
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.8059883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: BackMenuBtn
+      value: 
+      objectReference: {fileID: 792952596}
+    - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: BirdHelpBtn
+      value: 
+      objectReference: {fileID: 1149281956}
+    - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: RiddleBtn
+      value: 
+      objectReference: {fileID: 396974735}
+    - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: puzzleUnlockedEvent
+      value: event:/SFX/SFX_General/Egg_Click_Silver
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: HintBtn
+      value: 
+      objectReference: {fileID: 270745169}
+    - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: goldEggAnimationEvent
+      value: event:/SFX/SFX_General/GoldenEggAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: goldEggShimyEvent
+      value: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
+      objectReference: {fileID: 0}
+    - target: {fileID: 114447039048698858, guid: d1e6bf778f296894984e781118cc08e3,
+        type: 2}
+      propertyPath: childrenGameEvent
+      value: event:/SFX/Park/GoldenEgg_childrenGame
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &686136850
 GameObject:
   m_ObjectHideFlags: 0
@@ -21464,6 +21563,7 @@ MonoBehaviour:
   silverEggsFound: 0
   levelComplete: 0
   levelCompleteScript: {fileID: 712647449}
+  audioSceneGenScript: {fileID: 1013716343}
 --- !u!114 &712647448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21494,6 +21594,7 @@ MonoBehaviour:
   firework01: {fileID: 943497046}
   firework02: {fileID: 1100347439}
   fireworksFired: 0
+  audioSceneParkScript: {fileID: 1013716342}
 --- !u!114 &712647449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26572,6 +26673,12 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &792952596 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114654989322739704, guid: c8b8141be69c3684390b2f2b8f0278e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 60122256}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &798494345
 GameObject:
   m_ObjectHideFlags: 0
@@ -33473,6 +33580,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8b986e6c53177947adbdb9775b12edf, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1013716342 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114447039048698858, guid: d1e6bf778f296894984e781118cc08e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 683836288}
+  m_Script: {fileID: 11500000, guid: 01c7ac659576dfa4890f18276c339c35, type: 3}
+--- !u!114 &1013716343 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 683836288}
+  m_Script: {fileID: 11500000, guid: fdfb9e5f0eeac434f9cda2e51f98745e, type: 3}
 --- !u!1 &1016280401
 GameObject:
   m_ObjectHideFlags: 0
@@ -39245,6 +39364,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1910638924771200, guid: ffc94fe78e676f34da6a03d632967891,
     type: 2}
   m_PrefabInternal: {fileID: 1147688089}
+--- !u!114 &1149281956 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114747788432878602, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 270745167}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1154378279
 GameObject:
   m_ObjectHideFlags: 0
@@ -58962,6 +59087,7 @@ MonoBehaviour:
   eggToCornerTime: 0.6
   congratsOffTime: 0.3
   coverOffTime: 0.1
+  audioSceneGeneralScript: {fileID: 1013716343}
 --- !u!95 &1790771305
 Animator:
   serializedVersion: 3

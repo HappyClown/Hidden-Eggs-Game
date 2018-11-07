@@ -34,6 +34,8 @@ public class SilverEggSequence : MonoBehaviour
 
 	private bool hoverUp = true;
 	private float lerpTime;
+	
+	public AudioSilverEggs audioSilEggScript;
 
 	//public Transform hoverTo; // For hover with lerp.
 	
@@ -124,6 +126,8 @@ public class SilverEggSequence : MonoBehaviour
 		startSeq = true;
 		startPos = this.transform.localPosition;
 		startScale = this.transform.localScale;
+
+		audioSilEggScript.SilverEggTrailSFX();
 		//trailFX.Play();
 		//shimmerFX.Play();
 	}

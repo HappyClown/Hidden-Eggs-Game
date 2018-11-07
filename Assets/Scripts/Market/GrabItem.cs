@@ -84,6 +84,9 @@ public class GrabItem : MonoBehaviour
 	public int maxLvl;
 	#endregion
 
+	public AudioSceneMarketPuzzle audioSceneMarketPuz;
+
+
 	void Start ()
 	{
 		canPlay = false;
@@ -133,6 +136,9 @@ public class GrabItem : MonoBehaviour
 							curntAmnt -= 1;
 							heldItem.GetComponent<Items>().inCrate = false;
 						}
+
+						// SFX PickUp Item
+						audioSceneMarketPuz.pickupFruit();
 					}
 				}
 			}
@@ -179,6 +185,9 @@ public class GrabItem : MonoBehaviour
 						
 						scaleScript.itemOnScale = heldItem;
 						scaleScript.isAnItemOnScale = true;
+
+						//SFK Drop Item
+						audioSceneMarketPuz.dropFruitScale();
 						break;
 					}
 
@@ -186,6 +195,8 @@ public class GrabItem : MonoBehaviour
 					else if (hits[i].collider.gameObject.CompareTag("Table"))
 					{
 						heldItem.transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
+						//SFX DROP ON WOOD
+						audioSceneMarketPuz.dropFruitCrate();
 						break;
 					}
 
@@ -197,6 +208,8 @@ public class GrabItem : MonoBehaviour
 						heldItem.transform.parent = crateParent.transform;
 						curntPounds += heldItem.GetComponent<Items>().weight;
 						curntAmnt += 1;
+						//SFX DROP ON WOOD
+						audioSceneMarketPuz.dropFruitCrate();
 						break;
 					}
 
@@ -208,6 +221,8 @@ public class GrabItem : MonoBehaviour
 						heldItem.transform.parent = crateParent.transform;
 						curntPounds += heldItem.GetComponent<Items>().weight;
 						curntAmnt += 1;
+						//SFX DROP ON WOOD
+						audioSceneMarketPuz.dropFruitCrate();
 						break;
 					}
 
@@ -233,8 +248,8 @@ public class GrabItem : MonoBehaviour
 				else
 				{
 					seqTimer += Time.deltaTime;
-					if (seqTimer > crateDownF && !crateDownB) { crateDownB = true; crateAnim.SetTrigger("MoveDown"); StartCoroutine(MoveCrateDown()); }
-					if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; } 
+					if (seqTimer > crateDownF && !crateDownB) { crateDownB = true; crateAnim.SetTrigger("MoveDown"); audioSceneMarketPuz.crateSlideDown(); StartCoroutine(MoveCrateDown()); }
+					if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; audioSceneMarketPuz.openPanel(); } 
 					if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 					{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); } }
 					if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); }
@@ -287,6 +302,10 @@ public class GrabItem : MonoBehaviour
 						
 						amntSilEggsTapped++;
 						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
+
+						//SFX Silver Egg
+						//SFX DROP ON WOOD
+						audioSceneMarketPuz.silverEggSnd();
 					}
 				}
 			}
@@ -384,6 +403,7 @@ public class GrabItem : MonoBehaviour
 
 		StartCoroutine(MoveCrateRight());
 		reqParchMoveScript.moveToHidden = true;
+		audioSceneMarketPuz.closePanel();
 
 		curntPounds = 0;
 		curntAmnt = 0;
@@ -452,6 +472,7 @@ public class GrabItem : MonoBehaviour
 		//canPlay = true;
 		crateScript.UpdateRequirements();
 		reqParchMoveScript.moveToShown = true;
+		audioSceneMarketPuz.openPanel();
 	}
 
 	// Prepare to change level after a level selection button has been pressed.
@@ -466,6 +487,7 @@ public class GrabItem : MonoBehaviour
 		{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeOut(); }
 
 		reqParchMoveScript.moveToHidden = true;
+		audioSceneMarketPuz.closePanel();
 		
 		setupChsnLvl = true;
 		// RESET SILVER EGGs ///////////////////////
@@ -495,6 +517,7 @@ public class GrabItem : MonoBehaviour
 			//canPlay = true;
 			crateScript.UpdateRequirements();
 			reqParchMoveScript.moveToShown = true;
+			audioSceneMarketPuz.openPanel();
 
 			setupChsnLvl = false;
 			chngLvlTimer = 0;
@@ -615,6 +638,9 @@ public class GrabItem : MonoBehaviour
 		}
 		crateAnim.SetTrigger("MoveRight");
 
+		//SFX MOVE CRATE
+		audioSceneMarketPuz.crateSlideRight();
+
 		yield return new WaitForSeconds(0.0001f);
 
 		while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveRight"))
@@ -643,6 +669,8 @@ public class GrabItem : MonoBehaviour
 		itemHolder.SetActive(false);
 		scrnDarkImgScript.FadeIn();
 		crateAnim.SetTrigger("MoveDown");
+		//SFX MOVE CRATE
+		audioSceneMarketPuz.crateSlideDown();
 		StartCoroutine(MoveCrateDown());
 	}
 
@@ -679,6 +707,9 @@ public class GrabItem : MonoBehaviour
 
 		yield return new WaitForSeconds(0.5f);
 
+		audioSceneMarketPuz.StopSceneMusic();
+		audioSceneMarketPuz.PlayTransitionMusic();
+		
 		SceneFade.SwitchScene(GlobalVariables.globVarScript.marketName);
 	}
 	#endregion

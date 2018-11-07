@@ -360,6 +360,67 @@ MonoBehaviour:
   fadeOnStart: 1
   fadeDelay: 0
   sprite: {fileID: 0}
+--- !u!1 &17080952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 17080953}
+  - component: {fileID: 17080954}
+  - component: {fileID: 17080955}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &17080953
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 17080952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &17080954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 17080952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0170e525b25cf594d9e5a8866d2b7374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneMusicEvent: event:/Music/MusicScenes/Park_Puzzle
+  transEvent: event:/SFX/SFX_General/TransitionsSound
+  silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
+  pickupTileEvent: event:/SFX/Puzzle_Park/Puzzle_TilePickUp
+  dropTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileDrop
+  rotateTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileRotate
+  BackParkBtn: {fileID: 891275596}
+  buttonEvent: event:/SFX/SFX_General/Button
+--- !u!114 &17080955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 17080952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15242cc1b8da77d409a8bc02490571e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverEggClickEvent: event:/SFX/SFX_General/FX_trail
 --- !u!1 &36443641
 GameObject:
   m_ObjectHideFlags: 0
@@ -15492,6 +15553,7 @@ MonoBehaviour:
   desktopDevice: 0
   handheldDevice: 0
   kitePuzzEngineScript: {fileID: 654759646}
+  audioSceneParkPuz: {fileID: 17080954}
 --- !u!114 &654759646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15589,6 +15651,7 @@ MonoBehaviour:
   setupLvlWaitTime: 2
   chngLvlTimer: 0
   maxLvl: 0
+  audioSceneParkPuzzScript: {fileID: 17080954}
 --- !u!1 &696875865
 GameObject:
   m_ObjectHideFlags: 0
@@ -22830,6 +22893,12 @@ Transform:
   m_Father: {fileID: 119567624}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &891275596 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114414448826633382, guid: 2c668a3931c67034d8e0b91ea2176a0d,
+    type: 2}
+  m_PrefabInternal: {fileID: 869194895}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &894998368 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4006766606215686, guid: dae81d163e2a647478192fbc62e45d8a,
@@ -29964,7 +30033,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1819915443}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1308605111
 ParticleSystemRenderer:
@@ -41693,7 +41762,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1819915437}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1587742151
 ParticleSystemRenderer:
@@ -46967,7 +47036,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1819915418}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1674798303
 ParticleSystemRenderer:
@@ -52444,7 +52513,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1819915451}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1809531594
 ParticleSystemRenderer:
@@ -57352,8 +57421,8 @@ Transform:
   m_LocalPosition: {x: -6.56, y: 0.43, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
-  - {fileID: 395961922}
   - {fileID: 1674798302}
+  - {fileID: 395961922}
   - {fileID: 452977295}
   m_Father: {fileID: 1819915417}
   m_RootOrder: 2
@@ -57393,7 +57462,7 @@ MonoBehaviour:
   shimmerFX: {fileID: 452977298}
   silEggShimScript: {fileID: 452977297}
   moveDuration: 3
-  startMoveDelay: 0
+  startMoveDelay: 2
   endPos: {fileID: 721607868}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -57513,6 +57582,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioSilEggScript: {fileID: 17080955}
 --- !u!114 &1819915421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57604,8 +57674,8 @@ Transform:
   m_LocalPosition: {x: -7.17, y: 0.45, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
-  - {fileID: 419702984}
   - {fileID: 1838101930}
+  - {fileID: 419702984}
   - {fileID: 1880704833}
   m_Father: {fileID: 1819915417}
   m_RootOrder: 1
@@ -57645,7 +57715,7 @@ MonoBehaviour:
   shimmerFX: {fileID: 1880704836}
   silEggShimScript: {fileID: 1880704835}
   moveDuration: 3
-  startMoveDelay: 0
+  startMoveDelay: 1
   endPos: {fileID: 66345136}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -57765,6 +57835,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioSilEggScript: {fileID: 17080955}
 --- !u!114 &1819915427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57856,8 +57927,8 @@ Transform:
   m_LocalPosition: {x: -7.75, y: -0.01, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
-  - {fileID: 852061637}
   - {fileID: 1888233798}
+  - {fileID: 852061637}
   - {fileID: 142692613}
   m_Father: {fileID: 1819915417}
   m_RootOrder: 0
@@ -58017,6 +58088,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioSilEggScript: {fileID: 17080955}
 --- !u!114 &1819915433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58124,8 +58196,8 @@ Transform:
   m_LocalPosition: {x: 7.72, y: 0.41, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
-  - {fileID: 950039144}
   - {fileID: 1587742150}
+  - {fileID: 950039144}
   - {fileID: 1242911572}
   m_Father: {fileID: 1819915436}
   m_RootOrder: 1
@@ -58165,7 +58237,7 @@ MonoBehaviour:
   shimmerFX: {fileID: 1242911575}
   silEggShimScript: {fileID: 1242911574}
   moveDuration: 3
-  startMoveDelay: 0
+  startMoveDelay: 0.5
   endPos: {fileID: 172048985}
   endScale: {x: 0.5, y: 0.5, z: 0.5}
   moveAnimCurve:
@@ -58285,6 +58357,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioSilEggScript: {fileID: 17080955}
 --- !u!114 &1819915440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58376,8 +58449,8 @@ Transform:
   m_LocalPosition: {x: 6.89, y: 0.73, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
-  - {fileID: 1624453341}
   - {fileID: 1308605110}
+  - {fileID: 1624453341}
   - {fileID: 1554540133}
   m_Father: {fileID: 1819915436}
   m_RootOrder: 0
@@ -58537,6 +58610,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioSilEggScript: {fileID: 17080955}
 --- !u!114 &1819915446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58689,8 +58763,8 @@ Transform:
   m_LocalPosition: {x: -7.19, y: 3.13, z: -1}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
-  - {fileID: 1479114258}
   - {fileID: 1809531593}
+  - {fileID: 1479114258}
   - {fileID: 764475283}
   m_Father: {fileID: 1819915450}
   m_RootOrder: 0
@@ -58850,6 +58924,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioSilEggScript: {fileID: 17080955}
 --- !u!114 &1819915454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58960,7 +59035,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1819915424}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1838101931
 ParticleSystemRenderer:
@@ -68306,7 +68381,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 1819915430}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!199 &1888233799
 ParticleSystemRenderer:

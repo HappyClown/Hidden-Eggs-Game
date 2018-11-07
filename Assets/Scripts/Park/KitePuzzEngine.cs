@@ -84,6 +84,8 @@ public class KitePuzzEngine : MonoBehaviour
 	public int maxLvl;
 	#endregion
 
+	public AudioSceneParkPuzzle audioSceneParkPuzzScript;
+
 
 
 	void Start () 
@@ -182,6 +184,9 @@ public class KitePuzzEngine : MonoBehaviour
 						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 						silEggTappedScript.StartSilverEggAnim();
 						hit.collider.enabled = false;
+
+						//SFX CLICK SILVER EGG
+						audioSceneParkPuzzScript.silverEgg();
 						
 						if (!silEggTappedScript.hollow) { silverEggsPickedUp++; }
 						SaveSilverEggsToCorrectFile();
@@ -597,6 +602,9 @@ public class KitePuzzEngine : MonoBehaviour
 		Debug.Log("Puzzle Completed cognraturations!!!");
 
 		yield return new WaitForSeconds(0.5f);
+
+		audioSceneParkPuzzScript.StopSceneMusic();
+		audioSceneParkPuzzScript.PlayTransitionMusic();
 
 		SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
 	}
