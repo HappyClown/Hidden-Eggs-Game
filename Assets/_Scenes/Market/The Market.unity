@@ -32743,14 +32743,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneMusicEvent: event:/Music/MusicScenes/Market
   transEvent: event:/SFX/SFX_General/TransitionsSound
-  testTransEvent: event:/Music/TransitionsScenes/ToBeach
   EggClickEvent: event:/SFX/SFX_General/Egg_Click
   goldEggClickEvent: event:/SFX/SFX_General/Egg_Click_Gold
   goldEggAnimationEvent: event:/SFX/SFX_General/GoldenEggAnimation
   goldEggShimyEvent: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
   panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
   panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
-  puzzleUnlockedEvent: event:/SFX/SFX_General/Egg_Click_Silver
+  puzzleUnlockedEvent: event:/SFX/Market/PuzzleShimyLoop_market
   birdEvent: event:/SFX/Market/Market_Bird
   BackMenuBtn: {fileID: 1465512195}
   BirdHelpBtn: {fileID: 907499858}
@@ -32758,6 +32757,8 @@ MonoBehaviour:
   HintBtn: {fileID: 649541564}
   puzzleButtonEvent: event:/SFX/Market/Puzzle_Click
   buttonEvent: event:/SFX/SFX_General/Button
+  FadeIn: 0
+  AlphaValue: 0
 --- !u!1 &1447203535
 GameObject:
   m_ObjectHideFlags: 0
@@ -48134,6 +48135,7 @@ MonoBehaviour:
   minCameraSize: 7.5
   minDeltaDif: 30
   maxDeltaDif: 400
+  myInput: {fileID: 0}
 --- !u!1 &2125112599 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1910638924771200, guid: ffc94fe78e676f34da6a03d632967891,

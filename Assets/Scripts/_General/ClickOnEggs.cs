@@ -165,6 +165,7 @@ public class ClickOnEggs : MonoBehaviour
 
 							//SFX puzz btn
 							audioSceneGenScript.TransitionPuzzle();
+							audioSceneGenScript.puzzleAnimationStop();
 						}
 
 						// - Opening Egg Panel Manually - //
@@ -257,7 +258,7 @@ public class ClickOnEggs : MonoBehaviour
 		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlockAmnt)
 		{
 			// SFX Puzz unlock
-			audioSceneGenScript.puzzleAnimation();
+			audioSceneGenScript.puzzleAnimationStart(puzzleClickArea);
 			puzzleClickArea.SetActive(true);
 			var emission = puzzleParticles.emission;
 			emission.enabled = true;

@@ -216,4 +216,12 @@ public class SceneFade : MonoBehaviour
 			audioTransStaticScript.TransitionScenes(sceneName);
 		}
 	}
+
+	//// FOR UNLOCKED PUZZLE SOUND TESTS
+	/* 
+	public static float getSceneFadeAlpha()
+	{
+		return newAlpha;
+	}
+	*/
 }
