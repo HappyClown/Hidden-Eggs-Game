@@ -37,6 +37,10 @@ public class AudioSceneParkPuzzle: MonoBehaviour
 	[Header("Buttons")]
 
     public Button BackParkBtn;
+    public Button ResetItemBtn;
+    public Button ToggleLevelPuz1;
+	public Button ToggleLevelPuz2;
+	public Button ToggleLevelPuz3;
 
     
     [FMODUnity.EventRef]
@@ -46,6 +50,11 @@ public class AudioSceneParkPuzzle: MonoBehaviour
     void Start () 
 	{
         BackParkBtn.onClick.AddListener(TransitionPark);
+
+        ResetItemBtn.onClick.AddListener(buttonSFX);
+        ToggleLevelPuz1.onClick.AddListener(buttonSFX);
+		ToggleLevelPuz2.onClick.AddListener(buttonSFX);
+		ToggleLevelPuz3.onClick.AddListener(buttonSFX);
 		transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
 		sceneMusic = FMODUnity.RuntimeManager.CreateInstance(sceneMusicEvent);
 		PlaySceneMusic();
@@ -115,6 +124,13 @@ public class AudioSceneParkPuzzle: MonoBehaviour
     {
         rotateTileSound = FMODUnity.RuntimeManager.CreateInstance(rotateTileEvent);
         rotateTileSound.start();
+    }
+
+        public void buttonSFX()
+    {
+        //button sound
+        buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
+        buttonSound.start();
     }
 
 }

@@ -17,10 +17,6 @@ public class AudioSceneGeneral : MonoBehaviour
     public string transEvent;
     public FMOD.Studio.EventInstance transMusic;
 
-    [Header("test orchestral trans")]
-    [FMODUnity.EventRef]
-    public string testTransEvent;
-    public FMOD.Studio.EventInstance testTransMusic;
 
 	[Header("Egg SFX")]
     [FMODUnity.EventRef]
@@ -84,7 +80,6 @@ public class AudioSceneGeneral : MonoBehaviour
         sceneMusic = FMODUnity.RuntimeManager.CreateInstance(sceneMusicEvent);
 		transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
         goldEggShimySound = FMODUnity.RuntimeManager.CreateInstance(goldEggShimyEvent);
-        testTransMusic = FMODUnity.RuntimeManager.CreateInstance(testTransEvent);
         PlaySceneMusic();
 	}
 	
@@ -115,7 +110,6 @@ public class AudioSceneGeneral : MonoBehaviour
 	 public void PlayTransitionMusic()
     {
         transMusic.start();
-        testTransMusic.start();
     }
 
     /////////////////////////////////////////
