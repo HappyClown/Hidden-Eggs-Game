@@ -6,14 +6,16 @@ using UnityEngine;
 public class HopscotchRiddle : MonoBehaviour 
 {
 	Ray2D ray;
-	RaycastHit2D hit;
-	Vector2 mousePos2D;
-	Vector3 mousePos;
+	RaycastHit2D hit, hit2;
+	Vector2 mousePos2D, mousePos2D2;
+	Vector3 mousePos, mousePos2;
 
 	[Header("Hopscotch Riddle")]
+	public inputDetector myInput;
 	public List<GameObject> numbers;
 	public int numberAmount;
-	public GameObject numberOne;
+	public HopscotchCell numberOne;
+	public HopscotchCell[] allCells;
 	public GameObject goldenEgg;
 	public GoldenEgg goldenEggScript;
 
@@ -69,9 +71,15 @@ public class HopscotchRiddle : MonoBehaviour
     { 
 		// if (desktopDevice)
 		// {
-			if (!GlobalVariables.globVarScript.hopscotchRiddleSolved && Input.GetMouseButtonDown(0))
+			if (!GlobalVariables.globVarScript.hopscotchRiddleSolved && (myInput.Tapped || myInput.DoubleTouched) )
 			{
-				mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
+				if(myInput.DoubleTouched){
+					mousePos = Camera.main.ScreenToWorldPoint(myInput.touchOne);
+					mousePos2 = Camera.main.ScreenToWorldPoint(myInput.touchTwo);
+					mousePos2D2 = new Vector2 (mousePos2.x, mousePos2.y);
+					hit2 = Physics2D.Raycast(mousePos2D2, Vector3.forward, 50f, layerMask);
+				}
 				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
@@ -90,6 +98,7 @@ public class HopscotchRiddle : MonoBehaviour
 					{
 						hopscotchFX.gameObject.transform.position = mousePos2D;
 						hopscotchFX.Play();
+						HopscotchCell currentCell = hit.collider.gameObject.GetComponent<HopscotchCell>();
 
 						//SFX hit number of Hopscotch puzzle
 						audioSceneParkScript.goldenEggGameSFX();
@@ -97,22 +106,16 @@ public class HopscotchRiddle : MonoBehaviour
 						//numberAmount += 1;
 
 						//hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-
-						if (numberAmount == 0 && hit.collider.gameObject == numberOne)
-						{
-							numberAmount++;
+						if(currentCell.myNumber == numberOne.myNumber){
+							foreach ( HopscotchCell myCells in allCells)
+							{
+								myCells.ResetCell();
+							}
 						}
-						else if (numberAmount >= 0 && hit.collider.gameObject != numberOne)
-						{
-							numberAmount++;
-						}
-
-						if (hit.collider.gameObject != numberOne)
-						{
-							hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-						}
+						currentCell.checkCell();
 						
-						if (numberAmount >= 7)
+						
+						if (currentCell.goalCell)
 						{
 							HopscotchRiddleSolved ();
 							//SpawnGoldenEgg;
@@ -132,25 +135,75 @@ public class HopscotchRiddle : MonoBehaviour
 							}	
 							return;
 						}
-						else
-						{
-							numbers[numberAmount].GetComponent<CircleCollider2D>().enabled = true;
-						}
-					}
-
-					if (numberAmount > 1 && hit.collider.gameObject == numberOne)
-					{
-						numberAmount = 1;
 					}
 
 					if (!hit.collider.CompareTag("FruitBasket") && !GlobalVariables.globVarScript.hopscotchRiddleSolved)
 					{
-						numberAmount = 0;
-						foreach (GameObject number in numbers)
+						foreach ( HopscotchCell myCells in allCells)
 						{
-							number.GetComponent<CircleCollider2D>().enabled = false;
-						}	
-						numbers[0].GetComponent<CircleCollider2D>().enabled = true;
+							myCells.ResetCell();
+						}
+					}
+				}
+				if (hit2)
+				{
+					if (hit2.collider.CompareTag("OnClickFX"))
+					{
+						hopscotchFX.gameObject.transform.position = mousePos2D;
+						hopscotchFX.Play();
+						//SFX hit number of Hopscotch puzzle
+						audioSceneParkScript.goldenEggGameSFX();
+					}
+
+					if (hit2.collider.CompareTag("FruitBasket"))
+					{
+						hopscotchFX.gameObject.transform.position = mousePos2D;
+						hopscotchFX.Play();
+						HopscotchCell currentCell = hit2.collider.gameObject.GetComponent<HopscotchCell>();
+
+						//SFX hit number of Hopscotch puzzle
+						audioSceneParkScript.goldenEggGameSFX();
+
+						//numberAmount += 1;
+
+						//hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+						if(currentCell.myNumber == numberOne.myNumber){
+							foreach ( HopscotchCell myCells in allCells)
+							{
+								myCells.ResetCell();
+							}
+						}
+						currentCell.checkCell();
+						
+						
+						if (currentCell.goalCell)
+						{
+							HopscotchRiddleSolved ();
+							//SpawnGoldenEgg;
+							goldenEgg.SetActive(true);
+							goldenEggScript.inGoldenEggSequence = true;
+
+							if (!fireworksFired)
+							{
+								firework01.Play(true);
+								firework02.Play(true);
+								fireworksFired = true;
+							}
+							//Disable/destroy all basket colliders;
+							foreach (GameObject number in numbers)
+							{
+								number.SetActive(false);
+							}	
+							return;
+						}
+					}
+
+					if (!hit2.collider.CompareTag("FruitBasket") && !GlobalVariables.globVarScript.hopscotchRiddleSolved)
+					{
+						foreach ( HopscotchCell myCells in allCells)
+						{
+							myCells.ResetCell();
+						}
 					}
 				}
 			}

@@ -528,6 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 22241533}
   - component: {fileID: 22241534}
+  - component: {fileID: 22241535}
   m_Layer: 8
   m_Name: Number 1
   m_TagString: FruitBasket
@@ -563,6 +564,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.85
+--- !u!114 &22241535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22241532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {fileID: 2098389755}
+  myNumber: 1
+  doubleCell: 0
+  goalCell: 0
+  requiredCell: {fileID: 0}
+  tapped: 0
 --- !u!1 &34223522
 GameObject:
   m_ObjectHideFlags: 0
@@ -7182,7 +7200,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1704334816793472, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114180860870652196, guid: 5ba1db6bd74f4824ba477fdace661f73,
         type: 2}
@@ -12565,6 +12583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339542039}
   - component: {fileID: 339542040}
+  - component: {fileID: 339542041}
   m_Layer: 8
   m_Name: Number 5
   m_TagString: FruitBasket
@@ -12600,6 +12619,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.85
+--- !u!114 &339542041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 339542038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {fileID: 1402633296}
+  myNumber: 5
+  doubleCell: 1
+  goalCell: 0
+  requiredCell: {fileID: 2065494006}
+  tapped: 0
 --- !u!1 &339657449
 GameObject:
   m_ObjectHideFlags: 0
@@ -18793,6 +18829,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 96ede7faeab6d504ea2eaddb53705b91,
         type: 3}
+    - target: {fileID: 1946718789597742, guid: cca0c653d108c0c48954d5b5f314c854, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438188151023138, guid: cca0c653d108c0c48954d5b5f314c854, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cca0c653d108c0c48954d5b5f314c854, type: 2}
   m_IsPrefabParent: 0
@@ -21457,7 +21501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTapManScript: {fileID: 0}
+  myInputDetector: {fileID: 2119557094}
   scenTapEnabScript: {fileID: 712647450}
   sceneFadeScript: {fileID: 84950553}
   iniSeq: 0
@@ -21575,6 +21619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb2bc39ed7760948839cf379f0849fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myInput: {fileID: 2119557094}
   numbers:
   - {fileID: 22241532}
   - {fileID: 2098389752}
@@ -21584,7 +21629,15 @@ MonoBehaviour:
   - {fileID: 2065494003}
   - {fileID: 1402633293}
   numberAmount: 0
-  numberOne: {fileID: 22241532}
+  numberOne: {fileID: 22241535}
+  allCells:
+  - {fileID: 22241535}
+  - {fileID: 2098389755}
+  - {fileID: 1642981956}
+  - {fileID: 1628801597}
+  - {fileID: 339542041}
+  - {fileID: 2065494006}
+  - {fileID: 1402633296}
   goldenEgg: {fileID: 1790771302}
   goldenEggScript: {fileID: 1790771304}
   layerMask:
@@ -46049,6 +46102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1402633294}
   - component: {fileID: 1402633295}
+  - component: {fileID: 1402633296}
   m_Layer: 8
   m_Name: Number 7
   m_TagString: FruitBasket
@@ -46084,6 +46138,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.85
+--- !u!114 &1402633296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1402633293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {fileID: 22241535}
+  myNumber: 7
+  doubleCell: 0
+  goalCell: 1
+  requiredCell: {fileID: 0}
+  tapped: 0
 --- !u!1 &1402975271
 GameObject:
   m_ObjectHideFlags: 0
@@ -47821,6 +47892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628801595}
   - component: {fileID: 1628801596}
+  - component: {fileID: 1628801597}
   m_Layer: 8
   m_Name: Number 4
   m_TagString: FruitBasket
@@ -47856,6 +47928,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.85
+--- !u!114 &1628801597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1628801594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {fileID: 339542041}
+  myNumber: 4
+  doubleCell: 0
+  goalCell: 0
+  requiredCell: {fileID: 0}
+  tapped: 0
 --- !u!1 &1633150602
 GameObject:
   m_ObjectHideFlags: 0
@@ -52655,6 +52744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1642981954}
   - component: {fileID: 1642981955}
+  - component: {fileID: 1642981956}
   m_Layer: 8
   m_Name: Number 3
   m_TagString: FruitBasket
@@ -52690,6 +52780,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.85
+--- !u!114 &1642981956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1642981953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {fileID: 1628801597}
+  myNumber: 3
+  doubleCell: 1
+  goalCell: 0
+  requiredCell: {fileID: 2098389755}
+  tapped: 0
 --- !u!1 &1650896720
 GameObject:
   m_ObjectHideFlags: 0
@@ -61836,6 +61943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2065494004}
   - component: {fileID: 2065494005}
+  - component: {fileID: 2065494006}
   m_Layer: 8
   m_Name: Number 6
   m_TagString: FruitBasket
@@ -61871,6 +61979,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.85
+--- !u!114 &2065494006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2065494003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {fileID: 1402633296}
+  myNumber: 6
+  doubleCell: 1
+  goalCell: 0
+  requiredCell: {fileID: 339542041}
+  tapped: 0
 --- !u!1001 &2066492876
 Prefab:
   m_ObjectHideFlags: 0
@@ -62111,6 +62236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2098389753}
   - component: {fileID: 2098389754}
+  - component: {fileID: 2098389755}
   m_Layer: 8
   m_Name: Number 2
   m_TagString: FruitBasket
@@ -62146,6 +62272,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.95
+--- !u!114 &2098389755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2098389752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextCell: {fileID: 1628801597}
+  myNumber: 2
+  doubleCell: 1
+  goalCell: 0
+  requiredCell: {fileID: 1642981956}
+  tapped: 0
 --- !u!1001 &2111031650
 Prefab:
   m_ObjectHideFlags: 0
@@ -62198,6 +62341,64 @@ Transform:
   m_PrefabParentObject: {fileID: 4543114266839502, guid: ffc94fe78e676f34da6a03d632967891,
     type: 2}
   m_PrefabInternal: {fileID: 2111031650}
+--- !u!1001 &2119557093
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.257488
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.164501
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.003932478
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: myClickOnEggs
+      value: 
+      objectReference: {fileID: 712647447}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 511196394}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &2119557094 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114880766594209746, guid: 1c6fe55fc8fad14448c072ce3f013912,
+    type: 2}
+  m_PrefabInternal: {fileID: 2119557093}
+  m_Script: {fileID: 11500000, guid: b4357d18b7d2e474988964b80836e991, type: 3}
 --- !u!1 &2126629557 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1213089943610356, guid: 4ca482d1a0902e64ba6f9be7de80dd75,

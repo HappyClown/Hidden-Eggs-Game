@@ -11,7 +11,7 @@ public class ClickOnEggs : MonoBehaviour
 	Vector2 mousePos2D;
 	Vector3 mousePos;
 
-	public LevelTapMannager levelTapManScript;
+	public inputDetector myInputDetector;
 	public SceneTapEnabler scenTapEnabScript;
 	public SceneFade sceneFadeScript;
 
@@ -121,9 +121,9 @@ public class ClickOnEggs : MonoBehaviour
 			}
 		}
 		// -- ON CLICK/TAP -- //
-		if (Input.GetMouseButtonDown(0))
+		if (myInputDetector.Tapped)
 			{
-				mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				mousePos = Camera.main.ScreenToWorldPoint(myInputDetector.TapPosition);
 				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
 				//Debug.DrawRay(mousePos2D, Vector3.forward, Color.red, 60f);
@@ -134,6 +134,7 @@ public class ClickOnEggs : MonoBehaviour
 						// - Egg Tapped - //
 						if (hit.collider.CompareTag("Egg"))
 						{
+							myInputDetector.eggTapped = true;
 							Debug.Log(hit.collider.name);
 							EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
 							eggScript.EggFound();

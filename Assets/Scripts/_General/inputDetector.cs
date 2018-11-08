@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class inputDetector : MonoBehaviour {
 	public bool isPhoneDevice;
+	public bool eggTapped;
 	#region Tap Variables
 	[Header("Tap Detection")]
 	[Tooltip("Check if you want to detect Tap")]
@@ -21,7 +22,7 @@ public class inputDetector : MonoBehaviour {
 	[Tooltip("Insert the desired max tap delay time for produce a double tap")]
 	public float minDoubleTapTime;
 	private float doubleTapTimer, doubleTapCounter = 0f;
-	private bool doubleTapped = false;
+	private bool doubleTapped = false, checkDoubleTap = false;
 	public bool DoubleTapped{get{return doubleTapped;}}
 	#endregion
 
@@ -39,7 +40,9 @@ public class inputDetector : MonoBehaviour {
 	#region DoubleTouch
 	[Header("Double Touch")]
 	[Tooltip("Check if you want to detect Double touch (mobile only)")]
-	public bool detectDoubleTouch;
+	public bool detectDoubleTouch;	
+	public bool doubleTouched = false;
+	public bool DoubleTouched{get{return doubleTouched;}}
 	public Vector2 touchOne, touchTwo;
 	#endregion
 
@@ -73,12 +76,14 @@ public class inputDetector : MonoBehaviour {
 	void Start(){
 		if(detectDoubleTap)
 		detectTap=true;
+		tapped = false;
+		eggTapped = false;
 		
 	}
 	// Update is called once per frame
 	void Update () {
 		#region TapCode without double tap
-		if(detectTap && !detectDoubleTap && !detectDrag){
+		if(detectTap){
 			tapped = false;
 			if(Input.GetMouseButtonDown(0) && !isPhoneDevice){
 				singleTap = true;
@@ -97,7 +102,20 @@ public class inputDetector : MonoBehaviour {
 
 		#region Double Tap Code
 		if(detectDoubleTap){
-			doubleTapped = tapped = false;
+			if(checkDoubleTap)
+			{
+				if(!eggTapped){
+					doubleTapped = true;
+					checkDoubleTap = false;
+				}
+				else{
+					checkDoubleTap = false;
+					eggTapped = false;
+				}
+			}
+			else{
+				doubleTapped = false;
+			}
 			if(Input.GetMouseButtonDown(0) && !isPhoneDevice){
 				singleTap = true;
 				if(doubleTapCounter == 0){					
@@ -106,10 +124,10 @@ public class inputDetector : MonoBehaviour {
 				doubleTapCounter ++;
 				if(doubleTapCounter == 2 ){
 					if(doubleTapTimer <= minDoubleTapTime){
-						doubleTapped = true;
+						checkDoubleTap = true;
+						tapped = false;
 						ResetDoubleTap();
 					}else{
-						tapped = true;
 						ResetDoubleTap();
 					}
 				}
@@ -124,10 +142,10 @@ public class inputDetector : MonoBehaviour {
 					doubleTapCounter ++;
 					if(doubleTapCounter == 2 ){
 						if(doubleTapTimer <= minDoubleTapTime){
-							doubleTapped = true;
+							checkDoubleTap = true;
+							tapped = false;
 							ResetDoubleTap();
 						}else{
-							tapped = true;
 							ResetDoubleTap();
 						}
 					}
@@ -135,9 +153,9 @@ public class inputDetector : MonoBehaviour {
 			}
 			if(doubleTapCounter == 1)
 			{
-				if(doubleTapTimer > minDoubleTapTime){
-					tapped = true;
+				if(doubleTapTimer > minDoubleTapTime || eggTapped){
 					ResetDoubleTap();
+					eggTapped = false;
 				}else{
 					doubleTapTimer += Time.deltaTime;
 				}
@@ -166,10 +184,6 @@ public class inputDetector : MonoBehaviour {
 				if(isDragging){
 					ResetDragging();
 				}
-				else if(detectTap){
-					tapPosition = Input.mousePosition;
-					tapped = true;
-				}
 			}
 
 			if(Input.touchCount == 1 && isPhoneDevice){
@@ -191,19 +205,19 @@ public class inputDetector : MonoBehaviour {
 					if(isDragging){
 						ResetDragging();
 					}
-					else if(detectTap){
-						tapPosition = Input.mousePosition;
-						tapped = true;
-					}
 				}			
 			}
 		}
 		#endregion
 		#region DetectDouble Touch
-		if(detectDoubleTouch && Input.touchCount == 2){
-			singleTap = false;
-			touchOne = Input.touches[0].position;
-			touchTwo = Input.touches[1].position;
+		if(detectDoubleTouch){
+			doubleTouched = false;
+			if(Input.touchCount == 2){
+				doubleTouched = true;
+				//singleTap = false;
+				touchOne = Input.touches[0].position;
+				touchTwo = Input.touches[1].position;
+			}
 		}
 		#endregion
 		if(tapped)Debug.Log("tapped");
