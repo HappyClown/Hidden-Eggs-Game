@@ -10,15 +10,4 @@ public class SceneTapEnabler : MonoBehaviour
 	public bool canTapGoldEgg;//
 	public bool canTapLvlComp;//
 
-
-	void Start () 
-	{
-
-	}
-	
-
-	void Update () 
-	{
-		
-	}
 }

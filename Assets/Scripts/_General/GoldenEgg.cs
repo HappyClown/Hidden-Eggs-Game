@@ -354,6 +354,21 @@ public class GoldenEgg : MonoBehaviour
 	{
 		scenTapEnabScript.canTapGoldEgg = true;
 	}
+	
+
+	public void CannotTaps()
+	{
+		if (scenTapEnabScript.canTapEggRidPanPuz) { scenTapEnabScript.canTapEggRidPanPuz = false; }
+		if (scenTapEnabScript.canTapPauseBtn) { scenTapEnabScript.canTapPauseBtn = false; }
+		if (scenTapEnabScript.canTapHelpBird) { scenTapEnabScript.canTapHelpBird = false; }
+	}
+
+	public void CanTaps()
+	{
+		scenTapEnabScript.canTapEggRidPanPuz = true;
+		scenTapEnabScript.canTapPauseBtn = true;
+		scenTapEnabScript.canTapHelpBird = true;
+	}
 
 	public void GoldEggAnimSound()
 	{
