@@ -160,6 +160,7 @@ public class AudioManagerHubMenu : MonoBehaviour
         PlaySnd = FMODUnity.RuntimeManager.CreateInstance(SFXPlayButton);
         PlaySnd.start();
         TransitionHub();
+        MapUncover();   //eventually to time with the seasons unlocked
 
     }
 
