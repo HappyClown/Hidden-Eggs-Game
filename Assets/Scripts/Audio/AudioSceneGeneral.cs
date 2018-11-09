@@ -17,10 +17,6 @@ public class AudioSceneGeneral : MonoBehaviour
     public string transEvent;
     public FMOD.Studio.EventInstance transMusic;
 
-    [Header("test orchestral trans")]
-    [FMODUnity.EventRef]
-    public string testTransEvent;
-    public FMOD.Studio.EventInstance testTransMusic;
 
 	[Header("Egg SFX")]
     [FMODUnity.EventRef]
@@ -74,6 +70,17 @@ public class AudioSceneGeneral : MonoBehaviour
     public string buttonEvent;
     public FMOD.Studio.EventInstance buttonSound;
 
+    // TESTS UNLOCKED SOUND
+    public bool SceneIn;
+    public float AlphaValue;
+
+    public bool puzzleUnlocked;
+
+    public GameObject puzImage;
+
+    public string currentScene;
+
+    public GameObject egg;
 
 	void Start () 
 	{
@@ -84,12 +91,34 @@ public class AudioSceneGeneral : MonoBehaviour
         sceneMusic = FMODUnity.RuntimeManager.CreateInstance(sceneMusicEvent);
 		transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
         goldEggShimySound = FMODUnity.RuntimeManager.CreateInstance(goldEggShimyEvent);
-        testTransMusic = FMODUnity.RuntimeManager.CreateInstance(testTransEvent);
+        puzzleUnlockedSound = FMODUnity.RuntimeManager.CreateInstance(puzzleUnlockedEvent);
         PlaySceneMusic();
 	}
 	
 	void Update () 
 	{
+
+        if(egg)
+        {
+            updateEggSound();
+        }
+
+        //FOR PUZZLE UNLOCKED TESTS 
+
+        currentScene = SceneManager.GetActiveScene().name;
+        AlphaValue = SceneFade.getSceneFadeAlpha();
+        if(AlphaValue ==0)
+        {SceneIn =true;}
+        else 
+        if(AlphaValue ==1)
+        {SceneIn =false;}
+
+        if(puzzleUnlocked && currentScene == SceneManager.GetActiveScene().name)
+        {
+            puzzleUnlockedSound.setParameterValue("fade", AlphaValue);
+        }
+
+
         //TEST
 		/*
         EggByScene()
@@ -115,7 +144,6 @@ public class AudioSceneGeneral : MonoBehaviour
 	 public void PlayTransitionMusic()
     {
         transMusic.start();
-        testTransMusic.start();
     }
 
     /////////////////////////////////////////
@@ -132,6 +160,8 @@ public class AudioSceneGeneral : MonoBehaviour
         StopSceneMusic();
         Debug.Log("ASG - Current Music Stopped :");
 		PlayTransitionMusic();
+        
+        puzzleAnimationStop();
 		
 
     }
@@ -152,6 +182,8 @@ public class AudioSceneGeneral : MonoBehaviour
         StopSceneMusic();
         //Debug.Log("Current Music Stopped :");
 		PlayTransitionMusic();
+                
+        puzzleAnimationStop();
 
     }
 
@@ -168,11 +200,20 @@ public class AudioSceneGeneral : MonoBehaviour
     }
 
     //EGGS
-    public void ClickEggsSound()
+    public void ClickEggsSound(GameObject eggObject)
     {
+        egg=eggObject;
         EggClickSound = FMODUnity.RuntimeManager.CreateInstance(EggClickEvent);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject (EggClickSound, eggObject.transform,eggObject.GetComponent<Rigidbody> ());
         EggClickSound.start();
     }
+
+    public void updateEggSound()
+    {
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(EggClickSound, egg.transform,egg.GetComponent<Rigidbody> ());
+    }
+    
+
 
     public void goldEggSound()
     {
@@ -198,8 +239,26 @@ public class AudioSceneGeneral : MonoBehaviour
     //Puzzle Animation
     public void puzzleAnimation()
     {
-        puzzleUnlockedSound = FMODUnity.RuntimeManager.CreateInstance(puzzleUnlockedEvent);
         puzzleUnlockedSound.start();
+    }
+
+    public void puzzleAnimationStart(GameObject puzzleImage)
+    {
+        //to start the animation only when the scene is visible IF already unlocked
+        //if(SceneIn && puzzleUnlocked && currentScene == SceneManager.GetActiveScene().name) //not working as intended
+
+        puzImage = puzzleImage;
+        puzzleUnlocked = true;
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject (puzzleUnlockedSound, puzzleImage.transform,puzzleImage.GetComponent<Rigidbody> ());
+        puzzleUnlockedSound.start();
+        Debug.Log("puzzle Unlocked Sound is playing");
+    }
+
+
+        public void puzzleAnimationStop()
+    {
+        puzzleUnlockedSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        Debug.Log("puzzle Unlocked Sound is stopped");
     }
 
     //PAnel SFX
@@ -228,6 +287,7 @@ public class AudioSceneGeneral : MonoBehaviour
     public void onDestroy()
     {
         puzzleUnlockedSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //public static void DetachInstanceFromGameObject(FMOD.Studio.EventInstance instance)
     }
 
 ///////////////////////////////////////////

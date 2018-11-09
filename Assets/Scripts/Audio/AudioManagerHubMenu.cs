@@ -136,6 +136,7 @@ public class AudioManagerHubMenu : MonoBehaviour
     {
         StopMenuMusicFade(); //stop menu music
         PlayHubMusic(); //start hub music
+        MapUncover(); //eventually to time with the seasons unlocked
     }
 
     public void TransitionMenu()
@@ -160,7 +161,6 @@ public class AudioManagerHubMenu : MonoBehaviour
         PlaySnd = FMODUnity.RuntimeManager.CreateInstance(SFXPlayButton);
         PlaySnd.start();
         TransitionHub();
-
     }
 
     /// ----- RESET BUTTON SOUND -----///

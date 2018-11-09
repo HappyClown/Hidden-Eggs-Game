@@ -148,7 +148,7 @@ public class ClickOnEggs : MonoBehaviour
 							if (!openEggPanel) { openEggPanel = true; audioSceneGenScript.openPanel(); }
 
 							// SFX Click Egg
-							audioSceneGenScript.ClickEggsSound();
+							audioSceneGenScript.ClickEggsSound(hit.collider.gameObject);
 							//Play egg  click sound
 							//audioSceneGenScript.
 
@@ -165,6 +165,7 @@ public class ClickOnEggs : MonoBehaviour
 
 							//SFX puzz btn
 							audioSceneGenScript.TransitionPuzzle();
+							audioSceneGenScript.puzzleAnimationStop();
 						}
 
 						// - Opening Egg Panel Manually - //
@@ -256,13 +257,13 @@ public class ClickOnEggs : MonoBehaviour
 		// - Activate Puzzle - //
 		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlockAmnt)
 		{
-			// SFX Puzz unlock
-			audioSceneGenScript.puzzleAnimation();
 			puzzleClickArea.SetActive(true);
 			var emission = puzzleParticles.emission;
 			emission.enabled = true;
 			if (unlockedAnim != null) { unlockedAnim.Play(); }
 			puzzleUnlocked = true;
+			// SFX Puzz unlock
+			audioSceneGenScript.puzzleAnimationStart(puzzleClickArea);
 		}
 	}
 
