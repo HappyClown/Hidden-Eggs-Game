@@ -56,7 +56,7 @@ MonoBehaviour:
   myClickOnEggs: {fileID: 0}
   panningDeathZone: 5
   panningSpeed: 10
-  minDoubleTapTime: 0.5
+  minDoubleTapTime: 0.3
   dTapMoveSpeed: 3
   dTapZoomSpeed: 5
   camMovSpeed: 2
@@ -64,9 +64,11 @@ MonoBehaviour:
   maxX: 5.9
   maxY: 3.3
   minCameraSize: 7.5
+  maxCameraSize: 0
   minDeltaDif: 30
   maxDeltaDif: 400
   myInput: {fileID: 114880766594209746}
+  adjustCamSizeScript: {fileID: 0}
 --- !u!114 &114880766594209746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,7 +85,7 @@ MonoBehaviour:
   detectTap: 1
   singleTap: 0
   detectDoubleTap: 1
-  minDoubleTapTime: 0.4
+  minDoubleTapTime: 0.25
   detectDrag: 1
   draggingDeathzone: 5
   startDragTouch: {x: 0, y: 0}
@@ -92,6 +94,7 @@ MonoBehaviour:
   isDragging: 0
   dragStarted: 0
   detectDoubleTouch: 1
+  doubleTouched: 0
   touchOne: {x: 0, y: 0}
   touchTwo: {x: 0, y: 0}
   detectSwipe: 0

@@ -850,9 +850,50 @@ Prefab:
       propertyPath: sceneTapEnaScript
       value: 
       objectReference: {fileID: 712647450}
+    - target: {fileID: 114258519233212392, guid: c8b8141be69c3684390b2f2b8f0278e6,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e0a604b6993540244a071198df7f2c3e,
+        type: 3}
+    - target: {fileID: 114258519233212392, guid: c8b8141be69c3684390b2f2b8f0278e6,
+        type: 2}
+      propertyPath: m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224065972236472420, guid: c8b8141be69c3684390b2f2b8f0278e6,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 224065972236472420, guid: c8b8141be69c3684390b2f2b8f0278e6,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 224065972236472420, guid: c8b8141be69c3684390b2f2b8f0278e6,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 224065972236472420, guid: c8b8141be69c3684390b2f2b8f0278e6,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 114644693723457164, guid: c8b8141be69c3684390b2f2b8f0278e6,
+        type: 2}
+      propertyPath: sceneName
+      value: The Village
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c8b8141be69c3684390b2f2b8f0278e6, type: 2}
   m_IsPrefabParent: 0
+--- !u!224 &60122257 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224065972236472420, guid: c8b8141be69c3684390b2f2b8f0278e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 60122256}
 --- !u!1 &67947491
 GameObject:
   m_ObjectHideFlags: 0
@@ -6782,6 +6823,78 @@ Transform:
   m_Father: {fileID: 424567741}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &220522117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1051109744136330, guid: 2c668a3931c67034d8e0b91ea2176a0d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 220522118}
+  - component: {fileID: 220522120}
+  - component: {fileID: 220522119}
+  m_Layer: 5
+  m_Name: Back Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &220522118
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 224450675037301896, guid: 2c668a3931c67034d8e0b91ea2176a0d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220522117}
+  m_LocalRotation: {x: -0, y: -0, z: 0.000000014901161, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 100, y: 100, z: 41.70915}
+  m_Children: []
+  m_Father: {fileID: 60122257}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.50029755, y: 0}
+  m_SizeDelta: {x: 0.6, y: 0.6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &220522119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114092819246979490, guid: 2c668a3931c67034d8e0b91ea2176a0d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220522117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: f15752b30278a8a4799f09e9aa8ad7ca, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &220522120
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 222308491115420812, guid: 2c668a3931c67034d8e0b91ea2176a0d,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220522117}
 --- !u!1 &230204990
 GameObject:
   m_ObjectHideFlags: 0
@@ -6974,6 +7087,16 @@ Prefab:
       propertyPath: clickOnEggsScript
       value: 
       objectReference: {fileID: 712647447}
+    - target: {fileID: 114554503347980576, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114554503347980576, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}
   m_IsPrefabParent: 0
@@ -12630,9 +12753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCell: {fileID: 1402633296}
+  nextCell: {fileID: 2065494006}
   myNumber: 5
-  doubleCell: 1
+  doubleCell: 0
   goalCell: 0
   requiredCell: {fileID: 2065494006}
   tapped: 0
@@ -19248,6 +19371,7 @@ GameObject:
   - component: {fileID: 511196394}
   - component: {fileID: 511196393}
   - component: {fileID: 511196392}
+  - component: {fileID: 511196396}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19323,6 +19447,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &511196396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 511196391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b94b49ae0947c4ea7406d0a3e5c7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHeight: 0
+  camAspect: 0
+  screenWidth: 0
+  screenHeight: 0
+  adjustCamSizeToWidth: 1
+  desiredAspectRatio: 1.77959
+  screenToWorldSideScreen: {x: 0, y: 0, z: 0}
+  adjustedMaxX: 0
+  minCamSize: 0
+  lvlTapManScript: {fileID: 2119557095}
+  cam: {fileID: 511196394}
 --- !u!1001 &513672700
 Prefab:
   m_ObjectHideFlags: 0
@@ -21653,6 +21799,11 @@ MonoBehaviour:
   firework02: {fileID: 1100347439}
   fireworksFired: 0
   audioSceneParkScript: {fileID: 1013716342}
+  touchOne: 0
+  touchTwo: 0
+  startMinSecTimer: 0
+  minSecTapTime: 2
+  minSecTapTimer: 2
 --- !u!114 &712647449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39823,6 +39974,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a8b986e6c53177947adbdb9775b12edf, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1183682648
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1204035840
 GameObject:
   m_ObjectHideFlags: 0
@@ -52798,7 +52991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextCell: {fileID: 1628801597}
   myNumber: 3
-  doubleCell: 1
+  doubleCell: 0
   goalCell: 0
   requiredCell: {fileID: 2098389755}
   tapped: 0
@@ -58377,6 +58570,14 @@ Prefab:
       propertyPath: myClickonEggs
       value: 
       objectReference: {fileID: 712647447}
+    - target: {fileID: 4978749564674690, guid: 899a9a2cf35119c4dae19f1f76b69dcb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978749564674690, guid: 899a9a2cf35119c4dae19f1f76b69dcb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -12.37
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 899a9a2cf35119c4dae19f1f76b69dcb, type: 2}
   m_IsPrefabParent: 0
@@ -61997,7 +62198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextCell: {fileID: 1402633296}
   myNumber: 6
-  doubleCell: 1
+  doubleCell: 0
   goalCell: 0
   requiredCell: {fileID: 339542041}
   tapped: 0
@@ -62288,9 +62489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1267f980fd87445b4c27b67ce4ca46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextCell: {fileID: 1628801597}
+  nextCell: {fileID: 1642981956}
   myNumber: 2
-  doubleCell: 1
+  doubleCell: 0
   goalCell: 0
   requiredCell: {fileID: 1642981956}
   tapped: 0
@@ -62395,6 +62596,16 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 511196394}
+    - target: {fileID: 114880766594209746, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: minDoubleTapTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: adjustCamSizeScript
+      value: 
+      objectReference: {fileID: 511196396}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
   m_IsPrefabParent: 0
@@ -62404,6 +62615,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2119557093}
   m_Script: {fileID: 11500000, guid: b4357d18b7d2e474988964b80836e991, type: 3}
+--- !u!114 &2119557095 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+    type: 2}
+  m_PrefabInternal: {fileID: 2119557093}
+  m_Script: {fileID: 11500000, guid: 7153df4279937014f9908ab239ca2418, type: 3}
 --- !u!1 &2126629557 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1213089943610356, guid: 4ca482d1a0902e64ba6f9be7de80dd75,

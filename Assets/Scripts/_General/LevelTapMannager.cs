@@ -33,7 +33,7 @@ public class LevelTapMannager : MonoBehaviour {
 	[Header("Camera Min Ortho Size (usually 7.5)")]
 	public float minCameraSize;
 	//max camera orthographicsize is taken from the camera
-	private float maxCameraSize;
+	public float maxCameraSize;
 	//current camera size at every frame
 	private float currentCameraSize;
 	[Header("Touch Death zone Delta (usually 30)")]
@@ -50,6 +50,7 @@ public class LevelTapMannager : MonoBehaviour {
 
 	//Input Detector
 	public inputDetector myInput;
+	public AdjustCamSize adjustCamSizeScript;
 
 	void Start(){
 		//set the max camera orthographic size from the start
@@ -58,6 +59,9 @@ public class LevelTapMannager : MonoBehaviour {
 		currentCameraSize = cam.orthographicSize;
 		//get the initial camera X and Y values
 		initialCameraPosition = cam.transform.position;
+
+		//New - Adjust the MaxX based on the screen size/ratio
+		maxX = adjustCamSizeScript.adjustedMaxX;
 	}
 	void Update ()
 	{

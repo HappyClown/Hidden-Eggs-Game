@@ -45,6 +45,10 @@ public class SceneFade : MonoBehaviour
 	[TooltipAttribute("When to start fading out the background; Based on the White Background Alpha value.")]
 	public float whtStartBackgroundFade;
 
+	//public List<GameObject> titleCards;
+	//public List<TextMeshProUGUI> titleTexts;
+	//public bool setupNewCard;
+
 	public static AudioTransitions audioTransStaticScript;
 	public AudioTransitions audioTransScript;
 
@@ -69,6 +73,7 @@ public class SceneFade : MonoBehaviour
 		#region Title Card & Black Background scene transition.
 		if (titCardSceneTrans)
 		{
+			//if (!setupNewCard) { ChoseTitleCard(); }
 			if (fadeImage != blckFadeImage) { fadeImage = blckFadeImage;}
 			// -- FADE OUT CURRENT SCENE -- //
 			if (fadeSceneOut)
@@ -132,6 +137,7 @@ public class SceneFade : MonoBehaviour
 					newAlpha = 0;
 					fadeSceneIn = false;
 					titCardSceneTrans = false;
+					//setupNewCard = false;
 				}
 			}
 		}
@@ -192,7 +198,6 @@ public class SceneFade : MonoBehaviour
 	}
 
 
-
 	public static void SwitchScene (string sceneName)
 	{
 		newAlpha = 0f;
@@ -216,6 +221,32 @@ public class SceneFade : MonoBehaviour
 			audioTransStaticScript.TransitionScenes(sceneName);
 		}
 	}
+
+	// public void ChoseTitleCard()
+	// {
+	// 	setupNewCard = true;
+
+	// 	if (sceneToLoad == GlobalVariables.globVarScript.menuName)
+	// 	{
+	// 		titleCardObj = titleCards[0];
+	// 		titleCardImg = titleCardObj.GetComponent<Image>();
+	// 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
+	// 	}
+
+	// 	if (sceneToLoad == GlobalVariables.globVarScript.marketName || sceneToLoad == GlobalVariables.globVarScript.marketPuzName)
+	// 	{
+	// 		titleCardObj = titleCards[1];
+	// 		titleCardImg = titleCardObj.GetComponent<Image>();
+	// 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
+	// 	}
+
+	// 	if (sceneToLoad == GlobalVariables.globVarScript.parkName || sceneToLoad == GlobalVariables.globVarScript.parkPuzName)
+	// 	{
+	// 		titleCardObj = titleCards[2];
+	// 		titleCardImg = titleCardObj.GetComponent<Image>();
+	// 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
+	// 	}
+	// }
 
 	//// FOR UNLOCKED PUZZLE SOUND TESTS
 

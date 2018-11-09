@@ -214,7 +214,7 @@ public class inputDetector : MonoBehaviour {
 			doubleTouched = false;
 			if(Input.touchCount == 2){
 				doubleTouched = true;
-				//singleTap = false;
+				singleTap = false;
 				touchOne = Input.touches[0].position;
 				touchTwo = Input.touches[1].position;
 			}

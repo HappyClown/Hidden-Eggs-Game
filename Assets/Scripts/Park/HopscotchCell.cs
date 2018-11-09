@@ -17,16 +17,19 @@ public class HopscotchCell : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		tapped = false;
+		//tapped = false;
 	}
 	public void checkCell(){
 		
 		if(doubleCell){
 			tapped = true;
+			Debug.Log("double cell");
 			if(requiredCell.tapped){
 				myCollider.enabled = false;
 				requiredCell.myCollider.enabled=false;
 				nextCell.myCollider.enabled = true;
+				Debug.Log("Tapped BOTH tiles succesfully");
+				tapped = false;
 			}
 		}
 		else{
@@ -37,12 +40,14 @@ public class HopscotchCell : MonoBehaviour {
 			if(nextCell.doubleCell){
 				nextCell.requiredCell.myCollider.enabled = true;
 			}
+			Debug.Log("Tapped ONE tiles succesfully");
 		}
 		
 	}
-	public void ResetCell(){		
+	public void ResetCell(){
 		if(myNumber != 1){
 			myCollider.enabled = false;
+			tapped = false;
 		}
 	}
 }
