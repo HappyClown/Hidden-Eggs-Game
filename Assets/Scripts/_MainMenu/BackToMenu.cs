@@ -126,6 +126,8 @@ public class BackToMenu : MonoBehaviour
 		solidBGFade.FadeIn();
 
 		// - FADE IN ALL BUTTONS - //
-		fadeBtnIn = true;	
+		fadeBtnIn = true;
+
+		mainMenuScript.ResetStory();	
 	}
 }

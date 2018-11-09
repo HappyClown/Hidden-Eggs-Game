@@ -61,6 +61,7 @@ public class AudioSceneGeneral : MonoBehaviour
     public Button BirdHelpBtn;
     public Button RiddleBtn;
     public Button HintBtn;
+    public Button lvlCompleteBtn;
 
     [FMODUnity.EventRef]
     public string puzzleButtonEvent;
@@ -85,6 +86,7 @@ public class AudioSceneGeneral : MonoBehaviour
 	void Start () 
 	{
 		BackMenuBtn.onClick.AddListener(TransitionMenu);
+        lvlCompleteBtn.onClick.AddListener(TransitionMenu);
         BirdHelpBtn.onClick.AddListener(birdHelpSound);
         RiddleBtn.onClick.AddListener(birdHelpSound);
         HintBtn.onClick.AddListener(birdHelpSound);

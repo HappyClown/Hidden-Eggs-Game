@@ -21,6 +21,13 @@ public class MainMenu : MonoBehaviour
 	public Image btnImg;
 	public TextMeshProUGUI btnTMP;
 
+	[Header("Story")]
+	public Button storyBtn;
+	public TextMeshProUGUI storyTMP;
+	public FadeInOutTMP fadeTMPScript;
+	public bool storyAppearing, storyFullyOn, moveClouds;
+	public float storyTimer, storyTime;
+
 	[Header("Button Fade Attributes")]
 	public bool fadeBtnOut;
 	public float fadeSpeed;
@@ -42,8 +49,12 @@ public class MainMenu : MonoBehaviour
 	void Start () 
 	{
 		playBtn.onClick.AddListener(PlayBtn);
+
 		resetBtn.onClick.AddListener(DeleteSaveFile);
-		resetBtn.onClick.AddListener(PlayBtn);
+		resetBtn.onClick.AddListener(NewGameBtn);
+		resetBtn.onClick.AddListener(StoryTextAppears);
+
+		storyBtn.onClick.AddListener(StorySkipContinue);
 
 		if (GlobalVariables.globVarScript.toHub) { PlayBtn(); } // Goes straight to hub
 	}
@@ -75,16 +86,32 @@ public class MainMenu : MonoBehaviour
 			}
 		}
 
+		if (storyAppearing)
+		{
+			if (storyTMP.color.a >= 1)
+			{
+				storyAppearing = false;
+				storyFullyOn = true;
+			}
+		}
+
+		if (storyFullyOn && moveClouds)
+		{
+			if (storyTMP.color.a <= 0.15f)
+			{
+				MoveClouds();
+				solidBGFade.FadeOut();
+				storyFullyOn = false;
+			}
+		}
 		// - Check If I Can Interact With The Menu - //
-
-
 	}
 
 
 	void PlayBtn () 
 	{
 		// - MAKE THE CLOUDS PART - //
-		foreach(MoveCloud cloud in cloudsToMove)
+		 foreach(MoveCloud cloud in cloudsToMove)
 		{
 			cloud.moveOut = true;
 		}
@@ -97,6 +124,73 @@ public class MainMenu : MonoBehaviour
 
 		// - FADE OUT ALL MENU BUTTONS - //
 		fadeBtnOut = true;
+
+		storyBtn.gameObject.SetActive(false);
+	}
+
+	void NewGameBtn () 
+	{
+		// - MAKE THE CLOUDS PART - //
+		// foreach(MoveCloud cloud in cloudsToMove)
+		// {
+		// 	cloud.moveOut = true;
+		// }
+
+		// - FADE OUT TITLE - //
+		titleFade.FadeOut();
+
+		// - FADE OUT SOLID BACKGROUND - //
+		//solidBGFade.FadeOut();
+
+		// - FADE OUT ALL MENU BUTTONS - //
+		fadeBtnOut = true;
+	}
+
+	void MoveClouds()
+	{
+		// - MAKE THE CLOUDS PART - //
+		foreach(MoveCloud cloud in cloudsToMove)
+		{
+			cloud.moveOut = true;
+		}
+	}
+
+	void StoryTextAppears()
+	{
+		//ResetStory();
+		storyBtn.interactable = true;
+		storyAppearing = true;
+		storyTMP.gameObject.SetActive(true);
+		fadeTMPScript.FadeIn();
+	}
+
+	void StorySkipContinue()
+	{
+		if (storyFullyOn)
+		{
+			fadeTMPScript.fadeDelay = false;
+			fadeTMPScript.FadeOut();
+			storyBtn.gameObject.SetActive(false);
+			moveClouds = true;
+		}
+		if (storyAppearing)
+		{
+			fadeTMPScript.t = 1;
+			storyFullyOn = true;
+			//moveClouds = true;
+		}
+	}
+
+	public void ResetStory()
+	{
+		storyFullyOn = false;
+		storyAppearing = false;
+		moveClouds = false;
+		storyTMP.gameObject.SetActive(false);
+		storyBtn.gameObject.SetActive(true);
+		storyBtn.interactable = false;
+		fadeTMPScript.fadeDelay = true;
+
 	}
 
 	public void DeleteSaveFile ()
