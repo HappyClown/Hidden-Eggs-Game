@@ -218,10 +218,10 @@ public class SceneFade : MonoBehaviour
 	}
 
 	//// FOR UNLOCKED PUZZLE SOUND TESTS
-	/* 
+
 	public static float getSceneFadeAlpha()
 	{
 		return newAlpha;
 	}
-	*/
+
 }

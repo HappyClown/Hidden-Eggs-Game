@@ -80,6 +80,8 @@ public class AudioSceneGeneral : MonoBehaviour
 
     public string currentScene;
 
+    public GameObject egg;
+
 	void Start () 
 	{
 		BackMenuBtn.onClick.AddListener(TransitionMenu);
@@ -95,9 +97,14 @@ public class AudioSceneGeneral : MonoBehaviour
 	
 	void Update () 
 	{
-        /* 
-        FOR PUZZLE UNLOCKED TESTS 
-        
+
+        if(egg)
+        {
+            updateEggSound();
+        }
+
+        //FOR PUZZLE UNLOCKED TESTS 
+
         currentScene = SceneManager.GetActiveScene().name;
         AlphaValue = SceneFade.getSceneFadeAlpha();
         if(AlphaValue ==0)
@@ -106,7 +113,10 @@ public class AudioSceneGeneral : MonoBehaviour
         if(AlphaValue ==1)
         {SceneIn =false;}
 
-        */
+        if(puzzleUnlocked && currentScene == SceneManager.GetActiveScene().name)
+        {
+            puzzleUnlockedSound.setParameterValue("fade", AlphaValue);
+        }
 
 
         //TEST
@@ -150,6 +160,8 @@ public class AudioSceneGeneral : MonoBehaviour
         StopSceneMusic();
         Debug.Log("ASG - Current Music Stopped :");
 		PlayTransitionMusic();
+        
+        puzzleAnimationStop();
 		
 
     }
@@ -170,6 +182,8 @@ public class AudioSceneGeneral : MonoBehaviour
         StopSceneMusic();
         //Debug.Log("Current Music Stopped :");
 		PlayTransitionMusic();
+                
+        puzzleAnimationStop();
 
     }
 
@@ -186,11 +200,20 @@ public class AudioSceneGeneral : MonoBehaviour
     }
 
     //EGGS
-    public void ClickEggsSound()
+    public void ClickEggsSound(GameObject eggObject)
     {
+        egg=eggObject;
         EggClickSound = FMODUnity.RuntimeManager.CreateInstance(EggClickEvent);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject (EggClickSound, eggObject.transform,eggObject.GetComponent<Rigidbody> ());
         EggClickSound.start();
     }
+
+    public void updateEggSound()
+    {
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(EggClickSound, egg.transform,egg.GetComponent<Rigidbody> ());
+    }
+    
+
 
     public void goldEggSound()
     {
@@ -222,7 +245,7 @@ public class AudioSceneGeneral : MonoBehaviour
     public void puzzleAnimationStart(GameObject puzzleImage)
     {
         //to start the animation only when the scene is visible IF already unlocked
-        //if(SceneIn && puzzleUnlocked && currentScene == SceneManager.GetActiveScene().name) //not working
+        //if(SceneIn && puzzleUnlocked && currentScene == SceneManager.GetActiveScene().name) //not working as intended
 
         puzImage = puzzleImage;
         puzzleUnlocked = true;
@@ -264,6 +287,7 @@ public class AudioSceneGeneral : MonoBehaviour
     public void onDestroy()
     {
         puzzleUnlockedSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //public static void DetachInstanceFromGameObject(FMOD.Studio.EventInstance instance)
     }
 
 ///////////////////////////////////////////
