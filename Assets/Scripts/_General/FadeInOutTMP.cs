@@ -86,4 +86,11 @@ public class FadeInOutTMP : MonoBehaviour
 			//Debug.Log("Should Fade In");
 		}
 	}
+
+//pour tests audio
+public bool getFadingOut()
+{
+	return fadingOut;
+}
+
 }

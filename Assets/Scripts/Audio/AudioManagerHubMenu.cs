@@ -36,28 +36,24 @@ public class AudioManagerHubMenu : MonoBehaviour
     //  SFX & BUTTONS
     ///////////////////////////
     
-    [Header("Play Button")]
+    [Header("Buttons")]
     public Button BtnPlay;
-    [FMODUnity.EventRef]
-    public string SFXPlayButton;
-    public FMOD.Studio.EventInstance PlaySnd;
-
-    [Header("Reset Button")]
-    public Button BtnReset;
-    [FMODUnity.EventRef]
-    public string SFXResetButton;
-    public FMOD.Studio.EventInstance ResetSnd;
-
-    [Header("Back To Menu Button")]
+    public Button BtnNewGame;
     public Button BackMenuBtn;
+
     [FMODUnity.EventRef]
-    public string SFXBackButton;
-    public FMOD.Studio.EventInstance BackBtnSnd;
+    public string ButtonSndEvent;
+    public FMOD.Studio.EventInstance ButtonSnd;
 
     [Header("SFX Uncover Map")]
     [FMODUnity.EventRef]
     public string SFXMapUncover;
     public FMOD.Studio.EventInstance MapSnd;
+
+    [Header("SFX Clouds")]
+    [FMODUnity.EventRef]
+    public string SFXClouds;
+    public FMOD.Studio.EventInstance CloudsSnd;
 
     //TEST
     private FMOD.Studio.EventInstance currentMusic;
@@ -66,18 +62,31 @@ public class AudioManagerHubMenu : MonoBehaviour
     //TEST
     public int nbEggsBySeason;
 
+    public bool dissolvingSnd = false;
+
+    public int nbUnlockedSeasons = 1; //defaut : summer
+
+    public bool CloudsIn = false;
+
+    
+    [Header("Scripts References")]
+
+    public Hub hubscript;
+
+    public FadeInOutTMP fadeInOutStory; //quick fix, find a better system
+
  
     void Start()
     {
         BtnPlay.onClick.AddListener(PlaySound);
-        BtnReset.onClick.AddListener(ResetSound);
+        BtnNewGame.onClick.AddListener(NewGameSound);
         BackMenuBtn.onClick.AddListener(BackBtnSound);
 
         menuMusic = FMODUnity.RuntimeManager.CreateInstance(menuEvent);
         hubMusic = FMODUnity.RuntimeManager.CreateInstance(MusicEvent);
 
-        //FOR NOW THE INITIAL VALUE OF SUMMER IS 1 , CHECK WITH THE UNLOCKED SEASONS / HUB.CS
-        SummerOn = 1;
+        UnlockedSeasonMusic(); //to check which seasons are unlocked
+        //play the associated hub music
         hubMusic.setParameterValue("Summer", SummerOn);
         hubMusic.setParameterValue("Autumn", AutumnOn);
         hubMusic.setParameterValue("Winter", WinterOn);
@@ -86,11 +95,11 @@ public class AudioManagerHubMenu : MonoBehaviour
         //hubMusic.setParameterValue("nbEggsBySeason",nbEggsBySeason); //TEST
 
         currentMusic = menuMusic;
-        if (!GlobalVariables.globVarScript.toHub) { PlayMenuMusic(); } else { PlayHubMusic(); }
+
+        if (!GlobalVariables.globVarScript.toHub) { TransitionMenu(); } else { TransitionHub();}
     }
     void Update()
     {
-
         //EggBySeason();
         hubMusic.setParameterValue("Summer", SummerOn);
         hubMusic.setParameterValue("Autumn", AutumnOn);
@@ -98,7 +107,85 @@ public class AudioManagerHubMenu : MonoBehaviour
         hubMusic.setParameterValue("Spring", SpringOn);
 
         //hubMusic.setParameterValue("nbEggsBySeason",nbEggsBySeason);
+
+        //ajout sfx pour quand les nuages se tassent 
+        if(fadeInOutStory.getFadingOut() && !CloudsIn)
+        {
+            CloudsMoving();
+            CloudsIn = true;
+        }
+        if(!fadeInOutStory.getFadingOut())
+        {
+            CloudsIn = false;
+        }
+
+
+        //Dissolving Sound when map is uncovered
+        if(hubscript.dissolving && !dissolvingSnd)
+        {
+            MapUncover();
+            dissolvingSnd =true;
+        }
+        if(!hubscript.dissolving)
+        {
+            dissolvingSnd =false;
+        }
     }
+
+    ///////////////////
+    // SEASONS
+    ////////////////////
+
+    public void UnlockedSeasonMusic()
+    {
+        
+        //CHECK WITH THE UNLOCKED SEASONS / HUB.CS ..not working well for some reason
+        /* 
+        foreach(bool b in hubscript.unlockedSeasons )
+        {
+            if(b == true)
+            nbUnlockedSeasons++;
+        }
+        Debug.Log("nb Unlocked seasons "+ nbUnlockedSeasons);
+
+        */
+
+        //DEFAULT : SUMMER
+
+        if(nbUnlockedSeasons ==4)
+        {
+            SpringOn = 1f;
+            WinterOn = 0;
+            AutumnOn = 0;
+            SummerOn = 0;
+        }
+        else
+            if(nbUnlockedSeasons ==3)
+            {
+                SpringOn = 0;
+                WinterOn = 1f;
+                AutumnOn = 0;
+                SummerOn = 0;
+            }
+            else 
+                if(nbUnlockedSeasons ==2)
+                {
+                    SpringOn = 0;
+                    WinterOn = 0;
+                    AutumnOn = 1f;
+                    SummerOn = 0;}
+                else
+                    if(nbUnlockedSeasons ==1)
+                        {
+                            SpringOn = 0;
+                            WinterOn = 0;
+                            AutumnOn = 0;
+                            SummerOn = 1f;
+                        }
+
+    }
+
+
 
     ///////////////////////
     //    MUSIC SWITCH
@@ -136,7 +223,6 @@ public class AudioManagerHubMenu : MonoBehaviour
     {
         StopMenuMusicFade(); //stop menu music
         PlayHubMusic(); //start hub music
-        MapUncover(); //eventually to time with the seasons unlocked
     }
 
     public void TransitionMenu()
@@ -158,29 +244,33 @@ public class AudioManagerHubMenu : MonoBehaviour
     /// ----- PLAY BUTTON SOUND -----///
     public void PlaySound()
     {
-        PlaySnd = FMODUnity.RuntimeManager.CreateInstance(SFXPlayButton);
-        PlaySnd.start();
+        ButtonSound();
+        CloudsMoving();
         TransitionHub();
     }
 
-    /// ----- RESET BUTTON SOUND -----///
-    public void ResetSound()
+    /// ----- NEW GAME BUTTON SOUND -----///
+    public void NewGameSound()
     {
-        ResetSnd = FMODUnity.RuntimeManager.CreateInstance(SFXResetButton);
-        ResetSnd.start();
+        nbUnlockedSeasons =1; //return to summer
+        ButtonSound();
         TransitionHub();
-
     }
 
         /// ----- BACK TO MENU BUTTON -----///
     public void BackBtnSound()
     {
-        BackBtnSnd = FMODUnity.RuntimeManager.CreateInstance(SFXBackButton);
-        BackBtnSnd.start();
-		
+        ButtonSound();
         Debug.Log("Audio: Transition To Menu Music");
         TransitionMenu();
     }
+    public void ButtonSound()
+    {
+        ButtonSnd = FMODUnity.RuntimeManager.CreateInstance(ButtonSndEvent);
+        ButtonSnd.start();
+    }
+
+
    
     /// ----- MAP UNCOVER SFX  -----///
     public void MapUncover()
@@ -189,5 +279,13 @@ public class AudioManagerHubMenu : MonoBehaviour
         MapSnd = FMODUnity.RuntimeManager.CreateInstance(SFXMapUncover);
         MapSnd.start();
     }
+
+        public void CloudsMoving()
+    {
+        CloudsSnd = FMODUnity.RuntimeManager.CreateInstance(SFXClouds);
+        CloudsSnd.start();
+    }
+
+    
 
 }
