@@ -92,7 +92,7 @@ public class inputDetector : MonoBehaviour {
 			}
 			if(Input.touchCount == 1 && isPhoneDevice){
 				singleTap = true;
-				if(Input.touches[0].phase == TouchPhase.Began){					
+				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled && !isDragging){					
 					tapPosition = Input.touches[0].position;
 					tapped = true;
 				}

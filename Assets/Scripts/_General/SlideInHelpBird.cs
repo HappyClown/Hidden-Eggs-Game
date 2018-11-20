@@ -45,6 +45,7 @@ public class SlideInHelpBird : MonoBehaviour
 	public SceneTapEnabler scenTapEnabScript;
 	public ClickOnEggs clickOnEggsScript;
 	
+	public LevelTapMannager lvlTapManScript;
 
 
 	void Start ()
@@ -65,7 +66,7 @@ public class SlideInHelpBird : MonoBehaviour
 		distLeft = Vector2.Distance(this.transform.position, shownHelpBirdPos.position);
 		distPercent = (totalDist - distLeft) / totalDist;
 
-		if (moveUp == true)
+		if (moveUp)
 		{
 			this.transform.position = Vector3.MoveTowards(this.transform.position, shownHelpBirdPos.position, speed * Time.deltaTime);
 
@@ -73,7 +74,7 @@ public class SlideInHelpBird : MonoBehaviour
 			shadow.GetComponent<Image>().color = new Color(1,1,1, shadowAlpha);
 		}
 		
-		if (moveUp == false)
+		if (!moveUp)
 		{
 			closeMenuOnClick.SetActive(false);
 			dontCloseMenu.SetActive(false);
@@ -85,13 +86,13 @@ public class SlideInHelpBird : MonoBehaviour
 			shadow.GetComponent<Image>().color = new Color(1,1,1, shadowAlpha);
 		}
 
-		if (moveUp == false && Vector2.Distance(this.transform.position, hiddenHelpBirdPos.position) <= 0.1f)
+		if (!moveUp && Vector2.Distance(this.transform.position, hiddenHelpBirdPos.position) <= 0.1f)
 		{
 			blockClickingOnEggs.SetActive(false);
 		}
 
 
-		if (moveUp == true && Vector2.Distance(this.transform.position, shownHelpBirdPos.position) <= 0.1f)
+		if (moveUp && Vector2.Distance(this.transform.position, shownHelpBirdPos.position) <= 0.1f)
 		{
 			blockClickingOnEggs.SetActive(true);
 
@@ -162,15 +163,16 @@ public class SlideInHelpBird : MonoBehaviour
 	{
 		if(scenTapEnabScript.canTapHelpBird)
 		{
-			if (moveUp == false)
+			if (!moveUp)
 			{ 
 				moveUp = true; 
 				scenTapEnabScript.canTapEggRidPanPuz = false;
+				lvlTapManScript.ZoomOutCameraReset();
 				closeMenuOnClick.SetActive(true);
 				dontCloseMenu.SetActive(true);
 				return; 
 			}
-			else if (moveUp == true)
+			else
 			{
 				moveUp = false; 
 				scenTapEnabScript.canTapEggRidPanPuz = true;

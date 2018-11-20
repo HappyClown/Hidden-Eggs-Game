@@ -149,7 +149,7 @@ public class LevelTapMannager : MonoBehaviour {
 			}
 	}
 	void DoubleTap(){
-		Debug.Log("doube tap!!!");
+		//Debug.Log("doube tap!!!");
 		if(!doubleTapped){
 			doubleTapped = true;
 			centerPoint =  cam.ScreenToWorldPoint(touchZero.position);
@@ -176,6 +176,10 @@ public class LevelTapMannager : MonoBehaviour {
 		}
 		cam.orthographicSize = Mathf.Clamp(currentCameraSize, minCameraSize, maxCameraSize);
 
+	}
+	public void ZoomOutCameraReset(){
+		doubleTapped = true;
+		zoomIn = false;
 	}
 	void PanningCamera(){
 		if(cam.orthographicSize < maxCameraSize){
