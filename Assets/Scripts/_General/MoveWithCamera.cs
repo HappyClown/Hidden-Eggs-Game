@@ -12,7 +12,6 @@ public class MoveWithCamera : MonoBehaviour
 	public float originalCamSize;
 
 
-
 	void Start ()
 	{
 		originalCamSize = cam.orthographicSize;
@@ -20,8 +19,7 @@ public class MoveWithCamera : MonoBehaviour
 	}
 
 
-
-	void Update ()
+	void LateUpdate ()
 	{
 		topLeftCorner = cam.ScreenToWorldPoint(new Vector3(0, cam.pixelHeight, 0));
 		this.transform.position = new Vector2(topLeftCorner.x, topLeftCorner.y);

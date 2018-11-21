@@ -49,10 +49,10 @@ public class SilverEggSequence : MonoBehaviour
 
 	void Update () 
 	{
-		// if (Input.GetKeyDown("space"))
-		// {
-		// 	StartSequence();
-		// }
+		if (Input.GetKeyDown("space"))
+		{
+			SkipSequence();
+		}
 
 		if (startSeq)
 		{
@@ -132,12 +132,19 @@ public class SilverEggSequence : MonoBehaviour
 		//shimmerFX.Play();
 	}
 
-
 	public void ResetHover()
 	{
 		hoverCurDur = iniHovCurDur;
 		startHoverDelay = iniStartHoverDelay;
 		hoverSeq = false;
 		lerpTime = 0f;
+	}
+
+	public void SkipSequence()
+	{
+		if (startSeq)
+		{
+			lerpTime = 1f;
+		}
 	}
 }

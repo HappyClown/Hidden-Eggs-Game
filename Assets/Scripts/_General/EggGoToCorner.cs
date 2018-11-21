@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 public class EggGoToCorner : MonoBehaviour 
 {
 	public Vector3 cornerPos;
+	public int eggPosIndex;
 	public ClickOnEggs clickOnEggsScript;
+	public MoveWithCamera moveWithCamScript;
 	public Vector3 cornerRot;
 	public Vector3 cornerEggScale;
 	public float timeToMove;
@@ -40,14 +42,16 @@ public class EggGoToCorner : MonoBehaviour
 
 	void Start () 
 	{
+		eggPosIndex = clickOnEggsScript.eggSpots.IndexOf(mySpotInPanel);
+		
 		if (!eggAnim) { eggAnim = this.GetComponent<Animator>(); }
 
 		LoadEggFromCorrectScene();
-
+		// If the egg has already been found previously (if it has been loaded as true)
 		if (eggFound)
 		{
 			eggAnim.enabled = false;
-			this.transform.position = mySpotInPanel.transform.position;
+			this.transform.position = new Vector3(mySpotInPanel.transform.position.x, mySpotInPanel.transform.position.y, mySpotInPanel.transform.position.z - 0.24f + (eggPosIndex * 0.01f));
 			this.transform.eulerAngles = cornerRot;
 			this.transform.localScale = cornerEggScale;
 			this.GetComponent<Collider2D>().enabled = false;
@@ -65,7 +69,7 @@ public class EggGoToCorner : MonoBehaviour
 			clickOnEggsScript.AddEggsFound();
 		}
 		else
-		{
+		{	
 			openPanelSpotx = mySpotInPanel.transform.position.x - (clickOnEggsScript.eggPanelHidden.transform.position.x - clickOnEggsScript.eggPanelShown.transform.position.x);
 			openPanelSpoty = mySpotInPanel.transform.position.y - (clickOnEggsScript.eggPanelHidden.transform.position.y - clickOnEggsScript.eggPanelShown.transform.position.y);
 			openPanelSpotz = mySpotInPanel.transform.position.z - (clickOnEggsScript.eggPanelHidden.transform.position.z - clickOnEggsScript.eggPanelShown.transform.position.z);
@@ -96,7 +100,7 @@ public class EggGoToCorner : MonoBehaviour
 	// 		newAlpha = animCurve.Evaluate(curveTime);
 	// 		fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
 
-	void Update ()
+	void LateUpdate ()
 	{
 		if (moveThisEgg == true)
 		{	
@@ -107,26 +111,33 @@ public class EggGoToCorner : MonoBehaviour
 			//distPercent =  distLeft / distToSpot;
 			moveSpeed = animCurve.Evaluate(curveTime);
 
+			openPanelSpotx = mySpotInPanel.transform.position.x /* - (clickOnEggsScript.eggPanelHidden.transform.position.x - clickOnEggsScript.eggPanelShown.transform.position.x) */;
+			openPanelSpoty = mySpotInPanel.transform.position.y /* - (clickOnEggsScript.eggPanelHidden.transform.position.y - clickOnEggsScript.eggPanelShown.transform.position.y) */;
+			openPanelSpotz = mySpotInPanel.transform.position.z - 0.24f + (eggPosIndex * 0.01f) /* - (clickOnEggsScript.eggPanelHidden.transform.position.z - clickOnEggsScript.eggPanelShown.transform.position.z) */;
+			startSpotInPanel = new Vector3(openPanelSpotx, openPanelSpoty, openPanelSpotz);
+
+			Vector3 adjustedScale = new Vector3(cornerEggScale.x * moveWithCamScript.newScale, cornerEggScale.y * moveWithCamScript.newScale, cornerEggScale.z * moveWithCamScript.newScale);
+
 			this.transform.position = Vector3.Lerp(myStartPos, startSpotInPanel, moveSpeed);
 
 			this.transform.eulerAngles = Vector3.Lerp(myStartRot, cornerRot, moveSpeed);
 
-			this.transform.localScale = Vector3.Lerp(myStartScale, cornerEggScale, moveSpeed);
+			this.transform.localScale = Vector3.Lerp(myStartScale, adjustedScale, moveSpeed);
 
 			// Arrived at corner spot.
-			if (Vector3.Distance(this.transform.position, mySpotInPanel.transform.position) <= 0.005f)
+			if (Vector3.Distance(this.transform.position, startSpotInPanel) <= settleEggDist)
 			{
-				this.transform.position = mySpotInPanel.transform.position;
+				this.transform.position = startSpotInPanel;
 				this.transform.eulerAngles = cornerRot;
-				this.transform.localScale = cornerEggScale;
+				//this.transform.localScale = cornerEggScale;
 				moveThisEgg = false;
 				clickOnEggsScript.eggMoving -= 1;
 				this.transform.parent = clickOnEggsScript.eggPanel.transform;
+				this.transform.localScale = cornerEggScale;
 				eggTrail.SetActive(false);
 				//clickOnEggsScript.CheckIfLevelComplete();
 			}
 		}
-
 	}
 	
 
