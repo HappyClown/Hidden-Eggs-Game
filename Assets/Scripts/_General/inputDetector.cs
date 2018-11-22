@@ -85,7 +85,7 @@ public class inputDetector : MonoBehaviour {
 		#region TapCode without double tap
 		if(detectTap){
 			tapped = false;
-			if(Input.GetMouseButtonDown(0) && !isPhoneDevice){
+			if(Input.GetMouseButtonUp(0) && !isPhoneDevice){
 				singleTap = true;
 				tapPosition = Input.mousePosition;
 				tapped = true;

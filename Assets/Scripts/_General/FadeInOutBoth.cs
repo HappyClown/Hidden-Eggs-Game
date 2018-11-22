@@ -15,10 +15,10 @@ public class FadeInOutBoth : MonoBehaviour
 
 	[TooltipAttribute("Chose what type of display the object uses.")]
 	public MyDisplayType myDisplayType;
-
 	private bool fadingOut;
 	private bool fadingIn;
-	private float t; 
+	public float t; 
+	//public float T{get{return t;}}
 	private SpriteRenderer mySprite;
 	private Image myImg;
 	private Color myColor;

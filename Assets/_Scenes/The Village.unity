@@ -313,7 +313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &123505486
 MonoBehaviour:
@@ -1171,7 +1171,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4044542282466906, guid: 3f7590356a743604fb777e4025228310, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114554503347980576, guid: 3f7590356a743604fb777e4025228310,
         type: 2}
@@ -1388,8 +1388,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 748274952}
   - {fileID: 1885987299}
+  - {fileID: 748274952}
   m_Father: {fileID: 1996583294}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1609,6 +1609,65 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 565124147}
+--- !u!1 &614182874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 614182876}
+  - component: {fileID: 614182875}
+  m_Layer: 0
+  m_Name: GameEngine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &614182875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 614182874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4357d18b7d2e474988964b80836e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhoneDevice: 0
+  eggTapped: 0
+  detectTap: 1
+  singleTap: 0
+  detectDoubleTap: 0
+  minDoubleTapTime: 0
+  detectDrag: 0
+  draggingDeathzone: 0
+  startDragTouch: {x: 0, y: 0}
+  draggingPosition: {x: 0, y: 0}
+  prevDragPosition: {x: 0, y: 0}
+  isDragging: 0
+  dragStarted: 0
+  detectDoubleTouch: 0
+  doubleTouched: 0
+  touchOne: {x: 0, y: 0}
+  touchTwo: {x: 0, y: 0}
+  detectSwipe: 0
+  swipeDeathzoneRadius: 100
+--- !u!4 &614182876
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 614182874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663848551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,7 +2169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &748274952
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2118,11 +2177,11 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 748274951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 515555729}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2978,7 +3037,6 @@ MonoBehaviour:
   CloudsIn: 0
   hubscript: {fileID: 472513352}
   fadeInOutStory: {fileID: 1885987302}
-  mainMenuScript: {fileID: 1996583295}
 --- !u!114 &1042977693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5138,7 +5196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1885987298
 GameObject:
@@ -5169,7 +5227,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 515555729}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5189,7 +5247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5309,7 +5367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af59a5b1495b141479bae77051e42e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 2.5
+  fadeDuration: 1.5
   fadeDelayDur: 0.5
   maxAlpha: 1
   t: 0
@@ -5653,6 +5711,7 @@ MonoBehaviour:
   hubScript: {fileID: 472513352}
   hubEggCountsScript: {fileID: 472513353}
   menuReady: 0
+  inputDetScript: {fileID: 614182875}
 --- !u!1 &2011792869
 GameObject:
   m_ObjectHideFlags: 0

@@ -103,11 +103,11 @@ public class KitePuzzEngine : MonoBehaviour
 	{
 		if (canPlay)
 		{
-			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; Debug.Log("do I ever run? Or am I just lazy like that?"); }
+			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; /* Debug.Log("do I ever run? Or am I just lazy like that?"); */ }
 
 			if (connections == clickToRotTileScript.connectionsNeeded)
 			{
-				Debug.Log("ya win m8!");
+				/* Debug.Log("ya win m8!"); */
 				SilverEggsSetup();
 			}
 
@@ -115,7 +115,7 @@ public class KitePuzzEngine : MonoBehaviour
 
 			#region Click
 			// Click //
-			if (Input.GetMouseButtonDown(0)) // INSERT TILE CLICKING LOGIC --------------------------------------------------------------------------
+			if (Input.GetMouseButtonDown(0))
 			{
 				UpdateMousePos();
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
@@ -134,9 +134,7 @@ public class KitePuzzEngine : MonoBehaviour
 				if (iniSeqDelay > 0) { iniSeqDelay -= Time.deltaTime; }
 				else
 				{
-					seqTimer += Time.deltaTime; // INSERT INITIAL SETUP SEQUENCE --------------------------------------------------------------------------------------
-					// if (seqTimer > crateDownF && !crateDownB) { crateDownB = true; crateAnim.SetTrigger("MoveDown"); StartCoroutine(MoveCrateDown()); }
-					// if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; } 
+					seqTimer += Time.deltaTime;
 					 if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; /* lvlItemHolders[curntLvl - 1].SetActive(true); */ LvlStuffFadeIn(); bgScleScript.ScaleBG();}
 					 if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); clickToRotTileScript.CalculateConnectionsNeeded();}
 					 if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
@@ -180,7 +178,7 @@ public class KitePuzzEngine : MonoBehaviour
 					if (hit.collider.CompareTag("Egg"))
 					{
 						//if (crateScript.curntLvl >= maxLvl) { silverEggsPickedUp += 1; }
-						Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
+						/* Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate"); */
 						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 						silEggTappedScript.StartSilverEggAnim();
 						hit.collider.enabled = false;
@@ -422,7 +420,7 @@ public class KitePuzzEngine : MonoBehaviour
 
 	public void LvlStuffFadeIn()
 	{
-		Debug.Log("Should fade in stuff."); // Fade in tiles
+		//Debug.Log("Should fade in stuff."); // Fade in tiles
 		if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
 		FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 

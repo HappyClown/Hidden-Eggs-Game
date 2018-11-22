@@ -28,6 +28,7 @@ public class RainbowRiddle : MonoBehaviour
 	public SceneTapEnabler scenTapEnabScript;
 
 	public AudioSceneMarket audioSceneMarket;
+	public LevelTapMannager lvlTapManScript;
 
 
 
@@ -92,8 +93,10 @@ public class RainbowRiddle : MonoBehaviour
 					// - PUZZLE SOLVED - //
 					if (basketNumber >= 6)
 					{
+						lvlTapManScript.ZoomOutCameraReset();
 						basketNumber = 0;
 						RainbowRiddleSolved ();
+						
 
 						scenTapEnabScript.canTapEggRidPanPuz = false;
 						scenTapEnabScript.canTapHelpBird = false;

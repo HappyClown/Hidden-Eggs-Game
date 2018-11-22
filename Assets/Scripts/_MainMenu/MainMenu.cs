@@ -36,8 +36,8 @@ public class MainMenu : MonoBehaviour
 	[Header("References")]
 	public Hub hubScript;
 	public HubEggcounts hubEggCountsScript;
-
 	public bool menuReady;
+	public inputDetector inputDetScript;
 
 
 	void Awake()
@@ -52,9 +52,9 @@ public class MainMenu : MonoBehaviour
 
 		resetBtn.onClick.AddListener(DeleteSaveFile);
 		resetBtn.onClick.AddListener(NewGameBtn);
-		resetBtn.onClick.AddListener(StoryTextAppears);
+		//resetBtn.onClick.AddListener(StoryTextAppears);
 
-		storyBtn.onClick.AddListener(StorySkipContinue);
+		//storyBtn.onClick.AddListener(StorySkipContinue);
 
 		if (GlobalVariables.globVarScript.toHub) { PlayBtn(); } // Goes straight to hub
 	}
@@ -62,6 +62,15 @@ public class MainMenu : MonoBehaviour
 
 	void Update ()
 	{
+		if (inputDetScript.Tapped)
+		{
+			//Debug.Log("tapped! and : " + storyAppearing);
+			if (storyAppearing || storyFullyOn)
+			{
+				StorySkipContinue();
+			}
+		}
+
 		// -- Fade Buttons Out -- //
 		if (fadeBtnOut)
 		{
@@ -82,6 +91,7 @@ public class MainMenu : MonoBehaviour
 					playBtn.enabled = false;
 					resetBtn.enabled = false;
 					fadeBtnOut = false;
+					StoryTextAppears();
 				}
 			}
 		}
@@ -158,7 +168,7 @@ public class MainMenu : MonoBehaviour
 	void StoryTextAppears()
 	{
 		//ResetStory();
-		storyBtn.interactable = true;
+		//storyBtn.interactable = true;
 		storyAppearing = true;
 		storyTMP.gameObject.SetActive(true);
 		fadeTMPScript.FadeIn();
@@ -175,8 +185,10 @@ public class MainMenu : MonoBehaviour
 		}
 		if (storyAppearing)
 		{
+			//Debug.Log("Should make story appear.");
 			fadeTMPScript.t = 1;
-			storyFullyOn = true;
+			titleFade.t = 1;
+			//storyFullyOn = true;
 			//moveClouds = true;
 		}
 	}

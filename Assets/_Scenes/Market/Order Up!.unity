@@ -5948,6 +5948,7 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
+  inpDetScript: {fileID: 991552000}
 --- !u!58 &303953119
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -21734,6 +21735,7 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
+  inpDetScript: {fileID: 991552000}
 --- !u!58 &654986386
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -22556,6 +22558,7 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
+  inpDetScript: {fileID: 991552000}
 --- !u!58 &729657839
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -23265,6 +23268,7 @@ GameObject:
   - component: {fileID: 991551997}
   - component: {fileID: 991551999}
   - component: {fileID: 991551998}
+  - component: {fileID: 991552000}
   m_Layer: 0
   m_Name: GameEngine
   m_TagString: Untagged
@@ -23490,6 +23494,36 @@ MonoBehaviour:
   reqPounds: 0
   reqItems: 0
   curntLvl: 1
+--- !u!114 &991552000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 991551995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4357d18b7d2e474988964b80836e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhoneDevice: 0
+  eggTapped: 0
+  detectTap: 1
+  singleTap: 0
+  detectDoubleTap: 0
+  minDoubleTapTime: 0.5
+  detectDrag: 0
+  draggingDeathzone: 0
+  startDragTouch: {x: 0, y: 0}
+  draggingPosition: {x: 0, y: 0}
+  prevDragPosition: {x: 0, y: 0}
+  isDragging: 0
+  dragStarted: 0
+  detectDoubleTouch: 0
+  doubleTouched: 0
+  touchOne: {x: 0, y: 0}
+  touchTwo: {x: 0, y: 0}
+  detectSwipe: 0
+  swipeDeathzoneRadius: 50
 --- !u!1 &1013700553
 GameObject:
   m_ObjectHideFlags: 0
@@ -48311,6 +48345,7 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
+  inpDetScript: {fileID: 991552000}
 --- !u!58 &1523384242
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -48722,6 +48757,7 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
+  inpDetScript: {fileID: 991552000}
 --- !u!58 &1631480709
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -49107,6 +49143,7 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
+  inpDetScript: {fileID: 991552000}
 --- !u!58 &1669234058
 CircleCollider2D:
   m_ObjectHideFlags: 0

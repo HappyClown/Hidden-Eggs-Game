@@ -36,6 +36,7 @@ public class SilverEggSequence : MonoBehaviour
 	private float lerpTime;
 	
 	public AudioSilverEggs audioSilEggScript;
+	public inputDetector inpDetScript;
 
 	//public Transform hoverTo; // For hover with lerp.
 	
@@ -49,7 +50,7 @@ public class SilverEggSequence : MonoBehaviour
 
 	void Update () 
 	{
-		if (Input.GetKeyDown("space"))
+		if (/* Input.GetKeyDown("space") ||  */inpDetScript.Tapped)
 		{
 			SkipSequence();
 		}
@@ -144,7 +145,15 @@ public class SilverEggSequence : MonoBehaviour
 	{
 		if (startSeq)
 		{
-			lerpTime = 1f;
+			this.transform.position = endPos.position;
+			this.transform.localScale = endScale;
+			startSeq = false;
+			hoverSeq = true;
+			hoverUp = true;
+			lerpTime = 0f;
+			trailFX.Stop();
+			startPos = this.transform.position;
+			myCol.enabled = true;
 		}
 	}
 }

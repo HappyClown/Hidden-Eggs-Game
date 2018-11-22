@@ -35,6 +35,7 @@ public class HopscotchRiddle : MonoBehaviour
 
 	public bool touchOne, touchTwo, startMinSecTimer;
 	public float minSecTapTime, minSecTapTimer;
+	public LevelTapMannager lvlTapManScript;
 
 
 	void Start () 
@@ -151,7 +152,8 @@ public class HopscotchRiddle : MonoBehaviour
 						
 						if (currentCell.goalCell)                                  // tapped last cell
 						{
-							HopscotchRiddleSolved ();
+							lvlTapManScript.ZoomOutCameraReset();
+							HopscotchRiddleSolved();
 							//SpawnGoldenEgg;
 							goldenEgg.SetActive(true);
 							goldenEggScript.inGoldenEggSequence = true;

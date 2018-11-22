@@ -14,6 +14,7 @@ public class LevelComplete : MonoBehaviour
 
 	[Header("References")]
 	public ClickOnEggs clickOnEggsScript;
+	public LevelTapMannager lvlTapManScript;
 
 	[Header("Setup - When to Play?")]
 	public float darkenScreen; public float showCongrats, showEggs, showCounters, showTap; // At what time do the Methods get called.
@@ -92,7 +93,7 @@ public class LevelComplete : MonoBehaviour
 		{
 			timer += Time.deltaTime;
 
-			if (timer > darkenScreen && !darkenScreenStarted) { DarkenScreenOnOff();}
+			if (timer > darkenScreen && !darkenScreenStarted) { DarkenScreenOnOff(); lvlTapManScript.ZoomOutCameraReset();}
 			if (timer > showCongrats && !showCongratsStarted) { CongratsOnOff();}
 			if (timer > showEggs && !showEggsStarted) { EggsOnOff();}
 			if (timer > showCounters && !showCountersStarted) { EggCountersOnOff();}

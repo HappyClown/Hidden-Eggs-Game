@@ -56,12 +56,9 @@ public class GoldenEgg : MonoBehaviour
 	void Start ()
 	{
 		partShaftsMat = partShafts.gameObject.GetComponent<ParticleSystemRenderer>().material;
-
 		//  if (eggGoToCornerScript.eggFound) { this.transform.localScale += new Vector3(4, 4, 1); }
 		//  Debug.Log("EGG FOUND? :" + eggGoToCornerScript.eggFound);
-		
 	}
-
 
 
 	void Update () 
@@ -124,8 +121,7 @@ public class GoldenEgg : MonoBehaviour
 		// }
 		// - END TESTING - //
 		#endregion
-
-
+		
 		// -- START GOLDEN EGG SEQUENCE -- //
 		if (inGoldenEggSequence)
 		{
