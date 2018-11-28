@@ -23,11 +23,9 @@ public class ClickOnEggs : MonoBehaviour
 	public bool iniSilEggCheckB, iniLvlCompCheckB;
 
 	[Header("Egg Info")]
-	public int eggsLeft;
 	public int eggsFound;
-	private int totalEggs;
-	private GameObject[] eggsCount;
-
+	[Tooltip("Total amount of regular eggs in the scene.")]
+	public int totalRegEggs;
 	public TextMeshProUGUI eggCounterText;
 	public TextMeshProUGUI silverEggCounterText;
 	public TextMeshProUGUI goldenEggCounterText;
@@ -80,11 +78,8 @@ public class ClickOnEggs : MonoBehaviour
 	void Start () 
 	{
 		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
-		eggsCount = GameObject.FindGameObjectsWithTag("Egg");
-		eggsLeft = eggsCount.Length;
-		totalEggs = eggsLeft;
-		silverEggCounterText.text = "Silver:" + (GlobalVariables.globVarScript.marketSilverEggsCount);
-		goldenEggCounterText.text = "Golden:" + (GlobalVariables.globVarScript.rainbowRiddleSolved);
+		silverEggCounterText.text = "" + (GlobalVariables.globVarScript.marketSilverEggsCount);
+		goldenEggCounterText.text = "" + (GlobalVariables.globVarScript.rainbowRiddleSolved);
 		newCornerPos = cornerPos.position;
 		if (iniDelay < sceneFadeScript.fadeTime) { iniDelay = sceneFadeScript.fadeTime; }
 		AdjustLevelComplete(); // Check if level has already been completed. (bool)
@@ -271,7 +266,7 @@ public class ClickOnEggs : MonoBehaviour
 	#region Methods
 	public void UpdateEggsString()
 	{
-		eggCounterText.text = "Eggs Found: " + (eggsFound) + "/" + (totalEggs);
+		eggCounterText.text = "" + (eggsFound) + "/" + (totalRegEggs);
 	}
 
 
@@ -297,7 +292,7 @@ public class ClickOnEggs : MonoBehaviour
 		// }
 	}
 
-
+	#region Save & Load methods
 	// --- Dependant On Scene Name --- //
 	public void MakeSilverEggsAppear() // Could be merged with AdjustSilverEggCount since they will always be called together IF we implement the egg panel in the puzzle scene
 	{
@@ -338,19 +333,19 @@ public class ClickOnEggs : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			silverEggsFound = GlobalVariables.globVarScript.marketSceneSilEggsCount.Count;
-			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
+			silverEggCounterText.text = "" + silverEggsFound + "/6";
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 			silverEggsFound = GlobalVariables.globVarScript.parkSilverEggsCount;
-			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
+			silverEggCounterText.text = "" + silverEggsFound + "/6";
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 			silverEggsFound = GlobalVariables.globVarScript.beachSilverEggsCount;
-			silverEggCounterText.text = "Silver: " + silverEggsFound + "/6";
+			silverEggCounterText.text = "" + silverEggsFound + "/6";
 		}
 	}
 
@@ -360,19 +355,19 @@ public class ClickOnEggs : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			if (GlobalVariables.globVarScript.rainbowRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
-			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
+			goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
 		{
 			if (GlobalVariables.globVarScript.hopscotchRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
-			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
+			goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
 		}
 
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
 		{
 			if (GlobalVariables.globVarScript.crabRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
-			goldenEggCounterText.text = "Golden: " + (goldenEggFound) + "/1";
+			goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
 		}
 	}
 
@@ -434,5 +429,6 @@ public class ClickOnEggs : MonoBehaviour
 
 		}
 	}
+	#endregion
 	#endregion
 }
