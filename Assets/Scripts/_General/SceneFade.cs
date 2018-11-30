@@ -52,6 +52,8 @@ public class SceneFade : MonoBehaviour
 	public static AudioTransitions audioTransStaticScript;
 	public AudioTransitions audioTransScript;
 
+	private AsyncOperation myOperation;
+
 	void Awake () 
 	{
 		titleCardImg = titleCardObj.GetComponent<Image>();
@@ -73,11 +75,17 @@ public class SceneFade : MonoBehaviour
 		#region Title Card & Black Background scene transition.
 		if (titCardSceneTrans)
 		{
+			
+			if(newAlpha == 0){
+			myOperation = SceneManager.LoadSceneAsync(sceneToLoad);
+			myOperation.allowSceneActivation = false;
+			}
 			//if (!setupNewCard) { ChoseTitleCard(); }
 			if (fadeImage != blckFadeImage) { fadeImage = blckFadeImage;}
 			// -- FADE OUT CURRENT SCENE -- //
 			if (fadeSceneOut)
 			{
+				
 				if (fadeSceneIn) { fadeSceneIn = false; }
 				// Set the transition image to raycast target to block the player from tapping on any buttons while it is transitioning.
 				if (!fadeImage.raycastTarget) { fadeImage.raycastTarget = true; }
@@ -106,10 +114,10 @@ public class SceneFade : MonoBehaviour
 				{
 					curveTime = 1;
 					newAlpha = 1;
-					SceneManager.LoadScene(sceneToLoad);
+					myOperation.allowSceneActivation = true;
 				}
 				// If scene has been loaded and title card has been on long enough.
-				if (currentScene == sceneToLoad && titleCardTimer >= minTitleCardShowTime)
+				if (/*currentScene == sceneToLoad*/myOperation.isDone && titleCardTimer >= minTitleCardShowTime)
 				{
 					fadeSceneIn = true;
 					fadeSceneOut = false;
