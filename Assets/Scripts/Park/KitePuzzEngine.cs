@@ -57,6 +57,7 @@ public class KitePuzzEngine : MonoBehaviour
 	public int amntSilEggsTapped;
 
 	[Header("Level Selection Buttons")]
+	public LevelSelectionButtons testButtons;
 	[Tooltip("GameObjects - The level selection buttons, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
 	public List<GameObject> lvlSelectButtons;
 	[Tooltip("Scripts - The FadeInOutImage scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
@@ -92,7 +93,6 @@ public class KitePuzzEngine : MonoBehaviour
 	{
 		canPlay = false;
 		initialSetupOn = true;
-
 		maxLvl = GlobalVariables.globVarScript.parkPuzzMaxLvl;
 		silverEggsPickedUp = GlobalVariables.globVarScript.parkSilverEggsCount;
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;

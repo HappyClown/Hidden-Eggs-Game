@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 330.1}
@@ -5162,6 +5163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 60.035}
@@ -5342,6 +5344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 333.703}
@@ -6684,6 +6687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 285.264}
@@ -12716,6 +12720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 0}
@@ -13789,6 +13794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 170.573}
@@ -14731,6 +14737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 221.676}
@@ -24649,6 +24656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 295.441}
@@ -29725,6 +29733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 47.711}
@@ -29972,6 +29981,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 224045880510790872, guid: 5ba1db6bd74f4824ba477fdace661f73,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -30092,6 +30106,136 @@ Prefab:
       propertyPath: hintManScript
       value: 
       objectReference: {fileID: 594905366}
+    - target: {fileID: 224174921272603258, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -198
+      objectReference: {fileID: 0}
+    - target: {fileID: 224521222688502636, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -198
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: speed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: shadow
+      value: 
+      objectReference: {fileID: 1104751345}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: txtBubble
+      value: 
+      objectReference: {fileID: 2118818709}
+    - target: {fileID: 114931397887201580, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: thisImg
+      value: 
+      objectReference: {fileID: 1252085457}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: isDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: moveDown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114890821660802218, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: thisImg
+      value: 
+      objectReference: {fileID: 2010837815}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: lvlTapManScript
+      value: 
+      objectReference: {fileID: 911702553}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769693565891032, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955934843021532, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181964938873214, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069551064265296, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020149697365292, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114050475380884564, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: animCur.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
   m_IsPrefabParent: 0
@@ -30363,6 +30507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 40.393}
@@ -31150,6 +31295,12 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198025209945696628, guid: 88aa2ce0b48a07947a2979762a48c55a,
     type: 2}
   m_PrefabInternal: {fileID: 893272822}
+--- !u!114 &1104751345 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114990573503297424, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 907499856}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1118269098
 GameObject:
   m_ObjectHideFlags: 0
@@ -31831,6 +31982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 146.437}
@@ -32072,6 +32224,12 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1252085457 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114626884302647810, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 907499856}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1272800547 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1910638924771200, guid: ffc94fe78e676f34da6a03d632967891,
@@ -32648,6 +32806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 9.544001}
@@ -38202,6 +38361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 10.7}
@@ -38917,6 +39077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 335.269}
@@ -39087,6 +39248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 57.725}
@@ -39341,6 +39503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 348.067}
@@ -39717,6 +39880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 190.536}
@@ -40055,6 +40219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 147.347}
@@ -45776,6 +45941,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 8.326}
@@ -45946,6 +46112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 25.86}
@@ -46671,6 +46838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 279.913}
@@ -47012,6 +47180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 26.741}
@@ -47188,6 +47357,12 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198184740719540128, guid: a8b986e6c53177947adbdb9775b12edf,
     type: 2}
   m_PrefabInternal: {fileID: 2009666593}
+--- !u!114 &2010837815 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114378915007114000, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 907499856}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2013941819
 Prefab:
   m_ObjectHideFlags: 0
@@ -47328,6 +47503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 0}
@@ -47592,6 +47768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
   moveWithCamScript: {fileID: 270825947}
   cornerRot: {x: 0, y: 0, z: 176.295}
@@ -48223,6 +48400,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffc94fe78e676f34da6a03d632967891, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2118818709 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114050475380884564, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 907499856}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2122136858
 GameObject:
   m_ObjectHideFlags: 0
