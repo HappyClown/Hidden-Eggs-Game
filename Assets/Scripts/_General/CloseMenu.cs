@@ -15,7 +15,7 @@ public class CloseMenu : MonoBehaviour
 	void Start () 
 	{
 		closeMenuOnClickButton = this.GetComponent<Button>();
-		closeMenuOnClickButton.onClick.AddListener(birdScript.MoveBirdUp);
+		closeMenuOnClickButton.onClick.AddListener(birdScript.MoveBirdUpDown);
 		this.gameObject.SetActive(false);
 	}
 }

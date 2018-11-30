@@ -8,6 +8,7 @@ public class FadeOnEnable : MonoBehaviour
 	private bool startFadeIn;
 	private float alpha;
 	public float fadeSpeed;
+	public Image thisImg;
 
 	
 
@@ -17,9 +18,9 @@ public class FadeOnEnable : MonoBehaviour
 		{
 			alpha += Time.deltaTime * fadeSpeed;
 			
-			if (this.GetComponent<Image>().color.a < 1)
+			if (thisImg.color.a < 1)
 			{
-				this.GetComponent<Image>().color = new Color(1,1,1, alpha);
+				thisImg.color = new Color(1,1,1, alpha);
 			}
 			else
 			{
@@ -41,6 +42,6 @@ public class FadeOnEnable : MonoBehaviour
 	{
 		startFadeIn = false;
 		alpha = 0f;
-		this.GetComponent<Image>().color = new Color(1,1,1, alpha);
+		thisImg.color = new Color(1,1,1, alpha);
 	}
 }

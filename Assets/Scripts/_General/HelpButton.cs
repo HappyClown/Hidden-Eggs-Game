@@ -13,7 +13,7 @@ public class HelpButton : MonoBehaviour
 	void Start () 
 	{
 		button = this.GetComponent<Button>();
-		button.onClick.AddListener(birdScript.MoveBirdUp);
+		button.onClick.AddListener(birdScript.MoveBirdUpDown);
 	}
 
 }
