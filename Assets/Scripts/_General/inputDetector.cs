@@ -32,8 +32,8 @@ public class inputDetector : MonoBehaviour {
 	public bool detectDrag;
 	[Tooltip("Dragging deathzone Radius")]
 	public float draggingDeathzone;
-	public Vector2 startDragTouch, draggingPosition, prevDragPosition;
-	public bool isDragging = false, dragStarted = false;
+	public Vector2 startDragTouch, draggingPosition, prevDragPosition, releaseDragPos;
+	public bool isDragging = false, dragStarted = false, dragReleased = false;
 	public Vector2 DraggingPosition{get{return draggingPosition;}}
 	#endregion
 
@@ -85,7 +85,7 @@ public class inputDetector : MonoBehaviour {
 		#region TapCode without double tap
 		if(detectTap){
 			tapped = false;
-			if(Input.GetMouseButtonUp(0) && !isPhoneDevice){
+			if(Input.GetMouseButtonUp(0) && !isPhoneDevice && !isDragging){
 				singleTap = true;
 				tapPosition = Input.mousePosition;
 				tapped = true;
@@ -165,11 +165,15 @@ public class inputDetector : MonoBehaviour {
 
 		#region Dragging Code
 		if(detectDrag){
+			dragReleased = false;
 			if(Input.GetMouseButton(0) && !isPhoneDevice){
 				singleTap = true;
-				if(!dragStarted){
+				if(Input.GetMouseButtonDown(0)){
 					startDragTouch = Input.mousePosition;
 					dragStarted = true;
+				}
+				else{
+					dragStarted = false;
 				}
 				if(isDragging){
 					prevDragPosition = draggingPosition;
@@ -191,6 +195,9 @@ public class inputDetector : MonoBehaviour {
 				if(Input.touches[0].phase == TouchPhase.Began){
 					startDragTouch = Input.touches[0].position;
 					dragStarted = true;
+				}
+				else{
+					dragStarted = false;
 				}
 				if(isDragging){
 					prevDragPosition = draggingPosition;
@@ -295,6 +302,8 @@ public class inputDetector : MonoBehaviour {
 	private void ResetDragging(){
 		isDragging = false;
 		dragStarted = false;
+		dragReleased = true;
+		releaseDragPos = draggingPosition;
 		draggingPosition = startDragTouch = Vector2.zero;
 	}
 	#endregion

@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ClickToRotateTile : MonoBehaviour 
 {
-
+	
+	[Header("Input Detector")]
+	public inputDetector myInput;
 	Ray2D ray;
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
@@ -85,17 +87,26 @@ public class ClickToRotateTile : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetMouseButton(0))
+		if (myInput.Tapped)
 		{
-			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
 			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+		}
+		else if(myInput.dragStarted){
+			mousePos = Camera.main.ScreenToWorldPoint(myInput.startDragTouch);
+			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);			
+		}
+		else if(myInput.dragReleased){
+			mousePos = Camera.main.ScreenToWorldPoint(myInput.releaseDragPos);
+			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);	
 		}
 
 
-		if (handheldDevice) { if (Input.touchCount > 0) { updateMousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position); } }
-		if (desktopDevice) { updateMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); }
+		//if (handheldDevice) { if (Input.touchCount > 0) { updateMousePos = Camera.main.ScreenToWorldPoint(Input.touches[0].position); } }
+		//if (desktopDevice) { updateMousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition); }
 
 		// if (connections == connectionsNeeded)
 		// {
@@ -109,10 +120,10 @@ public class ClickToRotateTile : MonoBehaviour
 		if (kitePuzzEngineScript.canPlay)
 		{
 			// --- Click detected check to see what tile is hit
-			if (hit.collider != null && Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated)
+			if (hit.collider != null && myInput.dragStarted && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated)
 			{
 				Debug.Log("Click pressed");
-				mouseClickOGPos = updateMousePos;
+				mouseClickOGPos = mousePos;
 				timer = 0f;
 				// Select tile
 				mouseClick = true;
@@ -123,58 +134,55 @@ public class ClickToRotateTile : MonoBehaviour
 				// SFX PICK UP TILE
 				if(mouseClick) { audioSceneParkPuz.pickupTile(); }
 
-				StartCoroutine(SkipAFrame());
+				//StartCoroutine(SkipAFrame());
 			
 			}
 
 			// --- Check to see if holding click
-			if (Input.GetMouseButton(0) && tileClicked != null)
+			if (myInput.isDragging && tileClicked != null)
 			{
-				if (mouseClickHeld == false)
-				{	
-					timer += Time.deltaTime;
-				}
+				// if (mouseClickHeld == false)
+				// {	
+				// 	timer += Time.deltaTime;
+				// }
 
 				// --- Clicked long enough 
-				if (timer >= nowHoldingTime || mouseClickHeld || Vector3.Distance(mouseClickOGPos, updateMousePos) > distToDrag) 
-				{
+				// if (timer >= nowHoldingTime || mouseClickHeld || Vector3.Distance(mouseClickOGPos, updateMousePos) > distToDrag) 
+				// {
 					//Debug.Log("Click now held");
-					mouseClickHeld = true;
-					mouseClick = false;
-					timer = 0f;
-
-					float tileClickedX = tileClicked.transform.position.x;
-					float tileClickedY = tileClicked.transform.position.y;
-
-					tileClickedX = mousePos.x;
-					tileClickedY = mousePos.y;
+					// mouseClickHeld = true;
+					// mouseClick = false;
+					// timer = 0f;
+					mousePos = Camera.main.ScreenToWorldPoint(myInput.draggingPosition);
+					float tileClickedX =  mousePos.x;
+					float tileClickedY = mousePos.y;
 
 					tileClicked.transform.position = new Vector3(tileClickedX, tileClickedY, -5f);
-				}
+				// }
 			}
 
 
 			// --- Click released just a click
-			if (hit.collider == null && Input.GetMouseButtonUp(0) && tileClicked != null)
+			if (myInput.Tapped && tileClicked != null)
 			{
-				Debug.Log("Click released after click");
-				if (mouseClick)
-				{
+				// Debug.Log("Click released after click");
+				// if (mouseClick)
+				// {
 					//tileClicked.transform.eulerAngles = new Vector3(tileClicked.transform.eulerAngles.x, tileClicked.transform.eulerAngles.y, tileClicked.transform.eulerAngles.z - 90);
 					// make tile roo roororo tate
 					tileClicked.GetComponent<TileRotation>().RotateTile();
 
 					// SFX PICK UP TILE
 					audioSceneParkPuz.rotateTile();
-				}
+				// }
 
-				tileClicked.transform.position = tileClickedOGPos;
+				// tileClicked.transform.position = tileClickedOGPos;
 
 				tileClicked.GetComponent<BoxCollider2D>().enabled = true;
-				mouseClickHeld = false;
-				mouseClick = false;
+				// mouseClickHeld = false;
+				// mouseClick = false;
 				tileClicked = null;
-				timer = 0f;
+				// timer = 0f;
 				kitePuzzEngineScript.connections = 0;
 
 				foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
@@ -186,26 +194,35 @@ public class ClickToRotateTile : MonoBehaviour
 
 
 			// --- Click released after holding
-			if (hit.collider != null && Input.GetMouseButtonUp(0) && hit.collider.CompareTag("Tile") && tileClicked != null)
+			if (myInput.dragReleased && tileClicked != null)
 			{
 				// SFK DROP TILE
 				audioSceneParkPuz.dropTile();
-				Debug.Log("Click released after held");
-				if (mouseClickHeld && hit.collider.GetComponent<TileRotation>().canBeRotated)
-				{
+
+				if(hit.collider != null && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated){
 					tileClicked.transform.position = hit.collider.gameObject.transform.position;
 					hit.collider.gameObject.transform.position = tileClickedOGPos;
-				}
-				else
-				{
+
+				}else{
 					tileClicked.transform.position = tileClickedOGPos;
 				}
+				
+				Debug.Log("Click released after held");
+				// if (mouseClickHeld && hit.collider.GetComponent<TileRotation>().canBeRotated)
+				// {
+				// 	tileClicked.transform.position = hit.collider.gameObject.transform.position;
+				// 	hit.collider.gameObject.transform.position = tileClickedOGPos;
+				// }
+				// else
+				// {
+				// 	tileClicked.transform.position = tileClickedOGPos;
+				// }
 
 				tileClicked.GetComponent<BoxCollider2D>().enabled = true;
-				mouseClickHeld = false;
-				mouseClick = false;
+				// mouseClickHeld = false;
+				// mouseClick = false;
 				tileClicked = null;
-				timer = 0f;
+				// timer = 0f;
 				kitePuzzEngineScript.connections = 0;
 
 				foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
@@ -231,8 +248,8 @@ public class ClickToRotateTile : MonoBehaviour
 		}
 		return connectionsNeeded;
 	}
-	public IEnumerator SkipAFrame()
-	{
-		yield return null;
-	}
+	// public IEnumerator SkipAFrame()
+	// {
+	// 	yield return null;
+	// }
 }

@@ -1395,7 +1395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &119567624
 Transform:
   m_ObjectHideFlags: 0
@@ -1732,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &139316595
 Transform:
   m_ObjectHideFlags: 0
@@ -15707,8 +15707,8 @@ GameObject:
   - component: {fileID: 654759644}
   - component: {fileID: 654759645}
   - component: {fileID: 654759646}
-  - component: {fileID: 654759647}
   - component: {fileID: 654759648}
+  - component: {fileID: 654759647}
   - component: {fileID: 654759649}
   m_Layer: 0
   m_Name: GameEngine
@@ -15741,6 +15741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79df16cab91b5184ab096b025d845747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myInput: {fileID: 654759647}
   mouseClickHeld: 0
   mouseClick: 0
   distToDrag: 0.75
@@ -15843,13 +15844,15 @@ MonoBehaviour:
   singleTap: 0
   detectDoubleTap: 0
   minDoubleTapTime: 0.5
-  detectDrag: 0
+  detectDrag: 1
   draggingDeathzone: 0
   startDragTouch: {x: 0, y: 0}
   draggingPosition: {x: 0, y: 0}
   prevDragPosition: {x: 0, y: 0}
+  releaseDragPos: {x: 0, y: 0}
   isDragging: 0
   dragStarted: 0
+  dragReleased: 0
   detectDoubleTouch: 0
   doubleTouched: 0
   touchOne: {x: 0, y: 0}
@@ -36058,7 +36061,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1466544557
 Transform:
   m_ObjectHideFlags: 0
