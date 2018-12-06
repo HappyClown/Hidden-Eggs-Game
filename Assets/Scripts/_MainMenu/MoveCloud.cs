@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveCloud : MonoBehaviour 
 {
-	public float moveSpeed;
+	public float moveSpeed, minSpeed, maxSpeed;
 	public bool moveOut;
 	public bool moveIn;
 	public bool moveLeft;
@@ -14,11 +14,16 @@ public class MoveCloud : MonoBehaviour
 	public float cloudFadeSpeed;
 
 
+	void Start ()
+	{
+		moveSpeed = Random.Range(minSpeed, maxSpeed);
+	}
+
+
 	void Update ()
 	{
 		if (moveOut)
 		{
-			moveIn = false;
 			// - MOVE IN PROPER DIRECTION - //
 			if (moveLeft) { this.transform.Translate(Vector3.left*moveSpeed*Time.deltaTime); }
 			else { this.transform.Translate(Vector3.right*moveSpeed*Time.deltaTime); }
@@ -33,7 +38,6 @@ public class MoveCloud : MonoBehaviour
 
 		if (moveIn)
 		{
-			moveOut = false;
 			// - MOVE IN PROPER DIRECTION - // (Reverse of moveOut directions)
 			if (moveLeft) { this.transform.Translate(Vector3.right*moveSpeed*Time.deltaTime); }
 			else { this.transform.Translate(Vector3.left*moveSpeed*Time.deltaTime); }
@@ -46,6 +50,18 @@ public class MoveCloud : MonoBehaviour
 			if (cloudAlpha >= 1) { moveIn = false; }
 		}
 
+	}
+
+	public void MoveIn()
+	{
+		moveOut = false;
+		moveIn = true;
+	}
+
+	public void MoveOut()
+	{
+		moveOut = true;
+		moveIn = false;
 	}
 	
 }

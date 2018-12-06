@@ -8,55 +8,39 @@ public class MainMenu : MonoBehaviour
 {
 	[Header("Background Stuff")]
 	public List<MoveCloud> cloudsToMove;
-	public FadeInOutBoth titleFade;
+	public FadeInOutImage titleFade;
 	public FadeInOutSprite solidBGFade;
-
-	[Header("Reset Button")]
-	public Button resetBtn;
-	public Image resetBtnImg;
-	public TextMeshProUGUI resetBtnTMP;
 
 	[Header("Play Button")]
 	public Button playBtn;
-	public Image btnImg;
-	public TextMeshProUGUI btnTMP;
+	public FadeInOutImage playBtnFadeScript;
+
+	[Header("Reset Button")]
+	public Button rstBtn;
+	public FadeInOutImage rstBtnFadeScript;
 
 	[Header("Story")]
 	public Button storyBtn;
 	public TextMeshProUGUI storyTMP;
 	public FadeInOutTMP fadeTMPScript;
-	public bool storyAppearing, storyFullyOn, moveClouds;
-	public float storyTimer, storyTime;
-
-	[Header("Button Fade Attributes")]
-	public bool fadeBtnOut;
-	public float fadeSpeed;
-	public float btnAlpha;
+	private bool storyAppearing, storyFullyOn, moveClouds;
 
 	[Header("References")]
 	public Hub hubScript;
 	public HubEggcounts hubEggCountsScript;
-	public bool menuReady;
 	public inputDetector inputDetScript;
-
-
-	void Awake()
-	{
-		hubEggCountsScript.AdjustTotEggCount();
-	}
 
 
 	void Start () 
 	{
 		playBtn.onClick.AddListener(PlayBtn);
+		rstBtn.onClick.AddListener(DeleteSaveFile);
+		rstBtn.onClick.AddListener(NewGameBtn);
 
-		resetBtn.onClick.AddListener(DeleteSaveFile);
-		resetBtn.onClick.AddListener(NewGameBtn);
-		//resetBtn.onClick.AddListener(StoryTextAppears);
-
-		//storyBtn.onClick.AddListener(StorySkipContinue);
-
-		if (GlobalVariables.globVarScript.toHub) { PlayBtn(); } // Goes straight to hub
+		if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
+			//this.gameObject.SetActive(false); 
+			PlayBtn();
+		}
 	}
 
 
@@ -68,31 +52,6 @@ public class MainMenu : MonoBehaviour
 			if (storyAppearing || storyFullyOn)
 			{
 				StorySkipContinue();
-			}
-		}
-
-		// -- Fade Buttons Out -- //
-		if (fadeBtnOut)
-		{
-			if (btnAlpha > 0) 
-			{ 
-				btnAlpha -= fadeSpeed; 
-
-				// - Play Button Fade Out - //
-				btnImg.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, btnAlpha));
-				btnTMP.color = new Color(0.03f, 0.03f, 0.03f, Mathf.SmoothStep(0f, 1f, btnAlpha));
-
-				// - Reset Button Fade Out - //
-				resetBtnImg.color = new Color(1, 1, 1, Mathf.SmoothStep(0f, 1f, btnAlpha));
-				resetBtnTMP.color = new Color(0.03f, 0.03f, 0.03f, Mathf.SmoothStep(0f, 1f, btnAlpha));
-
-				if (btnAlpha <= 0)
-				{
-					playBtn.enabled = false;
-					resetBtn.enabled = false;
-					fadeBtnOut = false;
-					StoryTextAppears();
-				}
 			}
 		}
 
@@ -114,16 +73,16 @@ public class MainMenu : MonoBehaviour
 				storyFullyOn = false;
 			}
 		}
-		// - Check If I Can Interact With The Menu - //
+
 	}
 
 
-	void PlayBtn () 
+	void PlayBtn() 
 	{
 		// - MAKE THE CLOUDS PART - //
 		 foreach(MoveCloud cloud in cloudsToMove)
 		{
-			cloud.moveOut = true;
+			cloud.MoveOut();
 		}
 
 		// - FADE OUT TITLE - //
@@ -132,28 +91,26 @@ public class MainMenu : MonoBehaviour
 		// - FADE OUT SOLID BACKGROUND - //
 		solidBGFade.FadeOut();
 
-		// - FADE OUT ALL MENU BUTTONS - //
-		fadeBtnOut = true;
+		// - FADE OUT MENU BUTTONS - //
+		playBtnFadeScript.FadeOut();
+		rstBtnFadeScript.FadeOut();
 
 		storyBtn.gameObject.SetActive(false);
+
+		// Starts countdown timer to doing Village stuff 
+		hubScript.startHubActive = true;
 	}
 
-	void NewGameBtn () 
+	void NewGameBtn() 
 	{
-		// - MAKE THE CLOUDS PART - //
-		// foreach(MoveCloud cloud in cloudsToMove)
-		// {
-		// 	cloud.moveOut = true;
-		// }
-
 		// - FADE OUT TITLE - //
 		titleFade.FadeOut();
 
-		// - FADE OUT SOLID BACKGROUND - //
-		//solidBGFade.FadeOut();
+		// - FADE OUT MENU BUTTONS - //
+		playBtnFadeScript.FadeOut();
+		rstBtnFadeScript.FadeOut();
 
-		// - FADE OUT ALL MENU BUTTONS - //
-		fadeBtnOut = true;
+		StoryTextAppears();
 	}
 
 	void MoveClouds()
@@ -182,6 +139,7 @@ public class MainMenu : MonoBehaviour
 			fadeTMPScript.FadeOut();
 			storyBtn.gameObject.SetActive(false);
 			moveClouds = true;
+			hubScript.startHubActive = true;
 		}
 		if (storyAppearing)
 		{
@@ -200,16 +158,24 @@ public class MainMenu : MonoBehaviour
 		moveClouds = false;
 		storyTMP.gameObject.SetActive(false);
 		storyBtn.gameObject.SetActive(true);
+		
 		storyBtn.interactable = false;
 		fadeTMPScript.fadeDelay = true;
 
 	}
 
-	public void DeleteSaveFile ()
+	public void DeleteSaveFile()
 	{
-		GlobalVariables.globVarScript.DeleteEggData();
+		GlobalVariables.globVarScript.DeleteAllData();
 
 		hubEggCountsScript.AdjustTotEggCount();
+
+		for (int i = 0; i < GlobalVariables.globVarScript.dissSeasonsBools.Count; i++)
+		{
+			GlobalVariables.globVarScript.dissSeasonsBools[i] = false;
+		}
+
+		GlobalVariables.globVarScript.LoadHubDissolve();
 	}
 
 }

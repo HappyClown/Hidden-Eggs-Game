@@ -232,6 +232,7 @@ public class LevelComplete : MonoBehaviour
 			if (btnPressed)
 			{
 				tapBtn.interactable = false;
+				GlobalVariables.globVarScript.toHub = true;
 				SceneFade.SwitchSceneWhiteFade(GlobalVariables.globVarScript.menuName);
 			}
 		}

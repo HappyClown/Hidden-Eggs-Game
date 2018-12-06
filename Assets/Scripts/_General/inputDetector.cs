@@ -220,9 +220,9 @@ public class inputDetector : MonoBehaviour {
 			}
 		}
 		#endregion
-		if(tapped)Debug.Log("tapped");
-		if(doubleTapped)Debug.Log("D0ubleTapped");
-		if(isDragging)Debug.Log("Dragging");
+		//if(tapped)Debug.Log("tapped");
+		//if(doubleTapped)Debug.Log("D0ubleTapped");
+		//if(isDragging)Debug.Log("Dragging");
 
 		#region SwipeCode
 		if(detectSwipe){

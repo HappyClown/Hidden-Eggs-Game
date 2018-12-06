@@ -7,6 +7,9 @@ public class HubEggcounts : MonoBehaviour
 {
 	public TextMeshProUGUI totEggCount;
 
+	public int totEgg;
+	public int TotEgg { get { return totEgg; } }
+
 	[Header("Market")]
 	public TextMeshProUGUI marketPopUpRegCount;
 	public TextMeshProUGUI marketPopUpSilCount;
@@ -17,20 +20,24 @@ public class HubEggcounts : MonoBehaviour
 	public TextMeshProUGUI parkPopUpSilCount;
 	public TextMeshProUGUI parkPopUpGolCount;
 
+	void Start (){
+		AdjustTotEggCount();
+	}
+
 	public void AdjustTotEggCount()
 	{
 		GlobalVariables.globVarScript.LoadCorrectEggs();
 		// NEED TO MAKE SOEMTHIGN ELSE THAT GETS ALL THE SCENE TOTAL EGGS, or sumtin simila
-		int totEggTemp = GlobalVariables.globVarScript.marketTotalEggsFound + GlobalVariables.globVarScript.parkTotalEggsFound; 
+		int totEgg = GlobalVariables.globVarScript.marketTotalEggsFound + GlobalVariables.globVarScript.parkTotalEggsFound; 
 
-		if (totEggTemp <= 0)
+		if (totEgg <= 0)
 		{ totEggCount.text = "000"; return; }
-		else if (totEggTemp < 10)
-		{ totEggCount.text = "00" + totEggTemp; return; }
-		else if (totEggTemp < 100)
-		{ totEggCount.text = "0" + totEggTemp; return; }
+		else if (totEgg < 10)
+		{ totEggCount.text = "00" + totEgg; return; }
+		else if (totEgg < 100)
+		{ totEggCount.text = "0" + totEgg; return; }
 		else
-		{ totEggCount.text = "" + totEggTemp; return; }
+		{ totEggCount.text = "" + totEgg; return; }
 	}
 
 	public void AdjustPopUpCounts()

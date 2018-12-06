@@ -48,7 +48,7 @@ public class SceneSilverEggSpawner : MonoBehaviour
 
 
 	public void SetCorrectLevelLists()
-	{
+	{		
 		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		{
 			if (GlobalVariables.globVarScript.marketPuzzSilEggsCount.Count > 0) { puzzSilEggCountList = GlobalVariables.globVarScript.marketPuzzSilEggsCount; }

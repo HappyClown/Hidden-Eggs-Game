@@ -34,7 +34,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<bool>();
 		}
 	}
@@ -54,7 +54,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return 0;
 		}
 	}
@@ -74,7 +74,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return false;
 		}
 	}
@@ -94,7 +94,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return 0;
 		}
 	}
@@ -114,7 +114,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			//Debug.LogWarning("FILE DOES NOT EXIST");
 			return 0;
 		}
 	}
@@ -134,7 +134,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<int>();
 		}
 	}
@@ -154,7 +154,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<int>();
 		}
 	}
@@ -174,7 +174,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return false;
 		}
 	}
@@ -183,7 +183,7 @@ public class MarketSaveLoadManager : MonoBehaviour
 	public static void DeleteMarketSaveFile()
 	{
 		File.Delete(Application.persistentDataPath + "/marketEggSaver.sav");
-		Debug.Log("Save file deleted.");
+		Debug.LogWarning("Save file deleted.");
 	}
 }
 
@@ -216,7 +216,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<bool>();
 		}
 	}
@@ -236,7 +236,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return 0;
 		}
 	}
@@ -256,7 +256,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return false;
 		}
 	}
@@ -276,7 +276,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return 0;
 		}
 	}
@@ -296,7 +296,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return 0;
 		}
 	}
@@ -316,7 +316,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<int>();
 		}
 	}
@@ -336,7 +336,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<int>();
 		}
 	}
@@ -356,7 +356,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return false;
 		}
 	}
@@ -365,7 +365,7 @@ public class ParkSaveLoadManager : MonoBehaviour
 	public static void DeleteParkSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/parkEggSaver.sav");
-		Debug.Log("Save file deleted.");
+		Debug.LogWarning("Save file deleted.");
 	}
 }
 
@@ -398,7 +398,7 @@ public class BeachSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<bool>();
 		}
 	}
@@ -418,7 +418,7 @@ public class BeachSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return 0;
 		}
 	}
@@ -438,7 +438,7 @@ public class BeachSaveLoadManager : MonoBehaviour
 		}
 		else 
 		{
-			Debug.LogError("FILE DOES NOT EXIST");
+			Debug.LogWarning("FILE DOES NOT EXIST");
 			return false;
 		}
 	}
@@ -447,7 +447,7 @@ public class BeachSaveLoadManager : MonoBehaviour
 	public static void DeleteBeachSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/beachEggSaver.sav");
-		Debug.Log("Save file deleted.");
+		Debug.LogWarning("Save file deleted.");
 	}
 }
 

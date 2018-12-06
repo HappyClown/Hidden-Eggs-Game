@@ -18,7 +18,7 @@ public class DeleteSaveButton : MonoBehaviour
 
 	public void DeleteSaveFile ()
 	{
-		GlobalVariables.globVarScript.DeleteEggData();
+		GlobalVariables.globVarScript.DeleteAllData();
 	}
 
 }

@@ -12,13 +12,13 @@ public class CustonButtonClick : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
 	public void OnPointerDown (PointerEventData pointerEventData) 
 	{
-		Debug.Log("Button pressed on " + pointerEventData.pointerCurrentRaycast.gameObject.name);
+		//Debug.Log("Button pressed on " + pointerEventData.pointerCurrentRaycast.gameObject.name);
 		// On click down on an object with collider
 	}
 	
 	public void OnPointerUp (PointerEventData pointerEventData) 
 	{
-		Debug.Log("Button unpressed from " + pointerEventData.pointerCurrentRaycast.gameObject.name);
+		//Debug.Log("Button unpressed from " + pointerEventData.pointerCurrentRaycast.gameObject.name);
 		// Maybe not needed seeing as it does not detect if the up was on the same collider/gameobject
 	}
 

@@ -32,7 +32,8 @@ public class SlideInHelpBird : MonoBehaviour
 	public GameObject dontCloseMenu;
 	[Header("Bird Movement")]
 	public float duration;
-	public bool moveUp, moveDown, isUp, isDown;
+	private float newDuration;
+	public bool moveUp, moveDown, isUp, isDown = true;
 	public Transform hiddenHelpBirdPos, shownHelpBirdPos;
 	public Vector3 curHelpBirdPos;
 	private float totalDist;
@@ -66,7 +67,7 @@ public class SlideInHelpBird : MonoBehaviour
 		#region Up
 		if (moveUp)
 		{
-			lerpValue += Time.deltaTime / duration;
+			lerpValue += Time.deltaTime / newDuration;
 			this.transform.position = Vector3.Lerp(curHelpBirdPos, shownHelpBirdPos.position, animCur.Evaluate(lerpValue));
 
 			if (shadowAlpha < 1) { shadowAlpha = distPercent; }
@@ -127,7 +128,7 @@ public class SlideInHelpBird : MonoBehaviour
 			closeMenuOnClick.SetActive(false);
 			dontCloseMenu.SetActive(false);
 
-			lerpValue += Time.deltaTime / duration;
+			lerpValue += Time.deltaTime / newDuration;
 			this.transform.position = Vector3.Lerp(curHelpBirdPos, hiddenHelpBirdPos.position, animCur.Evaluate(lerpValue));
 
 			if (riddleCurntActive) { riddleCurntActive.SetActive(false); }
@@ -145,7 +146,6 @@ public class SlideInHelpBird : MonoBehaviour
 		// Finished moving down
 		if (moveDown && lerpValue >= 1)
 		{
-			lerpValue = 0;
 			blockClickingOnEggs.SetActive(false);
 			moveDown = false;
 			isDown = true;
@@ -182,7 +182,9 @@ public class SlideInHelpBird : MonoBehaviour
 			curHelpBirdPos = this.transform.position;
 			
 			if (moveDown || isDown)
-			{
+			{ // 1 is not necessary, just to visualize the rule of three and 1 always is the lerp's max value
+				if (!isDown) { newDuration = duration * lerpValue / 1; } else { newDuration = duration; } 
+				lerpValue = 0;
 				moveDown = false;
 				isDown = false;
 				moveUp = true;
@@ -194,7 +196,8 @@ public class SlideInHelpBird : MonoBehaviour
 			}
 			if (moveUp || isUp)
 			{
-				lerpValue = 0 + (1 - lerpValue);
+				if (!isUp) { newDuration = duration * lerpValue / 1; } else { newDuration = duration; }
+				lerpValue = 0;
 				moveUp = false;
 				isUp = false;
 				moveDown = true; 

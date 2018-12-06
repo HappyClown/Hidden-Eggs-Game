@@ -23,6 +23,9 @@ public class GlobalVariables : MonoBehaviour
 	public bool eggToSave;
 	public bool RiddleSolved;
 
+	[Header("Village")]
+	public List<bool> dissSeasonsBools;
+
 	[Header("Market Eggs")]
 	public List<bool> marketEggsFoundBools;
 	public int marketSilverEggsCount;
@@ -55,6 +58,7 @@ public class GlobalVariables : MonoBehaviour
 	[Header("Script References")]
 	public ClickOnEggs clickOnEggsScript;
 	public GameObject eggHolder;
+	public DissolveSeasons dissSeasonsScript;
 
 
 	void OnEnable () 
@@ -75,18 +79,19 @@ public class GlobalVariables : MonoBehaviour
 		FindClickOnEggScript();
 		FindEggHolderScript();
 		LoadCorrectEggs();
+		LoadHubDissolve();
 		//LoadCorrectPuzz();
 	}
 
 
 	void OnLevelWasLoaded()
 	{
+		Debug.Log("Level loaded check.");
 		FindClickOnEggScript();
 		FindEggHolderScript();
 		LoadCorrectEggs(); // Do I really wanna do this here every scene loaded ??? ***
-		//LoadCorrectPuzz(); // Do I really wanna do this here every scene loaded ??? ***
-
-		Debug.Log("OnLevelWasLoaded has been called.");
+		LoadHubDissolve();
+		//Debug.Log("OnLevelWasLoaded has been called.");
 	}
 	
 
@@ -98,7 +103,12 @@ public class GlobalVariables : MonoBehaviour
 		
 		if (SceneManager.GetActiveScene().name == beachName || SceneManager.GetActiveScene().name == beachPuzName) { BeachSaveLoadManager.SaveBeachEggs(this); }
 
-		Debug.Log("Save Variables");
+		//Debug.Log("Save Variables");
+	}
+
+	public void SaveVillageState()
+	{
+		VillageSaveLoadManager.SaveVillage(this);
 	}
 
 
@@ -106,7 +116,7 @@ public class GlobalVariables : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			DeleteEggData();
+			DeleteAllData();
 		}
 	}
 
@@ -121,10 +131,32 @@ public class GlobalVariables : MonoBehaviour
 	public void FindClickOnEggScript()
 	{
 		clickOnEggsScript = null;
-		
+		// Change to find a tag or something. OR Have the clickOnEggScript give itself to GlobalVariables on awake.
 		if (GameObject.Find("Game Engine")) { clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>(); }
 	}
 
+	// public void FindUnlockedSeasonsScript()
+	// {
+	// 	unlockedSeasonsScript = null;
+		
+	// 	if (GameObject.Find("Game Engine")) { clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>(); }
+	// }
+
+	public void LoadHubDissolve()
+	{
+		if (SceneManager.GetActiveScene().name == menuName)
+		{
+			//Debug.Log("Loading dissolved seasons.");
+			SaveVillageState();
+			dissSeasonsBools = VillageSaveLoadManager.LoadDissolvedSeasons();
+			if (dissSeasonsBools.Count < 1) // Should only run once unless save file dededeleted.
+			{
+				//Debug.Log("Should only see this once per save.");
+				dissSeasonsBools = dissSeasonsScript.dissSeasonsTemp;
+				SaveVillageState();
+			}
+		}
+	}
 
 	public void LoadCorrectEggs()
 	{
@@ -143,28 +175,28 @@ public class GlobalVariables : MonoBehaviour
 			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
 
 			marketPuzzSilEggsCount = MarketSaveLoadManager.LoadMarketPuzzSilEggsCount();
-			Debug.Log(marketPuzzSilEggsCount);
+			//Debug.Log(marketPuzzSilEggsCount);
 
 			marketSceneSilEggsCount = MarketSaveLoadManager.LoadMarketSceneSilEggsCount();
-			Debug.Log(marketSceneSilEggsCount);
+			//Debug.Log(marketSceneSilEggsCount);
 
 			marketLevelComplete = MarketSaveLoadManager.LoadMarketLevelComplete();
 
 
-			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
+			// List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
 
-			if (loadedEggs.Count > 2)
-			{
-				marketEggsFoundBools = loadedEggs;
-			}
+			// if (loadedEggs.Count > 2)
+			// {
+			// 	marketEggsFoundBools = loadedEggs;
+			// }
 
 
 			if(clickOnEggsScript != null && marketEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					Debug.Log("should be filling eggsfoundbool array");
-					marketEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+					//Debug.Log("should be filling eggsfoundbool array");
+					marketEggsFoundBools.Add(false/* egg.GetComponent<EggGoToCorner>().eggFound */);
 				}
 			}
 		}	
@@ -184,27 +216,27 @@ public class GlobalVariables : MonoBehaviour
 			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
 
 			parkPuzzSilEggsCount = ParkSaveLoadManager.LoadParkPuzzSilEggsCount();
-			Debug.Log(marketPuzzSilEggsCount);
+			//Debug.Log(marketPuzzSilEggsCount);
 
 			parkSceneSilEggsCount = ParkSaveLoadManager.LoadParkSceneSilEggsCount();
-			Debug.Log(marketSceneSilEggsCount);
+			//Debug.Log(marketSceneSilEggsCount);
 
 			parkLevelComplete = ParkSaveLoadManager.LoadParkLevelComplete();
 
 
-			List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
+			// List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
 
-			if (loadedEggs.Count > 2)
-			{
-				parkEggsFoundBools = loadedEggs;
-			}	
+			// if (loadedEggs.Count > 2)
+			// {
+			// 	parkEggsFoundBools = loadedEggs;
+			// }	
 
 		
 			if(clickOnEggsScript != null && parkEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					Debug.Log("should be filling eggsfoundbool array");
+					//Debug.Log("should be filling eggsfoundbool array");
 					parkEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
 				}
 			}
@@ -232,27 +264,18 @@ public class GlobalVariables : MonoBehaviour
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					Debug.Log("should be filling eggsfoundbool array");
+					//Debug.Log("should be filling eggsfoundbool array");
 					beachEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
 				}
 			}
 		}
 	}
 
-	// public void LoadCorrectPuzz()
-	// {
-	// 	// CHECK SCENE AND ASSIGN CORRECT MAX PUZZLE LEVEL
-	// 	if ()
-	// 	{
-
-	// 	}
-	// }
-
-
-	public void DeleteEggData()
+	public void DeleteAllData()
 	{
 		MarketSaveLoadManager.DeleteMarketSaveFile();
 		ParkSaveLoadManager.DeleteParkSaveFile();
 		BeachSaveLoadManager.DeleteBeachSaveFile();
+		VillageSaveLoadManager.DeleteVillageSaveFile();
 	}
 }

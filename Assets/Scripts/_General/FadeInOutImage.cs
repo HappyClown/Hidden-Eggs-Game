@@ -10,10 +10,10 @@ public class FadeInOutImage : MonoBehaviour
 	public float fadeDelayDur;
 	[Range(0f, 1f)]
 	public float maxAlpha = 1f;
-
 	private bool fadingOut;
 	private bool fadingIn;
-	private float t;
+	[HideInInspector]
+	public float t;
 
 	[Header("Options")]
 	public bool fadeInOnStart = true;

@@ -6,7 +6,7 @@ public class GlowPlayAnim : MonoBehaviour
 	public SpriteRenderer spriteRend;
 	[Header("Start Variables")]
 	public bool setStartAlphaZero = true;
-	public bool fadeOnStart = true;
+	public bool fadeInOnEnable = true;
 
 	private float newAlpha;
 	private bool fadingIn = false;
@@ -29,17 +29,14 @@ public class GlowPlayAnim : MonoBehaviour
 	public float minAlpha;
 
 
-
-	void Start () 
+	void OnEnable ()
 	{
-		
 		if (setStartAlphaZero) { spriteRend.color = new Color (1,1,1, 0); newAlpha = 0f;}
 		else { spriteRend.color = new Color (1,1,1, maxAlpha); newAlpha = maxAlpha; }
 
-		if (fadeOnStart) { fadingIn = true; }
+		if (fadeInOnEnable) { fadingIn = true; }
 	}
 	
-
 
 	void Update () 
 	{
@@ -85,13 +82,12 @@ public class GlowPlayAnim : MonoBehaviour
 	}
 
 
-
 	public void ResetGlow ()
 	{
 		if (setStartAlphaZero) { spriteRend.color = new Color (1,1,1, 0); newAlpha = 0f;}
 		else { spriteRend.color = new Color (1,1,1, maxAlpha); newAlpha = maxAlpha; }
 
-		if (fadeOnStart) { fadingIn = true; }
+		if (fadeInOnEnable) { fadingIn = true; }
 	}
 }
 
