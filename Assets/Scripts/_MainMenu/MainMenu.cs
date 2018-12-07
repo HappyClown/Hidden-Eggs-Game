@@ -170,10 +170,10 @@ public class MainMenu : MonoBehaviour
 
 		hubEggCountsScript.AdjustTotEggCount();
 
-		for (int i = 0; i < GlobalVariables.globVarScript.dissSeasonsBools.Count; i++)
-		{
-			GlobalVariables.globVarScript.dissSeasonsBools[i] = false;
-		}
+		// for (int i = 0; i < GlobalVariables.globVarScript.dissSeasonsBools.Count; i++)
+		// {
+		// 	GlobalVariables.globVarScript.dissSeasonsBools[i] = false;
+		// }
 
 		GlobalVariables.globVarScript.LoadHubDissolve();
 	}

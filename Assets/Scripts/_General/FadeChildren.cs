@@ -21,7 +21,9 @@ public class FadeChildren : MonoBehaviour {
 	private float curAlpha, prevAlpha;
 
 	void Start () {
+		//children = this.gameObject.GetComponentsInChildren<Transform>();
 		if (fadeAllChildren) {
+
 			GetChildren(this.transform);
 		}
 	}

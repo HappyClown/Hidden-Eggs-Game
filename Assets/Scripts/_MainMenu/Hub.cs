@@ -14,7 +14,7 @@ public class Hub : MonoBehaviour
 	public float dissSpeed;
 	public List<Material> dissolveMats;
 	public List<Material> matsToDissolve;
-	public List<bool> seasonsToDiss;
+	//public List<bool> seasonsToDiss;
 
 	[Header("Season Objects")]
 	//public bool dissolveSummer;
@@ -49,6 +49,11 @@ public class Hub : MonoBehaviour
 
 	void Update () 
 	{
+		if (dissolveSeasonsScript.dissSeasonsTemp[0])
+		{
+			Debug.Log("Poop");
+		}
+
 		// - Start Countdown Timer before Dissolves - //
 		if (startHubActive) {
 			if (hubActiveWaitTimer == hubActiveWait) {

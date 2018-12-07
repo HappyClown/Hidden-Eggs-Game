@@ -147,12 +147,16 @@ public class GlobalVariables : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == menuName)
 		{
 			//Debug.Log("Loading dissolved seasons.");
-			SaveVillageState();
+			//SaveVillageState();
 			dissSeasonsBools = VillageSaveLoadManager.LoadDissolvedSeasons();
 			if (dissSeasonsBools.Count < 1) // Should only run once unless save file dededeleted.
 			{
 				//Debug.Log("Should only see this once per save.");
-				dissSeasonsBools = dissSeasonsScript.dissSeasonsTemp;
+				//dissSeasonsBools = dissSeasonsScript.dissSeasonsTemp;
+				for (int i = 0; i < dissSeasonsScript.dissSeasonsTemp.Count; i++)
+				{
+					dissSeasonsBools.Add(dissSeasonsScript.dissSeasonsTemp[i]);
+				}
 				SaveVillageState();
 			}
 		}
