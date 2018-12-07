@@ -13,11 +13,13 @@ public class KitePuzzEngine : MonoBehaviour
 	public Vector3 updateMousePos;
 	public int connections;
 
-	public List<GameObject> lvlTilesFadeScripts;
-	public List<GameObject> lvlTileBacksFadeScripts;
-	public List<FadeInOutSprite> lvlBackShadowsFadeScripts;
-	public List<GameObject> lvlKites;
-	public List<FadeInOutSprite> lvlKitesFadeScripts;
+	[Header("Fafe in out variables")]
+	public FadeInOutManager[] levelsStuff;
+	// public List<GameObject> lvlTilesFadeScripts;
+	// public List<GameObject> lvlTileBacksFadeScripts;
+	// public List<FadeInOutSprite> lvlBackShadowsFadeScripts;
+	// public List<GameObject> lvlKites;
+	// public List<FadeInOutSprite> lvlKitesFadeScripts;
 	public List<float> bGSizes;
 	public BackgroundScale bgScleScript;
 
@@ -419,55 +421,57 @@ public class KitePuzzEngine : MonoBehaviour
 
 	public void LvlStuffFadeIn()
 	{
-		//Debug.Log("Should fade in stuff."); // Fade in tiles
-		if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
-		FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenTileFadeScripts.Length; i++)
-		{ childrenTileFadeScripts[i].FadeIn(); }
-		// Fade in tile backs
-		if (!lvlTileBacksFadeScripts[curntLvl -1].activeSelf) lvlTileBacksFadeScripts[curntLvl -1].SetActive(true);
-		FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenBackFadeScripts.Length; i++)
-		{ if (!childrenBackFadeScripts[i].gameObject.activeSelf) {childrenBackFadeScripts[i].gameObject.SetActive(true); } childrenBackFadeScripts[i].FadeIn(); }
-		// Fade in back shadow
-		if (!lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.SetActive(true);
-		lvlBackShadowsFadeScripts[curntLvl - 1].FadeIn();
-		// Fade in kite & kite stuff
-		if (!lvlKitesFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlKitesFadeScripts[curntLvl - 1].gameObject.SetActive(true);
-		lvlKitesFadeScripts[curntLvl - 1].FadeIn();
-		if (lvlKites[curntLvl - 1].transform.childCount > 0)
-		{
-			foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
-			{
-				lvlKite.GetComponent<FadeInOutSprite>().FadeIn();
-			}
-		}
+		levelsStuff[curntLvl -1].StartLvlFadeIn();
+		Debug.Log("Should fade in stuff."); // Fade in tiles
+		 if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
+		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenTileFadeScripts.Length; i++)
+		// { childrenTileFadeScripts[i].FadeIn(); }
+		// // Fade in tile backs
+		// if (!lvlTileBacksFadeScripts[curntLvl -1].activeSelf) lvlTileBacksFadeScripts[curntLvl -1].SetActive(true);
+		// FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenBackFadeScripts.Length; i++)
+		// { if (!childrenBackFadeScripts[i].gameObject.activeSelf) {childrenBackFadeScripts[i].gameObject.SetActive(true); } childrenBackFadeScripts[i].FadeIn(); }
+		// // Fade in back shadow
+		// if (!lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.SetActive(true);
+		// lvlBackShadowsFadeScripts[curntLvl - 1].FadeIn();
+		// // Fade in kite & kite stuff
+		// if (!lvlKitesFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlKitesFadeScripts[curntLvl - 1].gameObject.SetActive(true);
+		// lvlKitesFadeScripts[curntLvl - 1].FadeIn();
+		// if (lvlKites[curntLvl - 1].transform.childCount > 0)
+		// {
+		// 	foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
+		// 	{
+		// 		lvlKite.GetComponent<FadeInOutSprite>().FadeIn();
+		// 	}
+		// }
 	}
 
 	public void LvlStuffFadeOut() // Fade out tiles, tile backs, kite, backshadow.
 	{
-		FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenTileFadeScripts.Length; i++)
-		{ childrenTileFadeScripts[i].FadeOut(); }
+		levelsStuff[curntLvl -1].ExitFadeOutLvl();
+		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenTileFadeScripts.Length; i++)
+		// { childrenTileFadeScripts[i].FadeOut(); }
 
-		FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenBackFadeScripts.Length; i++)
-		{ childrenBackFadeScripts[i].FadeOut(); }
+		// FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenBackFadeScripts.Length; i++)
+		// { childrenBackFadeScripts[i].FadeOut(); }
 
-		lvlBackShadowsFadeScripts[curntLvl - 1].FadeOut();
+		// lvlBackShadowsFadeScripts[curntLvl - 1].FadeOut();
 
-		lvlKitesFadeScripts[curntLvl - 1].FadeOut();
-		if (lvlKites[curntLvl - 1].transform.childCount > 0)
-		{
-			foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
-			{
-				lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
-			}
-		}
+		// lvlKitesFadeScripts[curntLvl - 1].FadeOut();
+		// if (lvlKites[curntLvl - 1].transform.childCount > 0)
+		// {
+		// 	foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
+		// 	{
+		// 		lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
+		// 	}
+		// }
 	}
 
 	/* public void SaveSilverEggsToCorrectFile()
