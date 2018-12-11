@@ -63,7 +63,7 @@ public class RainbowRiddle : MonoBehaviour
 				// - PLAY BASKET FX - // 
 				if (hitFX.collider.CompareTag("OnClickFX"))
 				{
-					//inputDetScript.ResetDoubleTap();
+					inputDetScript.cancelDoubleTap = true;
 					hitFX.collider.GetComponent<OnClickFX>().PlayFX();
 
 					//SFX Hit Baskets

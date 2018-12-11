@@ -30246,6 +30246,19 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1391068100820820, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114603489862295484, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1456955909962010, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
+      propertyPath: m_Name
+      value: Helper
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
   m_IsPrefabParent: 0
@@ -45761,12 +45774,33 @@ Prefab:
       objectReference: {fileID: 911702553}
     - target: {fileID: 114291605857956252, guid: 758fdce413f63944ba9009d6eaf2dae0,
         type: 2}
-      propertyPath: lvlTapManScript
+      propertyPath: inputDetScript
       value: 
-      objectReference: {fileID: 911702553}
+      objectReference: {fileID: 1467130400}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 758fdce413f63944ba9009d6eaf2dae0, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1829184099 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1655060787240740, guid: 758fdce413f63944ba9009d6eaf2dae0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1829184098}
+--- !u!114 &1829184100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829184099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e482704867d0b045ae33ab89ce85c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  introTime: 0
+  anim: {fileID: 0}
+  isDissolving: 0
+  isDissolved: 0
+  inputDetScript: {fileID: 0}
 --- !u!1 &1830642312
 GameObject:
   m_ObjectHideFlags: 0

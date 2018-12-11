@@ -129,7 +129,7 @@ public class ClickOnEggs : MonoBehaviour
 						// - Egg Tapped - //
 						if (hit.collider.CompareTag("Egg"))
 						{
-							myInputDetector.eggTapped = true;
+							myInputDetector.cancelDoubleTap = true;
 							Debug.Log(hit.collider.name);
 							EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
 							eggScript.EggFound();
