@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class inputDetector : MonoBehaviour {
 	public bool isPhoneDevice;
-	public bool eggTapped;
+	public bool cancelDoubleTap;
 	#region Tap Variables
 	[Header("Tap Detection")]
 	[Tooltip("Check if you want to detect Tap")]
@@ -77,7 +77,7 @@ public class inputDetector : MonoBehaviour {
 		if(detectDoubleTap)
 		detectTap=true;
 		tapped = false;
-		eggTapped = false;
+		cancelDoubleTap = false;
 		
 	}
 	// Update is called once per frame
@@ -104,13 +104,13 @@ public class inputDetector : MonoBehaviour {
 		if(detectDoubleTap){
 			if(checkDoubleTap)
 			{
-				if(!eggTapped){
+				if(!cancelDoubleTap){
 					doubleTapped = true;
 					checkDoubleTap = false;
 				}
 				else{
 					checkDoubleTap = false;
-					eggTapped = false;
+					cancelDoubleTap = false;
 				}
 			}
 			else{
@@ -153,9 +153,9 @@ public class inputDetector : MonoBehaviour {
 			}
 			if(doubleTapCounter == 1)
 			{
-				if(doubleTapTimer > minDoubleTapTime || eggTapped){
+				if(doubleTapTimer > minDoubleTapTime || cancelDoubleTap){
 					ResetDoubleTap();
-					eggTapped = false;
+					cancelDoubleTap = false;
 				}else{
 					doubleTapTimer += Time.deltaTime;
 				}
@@ -181,32 +181,32 @@ public class inputDetector : MonoBehaviour {
 				}
 			}
 			if(Input.GetMouseButtonUp(0) && !isPhoneDevice){
-				if(isDragging){
+				if(isDragging || dragStarted){
 					ResetDragging();
 				}
 			}
 
-			if(Input.touchCount == 1 && isPhoneDevice){
-				singleTap = true;
-				if(Input.touches[0].phase == TouchPhase.Began){
-					startDragTouch = Input.touches[0].position;
-					dragStarted = true;
-				}
-				if(isDragging){
-					prevDragPosition = draggingPosition;
-				}
-				draggingPosition = Input.touches[0].position;
-				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
-					isDragging = true;
-					prevDragPosition = startDragTouch;
-				}	
+			// if(Input.touchCount == 1 && isPhoneDevice){
+			// 	singleTap = true;
+			// 	if(Input.touches[0].phase == TouchPhase.Began){
+			// 		startDragTouch = Input.touches[0].position;
+			// 		dragStarted = true;
+			// 	}
+			// 	if(isDragging){
+			// 		prevDragPosition = draggingPosition;
+			// 	}
+			// 	draggingPosition = Input.touches[0].position;
+			// 	if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
+			// 		isDragging = true;
+			// 		prevDragPosition = startDragTouch;
+			// 	}	
 				
-				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
-					if(isDragging){
-						ResetDragging();
-					}
-				}			
-			}
+			// 	if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
+			// 		if(isDragging){
+			// 			ResetDragging();
+			// 		}
+			// 	}			
+			// }
 		}
 		#endregion
 		#region DetectDouble Touch
@@ -286,7 +286,7 @@ public class inputDetector : MonoBehaviour {
 	}
 
 	#region DoubleTap Functions
-	private void ResetDoubleTap(){
+	public void ResetDoubleTap(){
 		doubleTapCounter = doubleTapTimer = 0;
 	}
 	#endregion

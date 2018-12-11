@@ -29,6 +29,7 @@ public class RainbowRiddle : MonoBehaviour
 
 	public AudioSceneMarket audioSceneMarket;
 	public LevelTapMannager lvlTapManScript;
+	public inputDetector inputDetScript;
 
 
 
@@ -64,6 +65,7 @@ public class RainbowRiddle : MonoBehaviour
 				// - PLAY BASKET FX - // 
 				if (hitFX.collider.CompareTag("OnClickFX"))
 				{
+					inputDetScript.cancelDoubleTap = true;
 					hitFX.collider.GetComponent<OnClickFX>().PlayFX();
 
 					//SFX Hit Baskets
