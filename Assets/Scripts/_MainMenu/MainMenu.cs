@@ -118,7 +118,7 @@ public class MainMenu : MonoBehaviour
 		// - MAKE THE CLOUDS PART - //
 		foreach(MoveCloud cloud in cloudsToMove)
 		{
-			cloud.moveOut = true;
+			cloud.MoveOut();
 		}
 	}
 

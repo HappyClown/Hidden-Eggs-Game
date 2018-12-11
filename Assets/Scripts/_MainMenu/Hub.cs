@@ -49,11 +49,6 @@ public class Hub : MonoBehaviour
 
 	void Update () 
 	{
-		if (dissolveSeasonsScript.dissSeasonsTemp[0])
-		{
-			Debug.Log("Poop");
-		}
-
 		// - Start Countdown Timer before Dissolves - //
 		if (startHubActive) {
 			if (hubActiveWaitTimer == hubActiveWait) {

@@ -29,7 +29,7 @@ public class RainbowRiddle : MonoBehaviour
 
 	public AudioSceneMarket audioSceneMarket;
 	public LevelTapMannager lvlTapManScript;
-
+	public inputDetector inputDetScript;
 
 
     void Start ()
@@ -43,7 +43,6 @@ public class RainbowRiddle : MonoBehaviour
 			goldenEgg.SetActive(true);
 		}
     }
-
 
 
     void Update ()
@@ -64,6 +63,7 @@ public class RainbowRiddle : MonoBehaviour
 				// - PLAY BASKET FX - // 
 				if (hitFX.collider.CompareTag("OnClickFX"))
 				{
+					//inputDetScript.ResetDoubleTap();
 					hitFX.collider.GetComponent<OnClickFX>().PlayFX();
 
 					//SFX Hit Baskets
@@ -143,7 +143,6 @@ public class RainbowRiddle : MonoBehaviour
 			} 
 		}   
     }
-
 
 
     public void RainbowRiddleSolved ()
