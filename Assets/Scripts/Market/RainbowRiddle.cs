@@ -69,7 +69,7 @@ public class RainbowRiddle : MonoBehaviour
 					//SFX Hit Baskets
 					audioSceneMarket.goldenEggBasketsSFX();
 				}
-			}  
+			}
 
 			if (hit)
     		{

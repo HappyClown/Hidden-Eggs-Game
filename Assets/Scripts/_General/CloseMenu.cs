@@ -7,9 +7,7 @@ public class CloseMenu : MonoBehaviour
 {
 	public Button closeMenuOnClickButton;
 	//public GameObject closeMenuOnClick;
-
 	public SlideInHelpBird birdScript;
-
 
 
 	void Start () 
