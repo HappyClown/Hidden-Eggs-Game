@@ -12,7 +12,7 @@ public class SlideInHelpBird : MonoBehaviour
 	public Image txtBubble;
 	private float txtBubAlpha;
 	public float txtBubFadeTime;
-	public bool introDone;
+	public bool introDone, txtBubFadedIn;
 	[Header("Riddle")]
 	public GameObject riddleBtnObj;
 	private Button riddleBtn;
@@ -95,20 +95,24 @@ public class SlideInHelpBird : MonoBehaviour
 		if (isUp)
 		{
 			blockClickingOnEggs.SetActive(true);
+			dontCloseMenu.SetActive(true);
 			// Fade in text bubble
 			if (txtBubAlpha < 1) { txtBubAlpha += Time.deltaTime * txtBubFadeTime; }
 			txtBubble.color = new Color(1,1,1, txtBubAlpha);
 			// Bird parchment has fully appeared
 			if (txtBubAlpha >= 1)
 			{	
-				if (introDone) {
+				if (!txtBubFadedIn) {
+					if (introDone) {
 					// Make the riddle button appear
 					RiddleButton();
 					// Make the hint button appear
 					HintButton();
-				}
-				else {
-					helpIntroTxtScript.ShowIntroText();
+					}
+					else {
+						helpIntroTxtScript.ShowIntroText();
+					}
+					txtBubFadedIn = true;
 				}
 			}
 		}
@@ -117,6 +121,7 @@ public class SlideInHelpBird : MonoBehaviour
 		#region Down
 		if (moveDown)
 		{
+			Debug.Log("Move down was true here. RIP");
 			closeMenuOnClick.SetActive(false);
 			dontCloseMenu.SetActive(false);
 
@@ -183,7 +188,7 @@ public class SlideInHelpBird : MonoBehaviour
 				scenTapEnabScript.canTapEggRidPanPuz = false;
 				lvlTapManScript.ZoomOutCameraReset();
 				closeMenuOnClick.SetActive(true);
-				dontCloseMenu.SetActive(true);
+				//dontCloseMenu.SetActive(true);
 				return; 
 			}
 			if (moveUp || isUp)
@@ -194,13 +199,9 @@ public class SlideInHelpBird : MonoBehaviour
 				isUp = false;
 				moveDown = true; 
 				scenTapEnabScript.canTapEggRidPanPuz = true;
+				txtBubFadedIn = false;
 			}
 		}
-	}
-
-	public void IntroText()
-	{
-
 	}
 
 	public void RiddleButton()
