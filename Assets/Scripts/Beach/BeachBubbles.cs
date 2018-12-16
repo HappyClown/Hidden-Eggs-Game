@@ -6,13 +6,15 @@ public class BeachBubbles : MonoBehaviour {
 
 	[Range(0.1f,1f)]
 	public float bubbleSize = 1f;
+	[Range(1f,7f)]
 	public float Speed;
-	public AnimationCurve curveTrail;
 	[Range(1f,10f)]
 	public float curveMultiplier = 1;
+	[Range(0f,2f)]
+	public float lifeTimedelay;
+	public AnimationCurve curveTrail;
 	public FadeInOutSprite myFade;
 	public float lifeTime;
-	public float lifeTimedelay;
 	public bool activeClam;
 	private bool activeSprite;
 	private bool fadeInOutSprite;
@@ -43,7 +45,7 @@ public class BeachBubbles : MonoBehaviour {
 			currentTime += Time.deltaTime;
 			if(currentTime < (lifeTime+lifeTimedelay) && currentTime > lifeTimedelay){
 				float yPos = gameObject.transform.localPosition.y + (Time.deltaTime*Speed);
-				float xPos = curveTrail.Evaluate(Time.time)*curveMultiplier;
+				float xPos = curveTrail.Evaluate(Time.time + lifeTimedelay)*curveMultiplier;
 				Vector3 newPos = new Vector3(xPos,yPos,gameObject.transform.localPosition.z);
 				gameObject.transform.localPosition = newPos;
 			}
