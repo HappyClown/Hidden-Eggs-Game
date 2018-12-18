@@ -6,14 +6,15 @@ using UnityEngine;
 public class HelpButton : MonoBehaviour 
 {
 	private Button button;
-
 	public SlideInHelpBird birdScript;
-
 
 	void Start () 
 	{
 		button = this.GetComponent<Button>();
 		button.onClick.AddListener(birdScript.MoveBirdUpDown);
+		if (!birdScript.introDone) {
+			button.enabled = false;
+		}
 	}
 
 }

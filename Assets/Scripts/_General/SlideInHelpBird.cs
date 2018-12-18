@@ -33,6 +33,7 @@ public class SlideInHelpBird : MonoBehaviour
 	public GameObject closeMenuOnClick;
 	public GameObject blockClickingOnEggs;
 	public GameObject dontCloseMenu;
+	private float allowClickTimer;
 	[Header("Bird Movement")]
 	public float duration;
 	private float newDuration;
@@ -95,7 +96,6 @@ public class SlideInHelpBird : MonoBehaviour
 		if (isUp)
 		{
 			blockClickingOnEggs.SetActive(true);
-			dontCloseMenu.SetActive(true);
 			// Fade in text bubble
 			if (txtBubAlpha < 1) { txtBubAlpha += Time.deltaTime * txtBubFadeTime; }
 			txtBubble.color = new Color(1,1,1, txtBubAlpha);
@@ -104,14 +104,15 @@ public class SlideInHelpBird : MonoBehaviour
 			{	
 				if (!txtBubFadedIn) {
 					if (introDone) {
-					// Make the riddle button appear
-					RiddleButton();
-					// Make the hint button appear
-					HintButton();
+						// Make the riddle button appear
+						RiddleButton();
+						// Make the hint button appear
+						HintButton();
 					}
 					else {
 						helpIntroTxtScript.ShowIntroText();
 					}
+					dontCloseMenu.SetActive(true);
 					txtBubFadedIn = true;
 				}
 			}
@@ -121,7 +122,7 @@ public class SlideInHelpBird : MonoBehaviour
 		#region Down
 		if (moveDown)
 		{
-			Debug.Log("Move down was true here. RIP");
+			//Debug.Log("Move down was true here. RIP");
 			closeMenuOnClick.SetActive(false);
 			dontCloseMenu.SetActive(false);
 
@@ -147,6 +148,17 @@ public class SlideInHelpBird : MonoBehaviour
 			moveDown = false;
 			isDown = true;
 			helpBirdTrans.position = hiddenHelpBirdPos.position;
+		}
+
+		// Allow Clicking on eggs, puzzle, etc
+		if (moveDown || isDown) {
+			if (allowClickTimer > 0.05f) { // Skipping 2 frames to avoid disabling the close help button and tapping on an egg at the same time
+				scenTapEnabScript.canTapEggRidPanPuz = true; 
+				allowClickTimer = 0;
+			}
+			if (!scenTapEnabScript.canTapEggRidPanPuz) {
+				allowClickTimer += Time.deltaTime;
+			}
 		}
 		#endregion
 
@@ -187,7 +199,7 @@ public class SlideInHelpBird : MonoBehaviour
 				moveUp = true;
 				scenTapEnabScript.canTapEggRidPanPuz = false;
 				lvlTapManScript.ZoomOutCameraReset();
-				closeMenuOnClick.SetActive(true);
+				if (introDone) { closeMenuOnClick.SetActive(true); }
 				//dontCloseMenu.SetActive(true);
 				return; 
 			}
@@ -198,7 +210,6 @@ public class SlideInHelpBird : MonoBehaviour
 				moveUp = false;
 				isUp = false;
 				moveDown = true; 
-				scenTapEnabScript.canTapEggRidPanPuz = true;
 				txtBubFadedIn = false;
 			}
 		}
@@ -249,6 +260,7 @@ public class SlideInHelpBird : MonoBehaviour
 			riddleBtnAlpha = 1.05f;
 			riddleBtn.enabled = false;	
 			riddleTextShow = true;
+			dontCloseMenu.SetActive(false);
 		}
 	}
 
