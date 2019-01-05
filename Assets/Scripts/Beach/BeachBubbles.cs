@@ -36,16 +36,19 @@ public class BeachBubbles : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if(activeClam){
-			if(!activeSprite && currentTime > lifeTimedelay){
+		if(activeClam && !activeSprite){
+			currentTime += Time.deltaTime;
+			if(currentTime > lifeTimedelay){
 				mySprite.enabled = true;
 				activeSprite = true;
 				myFade.FadeIn();
 			}
+		}
+		if(activeSprite){
 			currentTime += Time.deltaTime;
 			if(currentTime < (lifeTime+lifeTimedelay) && currentTime > lifeTimedelay){
 				float yPos = gameObject.transform.localPosition.y + (Time.deltaTime*Speed);
-				float xPos = curveTrail.Evaluate(Time.time + lifeTimedelay)*curveMultiplier;
+				float xPos = curveTrail.Evaluate(currentTime + lifeTimedelay)*curveMultiplier;
 				Vector3 newPos = new Vector3(xPos,yPos,gameObject.transform.localPosition.z);
 				gameObject.transform.localPosition = newPos;
 			}
@@ -54,13 +57,18 @@ public class BeachBubbles : MonoBehaviour {
 					myFade.FadeOut();
 					fadeInOutSprite = true;
 				}
+				currentTime = 0;
+				mySprite.enabled = false;
+				gameObject.transform.localPosition =StartPosition;
+				activeSprite = false;
+				activeClam = false;
 			}
 		}
-		else{
-			currentTime = 0;
-			mySprite.enabled = false;
-			gameObject.transform.localPosition =StartPosition;
-			activeSprite = false;
-		}
+	}
+	public void ResetBubble(){
+		currentTime = 0;
+		gameObject.transform.localPosition = StartPosition;
+		activeSprite = false;
+		mySprite.enabled = false;
 	}
 }

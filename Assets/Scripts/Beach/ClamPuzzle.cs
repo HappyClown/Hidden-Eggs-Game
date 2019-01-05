@@ -12,6 +12,7 @@ public class ClamPuzzle : MonoBehaviour
 	public int currentLevel;
 	public BeachClamLevel[] myLvls;
 	public List<BeachClam> openedClams;
+	public List<BeachClam> currentClams;
 	void Start(){
 		myLvls[currentLevel -1].SetUpLevel();
 	}
@@ -21,22 +22,29 @@ public class ClamPuzzle : MonoBehaviour
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
 			Vector2 mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			Debug.Log(hit.collider.gameObject.name);
 			if(hit){
+				Debug.Log(hit.collider.gameObject.name);
 				if(hit.collider.CompareTag("Puzzle")){
+					if(openedClams.Count > 0){
+						openedClams[0].forceClose = true;
+						openedClams[1].forceClose = true;
+						openedClams.Clear();
+					}
 					BeachClam tappedClam = hit.collider.gameObject.GetComponent<BeachClam>();
-					openedClams.Add(tappedClam);
+					currentClams.Add(tappedClam);
 					tappedClam.Tapped = true;
-					if (openedClams.Count == 2)
+					if (currentClams.Count == 2)
 					{
 						if(tappedClam.myMatch.open){
 							myLvls[currentLevel -1].CheckClams();
-							openedClams.Clear();
+							currentClams.Clear();
 						}
 						else{
-							openedClams[0].failed = true;
-							openedClams[1].failed = true;
-							openedClams.Clear();
+							currentClams[0].failed = true;
+							currentClams[1].failed = true;
+							openedClams.Add(currentClams[0]);
+							openedClams.Add(currentClams[1]);
+							currentClams.Clear();
 						}
 
 					}

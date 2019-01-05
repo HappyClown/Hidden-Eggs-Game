@@ -12,10 +12,10 @@ public class BeachClam : MonoBehaviour {
 	private Collider2D myCollider;
 	public float timeDelay;
 	private float timer;
-	public bool Tapped, open, matched, failed, closed;
+	public bool Tapped, open, matched, failed, closed, forceClose;
 	void Start () {
 		myCollider = this.gameObject.GetComponent<Collider2D>();
-		Tapped = open = matched = failed =  false;
+		Tapped = open = matched = failed = forceClose =  false;
 		closed = true;
 		timer = 0;
 	}
@@ -34,25 +34,25 @@ public class BeachClam : MonoBehaviour {
 				myClosedClam.FadeOut();
 				foreach (BeachBubbles bubbles in myBubbles)
 				{
+					bubbles.ResetBubble();
 					bubbles.activeClam = true;
 				}
 				Tapped = false;
 			}
 		}
 		if(failed){
-			if(open){
+			if(closed){
 				myCollider.enabled = true;
-				open = false;
-				closed = true;
 				myClosedClam.fadeDelay = false;
 				myClosedClam.FadeIn();
 				myOpenClam.fadeDelay = true;
 				myOpenClam.FadeOut();
-				foreach (BeachBubbles bubbles in myBubbles)
-				{
-					bubbles.activeClam = false;
-				}
 				failed = false;
+			}
+			if(open /* && put delay for sound*/|| forceClose){
+				open = false;
+				closed = true;
+				forceClose = false;
 			}
 		}
 		if(open && myMatch.open){
