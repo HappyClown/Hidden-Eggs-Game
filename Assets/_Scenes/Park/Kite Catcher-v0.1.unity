@@ -15775,26 +15775,6 @@ MonoBehaviour:
   - {fileID: 119567625}
   - {fileID: 139316596}
   - {fileID: 1466544558}
-  lvlTilesFadeScripts:
-  - {fileID: 635591106}
-  - {fileID: 720741841}
-  - {fileID: 2054433729}
-  lvlTileBacksFadeScripts:
-  - {fileID: 885606529}
-  - {fileID: 1905215431}
-  - {fileID: 1766772497}
-  lvlBackShadowsFadeScripts:
-  - {fileID: 859126884}
-  - {fileID: 766589227}
-  - {fileID: 953156037}
-  lvlKites:
-  - {fileID: 1243802124}
-  - {fileID: 1444577629}
-  - {fileID: 2098721180}
-  lvlKitesFadeScripts:
-  - {fileID: 1243802127}
-  - {fileID: 1444577630}
-  - {fileID: 2098721183}
   bGSizes:
   - 1
   - 0.7315
@@ -16114,10 +16094,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114995140892774336, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
-    - {fileID: 114889952921551396, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
-    - {fileID: 114348398445851992, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
+    - target: {fileID: 114911267965506708, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: kitePuzzEngineScript
+      value: 
+      objectReference: {fileID: 654759646}
+    - target: {fileID: 114554735417159862, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: kitePuzzEngineScript
+      value: 
+      objectReference: {fileID: 654759646}
+    - target: {fileID: 114178883023356010, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: kitePuzzEngineScript
+      value: 
+      objectReference: {fileID: 654759646}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &699045628 stripped
@@ -24967,20 +24959,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1378933569856640, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
---- !u!114 &1121753382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1121753381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 654759646}
-  thisButton: {fileID: 699045630}
-  levelToLoad: 1
 --- !u!1001 &1175332951
 Prefab:
   m_ObjectHideFlags: 0
@@ -30262,20 +30240,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1273037928703732, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
---- !u!114 &1275956115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1275956114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 654759646}
-  thisButton: {fileID: 699045628}
-  levelToLoad: 3
 --- !u!1 &1308605109
 GameObject:
   m_ObjectHideFlags: 0
@@ -74085,20 +74049,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1628192426425242, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
---- !u!114 &1945278922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1945278921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 654759646}
-  thisButton: {fileID: 699045629}
-  levelToLoad: 2
 --- !u!1001 &1952409072
 Prefab:
   m_ObjectHideFlags: 0

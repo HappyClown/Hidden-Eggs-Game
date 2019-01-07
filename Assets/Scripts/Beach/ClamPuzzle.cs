@@ -14,6 +14,7 @@ public class ClamPuzzle : MonoBehaviour
 	public List<BeachClam> openedClams;
 	public List<BeachClam> currentClams;
 	void Start(){
+		myLvls[currentLevel -1].gameObject.SetActive(true);
 		myLvls[currentLevel -1].SetUpLevel();
 	}
 	void Update()
