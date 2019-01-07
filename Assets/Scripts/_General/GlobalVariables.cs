@@ -6,10 +6,8 @@ using UnityEngine;
 public class GlobalVariables : MonoBehaviour 
 {
 	public static GlobalVariables globVarScript;
-
 	public string previousScene;
 	public string currentScene;
-
 	public bool toHub;
 
 	[Header("Scene Names")]
@@ -36,6 +34,7 @@ public class GlobalVariables : MonoBehaviour
 	public int marketPuzzMaxLvl;
 	public int marketTotalEggsFound;
 	public bool marketLevelComplete;
+	public bool marketIntroDone;
 
 	[Header("Park Eggs")]
 	public List<bool> parkEggsFoundBools;
@@ -168,93 +167,49 @@ public class GlobalVariables : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{ 
 			marketEggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
-
 			marketSilverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
-
 			rainbowRiddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
-
 			marketTotalEggsFound = MarketSaveLoadManager.LoadMarketTotalEggs();
-
 			marketPuzzMaxLvl = MarketSaveLoadManager.LoadMarketPuzzMaxLvl();
-			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
-
 			marketPuzzSilEggsCount = MarketSaveLoadManager.LoadMarketPuzzSilEggsCount();
-			//Debug.Log(marketPuzzSilEggsCount);
-
 			marketSceneSilEggsCount = MarketSaveLoadManager.LoadMarketSceneSilEggsCount();
-			//Debug.Log(marketSceneSilEggsCount);
-
 			marketLevelComplete = MarketSaveLoadManager.LoadMarketLevelComplete();
-
-
-			// List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
-
-			// if (loadedEggs.Count > 2)
-			// {
-			// 	marketEggsFoundBools = loadedEggs;
-			// }
-
+			marketIntroDone = MarketSaveLoadManager.LoadMarketBirdIntro();
 
 			if(clickOnEggsScript != null && marketEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					//Debug.Log("should be filling eggsfoundbool array");
 					marketEggsFoundBools.Add(false/* egg.GetComponent<EggGoToCorner>().eggFound */);
 				}
 			}
 		}	
 
-
 		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{ 
 			parkEggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
-
 			parkSilverEggsCount = ParkSaveLoadManager.LoadParkSilverEggs();
-				
-			hopscotchRiddleSolved = ParkSaveLoadManager.LoadHopscotchRiddle(); 
-
+			hopscotchRiddleSolved = ParkSaveLoadManager.LoadHopscotchRiddle();
 			parkTotalEggsFound = ParkSaveLoadManager.LoadParkTotalEggs();
-
 			parkPuzzMaxLvl = ParkSaveLoadManager.LoadParkPuzzMaxLvl();
-			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
-
 			parkPuzzSilEggsCount = ParkSaveLoadManager.LoadParkPuzzSilEggsCount();
-			//Debug.Log(marketPuzzSilEggsCount);
-
 			parkSceneSilEggsCount = ParkSaveLoadManager.LoadParkSceneSilEggsCount();
-			//Debug.Log(marketSceneSilEggsCount);
-
 			parkLevelComplete = ParkSaveLoadManager.LoadParkLevelComplete();
-
-
-			// List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
-
-			// if (loadedEggs.Count > 2)
-			// {
-			// 	parkEggsFoundBools = loadedEggs;
-			// }	
-
 		
 			if(clickOnEggsScript != null && parkEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					//Debug.Log("should be filling eggsfoundbool array");
 					parkEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
 				}
 			}
 		}
 
-
 		if (SceneManager.GetActiveScene().name == beachName) 
 		{ 
 			beachEggsFoundBools = BeachSaveLoadManager.LoadBeachEggs();
-
 			beachSilverEggsCount = BeachSaveLoadManager.LoadBeachSilverEggs();
-				
 			crabRiddleSolved = BeachSaveLoadManager.LoadCrabRiddle(); 
-
 
 			List<bool> loadedEggs = BeachSaveLoadManager.LoadBeachEggs();
 
@@ -263,12 +218,10 @@ public class GlobalVariables : MonoBehaviour
 				beachEggsFoundBools = loadedEggs;
 			}	
 
-		
 			if(beachEggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					//Debug.Log("should be filling eggsfoundbool array");
 					beachEggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
 				}
 			}

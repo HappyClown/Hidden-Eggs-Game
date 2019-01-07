@@ -10594,6 +10594,7 @@ GameObject:
   - component: {fileID: 167498273}
   - component: {fileID: 167498275}
   - component: {fileID: 167498274}
+  - component: {fileID: 167498276}
   m_Layer: 5
   m_Name: IntroTxt02 TMP
   m_TagString: Untagged
@@ -10677,7 +10678,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_textAlignment: 514
+  m_textAlignment: 513
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -10743,6 +10744,24 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 167498272}
+--- !u!114 &167498276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 167498272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af59a5b1495b141479bae77051e42e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  t: 0
+  fadeInOnStart: 1
+  fadeDelay: 0
+  tmp: {fileID: 0}
 --- !u!1001 &171527069
 Prefab:
   m_ObjectHideFlags: 0
@@ -36142,9 +36161,11 @@ GameObject:
   m_Component:
   - component: {fileID: 359170854}
   - component: {fileID: 359170855}
+  - component: {fileID: 359170858}
   - component: {fileID: 359170856}
+  - component: {fileID: 359170857}
   m_Layer: 5
-  m_Name: HelperBird
+  m_Name: HelperBird Scripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36249,14 +36270,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introTMPs:
-  - {fileID: 413836818}
-  - {fileID: 167498274}
+  - {fileID: 413836820}
+  - {fileID: 167498276}
   nextBtnObj: {fileID: 946493584}
   maxSentence: 2
   helpBirdBtns:
   - {fileID: 907499858}
   - {fileID: 1854600564}
   slideInHelpScript: {fileID: 359170855}
+  birdIntroSaveScript: {fileID: 359170857}
+--- !u!114 &359170857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359170853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d504232918d32654382772460beeaa29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideInHelpScript: {fileID: 359170855}
+--- !u!114 &359170858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 359170853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e482704867d0b045ae33ab89ce85c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeCD: 5
+  shakeFXCD: 4.8
+  shakeParSys:
+  - {fileID: 211324171}
+  shakeFrame: 2
+  inShakeTime: 1
+  shakeCircleSize: 0.05
+  animShake: 1
+  anim: {fileID: 307494661}
+  dissMat: {fileID: 2100000, guid: 4e89630531e2c0f489462e5592570afb, type: 2}
+  dissDuration: 2
+  inSceneBirdBtnObj: {fileID: 1428401659}
+  birdObj: {fileID: 307494658}
+  minShapeSize: 0.15
+  maxShapeSize: 1.5
+  dissParSys: {fileID: 237835666}
+  inputDetScript: {fileID: 1467130400}
+  slideInScript: {fileID: 359170855}
+  scenTapEnabScript: {fileID: 712647452}
+  birdIntroSaveScript: {fileID: 359170857}
 --- !u!1001 &366699905
 Prefab:
   m_ObjectHideFlags: 0
@@ -36519,6 +36584,7 @@ GameObject:
   - component: {fileID: 413836817}
   - component: {fileID: 413836819}
   - component: {fileID: 413836818}
+  - component: {fileID: 413836820}
   m_Layer: 5
   m_Name: IntroTxt01 TMP
   m_TagString: Untagged
@@ -36601,7 +36667,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_textAlignment: 514
+  m_textAlignment: 513
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -36667,6 +36733,24 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 413836816}
+--- !u!114 &413836820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 413836816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af59a5b1495b141479bae77051e42e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  t: 0
+  fadeInOnStart: 1
+  fadeDelay: 0
+  tmp: {fileID: 0}
 --- !u!1 &429605180 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1910638924771200, guid: ffc94fe78e676f34da6a03d632967891,
@@ -80316,41 +80400,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 758fdce413f63944ba9009d6eaf2dae0, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1829184099 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1655060787240740, guid: 758fdce413f63944ba9009d6eaf2dae0,
-    type: 2}
-  m_PrefabInternal: {fileID: 1829184098}
---- !u!114 &1829184100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1829184099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e482704867d0b045ae33ab89ce85c78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shakeCD: 5
-  shakeFXCD: 4.8
-  shakeParSys:
-  - {fileID: 211324171}
-  shakeFrame: 2
-  inShakeTime: 1
-  shakeCircleSize: 0.05
-  animShake: 1
-  anim: {fileID: 307494661}
-  dissMat: {fileID: 2100000, guid: 4e89630531e2c0f489462e5592570afb, type: 2}
-  dissDuration: 2
-  inSceneBirdBtnObj: {fileID: 1428401659}
-  birdObj: {fileID: 307494658}
-  minShapeSize: 0.15
-  maxShapeSize: 1.5
-  dissParSys: {fileID: 237835666}
-  inputDetScript: {fileID: 1467130400}
-  slideInScript: {fileID: 359170855}
-  scenTapEnabScript: {fileID: 712647452}
 --- !u!1 &1830642312
 GameObject:
   m_ObjectHideFlags: 0

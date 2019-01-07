@@ -34,8 +34,10 @@ public class HelperBirdIntro : MonoBehaviour {
 	public inputDetector inputDetScript;
 	public SlideInHelpBird slideInScript;
 	public SceneTapEnabler scenTapEnabScript;
+	public BirdIntroSave birdIntroSaveScript;
 
 	void Start () {
+		birdIntroSaveScript.LoadBirdIntro();
 		if (slideInScript.introDone) {
 			inSceneBirdBtnObj.SetActive(true);
 			dissMat.SetFloat("_DissolveAmount", 1.01f);
