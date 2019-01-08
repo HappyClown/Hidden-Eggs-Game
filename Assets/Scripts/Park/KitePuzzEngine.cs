@@ -95,7 +95,7 @@ public class KitePuzzEngine : MonoBehaviour
 	{
 		canPlay = false;
 		initialSetupOn = true;
-		maxLvl = GlobalVariables.globVarScript.parkPuzzMaxLvl;
+		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 	}
 	
@@ -233,9 +233,9 @@ public class KitePuzzEngine : MonoBehaviour
 		canPlay = false;
 		
 		//Set the silver egg sprites to Hollow if the egg was found already.
-		for (int i = 0; i < GlobalVariables.globVarScript.parkPuzzSilEggsCount.Count; i++)
+		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
 		{
-			int eggNumber = GlobalVariables.globVarScript.parkPuzzSilEggsCount[i];
+			int eggNumber = GlobalVariables.globVarScript.puzzSilEggsCount[i];
 			mySilverEggMan.allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = mySilverEggMan.hollowSilEgg;
 			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
 			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
@@ -500,9 +500,9 @@ public class KitePuzzEngine : MonoBehaviour
 
 	public void SaveMaxLvl()
 	{
-		if (maxLvl > GlobalVariables.globVarScript.parkPuzzMaxLvl)
+		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
 		{
-			GlobalVariables.globVarScript.parkPuzzMaxLvl = maxLvl;
+			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}

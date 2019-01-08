@@ -12,7 +12,7 @@ public class SilverEggsManager : MonoBehaviour {
 	public int amntSilEggsTapped;
 
 	void Start(){
-		silverEggsPickedUp = GlobalVariables.globVarScript.parkSilverEggsCount;
+		silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
 	}
 
 
@@ -20,10 +20,10 @@ public class SilverEggsManager : MonoBehaviour {
 	// Silver Eggs counter Saving Funcion
 	public void SaveSilverEggsToCorrectFile()
 	{
-		if (silverEggsPickedUp > GlobalVariables.globVarScript.parkSilverEggsCount) 
+		if (silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) 
 		{
-			GlobalVariables.globVarScript.parkTotalEggsFound += 1;
-			GlobalVariables.globVarScript.parkSilverEggsCount = silverEggsPickedUp; 
+			GlobalVariables.globVarScript.totalEggsFound += 1;
+			GlobalVariables.globVarScript.silverEggsCount = silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
@@ -31,14 +31,14 @@ public class SilverEggsManager : MonoBehaviour {
 	public void SaveNewSilEggsFound(int newSilEggFound)
 	{
 		//bool alreadySaved = false;
-		foreach (int silEggNumber in GlobalVariables.globVarScript.parkPuzzSilEggsCount)
+		foreach (int silEggNumber in GlobalVariables.globVarScript.puzzSilEggsCount)
 		{
 			if (silEggNumber == newSilEggFound)
 			{
 				return;
 			}
 		}
-		GlobalVariables.globVarScript.parkPuzzSilEggsCount.Add(newSilEggFound);
+		GlobalVariables.globVarScript.puzzSilEggsCount.Add(newSilEggFound);
 		GlobalVariables.globVarScript.SaveEggState();
 	}
 }

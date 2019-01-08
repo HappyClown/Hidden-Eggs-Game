@@ -49,7 +49,7 @@ public class HopscotchRiddle : MonoBehaviour
 		// 	desktopDevice = true;
 		// }
 
-		if (GlobalVariables.globVarScript.hopscotchRiddleSolved == true)
+		if (GlobalVariables.globVarScript.riddleSolved == true)
 		{
 			foreach (GameObject number in numbers)
 			{
@@ -110,7 +110,7 @@ public class HopscotchRiddle : MonoBehaviour
 			//	touchOne = true;
 			//}
 
-			if (!GlobalVariables.globVarScript.hopscotchRiddleSolved && myInput.Tapped/* Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began */)
+			if (!GlobalVariables.globVarScript.riddleSolved && myInput.Tapped/* Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began */)
 			{
 				mousePos = Camera.main.ScreenToWorldPoint( myInput.TapPosition/* Input.GetTouch(0).position */);
 				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
@@ -173,7 +173,7 @@ public class HopscotchRiddle : MonoBehaviour
 						}
 					}
 
-					if (!hit.collider.CompareTag("FruitBasket") && !GlobalVariables.globVarScript.hopscotchRiddleSolved)         // tapped not on the good riddle numb or anywhere else reset all cells
+					if (!hit.collider.CompareTag("FruitBasket") && !GlobalVariables.globVarScript.riddleSolved)         // tapped not on the good riddle numb or anywhere else reset all cells
 					{
 						foreach ( HopscotchCell myCells in allCells)
 						{
@@ -343,7 +343,7 @@ public class HopscotchRiddle : MonoBehaviour
 
 	public void HopscotchRiddleSolved ()
 	{
-		GlobalVariables.globVarScript.hopscotchRiddleSolved = true;
+		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}
 }

@@ -78,8 +78,8 @@ public class ClickOnEggs : MonoBehaviour
 	void Start () 
 	{
 		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
-		silverEggCounterText.text = "" + (GlobalVariables.globVarScript.marketSilverEggsCount);
-		goldenEggCounterText.text = "" + (GlobalVariables.globVarScript.rainbowRiddleSolved);
+		silverEggCounterText.text = "" + (GlobalVariables.globVarScript.silverEggsCount);
+		goldenEggCounterText.text = "" + (GlobalVariables.globVarScript.riddleSolved);
 		newCornerPos = cornerPos.position;
 		if (iniDelay < sceneFadeScript.fadeTime) { iniDelay = sceneFadeScript.fadeTime; }
 		AdjustLevelComplete(); // Check if level has already been completed. (bool)
@@ -296,138 +296,138 @@ public class ClickOnEggs : MonoBehaviour
 	// --- Dependant On Scene Name --- //
 	public void MakeSilverEggsAppear() // Could be merged with AdjustSilverEggCount since they will always be called together IF we implement the egg panel in the puzzle scene
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			if (GlobalVariables.globVarScript.marketSceneSilEggsCount.Count > 0)
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			if (GlobalVariables.globVarScript.sceneSilEggsCount.Count > 0)
 			{
-				foreach(int silEggInPanel in GlobalVariables.globVarScript.marketSceneSilEggsCount)
+				foreach(int silEggInPanel in GlobalVariables.globVarScript.sceneSilEggsCount)
 				{
 					silverEggsInPanel[silEggInPanel].SetActive(true);
 				}
 			}	
-		}
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			if (GlobalVariables.globVarScript.parkSceneSilEggsCount.Count > 0)
-			{
-				foreach(int silEggInPanel in GlobalVariables.globVarScript.parkSceneSilEggsCount)
-				{
-					silverEggsInPanel[silEggInPanel].SetActive(true);
-				}
-			}	
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	if (GlobalVariables.globVarScript.sceneSilEggsCount.Count > 0)
+		// 	{
+		// 		foreach(int silEggInPanel in GlobalVariables.globVarScript.sceneSilEggsCount)
+		// 		{
+		// 			silverEggsInPanel[silEggInPanel].SetActive(true);
+		// 		}
+		// 	}	
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
-			for (int i = 0; i < GlobalVariables.globVarScript.beachSilverEggsCount; i++)
-			{
-				silverEggsInPanel[i].SetActive(true);
-			}
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
+		// 	for (int i = 0; i < GlobalVariables.globVarScript.silverEggsCount; i++)
+		// 	{
+		// 		silverEggsInPanel[i].SetActive(true);
+		// 	}
+		// }
 	}
 
 
 	public void AdjustSilverEggCount()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			silverEggsFound = GlobalVariables.globVarScript.marketSceneSilEggsCount.Count;
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			silverEggsFound = GlobalVariables.globVarScript.sceneSilEggsCount.Count;
 			silverEggCounterText.text = "" + silverEggsFound + "/6";
-		}
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			silverEggsFound = GlobalVariables.globVarScript.parkSilverEggsCount;
-			silverEggCounterText.text = "" + silverEggsFound + "/6";
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	silverEggsFound = GlobalVariables.globVarScript.silverEggsCount;
+		// 	silverEggCounterText.text = "" + silverEggsFound + "/6";
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
-			silverEggsFound = GlobalVariables.globVarScript.beachSilverEggsCount;
-			silverEggCounterText.text = "" + silverEggsFound + "/6";
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
+		// 	silverEggsFound = GlobalVariables.globVarScript.silverEggsCount;
+		// 	silverEggCounterText.text = "" + silverEggsFound + "/6";
+		// }
 	}
 
 
 	public void AdjustGoldenEggCount()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			if (GlobalVariables.globVarScript.rainbowRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			if (GlobalVariables.globVarScript.riddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
 			goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
-		}
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			if (GlobalVariables.globVarScript.hopscotchRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
-			goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	if (GlobalVariables.globVarScript.riddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
+		// 	goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
-			if (GlobalVariables.globVarScript.crabRiddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
-			goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
+		// 	if (GlobalVariables.globVarScript.riddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
+		// 	goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
+		// }
 	}
 
 
 	public void AdjustTotalEggsFound()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			totalEggsFound = GlobalVariables.globVarScript.marketTotalEggsFound;
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			totalEggsFound = GlobalVariables.globVarScript.totalEggsFound;
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			totalEggsFound = GlobalVariables.globVarScript.parkTotalEggsFound;
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	totalEggsFound = GlobalVariables.globVarScript.totalEggsFound;
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
 
-		}
+		// }
 	}
 
 
 	public void SaveLevelComplete()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			GlobalVariables.globVarScript.marketLevelComplete = levelComplete;
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			GlobalVariables.globVarScript.levelComplete = levelComplete;
 			GlobalVariables.globVarScript.SaveEggState();
-		}
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			GlobalVariables.globVarScript.parkLevelComplete = levelComplete;
-			GlobalVariables.globVarScript.SaveEggState();
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	GlobalVariables.globVarScript.levelComplete = levelComplete;
+		// 	GlobalVariables.globVarScript.SaveEggState();
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
 
-		}
+		// }
 	}
 
 
 	public void AdjustLevelComplete()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			levelComplete = GlobalVariables.globVarScript.marketLevelComplete;
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			levelComplete = GlobalVariables.globVarScript.levelComplete;
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			levelComplete = GlobalVariables.globVarScript.parkLevelComplete;
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	levelComplete = GlobalVariables.globVarScript.levelComplete;
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
 
-		}
+		// }
 	}
 	#endregion
 	#endregion

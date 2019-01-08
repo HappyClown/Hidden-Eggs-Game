@@ -64,19 +64,19 @@ public class SceneSilverEgg : MonoBehaviour
 
 	public void AddToSceneSilEgg()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			GlobalVariables.globVarScript.marketSceneSilEggsCount.Add(posInPanel); 
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			GlobalVariables.globVarScript.sceneSilEggsCount.Add(posInPanel); 
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			GlobalVariables.globVarScript.parkSceneSilEggsCount.Add(posInPanel); 
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	GlobalVariables.globVarScript.sceneSilEggsCount.Add(posInPanel); 
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
 
-		}
+		// }
 	}
 }

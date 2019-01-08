@@ -47,7 +47,7 @@ public class CrabRiddle : MonoBehaviour
 		// 	desktopDevice = true;
 		// }
 
-		if (GlobalVariables.globVarScript.crabRiddleSolved == true)
+		if (GlobalVariables.globVarScript.riddleSolved == true)
 		{
 			foreach (GameObject move in moves)
 			{
@@ -184,7 +184,7 @@ public class CrabRiddle : MonoBehaviour
 
 	public void CrabRiddleSolved ()
 	{
-		GlobalVariables.globVarScript.crabRiddleSolved = true;
+		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}
 

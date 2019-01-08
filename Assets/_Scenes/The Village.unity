@@ -1647,8 +1647,10 @@ MonoBehaviour:
   startDragTouch: {x: 0, y: 0}
   draggingPosition: {x: 0, y: 0}
   prevDragPosition: {x: 0, y: 0}
+  releaseDragPos: {x: 0, y: 0}
   isDragging: 0
   dragStarted: 0
+  dragReleased: 0
   detectDoubleTouch: 0
   doubleTouched: 0
   touchOne: {x: 0, y: 0}
@@ -3116,6 +3118,7 @@ MonoBehaviour:
   fadeDuration: 2
   setInactiveOnFadeOut: 1
   myDisplayType: 1
+  t: 0
 --- !u!114 &1045973852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3200,6 +3203,7 @@ MonoBehaviour:
   fadeDuration: 4
   setInactiveOnFadeOut: 1
   myDisplayType: 1
+  t: 0
 --- !u!114 &1052544325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5552,6 +5556,7 @@ MonoBehaviour:
   fadeDuration: 1
   setInactiveOnFadeOut: 0
   myDisplayType: 1
+  t: 0
 --- !u!114 &1945841290 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114240250035061422, guid: 3f7590356a743604fb777e4025228310,

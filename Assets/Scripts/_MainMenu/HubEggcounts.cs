@@ -21,7 +21,7 @@ public class HubEggcounts : MonoBehaviour
 	{
 		GlobalVariables.globVarScript.LoadCorrectEggs();
 		// NEED TO MAKE SOEMTHIGN ELSE THAT GETS ALL THE SCENE TOTAL EGGS, or sumtin simila
-		int totEggTemp = GlobalVariables.globVarScript.marketTotalEggsFound + GlobalVariables.globVarScript.parkTotalEggsFound; 
+		int totEggTemp = GlobalVariables.globVarScript.hubTotalEggsFound;
 
 		if (totEggTemp <= 0)
 		{ totEggCount.text = "000"; return; }
@@ -36,18 +36,18 @@ public class HubEggcounts : MonoBehaviour
 	public void AdjustPopUpCounts()
 	{
 		int marketGolEgg;
-		if(GlobalVariables.globVarScript.rainbowRiddleSolved) { marketGolEgg = 1; } else { marketGolEgg = 0; }
-		marketPopUpRegCount.text = (GlobalVariables.globVarScript.marketTotalEggsFound - (GlobalVariables.globVarScript.marketSilverEggsCount + marketGolEgg)) + "/23";
+		if(GlobalVariables.globVarScript.riddleSolved) { marketGolEgg = 1; } else { marketGolEgg = 0; }
+		marketPopUpRegCount.text = (GlobalVariables.globVarScript.totalEggsFound - (GlobalVariables.globVarScript.silverEggsCount + marketGolEgg)) + "/23";
 
-		marketPopUpSilCount.text = (GlobalVariables.globVarScript.marketSilverEggsCount) + "/6";
+		marketPopUpSilCount.text = (GlobalVariables.globVarScript.silverEggsCount) + "/6";
 
 		marketPopUpGolCount.text = marketGolEgg + "/1";
 
 		int parkGolEgg;
-		if(GlobalVariables.globVarScript.hopscotchRiddleSolved) { parkGolEgg = 1; } else { parkGolEgg = 0; }
-		parkPopUpRegCount.text = (GlobalVariables.globVarScript.parkTotalEggsFound - (GlobalVariables.globVarScript.parkSilverEggsCount + parkGolEgg)) + "/23";
+		if(GlobalVariables.globVarScript.riddleSolved) { parkGolEgg = 1; } else { parkGolEgg = 0; }
+		parkPopUpRegCount.text = (GlobalVariables.globVarScript.totalEggsFound - (GlobalVariables.globVarScript.silverEggsCount + parkGolEgg)) + "/23";
 
-		parkPopUpSilCount.text = (GlobalVariables.globVarScript.parkSilverEggsCount) + "/6";
+		parkPopUpSilCount.text = (GlobalVariables.globVarScript.silverEggsCount) + "/6";
 
 		parkPopUpGolCount.text = parkGolEgg + "/1";
 

@@ -49,16 +49,16 @@ public class SceneSilverEggSpawner : MonoBehaviour
 
 	public void SetCorrectLevelLists()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			if (GlobalVariables.globVarScript.marketPuzzSilEggsCount.Count > 0) { puzzSilEggCountList = GlobalVariables.globVarScript.marketPuzzSilEggsCount; }
-			if (GlobalVariables.globVarScript.marketSceneSilEggsCount.Count > 0) { sceneSilEggCountList = GlobalVariables.globVarScript.marketSceneSilEggsCount; }
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			if (GlobalVariables.globVarScript.puzzSilEggsCount.Count > 0) { puzzSilEggCountList = GlobalVariables.globVarScript.puzzSilEggsCount; }
+			if (GlobalVariables.globVarScript.sceneSilEggsCount.Count > 0) { sceneSilEggCountList = GlobalVariables.globVarScript.sceneSilEggsCount; }
+	// 	}
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			if (GlobalVariables.globVarScript.parkPuzzSilEggsCount.Count > 0) { puzzSilEggCountList = GlobalVariables.globVarScript.parkPuzzSilEggsCount; }
-			if (GlobalVariables.globVarScript.parkSceneSilEggsCount.Count > 0) { sceneSilEggCountList = GlobalVariables.globVarScript.parkSceneSilEggsCount; }
-		}
+	// 	if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+	// 	{
+	// 		if (GlobalVariables.globVarScript.puzzSilEggsCount.Count > 0) { puzzSilEggCountList = GlobalVariables.globVarScript.puzzSilEggsCount; }
+	// 		if (GlobalVariables.globVarScript.sceneSilEggsCount.Count > 0) { sceneSilEggCountList = GlobalVariables.globVarScript.sceneSilEggsCount; }
+	// 	}
 	}
 }
