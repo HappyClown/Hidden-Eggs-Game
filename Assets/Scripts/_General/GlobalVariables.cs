@@ -24,8 +24,10 @@ public class GlobalVariables : MonoBehaviour
 	public int puzzMaxLvl;
 	public int totalEggsFound;
 	public bool levelComplete;
+	public bool birdIntroDone;
 
 	[Header("Hub Data")]
+	public List<bool> dissSeasonsBools;
 	public int hubTotalEggsFound;
 
 	// [Header("Market Eggs")]
@@ -95,7 +97,6 @@ public class GlobalVariables : MonoBehaviour
 		LoadHubDissolve();
 		//Debug.Log("OnLevelWasLoaded has been called.");
 	}
-
 
 
 	public void SaveVillageState()
@@ -191,6 +192,8 @@ public class GlobalVariables : MonoBehaviour
 			Debug.Log(sceneSilEggsCount);
 
 			levelComplete = MarketSaveLoadManager.LoadMarketLevelComplete();
+
+			birdIntroDone = MarketSaveLoadManager.LoadMarketBirdIntro();
 
 
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();

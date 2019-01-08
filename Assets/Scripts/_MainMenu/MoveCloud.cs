@@ -97,19 +97,23 @@ public class MoveCloud : MonoBehaviour
 
 	public void MoveIn()
 	{
+		moveDuration = Random.Range(moveDurMin, moveDurMax);
 		moveOut = false;
 		moveIn = true;
 		lerpStart = endPos;
 		lerpEnd = startPos;
+		lerpValue = 0;
 		alphaValue = 0;
 	}
 
 	public void MoveOut()
 	{
+		moveDuration = Random.Range(moveDurMin, moveDurMax);
 		moveOut = true;
 		moveIn = false;
 		lerpStart = startPos;
 		lerpEnd = endPos;
+		lerpValue = 0;
 		alphaValue = 1;
 	}
 	

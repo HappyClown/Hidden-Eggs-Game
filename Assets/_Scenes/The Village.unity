@@ -1853,7 +1853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPhoneDevice: 0
-  eggTapped: 0
+  cancelDoubleTap: 0
   detectTap: 1
   singleTap: 0
   detectDoubleTap: 0
@@ -3438,7 +3438,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1019284017}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.14}
   m_LocalScale: {x: 30.38, y: 17.11, z: 1}
   m_Children: []
   m_Father: {fileID: 663848552}
@@ -4041,29 +4041,15 @@ MonoBehaviour:
   beachPuzName: Odd Shells
   eggsFoundBools: 
   silverEggsCount: 0
-  eggToSave: 0
-  RiddleSolved: 0
+  puzzSilEggsCount: 
+  sceneSilEggsCount: 
+  riddleSolved: 0
+  puzzMaxLvl: 0
+  totalEggsFound: 0
+  levelComplete: 0
+  birdIntroDone: 0
   dissSeasonsBools: 
-  marketEggsFoundBools: 
-  marketSilverEggsCount: 0
-  marketPuzzSilEggsCount: 
-  marketSceneSilEggsCount: 
-  rainbowRiddleSolved: 0
-  marketPuzzMaxLvl: 0
-  marketTotalEggsFound: 0
-  marketLevelComplete: 0
-  parkEggsFoundBools: 
-  parkSilverEggsCount: 0
-  parkPuzzSilEggsCount: 
-  parkSceneSilEggsCount: 
-  hopscotchRiddleSolved: 0
-  parkPuzzMaxLvl: 0
-  parkTotalEggsFound: 0
-  parkLevelComplete: 0
-  beachEggsFoundBools: 
-  beachSilverEggsCount: 0
-  crabRiddleSolved: 0
-  beachTotalEggsFound: 0
+  hubTotalEggsFound: 0
   clickOnEggsScript: {fileID: 0}
   eggHolder: {fileID: 0}
   dissSeasonsScript: {fileID: 472513354}
@@ -6563,7 +6549,7 @@ MonoBehaviour:
   titleFade: {fileID: 1045973851}
   solidBGFade: {fileID: 1019284018}
   fadeBtnIn: 0
-  btnFadeInWait: 2.8
+  btnFadeInWait: 3.2
   rstBtnFadeScript: {fileID: 1272692225}
   playBtnFadeScript: {fileID: 1727510755}
   levelButtons:

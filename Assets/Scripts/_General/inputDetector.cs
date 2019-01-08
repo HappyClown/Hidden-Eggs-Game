@@ -213,7 +213,7 @@ public class inputDetector : MonoBehaviour {
 			// 			ResetDragging();
 			// 		}
 			// 	}			
-			// }
+			}
 		}
 		#endregion
 		#region DetectDouble Touch
@@ -289,7 +289,6 @@ public class inputDetector : MonoBehaviour {
 			}
 		}
 		#endregion
-		
 	}
 
 	#region DoubleTap Functions

@@ -508,7 +508,7 @@ public class MarketEggsData
 
 		levelComplete = marketEggSaver.levelComplete;
 
-		introDone = marketEggSaver.marketIntroDone;
+		introDone = marketEggSaver.birdIntroDone;
 	}
 }
 
