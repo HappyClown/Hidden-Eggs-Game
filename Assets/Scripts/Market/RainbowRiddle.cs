@@ -34,7 +34,7 @@ public class RainbowRiddle : MonoBehaviour
 
     void Start ()
     {
-        if (GlobalVariables.globVarScript.rainbowRiddleSolved == true)
+        if (GlobalVariables.globVarScript.riddleSolved == true)
 		{
 			foreach (GameObject basket in fruitBaskets)
 			{
@@ -47,7 +47,7 @@ public class RainbowRiddle : MonoBehaviour
 
     void Update ()
     {
-		if (!GlobalVariables.globVarScript.rainbowRiddleSolved && Input.GetMouseButtonDown(0) && scenTapEnabScript.canTapEggRidPanPuz)
+		if (!GlobalVariables.globVarScript.riddleSolved && Input.GetMouseButtonDown(0) && scenTapEnabScript.canTapEggRidPanPuz)
 		{
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
@@ -147,7 +147,7 @@ public class RainbowRiddle : MonoBehaviour
 
     public void RainbowRiddleSolved ()
 	{
-		GlobalVariables.globVarScript.rainbowRiddleSolved = true;
+		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}
 

@@ -185,61 +185,61 @@ public class EggGoToCorner : MonoBehaviour
 
 	public void LoadEggFromCorrectScene()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
-			if (GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
+			if (GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
 			{
-				eggFound = GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+				eggFound = GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
 			}
-		}
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			if (GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
-			{
-				eggFound = GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
-			}
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	if (GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
+		// 	{
+		// 		eggFound = GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+		// 	}
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
-			if (GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
-			{
-				eggFound = GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
-			}
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
+		// 	if (GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)])
+		// 	{
+		// 		eggFound = GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+		// 	}
+		// }
 	}
 
 
 
 	public void SaveEggToCorrectFile()
 	{
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		{
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
+		// {
 			//GlobalVariables.globVarScript.marketEggToSave = this.eggFound;
 			//Debug.Log(GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
 			Debug.Log(clickOnEggsScript.totalEggsFound);
-			GlobalVariables.globVarScript.marketTotalEggsFound = clickOnEggsScript.totalEggsFound;
-			GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
+			GlobalVariables.globVarScript.totalEggsFound = clickOnEggsScript.totalEggsFound;
+			GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
 			GlobalVariables.globVarScript.SaveEggState();
-		}
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		{
-			//GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
-			//Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
-			Debug.Log(clickOnEggsScript.totalEggsFound);
-			GlobalVariables.globVarScript.parkTotalEggsFound = clickOnEggsScript.totalEggsFound;
-			GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
-			GlobalVariables.globVarScript.SaveEggState();
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
+		// {
+		// 	//GlobalVariables.globVarScript.parkEggToSave = this.eggFound;
+		// 	//Debug.Log(GlobalVariables.globVarScript.parkEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+		// 	Debug.Log(clickOnEggsScript.totalEggsFound);
+		// 	GlobalVariables.globVarScript.totalEggsFound = clickOnEggsScript.totalEggsFound;
+		// 	GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
+		// 	GlobalVariables.globVarScript.SaveEggState();
+		// }
 
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		{
-			//GlobalVariables.globVarScript.beachEggToSave = this.eggFound;
-			//Debug.Log(GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
-			GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
-			GlobalVariables.globVarScript.SaveEggState();
-		}
+		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
+		// {
+		// 	//GlobalVariables.globVarScript.beachEggToSave = this.eggFound;
+		// 	//Debug.Log(GlobalVariables.globVarScript.beachEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
+		// 	GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
+		// 	GlobalVariables.globVarScript.SaveEggState();
+		// }
 	}
 }

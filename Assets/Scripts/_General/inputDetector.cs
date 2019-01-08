@@ -32,8 +32,8 @@ public class inputDetector : MonoBehaviour {
 	public bool detectDrag;
 	[Tooltip("Dragging deathzone Radius")]
 	public float draggingDeathzone;
-	public Vector2 startDragTouch, draggingPosition, prevDragPosition;
-	public bool isDragging = false, dragStarted = false;
+	public Vector2 startDragTouch, draggingPosition, prevDragPosition, releaseDragPos;
+	public bool isDragging = false, dragStarted = false, dragReleased = false;
 	public Vector2 DraggingPosition{get{return draggingPosition;}}
 	#endregion
 
@@ -165,11 +165,15 @@ public class inputDetector : MonoBehaviour {
 
 		#region Dragging Code
 		if(detectDrag){
+			dragReleased = false;
 			if(Input.GetMouseButton(0) && !isPhoneDevice){
 				singleTap = true;
-				if(!dragStarted){
+				if(Input.GetMouseButtonDown(0)){
 					startDragTouch = Input.mousePosition;
 					dragStarted = true;
+				}
+				else{
+					dragStarted = false;
 				}
 				if(isDragging){
 					prevDragPosition = draggingPosition;
@@ -186,20 +190,23 @@ public class inputDetector : MonoBehaviour {
 				}
 			}
 
-			// if(Input.touchCount == 1 && isPhoneDevice){
-			// 	singleTap = true;
-			// 	if(Input.touches[0].phase == TouchPhase.Began){
-			// 		startDragTouch = Input.touches[0].position;
-			// 		dragStarted = true;
-			// 	}
-			// 	if(isDragging){
-			// 		prevDragPosition = draggingPosition;
-			// 	}
-			// 	draggingPosition = Input.touches[0].position;
-			// 	if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
-			// 		isDragging = true;
-			// 		prevDragPosition = startDragTouch;
-			// 	}	
+			if(Input.touchCount == 1 && isPhoneDevice){
+				singleTap = true;
+				if(Input.touches[0].phase == TouchPhase.Began){
+					startDragTouch = Input.touches[0].position;
+					dragStarted = true;
+				}
+				else{
+					dragStarted = false;
+				}
+				if(isDragging){
+					prevDragPosition = draggingPosition;
+				}
+				draggingPosition = Input.touches[0].position;
+				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
+					isDragging = true;
+					prevDragPosition = startDragTouch;
+				}	
 				
 			// 	if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
 			// 		if(isDragging){
@@ -295,6 +302,8 @@ public class inputDetector : MonoBehaviour {
 	private void ResetDragging(){
 		isDragging = false;
 		dragStarted = false;
+		dragReleased = true;
+		releaseDragPos = draggingPosition;
 		draggingPosition = startDragTouch = Vector2.zero;
 	}
 	#endregion

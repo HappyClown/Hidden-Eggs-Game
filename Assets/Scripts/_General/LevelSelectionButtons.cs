@@ -12,8 +12,8 @@ public class LevelSelectionButtons : MonoBehaviour {
 	public FadeInOutImage[] lvlSelectFades;
 	[Tooltip("Scripts - The Scaler scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
 	public Scaler[] lvlSelectScalers;
-	private bool noFadeDelay;
-	private bool buttonsOff;
+	public bool noFadeDelay;
+	public bool buttonsOff;
 
 	 /// <summary>
      /// Enable the level button Dots.
@@ -63,4 +63,10 @@ public class LevelSelectionButtons : MonoBehaviour {
 			if (lvlButton.activeSelf) { lvlButton.GetComponent<Button>().interactable = false; }	
 		}
 	}
+	public void TurnFadeDelayOff()
+	{
+		foreach(FadeInOutImage fadeImgScpt in lvlSelectFades)
+		{ fadeImgScpt.fadeDelay = false; }
+	}
+
 }

@@ -1180,13 +1180,13 @@
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000D97F478
 [LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
 [LOG] SystemI::createSound                     :     setdata soundi = 000000000D97F628 : node = 0000000000820CA0
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 38191936
 [LOG] SystemI::createSound                     :     add node to async list : head = 000000005CA83A08.  list count = 0
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 334592
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000121DD7A8
 [LOG] SystemI::createSound                     :     filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000008212F8
 [LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
@@ -1196,6 +1196,8 @@
 [LOG] SystemI::createSound                     :     add node to async list : head = 000000005CA83A08.  list count = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 27400
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     setdata soundi = 00000000667EA768 : node = 00000000121DD930
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000000065DE12C8.  list count = 1
 [LOG] SystemI::createSound                     :     filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
 [LOG] SystemI::createSound                     :     setdata soundi = 000000000D97FCE8 : node = 00000000008204C0
@@ -1244,7 +1246,7 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000000820DB8
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 27400
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 19500
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section5_viola', format=2, channels=2, frequency=48000, lengthbytes=325824, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.025543.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000D97F628
@@ -1269,6 +1271,7 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000008205D8
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 18000
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section1_violons', format=2, channels=2, frequency=48000, lengthbytes=330176, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.015442.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000D97FCE8
@@ -1281,6 +1284,7 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000000008209C8
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 18000
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section1_flute1', format=2, channels=2, frequency=48000, lengthbytes=262496, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.017609.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000D9801F8
@@ -1293,6 +1297,7 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000081FA08
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 18000
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section1_viola', format=2, channels=2, frequency=48000, lengthbytes=325152, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.024017.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000D980708
@@ -1305,7 +1310,7 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000081FB58
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 26692
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 18000
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section5_cello', format=2, channels=2, frequency=48000, lengthbytes=323328, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.016083.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000D980A68
@@ -1318,7 +1323,6 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000000820728
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 27292
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section5_guit1', format=2, channels=2, frequency=48000, lengthbytes=303328, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.131317.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000D980C18
@@ -1336,14 +1340,18 @@
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000067C4D208
 [LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000067C4E498
 [LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 38191936
+[LOG] SystemI::createSound                     :     setdata soundi = 0000000070A05148 : node = 0000000070A18360
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 334592
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000000065DE12C8.  list count = 0
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000000821448
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 26692
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 12747
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section5_guit2', format=2, channels=2, frequency=48000, lengthbytes=304128, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.011200.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000067C4E498
@@ -1356,6 +1364,7 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000000820B18
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 4500
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section1_guit2', format=2, channels=2, frequency=48000, lengthbytes=325664, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.023041.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000067C4D3B8
@@ -1368,6 +1377,7 @@
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000000820C68
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 18000
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Beach_section1_flute2', format=2, channels=2, frequency=48000, lengthbytes=290080, lengthpcm=1410612, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.044128.
 [LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000067C4DDD8
@@ -1570,6 +1580,4 @@
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
-[LOG] Thread::callback                         : FMOD file thread finished.
 [LOG] SystemI::close                           : Closed.

@@ -92,8 +92,8 @@ public class GrabItem : MonoBehaviour
 		canPlay = false;
 		initialSetupOn = true;
 		heldItem = null;
-		maxLvl = GlobalVariables.globVarScript.marketPuzzMaxLvl;
-		silverEggsPickedUp = GlobalVariables.globVarScript.marketSilverEggsCount;
+		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
+		silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
 		if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 	}
 
@@ -363,9 +363,9 @@ public class GrabItem : MonoBehaviour
 		// }
 
 		//Set the silver egg sprites to Hollow if the egg was found already.
-		for (int i = 0; i < GlobalVariables.globVarScript.marketPuzzSilEggsCount.Count; i++)
+		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
 		{
-			int eggNumber = GlobalVariables.globVarScript.marketPuzzSilEggsCount[i];
+			int eggNumber = GlobalVariables.globVarScript.puzzSilEggsCount[i];
 			allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
 			allSilverEggsScripts[eggNumber].hollow = true;
 			Debug.Log(allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
@@ -574,10 +574,10 @@ public class GrabItem : MonoBehaviour
 
 	public void SaveSilverEggsToCorrectFile()
 	{
-		if (silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount) 
+		if (silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) 
 		{
-			GlobalVariables.globVarScript.marketTotalEggsFound += 1;
-			GlobalVariables.globVarScript.marketSilverEggsCount = silverEggsPickedUp; 
+			GlobalVariables.globVarScript.totalEggsFound += 1;
+			GlobalVariables.globVarScript.silverEggsCount = silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
@@ -585,22 +585,22 @@ public class GrabItem : MonoBehaviour
 	public void SaveNewSilEggsFound(int newSilEggFound)
 	{
 		//bool alreadySaved = false;
-		foreach (int silEggNumber in GlobalVariables.globVarScript.marketPuzzSilEggsCount)
+		foreach (int silEggNumber in GlobalVariables.globVarScript.puzzSilEggsCount)
 		{
 			if (silEggNumber == newSilEggFound)
 			{
 				return;
 			}
 		}
-		GlobalVariables.globVarScript.marketPuzzSilEggsCount.Add(newSilEggFound);
+		GlobalVariables.globVarScript.puzzSilEggsCount.Add(newSilEggFound);
 		GlobalVariables.globVarScript.SaveEggState();
 	}
 
 	public void SaveMaxLvl()
 	{
-		if (maxLvl > GlobalVariables.globVarScript.marketPuzzMaxLvl)
+		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
 		{
-			GlobalVariables.globVarScript.marketPuzzMaxLvl = maxLvl;
+			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}

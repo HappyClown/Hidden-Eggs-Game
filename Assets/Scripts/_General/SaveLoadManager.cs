@@ -492,21 +492,21 @@ public class MarketEggsData
 
 	public MarketEggsData(GlobalVariables marketEggSaver)
 	{
-		eggsFound = marketEggSaver.marketEggsFoundBools;
+		eggsFound = marketEggSaver.eggsFoundBools;
 
-		silverEggsFound = marketEggSaver.marketSilverEggsCount;
+		silverEggsFound = marketEggSaver.silverEggsCount;
 
-		puzzSilEggsFound = marketEggSaver.marketPuzzSilEggsCount;
+		puzzSilEggsFound = marketEggSaver.puzzSilEggsCount;
 		
-		sceneSilEggsFound = marketEggSaver.marketSceneSilEggsCount;
+		sceneSilEggsFound = marketEggSaver.sceneSilEggsCount;
 
-		rainbowRiddle = marketEggSaver.rainbowRiddleSolved;
+		rainbowRiddle = marketEggSaver.riddleSolved;
 
-		puzzMaxLvl = marketEggSaver.marketPuzzMaxLvl;
+		puzzMaxLvl = marketEggSaver.puzzMaxLvl;
 
-		totalEggsFound = marketEggSaver.marketTotalEggsFound;
+		totalEggsFound = marketEggSaver.totalEggsFound;
 
-		levelComplete = marketEggSaver.marketLevelComplete;
+		levelComplete = marketEggSaver.levelComplete;
 
 		introDone = marketEggSaver.marketIntroDone;
 	}
@@ -533,21 +533,21 @@ public class ParkEggsData
 
 	public ParkEggsData(GlobalVariables parkEggSaver)
 	{
-		eggsFound = parkEggSaver.parkEggsFoundBools;
+		eggsFound = parkEggSaver.eggsFoundBools;
 
-		silverEggsFound = parkEggSaver.parkSilverEggsCount;
+		silverEggsFound = parkEggSaver.silverEggsCount;
 
-		puzzSilEggsFound = parkEggSaver.parkPuzzSilEggsCount;
+		puzzSilEggsFound = parkEggSaver.puzzSilEggsCount;
 		
-		sceneSilEggsFound = parkEggSaver.parkSceneSilEggsCount;
+		sceneSilEggsFound = parkEggSaver.sceneSilEggsCount;
 
-		hopscotchRiddle = parkEggSaver.hopscotchRiddleSolved;
+		hopscotchRiddle = parkEggSaver.riddleSolved;
 
-		puzzMaxLvl = parkEggSaver.parkPuzzMaxLvl;
+		puzzMaxLvl = parkEggSaver.puzzMaxLvl;
 
-		totalEggsFound = parkEggSaver.parkTotalEggsFound;
+		totalEggsFound = parkEggSaver.totalEggsFound;
 
-		levelComplete = parkEggSaver.parkLevelComplete;
+		levelComplete = parkEggSaver.levelComplete;
 	}
 }
 
@@ -562,10 +562,10 @@ public class BeachEggsData
 
 	public BeachEggsData(GlobalVariables beachEggSaver)
 	{
-		eggsFound = beachEggSaver.beachEggsFoundBools;
+		eggsFound = beachEggSaver.eggsFoundBools;
 
-		silverEggsFound = beachEggSaver.beachSilverEggsCount;
+		silverEggsFound = beachEggSaver.silverEggsCount;
 
-		crabRiddle = beachEggSaver.crabRiddleSolved;
+		crabRiddle = beachEggSaver.riddleSolved;
 	}
 }

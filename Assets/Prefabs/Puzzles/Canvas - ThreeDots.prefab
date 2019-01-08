@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 114991269713227678}
   - component: {fileID: 114839007696006766}
   - component: {fileID: 114995268179813580}
+  - component: {fileID: 114554735417159862}
   m_Layer: 5
   m_Name: Lvl03 - Button
   m_TagString: Untagged
@@ -131,6 +132,7 @@ GameObject:
   - component: {fileID: 114470495847372130}
   - component: {fileID: 114920737663150060}
   - component: {fileID: 114623957049856342}
+  - component: {fileID: 114911267965506708}
   m_Layer: 5
   m_Name: Lvl01 - Button
   m_TagString: Untagged
@@ -169,6 +171,7 @@ GameObject:
   - component: {fileID: 114481753139426936}
   - component: {fileID: 114652392004954662}
   - component: {fileID: 114477810396528820}
+  - component: {fileID: 114178883023356010}
   m_Layer: 5
   m_Name: Lvl02 - Button
   m_TagString: Untagged
@@ -336,6 +339,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114178883023356010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1628192426425242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitePuzzEngineScript: {fileID: 0}
+  thisButton: {fileID: 114652392004954662}
+  levelToLoad: 2
 --- !u!114 &114187666616923982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -446,6 +463,8 @@ MonoBehaviour:
   - {fileID: 114555420078893124}
   - {fileID: 114051968495850630}
   - {fileID: 114811811116487580}
+  noFadeDelay: 0
+  buttonsOff: 0
 --- !u!114 &114432123356703772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,6 +560,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114554735417159862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1273037928703732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitePuzzEngineScript: {fileID: 0}
+  thisButton: {fileID: 114839007696006766}
+  levelToLoad: 3
 --- !u!114 &114555420078893124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -761,6 +794,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114911267965506708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378933569856640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitePuzzEngineScript: {fileID: 0}
+  thisButton: {fileID: 114920737663150060}
+  levelToLoad: 1
 --- !u!114 &114911294496884400
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,17 +13,27 @@ public class KitePuzzEngine : MonoBehaviour
 	public Vector3 updateMousePos;
 	public int connections;
 
-	public List<GameObject> lvlTilesFadeScripts;
-	public List<GameObject> lvlTileBacksFadeScripts;
-	public List<FadeInOutSprite> lvlBackShadowsFadeScripts;
-	public List<GameObject> lvlKites;
-	public List<FadeInOutSprite> lvlKitesFadeScripts;
+	[Header("Fafe in out variables")]
+	public FadeInOutManager[] levelsStuff;
+	// public List<GameObject> lvlTilesFadeScripts;
+	// public List<GameObject> lvlTileBacksFadeScripts;
+	// public List<FadeInOutSprite> lvlBackShadowsFadeScripts;
+	// public List<GameObject> lvlKites;
+	// public List<FadeInOutSprite> lvlKitesFadeScripts;
 	public List<float> bGSizes;
 	public BackgroundScale bgScleScript;
 
 	public int curntLvl;
 
 	public ClickToRotateTile clickToRotTileScript;
+	#endregion
+	#region Basic Scripts Sources
+	[Header("Input Detector")]
+	public inputDetector myInput;
+	[Header("Silver Eggs")]
+	public SilverEggsManager mySilverEggMan;
+	[Header("Selection Buttons")]
+	public LevelSelectionButtons mySelectButton;
 	#endregion
 	#region GrabItem Script Variables
 	[Header("General")]
@@ -48,24 +58,16 @@ public class KitePuzzEngine : MonoBehaviour
 	public List<GameObject> lvlItemHolders;
 	public GameObject itemHolder;
 
-	[Header("Silver Eggs")]
-	public int silverEggsPickedUp;
-	public Sprite hollowSilEgg;
-	public List<GameObject> lvlSilverEggs, activeSilverEggs, allSilEggs;
-	public List<SilverEggs> allSilverEggsScripts;
-	private bool silverEggsActive;
-	public int amntSilEggsTapped;
-
-	[Header("Level Selection Buttons")]
-	public LevelSelectionButtons testButtons;
-	[Tooltip("GameObjects - The level selection buttons, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
-	public List<GameObject> lvlSelectButtons;
-	[Tooltip("Scripts - The FadeInOutImage scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
-	public List<FadeInOutImage> lvlSelectFades;
-	[Tooltip("Scripts - The Scaler scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
-	public List<Scaler> lvlSelectScalers;
-	private bool noFadeDelay;
-	private bool buttonsOff;
+	// [Header("Level Selection Buttons")]
+	// public LevelSelectionButtons testButtons;
+	// [Tooltip("GameObjects - The level selection buttons, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
+	// public List<GameObject> lvlSelectButtons;
+	// [Tooltip("Scripts - The FadeInOutImage scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
+	// public List<FadeInOutImage> lvlSelectFades;
+	// [Tooltip("Scripts - The Scaler scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
+	// public List<Scaler> lvlSelectScalers;
+	// private bool noFadeDelay;
+	// private bool buttonsOff;
 
 	[Header("Initial Sequence")]
 	public float seqTimer;
@@ -93,8 +95,7 @@ public class KitePuzzEngine : MonoBehaviour
 	{
 		canPlay = false;
 		initialSetupOn = true;
-		maxLvl = GlobalVariables.globVarScript.parkPuzzMaxLvl;
-		silverEggsPickedUp = GlobalVariables.globVarScript.parkSilverEggsCount;
+		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 	}
 	
@@ -111,11 +112,11 @@ public class KitePuzzEngine : MonoBehaviour
 				SilverEggsSetup();
 			}
 
-			if (buttonsOff) { buttonsOff = false; InteractableThreeDots(); }
+			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 
 			#region Click
 			// Click //
-			if (Input.GetMouseButtonDown(0))
+			if (myInput.Tapped)
 			{
 				UpdateMousePos();
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
@@ -136,7 +137,7 @@ public class KitePuzzEngine : MonoBehaviour
 				{
 					seqTimer += Time.deltaTime;
 					 if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; /* lvlItemHolders[curntLvl - 1].SetActive(true); */ LvlStuffFadeIn(); bgScleScript.ScaleBG();}
-					 if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); clickToRotTileScript.CalculateConnectionsNeeded();}
+					 if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); mySelectButton.InteractableThreeDots(maxLvl,curntLvl); clickToRotTileScript.CalculateConnectionsNeeded();}
 					 if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
 				}
 			}
@@ -158,17 +159,17 @@ public class KitePuzzEngine : MonoBehaviour
 					itemsWait = false;
 					itemWaitTimer = 0f;
 					canPlay = true;
-					InteractableThreeDots();
+					mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
 				}
 			}
 
 			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
 			// Turn off interaction for all three level select dots.
-			if (!buttonsOff) { buttonsOff = true; UninteractableThreeDots();}
+			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
 
 			#region Click On SilverEggs
 			// Clicking on a silver egg.
-			if (Input.GetMouseButtonDown(0))
+			if (myInput.Tapped)
 			{
 				UpdateMousePos();
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
@@ -186,11 +187,11 @@ public class KitePuzzEngine : MonoBehaviour
 						//SFX CLICK SILVER EGG
 						audioSceneParkPuzzScript.silverEgg();
 						
-						if (!silEggTappedScript.hollow) { silverEggsPickedUp++; }
-						SaveSilverEggsToCorrectFile();
-						SaveNewSilEggsFound(allSilEggs.IndexOf(hit.collider.gameObject));
+						if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
+						mySilverEggMan.SaveSilverEggsToCorrectFile();
+						mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
 						
-						amntSilEggsTapped++;
+						mySilverEggMan.amntSilEggsTapped++;
 						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
 					}
 				}
@@ -232,35 +233,35 @@ public class KitePuzzEngine : MonoBehaviour
 		canPlay = false;
 		
 		//Set the silver egg sprites to Hollow if the egg was found already.
-		for (int i = 0; i < GlobalVariables.globVarScript.parkPuzzSilEggsCount.Count; i++)
+		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
 		{
-			int eggNumber = GlobalVariables.globVarScript.parkPuzzSilEggsCount[i];
-			allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
-			allSilverEggsScripts[eggNumber].hollow = true;
-			Debug.Log(allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
+			int eggNumber = GlobalVariables.globVarScript.puzzSilEggsCount[i];
+			mySilverEggMan.allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = mySilverEggMan.hollowSilEgg;
+			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
+			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
 
-		lvlSilverEggs[curntLvl - 1].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
-		if (lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
+		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
+		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
 		{
 			//List<GameObject> activeSilverEggs = new List<GameObject>();
-			foreach (Transform silEgg in lvlSilverEggs[curntLvl - 1].transform)
+			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform)
 			{
-				activeSilverEggs.Add(silEgg.gameObject);
+				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
 				//Debug.Log(silEgg.name + "has been added to the active Silver Egg List!");
 			}
 		}
 
-		silverEggsActive = true;
+		mySilverEggMan.silverEggsActive = true;
 
-		if (!noFadeDelay) { TurnFadeDelayOff(); noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
+		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
 
 		LvlStuffFadeOut();
 		bgScleScript.ScaleBG();
 
 		//StartCoroutine(MoveCrateRight()); // INSERT KITE ANIM SEQUENCE ------------------------------------------------------------------------------------------------------
 		//reqParchMoveScript.moveToHidden = true;
-		foreach(GameObject silEgg in activeSilverEggs) // TO BE PUT IN THE ANIM SEQ -------------------------------------------------------------------------------------------
+		foreach(GameObject silEgg in mySilverEggMan.activeSilverEggs) // TO BE PUT IN THE ANIM SEQ -------------------------------------------------------------------------------------------
 		{
 			silEgg.GetComponent<SilverEggSequence>().StartSequence();
 		}
@@ -273,18 +274,18 @@ public class KitePuzzEngine : MonoBehaviour
 	public void SilverEggsCheck()
 	{
 		//int amntSilEggsTapped = 0;
-		if (activeSilverEggs.Count > 0)
+		if (mySilverEggMan.activeSilverEggs.Count > 0)
 		{
-			if (amntSilEggsTapped == activeSilverEggs.Count) 
+			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count) 
 			{			
-				activeSilverEggs.Clear();
-				silverEggsActive = false;
-				amntSilEggsTapped = 0;
+				mySilverEggMan.activeSilverEggs.Clear();
+				mySilverEggMan.silverEggsActive = false;
+				mySilverEggMan.amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
 				//silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount
 				curntLvl++;
 				if (curntLvl > maxLvl) 
-				{ maxLvl = curntLvl; SaveMaxLvl(); EnabledThreeDots(); }
+				{ maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); }
 
 				voidDelegate = NextLevelSetup;
 				if (!waitMethod) { waitMethod = true; } else { Debug.LogError("waitMethod IS ALREADY IN PROGRESS, DONT DO THAT!!"); }
@@ -303,9 +304,9 @@ public class KitePuzzEngine : MonoBehaviour
 	// Once animations are finished, run the next level setup.
 	void NextLevelSetup()
 	{
-		foreach(SilverEggs silEggs in lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
+		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
 		{ silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);}
-		lvlSilverEggs[curntLvl - 2].SetActive(false);
+		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
 		resetTilesScript.EndOfLevelReset();
 		//itemHolder.SetActive(false);
 		// crateAnim.SetTrigger("MoveDown");
@@ -335,7 +336,7 @@ public class KitePuzzEngine : MonoBehaviour
 		// Close up current level.
 		canPlay = false;
 
-		UninteractableThreeDots();
+		mySelectButton.UninteractableThreeDots();
 
 		LvlStuffFadeOut();
 
@@ -372,106 +373,108 @@ public class KitePuzzEngine : MonoBehaviour
 
 	#region General Methods
 	// Which of the three dots are interactable based on the highest playable level.
-	void EnabledThreeDots()
-	{
-		if (maxLvl == 0) { lvlSelectButtons[0].SetActive(true); }
-		for(int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
-		{ 
-			if (!lvlSelectButtons[i].activeSelf) 
-			{ lvlSelectButtons[i].SetActive(true); } 
-		}
-	}
+	// void EnabledThreeDots()
+	// {
+	// 	if (maxLvl == 0) { lvlSelectButtons[0].SetActive(true); }
+	// 	for(int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
+	// 	{ 
+	// 		if (!lvlSelectButtons[i].activeSelf) 
+	// 		{ lvlSelectButtons[i].SetActive(true); } 
+	// 	}
+	// }
 
 	// Which of the three dots can be interacted with, also adjust the scale accordingly.
-	void InteractableThreeDots()
-	{
-		if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
-		for (int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
-		{
-			if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
-			{
-				lvlSelectButtons[i].GetComponent<Button>().interactable = false;
-				lvlSelectScalers[i].ScaleUp();
-			}
-			else 
-			{
-				lvlSelectButtons[i].GetComponent<Button>().interactable = true; 
-				lvlSelectScalers[i].ScaleDown();
-			}
-		}
-	}
+	// void InteractableThreeDots()
+	// {
+	// 	if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
+	// 	for (int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
+	// 	{
+	// 		if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
+	// 		{
+	// 			lvlSelectButtons[i].GetComponent<Button>().interactable = false;
+	// 			lvlSelectScalers[i].ScaleUp();
+	// 		}
+	// 		else 
+	// 		{
+	// 			lvlSelectButtons[i].GetComponent<Button>().interactable = true; 
+	// 			lvlSelectScalers[i].ScaleDown();
+	// 		}
+	// 	}
+	// }
 
 	// Make level select buttons uninteractable between levels.
-	void UninteractableThreeDots()
-	{
-		foreach(GameObject lvlButton in lvlSelectButtons)
-		{
-			if (lvlButton.activeSelf) { lvlButton.GetComponent<Button>().interactable = false; }	
-		}
-	}
+	// void UninteractableThreeDots()
+	// {
+	// 	foreach(GameObject lvlButton in lvlSelectButtons)
+	// 	{
+	// 		if (lvlButton.activeSelf) { lvlButton.GetComponent<Button>().interactable = false; }	
+	// 	}
+	// }
 	
 	// After the initial level setup turn off the three dots fade delay.
-	void TurnFadeDelayOff()
-	{
-		foreach(FadeInOutImage fadeImgScpt in lvlSelectFades)
-		{ fadeImgScpt.fadeDelay = false; }
-	}
+	// void TurnFadeDelayOff()
+	// {
+	// 	foreach(FadeInOutImage fadeImgScpt in lvlSelectFades)
+	// 	{ fadeImgScpt.fadeDelay = false; }
+	// }
 
 
 	public void LvlStuffFadeIn()
 	{
-		//Debug.Log("Should fade in stuff."); // Fade in tiles
-		if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
-		FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenTileFadeScripts.Length; i++)
-		{ childrenTileFadeScripts[i].FadeIn(); }
-		// Fade in tile backs
-		if (!lvlTileBacksFadeScripts[curntLvl -1].activeSelf) lvlTileBacksFadeScripts[curntLvl -1].SetActive(true);
-		FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenBackFadeScripts.Length; i++)
-		{ if (!childrenBackFadeScripts[i].gameObject.activeSelf) {childrenBackFadeScripts[i].gameObject.SetActive(true); } childrenBackFadeScripts[i].FadeIn(); }
-		// Fade in back shadow
-		if (!lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.SetActive(true);
-		lvlBackShadowsFadeScripts[curntLvl - 1].FadeIn();
-		// Fade in kite & kite stuff
-		if (!lvlKitesFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlKitesFadeScripts[curntLvl - 1].gameObject.SetActive(true);
-		lvlKitesFadeScripts[curntLvl - 1].FadeIn();
-		if (lvlKites[curntLvl - 1].transform.childCount > 0)
-		{
-			foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
-			{
-				lvlKite.GetComponent<FadeInOutSprite>().FadeIn();
-			}
-		}
+		levelsStuff[curntLvl -1].StartLvlFadeIn();
+		Debug.Log("Should fade in stuff."); // Fade in tiles
+		 if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
+		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenTileFadeScripts.Length; i++)
+		// { childrenTileFadeScripts[i].FadeIn(); }
+		// // Fade in tile backs
+		// if (!lvlTileBacksFadeScripts[curntLvl -1].activeSelf) lvlTileBacksFadeScripts[curntLvl -1].SetActive(true);
+		// FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenBackFadeScripts.Length; i++)
+		// { if (!childrenBackFadeScripts[i].gameObject.activeSelf) {childrenBackFadeScripts[i].gameObject.SetActive(true); } childrenBackFadeScripts[i].FadeIn(); }
+		// // Fade in back shadow
+		// if (!lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.SetActive(true);
+		// lvlBackShadowsFadeScripts[curntLvl - 1].FadeIn();
+		// // Fade in kite & kite stuff
+		// if (!lvlKitesFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlKitesFadeScripts[curntLvl - 1].gameObject.SetActive(true);
+		// lvlKitesFadeScripts[curntLvl - 1].FadeIn();
+		// if (lvlKites[curntLvl - 1].transform.childCount > 0)
+		// {
+		// 	foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
+		// 	{
+		// 		lvlKite.GetComponent<FadeInOutSprite>().FadeIn();
+		// 	}
+		// }
 	}
 
 	public void LvlStuffFadeOut() // Fade out tiles, tile backs, kite, backshadow.
 	{
-		FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenTileFadeScripts.Length; i++)
-		{ childrenTileFadeScripts[i].FadeOut(); }
+		levelsStuff[curntLvl -1].ExitFadeOutLvl();
+		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenTileFadeScripts.Length; i++)
+		// { childrenTileFadeScripts[i].FadeOut(); }
 
-		FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
-		for (int i = 0; i < childrenBackFadeScripts.Length; i++)
-		{ childrenBackFadeScripts[i].FadeOut(); }
+		// FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
+		// childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
+		// for (int i = 0; i < childrenBackFadeScripts.Length; i++)
+		// { childrenBackFadeScripts[i].FadeOut(); }
 
-		lvlBackShadowsFadeScripts[curntLvl - 1].FadeOut();
+		// lvlBackShadowsFadeScripts[curntLvl - 1].FadeOut();
 
-		lvlKitesFadeScripts[curntLvl - 1].FadeOut();
-		if (lvlKites[curntLvl - 1].transform.childCount > 0)
-		{
-			foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
-			{
-				lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
-			}
-		}
+		// lvlKitesFadeScripts[curntLvl - 1].FadeOut();
+		// if (lvlKites[curntLvl - 1].transform.childCount > 0)
+		// {
+		// 	foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
+		// 	{
+		// 		lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
+		// 	}
+		// }
 	}
 
-	public void SaveSilverEggsToCorrectFile()
+	/* public void SaveSilverEggsToCorrectFile()
 	{
 		if (silverEggsPickedUp > GlobalVariables.globVarScript.parkSilverEggsCount) 
 		{
@@ -479,9 +482,9 @@ public class KitePuzzEngine : MonoBehaviour
 			GlobalVariables.globVarScript.parkSilverEggsCount = silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
 		}
-	}
+	}*/
 
-	public void SaveNewSilEggsFound(int newSilEggFound)
+	/*public void SaveNewSilEggsFound(int newSilEggFound)
 	{
 		//bool alreadySaved = false;
 		foreach (int silEggNumber in GlobalVariables.globVarScript.parkPuzzSilEggsCount)
@@ -493,20 +496,20 @@ public class KitePuzzEngine : MonoBehaviour
 		}
 		GlobalVariables.globVarScript.parkPuzzSilEggsCount.Add(newSilEggFound);
 		GlobalVariables.globVarScript.SaveEggState();
-	}
+	}*/
 
 	public void SaveMaxLvl()
 	{
-		if (maxLvl > GlobalVariables.globVarScript.parkPuzzMaxLvl)
+		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
 		{
-			GlobalVariables.globVarScript.parkPuzzMaxLvl = maxLvl;
+			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
 
 	void UpdateMousePos()
 	{
-		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 	}
 	#endregion
