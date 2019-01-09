@@ -7824,6 +7824,11 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114134870436809116, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: helpBirdTrans
+      value: 
+      objectReference: {fileID: 1231972451}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
   m_IsPrefabParent: 0
@@ -42433,6 +42438,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!224 &1231972451 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224174921272603258, guid: 5ba1db6bd74f4824ba477fdace661f73,
+    type: 2}
+  m_PrefabInternal: {fileID: 270745167}
 --- !u!1001 &1236120486
 Prefab:
   m_ObjectHideFlags: 0
@@ -60861,6 +60871,8 @@ MonoBehaviour:
   shadowAlpha: 0
   txtBubble: {fileID: 0}
   txtBubFadeTime: 2
+  introDone: 0
+  txtBubFadedIn: 0
   riddleBtnObj: {fileID: 1998329137}
   riddleBtnFadeTime: 2
   riddleHints:
@@ -60876,6 +60888,7 @@ MonoBehaviour:
   moveDown: 0
   isUp: 0
   isDown: 0
+  helpBirdTrans: {fileID: 0}
   hiddenHelpBirdPos: {fileID: 1362869348}
   shownHelpBirdPos: {fileID: 1320143053}
   curHelpBirdPos: {x: 0, y: 0, z: 0}
@@ -60888,6 +60901,7 @@ MonoBehaviour:
   scenTapEnabScript: {fileID: 0}
   clickOnEggsScript: {fileID: 0}
   lvlTapManScript: {fileID: 0}
+  helpIntroTxtScript: {fileID: 0}
 --- !u!114 &1683982894
 MonoBehaviour:
   m_ObjectHideFlags: 0

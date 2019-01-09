@@ -14,7 +14,7 @@ public class FadeInOutSprite : MonoBehaviour
 
 	public float fadeDuration;
 	public bool fadeOnStart = true;
-	public bool fadeDelay;
+	public bool fadeDelay, disableOnFadeOut;
 	public SpriteRenderer sprite;
 
 
@@ -45,8 +45,10 @@ public class FadeInOutSprite : MonoBehaviour
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(1f * maxAlpha, 0f, t));
 			if (t >= 1f)
 			{
-				//this.gameObject.SetActive(false);
 				fadingOut = false;
+				if(disableOnFadeOut) {
+					this.gameObject.SetActive(false);
+				}
 			}
 		}
 

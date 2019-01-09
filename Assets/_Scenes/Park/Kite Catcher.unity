@@ -186,6 +186,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &3284420
 MonoBehaviour:
@@ -359,6 +360,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &17080952
 GameObject:
@@ -496,8 +498,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &36443645
 MonoBehaviour:
@@ -649,6 +652,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &46739833
 MonoBehaviour:
@@ -843,6 +847,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!4 &66345136 stripped
 Transform:
@@ -944,6 +949,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &71037157
 Prefab:
@@ -1040,6 +1046,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &81705627
 GameObject:
@@ -1114,6 +1121,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &81705631
 MonoBehaviour:
@@ -1287,6 +1295,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &99786325
 Prefab:
@@ -1379,6 +1388,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &119567623
 GameObject:
@@ -1388,6 +1398,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 119567624}
+  - component: {fileID: 119567625}
   m_Layer: 0
   m_Name: Level 01 Stuff
   m_TagString: Untagged
@@ -1413,6 +1424,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &119567625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 119567623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76705cd8870cfea4ab2f5fdbefd8de68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FIParents:
+  - {fileID: 635591106}
+  - {fileID: 885606529}
+  - {fileID: 1243802124}
+  FIFadeScripts:
+  - {fileID: 859126884}
+  - {fileID: 1243802127}
 --- !u!1001 &121949327
 Prefab:
   m_ObjectHideFlags: 0
@@ -1504,6 +1533,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &128366589
 Prefab:
@@ -1596,6 +1626,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &138525676
 GameObject:
@@ -1705,6 +1736,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 139316595}
+  - component: {fileID: 139316596}
   m_Layer: 0
   m_Name: Level 02 Stuff
   m_TagString: Untagged
@@ -1730,6 +1762,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &139316596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 139316594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76705cd8870cfea4ab2f5fdbefd8de68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FIParents:
+  - {fileID: 720741841}
+  - {fileID: 1905215431}
+  - {fileID: 1444577629}
+  FIFadeScripts:
+  - {fileID: 766589227}
+  - {fileID: 1444577630}
 --- !u!1 &142692612
 GameObject:
   m_ObjectHideFlags: 0
@@ -6420,6 +6470,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!212 &148193774
 SpriteRenderer:
@@ -6544,6 +6595,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &183493507
 MonoBehaviour:
@@ -6717,6 +6769,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &207602280
 GameObject:
@@ -6809,6 +6862,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &208611231
 GameObject:
@@ -6883,6 +6937,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &208611235
 MonoBehaviour:
@@ -7034,6 +7089,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &267892975
 MonoBehaviour:
@@ -7234,6 +7290,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!95 &282102090
 Animator:
@@ -7365,6 +7422,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &288169389
 GameObject:
@@ -7476,6 +7534,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!95 &288169394
 Animator:
@@ -7607,6 +7666,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &304795038
 GameObject:
@@ -7718,6 +7778,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!95 &304795043
 Animator:
@@ -7911,6 +7972,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &339855479
 GameObject:
@@ -7985,6 +8047,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &339855483
 MonoBehaviour:
@@ -8136,6 +8199,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &355913605
 MonoBehaviour:
@@ -8292,6 +8356,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &381580380
 MonoBehaviour:
@@ -8461,6 +8526,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &383347029 stripped
 MonoBehaviour:
@@ -8565,6 +8631,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &395961921
 Prefab:
@@ -8765,6 +8832,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &430670339
 GameObject:
@@ -8837,8 +8905,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &430670343
 MonoBehaviour:
@@ -9008,6 +9077,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &436012894
 GameObject:
@@ -9135,6 +9205,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &452977294
 GameObject:
@@ -13851,8 +13922,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &456673430
 MonoBehaviour:
@@ -14060,8 +14132,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &467636196
 MonoBehaviour:
@@ -14231,6 +14304,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &490511054
 GameObject:
@@ -14342,6 +14416,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!95 &490511059
 Animator:
@@ -14449,8 +14524,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &520579057
 MonoBehaviour:
@@ -14624,6 +14700,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &569876381
 GameObject:
@@ -14837,6 +14914,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &580001548
 GameObject:
@@ -14929,6 +15007,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &594371958
 Prefab:
@@ -15025,6 +15104,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &614677187
 GameObject:
@@ -15099,6 +15179,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &614677191
 MonoBehaviour:
@@ -15223,6 +15304,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!212 &615503156
 SpriteRenderer:
@@ -15364,6 +15446,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &635591106
 GameObject:
@@ -15505,6 +15588,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &642867427
 GameObject:
@@ -15579,6 +15663,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &642867431
 MonoBehaviour:
@@ -15667,7 +15752,9 @@ GameObject:
   - component: {fileID: 654759644}
   - component: {fileID: 654759645}
   - component: {fileID: 654759646}
+  - component: {fileID: 654759648}
   - component: {fileID: 654759647}
+  - component: {fileID: 654759649}
   m_Layer: 0
   m_Name: GameEngine
   m_TagString: Untagged
@@ -15699,6 +15786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79df16cab91b5184ab096b025d845747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myInput: {fileID: 654759647}
   mouseClickHeld: 0
   mouseClick: 0
   distToDrag: 0.75
@@ -15728,28 +15816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40f0e3a93f97cc469bdf85ccb53d5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateMousePos: {x: 0, y: 0, z: 0}
   connections: 0
-  lvlTilesFadeScripts:
-  - {fileID: 635591106}
-  - {fileID: 720741841}
-  - {fileID: 2054433729}
-  lvlTileBacksFadeScripts:
-  - {fileID: 885606529}
-  - {fileID: 1905215431}
-  - {fileID: 1766772497}
-  lvlBackShadowsFadeScripts:
-  - {fileID: 859126884}
-  - {fileID: 766589227}
-  - {fileID: 953156037}
-  lvlKites:
-  - {fileID: 1243802124}
-  - {fileID: 1444577629}
-  - {fileID: 2098721180}
-  lvlKitesFadeScripts:
-  - {fileID: 1243802127}
-  - {fileID: 1444577630}
-  - {fileID: 2098721183}
   bGSizes:
   - 1
   - 0.7315
@@ -15757,6 +15824,13 @@ MonoBehaviour:
   bgScleScript: {fileID: 716244487}
   curntLvl: 0
   clickToRotTileScript: {fileID: 654759645}
+  myInput: {fileID: 654759647}
+  mySilverEggMan: {fileID: 654759648}
+  mySelectButton: {fileID: 654759649}
+  levelsStuff:
+  - {fileID: 119567625}
+  - {fileID: 139316596}
+  - {fileID: 1466544558}
   winLvl: 4
   itemsWait: 0
   itemWaitAmnt: 1
@@ -15766,40 +15840,6 @@ MonoBehaviour:
   - {fileID: 720741841}
   - {fileID: 2054433729}
   itemHolder: {fileID: 0}
-  silverEggsPickedUp: 0
-  hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
-  lvlSilverEggs:
-  - {fileID: 1819915416}
-  - {fileID: 1819915415}
-  - {fileID: 1819915414}
-  activeSilverEggs: []
-  allSilEggs:
-  - {fileID: 1819915413}
-  - {fileID: 1819915412}
-  - {fileID: 1819915411}
-  - {fileID: 1819915410}
-  - {fileID: 1819915409}
-  - {fileID: 1819915408}
-  allSilverEggsScripts:
-  - {fileID: 1819915407}
-  - {fileID: 1819915406}
-  - {fileID: 1819915405}
-  - {fileID: 1819915404}
-  - {fileID: 1819915403}
-  - {fileID: 1819915402}
-  amntSilEggsTapped: 0
-  lvlSelectButtons:
-  - {fileID: 1121753381}
-  - {fileID: 1945278921}
-  - {fileID: 1275956114}
-  lvlSelectFades:
-  - {fileID: 383347030}
-  - {fileID: 1045255057}
-  - {fileID: 273393444}
-  lvlSelectScalers:
-  - {fileID: 383347029}
-  - {fileID: 1045255056}
-  - {fileID: 273393443}
   seqTimer: 0
   iniSeqDelay: 0
   crateDownF: 0
@@ -15827,24 +15867,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPhoneDevice: 0
-  eggTapped: 0
+  cancelDoubleTap: 0
   detectTap: 1
   singleTap: 0
   detectDoubleTap: 0
   minDoubleTapTime: 0.5
-  detectDrag: 0
+  detectDrag: 1
   draggingDeathzone: 0
   startDragTouch: {x: 0, y: 0}
   draggingPosition: {x: 0, y: 0}
   prevDragPosition: {x: 0, y: 0}
+  releaseDragPos: {x: 0, y: 0}
   isDragging: 0
   dragStarted: 0
+  dragReleased: 0
   detectDoubleTouch: 0
   doubleTouched: 0
   touchOne: {x: 0, y: 0}
   touchTwo: {x: 0, y: 0}
   detectSwipe: 0
   swipeDeathzoneRadius: 50
+--- !u!114 &654759648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 654759643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16650ec3b9e7a7843a3a82401c181219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverEggsPickedUp: 0
+  hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
+  lvlSilverEggs:
+  - {fileID: 1819915416}
+  - {fileID: 1819915415}
+  - {fileID: 1819915414}
+  activeSilverEggs: []
+  allSilEggs:
+  - {fileID: 1819915413}
+  - {fileID: 1819915412}
+  - {fileID: 1819915411}
+  - {fileID: 1819915410}
+  - {fileID: 1819915409}
+  - {fileID: 1819915408}
+  allSilverEggsScripts:
+  - {fileID: 1819915407}
+  - {fileID: 1819915406}
+  - {fileID: 1819915405}
+  - {fileID: 1819915404}
+  - {fileID: 1819915403}
+  - {fileID: 1819915402}
+  silverEggsActive: 0
+  amntSilEggsTapped: 0
+--- !u!114 &654759649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 654759643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc28010026c82e24ab88c4694b62824f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvlSelectButtons:
+  - {fileID: 1121753381}
+  - {fileID: 1945278921}
+  - {fileID: 1275956114}
+  lvlSelectFades:
+  - {fileID: 383347030}
+  - {fileID: 1045255057}
+  - {fileID: 273393444}
+  lvlSelectScalers:
+  - {fileID: 383347029}
+  - {fileID: 1045255056}
+  - {fileID: 273393443}
+  noFadeDelay: 0
+  buttonsOff: 0
 --- !u!4 &668000947 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a,
@@ -15941,6 +16042,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &699045627
 Prefab:
@@ -16039,10 +16141,25 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114911267965506708, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: kitePuzzEngineScript
+      value: 
+      objectReference: {fileID: 654759646}
+    - target: {fileID: 114554735417159862, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: kitePuzzEngineScript
+      value: 
+      objectReference: {fileID: 654759646}
+    - target: {fileID: 114178883023356010, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: kitePuzzEngineScript
+      value: 
+      objectReference: {fileID: 654759646}
     m_RemovedComponents:
-    - {fileID: 114995140892774336, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
-    - {fileID: 114889952921551396, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
-    - {fileID: 114348398445851992, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
+    - {fileID: 114623957049856342, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
+    - {fileID: 114995268179813580, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
+    - {fileID: 114477810396528820, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &699045628 stripped
@@ -16154,6 +16271,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &716244484
 GameObject:
@@ -16429,6 +16547,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &729259674
 Prefab:
@@ -21159,6 +21278,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 766589228}
 --- !u!212 &766589228
 SpriteRenderer:
@@ -21289,8 +21409,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &767096119
 MonoBehaviour:
@@ -21440,8 +21561,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &769538089
 MonoBehaviour:
@@ -21611,6 +21733,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &797916961
 GameObject:
@@ -21685,6 +21808,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &797916965
 MonoBehaviour:
@@ -21858,6 +21982,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &805468393
 Prefab:
@@ -21950,6 +22075,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &818869643
 GameObject:
@@ -22024,6 +22150,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &818869647
 MonoBehaviour:
@@ -22175,6 +22302,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &822720365
 MonoBehaviour:
@@ -22324,8 +22452,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &833007445
 MonoBehaviour:
@@ -22489,6 +22618,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 859126885}
 --- !u!212 &859126885
 SpriteRenderer:
@@ -22621,6 +22751,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &865151491
 MonoBehaviour:
@@ -22896,6 +23027,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &885069887
 GameObject:
@@ -22968,8 +23100,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &885069891
 MonoBehaviour:
@@ -23212,6 +23345,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!95 &932671842
 Animator:
@@ -23324,8 +23458,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &934779543
 MonoBehaviour:
@@ -23489,6 +23624,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 953156038}
 --- !u!212 &953156038
 SpriteRenderer:
@@ -23643,6 +23779,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1002971509
 GameObject:
@@ -23717,6 +23854,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1002971513
 MonoBehaviour:
@@ -23890,6 +24028,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1045255056 stripped
 MonoBehaviour:
@@ -23998,6 +24137,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1059680054
 GameObject:
@@ -24070,8 +24210,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1059680058
 MonoBehaviour:
@@ -24221,8 +24362,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1077997558
 MonoBehaviour:
@@ -24374,6 +24516,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1085425590
 MonoBehaviour:
@@ -24525,6 +24668,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1088742150
 MonoBehaviour:
@@ -24698,6 +24842,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &1107292239
 Prefab:
@@ -24794,6 +24939,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &1119732256
 Prefab:
@@ -24886,26 +25032,13 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1121753381 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1378933569856640, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
---- !u!114 &1121753382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1121753381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 654759646}
-  thisButton: {fileID: 699045630}
-  levelToLoad: 1
 --- !u!1001 &1175332951
 Prefab:
   m_ObjectHideFlags: 0
@@ -25029,8 +25162,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1200425043
 MonoBehaviour:
@@ -25180,8 +25314,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1207652188
 MonoBehaviour:
@@ -25351,6 +25486,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1242911571
 GameObject:
@@ -30089,6 +30225,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &1250335335
 Prefab:
@@ -30181,26 +30318,13 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1275956114 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1273037928703732, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
---- !u!114 &1275956115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1275956114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 654759646}
-  thisButton: {fileID: 699045628}
-  levelToLoad: 3
 --- !u!1 &1308605109
 GameObject:
   m_ObjectHideFlags: 0
@@ -34913,6 +35037,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1328242820
 GameObject:
@@ -34987,6 +35112,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1328242824
 MonoBehaviour:
@@ -35253,6 +35379,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1418621220
 GameObject:
@@ -35393,6 +35520,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!95 &1437557808
 Animator:
@@ -35462,6 +35590,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!212 &1444577631
 SpriteRenderer:
@@ -35596,6 +35725,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1451170448
 MonoBehaviour:
@@ -35769,6 +35899,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1457517642
 GameObject:
@@ -35843,6 +35974,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1457517646
 MonoBehaviour:
@@ -35981,6 +36113,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1466544557}
+  - component: {fileID: 1466544558}
   m_Layer: 0
   m_Name: Level 03 Stuff
   m_TagString: Untagged
@@ -36006,6 +36139,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1466544558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1466544556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76705cd8870cfea4ab2f5fdbefd8de68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FIParents:
+  - {fileID: 2054433729}
+  - {fileID: 1766772497}
+  - {fileID: 2098721180}
+  FIFadeScripts:
+  - {fileID: 953156037}
+  - {fileID: 2098721183}
 --- !u!1001 &1479114257
 Prefab:
   m_ObjectHideFlags: 0
@@ -36131,6 +36282,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1484929799
 MonoBehaviour:
@@ -36300,6 +36452,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &1501485824
 Prefab:
@@ -36396,6 +36549,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1504575189
 GameObject:
@@ -36468,8 +36622,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1504575193
 MonoBehaviour:
@@ -36621,6 +36776,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1507357523
 MonoBehaviour:
@@ -36772,6 +36928,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1512689288
 MonoBehaviour:
@@ -36923,6 +37080,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1513088379
 MonoBehaviour:
@@ -37092,6 +37250,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1554540132
 GameObject:
@@ -41852,6 +42011,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1562866168
 MonoBehaviour:
@@ -46622,8 +46782,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1590065776
 MonoBehaviour:
@@ -46775,6 +46936,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1618939799
 MonoBehaviour:
@@ -46978,6 +47140,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1627667909
 MonoBehaviour:
@@ -47203,6 +47366,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1674798301
 GameObject:
@@ -51920,6 +52084,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1720634540
 GameObject:
@@ -52109,6 +52274,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1731794126
 GameObject:
@@ -52183,6 +52349,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1731794130
 MonoBehaviour:
@@ -52423,6 +52590,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1766772497
 GameObject:
@@ -52540,6 +52708,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1803499425
 MonoBehaviour:
@@ -52709,6 +52878,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1809531592
 GameObject:
@@ -57828,6 +57998,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 1819915423}
 --- !u!58 &1819915422
 CircleCollider2D:
@@ -58082,6 +58253,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 1819915429}
 --- !u!58 &1819915428
 CircleCollider2D:
@@ -58336,6 +58508,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 1819915435}
 --- !u!58 &1819915434
 CircleCollider2D:
@@ -58606,6 +58779,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 1819915442}
 --- !u!58 &1819915441
 CircleCollider2D:
@@ -58860,6 +59034,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 1819915448}
 --- !u!58 &1819915447
 CircleCollider2D:
@@ -59175,6 +59350,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 1819915456}
 --- !u!58 &1819915455
 CircleCollider2D:
@@ -73315,6 +73491,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &1896691632
 Prefab:
@@ -73484,6 +73661,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1923896920
 MonoBehaviour:
@@ -73635,6 +73813,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1927443959
 MonoBehaviour:
@@ -73814,8 +73993,9 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
-  fadeOnStart: 1
+  fadeOnStart: 0
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &1939240631
 MonoBehaviour:
@@ -73985,26 +74165,13 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &1945278921 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1628192426425242, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
---- !u!114 &1945278922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1945278921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 654759646}
-  thisButton: {fileID: 699045629}
-  levelToLoad: 2
 --- !u!1001 &1952409072
 Prefab:
   m_ObjectHideFlags: 0
@@ -74100,6 +74267,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1001 &1979882983
 Prefab:
@@ -74271,6 +74439,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &2095911925
 MonoBehaviour:
@@ -74448,6 +74617,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!1 &2133032640
 GameObject:
@@ -74540,6 +74710,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &2134140942 stripped
 MonoBehaviour:
@@ -74620,6 +74791,7 @@ MonoBehaviour:
   fadeDuration: 2
   fadeOnStart: 1
   fadeDelay: 0
+  disableOnFadeOut: 0
   sprite: {fileID: 0}
 --- !u!114 &2142915840
 MonoBehaviour:

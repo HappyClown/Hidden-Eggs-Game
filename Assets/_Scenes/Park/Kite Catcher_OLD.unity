@@ -1388,7 +1388,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 119567624}
-  - component: {fileID: 119567625}
   m_Layer: 0
   m_Name: Level 01 Stuff
   m_TagString: Untagged
@@ -1414,24 +1413,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &119567625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 119567623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76705cd8870cfea4ab2f5fdbefd8de68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FIParents:
-  - {fileID: 635591106}
-  - {fileID: 885606529}
-  - {fileID: 1243802124}
-  FIFadeScripts:
-  - {fileID: 859126884}
-  - {fileID: 1243802127}
 --- !u!1001 &121949327
 Prefab:
   m_ObjectHideFlags: 0
@@ -1724,7 +1705,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 139316595}
-  - component: {fileID: 139316596}
   m_Layer: 0
   m_Name: Level 02 Stuff
   m_TagString: Untagged
@@ -1750,24 +1730,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &139316596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 139316594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76705cd8870cfea4ab2f5fdbefd8de68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FIParents:
-  - {fileID: 720741841}
-  - {fileID: 1905215431}
-  - {fileID: 1444577629}
-  FIFadeScripts:
-  - {fileID: 766589227}
-  - {fileID: 1444577630}
 --- !u!1 &142692612
 GameObject:
   m_ObjectHideFlags: 0
@@ -15705,9 +15667,7 @@ GameObject:
   - component: {fileID: 654759644}
   - component: {fileID: 654759645}
   - component: {fileID: 654759646}
-  - component: {fileID: 654759648}
   - component: {fileID: 654759647}
-  - component: {fileID: 654759649}
   m_Layer: 0
   m_Name: GameEngine
   m_TagString: Untagged
@@ -15739,7 +15699,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79df16cab91b5184ab096b025d845747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myInput: {fileID: 654759647}
   mouseClickHeld: 0
   mouseClick: 0
   distToDrag: 0.75
@@ -15771,10 +15730,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateMousePos: {x: 0, y: 0, z: 0}
   connections: 0
-  levelsStuff:
-  - {fileID: 119567625}
-  - {fileID: 139316596}
-  - {fileID: 1466544558}
+  lvlTilesFadeScripts:
+  - {fileID: 635591106}
+  - {fileID: 720741841}
+  - {fileID: 2054433729}
+  lvlTileBacksFadeScripts:
+  - {fileID: 885606529}
+  - {fileID: 1905215431}
+  - {fileID: 1766772497}
+  lvlBackShadowsFadeScripts:
+  - {fileID: 859126884}
+  - {fileID: 766589227}
+  - {fileID: 953156037}
+  lvlKites:
+  - {fileID: 1243802124}
+  - {fileID: 1444577629}
+  - {fileID: 2098721180}
+  lvlKitesFadeScripts:
+  - {fileID: 1243802127}
+  - {fileID: 1444577630}
+  - {fileID: 2098721183}
   bGSizes:
   - 1
   - 0.7315
@@ -15782,9 +15757,6 @@ MonoBehaviour:
   bgScleScript: {fileID: 716244487}
   curntLvl: 0
   clickToRotTileScript: {fileID: 654759645}
-  myInput: {fileID: 654759647}
-  mySilverEggMan: {fileID: 654759648}
-  mySelectButton: {fileID: 654759649}
   winLvl: 4
   itemsWait: 0
   itemWaitAmnt: 1
@@ -15794,6 +15766,40 @@ MonoBehaviour:
   - {fileID: 720741841}
   - {fileID: 2054433729}
   itemHolder: {fileID: 0}
+  silverEggsPickedUp: 0
+  hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
+  lvlSilverEggs:
+  - {fileID: 1819915416}
+  - {fileID: 1819915415}
+  - {fileID: 1819915414}
+  activeSilverEggs: []
+  allSilEggs:
+  - {fileID: 1819915413}
+  - {fileID: 1819915412}
+  - {fileID: 1819915411}
+  - {fileID: 1819915410}
+  - {fileID: 1819915409}
+  - {fileID: 1819915408}
+  allSilverEggsScripts:
+  - {fileID: 1819915407}
+  - {fileID: 1819915406}
+  - {fileID: 1819915405}
+  - {fileID: 1819915404}
+  - {fileID: 1819915403}
+  - {fileID: 1819915402}
+  amntSilEggsTapped: 0
+  lvlSelectButtons:
+  - {fileID: 1121753381}
+  - {fileID: 1945278921}
+  - {fileID: 1275956114}
+  lvlSelectFades:
+  - {fileID: 383347030}
+  - {fileID: 1045255057}
+  - {fileID: 273393444}
+  lvlSelectScalers:
+  - {fileID: 383347029}
+  - {fileID: 1045255056}
+  - {fileID: 273393443}
   seqTimer: 0
   iniSeqDelay: 0
   crateDownF: 0
@@ -15826,80 +15832,19 @@ MonoBehaviour:
   singleTap: 0
   detectDoubleTap: 0
   minDoubleTapTime: 0.5
-  detectDrag: 1
+  detectDrag: 0
   draggingDeathzone: 0
   startDragTouch: {x: 0, y: 0}
   draggingPosition: {x: 0, y: 0}
   prevDragPosition: {x: 0, y: 0}
-  releaseDragPos: {x: 0, y: 0}
   isDragging: 0
   dragStarted: 0
-  dragReleased: 0
   detectDoubleTouch: 0
   doubleTouched: 0
   touchOne: {x: 0, y: 0}
   touchTwo: {x: 0, y: 0}
   detectSwipe: 0
   swipeDeathzoneRadius: 50
---- !u!114 &654759648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 654759643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16650ec3b9e7a7843a3a82401c181219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  silverEggsPickedUp: 0
-  hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
-  lvlSilverEggs:
-  - {fileID: 1819915416}
-  - {fileID: 1819915415}
-  - {fileID: 1819915414}
-  activeSilverEggs: []
-  allSilEggs:
-  - {fileID: 1819915413}
-  - {fileID: 1819915412}
-  - {fileID: 1819915411}
-  - {fileID: 1819915410}
-  - {fileID: 1819915409}
-  - {fileID: 1819915408}
-  allSilverEggsScripts:
-  - {fileID: 1819915407}
-  - {fileID: 1819915406}
-  - {fileID: 1819915405}
-  - {fileID: 1819915404}
-  - {fileID: 1819915403}
-  - {fileID: 1819915402}
-  silverEggsActive: 0
-  amntSilEggsTapped: 0
---- !u!114 &654759649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 654759643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc28010026c82e24ab88c4694b62824f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lvlSelectButtons:
-  - {fileID: 1121753381}
-  - {fileID: 1945278921}
-  - {fileID: 1275956114}
-  lvlSelectFades:
-  - {fileID: 383347030}
-  - {fileID: 1045255057}
-  - {fileID: 273393444}
-  lvlSelectScalers:
-  - {fileID: 383347029}
-  - {fileID: 1045255056}
-  - {fileID: 273393443}
-  noFadeDelay: 0
-  buttonsOff: 0
 --- !u!4 &668000947 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a,
@@ -16094,22 +16039,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114911267965506708, guid: f6590d017bc3c234a96bcad1a157f613,
-        type: 2}
-      propertyPath: kitePuzzEngineScript
-      value: 
-      objectReference: {fileID: 654759646}
-    - target: {fileID: 114554735417159862, guid: f6590d017bc3c234a96bcad1a157f613,
-        type: 2}
-      propertyPath: kitePuzzEngineScript
-      value: 
-      objectReference: {fileID: 654759646}
-    - target: {fileID: 114178883023356010, guid: f6590d017bc3c234a96bcad1a157f613,
-        type: 2}
-      propertyPath: kitePuzzEngineScript
-      value: 
-      objectReference: {fileID: 654759646}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114995140892774336, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
+    - {fileID: 114889952921551396, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
+    - {fileID: 114348398445851992, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
   m_IsPrefabParent: 0
 --- !u!114 &699045628 stripped
@@ -24959,6 +24892,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 1378933569856640, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
+--- !u!114 &1121753382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121753381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitePuzzEngineScript: {fileID: 654759646}
+  thisButton: {fileID: 699045630}
+  levelToLoad: 1
 --- !u!1001 &1175332951
 Prefab:
   m_ObjectHideFlags: 0
@@ -30240,6 +30187,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 1273037928703732, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
+--- !u!114 &1275956115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1275956114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitePuzzEngineScript: {fileID: 654759646}
+  thisButton: {fileID: 699045628}
+  levelToLoad: 3
 --- !u!1 &1308605109
 GameObject:
   m_ObjectHideFlags: 0
@@ -36020,7 +35981,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1466544557}
-  - component: {fileID: 1466544558}
   m_Layer: 0
   m_Name: Level 03 Stuff
   m_TagString: Untagged
@@ -36046,24 +36006,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1466544558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1466544556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76705cd8870cfea4ab2f5fdbefd8de68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FIParents:
-  - {fileID: 2054433729}
-  - {fileID: 1766772497}
-  - {fileID: 2098721180}
-  FIFadeScripts:
-  - {fileID: 953156037}
-  - {fileID: 2098721183}
 --- !u!1001 &1479114257
 Prefab:
   m_ObjectHideFlags: 0
@@ -74049,6 +73991,20 @@ GameObject:
   m_PrefabParentObject: {fileID: 1628192426425242, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 699045627}
+--- !u!114 &1945278922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1945278921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kitePuzzEngineScript: {fileID: 654759646}
+  thisButton: {fileID: 699045629}
+  levelToLoad: 2
 --- !u!1001 &1952409072
 Prefab:
   m_ObjectHideFlags: 0

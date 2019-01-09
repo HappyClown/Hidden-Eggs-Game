@@ -10,11 +10,10 @@ public class KitePuzzEngine : MonoBehaviour
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
-	public Vector3 updateMousePos;
+	//public Vector3 updateMousePos;
 	public int connections;
 
-	[Header("Fafe in out variables")]
-	public FadeInOutManager[] levelsStuff;
+	
 	// public List<GameObject> lvlTilesFadeScripts;
 	// public List<GameObject> lvlTileBacksFadeScripts;
 	// public List<FadeInOutSprite> lvlBackShadowsFadeScripts;
@@ -34,15 +33,15 @@ public class KitePuzzEngine : MonoBehaviour
 	public SilverEggsManager mySilverEggMan;
 	[Header("Selection Buttons")]
 	public LevelSelectionButtons mySelectButton;
+	[Header("Fade in out variables")]
+	public FadeInOutManager[] levelsStuff;
 	#endregion
 	#region GrabItem Script Variables
 	[Header("General")]
-
 	public int winLvl;
 	public bool itemsWait;
 	public float itemWaitAmnt;
 	private float itemWaitTimer;
-
 	private bool initialSetupOn;
 	private bool setupChsnLvl;
 	// For Delegate Method
@@ -114,14 +113,14 @@ public class KitePuzzEngine : MonoBehaviour
 
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 
-			#region Click
-			// Click //
-			if (myInput.Tapped)
-			{
-				UpdateMousePos();
-				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			}
-			#endregion
+			// #region Click
+			// // Click //
+			// if (myInput.Tapped)
+			// {
+			// 	UpdateMousePos();
+			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+			// }
+			// #endregion
 
 		}
 		else
@@ -423,7 +422,7 @@ public class KitePuzzEngine : MonoBehaviour
 	{
 		levelsStuff[curntLvl -1].StartLvlFadeIn();
 		Debug.Log("Should fade in stuff."); // Fade in tiles
-		 if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
+		if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
 		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		// childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>(); 
 		// for (int i = 0; i < childrenTileFadeScripts.Length; i++)
@@ -515,86 +514,6 @@ public class KitePuzzEngine : MonoBehaviour
 	#endregion
 
 	#region Coroutines
-	// // Move crate to the right.
-	// public IEnumerator MoveCrateRight ()
-	// {
-	// 	//Make it skip a frame to make sure that the animation has time to start.
-	// 	yield return new WaitForSeconds(0.0001f);
-	// 	//yield return new WaitUntil(!crateAnim.IsInTransition(0));
-		
-
-	// 	while (crateAnim.transform.parent.rotation != crateInSceneTransform.rotation)
-	// 	{
-	// 		// crateAnim.transform.parent.eulerAngles = Vector3.Lerp(crateAnim.transform.parent.eulerAngles, crateInSceneTransform.eulerAngles, Time.deltaTime);
-	// 		float Zangle = crateAnim.transform.parent.eulerAngles.z;
-	// 		Zangle = Mathf.LerpAngle(crateAnim.transform.parent.eulerAngles.z, 0f, Time.deltaTime * crateMoveSpeed);
-	// 		crateAnim.transform.parent.eulerAngles = new Vector3(0, 0, Zangle);
-	// 		//Debug.Log(crateAnim.transform.parent.eulerAngles);
-
-	// 		if (Vector3.Distance(crateAnim.transform.parent.eulerAngles, crateInSceneTransform.eulerAngles) <= 0.1f)
-	// 		{
-	// 			crateAnim.transform.parent.rotation = crateInSceneTransform.rotation;
-	// 		}
-
-	// 		yield return null;
-	// 	}
-	// 	crateAnim.SetTrigger("MoveRight");
-
-	// 	yield return new WaitForSeconds(0.0001f);
-
-	// 	while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveRight"))
-	// 	{
-	// 		//Debug.Log("Playing anim move right.");
-	// 		yield return null;
-	// 	}
-
-	// 	// foreach (Transform item in crateParent.transform) // DONT THINK ITS NEEDED 
-	// 	// {
-	// 	// 	//Debug.Log("Going through the keeds");
-	// 	// 	if(item.gameObject.CompareTag("Item"))
-	// 	// 	{
-	// 	// 		SpriteRenderer sprRen = item.GetComponent<SpriteRenderer>();
-	// 	// 		sprRen.color = new Color(sprRen.color.r, sprRen.color.g, sprRen.color.b, 0f);
-	// 	// 	}
-	// 	// }
-	// 	scaleScript.itemOnScale = null; // Deleted both scale lines if we want scale arrow to reset after silver eggs have been clicked. 
-	// 	scaleScript.isAnItemOnScale = false; //
-
-	// 	crateParent.transform.parent.position = crateTopTransform.position;
-	// 	crateParent.transform.parent.rotation = crateTopTransform.rotation;
-
-	// 	lvlSilverEggs[curntLvl - 1].SetActive(true);
-	// 	resetItemsButtonScript.EndOfLevelReset();
-	// 	itemHolder.SetActive(false);
-	// 	scrnDarkImgScript.FadeIn();
-	// 	crateAnim.SetTrigger("MoveDown");
-	// 	StartCoroutine(MoveCrateDown());
-	// }
-
-
-	// // Move crate down.
-	// public IEnumerator MoveCrateDown ()
-	// {
-	// 	//Debug.Log("Entered Coroutine MoveCrateDown. Yo.");
-	// 	yield return new WaitUntil(() => crateParent.transform.parent.position == crateTopTransform.position);
-	// 	//Debug.Log("CrateParent pos = crateTop pos.");
-	// 	while (crateAnim.GetCurrentAnimatorStateInfo(0).IsName("CrateMoveDown"))
-	// 	{
-	// 		//Debug.Log("MoveCrateDown Animating.");
-	// 		yield return null;
-	// 	}
-	// 	//Debug.Log("should take anim pos");
-	// 	crateParent.transform.parent.position = crateAnim.transform.position;
-	// 	crateParent.transform.parent.rotation = crateAnim.transform.rotation;
-
-	// 	// foreach activesilvereggs getcomponenet silvereggsequence startsequence = true
-	// 	foreach(GameObject silEgg in activeSilverEggs)
-	// 	{
-	// 		silEgg.GetComponent<SilverEggSequence>().StartSequence();
-	// 	}
-	// }
-
-
 	// All silver eggs picked up, what happenes?
 	public IEnumerator PuzzleComplete ()
 	{
