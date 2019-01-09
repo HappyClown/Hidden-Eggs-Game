@@ -10,6 +10,7 @@ public class BeachClam : MonoBehaviour {
 	public FadeInOutSprite myClosedClam;
 	public BeachBubbles[] myBubbles;
 	private Collider2D myCollider;
+	[Tooltip("Time before clam dissapears after match")]
 	public float timeDelay;
 	private float timer;
 	public bool Tapped, open, matched, failed, closed, forceClose;
@@ -55,11 +56,12 @@ public class BeachClam : MonoBehaviour {
 				forceClose = false;
 			}
 		}
-		if(open && myMatch.open){
+		if(open && myMatch.matched){
 			timer += Time.deltaTime;
-			if(timer >= timeDelay  && !matched){
+			if(timer >= timeDelay  && open){
 				myOpenClam.FadeOut();
 				matched = true;
+				open = false;
 			}
 		}
 	}

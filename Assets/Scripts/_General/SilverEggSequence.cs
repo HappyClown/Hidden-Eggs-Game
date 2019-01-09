@@ -128,7 +128,7 @@ public class SilverEggSequence : MonoBehaviour
 		startPos = this.transform.localPosition;
 		startScale = this.transform.localScale;
 
-		audioSilEggScript.SilverEggTrailSFX();
+		//audioSilEggScript.SilverEggTrailSFX();
 		//trailFX.Play();
 		//shimmerFX.Play();
 	}
