@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114781903953548234}
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   EditorEvents:
   - {fileID: 114677796324399320}
   - {fileID: 114805007708511586}
@@ -84,9 +84,9 @@ MonoBehaviour:
   - {fileID: 114782341906025364}
   - {fileID: 114865474175727020}
   - {fileID: 114337907804888186}
-  MasterBankRef: {fileID: 114373216123187966}
+  MasterBankRef: {fileID: 114262233947223062}
   StringsBankRef: {fileID: 114781903953548234}
-  stringsBankWriteTime: 636784016255872477
+  stringsBankWriteTime: 636799548239864249
   cacheVersion: 2
 --- !u!114 &114001369358145530
 MonoBehaviour:
@@ -238,6 +238,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114016167668276868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114016385629135828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +387,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/Puzzle_Click
   guid: c390c33b2d093d4badd3c278b0afbdcf
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -544,7 +559,7 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Park_Puzzle
   guid: 7c15c4dc85c6dc4d9e016dfb0846c0ff
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -656,7 +671,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_scaleWiggle
   guid: 93b7cd19c1583547ac233a862dd45457
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -819,7 +834,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_crateSlideDown
   guid: d5666ce0d108774c907c3effd33edd99
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1156,12 +1171,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToMarketPuzzle
   guid: 2ac7c6abc4a003479978422d19db6117
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114436817929376452}
+  - {fileID: 114268097480196802}
   MinDistance: 0
   MaxDistance: 0
   Length: 29387
@@ -1179,7 +1194,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_TileRotate
   guid: aceabdbaa816944caf55818f4a1ef5fa
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1201,7 +1216,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Puzzle_Click
   guid: efca2b00aae0cb4da66dd0c218e34efa
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1328,7 +1343,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_fruitPickUp
   guid: 4e2bfb3e0914b94284764daccba941c9
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1530,15 +1545,30 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromPuzzleToPark
   guid: 37d31171558a9b469c6c1d52c5487be4
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114179313450141380}
+  - {fileID: 114183823402870326}
   MinDistance: 0
   MaxDistance: 0
   Length: 6875
+--- !u!114 &114182421675558652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114182709469578522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1553,7 +1583,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_arrowWiggle
   guid: 3ae3622401dfe94ca4c763a3fbb07fb6
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1561,6 +1591,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1500
+--- !u!114 &114183823402870326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114184996510444578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114185032043725544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,7 +1710,7 @@ MonoBehaviour:
   Path: event:/Music/Stingers/PuzzleUnlocked
   guid: dd8d18a69d2b8548bffa1e66118fe403
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1753,12 +1813,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromMarketToPuzzle
   guid: 76d8ea50972bc347b0793e475dde8835
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114192689005090158}
+  - {fileID: 114791745412003420}
   MinDistance: 0
   MaxDistance: 0
   Length: 6875
@@ -1806,7 +1866,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/Puzzle_Click
   guid: ae73b1a01a5e084aaf15e4d08c80e405
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1888,7 +1948,7 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromHubToMarket
   guid: 6592e23d303bd247af2849936a44f25e
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2096,6 +2156,21 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114234676308766852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114235725956037880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2215,7 +2290,7 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Market _Puzzle
   guid: 48287a1f478347499fbe86e87ed4bf5f
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -2282,12 +2357,12 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_fruitDropCrate
   guid: 44f1368b4af97e4f9921a8e433ed74a3
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114934752325463604}
+  - {fileID: 114608619401593918}
   MinDistance: 0
   MaxDistance: 0
   Length: 890
@@ -2381,6 +2456,27 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114262233947223062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: C:\Users\Camilo\Documents\Unity Projects\Hidden-Eggs-Game\FmodAssets\Desktop\Master
+    Bank.bank
+  lastModified: 636799548243907915
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 38526528
+  - Name: Mobile
+    Value: 95748096
+  Exists: 1
 --- !u!114 &114263484263249662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2486,6 +2582,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+--- !u!114 &114268097480196802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114268365662647806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,12 +2671,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToBeach
   guid: 75a8402f83572a4a8d2c14b60cb88583
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114783276642849698}
+  - {fileID: 114602323116789222}
   MinDistance: 0
   MaxDistance: 0
   Length: 12000
@@ -2614,6 +2725,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114279329047401660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114287262304083214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2673,7 +2799,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_TilePickUp
   guid: f23c6fdbc441ef47a819ebd36f1f8723
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2755,7 +2881,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_crateSlideRight
   guid: 77c530b61bfac446b5b3251fadf1e5a1
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2807,7 +2933,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/Sounds_Puzzle
   guid: a1293ac1ecd4934d88c453bf50df3b64
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2934,7 +3060,7 @@ MonoBehaviour:
   Path: event:/Music/Stingers/GoldenEgg
   guid: 1e64c370917c554391b2af15fb6a9d74
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2957,6 +3083,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+--- !u!114 &114318277019491292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114318351257218482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3031,13 +3172,13 @@ MonoBehaviour:
   Path: event:/Music/OLD/Beach_OLD
   guid: 5a0072383fd987489f2023db45a83a2e
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114202287547510976}
-  - {fileID: 114487113889311642}
+  - {fileID: 114938992899647948}
+  - {fileID: 114792179843741016}
   MinDistance: 0
   MaxDistance: 0
   Length: 155000
@@ -3160,7 +3301,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/CloudsMoving
   guid: 374a0819390a5648b9381839f0974815
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3169,6 +3310,21 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 7575
 --- !u!114 &114339107157942976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114340027066116294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -3302,7 +3458,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/FX_trail
   guid: 229b8aa1161a0b44a44223e02e746af0
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3614,7 +3770,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/Park_Bird
   guid: f1087fe78fdc4f4aa98201d9c185e6aa
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3787,6 +3943,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114408089286177720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Puzzle
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114408966392335152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3816,7 +3987,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/TransitionsSound
   guid: e1d8e326accf83438848463a94f7aa99
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3898,14 +4069,14 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Beach
   guid: 59f838f2f7aa354caec7ec8bb861a50a
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114398265001383926}
-  - {fileID: 114682045643148824}
-  - {fileID: 114259060199689114}
+  - {fileID: 114408089286177720}
+  - {fileID: 114564977796374756}
+  - {fileID: 114699815555296310}
   MinDistance: 0
   MaxDistance: 0
   Length: 157387
@@ -3923,7 +4094,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Button
   guid: e37410c7cb097a4b9bb5e7de4b0562ee
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3945,16 +4116,46 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToBeachPuzzle
   guid: 7aeb44aff4d9ed4586972167ed83dfd4
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114078944210576548}
+  - {fileID: 114517866191254878}
   MinDistance: 0
   MaxDistance: 0
   Length: 29387
+--- !u!114 &114412379213073660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114412698684881050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114413929621625706
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -4058,7 +4259,7 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromSceneToMenu
   guid: e65be36b8285f648a31b85595433f978
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4126,6 +4327,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114428802590604566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114429101470698100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4260,7 +4476,7 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromHubToPark
   guid: 1522f10c03ba734d94b06031bb54ec1c
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4462,7 +4678,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/PuzzleShimyLoop_market
   guid: 457db81a1210b24b94a74f04093dfdbf
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -4514,12 +4730,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromPuzzleToMarket
   guid: dab33de308b13041b290ea3f84078b4c
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114695617382131074}
+  - {fileID: 114907373111820030}
   MinDistance: 0
   MaxDistance: 0
   Length: 6875
@@ -4732,12 +4948,12 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Park
   guid: d8aeddf391423d46b7cf5f85d04f4320
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114295229816415446}
+  - {fileID: 114318277019491292}
   MinDistance: 0
   MaxDistance: 0
   Length: 216536
@@ -5061,12 +5277,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToParkPuzzle
   guid: f04c23d4f927c043bf48ed4fd6897ed1
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114873623208434638}
+  - {fileID: 114413929621625706}
   MinDistance: 0
   MaxDistance: 0
   Length: 38250
@@ -5099,7 +5315,7 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Menu
   guid: 3c979abb3c5cbf4f855ebf2ce340be40
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -5108,6 +5324,21 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 57069
 --- !u!114 &114516625703398578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114517866191254878
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5327,12 +5558,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromBeachToPuzzle
   guid: 2dcf723b71eef745850bd88e8be499c5
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114416285121758302}
+  - {fileID: 114184996510444578}
   MinDistance: 0
   MaxDistance: 0
   Length: 6875
@@ -5380,7 +5611,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Beach_Bird
   guid: 7f360318a335fa49a3f4d551add2fcda
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5494,6 +5725,21 @@ MonoBehaviour:
   Max: 1
   Default: 1
 --- !u!114 &114564926204203372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114564977796374756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5657,12 +5903,12 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Beach_Puzzle
   guid: be47e79b915edf49ac630d94144de386
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114966909521200368}
+  - {fileID: 114234676308766852}
   MinDistance: 0
   MaxDistance: 0
   Length: 157387
@@ -5726,6 +5972,21 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114597466642255450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114601378672501862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5771,6 +6032,36 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114602323116789222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114604617160676676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: NbEggsBySeason
+  Min: 0
+  Max: 75
+  Default: 31.5
 --- !u!114 &114605293273875636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5785,7 +6076,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/GoldenEgg_basketsClick
   guid: 2dac281d182a2d4293ffad7c97f78e87
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -5793,6 +6084,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2531
+--- !u!114 &114608619401593918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114608890843026642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114613675692458152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5853,7 +6174,37 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114617889979659522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114619074588789262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114620118470517392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5942,15 +6293,30 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToMarket
   guid: 68673107ea3c3645923aceca829b0483
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114217177365455582}
+  - {fileID: 114620118470517392}
   MinDistance: 0
   MaxDistance: 0
   Length: 29387
+--- !u!114 &114626706376687264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114630587177742046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5965,12 +6331,12 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Market
   guid: 50bfcc26e5aee245be53f4178834f33c
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114601849524715368}
+  - {fileID: 114428802590604566}
   MinDistance: 0
   MaxDistance: 0
   Length: 157387
@@ -6033,12 +6399,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromPuzzleToBeach
   guid: 6734a939d6d54048995a109ddec283a4
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114831344264866018}
+  - {fileID: 114412379213073660}
   MinDistance: 0
   MaxDistance: 0
   Length: 6875
@@ -6286,12 +6652,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromHubToBeach
   guid: 02fd99530d19a9409077432960249351
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114309317848157242}
+  - {fileID: 114901220284426586}
   MinDistance: 0
   MaxDistance: 0
   Length: 6875
@@ -6414,7 +6780,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_fruitDropScale
   guid: 5043d61078bf4f4bb147476a0c3efcd8
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6541,7 +6907,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Puzzle_unlockedAnimation
   guid: 10207f603ff38243b02b4818c93627fc
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -6580,6 +6946,21 @@ MonoBehaviour:
   Max: 24
   Default: 13.187879
 --- !u!114 &114699747027736980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114699815555296310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -6638,7 +7019,7 @@ MonoBehaviour:
   Path: event:/Music/OLD/Market_Test
   guid: b38a07bf7f691c42881bc159e0d34e33
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -6690,7 +7071,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/MenuEggClose
   guid: 8493d94b756a0f4d90b188fbbb6500a2
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -6922,7 +7303,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Egg_Click_Gold
   guid: 349accb1e219ed44b76f22fe61d7a05f
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7049,7 +7430,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/Market_Bird
   guid: e58d1cedfaeab047b247e9387f97458b
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7161,7 +7542,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Egg_Click_Silver
   guid: 4c8798c17790564caf0a185e39581688
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7333,7 +7714,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/SilverEggAnimation
   guid: a49e17c5aace344ba9f60ceab84ae595
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7488,7 +7869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: FmodAssets\Desktop\Master Bank.strings.bank
-  lastModified: 636784016255872477
+  lastModified: 636799548239864249
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -7510,7 +7891,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_TileDrop
   guid: f96ad98e15aaf9478726207454bcc361
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -7608,6 +7989,51 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114789898675879128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114791745412003420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114792179843741016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Underwater
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114796107232363730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7635,6 +8061,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114798963956451222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
   Min: 0
   Max: 1
   Default: 0
@@ -7682,7 +8123,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/PlayButton
   guid: 8297cde92754c44e8faed333e2142614
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -7719,7 +8160,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/GoldenEggAnimation
   guid: 61b8b96cd9bee341bfa3a40c25d4037e
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -7756,16 +8197,16 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Hub
   guid: 0c357a572991734da767e5e09934f0f0
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114720529143138596}
-  - {fileID: 114693666113984918}
-  - {fileID: 114613675692458152}
-  - {fileID: 114085085053393146}
-  - {fileID: 114878202818799382}
+  - {fileID: 114626706376687264}
+  - {fileID: 114608890843026642}
+  - {fileID: 114789898675879128}
+  - {fileID: 114279329047401660}
+  - {fileID: 114604617160676676}
   MinDistance: 0
   MaxDistance: 0
   Length: 72071
@@ -7873,12 +8314,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToHub
   guid: 13811fc56b8cf1489ee13483c3181d97
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114384025129229802}
+  - {fileID: 114182421675558652}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -8151,7 +8592,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/MenuEggOpen
   guid: acc31d7925c0a5418862990ab0fe6869
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8323,12 +8764,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToMenu
   guid: f9f828c462710b4da6ecdbf6a7fa1c85
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114274245655375242}
+  - {fileID: 114016167668276868}
   MinDistance: 0
   MaxDistance: 0
   Length: 21054
@@ -8591,7 +9032,7 @@ MonoBehaviour:
   Path: event:/Music/Stingers/SilverEgg
   guid: 2cd0deb819bccf41a41e3ff4fee29efb
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8628,7 +9069,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/FX_Squish
   guid: 51aba8e2bd87ed46a2ef47dcb7e5f2ee
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8667,6 +9108,21 @@ MonoBehaviour:
   Max: 1
   Default: 0
 --- !u!114 &114900832563963374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114901220284426586
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -8741,6 +9197,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114907373111820030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114907425954641942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8815,7 +9286,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/HubUncoverFX
   guid: 5c403f039a6c3049b0ded5f15c1740ed
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -8852,7 +9323,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
   guid: e5c570ec395a3540ac8304278e082bfe
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -9075,6 +9546,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114938992899647948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: PuzzleUnlocked
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114940152955107796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9134,7 +9620,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/GoldenEgg_childrenGame
   guid: ddd4f3d99d9569419c7d391e40a01c93
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -9261,12 +9747,12 @@ MonoBehaviour:
   Path: event:/SFX/Park/PuzzleShimyLoop_park
   guid: a73e23f40807ca409a7a9f5ada6f481b
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114080659751459904}
+  - {fileID: 114798963956451222}
   MinDistance: 0
   MaxDistance: 0
   Length: 21446
@@ -9434,7 +9920,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Crab_Click
   guid: 0da8263dae31654cb1225e55d763b373
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -9456,12 +9942,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/ToPark
   guid: 79f433f659e590429457d7f1e779dd3d
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114232101978047382}
+  - {fileID: 114617889979659522}
   MinDistance: 0
   MaxDistance: 0
   Length: 9500
@@ -9599,12 +10085,12 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Egg_Click
   guid: 9bd66f5f728c00489503ee43d620bc7c
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114517984186254426}
+  - {fileID: 114597466642255450}
   MinDistance: 0
   MaxDistance: 0
   Length: 3750
@@ -9622,12 +10108,12 @@ MonoBehaviour:
   Path: event:/Music/TransitionsScenes/OLD/FromParkToPuzzle
   guid: bf698a9609bdcd44bc87e0d277b351be
   Banks:
-  - {fileID: 114373216123187966}
+  - {fileID: 114262233947223062}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114825156200848708}
+  - {fileID: 114340027066116294}
   MinDistance: 0
   MaxDistance: 0
   Length: 6875

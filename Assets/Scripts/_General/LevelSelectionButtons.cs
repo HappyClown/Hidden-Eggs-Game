@@ -14,6 +14,8 @@ public class LevelSelectionButtons : MonoBehaviour {
 	public Scaler[] lvlSelectScalers;
 	public bool noFadeDelay;
 	public bool buttonsOff;
+	public bool buttonPressed;
+	public int lvlToLoad;
 
 	 /// <summary>
      /// Enable the level button Dots.
@@ -68,5 +70,8 @@ public class LevelSelectionButtons : MonoBehaviour {
 		foreach(FadeInOutImage fadeImgScpt in lvlSelectFades)
 		{ fadeImgScpt.fadeDelay = false; }
 	}
-
+	public void ButtonPressed(int ButnNum){
+		buttonPressed = true;
+		lvlToLoad = ButnNum;
+	}
 }

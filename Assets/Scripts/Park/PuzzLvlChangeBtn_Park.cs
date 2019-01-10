@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class PuzzLvlChangeBtn_Park : MonoBehaviour 
 {
 	public KitePuzzEngine kitePuzzEngineScript;
+	public LevelSelectionButtons mySelect;
 	public Button thisButton;
 	public int levelToLoad;
 	 
 
 	void Start () 
 	{
-		thisButton.onClick.AddListener(TryToChangeLevel);
+		thisButton.onClick.AddListener(CamiloProSystem);
 	}
 	
 
@@ -26,5 +27,8 @@ public class PuzzLvlChangeBtn_Park : MonoBehaviour
 			kitePuzzEngineScript.chngLvlTimer = 0f;
 			kitePuzzEngineScript.ChangeLevelSetup();
 		}
+	}
+	void CamiloProSystem(){
+		mySelect.ButtonPressed(levelToLoad);
 	}
 }

@@ -9,13 +9,13 @@ public class BeachClam : MonoBehaviour {
 	public FadeInOutSprite myOpenClam;
 	public FadeInOutSprite myClosedClam;
 	public BeachBubbles[] myBubbles;
-	private Collider2D myCollider;
+	private CircleCollider2D myCollider;
 	[Tooltip("Time before clam dissapears after match")]
 	public float timeDelay;
 	private float timer;
 	public bool Tapped, open, matched, failed, closed, forceClose;
 	void Start () {
-		myCollider = this.gameObject.GetComponent<Collider2D>();
+		myCollider = this.gameObject.GetComponent<CircleCollider2D>();
 		Tapped = open = matched = failed = forceClose =  false;
 		closed = true;
 		timer = 0;
@@ -66,7 +66,8 @@ public class BeachClam : MonoBehaviour {
 		}
 	}
 	public void ResetClams(){
-		myCollider = this.gameObject.GetComponent<Collider2D>();
+		myCollider = this.gameObject.GetComponent<CircleCollider2D>();
+		myCollider.enabled = true;
 		Tapped = open = matched = failed =  false;
 		closed = true;
 		timer = 0;

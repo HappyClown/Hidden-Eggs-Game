@@ -28,7 +28,12 @@ public class BeachClamLevel : MonoBehaviour {
 		foreach (BeachClam clam in myClams)
 		{
 			clam.ResetClams();
-		}		
+		}
+		foreach (ClamSpot clamSpot in clamSpots)
+		{
+			clamSpot.occupied = false;
+		}
+		levelComplete = false;
 	}
 	public void CheckClams(){
 		bool check = true;
