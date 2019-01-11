@@ -8,6 +8,7 @@ public class BeachClam : MonoBehaviour {
 	public BeachClam myMatch;
 	public FadeInOutSprite myOpenClam;
 	public FadeInOutSprite myClosedClam;
+	public GameObject ClamSpriteParent;
 	public BeachBubbles[] myBubbles;
 	private CircleCollider2D myCollider;
 	[Tooltip("Time before clam dissapears after match")]

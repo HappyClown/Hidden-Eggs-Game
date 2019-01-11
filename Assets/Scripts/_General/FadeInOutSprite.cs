@@ -97,6 +97,9 @@ public class FadeInOutSprite : MonoBehaviour
 			//Debug.Log("Should Fade In");
 		}
 	}
+	public void ResetAplpha(float value){
+		sprite.color = new Color(1f, 1f, 1f, value);
+	}
 }
 
 

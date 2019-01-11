@@ -22,6 +22,26 @@ public class BeachClamLevel : MonoBehaviour {
 			availableSpots[rand].occupied = true;
 			availableSpots.Clear();			
 		}
+		foreach (ClamSpot clamSpot in clamSpots)
+		{
+			clamSpot.occupied = false;
+		}
+		foreach (BeachClam clam in myClams)
+		{
+			List<ClamSpot> availableSpots = new List<ClamSpot>();
+			foreach (ClamSpot spot in clamSpots)
+			{
+				if(!spot.occupied){
+					availableSpots.Add(spot);
+				}
+			}
+			int rand = Random.Range(0,availableSpots.Count);
+			Debug.Log(availableSpots.Count);
+			clam.ClamSpriteParent.transform.localRotation = availableSpots[rand].gameObject.transform.localRotation;
+			availableSpots[rand].occupied = true;
+			availableSpots.Clear();			
+		}
+
 
 	}
 	public void ResetLevel(){
