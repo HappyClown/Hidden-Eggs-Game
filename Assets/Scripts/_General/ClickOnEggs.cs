@@ -26,9 +26,7 @@ public class ClickOnEggs : MonoBehaviour
 	public int eggsFound;
 	[Tooltip("Total amount of regular eggs in the scene.")]
 	public int totalRegEggs;
-	public TextMeshProUGUI eggCounterText;
-	public TextMeshProUGUI silverEggCounterText;
-	public TextMeshProUGUI goldenEggCounterText;
+	public TextMeshProUGUI eggCounterText, regEggCounterText, silverEggCounterText, goldenEggCounterText;
 
 	[Header("Picked Up Eggs")]
 	public Vector3 newCornerPos;
@@ -87,6 +85,7 @@ public class ClickOnEggs : MonoBehaviour
 		AdjustSilverEggCount(); // Silver egg text.
 		AdjustGoldenEggCount(); // Golden egg text.
 		AdjustTotalEggsFound();	// Total eggs found = to what it was last time the scene was openned. // Not sure if this is needed.
+		UpdateEggsString();
 		iniSeq = true;
 		//CheckIfLevelComplete(); // if "thisSceneName" level complete screen was not played, check to see if its complete. (probably for when the players last eggs are from the puzzle)
 	}
@@ -133,6 +132,7 @@ public class ClickOnEggs : MonoBehaviour
 							Debug.Log(hit.collider.name);
 							EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
 							eggScript.EggFound();
+							GlobalVariables.globVarScript.eggsFoundOrder[eggs.IndexOf(hit.collider.gameObject)] = eggsFound;
 							hit.collider.enabled = false;
 
 							eggsFound += 1;
@@ -266,7 +266,21 @@ public class ClickOnEggs : MonoBehaviour
 	#region Methods
 	public void UpdateEggsString()
 	{
-		eggCounterText.text = "" + (eggsFound) + "/" + (totalRegEggs);
+		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
+		
+		eggCounterText.text = "Eggs Found: " + totalEggsFound + "/" + eggsNeeded;
+
+		regEggCounterText.text = "" + eggsFound + "/" + totalRegEggs;
+		
+		silverEggCounterText.text = "" + silverEggsFound + "/6";
+		
+		goldenEggCounterText.text = "" + goldenEggFound + "/1";
+	}
+
+
+	public void AddEggsFound()
+	{
+		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
 	}
 
 
@@ -280,17 +294,6 @@ public class ClickOnEggs : MonoBehaviour
 		levelCompleteScript.inLvlCompSeqSetup = true;
 	}
 
-
-	public void AddEggsFound()
-	{
-		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
-
-		// if (totalEggsFound == eggsNeeded && !levelComplete)
-		// {
-		// 	levelComplete = true;
-		// 	SaveLevelComplete();
-		// }
-	}
 
 	#region Save & Load methods
 	// --- Dependant On Scene Name --- //
@@ -333,7 +336,7 @@ public class ClickOnEggs : MonoBehaviour
 		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		// {
 			silverEggsFound = GlobalVariables.globVarScript.sceneSilEggsCount.Count;
-			silverEggCounterText.text = "" + silverEggsFound + "/6";
+			UpdateEggsString();
 		// }
 
 		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
@@ -355,7 +358,7 @@ public class ClickOnEggs : MonoBehaviour
 		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		// {
 			if (GlobalVariables.globVarScript.riddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
-			goldenEggCounterText.text = "" + (goldenEggFound) + "/1";
+			UpdateEggsString();
 		// }
 
 		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
@@ -377,6 +380,7 @@ public class ClickOnEggs : MonoBehaviour
 		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
 		// {
 			totalEggsFound = GlobalVariables.globVarScript.totalEggsFound;
+			UpdateEggsString();
 		// }
 
 		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)

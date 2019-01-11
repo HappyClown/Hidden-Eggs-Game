@@ -17,6 +17,7 @@ public class GlobalVariables : MonoBehaviour
 
 	[Header("Level Data")]
 	public List<bool> eggsFoundBools;
+	public List<int> eggsFoundOrder;
 	public int silverEggsCount;
 	public List<int> puzzSilEggsCount;
 	public List<int> sceneSilEggsCount;
@@ -175,26 +176,15 @@ public class GlobalVariables : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{
 			eggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
-
+			eggsFoundOrder = MarketSaveLoadManager.LoadMarketEggsOrder();
 			silverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
-
 			riddleSolved = MarketSaveLoadManager.LoadRainbowRiddle(); 
-
 			totalEggsFound = MarketSaveLoadManager.LoadMarketTotalEggs();
-
 			puzzMaxLvl = MarketSaveLoadManager.LoadMarketPuzzMaxLvl();
-			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
-
 			puzzSilEggsCount = MarketSaveLoadManager.LoadMarketPuzzSilEggsCount();
-			Debug.Log(puzzSilEggsCount);
-
 			sceneSilEggsCount = MarketSaveLoadManager.LoadMarketSceneSilEggsCount();
-			Debug.Log(sceneSilEggsCount);
-
 			levelComplete = MarketSaveLoadManager.LoadMarketLevelComplete();
-
 			birdIntroDone = MarketSaveLoadManager.LoadMarketBirdIntro();
-
 
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
 
@@ -203,13 +193,13 @@ public class GlobalVariables : MonoBehaviour
 				eggsFoundBools = loadedEggs;
 			}
 
-
 			if(clickOnEggsScript != null && eggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
 					Debug.Log("should be filling eggsfoundbool array");
 					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+					eggsFoundOrder.Add(0);
 				}
 			}
 
@@ -219,24 +209,14 @@ public class GlobalVariables : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{ 
 			eggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
-
+			eggsFoundOrder = ParkSaveLoadManager.LoadParkEggsOrder();
 			silverEggsCount = ParkSaveLoadManager.LoadParkSilverEggs();
-				
 			riddleSolved = ParkSaveLoadManager.LoadHopscotchRiddle(); 
-
 			totalEggsFound = ParkSaveLoadManager.LoadParkTotalEggs();
-
 			puzzMaxLvl = ParkSaveLoadManager.LoadParkPuzzMaxLvl();
-			//Debug.Log("Loaded " + SceneManager.GetActiveScene().name + "'s max level.");
-
 			puzzSilEggsCount = ParkSaveLoadManager.LoadParkPuzzSilEggsCount();
-			Debug.Log(puzzSilEggsCount);
-
 			sceneSilEggsCount = ParkSaveLoadManager.LoadParkSceneSilEggsCount();
-			Debug.Log(sceneSilEggsCount);
-
 			levelComplete = ParkSaveLoadManager.LoadParkLevelComplete();
-
 
 			List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
 
@@ -244,14 +224,14 @@ public class GlobalVariables : MonoBehaviour
 			{
 				eggsFoundBools = loadedEggs;
 			}	
-
 		
 			if(clickOnEggsScript != null && eggsFoundBools.Count < 1)
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					Debug.Log("should be filling eggsfoundbool array");
+					Debug.Log("should be filling eggsFoundBool & eggsFoundOrder lists");
 					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+					eggsFoundOrder.Add(0);
 				}
 			}
 

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class EggGoToCorner : MonoBehaviour 
 {
 	public Vector3 cornerPos;
-	public int eggPosIndex;
+	//public int eggPosIndex;
 	public ClickOnEggs clickOnEggsScript;
 	public MoveWithCamera moveWithCamScript;
 	public Vector3 cornerRot;
@@ -25,6 +25,8 @@ public class EggGoToCorner : MonoBehaviour
 	private float distToSpot;
 	private float constantSpeed;
 	private float timeTest;
+	private float myZInPanel;
+	private int eggFoundNumber;
 	public float settleEggDist = 0.005f;
 //
 	private float animCurveTestTime;
@@ -42,7 +44,7 @@ public class EggGoToCorner : MonoBehaviour
 
 	void Start () 
 	{
-		eggPosIndex = clickOnEggsScript.eggSpots.IndexOf(mySpotInPanel);
+		//eggPosIndex = clickOnEggsScript.eggSpots.IndexOf(mySpotInPanel);
 		
 		if (!eggAnim) { eggAnim = this.GetComponent<Animator>(); }
 
@@ -51,7 +53,11 @@ public class EggGoToCorner : MonoBehaviour
 		if (eggFound)
 		{
 			eggAnim.enabled = false;
-			this.transform.position = new Vector3(mySpotInPanel.transform.position.x, mySpotInPanel.transform.position.y, mySpotInPanel.transform.position.z - 0.24f + (eggPosIndex * 0.01f));
+			if (!mySpotInPanel) {
+				mySpotInPanel = clickOnEggsScript.eggSpots[GlobalVariables.globVarScript.eggsFoundOrder[clickOnEggsScript.eggs.IndexOf(this.gameObject)]];
+			}
+			int newZ = GlobalVariables.globVarScript.eggsFoundOrder[clickOnEggsScript.eggs.IndexOf(this.gameObject)];
+			this.transform.position = new Vector3(mySpotInPanel.transform.position.x, mySpotInPanel.transform.position.y, mySpotInPanel.transform.position.z - 0.24f + (newZ * 0.01f));
 			this.transform.eulerAngles = cornerRot;
 			this.transform.localScale = cornerEggScale;
 			this.GetComponent<Collider2D>().enabled = false;
@@ -70,10 +76,10 @@ public class EggGoToCorner : MonoBehaviour
 		}
 		else
 		{	
-			openPanelSpotx = mySpotInPanel.transform.position.x - (clickOnEggsScript.eggPanelHidden.transform.position.x - clickOnEggsScript.eggPanelShown.transform.position.x);
-			openPanelSpoty = mySpotInPanel.transform.position.y - (clickOnEggsScript.eggPanelHidden.transform.position.y - clickOnEggsScript.eggPanelShown.transform.position.y);
-			openPanelSpotz = mySpotInPanel.transform.position.z - (clickOnEggsScript.eggPanelHidden.transform.position.z - clickOnEggsScript.eggPanelShown.transform.position.z);
-			startSpotInPanel = new Vector3(openPanelSpotx, openPanelSpoty, openPanelSpotz);
+			//openPanelSpotx = mySpotInPanel.transform.position.x - (clickOnEggsScript.eggPanelHidden.transform.position.x - clickOnEggsScript.eggPanelShown.transform.position.x);
+			//openPanelSpoty = mySpotInPanel.transform.position.y - (clickOnEggsScript.eggPanelHidden.transform.position.y - clickOnEggsScript.eggPanelShown.transform.position.y);
+			//openPanelSpotz = mySpotInPanel.transform.position.z - (clickOnEggsScript.eggPanelHidden.transform.position.z - clickOnEggsScript.eggPanelShown.transform.position.z);
+			//startSpotInPanel = new Vector3(openPanelSpotx, openPanelSpoty, openPanelSpotz);
 
 			myStartPos = new Vector3 (this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f));
 			myStartRot = new Vector3 (this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z);
@@ -113,8 +119,8 @@ public class EggGoToCorner : MonoBehaviour
 
 			openPanelSpotx = mySpotInPanel.transform.position.x /* - (clickOnEggsScript.eggPanelHidden.transform.position.x - clickOnEggsScript.eggPanelShown.transform.position.x) */;
 			openPanelSpoty = mySpotInPanel.transform.position.y /* - (clickOnEggsScript.eggPanelHidden.transform.position.y - clickOnEggsScript.eggPanelShown.transform.position.y) */;
-			openPanelSpotz = mySpotInPanel.transform.position.z - 0.24f + (eggPosIndex * 0.01f) /* - (clickOnEggsScript.eggPanelHidden.transform.position.z - clickOnEggsScript.eggPanelShown.transform.position.z) */;
-			startSpotInPanel = new Vector3(openPanelSpotx, openPanelSpoty, openPanelSpotz);
+			//openPanelSpotz = mySpotInPanel.transform.position.z - 0.24f + (clickOnEggsScript.eggsFound * 0.01f) /* - (clickOnEggsScript.eggPanelHidden.transform.position.z - clickOnEggsScript.eggPanelShown.transform.position.z) */;
+			startSpotInPanel = new Vector3(openPanelSpotx, openPanelSpoty, myZInPanel);
 
 			Vector3 adjustedScale = new Vector3(cornerEggScale.x * moveWithCamScript.newScale, cornerEggScale.y * moveWithCamScript.newScale, cornerEggScale.z * moveWithCamScript.newScale);
 
@@ -147,9 +153,10 @@ public class EggGoToCorner : MonoBehaviour
 		// - Start Egg Found Animation - //
 		if (!this.CompareTag("GoldenEgg")) { eggAnim.SetTrigger("EggPop"); }
 		else { eggAnim.SetTrigger("TapAnim"); }
+		eggFoundNumber = clickOnEggsScript.eggsFound;
 		
-		if (mySpotInPanel == null) // Pretty much obsolete unless we were to forget to assign the egg's panel position in the inspector
-		{ mySpotInPanel = clickOnEggsScript.eggSpots[clickOnEggsScript.eggsFound]; }
+		if (mySpotInPanel == null) // Pretty much obsolete unless we were to forget or chose not to assign the egg's panel position in the inspector
+		{ mySpotInPanel = clickOnEggsScript.eggSpots[eggFoundNumber]; }
 
 		eggTrail.SetActive(true);
 
@@ -166,10 +173,10 @@ public class EggGoToCorner : MonoBehaviour
 	// Called as an event in the egg animations
 	public void GoToCorner()
 	{	
-		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f));
+		this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, -4 + (eggFoundNumber * -0.1f));
+		myZInPanel = mySpotInPanel.transform.position.z - 0.24f + (eggFoundNumber * 0.01f);
 
 		moveThisEgg = true;
-
 		eggAnim.enabled = false;
 	}
 

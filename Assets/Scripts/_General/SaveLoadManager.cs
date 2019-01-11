@@ -40,6 +40,26 @@ public class MarketSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static List<int> LoadMarketEggsOrder()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.eggsFoundOrder;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
 	public static int LoadMarketSilverEggs()
 	{
 		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
@@ -237,6 +257,26 @@ public class ParkSaveLoadManager : MonoBehaviour
 		{
 			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<bool>();
+		}
+	}
+
+
+	public static List<int> LoadParkEggsOrder()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.eggsFoundOrder;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return new List<int>();
 		}
 	}
 
@@ -474,6 +514,7 @@ public class BeachSaveLoadManager : MonoBehaviour
 public class MarketEggsData 
 {
 	public List<bool> eggsFound;
+	public List<int> eggsFoundOrder;
 
 	public int silverEggsFound;
 
@@ -493,6 +534,8 @@ public class MarketEggsData
 	public MarketEggsData(GlobalVariables marketEggSaver)
 	{
 		eggsFound = marketEggSaver.eggsFoundBools;
+
+		eggsFoundOrder = marketEggSaver.eggsFoundOrder;
 
 		silverEggsFound = marketEggSaver.silverEggsCount;
 
@@ -517,6 +560,8 @@ public class ParkEggsData
 {
 	public List<bool> eggsFound;
 
+	public List<int> eggsFoundOrder;
+
 	public int silverEggsFound;
 
 	public List<int> puzzSilEggsFound;
@@ -534,6 +579,8 @@ public class ParkEggsData
 	public ParkEggsData(GlobalVariables parkEggSaver)
 	{
 		eggsFound = parkEggSaver.eggsFoundBools;
+
+		eggsFoundOrder = parkEggSaver.eggsFoundOrder;
 
 		silverEggsFound = parkEggSaver.silverEggsCount;
 
