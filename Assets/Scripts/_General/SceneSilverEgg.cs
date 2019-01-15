@@ -28,24 +28,25 @@ public class SceneSilverEgg : MonoBehaviour
 			{
 				if (!silEggAdded) 
 				{ 
-					Debug.Log("Pssst, over here!" + posInPanel);
+					//Debug.Log("Pssst, over here!" + posInPanel);
 					AddToSceneSilEgg();
 					GlobalVariables.globVarScript.SaveEggState();
-					clickOnEggsScript.silverEggsFound++;
-					clickOnEggsScript.AdjustSilverEggCount();
+					//clickOnEggsScript.AdjustSilverEggCount();
 					clickOnEggsScript.AddEggsFound();
 					silEggAdded = true;
 				}
 				lerpTimer += Time.deltaTime / moveDuration;
 				this.transform.position = Vector3.Lerp(iniPos, clickOnEggsScript.silverEggsInPanel[posInPanel].transform.position, animCurve.Evaluate(lerpTimer));
-				Debug.Log("A Silver egg moves from puzz to pan! Dun dun duuuunnnn");
+				//Debug.Log("A Silver egg moves from puzz to pan! Dun dun duuuunnnn");
 				if (lerpTimer >= 1)
 				{
 					this.transform.position = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.position;
 					clickOnEggsScript.eggMoving--; // if egg pos = panel pos
 					sendToPanel = false;
 					this.transform.parent = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.parent;
+					clickOnEggsScript.silverEggsFound++;
 					clickOnEggsScript.AddEggsFound();
+					clickOnEggsScript.UpdateEggsString();
 				}
 				
 			}

@@ -34,12 +34,13 @@ public class ClickOnEggs : MonoBehaviour
 	public Transform cornerPos;
 
 	[Header("Puzzle")]
-	public GameObject puzzleClickArea;
-	public string puzzleSceneName;
-	public Animation unlockedAnim;
-	public float puzzleUnlockAmnt;
-	public bool puzzleUnlocked;
-	public ParticleSystem puzzleParticles;
+	public PuzzleUnlock puzzUnlockScript;
+	// public GameObject puzzleClickArea;
+	//public string puzzleSceneName;
+	// public Animation unlockedAnim;
+	//public float puzzleUnlockAmnt;
+	// public bool puzzleUnlocked;
+	// public ParticleSystem puzzleParticles;
 
 	[Header("Egg Panel")]
 	public GameObject eggPanel;
@@ -50,6 +51,8 @@ public class ClickOnEggs : MonoBehaviour
 	public int goldenEggFound;
 	[HideInInspector]
 	public int eggMoving;
+	public int eggsInPanel;
+	public int startEggFound;
 	public GameObject eggPanelHidden;
 	public GameObject eggPanelShown;
 	public float panelMoveSpeed;
@@ -76,8 +79,8 @@ public class ClickOnEggs : MonoBehaviour
 	void Start () 
 	{
 		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
-		silverEggCounterText.text = "" + (GlobalVariables.globVarScript.silverEggsCount);
-		goldenEggCounterText.text = "" + (GlobalVariables.globVarScript.riddleSolved);
+		//silverEggCounterText.text = "" + (GlobalVariables.globVarScript.silverEggsCount);
+		//goldenEggCounterText.text = "" + (GlobalVariables.globVarScript.riddleSolved);
 		newCornerPos = cornerPos.position;
 		if (iniDelay < sceneFadeScript.fadeTime) { iniDelay = sceneFadeScript.fadeTime; }
 		AdjustLevelComplete(); // Check if level has already been completed. (bool)
@@ -129,16 +132,16 @@ public class ClickOnEggs : MonoBehaviour
 						if (hit.collider.CompareTag("Egg"))
 						{
 							myInputDetector.cancelDoubleTap = true;
-							Debug.Log(hit.collider.name);
+							//Debug.Log(hit.collider.name);
 							EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
 							eggScript.EggFound();
 							GlobalVariables.globVarScript.eggsFoundOrder[eggs.IndexOf(hit.collider.gameObject)] = eggsFound;
 							hit.collider.enabled = false;
 
-							eggsFound += 1;
-							eggMoving += 1;
+							eggsFound++;
+							eggMoving++;
 							openEggPanel = true;
-							UpdateEggsString();
+							//UpdateEggsString();
 							// SFX Open Panel
 							if (!openEggPanel) { openEggPanel = true; audioSceneGenScript.openPanel(); }
 
@@ -150,12 +153,13 @@ public class ClickOnEggs : MonoBehaviour
 							AddEggsFound();
 							//if (levelComplete) { levelCompleteScript.inLvlCompSeqSetup = true; } ------------------------------------------------
 							eggScript.SaveEggToCorrectFile();
+							//puzzUnlockScript.PuzzleUnlockCheck(eggsInPanel);
 						}
 
 						// - Go To Puzzle Scene - //
 						if (hit.collider.CompareTag("Puzzle"))
 						{
-							SceneFade.SwitchScene(puzzleSceneName);
+							SceneFade.SwitchScene(GlobalVariables.globVarScript.marketPuzName);
 							PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
 
 							//SFX puzz btn
@@ -204,7 +208,7 @@ public class ClickOnEggs : MonoBehaviour
 							scenTapEnabScript.canTapHelpBird = true;
 							scenTapEnabScript.canTapGoldEgg = false;
 
-							AdjustGoldenEggCount();
+							//AdjustGoldenEggCount();
 
 							AddEggsFound();
 							eggScript.SaveEggToCorrectFile();
@@ -247,42 +251,27 @@ public class ClickOnEggs : MonoBehaviour
 			eggPanel.transform.position = Vector3.MoveTowards(eggPanel.transform.position, eggPanelShown.transform.position, Time.deltaTime * panelMoveSpeed);
 			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y , 0);
 		}
-
-
-		// - Activate Puzzle - //
-		if (puzzleClickArea.activeSelf == false && eggsFound >= puzzleUnlockAmnt)
-		{
-			puzzleClickArea.SetActive(true);
-			var emission = puzzleParticles.emission;
-			emission.enabled = true;
-			if (unlockedAnim != null) { unlockedAnim.Play(); }
-			puzzleUnlocked = true;
-			// SFX Puzz unlock
-			audioSceneGenScript.puzzleAnimationStart(puzzleClickArea);
-		}
 	}
 
 
 	#region Methods
 	public void UpdateEggsString()
 	{
-		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
+		totalEggsFound = /* startEggFound +  */eggsInPanel + silverEggsFound + goldenEggFound;
 		
 		eggCounterText.text = "Eggs Found: " + totalEggsFound + "/" + eggsNeeded;
 
-		regEggCounterText.text = "" + eggsFound + "/" + totalRegEggs;
+		regEggCounterText.text = "" + (/* startEggFound +  */eggsInPanel) + "/" + totalRegEggs;
 		
 		silverEggCounterText.text = "" + silverEggsFound + "/6";
 		
 		goldenEggCounterText.text = "" + goldenEggFound + "/1";
 	}
 
-
 	public void AddEggsFound()
 	{
 		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
 	}
-
 
 	public void PlayLvlCompleteSeq()
 	{

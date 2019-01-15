@@ -8,12 +8,12 @@ public class SceneKiteAnim : MonoBehaviour
 	public float gustMinCD, gustMaxCD, gustCD;
 	private float gustTimer;
 	public bool animEnabled, startAnim;
-	public ClickOnEggs clickOnEggsScript;
+	public PuzzleUnlock puzzUnlockScript;
 
 
 	void Update () 
 	{
-		if (clickOnEggsScript.puzzleUnlocked && !startAnim)
+		if (puzzUnlockScript.puzzUnlocked && !startAnim)
 		{
 			SceneKiteEnabled();
 			startAnim = true;

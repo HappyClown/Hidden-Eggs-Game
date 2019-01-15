@@ -449,7 +449,7 @@ public class GrabItem : MonoBehaviour
 	void NextLevelSetup()
 	{
 		foreach(SilverEggs silEggs in lvlSilverEggs[crateScript.curntLvl - 2].GetComponentsInChildren<SilverEggs>())
-		{ silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);}
+		{ silEggs.ResetSilEgg(); /* Debug.Log(silEggs.gameObject.name); */}
 		lvlSilverEggs[crateScript.curntLvl - 2].SetActive(false);
 		//resetItemsButtonScript.EndOfLevelReset();
 		//itemHolder.SetActive(false);

@@ -6,6 +6,7 @@ public class EggGoToCorner : MonoBehaviour
 	public Vector3 cornerPos;
 	//public int eggPosIndex;
 	public ClickOnEggs clickOnEggsScript;
+	public PuzzleUnlock puzzUnlockScript;
 	public MoveWithCamera moveWithCamScript;
 	public Vector3 cornerRot;
 	public Vector3 cornerEggScale;
@@ -16,7 +17,7 @@ public class EggGoToCorner : MonoBehaviour
 	public bool eggFound;
 	public GameObject eggTrail;
 	public ParticleSystem eggClickFX;
-	public bool eggClickFXPlayed;
+	public bool eggClickFXPlayed, amIGolden;
 
 	private float moveTimer;
 	private float curveTime;
@@ -61,7 +62,13 @@ public class EggGoToCorner : MonoBehaviour
 			this.transform.eulerAngles = cornerRot;
 			this.transform.localScale = cornerEggScale;
 			this.GetComponent<Collider2D>().enabled = false;
-			if (!this.CompareTag("GoldenEgg")) { clickOnEggsScript.eggsFound += 1; }
+			if (!amIGolden) { 
+				clickOnEggsScript.eggsFound++; 
+				clickOnEggsScript.eggsInPanel++;
+				if (clickOnEggsScript.eggsInPanel >= puzzUnlockScript.puzzUnlockAmnt) {
+					puzzUnlockScript.ActivatePuzzle();
+				}
+			}
 			// else 
 			// { 
 			// 	GameObject gEgg = GameObject.Find("GoldenEgg");
@@ -70,7 +77,7 @@ public class EggGoToCorner : MonoBehaviour
 			//moveThisEgg = true;
 			//clickOnEggsScript.eggMoving -= 1;
 			this.transform.parent = clickOnEggsScript.eggPanel.transform;
-			Debug.Log(this.gameObject.name + " has been loaded as found already.");
+			//Debug.Log(this.gameObject.name + " has been loaded as found already.");
 			clickOnEggsScript.UpdateEggsString();
 			clickOnEggsScript.AddEggsFound();
 		}
@@ -83,7 +90,7 @@ public class EggGoToCorner : MonoBehaviour
 
 			myStartPos = new Vector3 (this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f));
 			myStartRot = new Vector3 (this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z);
-			if (!this.CompareTag("GoldenEgg")) { myStartScale = new Vector3(1.4f ,1.4f ,1); } // Hardcoded, needs to be set to the end scale size of the egg in the "EggPop" animation which all the normal eggs use.
+			if (!amIGolden) { myStartScale = new Vector3(1.4f ,1.4f ,1); } // Hardcoded, needs to be set to the end scale size of the egg in the "EggPop" animation which all the normal eggs use.
 			else { myStartScale = new Vector3 (this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z); }
 
 			// distToSpot = Vector3.Distance(new Vector3 (this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f)), startSpotInPanel);
@@ -138,6 +145,9 @@ public class EggGoToCorner : MonoBehaviour
 				//this.transform.localScale = cornerEggScale;
 				moveThisEgg = false;
 				clickOnEggsScript.eggMoving -= 1;
+				if (!amIGolden) { clickOnEggsScript.eggsInPanel++; } else { clickOnEggsScript.AdjustGoldenEggCount(); }
+				puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.eggsInPanel);
+				clickOnEggsScript.UpdateEggsString();
 				this.transform.parent = clickOnEggsScript.eggPanel.transform;
 				this.transform.localScale = cornerEggScale;
 				eggTrail.SetActive(false);
@@ -151,7 +161,7 @@ public class EggGoToCorner : MonoBehaviour
 	public void EggFound() 
 	{
 		// - Start Egg Found Animation - //
-		if (!this.CompareTag("GoldenEgg")) { eggAnim.SetTrigger("EggPop"); }
+		if (!amIGolden) { eggAnim.SetTrigger("EggPop"); }
 		else { eggAnim.SetTrigger("TapAnim"); }
 		eggFoundNumber = clickOnEggsScript.eggsFound;
 		
@@ -225,7 +235,7 @@ public class EggGoToCorner : MonoBehaviour
 		// {
 			//GlobalVariables.globVarScript.marketEggToSave = this.eggFound;
 			//Debug.Log(GlobalVariables.globVarScript.marketEggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)]);
-			Debug.Log(clickOnEggsScript.totalEggsFound);
+			//Debug.Log(clickOnEggsScript.totalEggsFound);
 			GlobalVariables.globVarScript.totalEggsFound = clickOnEggsScript.totalEggsFound;
 			GlobalVariables.globVarScript.eggsFoundBools[clickOnEggsScript.eggs.IndexOf(this.gameObject)] = this.eggFound;
 			GlobalVariables.globVarScript.SaveEggState();

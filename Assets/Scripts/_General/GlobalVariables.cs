@@ -197,7 +197,7 @@ public class GlobalVariables : MonoBehaviour
 			{
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					Debug.Log("should be filling eggsfoundbool array");
+					//Debug.Log("should be filling eggsfoundbool array");
 					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
 					eggsFoundOrder.Add(0);
 				}

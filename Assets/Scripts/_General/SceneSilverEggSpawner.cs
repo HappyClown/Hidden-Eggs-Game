@@ -11,7 +11,6 @@ public class SceneSilverEggSpawner : MonoBehaviour
 	public int sceneSilEggCount;
 	public ClickOnEggs clickOnEggsScript;
 	public List<GameObject> silEggs;
-
 	public List<int> puzzSilEggCountList;
 	public List<int> sceneSilEggCountList;
 
@@ -33,7 +32,7 @@ public class SceneSilverEggSpawner : MonoBehaviour
 			// 	silverEggs[i].SceneActivationSequence(silverEggSpawnDelay * silEggSpawned); //
 			// 	sceneSilverEggs++;
 			// }
-			Debug.Log("puzz sil eggs > scene sil eggs" + (puzzSilEggCount - sceneSilEggCount));
+			//Debug.Log("puzz sil eggs > scene sil eggs" + (puzzSilEggCount - sceneSilEggCount));
 
 			for(int i = sceneSilEggCount; i < puzzSilEggCount; i++)
 			{
