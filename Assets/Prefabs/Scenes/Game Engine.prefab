@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4331515170276972}
   - component: {fileID: 114502344275602404}
   - component: {fileID: 114609925930497642}
+  - component: {fileID: 114201237216767528}
   - component: {fileID: 114291605857956252}
   - component: {fileID: 114688266002926248}
   - component: {fileID: 114365379720079432}
@@ -39,12 +40,36 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1655060787240740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.009605621}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114201237216767528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1655060787240740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3d084c7a51bff4b89f15a0116d85c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzPiece: {fileID: 0}
+  puzzParentObj: {fileID: 0}
+  endPosObj: {fileID: 0}
+  splineWalkerScript: {fileID: 0}
+  pieceTrailFX: {fileID: 0}
+  pieceShimFX: {fileID: 0}
+  pieceRayFX: {fileID: 0}
+  puzzUnlocked: 0
+  puzzClickArea: {fileID: 0}
+  puzzShimFX: {fileID: 0}
+  puzzFireworkFX: {fileID: 0}
+  puzzUnlockAmnt: 12
+  puzzAnim: {fileID: 0}
 --- !u!114 &114291605857956252
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,6 +102,9 @@ MonoBehaviour:
   fireworksFired: 0
   appleBasket: {fileID: 0}
   scenTapEnabScript: {fileID: 114502344275602404}
+  audioSceneMarket: {fileID: 0}
+  lvlTapManScript: {fileID: 0}
+  inputDetScript: {fileID: 0}
 --- !u!114 &114365379720079432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +127,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  puzzSilEggCountList: 
+  sceneSilEggCountList: 
 --- !u!114 &114502344275602404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTapManScript: {fileID: 0}
+  myInputDetector: {fileID: 0}
   scenTapEnabScript: {fileID: 114502344275602404}
   sceneFadeScript: {fileID: 0}
   iniSeq: 0
@@ -156,19 +186,16 @@ MonoBehaviour:
   allowTapF: 0.5
   iniSilEggCheckB: 0
   iniLvlCompCheckB: 0
-  eggsLeft: 0
   eggsFound: 0
+  totalRegEggs: 23
   eggCounterText: {fileID: 0}
+  regEggCounterText: {fileID: 0}
   silverEggCounterText: {fileID: 0}
   goldenEggCounterText: {fileID: 0}
   newCornerPos: {x: 0, y: 0, z: 0}
   cornerExtraPos: 0.5
   cornerPos: {fileID: 0}
-  puzzleClickArea: {fileID: 0}
-  puzzleSceneName: Order Up!
-  scaleAnim: {fileID: 0}
-  puzzleUnlock: 12
-  puzzleParticles: {fileID: 0}
+  puzzUnlockScript: {fileID: 114201237216767528}
   eggPanel: {fileID: 0}
   eggSpots:
   - {fileID: 0}
@@ -206,6 +233,8 @@ MonoBehaviour:
   goldenEggSpot: {fileID: 0}
   goldenEggFound: 0
   eggMoving: 0
+  eggsInPanel: 0
+  startEggFound: 0
   eggPanelHidden: {fileID: 0}
   eggPanelShown: {fileID: 0}
   panelMoveSpeed: 7
@@ -249,6 +278,7 @@ MonoBehaviour:
   silverEggsFound: 0
   levelComplete: 0
   levelCompleteScript: {fileID: 114688266002926248}
+  audioSceneGenScript: {fileID: 0}
 --- !u!114 &114688266002926248
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,6 +292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inLvlCompSeqSetup: 0
   clickOnEggsScript: {fileID: 114609925930497642}
+  lvlTapManScript: {fileID: 0}
   darkenScreen: 0.2
   showCongrats: 0.8
   showEggs: 1.5

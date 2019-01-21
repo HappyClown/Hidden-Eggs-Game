@@ -174,8 +174,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 191.4}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -187,6 +187,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1801487384}
   eggClickFX: {fileID: 1909333889}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -443,8 +444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 357}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -456,6 +457,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1842293117}
   eggClickFX: {fileID: 627274218}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -952,7 +954,7 @@ Prefab:
     - target: {fileID: 224748431452362956, guid: c8b8141be69c3684390b2f2b8f0278e6,
         type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224748431452362956, guid: c8b8141be69c3684390b2f2b8f0278e6,
         type: 2}
@@ -5973,8 +5975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 9.7}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -5986,6 +5988,7 @@ MonoBehaviour:
   eggTrail: {fileID: 593720428}
   eggClickFX: {fileID: 1717308194}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -6449,7 +6452,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4380149836201336, guid: a2fe45abb41ad59429b58699c132ef77, type: 2}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1768396326287048, guid: a2fe45abb41ad59429b58699c132ef77, type: 2}
       propertyPath: m_IsActive
@@ -6680,7 +6683,7 @@ Transform:
   - {fileID: 1091569211}
   - {fileID: 1169326427}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &208247465
 GameObject:
@@ -6954,8 +6957,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 0}
   cornerEggScale: {x: 0.74, y: 0.74, z: 1}
@@ -6967,6 +6970,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1147688091}
   eggClickFX: {fileID: 1362781309}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -7596,7 +7600,7 @@ Prefab:
     - target: {fileID: 224045880510790872, guid: 5ba1db6bd74f4824ba477fdace661f73,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 224045880510790872, guid: 5ba1db6bd74f4824ba477fdace661f73,
         type: 2}
@@ -7829,6 +7833,76 @@ Prefab:
       propertyPath: helpBirdTrans
       value: 
       objectReference: {fileID: 1231972451}
+    - target: {fileID: 224167326964753476, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224439192239318456, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224480086834041040, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224065011770960928, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224971454508308916, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 224312665919596108, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224975521051112868, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224496385716479916, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224103319948628588, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 224171752745081118, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224508608906849544, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 224110294311026974, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224913061665322976, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 224602667103265452, guid: 5ba1db6bd74f4824ba477fdace661f73,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ba1db6bd74f4824ba477fdace661f73, type: 2}
   m_IsPrefabParent: 0
@@ -14054,8 +14128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 274.2}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -14067,6 +14141,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1859127551}
   eggClickFX: {fileID: 1880377619}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -14225,8 +14300,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 24.6}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -14238,6 +14313,7 @@ MonoBehaviour:
   eggTrail: {fileID: 593237343}
   eggClickFX: {fileID: 741029609}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -14697,8 +14773,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 27.5}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -14710,6 +14786,7 @@ MonoBehaviour:
   eggTrail: {fileID: 395370129}
   eggClickFX: {fileID: 335140783}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -14855,7 +14932,7 @@ Transform:
   - {fileID: 339657451}
   - {fileID: 1129381745}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &443084327
 GameObject:
@@ -19637,8 +19714,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 168.7}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -19650,6 +19727,7 @@ MonoBehaviour:
   eggTrail: {fileID: 464180789}
   eggClickFX: {fileID: 1042143943}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -20517,8 +20595,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 17.8}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -20530,6 +20608,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1164309283}
   eggClickFX: {fileID: 841274340}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -21966,8 +22045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 334.8}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -21979,6 +22058,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1813863007}
   eggClickFX: {fileID: 911625224}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -22668,7 +22748,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &677357012
 GameObject:
@@ -22775,7 +22855,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4505999315713888, guid: d1e6bf778f296894984e781118cc08e3, type: 2}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 114176662540091576, guid: d1e6bf778f296894984e781118cc08e3,
         type: 2}
@@ -23389,17 +23469,13 @@ MonoBehaviour:
   eggsFound: 0
   totalRegEggs: 24
   eggCounterText: {fileID: 2055232111}
+  regEggCounterText: {fileID: 0}
   silverEggCounterText: {fileID: 1972618970}
   goldenEggCounterText: {fileID: 1951343880}
   newCornerPos: {x: 0, y: 0, z: 0}
   cornerExtraPos: 0.5
   cornerPos: {fileID: 2000826112}
-  puzzleClickArea: {fileID: 1869116051}
-  puzzleSceneName: Kite Catcher
-  unlockedAnim: {fileID: 0}
-  puzzleUnlockAmnt: 12
-  puzzleUnlocked: 0
-  puzzleParticles: {fileID: 785805328}
+  puzzUnlockScript: {fileID: 0}
   eggPanel: {fileID: 544059714}
   eggSpots:
   - {fileID: 529142909}
@@ -23437,6 +23513,8 @@ MonoBehaviour:
   goldenEggSpot: {fileID: 1505701635}
   goldenEggFound: 0
   eggMoving: 0
+  eggsInPanel: 0
+  startEggFound: 0
   eggPanelHidden: {fileID: 1695119048}
   eggPanelShown: {fileID: 1522037182}
   panelMoveSpeed: 7
@@ -23669,7 +23747,7 @@ MonoBehaviour:
   gustCD: 20
   animEnabled: 0
   startAnim: 0
-  clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
 --- !u!1001 &734687723
 Prefab:
   m_ObjectHideFlags: 0
@@ -28810,7 +28888,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &808584844
 Prefab:
@@ -28945,8 +29023,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 199.1}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -28958,6 +29036,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1955072495}
   eggClickFX: {fileID: 1867731051}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -29268,8 +29347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 55}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -29281,6 +29360,7 @@ MonoBehaviour:
   eggTrail: {fileID: 734687724}
   eggClickFX: {fileID: 326757247}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -30021,8 +30101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 3}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -30034,6 +30114,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1438109582}
   eggClickFX: {fileID: 593592938}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -30711,8 +30792,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 126.3}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -30724,6 +30805,7 @@ MonoBehaviour:
   eggTrail: {fileID: 2092568076}
   eggClickFX: {fileID: 2021295699}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -40745,8 +40827,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 288}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -40758,6 +40840,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1942685479}
   eggClickFX: {fileID: 2143585444}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -42145,7 +42228,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4927686785866554, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1093945502239028, guid: 34fb25e98c25f7f4cab6aea91539f861, type: 2}
       propertyPath: m_IsActive
@@ -43014,8 +43097,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 277.4}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -43027,6 +43110,7 @@ MonoBehaviour:
   eggTrail: {fileID: 821953155}
   eggClickFX: {fileID: 170729223}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -48125,8 +48209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 164.1}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -48138,6 +48222,7 @@ MonoBehaviour:
   eggTrail: {fileID: 513672701}
   eggClickFX: {fileID: 2080124720}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -49006,8 +49091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 301.7}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -49019,6 +49104,7 @@ MonoBehaviour:
   eggTrail: {fileID: 2066492877}
   eggClickFX: {fileID: 1849568465}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -49639,8 +49725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 351}
   cornerEggScale: {x: 0.05, y: 0.05, z: 1}
@@ -49652,6 +49738,7 @@ MonoBehaviour:
   eggTrail: {fileID: 993866849}
   eggClickFX: {fileID: 1653524768}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -50062,7 +50149,7 @@ RectTransform:
   - {fileID: 610600088}
   - {fileID: 1204035841}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -50362,8 +50449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 115.8}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -50375,6 +50462,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1304181190}
   eggClickFX: {fileID: 2093209328}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -55380,8 +55468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 294.4}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -55393,6 +55481,7 @@ MonoBehaviour:
   eggTrail: {fileID: 649526660}
   eggClickFX: {fileID: 559233645}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -55785,8 +55874,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 333.3}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -55798,6 +55887,7 @@ MonoBehaviour:
   eggTrail: {fileID: 1216110716}
   eggClickFX: {fileID: 58130008}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -60726,8 +60816,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 295.9}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -60739,6 +60829,7 @@ MonoBehaviour:
   eggTrail: {fileID: 2111031651}
   eggClickFX: {fileID: 527553041}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -61281,7 +61372,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4367955166360570, guid: 899a9a2cf35119c4dae19f1f76b69dcb, type: 2}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114694860987597634, guid: 899a9a2cf35119c4dae19f1f76b69dcb,
         type: 2}
@@ -62447,8 +62538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 4.9}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -62460,6 +62551,7 @@ MonoBehaviour:
   eggTrail: {fileID: 2045354853}
   eggClickFX: {fileID: 1106726925}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -63492,8 +63584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 349.3}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -63505,6 +63597,7 @@ MonoBehaviour:
   eggTrail: {fileID: 416768787}
   eggClickFX: {fileID: 2135847592}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -64359,8 +64452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
-  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  puzzUnlockScript: {fileID: 0}
   moveWithCamScript: {fileID: 1640431478}
   cornerRot: {x: 0, y: 0, z: 60.5}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
@@ -64372,6 +64465,7 @@ MonoBehaviour:
   eggTrail: {fileID: 927751297}
   eggClickFX: {fileID: 318346960}
   eggClickFXPlayed: 0
+  amIGolden: 0
   animCurve:
     serializedVersion: 2
     m_Curve:
@@ -65691,7 +65785,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
         type: 2}
