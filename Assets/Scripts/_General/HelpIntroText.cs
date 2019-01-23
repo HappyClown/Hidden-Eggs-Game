@@ -14,6 +14,8 @@ public class HelpIntroText : MonoBehaviour {
 	private bool inTxtTransition;
 	private float fadeOutDur;
 	public BirdIntroSave birdIntroSaveScript;
+	public HelperBirdHint helpBirdHintScript;
+	public HelperBirdRiddle helpBirdRiddScript;
 
 	void Start () {
 		nextBtnObj.GetComponent<Button>().onClick.AddListener(NextIntroText);
@@ -49,8 +51,8 @@ public class HelpIntroText : MonoBehaviour {
 	void CheckIfDone() {
 		if (sentenceCount >= maxSentence) { // check if done
 			slideInHelpScript.introDone = true;
-			slideInHelpScript.RiddleButton();
-			slideInHelpScript.HintButton();
+			helpBirdRiddScript.ShowRiddleButton();
+			helpBirdHintScript.ShowHintButton();
 			slideInHelpScript.closeMenuOnClick.SetActive(true);
 			nextBtnObj.SetActive(false);
 			TurnOnHelpBtns();

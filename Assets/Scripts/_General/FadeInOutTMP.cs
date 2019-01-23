@@ -17,6 +17,7 @@ public class FadeInOutTMP : MonoBehaviour
 	public float t;
 
 	[Header("Options")]
+	public bool inactiveOnFadeOut = true;
 	public bool fadeInOnStart = true;
 	public bool fadeDelay;
 	
@@ -40,7 +41,9 @@ public class FadeInOutTMP : MonoBehaviour
 			tmp.color = new Color(tmp.color.r, tmp.color.g, tmp.color.b, Mathf.SmoothStep(1f * maxAlpha, 0f, t));
 			if (t >= 1f)
 			{
-				this.gameObject.SetActive(false);
+				if (inactiveOnFadeOut) {
+					this.gameObject.SetActive(false);
+				}
 				fadingOut = false;
 			}
 		}
