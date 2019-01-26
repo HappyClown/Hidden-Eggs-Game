@@ -12,11 +12,12 @@ public class PuzzleUnlock : MonoBehaviour {
 	private bool movePuzzPiece;
 	public Animator anim;
 	public PuzzPieceAnimEvents PuzzPieceFXsScript;
+	public FadeInOutSprite pointerFadeScript;
 
 	[Header("Unlocked Area")]
 	public bool puzzUnlocked;
 	public GameObject puzzClickArea;
-	public ParticleSystem puzzShimFX, puzzFireworkFX;
+	public ParticleSystem puzzShimFX, puzzDustFX, puzzFireworkFX;
 	public int puzzUnlockAmnt;
 	public Animation puzzAnim;
 	//public ClickOnEggs clickOnEggsScript;
@@ -34,6 +35,7 @@ public class PuzzleUnlock : MonoBehaviour {
 				PuzzPieceFXsScript.PieceRaysFX();
 				puzzFireworkFX.Play(true);
 				ActivatePuzzle();
+				//Debug.Log("activated puzz");
 			}
 		}
 	}
@@ -41,6 +43,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	public void UnlockPuzzle() {
 		movePuzzPiece = true;
 		endPos = endPosObj.transform.position;
+		pointerFadeScript.FadeOut();
 		anim.SetTrigger("PuzzPiecePop");
 		//splineWalkerScript.IsPlaying = true;
 		//Play FX's through animation events
@@ -48,7 +51,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	}
 
 	public void PuzzleUnlockCheck(int eggsInPanel) {
-		if (eggsInPanel >= puzzUnlockAmnt) {
+		if (eggsInPanel == puzzUnlockAmnt) {
 			UnlockPuzzle();
 		}	
 	}
@@ -57,7 +60,11 @@ public class PuzzleUnlock : MonoBehaviour {
 		puzzClickArea.SetActive(true);
 		puzzPiece.SetActive(false);
 		puzzShimFX.Play(true);
+		puzzDustFX.Play(true);
 		puzzAnim.Play();
+		if (pointerFadeScript.sprite.color.a > 0) { 
+			pointerFadeScript.FadeOut(); 
+		}
 		puzzUnlocked = true;
 	}
 }

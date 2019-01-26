@@ -5,8 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class ClickOnEggs : MonoBehaviour 
-{
+public class ClickOnEggs : MonoBehaviour {
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
@@ -45,6 +44,7 @@ public class ClickOnEggs : MonoBehaviour
 	[Header("Egg Panel")]
 	public GameObject eggPanel;
 	public List<GameObject> eggSpots;
+	public List<FadeInOutSprite> eggShadowsFades;
 	public List<GameObject> silverEggSpots;
 	public SceneSilverEggSpawner sceneSilEggSpaScript;
 	public GameObject goldenEggSpot;
@@ -58,6 +58,7 @@ public class ClickOnEggs : MonoBehaviour
 	public float panelMoveSpeed;
 	public float basePanelOpenTime;
 	public List<GameObject> silverEggsInPanel;
+	public List<FadeInOutSprite> silEggsShadFades;
 	public GameObject dropDrowArrow;
 	public List<GameObject> eggs;
 	private float timer;
@@ -295,6 +296,7 @@ public class ClickOnEggs : MonoBehaviour
 				foreach(int silEggInPanel in GlobalVariables.globVarScript.sceneSilEggsCount)
 				{
 					silverEggsInPanel[silEggInPanel].SetActive(true);
+					silEggsShadFades[silEggInPanel].FadeIn();
 				}
 			}	
 		// }

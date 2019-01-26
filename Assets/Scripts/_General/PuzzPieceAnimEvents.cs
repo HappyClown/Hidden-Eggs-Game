@@ -14,7 +14,7 @@ public class PuzzPieceAnimEvents : MonoBehaviour {
 			pieceTrailFX.Play(false);
 		}
 		else {
-			pieceTrailFX.Stop(true);
+			pieceTrailFX.Play(true);
 		}
 	}
 
