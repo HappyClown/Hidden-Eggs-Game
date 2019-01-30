@@ -9,6 +9,7 @@ public class GrabItem : MonoBehaviour
 {
 	#region GrabItem Script Variables
 	[Header("General")]
+	public bool tutorialDone;
 	public float itemScaleMult;
 	public int winLvl;
 	public bool itemsWait;
@@ -74,6 +75,8 @@ public class GrabItem : MonoBehaviour
 	public Items refItemScript;
 	public FadeInOutImage scrnDarkImgScript;
 	public ReqParchmentMove reqParchMoveScript;
+	public SlideInHelpBird slideInHelpScript;
+	public LevelSelectionButtons mySelectButton;
 
 	[Header("Hide In Inspector ^_^")]
 	public bool canPlay;
@@ -82,6 +85,7 @@ public class GrabItem : MonoBehaviour
 	public float setupLvlWaitTime;
 	public float chngLvlTimer;
 	public int maxLvl;
+	public int curntLvl;
 	#endregion
 
 	public AudioSceneMarketPuzzle audioSceneMarketPuz;
@@ -101,6 +105,15 @@ public class GrabItem : MonoBehaviour
 	{
 		if (canPlay)
 		{
+			if(mySelectButton.buttonPressed){
+				lvlToLoad = mySelectButton.lvlToLoad;
+				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+					chngLvlTimer = 0f;
+					ChangeLevelSetup();
+				}
+				mySelectButton.buttonPressed = false;
+			}
+
 			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; }
 
 			// Current level complete.
@@ -252,8 +265,17 @@ public class GrabItem : MonoBehaviour
 					if (seqTimer > reqDownF && !reqDownB) { reqDownB = true; reqParchMoveScript.moveToShown = true; audioSceneMarketPuz.openPanel(); } 
 					if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 					{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); } }
-					if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); InteractableThreeDots(); }
-					if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+					if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; EnabledThreeDots(); UninteractableThreeDots(); }
+					if (seqTimer > iniCanPlayF) { 
+						if (tutorialDone) {
+							canPlay = true; 
+							InteractableThreeDots();
+						}
+						else {
+							slideInHelpScript.MoveBirdUpDown();
+						}
+						iniSeqStart = false; 
+					}
 				}
 			}
 

@@ -7,14 +7,21 @@ public class HelpButton : MonoBehaviour
 {
 	private Button button;
 	public SlideInHelpBird birdScript;
+	public SceneTapEnabler sceneTapScript;
 
 	void Start () 
 	{
 		button = this.GetComponent<Button>();
-		button.onClick.AddListener(birdScript.MoveBirdUpDown);
+		button.onClick.AddListener(showBird);
 		if (!birdScript.introDone) {
 			button.enabled = false;
 		}
 	}
+
+	public void showBird() {
+		if (sceneTapScript.canTapHelpBird) {
+			birdScript.MoveBirdUpDown();
+		}
+	} 
 
 }

@@ -1568,6 +1568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   birdScript: {fileID: 1902172820}
+  sceneTapScript: {fileID: 0}
 --- !u!222 &115495263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15044,6 +15045,7 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   t: 0
+  inactiveOnFadeOut: 1
   fadeInOnStart: 1
   fadeDelay: 0
   tmp: {fileID: 0}
@@ -17002,6 +17004,21 @@ Prefab:
       propertyPath: kitePuzzEngineScript
       value: 
       objectReference: {fileID: 654759646}
+    - target: {fileID: 114178883023356010, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: mySelect
+      value: 
+      objectReference: {fileID: 654759649}
+    - target: {fileID: 114911267965506708, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: mySelect
+      value: 
+      objectReference: {fileID: 654759649}
+    - target: {fileID: 114554735417159862, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: mySelect
+      value: 
+      objectReference: {fileID: 654759649}
     m_RemovedComponents:
     - {fileID: 114623957049856342, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
     - {fileID: 114995268179813580, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
@@ -22523,6 +22540,7 @@ MonoBehaviour:
   fadeDelayDur: 0
   maxAlpha: 1
   t: 0
+  inactiveOnFadeOut: 1
   fadeInOnStart: 1
   fadeDelay: 0
   tmp: {fileID: 0}
@@ -75137,15 +75155,8 @@ MonoBehaviour:
   txtBubFadeTime: 2
   introDone: 0
   txtBubFadedIn: 0
-  riddleBtnObj: {fileID: 603500272}
-  riddleBtnFadeTime: 2
-  riddleHints:
-  - {fileID: 1664951446}
-  hintBtnObj: {fileID: 679060142}
-  hintBtn: {fileID: 679060145}
-  hintManScript: {fileID: 0}
+  birdUpTrigger: 0
   closeMenuOnClick: {fileID: 484598781}
-  blockClickingOnEggs: {fileID: 1220365845}
   dontCloseMenu: {fileID: 2037105324}
   duration: 1
   moveUp: 0
@@ -75181,9 +75192,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   scenTapEnabScript: {fileID: 0}
-  clickOnEggsScript: {fileID: 0}
   lvlTapManScript: {fileID: 0}
-  helpIntroTxtScript: {fileID: 1902172821}
 --- !u!114 &1902172821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75204,8 +75213,8 @@ MonoBehaviour:
   helpBirdBtns:
   - {fileID: 115495260}
   - {fileID: 2047590848}
-  slideInHelpScript: {fileID: 1902172820}
   birdIntroSaveScript: {fileID: 1902172822}
+  slideInHelpScript: {fileID: 1902172820}
 --- !u!114 &1902172822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75233,13 +75242,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeCD: 5
   shakeFXCD: 4.8
-  shakeParSys:
-  - {fileID: 0}
-  shakeFrame: 2
-  inShakeTime: 1
-  shakeCircleSize: 0.05
   animShake: 1
   anim: {fileID: 0}
+  shakeParSys:
+  - {fileID: 0}
   dissMat: {fileID: 2100000, guid: 4e89630531e2c0f489462e5592570afb, type: 2}
   dissDuration: 2
   inSceneBirdBtnObj: {fileID: 115495259}
@@ -76283,6 +76289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   birdScript: {fileID: 1902172820}
+  sceneTapScript: {fileID: 0}
 --- !u!222 &2047590851
 CanvasRenderer:
   m_ObjectHideFlags: 0

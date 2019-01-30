@@ -88,14 +88,13 @@ public class ClamPuzzle : MonoBehaviour
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 	}
 
-
 	void Update ()
 	{
 		if (canPlay)
 		{
 			if(mySelectButton.buttonPressed){
 				lvlToLoad = mySelectButton.lvlToLoad;
-				if (canPlay && chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
 					chngLvlTimer = 0f;
 					ChangeLevelSetup();
 				}

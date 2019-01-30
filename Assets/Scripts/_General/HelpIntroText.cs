@@ -5,23 +5,27 @@ using UnityEngine.UI;
 using TMPro;
 
 public class HelpIntroText : MonoBehaviour {
+	[Header ("Intro Text")]
 	public List<FadeInOutTMP> introTMPs;
 	public GameObject nextBtnObj;
 	private int sentenceCount;
 	public int maxSentence;
 	public List<Button> helpBirdBtns;
-	public SlideInHelpBird slideInHelpScript;
-	private bool inTxtTransition;
+	private bool inTxtTransition, introOn;
 	private float fadeOutDur;
+	[Header ("Script References")]
 	public BirdIntroSave birdIntroSaveScript;
-	public HelperBirdHint helpBirdHintScript;
-	public HelperBirdRiddle helpBirdRiddScript;
+	public SlideInHelpBird slideInHelpScript;
 
 	void Start () {
 		nextBtnObj.GetComponent<Button>().onClick.AddListener(NextIntroText);
 	}
 
 	void Update () {
+		if (slideInHelpScript.isUp && !slideInHelpScript.introDone) {
+			ShowIntroText();
+		}
+
 		if (inTxtTransition) {
 			fadeOutDur -= Time.deltaTime;
 			if (fadeOutDur <= 0) {
@@ -33,7 +37,10 @@ public class HelpIntroText : MonoBehaviour {
 	}
 
 	public void ShowIntroText() {
-		introTMPs[0].gameObject.SetActive(true);
+		if (!introOn) { 
+			introTMPs[0].gameObject.SetActive(true);
+			introOn = true;
+		}
 		if (!slideInHelpScript.introDone) {
 			nextBtnObj.SetActive(true);
 		}
@@ -51,19 +58,17 @@ public class HelpIntroText : MonoBehaviour {
 	void CheckIfDone() {
 		if (sentenceCount >= maxSentence) { // check if done
 			slideInHelpScript.introDone = true;
-			helpBirdRiddScript.ShowRiddleButton();
-			helpBirdHintScript.ShowHintButton();
 			slideInHelpScript.closeMenuOnClick.SetActive(true);
 			nextBtnObj.SetActive(false);
 			TurnOnHelpBtns();
 			birdIntroSaveScript.SaveBirdIntro();
-		} else { // if not show next
+		}
+		else { // if not show next
 			introTMPs[sentenceCount].FadeIn();
 		}
 	}
 
-	public void TurnOnHelpBtns()
-	{
+	public void TurnOnHelpBtns() {
 		foreach (Button btn in helpBirdBtns)
 		{
 			btn.enabled = true;

@@ -103,6 +103,15 @@ public class KitePuzzEngine : MonoBehaviour
 	{
 		if (canPlay)
 		{
+			if(mySelectButton.buttonPressed){
+				lvlToLoad = mySelectButton.lvlToLoad;
+				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+					chngLvlTimer = 0f;
+					ChangeLevelSetup();
+				}
+				mySelectButton.buttonPressed = false;
+			}
+			
 			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; /* Debug.Log("do I ever run? Or am I just lazy like that?"); */ }
 
 			if (connections == clickToRotTileScript.connectionsNeeded)
