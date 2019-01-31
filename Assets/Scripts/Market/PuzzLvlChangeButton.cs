@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PuzzLvlChangeButton : MonoBehaviour 
 {
 	public GrabItem grabItemScript;
-	public Crate crateScript;
 	public Button thisButton;
 	public int levelToLoad;
 	 
@@ -20,7 +19,7 @@ public class PuzzLvlChangeButton : MonoBehaviour
 	void TryToChangeLevel () 
 	{  
 		// Technically dont need to check if: crateScript.curntLvl != levelToLoad && grabItemScript.maxLvl >= levelToLoad.  Because the buttons will un-interactable or the GameObject inactive.
-		if (grabItemScript.canPlay && grabItemScript.chngLvlTimer >= grabItemScript.setupLvlWaitTime && crateScript.curntLvl != levelToLoad && grabItemScript.maxLvl >= levelToLoad)
+		if (grabItemScript.canPlay && grabItemScript.chngLvlTimer >= grabItemScript.setupLvlWaitTime && grabItemScript.curntLvl != levelToLoad && grabItemScript.maxLvl >= levelToLoad)
 		{ 
 			thisButton.interactable = false;
 			grabItemScript.lvlToLoad = levelToLoad; 

@@ -7,6 +7,7 @@ public class PuzzTutorial : MonoBehaviour {
 	public FadeInOutImage tutFadeScript;
 	public inputDetector inputDetScript;
 	public LevelSelectionButtons levelSelectScript;
+	public MainPuzzleEngine mainPuzzScript;
 	private bool showTut;
 
 	void Update () {
@@ -22,8 +23,8 @@ public class PuzzTutorial : MonoBehaviour {
 
 		if (inputDetScript.Tapped && tutFadeScript.shown) {
 			slideInHelpScript.MoveBirdUpDown();
-			//engineScript.canPlay = true;
-			//levelSelectScript.InteractableThreeDots();
+			mainPuzzScript.canPlay = true;
+			levelSelectScript.InteractableThreeDots(mainPuzzScript.maxLvl, mainPuzzScript.curntLvl);
 		}
 	}
 }

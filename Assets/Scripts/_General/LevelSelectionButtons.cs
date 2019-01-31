@@ -42,6 +42,8 @@ public class LevelSelectionButtons : MonoBehaviour {
 		if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
 		for (int i = 0; i < maxLvl && i < lvlSelectButtons.Length; i++)
 		{
+			Debug.Log(i);
+			Debug.Log(curntLvl - 1);
 			if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
 			{
 				lvlSelectButtons[i].GetComponent<Button>().interactable = false;

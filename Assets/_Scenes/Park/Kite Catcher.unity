@@ -16532,14 +16532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40f0e3a93f97cc469bdf85ccb53d5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connections: 0
-  bGSizes:
-  - 1
-  - 0.7315
-  - 0.463
-  bgScleScript: {fileID: 716244487}
   curntLvl: 0
-  clickToRotTileScript: {fileID: 654759645}
   myInput: {fileID: 654759647}
   mySilverEggMan: {fileID: 654759648}
   mySelectButton: {fileID: 654759649}
@@ -16550,7 +16543,12 @@ MonoBehaviour:
   winLvl: 4
   itemsWait: 0
   itemWaitAmnt: 1
+  itemWaitTimer: 0
+  initialSetupOn: 0
+  setupChsnLvl: 0
+  waitMethod: 0
   waitTime: 1
+  waitTimer: 0
   lvlItemHolders:
   - {fileID: 635591106}
   - {fileID: 720741841}
@@ -16563,7 +16561,11 @@ MonoBehaviour:
   itemSpawnF: 0.15
   dotsSpawnF: 0.25
   iniCanPlayF: 0.5
-  resetTilesScript: {fileID: 49931953}
+  iniSeqStart: 0
+  crateDownB: 0
+  reqDownB: 0
+  itemSpawnB: 0
+  dotsSpawnB: 0
   scrnDarkImgScript: {fileID: 2134140942}
   canPlay: 0
   lvlToLoad: 0
@@ -16571,6 +16573,14 @@ MonoBehaviour:
   chngLvlTimer: 0
   maxLvl: 0
   audioSceneParkPuzzScript: {fileID: 17080954}
+  connections: 0
+  bGSizes:
+  - 1
+  - 0.7315
+  - 0.463
+  bgScleScript: {fileID: 716244487}
+  clickToRotTileScript: {fileID: 654759645}
+  resetTilesScript: {fileID: 49931953}
 --- !u!114 &654759647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48596,7 +48606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1633889517
 MonoBehaviour:
   m_ObjectHideFlags: 0

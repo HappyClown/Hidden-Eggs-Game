@@ -17926,6 +17926,8 @@ MonoBehaviour:
   slideInHelpScript: {fileID: 1336508386}
   tutFadeScript: {fileID: 221128402}
   inputDetScript: {fileID: 991552000}
+  levelSelectScript: {fileID: 991552002}
+  mainPuzzScript: {fileID: 991551997}
 --- !u!1 &712008826
 GameObject:
   m_ObjectHideFlags: 0
@@ -18999,11 +19001,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b3ea61b4ec20f42a4d12fc563c4e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialDone: 0
-  itemScaleMult: 1.35
+  curntLvl: 0
+  myInput: {fileID: 991552000}
+  mySilverEggMan: {fileID: 0}
+  mySelectButton: {fileID: 991552002}
+  levelsStuff: []
   winLvl: 4
   itemsWait: 0
   itemWaitAmnt: 1
+  itemWaitTimer: 0
+  initialSetupOn: 0
+  setupChsnLvl: 0
+  waitMethod: 0
+  waitTime: 0
+  waitTimer: 0
+  lvlItemHolders:
+  - {fileID: 1150226322}
+  - {fileID: 1749358258}
+  - {fileID: 1453397847}
+  itemHolder: {fileID: 2059337709}
+  seqTimer: 0
+  iniSeqDelay: 1.5
+  crateDownF: 0.75
+  reqDownF: 3.5
+  itemSpawnF: 4
+  dotsSpawnF: 4.25
+  iniCanPlayF: 4.4
+  iniSeqStart: 0
+  crateDownB: 0
+  reqDownB: 0
+  itemSpawnB: 0
+  dotsSpawnB: 0
+  scrnDarkImgScript: {fileID: 519633174}
+  canPlay: 0
+  lvlToLoad: 0
+  setupLvlWaitTime: 1.5
+  chngLvlTimer: 0
+  maxLvl: 0
+  audioSceneParkPuzzScript: {fileID: 0}
+  tutorialDone: 0
+  itemScaleMult: 1.35
   crateMoveSpeed: 5
   crateAnim: {fileID: 664245077}
   crateTopTransform: {fileID: 493386228}
@@ -19012,11 +19049,6 @@ MonoBehaviour:
   waitBeforeCrteDown: 1.5
   scaleSnapPos: {fileID: 455701112}
   crateSnapPos: {fileID: 1647103685}
-  lvlItemHolders:
-  - {fileID: 1150226322}
-  - {fileID: 1749358258}
-  - {fileID: 1453397847}
-  itemHolder: {fileID: 2059337709}
   crateParent: {fileID: 664245074}
   silverEggsPickedUp: 0
   hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
@@ -19052,29 +19084,14 @@ MonoBehaviour:
   - {fileID: 282425480}
   - {fileID: 5464531}
   - {fileID: 978307684}
-  seqTimer: 0
-  iniSeqDelay: 1.5
-  crateDownF: 0.75
-  reqDownF: 3.5
-  itemSpawnF: 4
-  dotsSpawnF: 4.25
-  iniCanPlayF: 4.4
   scaleScript: {fileID: 991551998}
   crateScript: {fileID: 991551999}
   resetItemsButtonScript: {fileID: 1327687750}
   refItemScript: {fileID: 1829625643}
-  scrnDarkImgScript: {fileID: 519633174}
   reqParchMoveScript: {fileID: 693932625}
   slideInHelpScript: {fileID: 1336508386}
-  mySelectButton: {fileID: 0}
-  canPlay: 0
   curntPounds: 0
   curntAmnt: 0
-  lvlToLoad: 0
-  setupLvlWaitTime: 1.5
-  chngLvlTimer: 0
-  maxLvl: 0
-  curntLvl: 0
   audioSceneMarketPuz: {fileID: 1743775732}
 --- !u!114 &991551998
 MonoBehaviour:
@@ -19196,7 +19213,7 @@ MonoBehaviour:
   - 8
   reqPounds: 0
   reqItems: 0
-  curntLvl: 1
+  mainPuzzScript: {fileID: 991551997}
 --- !u!114 &991552000
 MonoBehaviour:
   m_ObjectHideFlags: 0
