@@ -5,9 +5,9 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class GrabItem : MainPuzzleEngine 
+public class MarketPuzzleEngine : MainPuzzleEngine 
 {
-	#region GrabItem Script Variables
+	#region MarketPuzzleEngine Script Variables
 	[Header("General")]
 	public bool tutorialDone;
 	public float itemScaleMult;
@@ -20,7 +20,6 @@ public class GrabItem : MainPuzzleEngine
 	public float crateMoveSpeed;
 	public Animator crateAnim;
 	public Transform crateTopTransform, crateInSceneTransform;
-	public GameObject inCrateCollider;
 	public float waitBeforeCrteDown;
 
 	[Header("Tagged Colliders & Position Snaps")]
@@ -28,7 +27,7 @@ public class GrabItem : MainPuzzleEngine
 	public Transform crateSnapPos;
 
 	[Header("Item Parents")]
-	public GameObject /* itemHolder,  */crateParent;
+	public GameObject crateParent;
 
 	[Header("Silver Eggs")]
 	public int silverEggsPickedUp;
@@ -37,16 +36,6 @@ public class GrabItem : MainPuzzleEngine
 	public List<SilverEggs> allSilverEggsScripts;
 	private bool silverEggsActive;
 	public int amntSilEggsTapped;
-
-	[Header("Level Selection Buttons")]
-	[Tooltip("GameObjects - The level selection buttons, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
-	public List<GameObject> lvlSelectButtons;
-	[Tooltip("Scripts - The FadeInOutImage scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
-	public List<FadeInOutImage> lvlSelectFades;
-	[Tooltip("Scripts - The Scaler scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")] 
-	public List<Scaler> lvlSelectScalers;
-	private bool noFadeDelay;
-	private bool buttonsOff;
 
 	[Header("Scripts")]
 	public Scale scaleScript;
@@ -63,14 +52,14 @@ public class GrabItem : MainPuzzleEngine
 
 	public AudioSceneMarketPuzzle audioSceneMarketPuz;
 
-
-	void Start (){
+	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
 		heldItem = null;
 		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
-		silverEggsPickedUp  = GlobalVariables.globVarScript.silverEggsCount;
+		silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
 		if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
+		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
 	}
 
 	void Update () {
@@ -89,7 +78,7 @@ public class GrabItem : MainPuzzleEngine
 			// Current level complete.
 			if (curntPounds == crateScript.reqPounds && curntAmnt == crateScript.reqItems) { SilverEggsSetup(); }
 
-			if (buttonsOff) { buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl, curntLvl); }
+			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl, curntLvl); }
 
 			#region Click
 			// Click //
@@ -215,15 +204,16 @@ public class GrabItem : MainPuzzleEngine
 					if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; lvlItemHolders[curntLvl - 1].SetActive(true); for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 					{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); } }
 					if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); mySelectButton.UninteractableThreeDots(); }
-					if (seqTimer > iniCanPlayF) { 
+					if (seqTimer > iniCanPlayF) {
 						if (tutorialDone) {
-							canPlay = true; 
+							canPlay = true;
 							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
+							sceneTapScript.canTapPauseBtn = true;
 						}
 						else {
 							slideInHelpScript.MoveBirdUpDown();
 						}
-						iniSeqStart = false; 
+						iniSeqStart = false;
 					}
 				}
 			}
@@ -247,7 +237,7 @@ public class GrabItem : MainPuzzleEngine
 
 			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
 			// Turn off interaction for all three level select dots.
-			if (!buttonsOff) { buttonsOff = true; mySelectButton.UninteractableThreeDots();}
+			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
 
 			#region Click On SilverEggs
 			// Clicking on a silver egg.
@@ -258,7 +248,6 @@ public class GrabItem : MainPuzzleEngine
 					//Debug.Log(hit.collider.name);
 					if (hit.collider.CompareTag("Egg"))
 					{
-						//if (curntLvl >= maxLvl) { silverEggsPickedUp += 1; }
 						Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
 						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 						silEggTappedScript.StartSilverEggAnim();
@@ -270,9 +259,6 @@ public class GrabItem : MainPuzzleEngine
 						
 						amntSilEggsTapped++;
 						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-
-						//SFX Silver Egg
-						//SFX DROP ON WOOD
 						audioSceneMarketPuz.silverEggSnd();
 					}
 				}
@@ -298,14 +284,10 @@ public class GrabItem : MainPuzzleEngine
 		curntPounds = 0;
 		curntAmnt = 0;
 		itemHolder = lvlItemHolders[curntLvl - 1];
-		//lvlItemHolders[curntLvl - 1].SetActive(true); // IN THE INI SEQUENCE
 		resetItemsButtonScript.FillItemResetArray();
-		//canPlay = true; // IN THE INI SEQUENCE
 		initialSetupOn = false;
 		crateScript.UpdateRequirements();
 		iniSeqStart = true;
-		//EnabledThreeDots(); // IN THE INI SEQUENCE
-		//InteractableThreeDots(); // IN THE INI SEQUENCE
 	}
 
 	// Level complete, load silver eggs, start crate animation.
@@ -313,22 +295,6 @@ public class GrabItem : MainPuzzleEngine
 	{
 		//Debug.Log("New Level Setup");
 		canPlay = false;
-		
-		// if (maxLvl > curntLvl)
-		// {
-		// 	foreach (Transform silEgg in lvlSilverEggs[curntLvl - 1].transform)
-		// 	{
-		// 		silEgg.GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
-		// 		allSilverEggsScripts.IndexOf(silEgg).hollow = true;
-		// 		Debug.Log(silEgg.name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
-		// 	}
-		// }
-
-		// foreach (Transform silEgg in GlobalVariables.globVarScript.marketPuzzSilEggsCount[curntLvl - 1])
-		// {
-		// 	silEgg.GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
-		// 	Debug.Log(silEgg.name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
-		// }
 
 		//Set the silver egg sprites to Hollow if the egg was found already.
 		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
@@ -339,11 +305,8 @@ public class GrabItem : MainPuzzleEngine
 			Debug.Log(allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
 
-
-		//lvlSilverEggs[curntLvl - 1].SetActive(true);
 		if (lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
 		{
-			//List<GameObject> activeSilverEggs = new List<GameObject>();
 			foreach (Transform silEgg in lvlSilverEggs[curntLvl - 1].transform)
 			{
 				activeSilverEggs.Add(silEgg.gameObject);
@@ -353,17 +316,11 @@ public class GrabItem : MainPuzzleEngine
 
 		silverEggsActive = true;
 
-		if (!noFadeDelay) { mySelectButton.TurnFadeDelayOff(); noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
-
-		//if (curntLvl >= maxLvl) { silverEggsPickedUp += activeSilverEggs.Count; }
-
+		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
 
 		// Fade out the finished level's items. (Except the ones in the crate.)
 		if (scaleScript.itemOnScale != null) { scaleScript.itemOnScale.transform.parent = itemHolder.transform; }
-		
-		// for (int i = 0; i < resetItemsButtonScript.items.Length; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		// { resetItemsButtonScript.items[i].GetComponent<Items>().FadeOut(); }
-
+	
 		Items[] childrenItemScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		childrenItemScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<Items>(); 
 		for (int i = 0; i < childrenItemScripts.Length; i++)
@@ -383,19 +340,12 @@ public class GrabItem : MainPuzzleEngine
 		//int amntSilEggsTapped = 0;
 		if (activeSilverEggs.Count > 0)
 		{
-			// foreach(GameObject silEgg in activeSilverEggs)
-			// {
-			// 	if (silEgg.GetComponent<CircleCollider2D>().enabled == false) { amntSilEggsTapped++; }
-			// 	Debug.Log("Amount of SilverEggs loaded: " + activeSilverEggs.Count + "& amount of Silver Eggs tapped: " + amntSilEggsTapped);
-			// }
-
 			if (amntSilEggsTapped == activeSilverEggs.Count) 
 			{			
 				activeSilverEggs.Clear();
 				silverEggsActive = false;
 				amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
-				//silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount
 				curntLvl++;
 				if (curntLvl > maxLvl) 
 				{ maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); }
@@ -477,51 +427,6 @@ public class GrabItem : MainPuzzleEngine
 	#endregion
 
 	#region General Methods
-	// Which of the three dots are interactable based on the highest playable level.
-	// void EnabledThreeDots()
-	// {
-	// 	if (maxLvl == 0) { lvlSelectButtons[0].SetActive(true); }
-	// 	for(int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
-	// 	{ 
-	// 		if (!lvlSelectButtons[i].activeSelf) 
-	// 		{ lvlSelectButtons[i].SetActive(true); } 
-	// 	}
-	// }
-
-	// // Which of the three dots can be interacted with, also adjust the scale accordingly.
-	// void InteractableThreeDots()
-	// {
-	// 	if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
-	// 	for (int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
-	// 	{
-	// 		if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
-	// 		{
-	// 			lvlSelectButtons[i].GetComponent<Button>().interactable = false;
-	// 			lvlSelectScalers[i].ScaleUp();
-	// 		}
-	// 		else 
-	// 		{
-	// 			lvlSelectButtons[i].GetComponent<Button>().interactable = true; 
-	// 			lvlSelectScalers[i].ScaleDown();
-	// 		}
-	// 	}
-	// }
-
-	// // Make level select buttons uninteractable between levels.
-	// void UninteractableThreeDots()
-	// {
-	// 	foreach(GameObject lvlButton in lvlSelectButtons)
-	// 	{
-	// 		if (lvlButton.activeSelf) { lvlButton.GetComponent<Button>().interactable = false; }	
-	// 	}
-	// }
-	
-	// // After the initial level setup turn off the three dots fade delay.
-	// void TurnFadeDelayOff()
-	// {
-	// 	foreach(FadeInOutImage fadeImgScpt in lvlSelectFades)
-	// 	{ fadeImgScpt.fadeDelay = false; }
-	// }
 
 	public void SaveSilverEggsToCorrectFile()
 	{
@@ -535,7 +440,6 @@ public class GrabItem : MainPuzzleEngine
 
 	public void SaveNewSilEggsFound(int newSilEggFound)
 	{
-		//bool alreadySaved = false;
 		foreach (int silEggNumber in GlobalVariables.globVarScript.puzzSilEggsCount)
 		{
 			if (silEggNumber == newSilEggFound)

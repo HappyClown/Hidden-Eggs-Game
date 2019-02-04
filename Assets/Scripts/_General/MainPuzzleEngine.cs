@@ -55,6 +55,8 @@ public class MainPuzzleEngine : MonoBehaviour
 
 	[Header("Scripts")]
 	public FadeInOutImage scrnDarkImgScript;
+	public SceneTapEnabler sceneTapScript;
+	public PuzzlePauseMenu puzzlePauseScript;
 
 	[Header("Hide In Inspector ^_^")]
 	public bool canPlay;

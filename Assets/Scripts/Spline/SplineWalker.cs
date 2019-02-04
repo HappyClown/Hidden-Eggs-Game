@@ -21,6 +21,9 @@ public class SplineWalker : MonoBehaviour {
 	}
 	private bool goingForward = true;
 	private float progress;
+	public float Progress {
+		get { return progress; }
+	}
 	
 	private void Update () {
 		if (isPlaying) {

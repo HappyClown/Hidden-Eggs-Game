@@ -8,6 +8,7 @@ public class PuzzTutorial : MonoBehaviour {
 	public inputDetector inputDetScript;
 	public LevelSelectionButtons levelSelectScript;
 	public MainPuzzleEngine mainPuzzScript;
+	public SceneTapEnabler sceneTapScript;
 	private bool showTut;
 
 	void Update () {
@@ -25,6 +26,13 @@ public class PuzzTutorial : MonoBehaviour {
 			slideInHelpScript.MoveBirdUpDown();
 			mainPuzzScript.canPlay = true;
 			levelSelectScript.InteractableThreeDots(mainPuzzScript.maxLvl, mainPuzzScript.curntLvl);
+			sceneTapScript.canTapPauseBtn = true;
+			SaveIntroDone();
 		}
+	}
+
+	void SaveIntroDone () {
+		GlobalVariables.globVarScript.puzzIntroDone = true;
+		GlobalVariables.globVarScript.SaveEggState();
 	}
 }

@@ -3,60 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResetItemsButton : MonoBehaviour 
-{
+public class ResetItemsButton : MonoBehaviour {
 	public Button resetButton;
 	public List<GameObject> items;
-
 	public Scale scaleScript;
-	public GrabItem grabItemScript;
+	public MarketPuzzleEngine marketPuzzScript;
+	public SceneTapEnabler sceneTapEnaScript;
 
-
-	void Start () 
-	{
+	void Start () {
 		resetButton = this.GetComponent<Button>();
 		resetButton.onClick.AddListener(ResetItemsToTable);
 	}
 
-	public void FillItemResetArray ()
-	{
+	void Update () {
+		if (!sceneTapEnaScript.canTapPauseBtn) {
+			resetButton.interactable = false;
+		}
+		else {
+			resetButton.interactable = true;
+		}
+	}
+
+	public void FillItemResetArray () {
 		items.Clear();
-		foreach (Transform item in grabItemScript.itemHolder.transform)
-		{
+		foreach (Transform item in marketPuzzScript.itemHolder.transform) {
 			items.Add(item.gameObject);
 		}
 	}
 
-	public void ResetItemsToTable () // Used for the reset items button
-	{
-		if (grabItemScript.canPlay)
-		{
-			//Debug.Log("Reseting Items to table blip bloop.");
+	public void ResetItemsToTable () { // Used for the reset items button 
+		if (marketPuzzScript.canPlay) {
 			scaleScript.itemOnScale = null;
 			scaleScript.isAnItemOnScale = false;
 
-			grabItemScript.curntAmnt = 0;
-			grabItemScript.curntPounds = 0;
+			marketPuzzScript.curntAmnt = 0;
+			marketPuzzScript.curntPounds = 0;
 			
-			for (int i = 0; i < items.Count; i ++)
-			{
+			for (int i = 0; i < items.Count; i ++) {
 				items[i].GetComponent<Items>().BackToInitialPos();
-				items[i].transform.parent = grabItemScript.itemHolder.transform;
+				items[i].transform.parent = marketPuzzScript.itemHolder.transform;
 			}
 		}
 	}
 
-	public void EndOfLevelReset() // Used in new level setup
-	{
+	public void EndOfLevelReset() { // Used in new level setup
 		scaleScript.itemOnScale = null;
 		scaleScript.isAnItemOnScale = false;
 
-		for (int i = 0; i < items.Count; i ++)
-		{
-			//Debug.Log("Should reset items");
-			//if (!items[i].gameObject.activeSelf){ items[i].gameObject.SetActive(true); Debug.Log("Should set to true");} 
+		for (int i = 0; i < items.Count; i ++) {
 			items[i].GetComponent<Items>().BackToInitialPos();
-			items[i].transform.parent = grabItemScript.itemHolder.transform;
+			items[i].transform.parent = marketPuzzScript.itemHolder.transform;
 		}
 	}
 }

@@ -218,6 +218,24 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 	}
 
+	public static bool LoadMarketPuzzIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.puzzIntroDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
 
 	public static void DeleteMarketSaveFile()
 	{
@@ -515,21 +533,15 @@ public class MarketEggsData
 {
 	public List<bool> eggsFound;
 	public List<int> eggsFoundOrder;
-
 	public int silverEggsFound;
-
 	public List<int> puzzSilEggsFound;
-
 	public List<int> sceneSilEggsFound;
-
 	public bool rainbowRiddle;
-
 	public int puzzMaxLvl;
-
 	public int totalEggsFound;
-	
 	public bool levelComplete;
 	public bool introDone;
+	public bool puzzIntroDone;
 
 	public MarketEggsData(GlobalVariables marketEggSaver)
 	{
@@ -552,6 +564,8 @@ public class MarketEggsData
 		levelComplete = marketEggSaver.levelComplete;
 
 		introDone = marketEggSaver.birdIntroDone;
+
+		puzzIntroDone = marketEggSaver.puzzIntroDone;
 	}
 }
 
