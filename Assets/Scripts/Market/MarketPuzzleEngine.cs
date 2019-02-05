@@ -9,7 +9,6 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 {
 	#region MarketPuzzleEngine Script Variables
 	[Header("General")]
-	public bool tutorialDone;
 	public float itemScaleMult;
 	private bool holdingItem;
 	private GameObject heldItem;
@@ -43,7 +42,6 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	public ResetItemsButton resetItemsButtonScript;
 	public Items refItemScript;
 	public ReqParchmentMove reqParchMoveScript;
-	public SlideInHelpBird slideInHelpScript;
 
 	[Header("Hide In Inspector ^_^")]
 	public float curntPounds;

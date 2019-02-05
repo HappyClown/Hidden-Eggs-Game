@@ -8,7 +8,8 @@ public class PuzzlePauseMenu : MonoBehaviour {
 		TurnOn, TurningOn, IsOn, TurnOff, TurningOff, IsOff
 	}
 	public MenuStates menuStates;
-
+	public Collider2D col;
+	
 	private RaycastHit2D hit;
 	private Vector2 mousePos2D;
 	private Vector3 mousePos;
@@ -51,6 +52,7 @@ public class PuzzlePauseMenu : MonoBehaviour {
 		sceneUICG.interactable = false;
 		menuStates = MenuStates.TurningOn;
 		puzzEngScript.canPlay = false;
+		col.enabled = true;
 	}
 
 	void TurningOn() {
@@ -81,6 +83,7 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	void TurnOff() {
 		menuCG.interactable = false;
 		menuStates = MenuStates.TurningOff;
+		col.enabled = false;
 	}
 
 	void TurningOff() {

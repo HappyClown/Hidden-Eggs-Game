@@ -139,7 +139,8 @@ public class GlobalVariables : MonoBehaviour
 				eggsFoundBools = loadedEggs;
 			}
 			if(clickOnEggsScript != null && eggsFoundBools.Count < 1) {
-				foreach(GameObject egg in clickOnEggsScript.eggs) {
+				foreach(GameObject egg in clickOnEggsScript.eggs) 
+				{
 					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
 					eggsFoundOrder.Add(0);
 				}
@@ -158,16 +159,15 @@ public class GlobalVariables : MonoBehaviour
 			puzzSilEggsCount = ParkSaveLoadManager.LoadParkPuzzSilEggsCount();
 			sceneSilEggsCount = ParkSaveLoadManager.LoadParkSceneSilEggsCount();
 			levelComplete = ParkSaveLoadManager.LoadParkLevelComplete();
+			birdIntroDone = ParkSaveLoadManager.LoadParkBirdIntro();
+			puzzIntroDone = ParkSaveLoadManager.LoadParkPuzzIntro();
 
 			List<bool> loadedEggs = ParkSaveLoadManager.LoadParkEggs();
-
-			if (loadedEggs.Count > 2)
-			{
+			if (loadedEggs.Count > 2) {
 				eggsFoundBools = loadedEggs;
 			}	
 		
-			if(clickOnEggsScript != null && eggsFoundBools.Count < 1)
-			{
+			if(clickOnEggsScript != null && eggsFoundBools.Count < 1) {
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
 					Debug.Log("should be filling eggsFoundBool & eggsFoundOrder lists");

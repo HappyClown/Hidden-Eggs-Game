@@ -9,6 +9,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public RaycastHit2D hit;
 	public Vector2 mousePos2D;
 	public Vector3 mousePos;
+	public bool tutorialDone;
 	public int curntLvl;
 	#endregion
 	#region Basic Scripts Sources
@@ -57,6 +58,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public FadeInOutImage scrnDarkImgScript;
 	public SceneTapEnabler sceneTapScript;
 	public PuzzlePauseMenu puzzlePauseScript;
+	public SlideInHelpBird slideInHelpScript;
 
 	[Header("Hide In Inspector ^_^")]
 	public bool canPlay;

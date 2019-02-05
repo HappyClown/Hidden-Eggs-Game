@@ -5,80 +5,28 @@ using UnityEngine.UI;
 
 public class KitePuzzEngine : MainPuzzleEngine 
 {
-	#region Old vars
-	Ray2D ray;
-	RaycastHit2D hit;
-	Vector2 mousePos2D;
-	Vector3 mousePos;
-
 	public int connections;
 	public List<float> bGSizes;
 	public BackgroundScale bgScleScript;
-
-	// public int curntLvl;
-
 	public ClickToRotateTile clickToRotTileScript;
-	#endregion
-	// #region Basic Scripts Sources
-	// [Header("Input Detector")]
-	// public inputDetector myInput;
-	// [Header("Silver Eggs")]
-	// public SilverEggsManager mySilverEggMan;
-	// [Header("Selection Buttons")]
-	// public LevelSelectionButtons mySelectButton;
-	// [Header("Fade in out variables")]
-	// public FadeInOutManager[] levelsStuff;
-	// #endregion
-	// #region GrabItem Script Variables
-	// [Header("General")]
-	// public int winLvl;
-	// public bool itemsWait;
-	// public float itemWaitAmnt;
-	// private float itemWaitTimer;
-	// private bool initialSetupOn;
-	// private bool setupChsnLvl;
+	
 	// For Delegate Method
 	private delegate void VoidDelegate();
 	private VoidDelegate voidDelegate; 
-	// private bool waitMethod;
-	// [Tooltip("For now, minimum the lenght of the silver egg tap anim.")] 
-	// public float waitTime;
-	// private float waitTimer;
-
-	// [Header("Item Parents")]
-	// [Tooltip("GameObjects - Game objects that hold the level items, in ascending order.")] 
-	// public List<GameObject> lvlItemHolders;
-	// public GameObject itemHolder;
-
-	// [Header("Initial Sequence")]
-	// public float seqTimer;
-	// public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
-	// private bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
 
 	[Header("Scripts")]
 	public ResetTiles resetTilesScript;
-	//public Items refItemScript;
-	// public FadeInOutImage scrnDarkImgScript;
-
-	// [Header("Hide In Inspector ^_^")]
-	// public bool canPlay;
-	// public int lvlToLoad;
-	// public float setupLvlWaitTime;
-	// public float chngLvlTimer;
-	// public int maxLvl;
-	// #endregion
-	// public AudioSceneParkPuzzle audioSceneParkPuzzScript;
 
 	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
 		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
+		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
 	}
 	
 
 	void Update () {
-		if (canPlay)
-		{
+		if (canPlay) {
 			if(mySelectButton.buttonPressed){
 				lvlToLoad = mySelectButton.lvlToLoad;
 				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
@@ -90,36 +38,40 @@ public class KitePuzzEngine : MainPuzzleEngine
 			
 			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; /* Debug.Log("do I ever run? Or am I just lazy like that?"); */ }
 
-			if (connections == clickToRotTileScript.connectionsNeeded)
-			{
+			if (connections == clickToRotTileScript.connectionsNeeded) {
 				SilverEggsSetup();
 			}
 
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 		}
-		else
-		{
+		else {
 			// When this Scene is loaded.
 			if (initialSetupOn) { InitialSetup(); }
 
 			// After the initial set up run the first sequence.
-			if (iniSeqStart)
-			{
+			if (iniSeqStart) {
 				if (iniSeqDelay > 0) { iniSeqDelay -= Time.deltaTime; }
-				else
-				{
+				else {
 					seqTimer += Time.deltaTime;
 					 if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; /* lvlItemHolders[curntLvl - 1].SetActive(true); */ LvlStuffFadeIn(); bgScleScript.ScaleBG();}
 					 if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); mySelectButton.InteractableThreeDots(maxLvl,curntLvl); clickToRotTileScript.CalculateConnectionsNeeded();}
-					 if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+					 if (seqTimer > iniCanPlayF) {
+						if (tutorialDone) {
+							canPlay = true;
+							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
+							sceneTapScript.canTapPauseBtn = true;
+						}
+						else {
+							slideInHelpScript.MoveBirdUpDown();
+						}
+						iniSeqStart = false;
+					}
 				}
 			}
 
-			if (itemsWait)
-			{
+			if (itemsWait) {
 				itemWaitTimer += Time.deltaTime;
-				if (itemWaitTimer > itemWaitAmnt)
-				{
+				if (itemWaitTimer > itemWaitAmnt) {
 					itemHolder.SetActive(true);
 					clickToRotTileScript.connectionsNeeded = clickToRotTileScript.CalculateConnectionsNeeded(); // For fun, to try giving a method a return type for the first time.
 					resetTilesScript.FillTileResetArray();
@@ -137,14 +89,11 @@ public class KitePuzzEngine : MainPuzzleEngine
 
 			#region Click On SilverEggs
 			// Clicking on a silver egg.
-			if (myInput.Tapped)
-			{
+			if (myInput.Tapped) {
 				UpdateMousePos();
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit)
-				{
-					if (hit.collider.CompareTag("Egg"))
-					{
+				if (hit) {
+					if (hit.collider.CompareTag("Egg")) {
 						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 						silEggTappedScript.StartSilverEggAnim();
 						hit.collider.enabled = false;
@@ -160,8 +109,7 @@ public class KitePuzzEngine : MainPuzzleEngine
 			#endregion
 		}
 
-		if (waitMethod) 
-		{
+		if (waitMethod) {
 			if (waitTimer > 0) 
 			{ waitTimer -= Time.deltaTime; } 
 			else { RunAfter(voidDelegate); waitMethod = false; }

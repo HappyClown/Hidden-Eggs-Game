@@ -439,6 +439,46 @@ public class ParkSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static bool LoadParkBirdIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.introDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
+	public static bool LoadParkPuzzIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.puzzIntroDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
 	public static void DeleteParkSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/parkEggSaver.sav");
@@ -573,22 +613,16 @@ public class MarketEggsData
 public class ParkEggsData 
 {
 	public List<bool> eggsFound;
-
 	public List<int> eggsFoundOrder;
-
 	public int silverEggsFound;
-
 	public List<int> puzzSilEggsFound;
-
 	public List<int> sceneSilEggsFound;
-
 	public bool hopscotchRiddle;
-
 	public int puzzMaxLvl;
-
 	public int totalEggsFound;
-	
 	public bool levelComplete;
+	public bool introDone;
+	public bool puzzIntroDone;
 
 	public ParkEggsData(GlobalVariables parkEggSaver)
 	{
@@ -609,6 +643,10 @@ public class ParkEggsData
 		totalEggsFound = parkEggSaver.totalEggsFound;
 
 		levelComplete = parkEggSaver.levelComplete;
+
+		introDone = parkEggSaver.birdIntroDone;
+
+		puzzIntroDone = parkEggSaver.puzzIntroDone;
 	}
 }
 

@@ -39,9 +39,9 @@ GameObject:
   - component: {fileID: 222438130345908126}
   - component: {fileID: 114694649247367264}
   - component: {fileID: 114414448826633382}
-  - component: {fileID: 114409118673679170}
+  - component: {fileID: 114211125342837976}
   m_Layer: 5
-  m_Name: Back Button
+  m_Name: Pause Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 223038656940788178}
   - component: {fileID: 114506395139308888}
   - component: {fileID: 114177110371045160}
+  - component: {fileID: 225378562677097898}
   m_Layer: 5
   m_Name: Canvas - UI
   m_TagString: Untagged
@@ -225,10 +226,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c06af4286fae444ebe6c759e4f01069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetButton: {fileID: 0}
+  resetButton: {fileID: 114292774874777536}
   items: []
   scaleScript: {fileID: 0}
-  grabItemScript: {fileID: 0}
+  marketPuzzScript: {fileID: 0}
+  sceneTapEnaScript: {fileID: 0}
+--- !u!114 &114211125342837976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260076448031838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798ef7fba95cca840829229c7bb8e4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzlePauseScript: {fileID: 0}
+  sceneTapEnaScript: {fileID: 0}
+  button: {fileID: 114414448826633382}
 --- !u!114 &114292774874777536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -416,18 +432,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &114409118673679170
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260076448031838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 439752213f2000341ac0edd05a7d944a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: The Market
 --- !u!114 &114414448826633382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,3 +989,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225378562677097898
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1270266279049360}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
