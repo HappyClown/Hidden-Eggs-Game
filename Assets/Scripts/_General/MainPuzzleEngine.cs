@@ -124,27 +124,27 @@ public class MainPuzzleEngine : MonoBehaviour
 			// Turn off interaction for all three level select dots.
 			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
 
-			#region Click On SilverEggs
-			// Clicking on a silver egg.
-			if (myInput.Tapped) {
-				UpdateMousePos();
-				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit) {
-					if (hit.collider.CompareTag("Egg")) {
-						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-						silEggTappedScript.StartSilverEggAnim();
-						hit.collider.enabled = false;
-						//SFX CLICK SILVER EGG
-						audioSceneParkPuzzScript.silverEgg();
-						if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
-						mySilverEggMan.SaveSilverEggsToCorrectFile();
-						mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-						mySilverEggMan.amntSilEggsTapped++;
-						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-					}
-				}
-			}
-			#endregion
+			// #region Click On SilverEggs
+			// // Clicking on a silver egg.
+			// if (myInput.Tapped) {
+			// 	UpdateMousePos();
+			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+			// 	if (hit) {
+			// 		if (hit.collider.CompareTag("Egg")) {
+			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
+			// 			silEggTappedScript.StartSilverEggAnim();
+			// 			hit.collider.enabled = false;
+			// 			//SFX CLICK SILVER EGG
+			// 			audioSceneParkPuzzScript.silverEgg();
+			// 			if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
+			// 			mySilverEggMan.SaveSilverEggsToCorrectFile();
+			// 			mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
+			// 			mySilverEggMan.amntSilEggsTapped++;
+			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
+			// 		}
+			// 	}
+			// }
+			// #endregion
 		}
 
 		if (waitMethod) {
@@ -199,7 +199,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
-	public void SilverEggsCheck() {
+	public virtual void SilverEggsCheck() {
 		if (mySilverEggMan.activeSilverEggs.Count > 0) {
 			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count) {			
 				mySilverEggMan.activeSilverEggs.Clear();
@@ -287,10 +287,10 @@ public class MainPuzzleEngine : MonoBehaviour
 		}
 	}
 
-	public void UpdateMousePos() {
-		mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
-		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-	}
+	// public void UpdateMousePos() {
+	// 	mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
+	// 	mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+	// }
 	#endregion
 
 	#region Coroutines

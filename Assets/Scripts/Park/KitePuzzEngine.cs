@@ -85,28 +85,28 @@ public class KitePuzzEngine : MainPuzzleEngine
 
 			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
 			// Turn off interaction for all three level select dots.
-			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
+			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots(); }
 
-			#region Click On SilverEggs
-			// Clicking on a silver egg.
-			if (myInput.Tapped) {
-				UpdateMousePos();
-				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit) {
-					if (hit.collider.CompareTag("Egg")) {
-						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-						silEggTappedScript.StartSilverEggAnim();
-						hit.collider.enabled = false;
-						audioSceneParkPuzzScript.silverEgg();
-						if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
-						mySilverEggMan.SaveSilverEggsToCorrectFile();
-						mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-						mySilverEggMan.amntSilEggsTapped++;
-						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-					}
-				}
-			}
-			#endregion
+			// #region Click On SilverEggs
+			// // Clicking on a silver egg.
+			// if (myInput.Tapped) {
+			// 	UpdateMousePos();
+			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+			// 	if (hit) {
+			// 		if (hit.collider.CompareTag("Egg")) {
+			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
+			// 			silEggTappedScript.StartSilverEggAnim();
+			// 			hit.collider.enabled = false;
+			// 			audioSceneParkPuzzScript.silverEgg();
+			// 			if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
+			// 			mySilverEggMan.SaveSilverEggsToCorrectFile();
+			// 			mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
+			// 			mySilverEggMan.amntSilEggsTapped++;
+			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
+			// 		}
+			// 	}
+			// }
+			// #endregion
 		}
 
 		if (waitMethod) {
@@ -118,8 +118,7 @@ public class KitePuzzEngine : MainPuzzleEngine
 
 	#region Level Change Methods
 	// Once, when the scene is openned.
-	public new void InitialSetup()
-	{
+	public new void InitialSetup() {
 		if(maxLvl > 3 || maxLvl < 1) { curntLvl = 1; }
 		else { curntLvl = maxLvl; }
 		itemHolder = lvlItemHolders[curntLvl - 1];
@@ -128,8 +127,7 @@ public class KitePuzzEngine : MainPuzzleEngine
 		iniSeqStart = true;
 	}
 
-	public new void SilverEggsSetup()
-	{
+	public new void SilverEggsSetup() {
 		//Debug.Log("New Level Setup");
 		canPlay = false;
 		//Set the silver egg sprites to Hollow if the egg was found already.
@@ -138,12 +136,11 @@ public class KitePuzzEngine : MainPuzzleEngine
 			int eggNumber = GlobalVariables.globVarScript.puzzSilEggsCount[i];
 			mySilverEggMan.allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = mySilverEggMan.hollowSilEgg;
 			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
-			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
+			//Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
 
 		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
-		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
-		{
+		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0) {
 			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform)
 			{
 				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
@@ -166,20 +163,17 @@ public class KitePuzzEngine : MainPuzzleEngine
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
-	public new void SilverEggsCheck()
-	{
-		if (mySilverEggMan.activeSilverEggs.Count > 0)
-		{
-			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count) 
-			{			
+	public override void SilverEggsCheck() {
+		if (mySilverEggMan.activeSilverEggs.Count > 0) {
+			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count) {			
 				mySilverEggMan.activeSilverEggs.Clear();
 				mySilverEggMan.silverEggsActive = false;
 				mySilverEggMan.amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
 				curntLvl++;
-				if (curntLvl > maxLvl) 
+				
+				if (curntLvl > maxLvl)
 				{ maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); }
-
 				voidDelegate = NextLevelSetup;
 				if (!waitMethod) { waitMethod = true; } else { Debug.LogError("waitMethod IS ALREADY IN PROGRESS, DONT DO THAT!!"); }
 				waitTimer = waitTime;
@@ -189,22 +183,18 @@ public class KitePuzzEngine : MainPuzzleEngine
 	}
 
 	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun)
-	{
+	void RunAfter(VoidDelegate methToRun) {
 		methToRun();
 	}
 
 	// Once animations are finished, run the next level setup.
-	public new void NextLevelSetup()
-	{
+	public new void NextLevelSetup() {
 		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
-		{ silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);}
+		{ silEggs.ResetSilEgg(); /* Debug.Log(silEggs.gameObject.name); */}
 		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
 		resetTilesScript.EndOfLevelReset();
 		chngLvlTimer = 0f;
-
-		if (curntLvl >= winLvl) 
-		{
+		if (curntLvl >= winLvl) {
 			StartCoroutine(PuzzleComplete());
 			return;
 		}
@@ -214,8 +204,7 @@ public class KitePuzzEngine : MainPuzzleEngine
 	}
 
 	// Prepare to change level after a level selection button has been pressed.
-	public new void ChangeLevelSetup()
-	{
+	public new void ChangeLevelSetup() {
 		// Close up current level.
 		canPlay = false;
 		mySelectButton.UninteractableThreeDots();
@@ -224,12 +213,10 @@ public class KitePuzzEngine : MainPuzzleEngine
 	}
 
 	// Setup the chosen level after waiting for setupLvlWaitTime (minimum the fade out duration of the items).
-	public new void ChosenLevelSetup(int lvlToLoad)
-	{
+	public new void ChosenLevelSetup(int lvlToLoad) {
 		// Setup chosen level.
 		chngLvlTimer += Time.deltaTime;
-		if (chngLvlTimer > setupLvlWaitTime)
-		{
+		if (chngLvlTimer > setupLvlWaitTime) {
 			lvlItemHolders[curntLvl - 1].SetActive(false);
 			resetTilesScript.EndOfLevelReset();
 			curntLvl = lvlToLoad;
@@ -243,38 +230,33 @@ public class KitePuzzEngine : MainPuzzleEngine
 	#endregion
 
 	#region General Methods
-	public new void LvlStuffFadeIn()
-	{
+	public new void LvlStuffFadeIn() {
 		levelsStuff[curntLvl -1].StartLvlFadeIn();
-		Debug.Log("Should fade in stuff."); // Fade in tiles
+		//Debug.Log("Should fade in stuff."); // Fade in tiles
 		if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
 	}
 
-	public new void LvlStuffFadeOut() // Fade out tiles, tile backs, kite, backshadow.
-	{
+	public new void LvlStuffFadeOut() { // Fade out tiles, tile backs, kite, backshadow. 
 		levelsStuff[curntLvl -1].ExitFadeOutLvl();
 	}
 
-	public new void SaveMaxLvl()
-	{
-		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
-		{
+	public new void SaveMaxLvl() {
+		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl) {
 			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
 
-	public new void UpdateMousePos()
-	{
-		mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
-		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-	}
+	// public new void UpdateMousePos()
+	// {
+	// 	mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
+	// 	mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+	// }
 	#endregion
 
 	#region Coroutines
 	// All silver eggs picked up, what happenes?
-	public new IEnumerator PuzzleComplete ()
-	{
+	public new IEnumerator PuzzleComplete () {
 		yield return new WaitForSeconds(0.5f);
 
 		Debug.Log("Puzzle Completed cognraturations!!!");

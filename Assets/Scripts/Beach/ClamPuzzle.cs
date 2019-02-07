@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class ClamPuzzle : MainPuzzleEngine {
 	private Ray2D ray;
-	private RaycastHit2D hit;
-	Vector2 mousePos2D;
-	Vector3 mousePos;
+	// private RaycastHit2D hit;
+	// Vector2 mousePos2D;
+	// Vector3 mousePos;
 	// #region Basic Scripts Sources
 	// [Header("Input Detector")]
 	// public inputDetector myInput;
@@ -186,28 +186,18 @@ public class ClamPuzzle : MainPuzzleEngine {
 
 			#region Click On SilverEggs
 			// Clicking on a silver egg.
-			if (myInput.Tapped)
-			{
+			if (myInput.Tapped) {
 				UpdateMousePos();
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit)
-				{
-					//Debug.Log(hit.collider.name);
-					if (hit.collider.CompareTag("Egg"))
-					{
-						//if (crateScript.curntLvl >= maxLvl) { silverEggsPickedUp += 1; }
-						/* Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate"); */
+				if (hit) {
+					if (hit.collider.CompareTag("Egg")) {
 						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 						silEggTappedScript.StartSilverEggAnim();
 						hit.collider.enabled = false;
-
-						//SFX CLICK SILVER EGG
 						//audioSceneParkPuzzScript.silverEgg();
-
 						if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
 						mySilverEggMan.SaveSilverEggsToCorrectFile();
 						mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-
 						mySilverEggMan.amntSilEggsTapped++;
 						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
 					}

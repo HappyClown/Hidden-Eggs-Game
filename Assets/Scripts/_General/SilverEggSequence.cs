@@ -36,30 +36,24 @@ public class SilverEggSequence : MonoBehaviour
 	private float lerpTime;
 	
 	public AudioSilverEggs audioSilEggScript;
-	public inputDetector inpDetScript;
+	public inputDetector inputDetScript;
+	public SilverEggsManager silverEggsManScript;
 
 	//public Transform hoverTo; // For hover with lerp.
 	
-
-	void Awake()
-	{
+	void Awake() {
 		iniHovCurDur = hoverCurDur;
 		iniStartHoverDelay = startHoverDelay;
 	}
 
-
-	void Update () 
-	{
-		if (/* Input.GetKeyDown("space") ||  */inpDetScript.Tapped)
-		{
+	void Update () {
+		if (inputDetScript.Tapped) {
 			SkipSequence();
 		}
 
-		if (startSeq)
-		{
+		if (startSeq) {
 			if (startMoveDelay > 0f) { startMoveDelay -= Time.deltaTime; }
-			else
-			{
+			else {
 				lerpTime += Time.deltaTime / moveDuration;
 				float animCurveTime = moveAnimCurve.Evaluate(lerpTime);
 				float newY = yAnimCurve.Evaluate(lerpTime) * newYMagnitude;
@@ -68,8 +62,7 @@ public class SilverEggSequence : MonoBehaviour
 				this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + newY, this.transform.position.z);
 				this.transform.localScale = Vector3.Lerp(startScale, endScale, animCurveTime);
 
-				if (lerpTime >= 1f)
-				{
+				if (lerpTime >= 1f) {
 					//end - play fx, enable collider, etc
 					startSeq = false;
 					hoverSeq = true;
@@ -82,8 +75,7 @@ public class SilverEggSequence : MonoBehaviour
 			}
 		}
 
-		if (hoverSeq)
-		{
+		if (hoverSeq) {
 			////// HOVER WITH LERP //////
 			// if (startHoverDelay > 0f) { startHoverDelay -= Time.deltaTime; }
 			// else
@@ -102,8 +94,7 @@ public class SilverEggSequence : MonoBehaviour
 			// }
 			////// HOVER WITH ANIMATION CURVE //////
 			if (startHoverDelay > 0f) { startHoverDelay -= Time.deltaTime; }
-			else
-			{
+			else {
 				if(hoverCurDur > hoverDuration) { hoverCurDur -= Time.deltaTime; } else { hoverCurDur = hoverDuration; } // Gradually increase the hover speed.
 				lerpTime += Time.deltaTime / hoverCurDur; // Time in second for one up or down curve.
 				float hoverY = hoverAnimCurve.Evaluate(lerpTime) * hoverYMult;
@@ -113,17 +104,14 @@ public class SilverEggSequence : MonoBehaviour
 		}
 	}
 
-
-	public void ShimmerFade() // In SilverEgg Pop anim
-	{
+	public void ShimmerFade() { // In SilverEgg Pop anim 
 		shimmerFX.gameObject.transform.parent = null;
 		var shimmerFXEm = shimmerFX.emission;
 		shimmerFXEm.enabled = false;
 		silEggShimScript.Refresh();
 	}
 
-	public void StartSequence()
-	{
+	public void StartSequence() {
 		startSeq = true;
 		startPos = this.transform.localPosition;
 		startScale = this.transform.localScale;
@@ -133,18 +121,15 @@ public class SilverEggSequence : MonoBehaviour
 		//shimmerFX.Play();
 	}
 
-	public void ResetHover()
-	{
+	public void ResetHover() {
 		hoverCurDur = iniHovCurDur;
 		startHoverDelay = iniStartHoverDelay;
 		hoverSeq = false;
 		lerpTime = 0f;
 	}
 
-	public void SkipSequence()
-	{
-		if (startSeq)
-		{
+	public void SkipSequence() {
+		if (startSeq) {
 			this.transform.position = endPos.position;
 			this.transform.localScale = endScale;
 			startSeq = false;
@@ -154,6 +139,8 @@ public class SilverEggSequence : MonoBehaviour
 			trailFX.Stop();
 			startPos = this.transform.position;
 			myCol.enabled = true;
+			silverEggsManScript.skippedSeq = true;
+			//Debug.Log(silverEggsManScript.skippedSeq);
 		}
 	}
 }

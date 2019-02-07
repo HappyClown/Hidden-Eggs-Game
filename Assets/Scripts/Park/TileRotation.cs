@@ -31,7 +31,7 @@ public class TileRotation : MonoBehaviour
 
 	public KitePuzzEngine gameEngineScript;
 
-	public bool canBeRotated;
+	public bool canBeRotated, isEmpty;
 
 	public List<bool> myConnections;
 

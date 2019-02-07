@@ -49,7 +49,8 @@ public class ClickToRotateTile : MonoBehaviour
 	public bool handheldDevice = false;
 
 	public KitePuzzEngine kitePuzzEngineScript;
-
+	
+	public List<ParticleSystem> leafBurstsFX;
 	public AudioSceneParkPuzzle audioSceneParkPuz;
 
 	
@@ -120,9 +121,10 @@ public class ClickToRotateTile : MonoBehaviour
 		if (kitePuzzEngineScript.canPlay)
 		{
 			// --- Click detected check to see what tile is hit
-			if (hit.collider != null && myInput.dragStarted && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated)
+			if (hit.collider != null && myInput.dragStarted && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated && !hit.collider.GetComponent<TileRotation>().isEmpty)
 			{
-				Debug.Log("Click pressed");
+				//Debug.Log("Click pressed");
+
 				mouseClickOGPos = mousePos;
 				timer = 0f;
 				// Select tile
@@ -138,99 +140,104 @@ public class ClickToRotateTile : MonoBehaviour
 			
 			}
 
-			// --- Check to see if holding click
-			if (myInput.isDragging && tileClicked != null)
-			{
-				// if (mouseClickHeld == false)
-				// {	
-				// 	timer += Time.deltaTime;
-				// }
+			if (tileClicked != null) {
+				// --- Check to see if holding click
+				if (myInput.isDragging)
+				{
+					// if (mouseClickHeld == false)
+					// {	
+					// 	timer += Time.deltaTime;
+					// }
 
-				// --- Clicked long enough 
-				// if (timer >= nowHoldingTime || mouseClickHeld || Vector3.Distance(mouseClickOGPos, updateMousePos) > distToDrag) 
-				// {
-					//Debug.Log("Click now held");
-					// mouseClickHeld = true;
+					// --- Clicked long enough 
+					// if (timer >= nowHoldingTime || mouseClickHeld || Vector3.Distance(mouseClickOGPos, updateMousePos) > distToDrag) 
+					// {
+						//Debug.Log("Click now held");
+						// mouseClickHeld = true;
+						// mouseClick = false;
+						// timer = 0f;
+						mousePos = Camera.main.ScreenToWorldPoint(myInput.draggingPosition);
+						float tileClickedX =  mousePos.x;
+						float tileClickedY = mousePos.y;
+
+						tileClicked.transform.position = new Vector3(tileClickedX, tileClickedY, -5f);
+					// }
+				}
+
+
+				// --- Click released just a click
+				if (myInput.Tapped)
+				{
+					// Debug.Log("Click released after click");
+					// if (mouseClick)
+					// {
+						//tileClicked.transform.eulerAngles = new Vector3(tileClicked.transform.eulerAngles.x, tileClicked.transform.eulerAngles.y, tileClicked.transform.eulerAngles.z - 90);
+						// make tile roo roororo tate
+						tileClicked.GetComponent<TileRotation>().RotateTile();
+
+						// SFX PICK UP TILE
+						audioSceneParkPuz.rotateTile();
+					// }
+
+					// tileClicked.transform.position = tileClickedOGPos;
+
+					tileClicked.GetComponent<BoxCollider2D>().enabled = true;
+					// mouseClickHeld = false;
 					// mouseClick = false;
+					tileClicked = null;
 					// timer = 0f;
-					mousePos = Camera.main.ScreenToWorldPoint(myInput.draggingPosition);
-					float tileClickedX =  mousePos.x;
-					float tileClickedY = mousePos.y;
+					kitePuzzEngineScript.connections = 0;
 
-					tileClicked.transform.position = new Vector3(tileClickedX, tileClickedY, -5f);
-				// }
-			}
+					foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
+					{
+						//Debug.Log("make tiles check neighbors");
+						tile.gameObject.GetComponent<TileRotation>().CheckNeighbors();
+					}
+				}
 
 
-			// --- Click released just a click
-			if (myInput.Tapped && tileClicked != null)
-			{
-				// Debug.Log("Click released after click");
-				// if (mouseClick)
-				// {
-					//tileClicked.transform.eulerAngles = new Vector3(tileClicked.transform.eulerAngles.x, tileClicked.transform.eulerAngles.y, tileClicked.transform.eulerAngles.z - 90);
-					// make tile roo roororo tate
-					tileClicked.GetComponent<TileRotation>().RotateTile();
-
-					// SFX PICK UP TILE
-					audioSceneParkPuz.rotateTile();
-				// }
-
-				// tileClicked.transform.position = tileClickedOGPos;
-
-				tileClicked.GetComponent<BoxCollider2D>().enabled = true;
-				// mouseClickHeld = false;
-				// mouseClick = false;
-				tileClicked = null;
-				// timer = 0f;
-				kitePuzzEngineScript.connections = 0;
-
-				foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
+				// --- Click released after holding
+				if (myInput.dragReleased)
 				{
-					//Debug.Log("make tiles check neighbors");
-					tile.gameObject.GetComponent<TileRotation>().CheckNeighbors();
+					// SFK DROP TILE
+					audioSceneParkPuz.dropTile();
+
+					if(hit.collider != null && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated){
+						tileClicked.transform.position = hit.collider.gameObject.transform.position;
+						hit.collider.gameObject.transform.position = tileClickedOGPos;
+						PlayDropFX();
+
+					}else{
+						tileClicked.transform.position = tileClickedOGPos;
+						PlayDropFX();
+					}
+					
+					//Debug.Log("Click released after held");
+					// if (mouseClickHeld && hit.collider.GetComponent<TileRotation>().canBeRotated)
+					// {
+					// 	tileClicked.transform.position = hit.collider.gameObject.transform.position;
+					// 	hit.collider.gameObject.transform.position = tileClickedOGPos;
+					// }
+					// else
+					// {
+					// 	tileClicked.transform.position = tileClickedOGPos;
+					// }
+
+					tileClicked.GetComponent<BoxCollider2D>().enabled = true;
+					// mouseClickHeld = false;
+					// mouseClick = false;
+					tileClicked = null;
+					// timer = 0f;
+					kitePuzzEngineScript.connections = 0;
+
+					foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
+					{
+						//Debug.Log("make tiles check neighbors");
+						tile.gameObject.GetComponent<TileRotation>().CheckNeighbors();
+					}
 				}
 			}
-
-
-			// --- Click released after holding
-			if (myInput.dragReleased && tileClicked != null)
-			{
-				// SFK DROP TILE
-				audioSceneParkPuz.dropTile();
-
-				if(hit.collider != null && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated){
-					tileClicked.transform.position = hit.collider.gameObject.transform.position;
-					hit.collider.gameObject.transform.position = tileClickedOGPos;
-
-				}else{
-					tileClicked.transform.position = tileClickedOGPos;
-				}
-				
-				Debug.Log("Click released after held");
-				// if (mouseClickHeld && hit.collider.GetComponent<TileRotation>().canBeRotated)
-				// {
-				// 	tileClicked.transform.position = hit.collider.gameObject.transform.position;
-				// 	hit.collider.gameObject.transform.position = tileClickedOGPos;
-				// }
-				// else
-				// {
-				// 	tileClicked.transform.position = tileClickedOGPos;
-				// }
-
-				tileClicked.GetComponent<BoxCollider2D>().enabled = true;
-				// mouseClickHeld = false;
-				// mouseClick = false;
-				tileClicked = null;
-				// timer = 0f;
-				kitePuzzEngineScript.connections = 0;
-
-				foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
-				{
-					Debug.Log("make tiles check neighbors");
-					tile.gameObject.GetComponent<TileRotation>().CheckNeighbors();
-				}
-			}
+			
 		}
 	}
 
@@ -247,6 +254,14 @@ public class ClickToRotateTile : MonoBehaviour
 			if (tile.GetComponent<TileRotation>().leftConnection == true) { connectionsNeeded += 1; }
 		}
 		return connectionsNeeded;
+	}
+
+	void PlayDropFX() {
+		foreach(ParticleSystem leafBurst in leafBurstsFX)
+		{
+			leafBurst.gameObject.transform.position = tileClicked.transform.position;
+			leafBurst.Play(true);
+		}
 	}
 	// public IEnumerator SkipAFrame()
 	// {

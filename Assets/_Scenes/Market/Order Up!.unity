@@ -1348,7 +1348,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
-  inpDetScript: {fileID: 991552000}
+  inputDetScript: {fileID: 991552000}
+  silverEggsManScript: {fileID: 991552004}
 --- !u!58 &303953119
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -17172,7 +17173,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
-  inpDetScript: {fileID: 991552000}
+  inputDetScript: {fileID: 991552000}
+  silverEggsManScript: {fileID: 991552004}
 --- !u!58 &654986386
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -17996,7 +17998,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
-  inpDetScript: {fileID: 991552000}
+  inputDetScript: {fileID: 991552000}
+  silverEggsManScript: {fileID: 991552004}
 --- !u!58 &729657839
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -18894,6 +18897,7 @@ GameObject:
   - component: {fileID: 991551999}
   - component: {fileID: 991551998}
   - component: {fileID: 991552000}
+  - component: {fileID: 991552004}
   - component: {fileID: 991552002}
   - component: {fileID: 991552003}
   m_Layer: 0
@@ -18932,7 +18936,7 @@ MonoBehaviour:
   tutorialDone: 0
   curntLvl: 0
   myInput: {fileID: 991552000}
-  mySilverEggMan: {fileID: 0}
+  mySilverEggMan: {fileID: 991552004}
   mySelectButton: {fileID: 991552002}
   levelsStuff: []
   winLvl: 4
@@ -18980,28 +18984,6 @@ MonoBehaviour:
   scaleSnapPos: {fileID: 455701112}
   crateSnapPos: {fileID: 1647103685}
   crateParent: {fileID: 664245074}
-  silverEggsPickedUp: 0
-  hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
-  lvlSilverEggs:
-  - {fileID: 730244368}
-  - {fileID: 1502931993}
-  - {fileID: 1381440585}
-  activeSilverEggs: []
-  allSilEggs:
-  - {fileID: 1523384240}
-  - {fileID: 654986384}
-  - {fileID: 1631480707}
-  - {fileID: 1669234056}
-  - {fileID: 303953117}
-  - {fileID: 729657837}
-  allSilverEggsScripts:
-  - {fileID: 1523384246}
-  - {fileID: 654986390}
-  - {fileID: 1631480713}
-  - {fileID: 1669234062}
-  - {fileID: 303953123}
-  - {fileID: 729657843}
-  amntSilEggsTapped: 0
   scaleScript: {fileID: 991551998}
   crateScript: {fileID: 991551999}
   resetItemsButtonScript: {fileID: 1327687750}
@@ -19225,6 +19207,44 @@ MonoBehaviour:
   menuCG: {fileID: 235575936}
   sceneUICG: {fileID: 506299842}
   fadeDuration: 0.25
+--- !u!114 &991552004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 991551995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16650ec3b9e7a7843a3a82401c181219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverEggsPickedUp: 0
+  hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
+  lvlSilverEggs:
+  - {fileID: 730244368}
+  - {fileID: 1502931993}
+  - {fileID: 1381440585}
+  activeSilverEggs: []
+  allSilEggs:
+  - {fileID: 1523384240}
+  - {fileID: 654986384}
+  - {fileID: 1631480707}
+  - {fileID: 1669234056}
+  - {fileID: 303953117}
+  - {fileID: 729657837}
+  allSilverEggsScripts:
+  - {fileID: 1523384246}
+  - {fileID: 654986390}
+  - {fileID: 1631480713}
+  - {fileID: 1669234062}
+  - {fileID: 303953123}
+  - {fileID: 729657843}
+  silverEggsActive: 0
+  skippedSeq: 0
+  amntSilEggsTapped: 0
+  inputDetScript: {fileID: 991552000}
+  mainPuzzleEngScript: {fileID: 991551997}
+  audioSceneParkPuzzScript: {fileID: 0}
 --- !u!1 &1013700553
 GameObject:
   m_ObjectHideFlags: 0
@@ -44141,7 +44161,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
-  inpDetScript: {fileID: 991552000}
+  inputDetScript: {fileID: 991552000}
+  silverEggsManScript: {fileID: 991552004}
 --- !u!58 &1523384242
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -44554,7 +44575,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
-  inpDetScript: {fileID: 991552000}
+  inputDetScript: {fileID: 991552000}
+  silverEggsManScript: {fileID: 991552004}
 --- !u!58 &1631480709
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -44941,7 +44963,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 1743775734}
-  inpDetScript: {fileID: 991552000}
+  inputDetScript: {fileID: 991552000}
+  silverEggsManScript: {fileID: 991552004}
 --- !u!58 &1669234058
 CircleCollider2D:
   m_ObjectHideFlags: 0

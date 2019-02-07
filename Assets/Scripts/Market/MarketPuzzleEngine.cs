@@ -28,13 +28,13 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	[Header("Item Parents")]
 	public GameObject crateParent;
 
-	[Header("Silver Eggs")]
-	public int silverEggsPickedUp;
-	public Sprite hollowSilEgg;
-	public List<GameObject> lvlSilverEggs, activeSilverEggs, allSilEggs;
-	public List<SilverEggs> allSilverEggsScripts;
-	private bool silverEggsActive;
-	public int amntSilEggsTapped;
+	// [Header("Silver Eggs")]
+	// public int silverEggsPickedUp;
+	// public Sprite hollowSilEgg;
+	// public List<GameObject> lvlSilverEggs, activeSilverEggs, allSilEggs;
+	// public List<SilverEggs> allSilverEggsScripts;
+	// private bool silverEggsActive;
+	// public int amntSilEggsTapped;
 
 	[Header("Scripts")]
 	public Scale scaleScript;
@@ -55,7 +55,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		initialSetupOn = true;
 		heldItem = null;
 		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
-		silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
+		//mySilverEggMan.silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
 		if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
 	}
@@ -237,31 +237,31 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 			// Turn off interaction for all three level select dots.
 			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
 
-			#region Click On SilverEggs
-			// Clicking on a silver egg.
-			if (Input.GetMouseButtonDown(0)) {		
-				UpdateMousePos();
-				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit) {
-					//Debug.Log(hit.collider.name);
-					if (hit.collider.CompareTag("Egg"))
-					{
-						Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
-						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-						silEggTappedScript.StartSilverEggAnim();
-						hit.collider.enabled = false;
+			// #region Click On SilverEggs
+			// // Clicking on a silver egg.
+			// if (Input.GetMouseButtonDown(0)) {		
+			// 	UpdateMousePos();
+			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+			// 	if (hit) {
+			// 		//Debug.Log(hit.collider.name);
+			// 		if (hit.collider.CompareTag("Egg"))
+			// 		{
+			// 			Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
+			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
+			// 			silEggTappedScript.StartSilverEggAnim();
+			// 			hit.collider.enabled = false;
 						
-						if (!silEggTappedScript.hollow) { silverEggsPickedUp++; }
-						SaveSilverEggsToCorrectFile();
-						SaveNewSilEggsFound(allSilEggs.IndexOf(hit.collider.gameObject));
+			// 			if (!silEggTappedScript.hollow) { silverEggsPickedUp++; }
+			// 			SaveSilverEggsToCorrectFile();
+			// 			SaveNewSilEggsFound(allSilEggs.IndexOf(hit.collider.gameObject));
 						
-						amntSilEggsTapped++;
-						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-						audioSceneMarketPuz.silverEggSnd();
-					}
-				}
-			}
-			#endregion
+			// 			amntSilEggsTapped++;
+			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
+			// 			audioSceneMarketPuz.silverEggSnd();
+			// 		}
+			// 	}
+			// }
+			// #endregion
 		}
 
 		if (waitMethod) 
@@ -298,21 +298,21 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
 		{
 			int eggNumber = GlobalVariables.globVarScript.puzzSilEggsCount[i];
-			allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = hollowSilEgg;
-			allSilverEggsScripts[eggNumber].hollow = true;
-			Debug.Log(allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
+			mySilverEggMan.allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = mySilverEggMan.hollowSilEgg;
+			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
+			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
 
-		if (lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
+		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
 		{
-			foreach (Transform silEgg in lvlSilverEggs[curntLvl - 1].transform)
+			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform)
 			{
-				activeSilverEggs.Add(silEgg.gameObject);
+				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
 				//Debug.Log(silEgg.name + "has been added to the active Silver Egg List!");
 			}
 		}
 
-		silverEggsActive = true;
+		mySilverEggMan.silverEggsActive = true;
 
 		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
 
@@ -333,16 +333,16 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
-	public new void SilverEggsCheck()
+	public override void SilverEggsCheck()
 	{
 		//int amntSilEggsTapped = 0;
-		if (activeSilverEggs.Count > 0)
+		if (mySilverEggMan.activeSilverEggs.Count > 0)
 		{
-			if (amntSilEggsTapped == activeSilverEggs.Count) 
+			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count) 
 			{			
-				activeSilverEggs.Clear();
-				silverEggsActive = false;
-				amntSilEggsTapped = 0;
+				mySilverEggMan.activeSilverEggs.Clear();
+				mySilverEggMan.silverEggsActive = false;
+				mySilverEggMan.amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
 				curntLvl++;
 				if (curntLvl > maxLvl) 
@@ -364,9 +364,9 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	// Once animations are finished, run the next level setup.
 	public new void NextLevelSetup()
 	{
-		foreach(SilverEggs silEggs in lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
+		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
 		{ silEggs.ResetSilEgg(); }
-		lvlSilverEggs[curntLvl - 2].SetActive(false);
+		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
 		chngLvlTimer = 0f;
 
 		if (curntLvl >= winLvl) 
@@ -428,10 +428,10 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 
 	public void SaveSilverEggsToCorrectFile()
 	{
-		if (silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) 
+		if (mySilverEggMan.silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) 
 		{
 			GlobalVariables.globVarScript.totalEggsFound += 1;
-			GlobalVariables.globVarScript.silverEggsCount = silverEggsPickedUp; 
+			GlobalVariables.globVarScript.silverEggsCount = mySilverEggMan.silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
@@ -458,7 +458,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		}
 	}
 
-	public new void UpdateMousePos()
+	public void UpdateMousePos()
 	{
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
@@ -504,7 +504,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		crateParent.transform.parent.position = crateTopTransform.position;
 		crateParent.transform.parent.rotation = crateTopTransform.rotation;
 
-		lvlSilverEggs[curntLvl - 1].SetActive(true);
+		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true);
 		resetItemsButtonScript.EndOfLevelReset();
 		itemHolder.SetActive(false);
 		scrnDarkImgScript.FadeIn();
@@ -531,7 +531,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		crateParent.transform.parent.rotation = crateAnim.transform.rotation;
 
 		// foreach activesilvereggs getcomponenet silvereggsequence startsequence = true
-		foreach(GameObject silEgg in activeSilverEggs)
+		foreach(GameObject silEgg in mySilverEggMan.activeSilverEggs)
 		{
 			silEgg.GetComponent<SilverEggSequence>().StartSequence();
 		}
