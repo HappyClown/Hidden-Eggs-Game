@@ -22,19 +22,18 @@ public class BackToMenu : MonoBehaviour
 	[Header("References")]
 	public Hub hubScript;
 	public MainMenu mainMenuScript;
-	public GlowPlayAnim glowPlayAnimScript;
+	public List<SeasonGlows> seasonGlowScripts;
+	public EdgeFireflies edgeFirefliesScript;
 
 	[Header("Back To Menu Button")]
 	public Button backToMenuBtn;
 	public FadeInOutBoth backToMenuFadeScript;
 	public FadeInOutImage backToMenuIconFadeScript;
 
-
 	void Start () 
 	{
 		backToMenuBtn.onClick.AddListener(GoToMenu);
 	}
-	
 
 	void Update ()  
 	{
@@ -48,32 +47,30 @@ public class BackToMenu : MonoBehaviour
 				rstBtnFadeScript.FadeIn();
 				fadeBtnIn = false;
 				hubScript.ResetHubSeasons();
-				glowPlayAnimScript.ResetGlow(); // call this on all the glows (all unlocked seasons)
+				foreach(SeasonGlows seasonGlowScript in seasonGlowScripts)
+				{
+					seasonGlowScript.ResetGlowAlphas();
+				}
+				edgeFirefliesScript.StopFireflyFX();
 				btnWaitTimer = 0f;
 				this.gameObject.SetActive(false);
 			}
 		}
 	}
 
-
-
 	void GoToMenu ()
 	{
 		GlobalVariables.globVarScript.toHub = false;
 		hubScript.inHub = false;
-
-		if (!mainMenuScript.gameObject.activeSelf)
-		{
+		if (!mainMenuScript.gameObject.activeSelf) {
 			mainMenuScript.gameObject.SetActive(true);
 			// Put in variables to make the main menu be faded out.
 		}
-
 		// - TO TURN OFF IMMEDIATELY - //
 		foreach(GameObject levelButton in levelButtons)
 		{
 			levelButton.SetActive(false);
 		}
-
 		//backToMenuBtn.enabled = false;
 		// - MAKE THE CLOUDS CLOSE - //
 		foreach(MoveCloud cloud in cloudsToMove)
@@ -89,7 +86,6 @@ public class BackToMenu : MonoBehaviour
 		solidBGFade.FadeIn();
 		// - FADE IN ALL BUTTONS - //
 		fadeBtnIn = true;
-
 		mainMenuScript.ResetStory();	
 	}
 }

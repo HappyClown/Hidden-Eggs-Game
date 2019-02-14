@@ -5,8 +5,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class MarketPuzzleEngine : MainPuzzleEngine 
-{
+public class MarketPuzzleEngine : MainPuzzleEngine {
 	#region MarketPuzzleEngine Script Variables
 	[Header("General")]
 	public float itemScaleMult;
@@ -14,35 +13,22 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	private GameObject heldItem;
 	private delegate void VoidDelegate();
 	private VoidDelegate voidDelegate; 
-
 	[Header("Crate")]
 	public float crateMoveSpeed;
 	public Animator crateAnim;
 	public Transform crateTopTransform, crateInSceneTransform;
 	public float waitBeforeCrteDown;
-
 	[Header("Tagged Colliders & Position Snaps")]
 	public GameObject scaleSnapPos;
 	public Transform crateSnapPos;
-
 	[Header("Item Parents")]
 	public GameObject crateParent;
-
-	// [Header("Silver Eggs")]
-	// public int silverEggsPickedUp;
-	// public Sprite hollowSilEgg;
-	// public List<GameObject> lvlSilverEggs, activeSilverEggs, allSilEggs;
-	// public List<SilverEggs> allSilverEggsScripts;
-	// private bool silverEggsActive;
-	// public int amntSilEggsTapped;
-
 	[Header("Scripts")]
 	public Scale scaleScript;
 	public Crate crateScript;
 	public ResetItemsButton resetItemsButtonScript;
 	public Items refItemScript;
 	public ReqParchmentMove reqParchMoveScript;
-
 	[Header("Hide In Inspector ^_^")]
 	public float curntPounds;
 	public float curntAmnt;
@@ -233,35 +219,9 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 				}
 			}
 
-			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
+			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad); }
 			// Turn off interaction for all three level select dots.
-			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
-
-			// #region Click On SilverEggs
-			// // Clicking on a silver egg.
-			// if (Input.GetMouseButtonDown(0)) {		
-			// 	UpdateMousePos();
-			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			// 	if (hit) {
-			// 		//Debug.Log(hit.collider.name);
-			// 		if (hit.collider.CompareTag("Egg"))
-			// 		{
-			// 			Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate");
-			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-			// 			silEggTappedScript.StartSilverEggAnim();
-			// 			hit.collider.enabled = false;
-						
-			// 			if (!silEggTappedScript.hollow) { silverEggsPickedUp++; }
-			// 			SaveSilverEggsToCorrectFile();
-			// 			SaveNewSilEggsFound(allSilEggs.IndexOf(hit.collider.gameObject));
-						
-			// 			amntSilEggsTapped++;
-			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-			// 			audioSceneMarketPuz.silverEggSnd();
-			// 		}
-			// 	}
-			// }
-			// #endregion
+			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots(); }
 		}
 
 		if (waitMethod) 
@@ -274,8 +234,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 
 	#region Level Change Methods
 	// Once, when the scene is openned.
-	public new void InitialSetup()
-	{
+	public new void InitialSetup() {
 		//Debug.Log("Initial Setup");
 		if(maxLvl > 3 || maxLvl < 1) { curntLvl = 1; }
 		else { curntLvl = maxLvl; }
@@ -289,11 +248,9 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	}
 
 	// Level complete, load silver eggs, start crate animation.
-	public new void SilverEggsSetup()
-	{
+	public new void SilverEggsSetup() {
 		//Debug.Log("New Level Setup");
 		canPlay = false;
-
 		//Set the silver egg sprites to Hollow if the egg was found already.
 		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
 		{
@@ -302,52 +259,42 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
 			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
-
-		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
-		{
+		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0) {
 			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform)
 			{
 				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
 				//Debug.Log(silEgg.name + "has been added to the active Silver Egg List!");
 			}
 		}
-
 		mySilverEggMan.silverEggsActive = true;
-
 		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
-
 		// Fade out the finished level's items. (Except the ones in the crate.)
 		if (scaleScript.itemOnScale != null) { scaleScript.itemOnScale.transform.parent = itemHolder.transform; }
-	
 		Items[] childrenItemScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		childrenItemScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<Items>(); 
 		for (int i = 0; i < childrenItemScripts.Length; i++)
 		{ childrenItemScripts[i].FadeOut(); }
-
 		StartCoroutine(MoveCrateRight());
 		reqParchMoveScript.moveToHidden = true;
 		audioSceneMarketPuz.closePanel();
-
 		curntPounds = 0;
 		curntAmnt = 0;
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
-	public override void SilverEggsCheck()
-	{
+	public override void SilverEggsCheck() {
 		//int amntSilEggsTapped = 0;
-		if (mySilverEggMan.activeSilverEggs.Count > 0)
-		{
-			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count) 
-			{			
+		if (mySilverEggMan.activeSilverEggs.Count > 0) {
+			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count) {			
 				mySilverEggMan.activeSilverEggs.Clear();
 				mySilverEggMan.silverEggsActive = false;
 				mySilverEggMan.amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
 				curntLvl++;
-				if (curntLvl > maxLvl) 
-				{ maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); }
-
+				if (curntLvl > maxLvl) { 
+					maxLvl = curntLvl; SaveMaxLvl(); 
+					mySelectButton.EnabledThreeDots(maxLvl); 
+				}
 				voidDelegate = NextLevelSetup;
 				if (!waitMethod) { waitMethod = true; } else { Debug.LogError("waitMethod IS ALREADY IN PROGRESS, DONT DO THAT!!"); }
 				waitTime = waitBeforeCrteDown;
@@ -356,25 +303,20 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	}
 
 	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun)
-	{
+	void RunAfter(VoidDelegate methToRun) {
 		methToRun();
 	}
 
 	// Once animations are finished, run the next level setup.
-	public new void NextLevelSetup()
-	{
+	public new void NextLevelSetup() {
 		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
 		{ silEggs.ResetSilEgg(); }
 		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
 		chngLvlTimer = 0f;
-
-		if (curntLvl >= winLvl) 
-		{
+		if (curntLvl >= winLvl) {
 			StartCoroutine(PuzzleComplete());
 			return;
 		}
-
 		itemHolder = lvlItemHolders[curntLvl - 1];
 		itemsWait = true;
 		crateScript.UpdateRequirements();
@@ -383,30 +325,23 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 	}
 
 	// Prepare to change level after a level selection button has been pressed.
-	public new void ChangeLevelSetup()
-	{
+	public new void ChangeLevelSetup() {
 		// Close up current level.
 		canPlay = false;
-
 		mySelectButton.UninteractableThreeDots();
-
 		for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeOut(); }
-
 		reqParchMoveScript.moveToHidden = true;
 		audioSceneMarketPuz.closePanel();
-		
 		setupChsnLvl = true;
 		// RESET SILVER EGGs ///////////////////////
 	}
 
 	// Setup the chosen level after waiting for setupLvlWaitTime (minimum the fade out duration of the items).
-	public new void ChosenLevelSetup(int lvlToLoad)
-	{
+	public new void ChosenLevelSetup(int lvlToLoad) {
 		// Setup chosen level.
 		chngLvlTimer += Time.deltaTime;
-		if (chngLvlTimer > setupLvlWaitTime)
-		{
+		if (chngLvlTimer > setupLvlWaitTime) {
 			lvlItemHolders[curntLvl - 1].SetActive(false);
 			resetItemsButtonScript.EndOfLevelReset();
 			curntLvl = lvlToLoad;
@@ -417,7 +352,6 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 			crateScript.UpdateRequirements();
 			reqParchMoveScript.moveToShown = true;
 			audioSceneMarketPuz.openPanel();
-
 			setupChsnLvl = false;
 			chngLvlTimer = 0;
 		}
@@ -426,22 +360,18 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 
 	#region General Methods
 
-	public void SaveSilverEggsToCorrectFile()
-	{
-		if (mySilverEggMan.silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) 
-		{
+	public void SaveSilverEggsToCorrectFile() {
+		if (mySilverEggMan.silverEggsPickedUp > GlobalVariables.globVarScript.silverEggsCount) {
 			GlobalVariables.globVarScript.totalEggsFound += 1;
 			GlobalVariables.globVarScript.silverEggsCount = mySilverEggMan.silverEggsPickedUp; 
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
 
-	public void SaveNewSilEggsFound(int newSilEggFound)
-	{
+	public void SaveNewSilEggsFound(int newSilEggFound) {
 		foreach (int silEggNumber in GlobalVariables.globVarScript.puzzSilEggsCount)
 		{
-			if (silEggNumber == newSilEggFound)
-			{
+			if (silEggNumber == newSilEggFound){
 				return;
 			}
 		}
@@ -449,17 +379,14 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		GlobalVariables.globVarScript.SaveEggState();
 	}
 
-	public new void SaveMaxLvl()
-	{
-		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
-		{
+	public new void SaveMaxLvl() {
+		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl) {
 			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
 
-	public void UpdateMousePos()
-	{
+	public void UpdateMousePos() {
 		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 	}
@@ -467,8 +394,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 
 	#region Coroutines
 	// Move crate to the right.
-	public IEnumerator MoveCrateRight ()
-	{
+	public IEnumerator MoveCrateRight () {
 		//Make it skip a frame to make sure that the animation has time to start.
 		yield return new WaitForSeconds(0.0001f);
 
@@ -514,10 +440,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		StartCoroutine(MoveCrateDown());
 	}
 
-
 	// Move crate down.
-	public IEnumerator MoveCrateDown ()
-	{
+	public IEnumerator MoveCrateDown () {
 		//Debug.Log("Entered Coroutine MoveCrateDown. Yo.");
 		yield return new WaitUntil(() => crateParent.transform.parent.position == crateTopTransform.position);
 		//Debug.Log("CrateParent pos = crateTop pos.");
@@ -537,10 +461,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine
 		}
 	}
 
-
 	// All silver eggs picked up, what happenes?
-	public new IEnumerator PuzzleComplete ()
-	{
+	public new IEnumerator PuzzleComplete () {
 		yield return new WaitForSeconds(0.5f);
 
 		Debug.Log("Puzzle Completed cognraturations!!!");

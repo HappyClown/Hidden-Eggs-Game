@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class KitePuzzEngine : MainPuzzleEngine 
 {
+	[Header("Kite Engine Values")]
 	public int connections;
 	public List<float> bGSizes;
 	public BackgroundScale bgScleScript;
@@ -13,9 +14,10 @@ public class KitePuzzEngine : MainPuzzleEngine
 	// For Delegate Method
 	private delegate void VoidDelegate();
 	private VoidDelegate voidDelegate; 
-
+	//private 
 	[Header("Scripts")]
 	public ResetTiles resetTilesScript;
+	public KiteLevelChangeEvent kiteLevelChangeScript;
 
 	void Start () {
 		canPlay = false;
@@ -23,25 +25,21 @@ public class KitePuzzEngine : MainPuzzleEngine
 		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
 		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
 	}
-	
 
 	void Update () {
 		if (canPlay) {
-			if(mySelectButton.buttonPressed){
+			if(mySelectButton.buttonPressed) {
 				lvlToLoad = mySelectButton.lvlToLoad;
-				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad) {
 					chngLvlTimer = 0f;
 					ChangeLevelSetup();
 				}
 				mySelectButton.buttonPressed = false;
 			}
-			
 			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; /* Debug.Log("do I ever run? Or am I just lazy like that?"); */ }
-
 			if (connections == clickToRotTileScript.connectionsNeeded) {
 				SilverEggsSetup();
 			}
-
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 		}
 		else {
@@ -82,31 +80,9 @@ public class KitePuzzEngine : MainPuzzleEngine
 					mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
 				}
 			}
-
-			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
+			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad); }
 			// Turn off interaction for all three level select dots.
 			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots(); }
-
-			// #region Click On SilverEggs
-			// // Clicking on a silver egg.
-			// if (myInput.Tapped) {
-			// 	UpdateMousePos();
-			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			// 	if (hit) {
-			// 		if (hit.collider.CompareTag("Egg")) {
-			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-			// 			silEggTappedScript.StartSilverEggAnim();
-			// 			hit.collider.enabled = false;
-			// 			audioSceneParkPuzzScript.silverEgg();
-			// 			if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
-			// 			mySilverEggMan.SaveSilverEggsToCorrectFile();
-			// 			mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-			// 			mySilverEggMan.amntSilEggsTapped++;
-			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-			// 		}
-			// 	}
-			// }
-			// #endregion
 		}
 
 		if (waitMethod) {
@@ -138,7 +114,6 @@ public class KitePuzzEngine : MainPuzzleEngine
 			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
 			//Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
-
 		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
 		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0) {
 			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform)
@@ -146,20 +121,10 @@ public class KitePuzzEngine : MainPuzzleEngine
 				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
 			}
 		}
-
 		mySilverEggMan.silverEggsActive = true;
-
 		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
-
-		LvlStuffFadeOut();
-		bgScleScript.ScaleBG();
-		foreach(GameObject silEgg in mySilverEggMan.activeSilverEggs) // TO BE PUT IN THE ANIM SEQ -------------------------------------------------------------------------------------------
-		{
-			silEgg.GetComponent<SilverEggSequence>().StartSequence();
-		}
-		scrnDarkImgScript.FadeIn();
-
 		connections = 0;
+		EndOfLevelEvent();
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
@@ -171,13 +136,15 @@ public class KitePuzzEngine : MainPuzzleEngine
 				mySilverEggMan.amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
 				curntLvl++;
-				
-				if (curntLvl > maxLvl)
-				{ maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); }
+				if (curntLvl > maxLvl) { 
+					maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); 
+				}
 				voidDelegate = NextLevelSetup;
 				if (!waitMethod) { waitMethod = true; } else { Debug.LogError("waitMethod IS ALREADY IN PROGRESS, DONT DO THAT!!"); }
 				waitTimer = waitTime;
-				if (curntLvl  < winLvl) { bgScleScript.ScaleBG(); }
+				if (curntLvl  < winLvl) { 
+					bgScleScript.ScaleBG();
+				}
 			}
 		}
 	}
@@ -230,6 +197,10 @@ public class KitePuzzEngine : MainPuzzleEngine
 	#endregion
 
 	#region General Methods
+	public void EndOfLevelEvent() {
+		kiteLevelChangeScript.LevelChangeEvent();
+	}
+	
 	public new void LvlStuffFadeIn() {
 		levelsStuff[curntLvl -1].StartLvlFadeIn();
 		//Debug.Log("Should fade in stuff."); // Fade in tiles
@@ -246,12 +217,6 @@ public class KitePuzzEngine : MainPuzzleEngine
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
-
-	// public new void UpdateMousePos()
-	// {
-	// 	mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
-	// 	mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-	// }
 	#endregion
 
 	#region Coroutines
