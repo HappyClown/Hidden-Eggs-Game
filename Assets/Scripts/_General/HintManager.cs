@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HintManager : MonoBehaviour {
-
 	public GameObject feather;
 	public List<ParticleSystem> hintObjFXs;
-	public enum featherToGo{
+	public enum featherToGo {
 		center,firstPoint,secondPoion,thirdPoint,fourthPoint,exit
 	}
 	public ClickOnEggs myClickonEggs;
+	public SceneTapEnabler sceneTapScript;
 	public Transform featherInitialPos;
 	public HintQuadrant[] myQuadrants;
 	public HintQuadrant currentQuadrant;
@@ -17,16 +17,14 @@ public class HintManager : MonoBehaviour {
 	public featherToGo myDirection;
 	public float minDistanceToPoint, featherMovSpeed;
 	public int turnsToDo, currentTurn, eggsFound;
-	// Use this for initialization
+	
 	void Start () {
 		hintAvailable = true;
 		currentTurn = 0;
 		feather.transform.position = featherInitialPos.position;
 	}
 	
-	// Update is called once per frame
 	void Update () {
-
 		if(/* Input.GetKey(KeyCode.I) */startHint && hintAvailable && !movingFeather){
 			eggsFound = myClickonEggs.eggsFound;
 			Vector2 eggPos = Vector2.zero ;
@@ -38,6 +36,7 @@ public class HintManager : MonoBehaviour {
 				}
 			}
 			movingFeather = true;
+			sceneTapScript.canTapHelpBird = false;
 			//feather.SetActive(true); Only turning on the emission for the effects instead of the object.
 			foreach(ParticleSystem fx in hintObjFXs){
 				var em = fx.emission;
@@ -62,92 +61,94 @@ public class HintManager : MonoBehaviour {
 		float minDist = 9999999;
 		for (int i = 0; i < myQuadrants.Length ; i++)
 		{
-			if(Vector2.Distance(myQuadrants[i].referencePoint.position,referencePosition) < minDist){
+			if(Vector2.Distance(myQuadrants[i].referencePoint.position,referencePosition) < minDist) {
 				minDist = Vector2.Distance(myQuadrants[i].referencePoint.position,referencePosition);
 				currentQuadrant = myQuadrants[i];
 			}
 		}
 	}
-	void MoveFeather(){
-		if(hintAvailable){
+
+	void MoveFeather() {
+		if(hintAvailable) {
 			hintAvailable = false;
 			myDirection = featherToGo.center;
 		}
-		switch(myDirection){
+		switch(myDirection) {
 			case featherToGo.center:
-				if(myClickonEggs.eggsFound  > eggsFound){
+				if(myClickonEggs.eggsFound  > eggsFound) {
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 				}
-				else if(Vector2.Distance(feather.transform.position,gameObject.transform.position) > minDistanceToPoint){
+				else if(Vector2.Distance(feather.transform.position,gameObject.transform.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,gameObject.transform.position,Time.deltaTime * featherMovSpeed);
 				}
-				else{
+				else {
 					myDirection = featherToGo.firstPoint;
 				}
 			break;
 			case featherToGo.firstPoint:
-				if(myClickonEggs.eggsFound  > eggsFound){
+				if(myClickonEggs.eggsFound  > eggsFound) {
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 				}
-				else if(Vector2.Distance(feather.transform.position,currentQuadrant.firstPoint.position) > minDistanceToPoint){
+				else if(Vector2.Distance(feather.transform.position,currentQuadrant.firstPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.firstPoint.position,Time.deltaTime * featherMovSpeed);
 				}
-				else{
+				else {
 					currentTurn ++;
-					if(currentTurn > turnsToDo){
+					if(currentTurn > turnsToDo) {
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 					}
-					else{
+					else {
 						myDirection = featherToGo.secondPoion;
 					}
 				}
 			break;
 			case featherToGo.secondPoion:
-				if(myClickonEggs.eggsFound  > eggsFound){
+				if(myClickonEggs.eggsFound  > eggsFound) {
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 				}
-				else if(Vector2.Distance(feather.transform.position,currentQuadrant.secondPoint.position) > minDistanceToPoint){
+				else if(Vector2.Distance(feather.transform.position,currentQuadrant.secondPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.secondPoint.position,Time.deltaTime * featherMovSpeed);
 				}
-				else{
+				else {
 					myDirection = featherToGo.thirdPoint;
 				}
 			break;
 			case featherToGo.thirdPoint:
-				if(myClickonEggs.eggsFound  > eggsFound){
+				if(myClickonEggs.eggsFound  > eggsFound) {
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 				}
-				else if(Vector2.Distance(feather.transform.position,currentQuadrant.thirdPoint.position) > minDistanceToPoint){
+				else if(Vector2.Distance(feather.transform.position,currentQuadrant.thirdPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.thirdPoint.position,Time.deltaTime * featherMovSpeed);
 				}
-				else{
+				else {
 					myDirection = featherToGo.fourthPoint;
 				}
 			break;
 			case featherToGo.fourthPoint:
-				if(myClickonEggs.eggsFound  > eggsFound){
+				if(myClickonEggs.eggsFound  > eggsFound) {
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 				}
-				else if(Vector2.Distance(feather.transform.position,currentQuadrant.fourthPoint.position) > minDistanceToPoint){
+				else if(Vector2.Distance(feather.transform.position,currentQuadrant.fourthPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.fourthPoint.position,Time.deltaTime * featherMovSpeed);
 				}
-				else{
+				else {
 					myDirection = featherToGo.firstPoint;
 				}
 			break;
 			case featherToGo.exit:
-				if(Vector2.Distance(feather.transform.position,featherInitialPos.position) > minDistanceToPoint){
+				if(Vector2.Distance(feather.transform.position,featherInitialPos.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,featherInitialPos.position,Time.deltaTime * featherMovSpeed);
 				}
-				else{
+				else {
 					movingFeather = false;
 					hintAvailable = true;
+					sceneTapScript.canTapHelpBird = true;
 				}
 			break;
 		}

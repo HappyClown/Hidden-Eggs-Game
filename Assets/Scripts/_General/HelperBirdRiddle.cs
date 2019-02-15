@@ -16,6 +16,7 @@ public class HelperBirdRiddle : MonoBehaviour {
 	public Button hintBtn;
 	[Header ("Script References")]
 	public SlideInHelpBird slideInScript;
+	public ClickOnEggs clickOnEggsScript;
 	public FadeInOutImage hintFadeScript, riddFadeScript;
 	public FadeInOutTMP riddTextFadeScript;
 
@@ -29,7 +30,12 @@ public class HelperBirdRiddle : MonoBehaviour {
 	void Update () {
 		if (slideInScript.isUp && slideInScript.introDone && !riddBtnOn) {
 			riddFadeScript.FadeIn();
-			riddleBtn.interactable = true;
+			if (clickOnEggsScript.goldenEggFound == 1) {
+				riddleBtn.interactable = false;
+			}
+			else {
+				riddleBtn.interactable = true;
+			}
 			riddBtnOn = true;
 
 			dontCloseMenu.SetActive(true);

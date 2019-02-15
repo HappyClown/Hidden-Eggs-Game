@@ -12,6 +12,7 @@ public class HelperBirdHint : MonoBehaviour {
 	[Header ("Script References")]
 	public HintManager hintManScript;
 	public SlideInHelpBird slideInScript;
+	public ClickOnEggs clickOnEggsScript;
 	public FadeInOutImage hintFadeInOutScript, riddFadeInOutScript;
 
 	void Start () {
@@ -23,7 +24,12 @@ public class HelperBirdHint : MonoBehaviour {
 	void Update () {
 		if (slideInScript.isUp && slideInScript.introDone && !showHint) {
 			hintFadeInOutScript.FadeIn();
-			hintBtn.interactable = true;
+			if (clickOnEggsScript.eggsFound < clickOnEggsScript.totalRegEggs) {
+				hintBtn.interactable = true;
+			}
+			else {
+				hintBtn.interactable = false;
+			}
 			showHint = true;
 		}
 
