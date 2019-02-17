@@ -6,11 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(EdgeFireflies))]
 public class EdgeFirefliesInspector : Editor {
 	public EdgeFireflies edgeFireFliesScript;
-
-	void Start () {
-		
-	}
-
+	
 	public override void OnInspectorGUI () {
 		DrawDefaultInspector();
 		edgeFireFliesScript = target as EdgeFireflies;

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FadeInOutSprite : MonoBehaviour 
 {
-	private bool fadingOut;
-	private bool fadingIn;
+	[HideInInspector]
+	public bool fadingOut, fadingIn, hidden, shown;
 	private float t;
 
 	public float fadeDelayDur;
@@ -45,10 +45,11 @@ public class FadeInOutSprite : MonoBehaviour
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(1f * maxAlpha, 0f, t));
 			if (t >= 1f)
 			{
-				fadingOut = false;
 				if(disableOnFadeOut) {
 					this.gameObject.SetActive(false);
 				}
+				fadingOut = false;
+				hidden = true;
 			}
 		}
 
@@ -58,6 +59,7 @@ public class FadeInOutSprite : MonoBehaviour
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(0f, 1f * maxAlpha, t));
 			if (t >= 1f)
 			{
+				shown = true;
 				fadingIn = false;
 			}
 		}
@@ -67,14 +69,13 @@ public class FadeInOutSprite : MonoBehaviour
 
 	public void FadeOut ()
 	{
-		//sprite = this.gameObject.GetComponent<SpriteRenderer>();
 		if (fadingOut == false/*  && img.color.a >= 0.01f */) // Potentially implement a waitmode, to wait until it is faded in/out to fade it in/out.
 		{
 			fadingIn = false;
 			fadingOut = true;
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
-			//Debug.Log("Should Fade Out");
+			shown = false;
 		}
 	}
 
@@ -82,19 +83,16 @@ public class FadeInOutSprite : MonoBehaviour
 
 	public void FadeIn ()
 	{
-		//sprite = this.gameObject.GetComponent<SpriteRenderer>();
-		if (!this.gameObject.activeSelf)
-		{
+		if (!this.gameObject.activeSelf) {
 			this.gameObject.SetActive(true);
 		}
 		
-		if (fadingIn == false)
-		{
+		if (fadingIn == false) {
 			fadingOut = false;
 			fadingIn = true;
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
-			//Debug.Log("Should Fade In");
+			hidden = false;
 		}
 	}
 }
