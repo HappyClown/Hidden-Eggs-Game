@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelCompleteEggMove : MonoBehaviour {
+	public bool amIGolden;
 	private bool startEggMove;
 	public Transform endTrans;
 	private Vector3 startPos;
@@ -11,6 +12,7 @@ public class LevelCompleteEggMove : MonoBehaviour {
 	public AnimationCurve animCurve;
 	public ParticleSystem trailFX, arrivalFX;
 	public LevelCompEggCounter levelCompEggCounterScript;
+	public LevelCompleteEggBag levelCompleteEggbagScript;
 	public FadeInOutSprite myFadeScript;
 
 	void Start () {
@@ -20,7 +22,7 @@ public class LevelCompleteEggMove : MonoBehaviour {
 	void Update () {
 		if (startEggMove) {
 			spawnTimer += Time.deltaTime;
-			if (spawnTimer > mySpawnDelay) {
+			if (spawnTimer > mySpawnDelay && myFadeScript.hidden) {
 				myFadeScript.FadeIn();
 			}
 			if (myFadeScript.shown) {
@@ -35,6 +37,9 @@ public class LevelCompleteEggMove : MonoBehaviour {
 					arrivalFX.Play(true);
 					trailFX.Stop(true);
 					startEggMove = false;
+					if (amIGolden) {
+						levelCompleteEggbagScript.MakeNewBagAppear();
+					}
 				}
 			}
 		}

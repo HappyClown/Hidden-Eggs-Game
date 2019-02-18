@@ -19,7 +19,6 @@ public class VillageSaveLoadManager : MonoBehaviour
 		stream.Close();
 	}
 
-
 	public static List<bool> LoadDissolvedSeasons()
 	{
 		if (File.Exists(Application.persistentDataPath + "/villageSaver.sav"))

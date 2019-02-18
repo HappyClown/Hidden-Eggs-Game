@@ -32,6 +32,9 @@ public class GlobalVariables : MonoBehaviour
 	public List<bool> dissSeasonsBools;
 	public int hubTotalEggsFound;
 
+	[Header("General Data")]
+	public int levelsCompleted;
+
 	[Header("Script References")]
 	public ClickOnEggs clickOnEggsScript;
 	public GameObject eggHolder;
@@ -120,6 +123,7 @@ public class GlobalVariables : MonoBehaviour
 
 	public void LoadCorrectEggs() {
 		hubTotalEggsFound = 0;
+		levelsCompleted = GeneralSaveLoadManager.LoadLevelsCompleted();
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
 		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName || SceneManager.GetActiveScene().name == menuName) {
 			eggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();

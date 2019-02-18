@@ -16,10 +16,11 @@ public class LevelComplete : MonoBehaviour
 	public ClickOnEggs clickOnEggsScript;
 	public LevelTapMannager lvlTapManScript;
 	public LevelCompleteEggSpawner levelCompleteEggSpaScript;
+	public LevelCompleteEggBag levelCompleteEggbagScript;
 
 	[Header("Setup - When to Play?")]
-	public float darkenScreen; public float showCongrats, showEggs, showCounters, showTap, showTotalCounter, startEggMove; // At what time do the Methods get called.
-	private bool darkenScreenStarted, showCongratsStarted, showEggsStarted, showCountersStarted, showTapStarted, showTotalCounterStarted, startEggMoveStarted; // To only run the Methods once.
+	public float darkenScreen; public float showCongrats, showEggs, showCounters, showTap, showTotalCounter, startEggMove, showBag; // At what time do the Methods get called.
+	private bool darkenScreenStarted, showCongratsStarted, showEggsStarted, showCountersStarted, showTapStarted, showTotalCounterStarted, startEggMoveStarted, showBagStarted; // To only run the Methods once.
 
 	[Header("End - When to Play?")]
 	public float lightenScreen; public float hideCongrats, hideEggs, hideCounters, hideTap, hideTotalCounter; // Probably not needed, except to facilitate testing.
@@ -84,6 +85,7 @@ public class LevelComplete : MonoBehaviour
 			if (timer > showEggs && !showEggsStarted) { EggsOnOff();}
 			if (timer > showTotalCounter && !showTotalCounterStarted) { TotalEggCounterOnOff(); }
 			if (timer > startEggMove && !startEggMoveStarted) { StartEggMoveOn(); }
+			if (timer > showBag && !showBagStarted) { ShowBagOn(); }
 			//if (timer > showCounters && !showCountersStarted) { EggCountersOnOff();}
 			//if (timer > showTap && !showTapStarted) { TapOnOff();}
 		}
@@ -336,6 +338,12 @@ public class LevelComplete : MonoBehaviour
 
 	void StartEggMoveOn() {
 		levelCompleteEggSpaScript.StartEggSpawning();
+		startEggMoveStarted = true;
+	}
+
+	void ShowBagOn() {
+		levelCompleteEggbagScript.MakeFirstBagAppear();
+		showBagStarted = true;
 	}
 
 	void TapBtnPress() {
@@ -343,6 +351,8 @@ public class LevelComplete : MonoBehaviour
 		btnPressed = true;
 		clickOnEggsScript.levelComplete = true;
 		clickOnEggsScript.SaveLevelComplete();
+		levelCompleteEggbagScript.levelsCompleted++;
+		levelCompleteEggbagScript.SaveLevelsCompleted();
 	}
 	#endregion
 

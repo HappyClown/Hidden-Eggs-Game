@@ -10,10 +10,6 @@ public class LevelCompEggCounter : MonoBehaviour {
 	//private float lerp, startEggs, endEggs;
 	//public AnimationCurve animCurve;
 	//public ClickOnEggs clickOnEggsScript;
-
-	void Start () {
-		
-	}
 	
 	void Update () {
 		// if (startIncrease) {
