@@ -2101,21 +2101,6 @@ MonoBehaviour:
   moveDurMin: 2.5
   moveDurMax: 3.5
   moveX: 5
---- !u!1 &277591030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 1583495978}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2092389067}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &284287212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,35 +2217,6 @@ MonoBehaviour:
   moveDurMin: 2.5
   moveDurMax: 3.5
   moveX: 5
---- !u!1 &300299285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 960240238}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 324223426}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &324223426
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57,
-    type: 2}
-  m_PrefabInternal: {fileID: 960240238}
-  m_GameObject: {fileID: 300299285}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 707876880}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &333029535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,11 +2627,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4255,8 +4211,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 392895223}
-  - {fileID: 707876880}
-  - {fileID: 674669763}
   - {fileID: 1019284020}
   m_Father: {fileID: 1996583294}
   m_RootOrder: 2
@@ -4500,35 +4454,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4549972480336414, guid: 88bad242bdad9364ba69cc15e1969ae1,
     type: 2}
   m_PrefabInternal: {fileID: 669897257}
---- !u!1 &674669762
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 1583495978}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 674669763}
-  m_Layer: 0
-  m_Name: Missing Prefab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &674669763
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 1583495978}
-  m_GameObject: {fileID: 674669762}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2092389067}
-  m_Father: {fileID: 663848552}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684842331
 GameObject:
   m_ObjectHideFlags: 0
@@ -4656,6 +4581,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 0.3
   fadeDuration: 1
@@ -4663,6 +4592,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &693772113
 GameObject:
   m_ObjectHideFlags: 0
@@ -5011,35 +4941,6 @@ MonoBehaviour:
   moveDurMin: 2.5
   moveDurMax: 3.5
   moveX: 5
---- !u!1 &707876879
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 960240238}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 707876880}
-  m_Layer: 0
-  m_Name: Missing Prefab
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &707876880
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 960240238}
-  m_GameObject: {fileID: 707876879}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 324223426}
-  m_Father: {fileID: 663848552}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725010256
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,6 +5558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 1
@@ -5664,6 +5569,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &830651176
 GameObject:
   m_ObjectHideFlags: 0
@@ -6840,52 +6746,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4549972480336414, guid: 88bad242bdad9364ba69cc15e1969ae1,
     type: 2}
   m_PrefabInternal: {fileID: 952920111}
---- !u!1001 &960240238
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 663848552}
-    m_Modifications:
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.0000014603138
-      objectReference: {fileID: 0}
-    - target: {fileID: 4352915875020232, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1485181028783164, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 78535529fdf72fe4a95adafec026db57, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &981627857
 GameObject:
   m_ObjectHideFlags: 0
@@ -7012,6 +6872,10 @@ MonoBehaviour:
   sceneName: The Beach
   seasonGlowsScript: {fileID: 1293298482}
   myLvlNumber: 2
+  levelSelected: 0
+  customButtonClickScripts:
+  - {fileID: 1213598929}
+  - {fileID: 1032129699}
 --- !u!60 &991682266
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -7478,6 +7342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 3
@@ -7485,6 +7353,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!212 &1019284019
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7541,7 +7410,7 @@ Transform:
   m_LocalScale: {x: 30.38, y: 17.11, z: 1}
   m_Children: []
   m_Father: {fileID: 663848552}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1032129695
 GameObject:
@@ -7688,6 +7557,10 @@ MonoBehaviour:
   sceneName: The Park
   seasonGlowsScript: {fileID: 1293298482}
   myLvlNumber: 1
+  levelSelected: 0
+  customButtonClickScripts:
+  - {fileID: 1213598929}
+  - {fileID: 991682265}
 --- !u!1 &1042977691
 GameObject:
   m_ObjectHideFlags: 0
@@ -7821,6 +7694,7 @@ MonoBehaviour:
   hidden: 0
   shown: 0
   t: 0
+  myStartState: 0
 --- !u!114 &1045973852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7981,6 +7855,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 0.3
   fadeDuration: 1
@@ -7988,6 +7866,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1052544322
 GameObject:
   m_ObjectHideFlags: 0
@@ -8457,6 +8336,7 @@ MonoBehaviour:
   puzzIntroDone: 0
   dissSeasonsBools: 
   hubTotalEggsFound: 0
+  levelsCompleted: 0
   clickOnEggsScript: {fileID: 0}
   eggHolder: {fileID: 0}
   dissSeasonsScript: {fileID: 472513354}
@@ -8695,6 +8575,10 @@ MonoBehaviour:
   sceneName: The Market
   seasonGlowsScript: {fileID: 1293298482}
   myLvlNumber: 0
+  levelSelected: 0
+  customButtonClickScripts:
+  - {fileID: 1032129699}
+  - {fileID: 991682265}
 --- !u!212 &1213598930
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9530,7 +9414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -125}
+  m_AnchoredPosition: {x: 0, y: -76}
   m_SizeDelta: {x: 156.20001, y: 57.799988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272692220
@@ -9667,6 +9551,7 @@ MonoBehaviour:
   hidden: 0
   shown: 0
   t: 0
+  myStartState: 0
 --- !u!1 &1293298480
 GameObject:
   m_ObjectHideFlags: 0
@@ -9717,6 +9602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86374184543a0404ba5e6d06d6fe4848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alternatingInnerGlows: 0
   fadeInWaitTime: 1
   cycleDuration: 6
   levelGlowScripts:
@@ -9998,6 +9884,7 @@ MonoBehaviour:
   hidden: 0
   shown: 0
   t: 0
+  myStartState: 0
 --- !u!1 &1344190671
 GameObject:
   m_ObjectHideFlags: 0
@@ -10125,6 +10012,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 0.3
   fadeDuration: 1
@@ -10132,6 +10023,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1348203665
 GameObject:
   m_ObjectHideFlags: 0
@@ -11819,112 +11711,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4549972480336414, guid: 88bad242bdad9364ba69cc15e1969ae1,
     type: 2}
   m_PrefabInternal: {fileID: 1562810744}
---- !u!1001 &1583495978
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 663848552}
-    m_Modifications:
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.0000014603138
-      objectReference: {fileID: 0}
-    - target: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 199683129568768732, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f3a8ef510d1284b4ebe077da4e3e2c0a, type: 2}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: UVModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: RotationModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: InitialModule.startSize.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.47058824
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: InitialModule.startColor.minColor.a
-      value: 0.21568628
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: ShapeModule.type
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 42
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 198064352864127812, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-        type: 2}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1820516268031878, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 63cc47724a72f5f44a1d6eecc5090ec1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1596589133
 Prefab:
   m_ObjectHideFlags: 0
@@ -12672,7 +12458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1727510751
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12789,6 +12575,7 @@ MonoBehaviour:
   hidden: 0
   shown: 0
   t: 0
+  myStartState: 0
 --- !u!114 &1727510756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13077,6 +12864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -13084,6 +12875,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!1 &1775779691
 GameObject:
   m_ObjectHideFlags: 0
@@ -13500,7 +13292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1885987299
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13551,7 +13343,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280756007
+    rgba: 2565927
   m_fontColor: {r: 0.15294118, g: 0.15294118, b: 0.15294118, a: 0}
   m_enableVertexGradient: 0
   m_fontColorGradient:
@@ -13617,11 +13409,11 @@ MonoBehaviour:
     lineCount: 7
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -13655,10 +13447,15 @@ MonoBehaviour:
   fadeDuration: 1.5
   fadeDelayDur: 0.5
   maxAlpha: 1
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   t: 0
   inactiveOnFadeOut: 1
   fadeInOnStart: 0
   fadeDelay: 1
+  myStartState: 1
   tmp: {fileID: 0}
 --- !u!1 &1901679800
 GameObject:
@@ -14169,6 +13966,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 1
@@ -14176,6 +13977,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1993570791
 GameObject:
   m_ObjectHideFlags: 0
@@ -14880,20 +14682,6 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198879004095944382, guid: 88bad242bdad9364ba69cc15e1969ae1,
     type: 2}
   m_PrefabInternal: {fileID: 2068253445}
---- !u!4 &2092389067
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4196524952438890, guid: 63cc47724a72f5f44a1d6eecc5090ec1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1583495978}
-  m_GameObject: {fileID: 277591030}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 674669763}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2100528019
 GameObject:
   m_ObjectHideFlags: 0
@@ -14980,6 +14768,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 1
@@ -14987,6 +14779,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1001 &2111763776
 Prefab:
   m_ObjectHideFlags: 0

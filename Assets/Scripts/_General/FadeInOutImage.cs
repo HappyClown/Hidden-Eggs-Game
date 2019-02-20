@@ -22,24 +22,37 @@ public class FadeInOutImage : MonoBehaviour
 	public bool fadingOut, fadingIn, hidden, shown;
 	[HideInInspector]
 	public float t;
+	public enum StartState {
+		startShown, startHidden
+	}
+	public StartState myStartState;
 
 
-	void Start ()
-	{
+	void Start () {
 		img = this.gameObject.GetComponent<Image>();
-		if (maxAlpha <= 0f) { maxAlpha = 1f; }
-		if (fadeInOnStart) { FadeIn(); img.color = new Color(1f, 1f, 1f, 0f); }
+		if (myStartState == StartState.startShown) {
+			img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
+			shown = true;
+		}
+		else if (myStartState == StartState.startHidden) {
+			img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
+			hidden = true;
+		}
+		if (maxAlpha <= 0f) { 
+			maxAlpha = 1f; 
+		}
+		if (fadeInOnStart) { 
+			FadeIn();  
+			new Color(img.color.r, img.color.g, img.color.b, 0f); 
+		}
 	}
 
 
-	void Update () 
-	{
-		if (fadingOut == true)
-		{
+	void Update () {
+		if (fadingOut == true) {
 			t += Time.deltaTime / fadeDuration;
 			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(1f * maxAlpha, 0f, t));
-			if (t >= 1f)
-			{
+			if (t >= 1f) {
 				if (inactiveOnFadeOut) {
 					this.gameObject.SetActive(false);
 				}
@@ -48,12 +61,10 @@ public class FadeInOutImage : MonoBehaviour
 			}
 		}
 
-		if (fadingIn == true)
-		{
+		if (fadingIn == true) {
 			t += Time.deltaTime / fadeDuration;
 			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(0f, 1f * maxAlpha, t));
-			if (t >= 1f)
-			{
+			if (t >= 1f) {
 				shown = true;
 				fadingIn = false;
 			}

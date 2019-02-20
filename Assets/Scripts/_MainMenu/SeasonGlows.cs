@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SeasonGlows : MonoBehaviour {
+	public bool alternatingInnerGlows;
 	private float cycleThird, cycleTime, fadeInWaitTimer;
 	private int startGlow;
 	private bool fadingIn, inCycle;
@@ -52,7 +53,9 @@ public class SeasonGlows : MonoBehaviour {
 		{
 			glowFadeScript.FadeIn();
 		}
-		fadingIn = true;
+		if (alternatingInnerGlows) {
+			fadingIn = true;
+		}
 	}
 
 	public void LevelSelect(int lvlSelected) {
