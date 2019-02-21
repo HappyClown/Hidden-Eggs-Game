@@ -277,7 +277,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
-	public new void SilverEggsCheck()
+	public override void SilverEggsCheck()
 	{
 		//int amntSilEggsTapped = 0;
 		if (mySilverEggMan.activeSilverEggs.Count > 0)

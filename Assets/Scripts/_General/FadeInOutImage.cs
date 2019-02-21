@@ -17,9 +17,9 @@ public class FadeInOutImage : MonoBehaviour
 	public bool fadeDelay;
 	//[Header("Eyes only 	٩(｡•́‿•̀｡)۶")]
 	public Image img;
-	[HideInInspector]
+	//[HideInInspector]
 	public bool fadingOut, fadingIn, hidden, shown;
-	[HideInInspector]
+	//[HideInInspector]
 	public float t;
 	public enum StartState {
 		startShown, startHidden
@@ -64,6 +64,7 @@ public class FadeInOutImage : MonoBehaviour
 			if (t >= 1f) {
 				shown = true;
 				fadingIn = false;
+				hidden = false;
 			}
 		}
 	}
