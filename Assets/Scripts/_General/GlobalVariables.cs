@@ -125,6 +125,7 @@ public class GlobalVariables : MonoBehaviour
 		hubTotalEggsFound = 0;
 		levelsCompleted = GeneralSaveLoadManager.LoadLevelsCompleted();
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
+		// Market
 		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName || SceneManager.GetActiveScene().name == menuName) {
 			eggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
 			eggsFoundOrder = MarketSaveLoadManager.LoadMarketEggsOrder();
@@ -151,7 +152,7 @@ public class GlobalVariables : MonoBehaviour
 			}
 			hubTotalEggsFound += totalEggsFound;
 		}	
-
+		// Park
 		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{ 
 			eggsFoundBools = ParkSaveLoadManager.LoadParkEggs();
@@ -182,29 +183,32 @@ public class GlobalVariables : MonoBehaviour
 
 			hubTotalEggsFound += totalEggsFound;
 		}
-
-		if (SceneManager.GetActiveScene().name == beachName) 
+		// Beach
+		if (SceneManager.GetActiveScene().name == beachName || SceneManager.GetActiveScene().name == beachPuzName || SceneManager.GetActiveScene().name == menuName) 
 		{ 
 			eggsFoundBools = BeachSaveLoadManager.LoadBeachEggs();
-
+			eggsFoundOrder = BeachSaveLoadManager.LoadBeachEggsOrder();
 			silverEggsCount = BeachSaveLoadManager.LoadBeachSilverEggs();
-				
 			riddleSolved = BeachSaveLoadManager.LoadCrabRiddle(); 
+			totalEggsFound = BeachSaveLoadManager.LoadBeachTotalEggs();
+			puzzMaxLvl = BeachSaveLoadManager.LoadBeachPuzzMaxLvl();
+			puzzSilEggsCount = BeachSaveLoadManager.LoadBeachPuzzSilEggsCount();
+			sceneSilEggsCount = BeachSaveLoadManager.LoadBeachSceneSilEggsCount();
+			levelComplete = BeachSaveLoadManager.LoadBeachLevelComplete();
+			birdIntroDone = BeachSaveLoadManager.LoadBeachBirdIntro();
+			puzzIntroDone = BeachSaveLoadManager.LoadBeachPuzzIntro();
 
 			List<bool> loadedEggs = BeachSaveLoadManager.LoadBeachEggs();
-
-			if (loadedEggs.Count > 2)
-			{
+			if (loadedEggs.Count > 2) {
 				eggsFoundBools = loadedEggs;
 			}	
 
-		
-			if(eggsFoundBools.Count < 1)
-			{
+			if(clickOnEggsScript != null && eggsFoundBools.Count < 1) {
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
 					Debug.Log("should be filling eggsfoundbool array");
 					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+					eggsFoundOrder.Add(0);
 				}
 			}
 
