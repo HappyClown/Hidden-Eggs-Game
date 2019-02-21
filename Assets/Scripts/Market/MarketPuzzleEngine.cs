@@ -291,7 +291,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 				mySilverEggMan.amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
 				curntLvl++;
-				if (curntLvl > maxLvl) { 
+				if (curntLvl > maxLvl) {
 					maxLvl = curntLvl; SaveMaxLvl(); 
 					mySelectButton.EnabledThreeDots(maxLvl); 
 				}

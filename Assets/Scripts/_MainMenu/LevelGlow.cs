@@ -8,6 +8,7 @@ public class LevelGlow : MonoBehaviour {
 	public SpriteRenderer sprite;
 	private bool glowOn, glowOff;
 	private float timer, newAlpha;
+	public bool alternateFade;
 
 	void Update () {
 		if (glowOn) {
@@ -18,7 +19,9 @@ public class LevelGlow : MonoBehaviour {
 				glowOn = false;
 				timer = 0f;
 				startAlpha = maxAlpha;
-				glowOff = true;
+				if (alternateFade) {
+					glowOff = true;
+				}
 			}
 		}
 		if (glowOff) {

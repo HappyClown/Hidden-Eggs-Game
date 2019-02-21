@@ -15,8 +15,7 @@ public class FadeInOutImage : MonoBehaviour
 	public bool inactiveOnFadeOut = true;
 	public bool fadeInOnStart = true;
 	public bool fadeDelay;
-	[Header("Eyes only 	٩(｡•́‿•̀｡)۶")]
-	[HideInInspector]
+	//[Header("Eyes only 	٩(｡•́‿•̀｡)۶")]
 	public Image img;
 	[HideInInspector]
 	public bool fadingOut, fadingIn, hidden, shown;
@@ -26,7 +25,6 @@ public class FadeInOutImage : MonoBehaviour
 		startShown, startHidden
 	}
 	public StartState myStartState;
-
 
 	void Start () {
 		img = this.gameObject.GetComponent<Image>();
@@ -46,7 +44,6 @@ public class FadeInOutImage : MonoBehaviour
 			new Color(img.color.r, img.color.g, img.color.b, 0f); 
 		}
 	}
-
 
 	void Update () {
 		if (fadingOut == true) {

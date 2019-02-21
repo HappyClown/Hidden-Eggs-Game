@@ -20,7 +20,7 @@ public class HelperBirdHint : MonoBehaviour {
 		hintImg = hintBtnObj.GetComponent<Image>();
 		hintBtn.onClick.AddListener(StartHint);
 	}
-	
+
 	void Update () {
 		if (slideInScript.isUp && slideInScript.introDone && !showHint) {
 			hintFadeInOutScript.FadeIn();

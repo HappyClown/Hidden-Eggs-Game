@@ -1442,7 +1442,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5ff01acfe0b543742b67bddbae02740f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1485,6 +1485,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -1492,6 +1496,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 303953120}
+  myStartState: 0
 --- !u!114 &303953123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1999,7 +2004,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -7619,7 +7624,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -12382,7 +12387,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -17215,7 +17220,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 28927bb240040c448b3d7bd1479eacea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17258,6 +17263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -17265,6 +17274,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 654986387}
+  myStartState: 0
 --- !u!114 &654986390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18087,7 +18097,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 23e074dec43755b4a820575d5af0c768, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -18130,6 +18140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -18137,6 +18151,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 729657840}
+  myStartState: 0
 --- !u!114 &729657843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18318,6 +18333,21 @@ Prefab:
       propertyPath: tutFadeScripts.Array.data[0]
       value: 
       objectReference: {fileID: 30377787}
+    - target: {fileID: 114782818245392756, guid: b925c87959db6794cacd2a0752bc4af6,
+        type: 2}
+      propertyPath: myStartState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482718506838364, guid: b925c87959db6794cacd2a0752bc4af6,
+        type: 2}
+      propertyPath: myStartState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114252732259665860, guid: b925c87959db6794cacd2a0752bc4af6,
+        type: 2}
+      propertyPath: myStartState
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b925c87959db6794cacd2a0752bc4af6, type: 2}
   m_IsPrefabParent: 0
@@ -19913,7 +19943,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -24704,7 +24734,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -29336,7 +29366,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -34209,6 +34239,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 114379791070754492, guid: dae81d163e2a647478192fbc62e45d8a,
+        type: 2}
+      propertyPath: myStartState
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
   m_IsPrefabParent: 0
@@ -34596,7 +34631,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -39318,7 +39353,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -44210,7 +44245,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b914bc3454538254b978cafca2779665, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44253,6 +44288,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -44260,6 +44299,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 1523384243}
+  myStartState: 0
 --- !u!114 &1523384246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44676,7 +44716,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 90cf9358030c1f24d98d8a2c4d3f3736, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -44719,6 +44759,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -44726,6 +44770,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 1631480710}
+  myStartState: 0
 --- !u!114 &1631480713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45064,7 +45109,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ad452cbb46fdfee4291d85b1983e4100, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45107,6 +45152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -45114,6 +45163,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 1669234059}
+  myStartState: 0
 --- !u!114 &1669234062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50095,7 +50145,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -50307,7 +50357,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
