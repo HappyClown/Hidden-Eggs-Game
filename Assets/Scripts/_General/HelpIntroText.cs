@@ -30,7 +30,7 @@ public class HelpIntroText : MonoBehaviour {
 			fadeOutDur -= Time.deltaTime;
 			if (fadeOutDur <= 0) {
 				inTxtTransition = false;
-				sentenceCount += 1;
+				sentenceCount++;
 				CheckIfDone();
 			}
 		}

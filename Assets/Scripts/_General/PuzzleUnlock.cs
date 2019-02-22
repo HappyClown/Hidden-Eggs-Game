@@ -61,7 +61,7 @@ public class PuzzleUnlock : MonoBehaviour {
 		puzzPiece.SetActive(false);
 		puzzShimFX.Play(true);
 		puzzDustFX.Play(true);
-		puzzAnim.Play();
+		if (puzzAnim) { puzzAnim.Play(); }
 		if (pointerFadeScript.sprite.color.a > 0) { 
 			pointerFadeScript.FadeOut(); 
 		}

@@ -34,6 +34,7 @@ public class ClickOnEggs : MonoBehaviour {
 
 	[Header("Puzzle")]
 	public PuzzleUnlock puzzUnlockScript;
+	public string puzzleSceneName;
 
 	[Header("Egg Panel")]
 	public GameObject eggPanel;
@@ -132,7 +133,7 @@ public class ClickOnEggs : MonoBehaviour {
 					}
 					// - Go To Puzzle Scene - //
 					if (hit.collider.CompareTag("Puzzle")) {
-						SceneFade.SwitchScene(GlobalVariables.globVarScript.marketPuzName);
+						SceneFade.SwitchScene(puzzleSceneName);
 						PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
 						//SFX puzz btn
 						audioSceneGenScript.TransitionPuzzle();
