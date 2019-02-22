@@ -21,6 +21,8 @@ public class BeachBubbles : MonoBehaviour {
 	private float currentTime;
 	private Vector3 StartPosition;
 	private SpriteRenderer mySprite;
+	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
+
 	// Use this for initialization
 	void Start () {
 		activeClam = false;
@@ -42,6 +44,10 @@ public class BeachBubbles : MonoBehaviour {
 				mySprite.enabled = true;
 				activeSprite = true;
 				myFade.FadeIn();
+
+				//bubbles sounds ..
+				audioBeachPuzzleScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
+				audioBeachPuzzleScript.BubblePopSFX();
 			}
 		}
 		if(activeSprite){

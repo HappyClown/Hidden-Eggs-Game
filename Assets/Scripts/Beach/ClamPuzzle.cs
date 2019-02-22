@@ -69,7 +69,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 	public BeachClamLevel[] myLvls;
 	public List<BeachClam> openedClams;
 	public List<BeachClam> currentClams;
-	// public AudioSceneParkPuzzle audioSceneParkPuzzScript;
+	AudioSceneBeachPuzzle audioSceneBeachPuzzScript;
 	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
@@ -83,6 +83,8 @@ public class ClamPuzzle : MainPuzzleEngine {
 		// }
 
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
+
+		audioSceneBeachPuzzScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 	}
 
 	void Update () {
@@ -549,8 +551,8 @@ public class ClamPuzzle : MainPuzzleEngine {
 
 		yield return new WaitForSeconds(0.5f);
 
-		audioSceneParkPuzzScript.StopSceneMusic();
-		audioSceneParkPuzzScript.PlayTransitionMusic();
+		audioSceneBeachPuzzScript.StopSceneMusic();
+		audioSceneBeachPuzzScript.PlayTransitionMusic();
 
 		SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
 	}

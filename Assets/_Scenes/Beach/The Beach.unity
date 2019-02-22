@@ -174,7 +174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 308.3}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -441,7 +443,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 226.96}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -699,7 +703,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 511196394}
-  camZoomMoveSpeed: 5
+  camMovSpeed: 0
+  camZoomSpeed: 0
   maxX: 10.1
   maxY: 5.75
   minCameraSize: 5
@@ -716,7 +721,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69719608
 GameObject:
@@ -5573,7 +5578,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 233.18}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -6431,7 +6438,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 0}
   cornerEggScale: {x: 0.74, y: 0.74, z: 1}
   timeToMove: 4
@@ -7765,7 +7774,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 158.01}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -7934,7 +7945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 133.45}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -12977,7 +12990,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 296.25}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -13188,7 +13203,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 338.14}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -13451,7 +13468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 345.41}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -14631,7 +14650,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 176.26}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -14939,6 +14960,83 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198184740719540128, guid: a8b986e6c53177947adbdb9775b12edf,
     type: 2}
   m_PrefabInternal: {fileID: 424285027}
+--- !u!1 &643264882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 643264885}
+  - component: {fileID: 643264883}
+  - component: {fileID: 643264884}
+  m_Layer: 0
+  m_Name: Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &643264883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643264882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb9e5f0eeac434f9cda2e51f98745e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneMusicEvent: event:/Music/MusicScenes/Beach
+  transEvent: event:/SFX/SFX_General/TransitionsSound
+  EggClickEvent: event:/SFX/SFX_General/Egg_Click
+  goldEggClickEvent: event:/SFX/SFX_General/Egg_Click_Gold
+  goldEggAnimationEvent: event:/SFX/SFX_General/GoldenEggAnimation
+  goldEggShimyEvent: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
+  panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
+  panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
+  puzzleUnlockedEvent: event:/SFX/Beach/PuzzleShimyLoop_beach
+  puzzleButtonEvent: event:/SFX/Beach/Puzzle_Click
+  birdEvent: event:/SFX/Beach/Beach_Bird
+  BackMenuBtn: {fileID: 1830156650}
+  BirdHelpBtn: {fileID: 1402975274}
+  RiddleBtn: {fileID: 1998329139}
+  HintBtn: {fileID: 0}
+  lvlCompleteBtn: {fileID: 0}
+  buttonEvent: event:/SFX/SFX_General/Button
+  SceneIn: 0
+  AlphaValue: 0
+  puzzleUnlocked: 0
+  puzImage: {fileID: 0}
+  currentScene: 
+  egg: {fileID: 0}
+--- !u!114 &643264884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643264882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ac52e32c2beeb4f9c7fab0f2de6458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crabWalkEvent: event:/SFX/Beach/Crab_Walk
+  crabClawsEvent: event:/SFX/Beach/Crab_Click
+--- !u!4 &643264885
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643264882}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -157.44707, y: -79.03542, z: -29.294489}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &649526659
 Prefab:
   m_ObjectHideFlags: 0
@@ -15375,8 +15473,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggsLeft: 0
+  myInputDetector: {fileID: 0}
+  scenTapEnabScript: {fileID: 0}
+  sceneFadeScript: {fileID: 0}
+  iniSeq: 0
+  iniSeqTimer: 0
+  iniDelay: 0
+  checkNewSilEggsF: 0
+  checkLvlCompleteF: 0
+  allowTapF: 0
+  iniSilEggCheckB: 0
+  iniLvlCompCheckB: 0
   eggsFound: 0
+  totalRegEggs: 0
   eggCounterText: {fileID: 2055232111}
   silverEggCounterText: {fileID: 1972618970}
   goldenEggCounterText: {fileID: 1951343880}
@@ -15385,8 +15494,9 @@ MonoBehaviour:
   cornerPos: {fileID: 2000826112}
   puzzleClickArea: {fileID: 1869116051}
   puzzleSceneName: Odd Shells
-  scaleAnim: {fileID: 2062851812}
-  puzzleUnlock: 12
+  unlockedAnim: {fileID: 0}
+  puzzleUnlockAmnt: 0
+  puzzleUnlocked: 0
   puzzleParticles: {fileID: 785805328}
   eggPanel: {fileID: 544059714}
   eggSpots:
@@ -15421,7 +15531,9 @@ MonoBehaviour:
   - {fileID: 1664606511}
   - {fileID: 964399329}
   - {fileID: 392366594}
+  sceneSilEggSpaScript: {fileID: 0}
   goldenEggSpot: {fileID: 1505701635}
+  goldenEggFound: 0
   eggMoving: 0
   eggPanelHidden: {fileID: 1695119048}
   eggPanelShown: {fileID: 1522037182}
@@ -15464,7 +15576,10 @@ MonoBehaviour:
   openEggPanel: 0
   totalEggsFound: 0
   eggsNeeded: 0
+  silverEggsFound: 0
   levelComplete: 0
+  levelCompleteScript: {fileID: 0}
+  audioSceneGenScript: {fileID: 643264883}
 --- !u!114 &712647448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20899,7 +21014,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 354}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -21176,7 +21293,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 334.3}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -21839,7 +21958,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 261.28}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -26965,7 +27086,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 23.54}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -32230,7 +32353,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 46.45}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -32675,7 +32800,7 @@ Transform:
   m_Children:
   - {fileID: 693188233}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1106726923 stripped
 Transform:
@@ -37972,7 +38097,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 351}
   cornerEggScale: {x: 0.05, y: 0.05, z: 1}
   timeToMove: 3.5
@@ -38651,7 +38778,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 0}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -39262,7 +39391,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 83.93}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -40326,7 +40457,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 227.65}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -46232,7 +46365,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 188.67}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -51139,7 +51274,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 102.4}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -51308,7 +51445,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 125.5}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -51551,7 +51690,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 305}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -51690,20 +51831,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c467629817d3dee4b9f08a19c026469a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hiddenHelpBirdPos: {fileID: 1362869348}
-  shownHelpBirdPos: {fileID: 1320143053}
-  shadow: {fileID: 929747306}
+  shadow: {fileID: 0}
   shadowAlpha: 0
-  txtBubble: {fileID: 1780067908}
+  txtBubble: {fileID: 0}
   txtBubFadeTime: 2
+  introDone: 0
+  txtBubFadedIn: 0
   riddleBtnObj: {fileID: 1998329137}
   riddleBtnFadeTime: 2
-  closeMenuOnClick: {fileID: 1415355561}
-  blockClickingOnEggs: {fileID: 1315659897}
   riddleHints:
   - {fileID: 316959189}
+  hintBtnObj: {fileID: 0}
+  hintBtn: {fileID: 0}
+  hintManScript: {fileID: 0}
+  closeMenuOnClick: {fileID: 1415355561}
+  blockClickingOnEggs: {fileID: 1315659897}
+  dontCloseMenu: {fileID: 0}
+  duration: 0
   moveUp: 0
-  speed: 7
+  moveDown: 0
+  isUp: 0
+  isDown: 1
+  helpBirdTrans: {fileID: 0}
+  hiddenHelpBirdPos: {fileID: 1362869348}
+  shownHelpBirdPos: {fileID: 1320143053}
+  curHelpBirdPos: {x: 0, y: 0, z: 0}
+  animCur:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  scenTapEnabScript: {fileID: 0}
+  clickOnEggsScript: {fileID: 0}
+  lvlTapManScript: {fileID: 0}
+  helpIntroTxtScript: {fileID: 0}
 --- !u!114 &1683982894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52469,7 +52631,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 35.94}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -52922,6 +53086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Menu
+  sceneTapEnaScript: {fileID: 0}
 --- !u!114 &1830156650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53709,7 +53874,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 174.64}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -54537,7 +54704,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cornerPos: {x: 0, y: 0, z: 0}
+  eggPosIndex: 0
   clickOnEggsScript: {fileID: 712647447}
+  moveWithCamScript: {fileID: 0}
   cornerRot: {x: 0, y: 0, z: 0.3}
   cornerEggScale: {x: 0.74, y: 0.74, z: 0.74}
   timeToMove: 4
@@ -54738,6 +54907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 2
+  thisImg: {fileID: 0}
 --- !u!1 &2000826111
 GameObject:
   m_ObjectHideFlags: 0
@@ -60128,6 +60298,7 @@ MonoBehaviour:
   goldenEggCollider: {fileID: 1206465855}
   eggGoToCornerScript: {fileID: 1206465854}
   clickOnEggsScript: {fileID: 712647447}
+  scenTapEnabScript: {fileID: 0}
   anim: {fileID: 2135894709}
   eggAnimStart: 0.6
   coverScreen: {fileID: 1303908091}
@@ -60148,6 +60319,7 @@ MonoBehaviour:
   eggToCornerTime: 0.6
   congratsOffTime: 0.3
   coverOffTime: 0.1
+  audioSceneGeneralScript: {fileID: 0}
 --- !u!95 &2135894709
 Animator:
   serializedVersion: 3

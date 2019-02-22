@@ -5,22 +5,31 @@ using UnityEngine.UI;
 
 public class AudioSceneMarketPuzzle : MonoBehaviour 
 {
- 	[Header("Scene Music")]
+    [Header("Buttons")]
+
+    public Button BackMarketBtn;
+    public Button ResetItemBtn;
+    public Button ToggleLevelPuz1;
+	public Button ToggleLevelPuz2;
+	public Button ToggleLevelPuz3;
+ 	[Header(" Music")]
     [FMODUnity.EventRef]
     public string sceneMusicEvent;
     public FMOD.Studio.EventInstance sceneMusic;
 	
-	[Header("Cue Title Card Transition")]
     [FMODUnity.EventRef]
-    public string transEvent;
+    public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
     public FMOD.Studio.EventInstance transMusic;
 
-    [Header(" Silver Egg SFX")]
+    [Header("  SFX")]
     [FMODUnity.EventRef]
-    public string silverEggClickEvent;
+    public string silverEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Silver";
     public FMOD.Studio.EventInstance silverEggClickSound;
 
-	[Header(" Fruits SFX")]
+    [FMODUnity.EventRef]
+    public string silverEggTrailEvent = "event:/SFX/SFX_General/FX_trail";
+    public FMOD.Studio.EventInstance silverEggTrailSound;
+
     [FMODUnity.EventRef]
     public string pickupFruitEvent;
     public FMOD.Studio.EventInstance pickupFruitSound;
@@ -33,7 +42,6 @@ public class AudioSceneMarketPuzzle : MonoBehaviour
     public string dropFruitCrateEvent;
     public FMOD.Studio.EventInstance dropFruitCrateSound;
 
-    [Header("Panel SFX")]
     [FMODUnity.EventRef]
     public string panelOpenEvent;
     public FMOD.Studio.EventInstance panelOpenSound;
@@ -59,18 +67,9 @@ public class AudioSceneMarketPuzzle : MonoBehaviour
     public string crateSlideRightEvent;
     public FMOD.Studio.EventInstance crateSlideRightSound;
 
-  
-	[Header("Buttons")]
-
-    public Button BackMarketBtn;
-    public Button ResetItemBtn;
-    public Button ToggleLevelPuz1;
-	public Button ToggleLevelPuz2;
-	public Button ToggleLevelPuz3;
-
     
     [FMODUnity.EventRef]
-    public string buttonEvent;
+    public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
     
     void Start () 
@@ -174,6 +173,12 @@ public class AudioSceneMarketPuzzle : MonoBehaviour
        silverEggClickSound = FMODUnity.RuntimeManager.CreateInstance(silverEggClickEvent);
        silverEggClickSound.start();
     }
+
+	public void SilverEggTrailSFX () 
+	{
+		silverEggTrailSound = FMODUnity.RuntimeManager.CreateInstance(silverEggTrailEvent);
+        silverEggTrailSound.start();
+	}
 
     public void buttonSFX()
     {

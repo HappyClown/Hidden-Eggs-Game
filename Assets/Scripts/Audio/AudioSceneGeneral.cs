@@ -12,43 +12,47 @@ public class AudioSceneGeneral : MonoBehaviour
     public string sceneMusicEvent;
     public FMOD.Studio.EventInstance sceneMusic;
 
-	[Header("Cue Title Card Transition")]
+    [Header("Cue Title Card Transition")]
     [FMODUnity.EventRef]
-    public string transEvent;
+    public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
     public FMOD.Studio.EventInstance transMusic;
 
 
 	[Header("Egg SFX")]
     [FMODUnity.EventRef]
-    public string EggClickEvent;
+    public string EggClickEvent = "event:/SFX/SFX_General/Egg_Click";
     public FMOD.Studio.EventInstance EggClickSound;
 
     [FMODUnity.EventRef]
-    public string goldEggClickEvent;
+    public string goldEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Gold";
     public FMOD.Studio.EventInstance goldEggClickSound;
 
     [FMODUnity.EventRef]
-    public string goldEggAnimationEvent;
+    public string goldEggAnimationEvent = "event:/SFX/SFX_General/GoldenEggAnimation";
     public FMOD.Studio.EventInstance goldEggAnimationSound;
 
     [FMODUnity.EventRef]
-    public string goldEggShimyEvent;
+    public string goldEggShimyEvent = "event:/SFX/SFX_General/GoldenEgg_ShimyIdle";
     public FMOD.Studio.EventInstance goldEggShimySound;
 
 	[Header("Panel SFX")]
     [FMODUnity.EventRef]
-    public string panelOpenEvent;
+    public string panelOpenEvent = "event:/SFX/SFX_General/MenuEggOpen";
     public FMOD.Studio.EventInstance panelOpenSound;
 
     [FMODUnity.EventRef]
-    public string panelCloseEvent;
+    public string panelCloseEvent = "event:/SFX/SFX_General/MenuEggClose";
     public FMOD.Studio.EventInstance panelCloseSound;
 
 
-	[Header("Puzzle Unlocked Animation")]
+	[Header("Puzzle Unlocked Shimy Animation")]
     [FMODUnity.EventRef]
     public string puzzleUnlockedEvent;
     public FMOD.Studio.EventInstance puzzleUnlockedSound;
+
+    [FMODUnity.EventRef]
+    public string puzzleButtonEvent ;
+    public FMOD.Studio.EventInstance puzzleButtonSound;
 
 	[Header("Bird Help")]
     [FMODUnity.EventRef]
@@ -63,14 +67,12 @@ public class AudioSceneGeneral : MonoBehaviour
     public Button HintBtn;
     public Button lvlCompleteBtn;
 
-    [FMODUnity.EventRef]
-    public string puzzleButtonEvent;
-    public FMOD.Studio.EventInstance puzzleButtonSound;
 
     [FMODUnity.EventRef]
-    public string buttonEvent;
+    public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
 
+	[Header("For tests and reference")]
     // TESTS UNLOCKED SOUND
     public bool SceneIn;
     public float AlphaValue;

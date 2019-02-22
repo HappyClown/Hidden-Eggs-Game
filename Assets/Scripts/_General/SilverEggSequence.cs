@@ -44,6 +44,7 @@ public class SilverEggSequence : MonoBehaviour
 	void Awake() {
 		iniHovCurDur = hoverCurDur;
 		iniStartHoverDelay = startHoverDelay;
+		audioSilEggScript =  GameObject.Find ("Audio").GetComponent<AudioScenePuzzleGeneric>();
 	}
 
 	void Update () {
@@ -116,7 +117,7 @@ public class SilverEggSequence : MonoBehaviour
 		startPos = this.transform.localPosition;
 		startScale = this.transform.localScale;
 
-		//audioSilEggScript.SilverEggTrailSFX();
+		audioSilEggScript.SilverEggTrailSFX();
 		//trailFX.Play();
 		//shimmerFX.Play();
 	}

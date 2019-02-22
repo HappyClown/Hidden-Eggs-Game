@@ -83,6 +83,8 @@ public class ClickOnEggs : MonoBehaviour {
 		UpdateEggsString();
 		iniSeq = true;
 		//CheckIfLevelComplete(); // if "thisSceneName" level complete screen was not played, check to see if its complete. (probably for when the players last eggs are from the puzzle)
+	
+		audioSceneGenScript =  GameObject.Find ("Audio").GetComponent<AudioSceneGeneral>();
 	}
 
 	void Update () {

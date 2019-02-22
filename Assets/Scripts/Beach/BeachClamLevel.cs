@@ -7,6 +7,10 @@ public class BeachClamLevel : MonoBehaviour {
 	public ClamSpot[] clamSpots;
 	public BeachClam[] myClams;
 	public bool levelLoading, levelComplete;
+
+/// test for sounds ////
+	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
+
 	public void SetUpLevel(){
 		foreach (BeachClam clam in myClams)
 		{
@@ -20,10 +24,35 @@ public class BeachClamLevel : MonoBehaviour {
 			int rand = Random.Range(0,availableSpots.Count);
 			clam.gameObject.transform.position = availableSpots[rand].gameObject.transform.position;
 			availableSpots[rand].occupied = true;
-			availableSpots.Clear();			
+			availableSpots.Clear();		
+
 		}
+			//test sounds
+			setUpSounds();
+			audioBeachPuzzleScript.newLevel();
 
 	}
+
+////////  TEST FOR SOUNDS  ///////////
+	public void setUpSounds(){
+
+		int iterator = 1;
+		string randomOceanSound = audioBeachPuzzleScript.chooseRandomSound();
+		foreach (BeachClam clam in myClams)
+		{	
+			if(iterator%2==0){
+				clam.clamSound = randomOceanSound;
+				Debug.Log("Clam # :"+iterator+" SFX : "+clam.clamSound);
+			}
+			else{
+				randomOceanSound = audioBeachPuzzleScript.chooseRandomSound();
+				clam.clamSound = randomOceanSound;
+				Debug.Log("Clam # :"+iterator+" SFX : "+clam.clamSound);
+			}
+			iterator++;
+		}
+	} 
+
 	public void ResetLevel(){
 		foreach (BeachClam clam in myClams)
 		{
