@@ -4,42 +4,40 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ClamPuzzle : MonoBehaviour
-{
-
+public class ClamPuzzle : MainPuzzleEngine {
 	private Ray2D ray;
-	private RaycastHit2D hit;
-	Vector2 mousePos2D;
-	Vector3 mousePos;
-	#region Basic Scripts Sources
-	[Header("Input Detector")]
-	public inputDetector myInput;
-	[Header("Silver Eggs")]
-	public SilverEggsManager mySilverEggMan;
-	[Header("Selection Buttons")]
-	public LevelSelectionButtons mySelectButton;
-	[Header("Fafe in out variables")]
-	public FadeInOutManager[] levelsStuff;
-	#endregion
-	#region GrabItem Script Variables
-	[Header("General")]
-	public int winLvl;
-	public bool itemsWait;
-	public float itemWaitAmnt;
-	private float itemWaitTimer;
-	private bool initialSetupOn;
-	private bool setupChsnLvl;
+	// private RaycastHit2D hit;
+	// Vector2 mousePos2D;
+	// Vector3 mousePos;
+	// #region Basic Scripts Sources
+	// [Header("Input Detector")]
+	// public inputDetector myInput;
+	// [Header("Silver Eggs")]
+	// public SilverEggsManager mySilverEggMan;
+	// [Header("Selection Buttons")]
+	// public LevelSelectionButtons mySelectButton;
+	// [Header("Fafe in out variables")]
+	// public FadeInOutManager[] levelsStuff;
+	// #endregion
+	// #region GrabItem Script Variables
+	// [Header("General")]
+	// public int winLvl;
+	// public bool itemsWait;
+	// public float itemWaitAmnt;
+	// private float itemWaitTimer;
+	// private bool initialSetupOn;
+	// private bool setupChsnLvl;
 	// For Delegate Method
 	private delegate void VoidDelegate();
 	private VoidDelegate voidDelegate;
-	private bool waitMethod;
-	[Tooltip("For now, minimum the lenght of the silver egg tap anim.")]
-	public float waitTime;
-	private float waitTimer;
-	[Header("Item Parents")]
-	[Tooltip("GameObjects - Game objects that hold the level items, in ascending order.")]
-	public List<GameObject> lvlItemHolders;
-	public GameObject itemHolder;
+	// private bool waitMethod;
+	// [Tooltip("For now, minimum the lenght of the silver egg tap anim.")]
+	// public float waitTime;
+	// private float waitTimer;
+	// [Header("Item Parents")]
+	// [Tooltip("GameObjects - Game objects that hold the level items, in ascending order.")]
+	// public List<GameObject> lvlItemHolders;
+	// public GameObject itemHolder;
 
 	// [Header("Level Selection Buttons")]
 	// public LevelSelectionButtons testButtons;
@@ -52,28 +50,27 @@ public class ClamPuzzle : MonoBehaviour
 	// private bool noFadeDelay;
 	// private bool buttonsOff;
 
-	[Header("Initial Sequence")]
-	public float seqTimer;
-	public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
-	private bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
+	// [Header("Initial Sequence")]
+	// public float seqTimer;
+	// public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
+	// private bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
 
-	[Header("Scripts")]
-	public FadeInOutImage scrnDarkImgScript;
+	// [Header("Scripts")]
+	// public FadeInOutImage scrnDarkImgScript;
 
-	[Header("Hide In Inspector ^_^")]
-	public bool canPlay;
-	public int lvlToLoad;
-	public float setupLvlWaitTime;
-	public float chngLvlTimer;
-	public int maxLvl;
-	#endregion
-	public int curntLvl;
+	// [Header("Hide In Inspector ^_^")]
+	// public bool canPlay;
+	// public int lvlToLoad;
+	// public float setupLvlWaitTime;
+	// public float chngLvlTimer;
+	// public int maxLvl;
+	// #endregion
+	// public int curntLvl;
 	public BeachClamLevel[] myLvls;
 	public List<BeachClam> openedClams;
 	public List<BeachClam> currentClams;
-	public AudioSceneParkPuzzle audioSceneParkPuzzScript;
-	void Start ()
-	{
+	AudioSceneBeachPuzzle audioSceneBeachPuzzScript;
+	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
 		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
@@ -86,16 +83,15 @@ public class ClamPuzzle : MonoBehaviour
 		// }
 
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
+
+		audioSceneBeachPuzzScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 	}
 
-
-	void Update ()
-	{
-		if (canPlay)
-		{
-			if(mySelectButton.buttonPressed){
+	void Update () {
+		if (canPlay) {
+			if (mySelectButton.buttonPressed) {
 				lvlToLoad = mySelectButton.lvlToLoad;
-				if (canPlay && chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
 					chngLvlTimer = 0f;
 					ChangeLevelSetup();
 				}
@@ -104,8 +100,7 @@ public class ClamPuzzle : MonoBehaviour
 			 
 			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; /* Debug.Log("do I ever run? Or am I just lazy like that?"); */ }
 
-			if (myLvls[curntLvl-1].levelComplete)
-			{
+			if (myLvls[curntLvl-1].levelComplete) {
 				/* Debug.Log("ya win m8!"); */
 				SilverEggsSetup();
 			}
@@ -113,40 +108,39 @@ public class ClamPuzzle : MonoBehaviour
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 
 			#region Click
-			if(myInput.Tapped){
-			UpdateMousePos();
-			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			if(hit){
-				Debug.Log(hit.collider.gameObject.name);
-				if(hit.collider.CompareTag("Puzzle")){
-					if(openedClams.Count > 0){
-						openedClams[0].forceClose = true;
-						openedClams[1].forceClose = true;
-						openedClams.Clear();
-					}
-					BeachClam tappedClam = hit.collider.gameObject.GetComponent<BeachClam>();
-					currentClams.Add(tappedClam);
-					tappedClam.Tapped = true;
-					if (currentClams.Count == 2)
-					{
-						if(tappedClam.myMatch.open){
-							tappedClam.matched = true;
-							tappedClam.myMatch.matched = true;
-							myLvls[curntLvl -1].CheckClams();
-							currentClams.Clear();
+			if(myInput.Tapped) {
+				UpdateMousePos();
+				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+				if (hit) {
+					Debug.Log(hit.collider.gameObject.name);
+					if (hit.collider.CompareTag("Puzzle")) {
+						if (openedClams.Count > 0) {
+							openedClams[0].forceClose = true;
+							openedClams[1].forceClose = true;
+							openedClams.Clear();
 						}
-						else{
-							currentClams[0].failed = true;
-							currentClams[1].failed = true;
-							openedClams.Add(currentClams[0]);
-							openedClams.Add(currentClams[1]);
-							currentClams.Clear();
-						}
+						BeachClam tappedClam = hit.collider.gameObject.GetComponent<BeachClam>();
+						currentClams.Add(tappedClam);
+						tappedClam.Tapped = true;
+						if (currentClams.Count == 2) {
+							if (tappedClam.myMatch.open) {
+								tappedClam.matched = true;
+								tappedClam.myMatch.matched = true;
+								myLvls[curntLvl -1].CheckClams();
+								currentClams.Clear();
+							}
+							else {
+								currentClams[0].failed = true;
+								currentClams[1].failed = true;
+								openedClams.Add(currentClams[0]);
+								openedClams.Add(currentClams[1]);
+								currentClams.Clear();
+							}
 
+						}
 					}
 				}
 			}
-		}
 			#endregion
 
 		}
@@ -194,28 +188,18 @@ public class ClamPuzzle : MonoBehaviour
 
 			#region Click On SilverEggs
 			// Clicking on a silver egg.
-			if (myInput.Tapped)
-			{
+			if (myInput.Tapped) {
 				UpdateMousePos();
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit)
-				{
-					//Debug.Log(hit.collider.name);
-					if (hit.collider.CompareTag("Egg"))
-					{
-						//if (crateScript.curntLvl >= maxLvl) { silverEggsPickedUp += 1; }
-						/* Debug.Log("Thats Silver Egg #" + silverEggsPickedUp +" mate"); */
+				if (hit) {
+					if (hit.collider.CompareTag("Egg")) {
 						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 						silEggTappedScript.StartSilverEggAnim();
 						hit.collider.enabled = false;
-
-						//SFX CLICK SILVER EGG
 						//audioSceneParkPuzzScript.silverEgg();
-
 						if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
 						mySilverEggMan.SaveSilverEggsToCorrectFile();
 						mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-
 						mySilverEggMan.amntSilEggsTapped++;
 						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
 					}
@@ -233,7 +217,7 @@ public class ClamPuzzle : MonoBehaviour
 	}
 		#region Level Change Methods
 	// Once, when the scene is openned.
-	void InitialSetup()
+	public new void InitialSetup()
 	{
 		//Debug.Log("Initial Setup");
 		if(maxLvl > 3 || maxLvl < 1) { curntLvl = 1; }
@@ -253,7 +237,7 @@ public class ClamPuzzle : MonoBehaviour
 	}
 
 	// Level complete, load silver eggs, start crate animation.
-	void SilverEggsSetup()
+	public new void SilverEggsSetup()
 	{
 		//Debug.Log("New Level Setup");
 		canPlay = false;
@@ -295,7 +279,7 @@ public class ClamPuzzle : MonoBehaviour
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
-	public void SilverEggsCheck()
+	public override void SilverEggsCheck()
 	{
 		//int amntSilEggsTapped = 0;
 		if (mySilverEggMan.activeSilverEggs.Count > 0)
@@ -326,7 +310,7 @@ public class ClamPuzzle : MonoBehaviour
 	}
 
 	// Once animations are finished, run the next level setup.
-	void NextLevelSetup()
+	public new void NextLevelSetup()
 	{
 		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
 		{ silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);}
@@ -357,7 +341,7 @@ public class ClamPuzzle : MonoBehaviour
 	}
 
 	// Prepare to change level after a level selection button has been pressed.
-	public void ChangeLevelSetup()
+	public new void ChangeLevelSetup()
 	{
 		// Close up current level.
 		canPlay = false;
@@ -375,7 +359,7 @@ public class ClamPuzzle : MonoBehaviour
 	}
 
 	// Setup the chosen level after waiting for setupLvlWaitTime (minimum the fade out duration of the items).
-	void ChosenLevelSetup(int lvlToLoad)
+	public new void ChosenLevelSetup(int lvlToLoad)
 	{
 		// Setup chosen level.
 		chngLvlTimer += Time.deltaTime;
@@ -460,7 +444,7 @@ public class ClamPuzzle : MonoBehaviour
 	// 	}
 	// }
 
-	public void LvlStuffFadeIn()
+	public new void LvlStuffFadeIn()
 	{
 		levelsStuff[curntLvl -1].StartLvlFadeIn();
 		Debug.Log("Should fade in stuff."); // Fade in tiles
@@ -490,7 +474,7 @@ public class ClamPuzzle : MonoBehaviour
 		// }
 	}
 
-	public void LvlStuffFadeOut() // Fade out tiles, tile backs, kite, backshadow.
+	public new void LvlStuffFadeOut() // Fade out tiles, tile backs, kite, backshadow.
 	{
 		levelsStuff[curntLvl -1].ExitFadeOutLvl();
 		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
@@ -539,7 +523,7 @@ public class ClamPuzzle : MonoBehaviour
 		GlobalVariables.globVarScript.SaveEggState();
 	}*/
 
-	public void SaveMaxLvl()
+	public new void SaveMaxLvl()
 	{
 		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
 		{
@@ -548,7 +532,7 @@ public class ClamPuzzle : MonoBehaviour
 		}
 	}
 
-	void UpdateMousePos()
+	public new void UpdateMousePos()
 	{
 		mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
@@ -559,7 +543,7 @@ public class ClamPuzzle : MonoBehaviour
 
 
 	// All silver eggs picked up, what happenes?
-	public IEnumerator PuzzleComplete ()
+	public new IEnumerator PuzzleComplete ()
 	{
 		yield return new WaitForSeconds(0.5f);
 
@@ -567,8 +551,8 @@ public class ClamPuzzle : MonoBehaviour
 
 		yield return new WaitForSeconds(0.5f);
 
-		audioSceneParkPuzzScript.StopSceneMusic();
-		audioSceneParkPuzzScript.PlayTransitionMusic();
+		audioSceneBeachPuzzScript.StopSceneMusic();
+		audioSceneBeachPuzzScript.PlayTransitionMusic();
 
 		SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
 	}

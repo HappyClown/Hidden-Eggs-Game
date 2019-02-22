@@ -15,18 +15,30 @@ public class BeachClam : MonoBehaviour {
 	public float timeDelay;
 	private float timer;
 	public bool Tapped, open, matched, failed, closed, forceClose;
+
+
+	//tests for sounds
+	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
+	public string clamSound;
+	//
+
 	void Start () {
 		myCollider = this.gameObject.GetComponent<CircleCollider2D>();
 		Tapped = open = matched = failed = forceClose =  false;
 		closed = true;
 		timer = 0;
+
+		//snd
+		audioBeachPuzzleScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Tapped){
 			if(closed){
-				//play sound here
+				//clam sound
+				audioBeachPuzzleScript.playOceanSound(clamSound);
+
 				myCollider.enabled = false;
 				open = true;
 				closed = false;
@@ -34,6 +46,7 @@ public class BeachClam : MonoBehaviour {
 				myOpenClam.FadeIn();
 				myClosedClam.fadeDelay = true;
 				myClosedClam.FadeOut();
+
 				foreach (BeachBubbles bubbles in myBubbles)
 				{
 					bubbles.ResetBubble();
@@ -50,11 +63,15 @@ public class BeachClam : MonoBehaviour {
 				myOpenClam.fadeDelay = true;
 				myOpenClam.FadeOut();
 				failed = false;
+				
 			}
 			if(open /* && put delay for sound*/|| forceClose){
 				open = false;
 				closed = true;
 				forceClose = false;
+
+				//failed match sound .. should put a delay or something
+				//audioBeachPuzzleScript.failSFX();
 			}
 		}
 		if(open && myMatch.matched){
@@ -63,6 +80,9 @@ public class BeachClam : MonoBehaviour {
 				myOpenClam.FadeOut();
 				matched = true;
 				open = false;
+
+				//"matched" and "dissolve" sound
+				audioBeachPuzzleScript.BubblesSFX();
 			}
 		}
 	}

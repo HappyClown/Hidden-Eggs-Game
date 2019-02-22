@@ -11,12 +11,6 @@ public class EnaDisaButtonOnFade : MonoBehaviour {
 	public Button thisBtn;
 	public float disableThreshold, enableThreshold;
 	
-
-
-	void Start () {
-		
-	}
-	
 	void Update () {
 		curAlphaValue = refImg.color.a;
 

@@ -40,6 +40,26 @@ public class MarketSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static List<int> LoadMarketEggsOrder()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.eggsFoundOrder;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
 	public static int LoadMarketSilverEggs()
 	{
 		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
@@ -198,6 +218,24 @@ public class MarketSaveLoadManager : MonoBehaviour
 		}
 	}
 
+	public static bool LoadMarketPuzzIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/marketEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/marketEggSaver.sav", FileMode.Open);
+
+			MarketEggsData data = bf.Deserialize(stream) as MarketEggsData;
+
+			stream.Close();
+			return data.puzzIntroDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
 
 	public static void DeleteMarketSaveFile()
 	{
@@ -237,6 +275,26 @@ public class ParkSaveLoadManager : MonoBehaviour
 		{
 			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<bool>();
+		}
+	}
+
+
+	public static List<int> LoadParkEggsOrder()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.eggsFoundOrder;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return new List<int>();
 		}
 	}
 
@@ -381,6 +439,46 @@ public class ParkSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static bool LoadParkBirdIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.introDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
+	public static bool LoadParkPuzzIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/parkEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/parkEggSaver.sav", FileMode.Open);
+
+			ParkEggsData data = bf.Deserialize(stream) as ParkEggsData;
+
+			stream.Close();
+			return data.puzzIntroDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
 	public static void DeleteParkSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/parkEggSaver.sav");
@@ -403,7 +501,7 @@ public class BeachSaveLoadManager : MonoBehaviour
 	}
 
 
-	public static List<bool> LoadBeachEggs()
+		public static List<bool> LoadBeachEggs()
 	{
 		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
 		{
@@ -419,6 +517,26 @@ public class BeachSaveLoadManager : MonoBehaviour
 		{
 			Debug.LogWarning("FILE DOES NOT EXIST");
 			return new List<bool>();
+		}
+	}
+
+
+	public static List<int> LoadBeachEggsOrder()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.eggsFoundOrder;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return new List<int>();
 		}
 	}
 
@@ -463,6 +581,144 @@ public class BeachSaveLoadManager : MonoBehaviour
 	}
 
 
+	public static int LoadBeachPuzzMaxLvl()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.puzzMaxLvl;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+	public static int LoadBeachTotalEggs()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.totalEggsFound;
+		}
+		else 
+		{
+			//Debug.LogWarning("FILE DOES NOT EXIST");
+			return 0;
+		}
+	}
+
+
+	public static List<int> LoadBeachPuzzSilEggsCount()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.puzzSilEggsFound;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
+	public static List<int> LoadBeachSceneSilEggsCount()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.sceneSilEggsFound;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return new List<int>();
+		}
+	}
+
+
+	public static bool LoadBeachLevelComplete()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.levelComplete;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+	public static bool LoadBeachBirdIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.introDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+	public static bool LoadBeachPuzzIntro()
+	{
+		if (File.Exists(Application.persistentDataPath + "/beachEggSaver.sav"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/beachEggSaver.sav", FileMode.Open);
+
+			BeachEggsData data = bf.Deserialize(stream) as BeachEggsData;
+
+			stream.Close();
+			return data.puzzIntroDone;
+		}
+		else 
+		{
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return false;
+		}
+	}
+
+
 	public static void DeleteBeachSaveFile ()
 	{
 		File.Delete(Application.persistentDataPath + "/beachEggSaver.sav");
@@ -474,25 +730,22 @@ public class BeachSaveLoadManager : MonoBehaviour
 public class MarketEggsData 
 {
 	public List<bool> eggsFound;
-
+	public List<int> eggsFoundOrder;
 	public int silverEggsFound;
-
 	public List<int> puzzSilEggsFound;
-
 	public List<int> sceneSilEggsFound;
-
 	public bool rainbowRiddle;
-
 	public int puzzMaxLvl;
-
 	public int totalEggsFound;
-	
 	public bool levelComplete;
 	public bool introDone;
+	public bool puzzIntroDone;
 
 	public MarketEggsData(GlobalVariables marketEggSaver)
 	{
 		eggsFound = marketEggSaver.eggsFoundBools;
+
+		eggsFoundOrder = marketEggSaver.eggsFoundOrder;
 
 		silverEggsFound = marketEggSaver.silverEggsCount;
 
@@ -509,6 +762,8 @@ public class MarketEggsData
 		levelComplete = marketEggSaver.levelComplete;
 
 		introDone = marketEggSaver.birdIntroDone;
+
+		puzzIntroDone = marketEggSaver.puzzIntroDone;
 	}
 }
 
@@ -516,24 +771,22 @@ public class MarketEggsData
 public class ParkEggsData 
 {
 	public List<bool> eggsFound;
-
+	public List<int> eggsFoundOrder;
 	public int silverEggsFound;
-
 	public List<int> puzzSilEggsFound;
-
 	public List<int> sceneSilEggsFound;
-
 	public bool hopscotchRiddle;
-
 	public int puzzMaxLvl;
-
 	public int totalEggsFound;
-	
 	public bool levelComplete;
+	public bool introDone;
+	public bool puzzIntroDone;
 
 	public ParkEggsData(GlobalVariables parkEggSaver)
 	{
 		eggsFound = parkEggSaver.eggsFoundBools;
+
+		eggsFoundOrder = parkEggSaver.eggsFoundOrder;
 
 		silverEggsFound = parkEggSaver.silverEggsCount;
 
@@ -548,6 +801,10 @@ public class ParkEggsData
 		totalEggsFound = parkEggSaver.totalEggsFound;
 
 		levelComplete = parkEggSaver.levelComplete;
+
+		introDone = parkEggSaver.birdIntroDone;
+
+		puzzIntroDone = parkEggSaver.puzzIntroDone;
 	}
 }
 
@@ -555,17 +812,39 @@ public class ParkEggsData
 public class BeachEggsData 
 {
 	public List<bool> eggsFound;
-
+	public List<int> eggsFoundOrder;
 	public int silverEggsFound;
-
+	public List<int> puzzSilEggsFound;
+	public List<int> sceneSilEggsFound;
 	public bool crabRiddle;
+	public int puzzMaxLvl;
+	public int totalEggsFound;
+	public bool levelComplete;
+	public bool introDone;
+	public bool puzzIntroDone;
 
 	public BeachEggsData(GlobalVariables beachEggSaver)
 	{
 		eggsFound = beachEggSaver.eggsFoundBools;
 
+		eggsFoundOrder = beachEggSaver.eggsFoundOrder;
+
 		silverEggsFound = beachEggSaver.silverEggsCount;
 
+		puzzSilEggsFound = beachEggSaver.puzzSilEggsCount;
+		
+		sceneSilEggsFound = beachEggSaver.sceneSilEggsCount;
+
 		crabRiddle = beachEggSaver.riddleSolved;
+
+		puzzMaxLvl = beachEggSaver.puzzMaxLvl;
+
+		totalEggsFound = beachEggSaver.totalEggsFound;
+
+		levelComplete = beachEggSaver.levelComplete;
+
+		introDone = beachEggSaver.birdIntroDone;
+
+		puzzIntroDone = beachEggSaver.puzzIntroDone;
 	}
 }

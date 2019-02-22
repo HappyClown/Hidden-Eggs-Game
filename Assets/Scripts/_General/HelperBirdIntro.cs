@@ -7,18 +7,12 @@ public class HelperBirdIntro : MonoBehaviour {
 	private Vector2 mousePos2D;
 	private RaycastHit2D hit;
 	public float shakeCD, shakeFXCD;
-	public List<ParticleSystem> shakeParSys;
-	[Header("Script Shake")]
-	[Tooltip("Move every X frames.")]
-	public int shakeFrame;
-	public float inShakeTime, shakeCircleSize;
-	private int shakeFrameCount;
-	private Vector2 shakeAdd;
-	private float timer, inShakeTimer;
+	private float timer;
 	private bool fxPlayed;
 	[Header("Anim Shake")]
 	public bool animShake;
 	public Animator anim;
+	public List<ParticleSystem> shakeParSys;
 	[Header("Dissolve")]
 	public Material dissMat;
 	public float dissDuration;
@@ -42,14 +36,15 @@ public class HelperBirdIntro : MonoBehaviour {
 			inSceneBirdBtnObj.SetActive(true);
 			dissMat.SetFloat("_DissolveAmount", 1.01f);
 			birdTapped = true;
-		} else {
+		}
+		else {
 			dissMat.SetFloat("_DissolveAmount", 0f);
 		}
 		ogBirdPos = birdObj.transform.position;
 	}
 	
 	void Update () {
-		if (!birdTapped && scenTapEnabScript.canTapHelpBird) { 
+		if (!birdTapped && scenTapEnabScript.canTapHelpBird) {
 			if(inputDetScript.Tapped){ // If frozen bird has not been tapped yep cast a ray on tap
 				mousePos = Camera.main.ScreenToWorldPoint(inputDetScript.TapPosition);
 				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
@@ -77,31 +72,7 @@ public class HelperBirdIntro : MonoBehaviour {
 					anim.SetTrigger("Shake");
 					timer = 0f;
 					fxPlayed = false;
-				} else { // Shake by script
-					if (!fxPlayed) {
-						foreach (ParticleSystem ps in shakeParSys)
-						{
-							ps.Play();
-						}
-						fxPlayed = true;
-					}
-					inShakeTimer += Time.deltaTime;
-					if (inShakeTimer < inShakeTime) {
-						shakeFrameCount++;
-						if (shakeFrameCount > shakeFrame) {
-							birdObj.transform.position = ogBirdPos;
-							shakeAdd = Random.insideUnitCircle * shakeCircleSize;
-							birdObj.transform.position = new Vector3(birdObj.transform.position.x + shakeAdd.x, birdObj.transform.position.y + shakeAdd.y, birdObj.transform.position.z);
-							shakeFrameCount = 0;
-						}
-					} else {
-						timer = 0f;
-						inShakeTimer = 0f;
-						shakeFrameCount = 0;
-						fxPlayed = false;
-						birdObj.transform.position = ogBirdPos;
-					}
-				}
+				} 
 			}
 		}
 		// After being tapped dissolve the black and white bird's material

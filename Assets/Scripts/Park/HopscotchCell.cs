@@ -10,12 +10,11 @@ public class HopscotchCell : MonoBehaviour {
 	public bool doubleCell, goalCell;
 	public HopscotchCell requiredCell;
 	public bool tapped = false;
-	// Use this for initialization
+
 	void Start () {
 		myCollider = gameObject.GetComponent<Collider2D>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		//tapped = false;
 	}

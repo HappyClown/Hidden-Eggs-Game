@@ -147,7 +147,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1530991409}
-  - {fileID: 1053127120}
+  - {fileID: 484334569}
   - {fileID: 209272665}
   m_Father: {fileID: 1270717018}
   m_RootOrder: 2
@@ -308,7 +308,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 0}
-  inpDetScript: {fileID: 654759646}
+  inputDetScript: {fileID: 654759646}
+  silverEggsManScript: {fileID: 654759648}
 --- !u!114 &3151283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggAnim: {fileID: 3151281}
-  clickFX: {fileID: 1053127122}
+  clickFX: {fileID: 484334570}
   spriteRen: {fileID: 3151286}
   col: {fileID: 3151285}
   silEggSeqScript: {fileID: 3151282}
@@ -339,6 +340,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -346,6 +351,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 3151286}
+  myStartState: 0
 --- !u!58 &3151285
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -396,7 +402,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 23e074dec43755b4a820575d5af0c768, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -450,6 +456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -457,6 +467,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &4653297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,6 +510,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &4653298
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -645,6 +657,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &28976161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -663,6 +680,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &28976162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -845,6 +863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -852,6 +874,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &43120128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,6 +917,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &43120129
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -967,6 +991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -974,6 +1002,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &53892532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1074,6 +1103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -1081,6 +1114,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &58571121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,6 +1157,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &58571122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1236,7 +1271,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -5849,6 +5884,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &61858673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5860,6 +5896,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -5867,6 +5907,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &61858674
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5959,7 +6000,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 61039297}
-  - {fileID: 1344811879}
+  - {fileID: 993042475}
   - {fileID: 1165388047}
   m_Father: {fileID: 1270717018}
   m_RootOrder: 1
@@ -6120,7 +6161,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 0}
-  inpDetScript: {fileID: 654759646}
+  inputDetScript: {fileID: 654759646}
+  silverEggsManScript: {fileID: 654759648}
 --- !u!114 &62816890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6134,7 +6176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggAnim: {fileID: 62816888}
-  clickFX: {fileID: 1344811881}
+  clickFX: {fileID: 993042476}
   spriteRen: {fileID: 62816893}
   col: {fileID: 62816892}
   silEggSeqScript: {fileID: 62816889}
@@ -6151,6 +6193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -6158,6 +6204,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 62816893}
+  myStartState: 0
 --- !u!58 &62816892
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6208,7 +6255,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5ff01acfe0b543742b67bddbae02740f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6262,6 +6309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -6269,6 +6320,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &90745855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6311,6 +6363,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &90745856
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6397,6 +6450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -6404,6 +6461,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &93353387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6491,6 +6549,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -6498,6 +6560,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &95175392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6540,6 +6603,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &95175393
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6627,6 +6691,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -6634,6 +6702,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &104721467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6676,6 +6745,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &104721468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6781,6 +6851,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &109225502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6792,6 +6863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -6799,6 +6874,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &109225503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7096,6 +7172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -7103,6 +7183,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &121499347
 GameObject:
   m_ObjectHideFlags: 0
@@ -7189,6 +7270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -7196,6 +7281,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &139316594
 GameObject:
   m_ObjectHideFlags: 0
@@ -7302,6 +7388,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -7309,6 +7399,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &143690534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7351,6 +7442,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &143690535
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7438,6 +7530,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -7445,6 +7541,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &162000767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7487,6 +7584,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &162000768
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7532,6 +7630,58 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &169811621
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 195248175}
+    m_Modifications:
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &169811622 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 169811621}
+--- !u!198 &169811623 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198248677672175834, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 169811621}
 --- !u!1 &171572038
 GameObject:
   m_ObjectHideFlags: 0
@@ -7574,6 +7724,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -7581,6 +7735,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &171572041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7623,6 +7778,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &171572042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7709,6 +7865,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -7716,6 +7876,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &174143821
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7979,6 +8140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -7986,6 +8151,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &185881833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8028,6 +8194,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &185881834
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8167,7 +8334,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 2096746742}
-  - {fileID: 1691622350}
+  - {fileID: 169811622}
   - {fileID: 1979098391}
   m_Father: {fileID: 1270717018}
   m_RootOrder: 0
@@ -8328,7 +8495,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 0}
-  inpDetScript: {fileID: 654759646}
+  inputDetScript: {fileID: 654759646}
+  silverEggsManScript: {fileID: 654759648}
 --- !u!114 &195248178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8342,7 +8510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggAnim: {fileID: 195248176}
-  clickFX: {fileID: 1691622352}
+  clickFX: {fileID: 169811623}
   spriteRen: {fileID: 195248181}
   col: {fileID: 195248180}
   silEggSeqScript: {fileID: 195248177}
@@ -8359,6 +8527,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -8366,6 +8538,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 195248181}
+  myStartState: 0
 --- !u!58 &195248180
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8416,7 +8589,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ad452cbb46fdfee4291d85b1983e4100, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8462,7 +8635,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 739010651}
-  - {fileID: 1027599844}
+  - {fileID: 396678991}
   - {fileID: 267643537}
   m_Father: {fileID: 941481368}
   m_RootOrder: 1
@@ -8623,7 +8796,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 0}
-  inpDetScript: {fileID: 654759646}
+  inputDetScript: {fileID: 654759646}
+  silverEggsManScript: {fileID: 654759648}
 --- !u!114 &197415124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8637,7 +8811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggAnim: {fileID: 197415122}
-  clickFX: {fileID: 1027599846}
+  clickFX: {fileID: 396678992}
   spriteRen: {fileID: 197415127}
   col: {fileID: 197415126}
   silEggSeqScript: {fileID: 197415123}
@@ -8654,6 +8828,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -8661,6 +8839,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 197415127}
+  myStartState: 0
 --- !u!58 &197415126
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8711,7 +8890,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 90cf9358030c1f24d98d8a2c4d3f3736, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8818,6 +8997,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &200872990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8829,6 +9009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -8836,6 +9020,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &200872991
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9179,7 +9364,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -13840,6 +14025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -13847,6 +14036,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &225721618
 GameObject:
   m_ObjectHideFlags: 0
@@ -13889,6 +14079,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -13896,6 +14090,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &225721621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13938,6 +14133,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &225721622
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14054,6 +14250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -14061,6 +14261,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &235258560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14207,6 +14408,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &242185734
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -14353,7 +14556,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -18988,6 +19191,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &268169699
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -19045,6 +19250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -19052,6 +19261,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &281614304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19094,6 +19304,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &281614305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19285,6 +19496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -19292,6 +19507,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!95 &282102090
 Animator:
   serializedVersion: 3
@@ -19473,6 +19689,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -19480,6 +19700,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!95 &288169394
 Animator:
   serializedVersion: 3
@@ -19727,6 +19948,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -19734,6 +19959,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!95 &304795043
 Animator:
   serializedVersion: 3
@@ -19855,6 +20081,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -19862,11 +20092,18 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &306686002 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1378933569856640, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 1851561818}
+--- !u!114 &306686005 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114920737663150060, guid: f6590d017bc3c234a96bcad1a157f613,
+    type: 2}
+  m_PrefabInternal: {fileID: 1851561818}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &313430687
 GameObject:
   m_ObjectHideFlags: 0
@@ -19910,6 +20147,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &313430689
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -20105,6 +20344,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &316081320
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -20162,6 +20403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -20169,6 +20414,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &325367659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20211,6 +20457,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &325367660
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20344,6 +20591,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &332569463
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -20466,48 +20715,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &335265694
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 62816887}
-    m_Modifications:
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &339260241
 GameObject:
   m_ObjectHideFlags: 0
@@ -20549,6 +20756,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -20556,6 +20767,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &339260244
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20790,6 +21002,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -20797,6 +21013,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &350933788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20883,6 +21100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -20890,6 +21111,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &365038945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20995,6 +21217,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &365634065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21006,6 +21229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -21013,6 +21240,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &365634066
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21172,6 +21400,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &378999349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21183,6 +21412,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -21190,6 +21423,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &378999350
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21316,7 +21550,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -25941,6 +26175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -25948,6 +26186,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &391624979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25990,6 +26229,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &391624980
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26035,6 +26275,58 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &396678990
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 197415121}
+    m_Modifications:
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &396678991 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 396678990}
+--- !u!198 &396678992 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198248677672175834, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 396678990}
 --- !u!114 &400794567 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114811811116487580, guid: f6590d017bc3c234a96bcad1a157f613,
@@ -26089,6 +26381,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -26096,6 +26392,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &402548110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26138,6 +26435,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &402548111
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26243,6 +26541,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &402662849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26254,6 +26553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -26261,6 +26564,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &402662850
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26420,6 +26724,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &411335541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26431,6 +26736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -26438,6 +26747,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &411335542
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26556,6 +26866,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &415733031
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -26613,6 +26925,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -26620,6 +26936,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &424218378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26662,6 +26979,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &424218379
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26767,6 +27085,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &424691516
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -26823,6 +27143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -26830,6 +27154,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &428550050
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27197,6 +27522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -27275,6 +27604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -27282,6 +27615,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &460223268
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27368,6 +27702,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -27375,6 +27713,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &462746418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27489,7 +27828,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -32105,6 +32444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -32112,6 +32455,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &471401120
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -32494,6 +32838,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -32501,6 +32849,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!95 &490511059
 Animator:
   serializedVersion: 3
@@ -32604,7 +32953,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -37243,6 +37592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -37447,6 +37800,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &513703494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37458,6 +37812,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -37465,6 +37823,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &513703495
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37565,6 +37924,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -37572,6 +37935,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &517469231
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37659,6 +38023,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!4 &517834835 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4639651953694328, guid: dae81d163e2a647478192fbc62e45d8a,
@@ -37739,6 +38104,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!1 &530572770
 GameObject:
   m_ObjectHideFlags: 0
@@ -37767,6 +38134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -37774,6 +38145,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &530572772
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37980,6 +38352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -37987,6 +38363,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &534009066
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38150,6 +38527,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -38157,6 +38538,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &548567349
 GameObject:
   m_ObjectHideFlags: 0
@@ -38310,6 +38692,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1628192426425242, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 1851561818}
+--- !u!114 &553503273 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114652392004954662, guid: f6590d017bc3c234a96bcad1a157f613,
+    type: 2}
+  m_PrefabInternal: {fileID: 1851561818}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &558126692
 GameObject:
   m_ObjectHideFlags: 0
@@ -38352,6 +38740,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -38359,6 +38751,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &558126695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38401,6 +38794,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &558126696
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38530,8 +38924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439752213f2000341ac0edd05a7d944a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: The Market
-  sceneTapEnaScript: {fileID: 0}
+  sceneName: The Beach
 --- !u!114 &567459155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38651,6 +39044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -38658,6 +39055,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &576447924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38700,6 +39098,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &576447925
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38895,7 +39294,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: The Beach
-  sceneTapEnaScript: {fileID: 0}
 --- !u!114 &606576436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39030,6 +39428,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &607681356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39041,6 +39440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -39048,6 +39451,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &607681357
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39147,6 +39551,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -39154,6 +39562,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &616143046
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -39306,48 +39715,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &618931852
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1057703737}
-    m_Modifications:
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &619018610
 GameObject:
   m_ObjectHideFlags: 0
@@ -39802,6 +40169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aefd48f9775d54f945e948ef54d412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mousePos2D: {x: 0, y: 0}
+  mousePos: {x: 0, y: 0, z: 0}
+  tutorialDone: 0
+  curntLvl: 0
   myInput: {fileID: 654759646}
   mySilverEggMan: {fileID: 654759648}
   mySelectButton: {fileID: 654759647}
@@ -39812,7 +40183,12 @@ MonoBehaviour:
   winLvl: 4
   itemsWait: 0
   itemWaitAmnt: 1
+  itemWaitTimer: 0
+  initialSetupOn: 0
+  setupChsnLvl: 0
+  waitMethod: 0
   waitTime: 1
+  waitTimer: 0
   lvlItemHolders:
   - {fileID: 2106106035}
   - {fileID: 443990723}
@@ -39825,20 +40201,27 @@ MonoBehaviour:
   itemSpawnF: 0.15
   dotsSpawnF: 0.25
   iniCanPlayF: 0.5
+  iniSeqStart: 0
+  crateDownB: 0
+  reqDownB: 0
+  itemSpawnB: 0
+  dotsSpawnB: 0
   scrnDarkImgScript: {fileID: 671249642}
+  sceneTapScript: {fileID: 0}
+  puzzlePauseScript: {fileID: 0}
+  slideInHelpScript: {fileID: 0}
   canPlay: 0
   lvlToLoad: 0
   setupLvlWaitTime: 2
   chngLvlTimer: 0
   maxLvl: 0
-  curntLvl: 0
+  audioSceneParkPuzzScript: {fileID: 0}
   myLvls:
   - {fileID: 1650721421}
   - {fileID: 884483978}
   - {fileID: 720500430}
   openedClams: []
   currentClams: []
-  audioSceneParkPuzzScript: {fileID: 0}
 --- !u!114 &654759646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39931,7 +40314,11 @@ MonoBehaviour:
   - {fileID: 62816890}
   - {fileID: 3151283}
   silverEggsActive: 0
+  skippedSeq: 0
   amntSilEggsTapped: 0
+  inputDetScript: {fileID: 654759646}
+  mainPuzzleEngScript: {fileID: 654759645}
+  audioScenePuzzScript: {fileID: 0}
 --- !u!1 &658008276
 GameObject:
   m_ObjectHideFlags: 0
@@ -39974,6 +40361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -39981,6 +40372,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &658008279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40023,6 +40415,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &658008280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40109,6 +40502,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -40116,6 +40513,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &659365193
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40247,6 +40645,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -40424,6 +40826,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &681969706
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -40499,6 +40903,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &682639461
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -40574,6 +40980,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &684281368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40585,6 +40992,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -40592,6 +41003,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &684281369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40692,6 +41104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -40699,6 +41115,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &690177782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40741,6 +41158,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &690177783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40872,6 +41290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -40879,6 +41301,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &695970806
 GameObject:
   m_ObjectHideFlags: 0
@@ -40921,6 +41344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -40928,6 +41355,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &695970809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40970,6 +41398,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &695970810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41020,6 +41449,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1273037928703732, guid: f6590d017bc3c234a96bcad1a157f613,
     type: 2}
   m_PrefabInternal: {fileID: 1851561818}
+--- !u!114 &713732389 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114839007696006766, guid: f6590d017bc3c234a96bcad1a157f613,
+    type: 2}
+  m_PrefabInternal: {fileID: 1851561818}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &720500428
 GameObject:
   m_ObjectHideFlags: 0
@@ -41113,6 +41548,7 @@ MonoBehaviour:
   - {fileID: 415733030}
   levelLoading: 0
   levelComplete: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!4 &720500431
 Transform:
   m_ObjectHideFlags: 0
@@ -41169,6 +41605,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -41176,6 +41616,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &721772122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -41453,7 +41894,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -46251,6 +46692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -46258,6 +46703,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &768850767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46300,6 +46746,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &768850768
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46624,6 +47071,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &790334862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46635,6 +47083,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -46642,6 +47094,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &790334863
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47100,6 +47553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -47107,6 +47564,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &804560100
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47227,6 +47685,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!1 &811169680
 GameObject:
   m_ObjectHideFlags: 0
@@ -47506,6 +47966,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &842624551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47517,6 +47978,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -47524,6 +47989,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &842624552
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47623,6 +48089,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -47630,6 +48100,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &843497521
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47675,6 +48146,58 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &849292975
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1057703737}
+    m_Modifications:
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &849292976 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 849292975}
+--- !u!198 &849292977 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198248677672175834, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 849292975}
 --- !u!4 &851446234 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4673207457361790, guid: dae81d163e2a647478192fbc62e45d8a,
@@ -47708,6 +48231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -47715,6 +48242,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &854610503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47843,6 +48371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -47850,6 +48382,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &859434001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47892,6 +48425,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &859434002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48087,6 +48621,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &871637455
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -48205,6 +48741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -48212,6 +48752,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &882069699
 GameObject:
   m_ObjectHideFlags: 0
@@ -48300,6 +48841,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &884110191
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -48396,6 +48939,7 @@ MonoBehaviour:
   - {fileID: 681969705}
   levelLoading: 0
   levelComplete: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!4 &884483979
 Transform:
   m_ObjectHideFlags: 0
@@ -48541,6 +49085,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &891644568
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -48648,6 +49194,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &897476263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48659,6 +49206,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -48666,6 +49217,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &897476264
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48766,6 +49318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -48773,6 +49329,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &900440518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48815,6 +49372,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &900440519
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48946,6 +49504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -48953,6 +49515,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &907638178
 GameObject:
   m_ObjectHideFlags: 0
@@ -48995,6 +49558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -49002,6 +49569,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &907638181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49044,6 +49612,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &907638182
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49340,6 +49909,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -49347,6 +49920,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!95 &932671842
 Animator:
   serializedVersion: 3
@@ -49503,6 +50077,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -49510,6 +50088,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &948286656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49552,6 +50131,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &948286657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49638,6 +50218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -49645,6 +50229,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &953555712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49718,6 +50303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -49725,6 +50314,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &961674220
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49825,6 +50415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -49832,6 +50426,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &963808098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49874,6 +50469,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &963808099
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50221,6 +50817,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -50228,6 +50828,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1006233799
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50315,6 +50916,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!1 &1007033459
 GameObject:
   m_ObjectHideFlags: 0
@@ -50357,6 +50959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -50364,6 +50970,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1007033462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50406,6 +51013,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1007033463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50493,6 +51101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -50500,6 +51112,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1016356365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50542,6 +51155,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1016356366
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50629,6 +51243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -50636,6 +51254,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1017896311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50678,6 +51297,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1017896312
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50723,16 +51343,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!4 &1027599844 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1381400587}
---- !u!198 &1027599846 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198248677672175834, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1381400587}
 --- !u!1 &1029376862
 GameObject:
   m_ObjectHideFlags: 0
@@ -50816,6 +51426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -50823,6 +51437,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1031650444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50865,6 +51480,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1031650445
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50951,6 +51567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -50958,6 +51578,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1042747830
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51003,16 +51624,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!4 &1053127120 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1556434997}
---- !u!198 &1053127122 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198248677672175834, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1556434997}
 --- !u!1 &1053175697
 GameObject:
   m_ObjectHideFlags: 0
@@ -51185,7 +51796,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 383834085}
-  - {fileID: 1507928635}
+  - {fileID: 849292976}
   - {fileID: 468946003}
   m_Father: {fileID: 941481368}
   m_RootOrder: 0
@@ -51346,7 +51957,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 0}
-  inpDetScript: {fileID: 654759646}
+  inputDetScript: {fileID: 654759646}
+  silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1057703740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51360,7 +51972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggAnim: {fileID: 1057703738}
-  clickFX: {fileID: 1507928637}
+  clickFX: {fileID: 849292977}
   spriteRen: {fileID: 1057703743}
   col: {fileID: 1057703742}
   silEggSeqScript: {fileID: 1057703739}
@@ -51377,6 +51989,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -51384,6 +52000,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 1057703743}
+  myStartState: 0
 --- !u!58 &1057703742
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -51434,7 +52051,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 28927bb240040c448b3d7bd1479eacea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -51529,6 +52146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -51536,6 +52157,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1063141208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51578,6 +52200,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1063141209
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51695,6 +52318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -51702,6 +52329,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1090811007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51744,6 +52372,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1090811008
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51836,6 +52465,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -51843,6 +52476,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1091683296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51885,6 +52519,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1091683297
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51990,6 +52625,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1098898483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52001,6 +52637,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -52008,6 +52648,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1098898484
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52107,6 +52748,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -52114,6 +52759,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1115331042
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52201,6 +52847,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -52208,6 +52858,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1120852875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52250,6 +52901,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1120852876
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52355,6 +53007,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1121153495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52366,6 +53019,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -52373,6 +53030,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1121153496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52472,6 +53130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -52479,6 +53141,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1121272053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52599,6 +53262,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!1 &1127354479
 GameObject:
   m_ObjectHideFlags: 0
@@ -52659,6 +53324,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1127354481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52670,6 +53336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -52677,6 +53347,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1127354482
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52884,6 +53555,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -52891,6 +53566,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1131131097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52933,6 +53609,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1131131098
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53053,6 +53730,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!1 &1133403277
 GameObject:
   m_ObjectHideFlags: 0
@@ -53095,6 +53774,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -53102,6 +53785,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1133403280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53144,6 +53828,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1133403281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53231,6 +53916,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -53238,6 +53927,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1134704011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53280,6 +53970,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1134704012
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53385,6 +54076,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1141594672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53396,6 +54088,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -53403,6 +54099,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1141594673
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53502,6 +54199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -53509,6 +54210,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1142666345
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53684,6 +54386,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -53691,6 +54397,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1147261106
 GameObject:
   m_ObjectHideFlags: 0
@@ -53774,6 +54481,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -53781,6 +54492,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1148574622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53823,6 +54535,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1148574623
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -53995,6 +54708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -54002,6 +54719,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1154532066
 GameObject:
   m_ObjectHideFlags: 0
@@ -54062,6 +54780,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1154532069
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -54163,6 +54883,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -54170,6 +54894,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1162772807
 GameObject:
   m_ObjectHideFlags: 0
@@ -54346,7 +55071,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -59052,6 +59777,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1173735912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59063,6 +59789,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -59070,6 +59800,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1173735913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -59263,6 +59994,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -59270,6 +60005,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1195518781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59312,6 +60048,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1195518782
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -59473,6 +60210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -59480,6 +60221,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1206707652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59522,6 +60264,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1206707653
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -59805,6 +60548,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1229550649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59816,6 +60560,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -59823,6 +60571,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1229550650
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -59922,6 +60671,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -59929,6 +60682,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1230541773
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -60121,48 +60875,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1851561818}
   m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
---- !u!1001 &1242393792
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 195248175}
-    m_Modifications:
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1245486407
 GameObject:
   m_ObjectHideFlags: 0
@@ -60249,6 +60961,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -60256,6 +60972,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1256782575
 GameObject:
   m_ObjectHideFlags: 0
@@ -60404,6 +61121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -60411,6 +61132,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1256788663
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -60516,6 +61238,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1258322953
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -60611,7 +61335,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 493195250}
-  - {fileID: 2024944985}
+  - {fileID: 1440718947}
   - {fileID: 1761448021}
   m_Father: {fileID: 1337544356}
   m_RootOrder: 0
@@ -60772,7 +61496,8 @@ MonoBehaviour:
   iniHovCurDur: 0
   iniStartHoverDelay: 0
   audioSilEggScript: {fileID: 0}
-  inpDetScript: {fileID: 654759646}
+  inputDetScript: {fileID: 654759646}
+  silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1262618803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60786,7 +61511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggAnim: {fileID: 1262618801}
-  clickFX: {fileID: 2024944987}
+  clickFX: {fileID: 1440718948}
   spriteRen: {fileID: 1262618806}
   col: {fileID: 1262618805}
   silEggSeqScript: {fileID: 1262618802}
@@ -60803,6 +61528,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -60810,6 +61539,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 1262618806}
+  myStartState: 0
 --- !u!58 &1262618805
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -60860,7 +61590,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b914bc3454538254b978cafca2779665, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -60947,6 +61677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -60954,6 +61688,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1271481965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60996,6 +61731,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1271481966
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61083,6 +61819,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -61090,6 +61830,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1274485809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61132,6 +61873,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1274485810
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61230,6 +61972,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -61237,6 +61983,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1295492538
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61426,6 +62173,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1304603932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61437,6 +62185,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -61444,6 +62196,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1304603933
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61577,6 +62330,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!1 &1315408207
 GameObject:
   m_ObjectHideFlags: 0
@@ -61646,6 +62401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -61653,6 +62412,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1319886999
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61797,6 +62557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -61804,6 +62568,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &1336902512
 GameObject:
   m_ObjectHideFlags: 0
@@ -61846,6 +62611,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -61853,6 +62622,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1336902515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61895,6 +62665,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1336902516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -61971,16 +62742,6 @@ Transform:
   m_Father: {fileID: 2115282898}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1344811879 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 335265694}
---- !u!198 &1344811881 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198248677672175834, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 335265694}
 --- !u!1 &1346308799
 GameObject:
   m_ObjectHideFlags: 0
@@ -62129,6 +62890,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -62136,6 +62901,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1346903767
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62409,6 +63175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -62416,6 +63186,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1379924101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62458,6 +63229,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1379924102
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62503,48 +63275,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &1381400587
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 197415121}
-    m_Modifications:
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1382327806
 GameObject:
   m_ObjectHideFlags: 0
@@ -62605,6 +63335,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1382327808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62616,6 +63347,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -62623,6 +63358,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1382327809
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62741,6 +63477,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1386242663
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -62797,6 +63535,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -62804,6 +63546,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1386246729
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -62937,6 +63680,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1389602225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62948,6 +63692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -62955,6 +63703,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1389602226
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63056,6 +63805,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1393063750
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -63264,6 +64015,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -63271,6 +64026,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1406745619
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63535,6 +64291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -63542,6 +64302,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1422447788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63584,6 +64345,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1422447789
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63672,6 +64434,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1422643552
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -63746,6 +64510,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -63753,6 +64521,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1422866499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63795,6 +64564,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1422866500
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -63900,6 +64670,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1424201794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63911,6 +64682,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -63918,6 +64693,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1424201795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64017,6 +64793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -64024,6 +64804,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1429018977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64110,6 +64891,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -64117,6 +64902,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1434442588
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64267,6 +65053,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -64274,6 +65064,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 0
 --- !u!95 &1437557808
 Animator:
   serializedVersion: 3
@@ -64351,6 +65142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -64358,6 +65153,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1439240320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64400,6 +65196,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1439240321
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64445,6 +65242,58 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1001 &1440718946
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1262618800}
+    m_Modifications:
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9d45dcb5e6b7e9745be6f4b287e1843f, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1440718947 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4553701179818472, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1440718946}
+--- !u!198 &1440718948 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 198248677672175834, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1440718946}
 --- !u!1 &1443911923
 GameObject:
   m_ObjectHideFlags: 0
@@ -64505,6 +65354,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1443911925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64516,6 +65366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -64523,6 +65377,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1443911926
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64803,6 +65658,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -64810,6 +65669,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1455696209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64852,6 +65712,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1455696210
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -64991,6 +65852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -64998,6 +65863,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1462370840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65040,6 +65906,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1462370841
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65145,6 +66012,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1463112425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65156,6 +66024,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -65163,6 +66035,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1463112426
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65326,6 +66199,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -65333,6 +66210,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1472113353
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65420,6 +66298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -65427,6 +66309,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1473726703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65469,6 +66352,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1473726704
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65542,6 +66426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -65549,6 +66437,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1479203112
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65730,6 +66619,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -65737,6 +66630,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1490008218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65828,16 +66722,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupied: 0
---- !u!4 &1507928635 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 618931852}
---- !u!198 &1507928637 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198248677672175834, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 618931852}
 --- !u!1 &1514349147
 GameObject:
   m_ObjectHideFlags: 0
@@ -65866,6 +66750,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -65873,6 +66761,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1514349149
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -66035,6 +66924,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1525841811
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -66118,7 +67009,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -70699,6 +71590,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -70706,6 +71601,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1531825952
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -70847,6 +71743,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -70854,6 +71754,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1538477287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70896,6 +71797,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1538477288
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -71089,6 +71991,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -71096,6 +72002,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1556135946
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -71141,48 +72048,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!1001 &1556434997
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3151280}
-    m_Modifications:
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1556457992
 Prefab:
   m_ObjectHideFlags: 0
@@ -71391,6 +72256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -71398,6 +72267,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1598069851
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -71569,6 +72439,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1638087593
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -71733,6 +72605,7 @@ MonoBehaviour:
   - {fileID: 2040401341}
   levelLoading: 0
   levelComplete: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1650721422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71855,6 +72728,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1663852243
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -71912,6 +72787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -71919,6 +72798,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1670181108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71961,6 +72841,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1670181109
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72047,6 +72928,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -72054,6 +72939,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1670566584
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72140,6 +73026,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -72147,6 +73037,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1682527827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72262,6 +73153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -72269,6 +73164,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1687868946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72311,6 +73207,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1687868947
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72356,16 +73253,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!4 &1691622350 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1242393792}
---- !u!198 &1691622352 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198248677672175834, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1242393792}
 --- !u!1 &1691903491
 GameObject:
   m_ObjectHideFlags: 0
@@ -72426,6 +73313,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1691903494
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -72554,6 +73443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -72561,6 +73454,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1702564543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72603,6 +73497,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1702564544
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72730,6 +73625,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -72737,6 +73636,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1708288489
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -72899,6 +73799,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1715640961
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -72983,7 +73885,8 @@ MonoBehaviour:
   resetButton: {fileID: 0}
   items: []
   scaleScript: {fileID: 0}
-  grabItemScript: {fileID: 0}
+  marketPuzzScript: {fileID: 0}
+  sceneTapEnaScript: {fileID: 0}
 --- !u!114 &1717908813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73100,6 +74003,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -73107,6 +74014,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1719127616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73149,6 +74057,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1719127617
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73222,6 +74131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -73229,6 +74142,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1729073411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73537,6 +74451,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -73544,6 +74462,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1758929126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73586,6 +74505,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1758929127
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73741,7 +74661,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -78442,6 +79362,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1768880819
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -78577,6 +79499,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1785819734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78588,6 +79511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -78595,6 +79522,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1785819735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -78763,50 +79691,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 114379791070754492, guid: dae81d163e2a647478192fbc62e45d8a,
+        type: 2}
+      propertyPath: myStartState
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1789749953
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1262618800}
-    m_Modifications:
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: aebd7dddc176eb844a21138fc00e5a37, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1795493775
 GameObject:
@@ -78850,6 +79741,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -78857,6 +79752,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1795493778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78899,6 +79795,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1795493779
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79004,6 +79901,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1796005569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79015,6 +79913,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -79022,6 +79924,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1796005570
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79108,6 +80011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -79115,6 +80022,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1802114648
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79215,6 +80123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -79222,6 +80134,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1809140229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79264,6 +80177,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1809140230
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79352,6 +80266,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1811202073
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -79457,6 +80373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -79464,6 +80384,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1821882206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79551,6 +80472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -79558,6 +80483,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1822389924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79600,6 +80526,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1822389925
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79687,6 +80614,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -79694,6 +80625,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1831416280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79736,6 +80668,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1831416281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79894,6 +80827,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -79901,6 +80838,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1847746728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79943,6 +80881,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1847746729
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80218,6 +81157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -80225,6 +81168,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1860532506
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80352,6 +81296,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -80359,6 +81307,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1878769344
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80464,6 +81413,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &1880686309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80475,6 +81425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -80482,6 +81436,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1880686310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80649,6 +81604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -80656,6 +81615,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1886772091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -80851,7 +81811,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
-  sceneTapEnaScript: {fileID: 0}
 --- !u!114 &1903631559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80967,6 +81926,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -80974,6 +81937,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1914798156
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81079,6 +82043,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1928561843
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -81171,6 +82137,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!1 &1931779324
 GameObject:
   m_ObjectHideFlags: 0
@@ -81213,6 +82181,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -81220,6 +82192,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1931779327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81262,6 +82235,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1931779328
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81397,6 +82371,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1943759663
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -81453,6 +82429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -81460,6 +82440,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1945651647
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81565,6 +82546,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1947891453
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -81649,6 +82632,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -81656,6 +82643,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1969451147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81863,6 +82851,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -81870,6 +82862,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1978472777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81912,6 +82905,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1978472778
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81985,6 +82979,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -81992,6 +82990,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1978578160
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -82160,7 +83159,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -86776,6 +87775,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -86783,6 +87786,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &1979228526
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -86922,6 +87926,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -86929,6 +87937,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1986921266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86971,6 +87980,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1986921267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87058,6 +88068,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -87065,6 +88079,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &1986998181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87107,6 +88122,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &1986998182
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87195,6 +88211,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &1996787370
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -87337,16 +88355,6 @@ Transform:
   m_Father: {fileID: 2143677282}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2024944985 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4553701179818472, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1789749953}
---- !u!198 &2024944987 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198248677672175834, guid: aebd7dddc176eb844a21138fc00e5a37,
-    type: 2}
-  m_PrefabInternal: {fileID: 1789749953}
 --- !u!1 &2034099452
 GameObject:
   m_ObjectHideFlags: 0
@@ -87388,6 +88396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -87395,6 +88407,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &2034099455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87672,6 +88685,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!4 &2040401342
 Transform:
   m_ObjectHideFlags: 0
@@ -87746,6 +88761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -87753,6 +88772,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2040850170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87795,6 +88815,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2040850171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87882,6 +88903,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -87889,6 +88914,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2046273736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87931,6 +88957,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2046273737
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88018,6 +89045,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -88025,6 +89056,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2048531080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88067,6 +89099,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2048531081
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88185,6 +89218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -88192,6 +89229,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2053878421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88234,6 +89272,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2053878422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88351,6 +89390,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -88358,6 +89401,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2056010723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88400,6 +89444,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2056010724
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88535,6 +89580,8 @@ MonoBehaviour:
   failed: 0
   closed: 0
   forceClose: 0
+  audioBeachPuzzleScript: {fileID: 0}
+  clamSound: 
 --- !u!58 &2057733277
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -88592,6 +89639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -88599,6 +89650,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2059250763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88641,6 +89693,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2059250764
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88728,6 +89781,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -88735,6 +89792,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2076470331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88777,6 +89835,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2076470332
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88949,6 +90008,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -88956,6 +90019,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!1 &2094300597
 GameObject:
   m_ObjectHideFlags: 0
@@ -89106,7 +90170,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -93736,6 +94800,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0.3
   maxAlpha: 1
   fadeDuration: 0.3
@@ -93743,6 +94811,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &2106688181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -93862,6 +94931,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -93869,6 +94942,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2107657566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93911,6 +94985,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2107657567
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94211,6 +95286,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &2129137927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94222,6 +95298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -94229,6 +95309,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &2129137928
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94347,6 +95428,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!114 &2130817284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94358,6 +95440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -94365,6 +95451,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!212 &2130817285
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94495,6 +95582,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 0.5
@@ -94502,6 +95593,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 0}
+  myStartState: 1
 --- !u!114 &2135656401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94544,6 +95636,7 @@ MonoBehaviour:
   myFade: {fileID: 0}
   lifeTime: 3
   activeClam: 0
+  audioBeachPuzzleScript: {fileID: 0}
 --- !u!212 &2135656402
 SpriteRenderer:
   m_ObjectHideFlags: 0

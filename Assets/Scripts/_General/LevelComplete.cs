@@ -15,13 +15,15 @@ public class LevelComplete : MonoBehaviour
 	[Header("References")]
 	public ClickOnEggs clickOnEggsScript;
 	public LevelTapMannager lvlTapManScript;
+	public LevelCompleteEggSpawner levelCompleteEggSpaScript;
+	public LevelCompleteEggBag levelCompleteEggbagScript;
 
 	[Header("Setup - When to Play?")]
-	public float darkenScreen; public float showCongrats, showEggs, showCounters, showTap; // At what time do the Methods get called.
-	private bool darkenScreenStarted, showCongratsStarted, showEggsStarted, showCountersStarted, showTapStarted; // To only run the Methods once.
+	public float darkenScreen; public float showCongrats, showEggs, showCounters, showTap, showTotalCounter, startEggMove, showBag; // At what time do the Methods get called.
+	private bool darkenScreenStarted, showCongratsStarted, showEggsStarted, showCountersStarted, showTapStarted, showTotalCounterStarted, startEggMoveStarted, showBagStarted; // To only run the Methods once.
 
 	[Header("End - When to Play?")]
-	public float lightenScreen; public float hideCongrats, hideEggs, hideCounters, hideTap; // Probably not needed, except to facilitate testing.
+	public float lightenScreen; public float hideCongrats, hideEggs, hideCounters, hideTap, hideTotalCounter; // Probably not needed, except to facilitate testing.
 
 	[Header("Screen Cover")]
 	public float coverMaxAlpha; public float coverFadeTime;
@@ -50,6 +52,11 @@ public class LevelComplete : MonoBehaviour
 	private bool eggCountersOn, eggCountersOff, regEggCountInc, silEggCountInc, golEggCountInc; // Bools to start Increasing the wait time between each counter going up.
 	private float eggCounterA;
 	private float regEggWait, silEggWait, golEggWait;
+	public FadeInOutTMP totalCounterFadeScript;
+
+	[Header("Total Egg Counter")]
+	private float totalEggCounterA;
+	private bool totalEggCounterOn, totalEggCounterOff;
 
 	[Header("Tap-able")]
 	public float tapFadeTime;
@@ -59,99 +66,76 @@ public class LevelComplete : MonoBehaviour
 	private float tapA;
 	#endregion
 
-	void Start ()
-	{
+	void Start () {
 		regEggWait = eggCountWait; silEggWait = eggCountWait; golEggWait = eggCountWait;
 		tapBtn.onClick.AddListener(TapBtnPress);
 	}
 	
-
-	void Update () 
-	{
+	void Update () {
 		#region Manually Start or End Sequence
-		// if (Input.GetKeyDown("space"))
-		// {
-		// 	if (!inLvlCompSeqSetup) 
-		// 	{ 
-		// 		timer = 0; 
-		// 		inLvlCompSeqSetup = true; 
-		// 		inLvlCompSeqEnd = false; 
-		// 		darkenScreenStarted = false; showCongratsStarted = false; showEggsStarted = false; showCountersStarted = false; showTapStarted = false;
-		// 	}
-		// 	else if (inLvlCompSeqSetup)
-		// 	{ 
-		// 		timer = 0; 
-		// 		inLvlCompSeqSetup = false; 
-		// 		inLvlCompSeqEnd = true; 
-		// 		darkenScreenStarted = false; showCongratsStarted = false; showEggsStarted = false; showCountersStarted = false; showTapStarted = false;
-		// 	}
-		// }
+		
 		#endregion
 		
 		#region Start/End Level Complete Timer Sequence
-		if (inLvlCompSeqSetup)
-		{
+		if (inLvlCompSeqSetup) {
 			timer += Time.deltaTime;
 
 			if (timer > darkenScreen && !darkenScreenStarted) { DarkenScreenOnOff(); lvlTapManScript.ZoomOutCameraReset();}
 			if (timer > showCongrats && !showCongratsStarted) { CongratsOnOff();}
 			if (timer > showEggs && !showEggsStarted) { EggsOnOff();}
-			if (timer > showCounters && !showCountersStarted) { EggCountersOnOff();}
-			if (timer > showTap && !showTapStarted) { TapOnOff();}
+			if (timer > showTotalCounter && !showTotalCounterStarted) { TotalEggCounterOnOff(); }
+			if (timer > startEggMove && !startEggMoveStarted) { StartEggMoveOn(); }
+			if (timer > showBag && !showBagStarted) { ShowBagOn(); }
+			//if (timer > showCounters && !showCountersStarted) { EggCountersOnOff();}
+			//if (timer > showTap && !showTapStarted) { TapOnOff();}
 		}
-		else if (inLvlCompSeqEnd)
-		{
+		else if (inLvlCompSeqEnd) {
 			timer += Time.deltaTime;
 
 			if (timer > lightenScreen && !darkenScreenStarted) { DarkenScreenOnOff();}
 			if (timer > hideCongrats && !showCongratsStarted) { CongratsOnOff();}
 			if (timer > hideEggs && !showEggsStarted) { EggsOnOff(); }
-			if (timer > hideCounters && !showCountersStarted) { EggCountersOnOff();}
-			if (timer > hideTap && !showTapStarted) { TapOnOff();}
+			if (timer > hideTotalCounter && ! showTotalCounterStarted) { TotalEggCounterOnOff(); }
+			//if (timer > hideCounters && !showCountersStarted) { EggCountersOnOff();}
+			//if (timer > hideTap && !showTapStarted) { TapOnOff();}
 		}
 		#endregion
 	
 		#region Events Triggered By Methods
 		// --- EVENTS TRIGGERED BY METHODS --- //
 		// Fade in/out darkened screen.
-		if (coverOn)
-		{
+		if (coverOn) {
 			coverA += Time.deltaTime / coverFadeTime;
 			coverScreen.color = new Color (coverScreen.color.r, coverScreen.color.g, coverScreen.color.b, coverA);
 			if (coverA >= coverMaxAlpha) { coverOn = false; coverA = coverMaxAlpha;}
 		}
-		if (coverOff)
-		{
+		if (coverOff) {
 			coverA -= Time.deltaTime;
 			coverScreen.color = new Color (coverScreen.color.r, coverScreen.color.g, coverScreen.color.b, coverA);
 			if (coverA <= 0) { coverOff = false; coverA = 0;}
 		}
 
 		//Fade in the "Congratulations" game objects at the same time.
-		if (congratsTxtOn)
-		{
+		if (congratsTxtOn) {
 			congratsA += Time.deltaTime / congratsFadeTime;
 			foreach(SpriteRenderer sprite in congratsSprts) { sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, congratsA); }
 			if (congratsA >= 1) { congratsTxtOn = false; congratsA = 1;}
 		}
-		if (congratsTxtOff)
-		{
+		if (congratsTxtOff) {
 			congratsA -= Time.deltaTime / congratsFadeTime;
 			foreach(SpriteRenderer sprite in congratsSprts) { sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, congratsA); }
 			if (congratsA <= 0) { congratsTxtOff = false; congratsA = 0;}
 		}
 
 		// Fade in eggs.
-		if (eggsOn)
-		{
+		if (eggsOn) {
 			eggsA += Time.deltaTime / eggFadeTime;
 			regEgg.color = new Color (regEgg.color.r, regEgg.color.g, regEgg.color.b, eggsA);
 			silEgg.color = new Color (silEgg.color.r, silEgg.color.g, silEgg.color.b, eggsA - eggShowDelay);
 			golEgg.color = new Color (golEgg.color.r, golEgg.color.g, golEgg.color.b, eggsA - (eggShowDelay * 2));
 			if (eggsA >= 1 + (eggShowDelay * 2)) {eggsOn = false; eggsA = 1 + (eggShowDelay * 2);}
 		}
-		if (eggsOff)
-		{
+		if (eggsOff) {
 			eggsA -= Time.deltaTime / eggFadeTime;
 			regEgg.color = new Color (regEgg.color.r, regEgg.color.g, regEgg.color.b, eggsA);
 			silEgg.color = new Color (silEgg.color.r, silEgg.color.g, silEgg.color.b, eggsA - eggShowDelay);
@@ -160,54 +144,66 @@ public class LevelComplete : MonoBehaviour
 		}
 
 		// Fade in egg counters and increment them after x time.
-		if (eggCountersOn)
-		{
-			if (eggCounterA < 1 + (eggShowDelay * 2)) 
-			{ 
+		if (eggCountersOn) {
+			if (eggCounterA < 1 + (eggShowDelay * 2)) { 
 				eggCounterA += Time.deltaTime / eggCountFadeTime;
 				regEggCounterTxt.color = new Color(regEggCounterTxt.color.r, regEggCounterTxt.color.g, regEggCounterTxt.color.b, eggCounterA);
 				silEggCounterTxt.color = new Color(silEggCounterTxt.color.r, silEggCounterTxt.color.g, silEggCounterTxt.color.b, eggCounterA - eggShowDelay);
 				golEggCounterTxt.color = new Color(golEggCounterTxt.color.r, golEggCounterTxt.color.g, golEggCounterTxt.color.b, eggCounterA - (eggShowDelay * 2));
 			}
-			else if (eggCounterA >= 1 + (eggShowDelay * 2)) { regEggCountInc = true; eggCounterA = 1 + (eggShowDelay * 2);}
+			else if (eggCounterA >= 1 + (eggShowDelay * 2)) { regEggCountInc = true; eggCounterA = 1 + (eggShowDelay * 2); }
 
 			// Pause for regEggWait amount of time, then increment the reg eggs. --> Pause for silEggWait amount of...
-			if(regEggCountInc) {regEggWait -= Time.deltaTime; if (regEggWait <= 0) {regEggWait = 0; regEggCountInc = false;}}
+			if(regEggCountInc) { 
+				regEggWait -= Time.deltaTime; 
+				if (regEggWait <= 0) { 
+					regEggWait = 0; regEggCountInc = false; 
+				} 
+			}
 			// We use the Mathf.Floor value compared to the Total because it is the value that is displayed in-game.
-			if(Mathf.Floor(regEggDisp) < regEggTot && regEggWait <= 0) 
-			{ 
+			if(Mathf.Floor(regEggDisp) < regEggTot && regEggWait <= 0) { 
 				regEggVal += (Time.deltaTime/eggCounterSpeed); 
 				regEggDisp = Mathf.Lerp(0, regEggTot, animCur.Evaluate(regEggVal));
 				if (Mathf.Floor(regEggDisp) >= regEggTot) { regEggDisp = regEggTot; silEggCountInc = true; }
 				regEggCounterTxt.text = "x" + Mathf.Floor(regEggDisp);
 			}
 			
-			if (silEggCountInc) {silEggWait -= Time.deltaTime; if (silEggWait <= 0) {silEggWait = 0; silEggCountInc = false;}}
+			if (silEggCountInc) { 
+				silEggWait -= Time.deltaTime; 
+				if (silEggWait <= 0) {
+					silEggWait = 0; silEggCountInc = false;
+				}
+			}
 			
-			if(Mathf.Floor(silEggDisp) < silEggTot && silEggWait <= 0) 
-			{
+			if(Mathf.Floor(silEggDisp) < silEggTot && silEggWait <= 0) {
 				silEggVal += (Time.deltaTime/eggCounterSpeed); 
 				silEggDisp = Mathf.Lerp(0, silEggTot, animCur.Evaluate(silEggVal));
-				if (Mathf.Floor(silEggDisp) >= silEggTot) { silEggDisp = silEggTot; golEggCountInc = true;}
+				if (Mathf.Floor(silEggDisp) >= silEggTot) { 
+					silEggDisp = silEggTot; golEggCountInc = true; 
+				}
 				silEggCounterTxt.text = "x" + Mathf.Floor(silEggDisp);
 			}
 
-			if(golEggCountInc) {golEggWait -= Time.deltaTime; if (golEggWait <= 0) {golEggWait = 0; golEggCountInc = false;}}
+			if(golEggCountInc) { 
+				golEggWait -= Time.deltaTime; 
+				if (golEggWait <= 0) {
+					golEggWait = 0; golEggCountInc = false; 
+				} 
+			}
 
-			if (golEggVal < golEggTot && golEggWait <= 0) { golEggVal += 1; eggCountersOn = false;}
+			if (golEggVal < golEggTot && golEggWait <= 0) { golEggVal += 1; eggCountersOn = false; }
 			golEggCounterTxt.text = "x" + Mathf.Floor(golEggVal);
 		}
-		if (eggCountersOff)
-		{
-			if (eggCountOffDelayTimer < eggCountOffDelay) { eggCountOffDelayTimer += Time.deltaTime;}
-			else 
-			{
+		if (eggCountersOff) {
+			if (eggCountOffDelayTimer < eggCountOffDelay) { 
+				eggCountOffDelayTimer += Time.deltaTime; 
+			}
+			else {
 				eggCounterA -= Time.deltaTime / eggCountFadeTime;
 				regEggCounterTxt.color = new Color(regEggCounterTxt.color.r, regEggCounterTxt.color.g, regEggCounterTxt.color.b, eggCounterA);
 				silEggCounterTxt.color = new Color(silEggCounterTxt.color.r, silEggCounterTxt.color.g, silEggCounterTxt.color.b, eggCounterA - eggShowDelay);
 				golEggCounterTxt.color = new Color(golEggCounterTxt.color.r, golEggCounterTxt.color.g, golEggCounterTxt.color.b, eggCounterA - (eggShowDelay * 2));
-				if (eggCounterA <= 0) 
-				{ 
+				if (eggCounterA <= 0) { 
 					eggCounterA = 0f;
 					regEggCountInc = false; silEggCountInc = false; golEggCountInc = false;
 					regEggCounterTxt.text = "x0"; silEggCounterTxt.text = "x0"; golEggCounterTxt.text = "x0";
@@ -220,120 +216,106 @@ public class LevelComplete : MonoBehaviour
 		}
 
 		// Fade in the tap-able button.
-		if (tapOn)
-		{
-			if (eggsA <= 0f && eggCounterA <= 0f && tapA < 1f)
-			{
+		if (tapOn) {
+			if (eggsA <= 0f && eggCounterA <= 0f && tapA < 1f) {
 				tapA += Time.deltaTime / tapFadeTime;
 				tapImg.color = new Color(tapImg.color.r, tapImg.color.g, tapImg.color.b, tapA);
-				if (tapA >= 1f) { tapA = 1f; tapBtn.interactable = true; } // If Tap-able button is fully visible make it interactable.
+				if (tapA >= 1f) {  // If Tap-able button is fully visible make it interactable.
+					tapA = 1f; 
+					tapBtn.interactable = true; 
+				}
 			}
 
-			if (btnPressed)
-			{
+			if (btnPressed) {
 				tapBtn.interactable = false;
 				GlobalVariables.globVarScript.toHub = true;
 				SceneFade.SwitchSceneWhiteFade(GlobalVariables.globVarScript.menuName);
 			}
 		}
-		if (tapOff)
-		{
+		if (tapOff) {
 			if (tapBtn.interactable) { tapBtn.interactable = false;}
-			if (tapA > 0f)
-			{
+			if (tapA > 0f) {
 				
 				tapA -= Time.deltaTime / tapFadeTime;
 				tapImg.color = new Color(tapImg.color.r, tapImg.color.g, tapImg.color.b, tapA);
 				if (tapA <= 0f) { tapA = 0f; }
 			}
 		}
+		
+		// Show Total Egg Counter.
+		if (totalEggCounterOn) {
+			totalCounterFadeScript.FadeIn();
+			totalEggCounterOn = false;
+		}
+		if (totalEggCounterOff) {
+			totalCounterFadeScript.FadeOut();
+			totalEggCounterOff = false;
+		}
 		#endregion
 	}
 
 	#region Methods Triggered By Timer
 	// --- METHODS TRIGGERED BY TIMER --- //
-	void DarkenScreenOnOff ()
-	{
-		if (coverA <= 0)
-		{
+	void DarkenScreenOnOff () {
+		if (coverA <= 0) {
 			darkenScreenStarted = true;
 			coverOn = true;
 			coverOff = false;
 		}
-		else if (coverA >= coverMaxAlpha)
-		{
+		else if (coverA >= coverMaxAlpha) {
 			darkenScreenStarted = true;
 			coverOn = false;
 			coverOff = true;
 		}
 	}
 
-	// void LightenScreen ()
-	// {
-	// 	coverA = coverScreen.color.a;
-	// 	coverOff = true;
-	// 	coverOn = false;
-	// }
-
-	void CongratsOnOff ()
-	{
-		if (congratsA <= 0) 
-		{ 
+	void CongratsOnOff () {
+		if (congratsA <= 0) { 
 			showCongratsStarted = true;
 			congratsTxtOn = true;
 			congratsTxtOff = false;
 		}
-		else if (congratsA >= 1) 
-		{
+		else if (congratsA >= 1) {
 			showCongratsStarted = true;
 			congratsTxtOn = false;
 			congratsTxtOff = true;
 		}
 	}
 
-	void EggsOnOff()
-	{
-		if (eggsA <= 0)
-		{
+	void EggsOnOff() {
+		if (eggsA <= 0) {
 			showEggsStarted = true;
 			eggsOn = true;
 			eggsOff = false;
 		}
-		else if (eggsA >= 1)
-		{
+		else if (eggsA >= 1) {
 			showEggsStarted = true;
 			eggsOn = false;
 			eggsOff = true;
 		}
 	}
 
-	void EggCountersOnOff()
-	{
-		if (eggCounterA <= 0)
-		{
+	void EggCountersOnOff() {
+		if (eggCounterA <= 0) {
 			showCountersStarted = true;
 			eggCountersOn = true;
 			eggCountersOff = false;
 		}
-		else if (eggCounterA >= 1)
-		{
+		else if (eggCounterA >= 1) {
 			showCountersStarted = true;
 			eggCountersOn = false;
 			eggCountersOff = true;
 		}
 	}
 
-	void TapOnOff()
-	{
-		if (tapA <= 0)
-		{
+	void TapOnOff() {
+		if (tapA <= 0) {
 			showTapStarted = true;
 			tapOn = true;
 			tapOff = false;
 			EggsOnOff(); EggCountersOnOff();
 		}
-		else if (tapA >= 1)
-		{
+		else if (tapA >= 1) {
 			showTapStarted = true;
 			tapOn = false;
 			tapOff = true;
@@ -341,58 +323,39 @@ public class LevelComplete : MonoBehaviour
 		}
 	}
 
-	void TapBtnPress()
-	{
+	void TotalEggCounterOnOff() {
+		if (totalEggCounterA <= 0) {
+			showTotalCounterStarted = true;
+			totalEggCounterOn = true;
+			totalEggCounterOff = false;
+		}
+		else {
+			showTotalCounterStarted = true;
+			totalEggCounterOn = false;
+			totalEggCounterOff = true;
+		}
+	}
+
+	void StartEggMoveOn() {
+		levelCompleteEggSpaScript.StartEggSpawning();
+		startEggMoveStarted = true;
+	}
+
+	void ShowBagOn() {
+		levelCompleteEggbagScript.MakeFirstBagAppear();
+		showBagStarted = true;
+	}
+
+	void TapBtnPress() {
 		Debug.Log("Level Completuruuuu! You go noew.");
 		btnPressed = true;
 		clickOnEggsScript.levelComplete = true;
 		clickOnEggsScript.SaveLevelComplete();
-		// play some FX
-		// Fade to white
-		// wait a certain amount of time OR on screen fully white, then load menu scene at the hub
+		levelCompleteEggbagScript.levelsCompleted++;
+		levelCompleteEggbagScript.SaveLevelsCompleted();
 	}
 	#endregion
 
-	#region OLD, To Be Terminated On Script Completion
-
-	// EGG INCREMENTATION WITHOUT LERP OR ANIM CURVE (Linear) //
-	// if(regEggVal < regEggTot && regEggWait <= 0) { regEggVal += (Time.deltaTime/eggCounterSpeed) * regEggTot;}
-	// else if (regEggVal >= regEggTot) { regEggVal = regEggTot; silEggWait -= Time.deltaTime;}
-	// regEggCounterTxt.text = "x" + Mathf.Round(regEggVal);
-
-
-	// public void CalculateTotalEggsFound()
-	// {
-	// 	for(int i = 0; i < GlobalVariables.globVarScript.marketEggsFoundBools.Count; i ++)
-	// 	{
-	// 		if (GlobalVariables.globVarScript.marketEggsFoundBools[i] == true)
-	// 		{
-	// 			totalEggsFound += 1;
-	// 		}
-	// 	}
-	// }
-
-
-
-	// public void UpdateTotalEggsFound()
-	// {
-	// 	if (SceneManager.GetActiveScene().name == "Market")
-	// 	{
-	// 		totalEggsFound = GlobalVariables.globVarScript.marketTotalEggsFound + GlobalVariables.globVarScript.marketsilEggsCount;
-	// 	}
-
-	// 	if (SceneManager.GetActiveScene().name == "Park")
-	// 	{
-	// 		totalEggsFound = GlobalVariables.globVarScript.parkTotalEggsFound;
-	// 	}
-
-	// 	if (SceneManager.GetActiveScene().name == "Beach")
-	// 	{
-	// 		totalEggsFound = GlobalVariables.globVarScript.beachTotalEggsFound;
-	// 	}
-		
-	// }
-	#endregion 
 	#region Examples to Reduce division amounts.
 		// ORIGINAL, divide every frame.
 		// void WhatATurnOn()

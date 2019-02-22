@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MainMenu : MonoBehaviour 
-{
+public class MainMenu : MonoBehaviour {
 	[Header("Background Stuff")]
 	public List<MoveCloud> cloudsToMove;
 	public FadeInOutImage titleFade;
@@ -23,98 +22,72 @@ public class MainMenu : MonoBehaviour
 	public Button storyBtn;
 	public TextMeshProUGUI storyTMP;
 	public FadeInOutTMP fadeTMPScript;
-	private bool storyAppearing, storyFullyOn, moveClouds;
+	private bool storyAppearing, storyFullyOn, moveClouds, skipFrame;
 
 	[Header("References")]
 	public Hub hubScript;
 	public HubEggcounts hubEggCountsScript;
 	public inputDetector inputDetScript;
 
-
-	void Start () 
-	{
+	void Start () {
 		playBtn.onClick.AddListener(PlayBtn);
 		rstBtn.onClick.AddListener(DeleteSaveFile);
 		rstBtn.onClick.AddListener(NewGameBtn);
-
 		if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
-			//this.gameObject.SetActive(false); 
 			PlayBtn();
 		}
 	}
 
-
-	void Update ()
-	{
-		if (inputDetScript.Tapped)
-		{
-			//Debug.Log("tapped! and : " + storyAppearing);
-			if (storyAppearing || storyFullyOn)
-			{
+	void Update () {
+		if (inputDetScript.Tapped && !skipFrame) {
+			if (storyAppearing || storyFullyOn) {
 				StorySkipContinue();
 			}
 		}
-
-		if (storyAppearing)
-		{
-			if (storyTMP.color.a >= 1)
-			{
+		if (storyAppearing) {
+			if (storyTMP.color.a >= 1) {
 				storyAppearing = false;
 				storyFullyOn = true;
 			}
 		}
-
-		if (storyFullyOn && moveClouds)
-		{
-			if (storyTMP.color.a <= 0.15f)
-			{
+		if (storyFullyOn && moveClouds) {
+			if (storyTMP.color.a <= 0.15f) {
 				MoveClouds();
 				solidBGFade.FadeOut();
 				storyFullyOn = false;
 			}
 		}
-
+		skipFrame = false;
 	}
 
-
-	void PlayBtn() 
-	{
+	void PlayBtn() {
 		// - MAKE THE CLOUDS PART - //
 		 foreach(MoveCloud cloud in cloudsToMove)
 		{
 			cloud.MoveOut();
 		}
-
 		// - FADE OUT TITLE - //
 		titleFade.FadeOut();
-
 		// - FADE OUT SOLID BACKGROUND - //
 		solidBGFade.FadeOut();
-
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
 		rstBtnFadeScript.FadeOut();
-
 		storyBtn.gameObject.SetActive(false);
-
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
 	}
 
-	void NewGameBtn() 
-	{
+	void NewGameBtn() {
 		// - FADE OUT TITLE - //
 		titleFade.FadeOut();
-
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
 		rstBtnFadeScript.FadeOut();
-
 		StoryTextAppears();
 	}
 
-	void MoveClouds()
-	{
+	void MoveClouds() {
 		// - MAKE THE CLOUDS PART - //
 		foreach(MoveCloud cloud in cloudsToMove)
 		{
@@ -122,37 +95,28 @@ public class MainMenu : MonoBehaviour
 		}
 	}
 
-	void StoryTextAppears()
-	{
-		//ResetStory();
-		//storyBtn.interactable = true;
+	void StoryTextAppears() {
 		storyAppearing = true;
 		storyTMP.gameObject.SetActive(true);
 		fadeTMPScript.FadeIn();
+		skipFrame = true;
 	}
 
-	void StorySkipContinue()
-	{
-		if (storyFullyOn)
-		{
+	void StorySkipContinue() {
+		if (storyFullyOn) {
 			fadeTMPScript.fadeDelay = false;
 			fadeTMPScript.FadeOut();
 			storyBtn.gameObject.SetActive(false);
 			moveClouds = true;
 			hubScript.startHubActive = true;
 		}
-		if (storyAppearing)
-		{
-			//Debug.Log("Should make story appear.");
+		if (storyAppearing) {
 			fadeTMPScript.t = 1;
 			titleFade.t = 1;
-			//storyFullyOn = true;
-			//moveClouds = true;
 		}
 	}
 
-	public void ResetStory()
-	{
+	public void ResetStory() {
 		storyFullyOn = false;
 		storyAppearing = false;
 		moveClouds = false;
@@ -164,18 +128,9 @@ public class MainMenu : MonoBehaviour
 
 	}
 
-	public void DeleteSaveFile()
-	{
+	public void DeleteSaveFile() {
 		GlobalVariables.globVarScript.DeleteAllData();
-
 		hubEggCountsScript.AdjustTotEggCount();
-
-		// for (int i = 0; i < GlobalVariables.globVarScript.dissSeasonsBools.Count; i++)
-		// {
-		// 	GlobalVariables.globVarScript.dissSeasonsBools[i] = false;
-		// }
-
 		GlobalVariables.globVarScript.LoadHubDissolve();
 	}
-
 }

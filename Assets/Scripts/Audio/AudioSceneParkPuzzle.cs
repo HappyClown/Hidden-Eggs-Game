@@ -3,24 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AudioSceneParkPuzzle: MonoBehaviour 
+public class AudioSceneParkPuzzle: AudioScenePuzzleGeneric
 {
-    [Header("Scene Music")]
+    /* 
+	[Header("Buttons")]
+    public Button BackParkBtn;
+    public Button ResetItemBtn;
+    public Button ToggleLevelPuz1;
+	public Button ToggleLevelPuz2;
+	public Button ToggleLevelPuz3;
+    [Header(" Music")]
     [FMODUnity.EventRef]
     public string sceneMusicEvent;
     public FMOD.Studio.EventInstance sceneMusic;
 	
-	[Header("Cue Title Card Transition")]
     [FMODUnity.EventRef]
-    public string transEvent;
+    public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
     public FMOD.Studio.EventInstance transMusic;
 
-    [Header(" Silver Egg SFX")]
+    [Header(" SFX")]
     [FMODUnity.EventRef]
-    public string silverEggClickEvent;
+    public string silverEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Silver";
     public FMOD.Studio.EventInstance silverEggClickSound;
 
-	[Header(" Tiles SFX")]
+    [FMODUnity.EventRef]
+    public string silverEggTrailEvent = "event:/SFX/SFX_General/FX_trail";
+    public FMOD.Studio.EventInstance silverEggTrailSound;
+*/
     [FMODUnity.EventRef]
     public string pickupTileEvent;
     public FMOD.Studio.EventInstance pickupTileSound;
@@ -33,23 +42,15 @@ public class AudioSceneParkPuzzle: MonoBehaviour
     public string rotateTileEvent;
     public FMOD.Studio.EventInstance rotateTileSound;
 
-    
-	[Header("Buttons")]
-
-    public Button BackParkBtn;
-    public Button ResetItemBtn;
-    public Button ToggleLevelPuz1;
-	public Button ToggleLevelPuz2;
-	public Button ToggleLevelPuz3;
-
-    
+    /* 
     [FMODUnity.EventRef]
-    public string buttonEvent;
+    public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
+    */
     
     void Start () 
 	{
-        BackParkBtn.onClick.AddListener(TransitionPark);
+        BackBtn.onClick.AddListener(Transition);
 
         ResetItemBtn.onClick.AddListener(buttonSFX);
         ToggleLevelPuz1.onClick.AddListener(buttonSFX);
@@ -69,6 +70,7 @@ public class AudioSceneParkPuzzle: MonoBehaviour
     //  MUSIC
     //////////////////
 
+/* 
     public void PlaySceneMusic()
     {
         sceneMusic.start();
@@ -109,6 +111,13 @@ public class AudioSceneParkPuzzle: MonoBehaviour
        silverEggClickSound.start();
     }
 
+    public void SilverEggTrailSFX () 
+	{
+		silverEggTrailSound = FMODUnity.RuntimeManager.CreateInstance(silverEggTrailEvent);
+        silverEggTrailSound.start();
+	}
+    */
+
     public void pickupTile()
     {
         pickupTileSound = FMODUnity.RuntimeManager.CreateInstance(pickupTileEvent);
@@ -126,11 +135,14 @@ public class AudioSceneParkPuzzle: MonoBehaviour
         rotateTileSound.start();
     }
 
+    /*
         public void buttonSFX()
     {
         //button sound
         buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
         buttonSound.start();
     }
+
+    */
 
 }

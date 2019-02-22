@@ -26,7 +26,8 @@ public class Crate : MonoBehaviour
 	public float reqPounds;
 	public float reqItems;
 
-	public int curntLvl;
+	//public int curntLvl;
+	public MainPuzzleEngine mainPuzzScript;
 
 
 	public void UpdateRequirements()
@@ -37,8 +38,8 @@ public class Crate : MonoBehaviour
 
 		// if (curntLvl == 3) { reqPounds = reqPoundsLvl3; reqItems = reqItemsLvl3; }
 
-		reqPounds = reqPoundsLvls[curntLvl -1];
-		reqItems = reqItemsLvls[curntLvl - 1];
+		reqPounds = reqPoundsLvls[mainPuzzScript.curntLvl -1];
+		reqItems = reqItemsLvls[mainPuzzScript.curntLvl - 1];
 
 		pounds.text = reqPounds + " pounds";
 		amntOfItems.text = reqItems + " items";
