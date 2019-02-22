@@ -35,7 +35,7 @@ public class SilverEggSequence : MonoBehaviour
 	private bool hoverUp = true;
 	private float lerpTime;
 	
-	public AudioSilverEggs audioSilEggScript;
+	public AudioScenePuzzleGeneric audioSilEggScript;
 	public inputDetector inputDetScript;
 	public SilverEggsManager silverEggsManScript;
 

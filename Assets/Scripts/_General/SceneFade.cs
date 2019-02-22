@@ -77,8 +77,8 @@ public class SceneFade : MonoBehaviour
 		{
 			
 			if(newAlpha == 0){
-			myOperation = SceneManager.LoadSceneAsync(sceneToLoad);
-			myOperation.allowSceneActivation = false;
+				myOperation = SceneManager.LoadSceneAsync(sceneToLoad);
+				myOperation.allowSceneActivation = false;
 			}
 			//if (!setupNewCard) { ChoseTitleCard(); }
 			if (fadeImage != blckFadeImage) { fadeImage = blckFadeImage;}

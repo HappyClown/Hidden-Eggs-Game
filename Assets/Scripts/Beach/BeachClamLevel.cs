@@ -11,6 +11,10 @@ public class BeachClamLevel : MonoBehaviour {
 /// test for sounds ////
 	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
 
+	void Start() {
+		audioBeachPuzzleScript = GameObject.Find("Audio").GetComponent<AudioSceneBeachPuzzle>();
+	}
+
 	public void SetUpLevel(){
 		foreach (BeachClam clam in myClams)
 		{
