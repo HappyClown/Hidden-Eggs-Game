@@ -36,6 +36,7 @@ public class HopscotchRiddle : MonoBehaviour
 	public bool touchOne, touchTwo, startMinSecTimer;
 	public float minSecTapTime, minSecTapTimer;
 	public LevelTapMannager lvlTapManScript;
+	public SceneTapEnabler sceneTapEnaScript;
 
 
 	void Start () 
@@ -110,7 +111,7 @@ public class HopscotchRiddle : MonoBehaviour
 			//	touchOne = true;
 			//}
 
-			if (!GlobalVariables.globVarScript.riddleSolved && myInput.Tapped/* Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began */)
+			if (!GlobalVariables.globVarScript.riddleSolved && myInput.Tapped && sceneTapEnaScript.canTapEggRidPanPuz/* Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began */)
 			{
 				mousePos = Camera.main.ScreenToWorldPoint( myInput.TapPosition/* Input.GetTouch(0).position */);
 				mousePos2D = new Vector2 (mousePos.x, mousePos.y);

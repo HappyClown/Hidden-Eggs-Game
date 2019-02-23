@@ -12,6 +12,7 @@ public class CrabRiddle : MonoBehaviour
 
 	[Header("Crab Riddle")]
 	public int moveAmount;
+	public int movesToWin;
 	public List<GameObject> moves;
 	public GameObject crab;
 	public Animator crabAnim;
@@ -26,6 +27,7 @@ public class CrabRiddle : MonoBehaviour
     public LayerMask layerMask;
 	
 	public bool canClick = true;
+	public List<bool> directions;
 
 	// public bool desktopDevice = false;
 	// public bool handheldDevice = false;
@@ -33,44 +35,25 @@ public class CrabRiddle : MonoBehaviour
 	public ParticleSystem firework01; 
 	public ParticleSystem firework02;
 	public bool fireworksFired;
+	private Vector3 crabPos, crabPosDest;
+	public float crabMoveAmnt;
+	public inputDetector inputDetScript;
 
 
 
 	void Start () 
 	{
-		// if (SystemInfo.deviceType == DeviceType.Handheld)
-		// {
-		// 	handheldDevice = true;
-		// }
-		// else if (SystemInfo.deviceType == DeviceType.Desktop)
-		// {
-		// 	desktopDevice = true;
-		// }
-
 		if (GlobalVariables.globVarScript.riddleSolved == true)
 		{
 			foreach (GameObject move in moves)
 			{
-				move.GetComponent<BoxCollider2D>().enabled = false;
+				move.SetActive(false);
 			}
 			goldenEgg.SetActive(true);
 		}
 
 		moveDest = crab.transform.position;
 		crabOGPos = crab.transform.position;
-	}
-	
-
-
-	void FixedUpdate () 
-	{
-		// if (desktopDevice)
-		// {
-			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-
-			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
-		//}
 	}
 
 
@@ -95,48 +78,55 @@ public class CrabRiddle : MonoBehaviour
 
 		crab.transform.position = Vector3.MoveTowards(crab.transform.position, moveDest, crabSpeed * Time.deltaTime);
 
-		// if (desktopDevice)
-		// {
+		if (inputDetScript.Tapped) {
+			UpdateMousePos ();
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
 			if (hit)
 			{
-				if (hit.collider.CompareTag("FruitBasket") && Input.GetMouseButtonDown(0) && canClick)
+				if (hit.collider.CompareTag("FruitBasket") && canClick)
 				{
-					moveAmount += 1;
-
-					moveDest = (moves[moveAmount-1].transform.position - crab.transform.position).normalized + crab.transform.position;
-					//StartCoroutine(CrabMove());
-					
-
-					hit.collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-					
-					if (moveAmount >= 5)
-					{
-						CrabRiddleSolved ();
-						//SpawnGoldenEgg;
-						goldenEgg.SetActive(true);
-						goldenEggScript.inGoldenEggSequence = true;
-
-						if (!fireworksFired)
-						{
-							firework01.Play(true);
-							firework02.Play(true);
-							fireworksFired = true;
+					if (hit.collider.GetComponent<CrabRiddleTapObjects>().left == directions[moveAmount]) {
+						//moveDest = (moves[moveAmount-1].transform.position - crab.transform.position).normalized + crab.transform.position;
+						if (directions[moveAmount]) {
+							moveDest = new Vector3(crab.transform.position.x - crabMoveAmnt, crab.transform.position.y, crab.transform.position.z);
 						}
-						//Disable/destroy all basket colliders;
-						foreach (GameObject move in moves)
+						else {
+							moveDest = new Vector3(crab.transform.position.x + crabMoveAmnt, crab.transform.position.y, crab.transform.position.z);
+						}
+						moveAmount += 1;
+						//hit.collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+						if (moveAmount >= movesToWin)
 						{
-							move.SetActive(false);
-						}	
-						return;
+							CrabRiddleSolved ();
+							//SpawnGoldenEgg;
+							goldenEgg.SetActive(true);
+							goldenEggScript.inGoldenEggSequence = true;
+
+							if (!fireworksFired)
+							{
+								firework01.Play(true);
+								firework02.Play(true);
+								fireworksFired = true;
+							}
+							//Disable/destroy all basket colliders;
+							foreach (GameObject move in moves)
+							{
+								move.SetActive(false);
+							}	
+							return;
+						}
 					}
-					else
-					{
-						moves[moveAmount].GetComponent<BoxCollider2D>().enabled = true;
+					else {
+						if (moveAmount > 0) {
+							crabReturning = true;
+						}
+						moveAmount = 0;
+						moveDest = crabOGPos;
 					}
 				}
 				
 				// - Player clicks anywhere else - //
-				if (Input.GetMouseButtonDown(0) && !hit.collider.CompareTag("FruitBasket") && canClick)
+				if (!hit.collider.CompareTag("FruitBasket") && canClick)
 				{
 					if (moveAmount > 0)
 					{
@@ -144,43 +134,20 @@ public class CrabRiddle : MonoBehaviour
 					}
 					moveAmount = 0;
 					moveDest = crabOGPos;
-					foreach (GameObject move in moves)
-					{
-						move.GetComponent<BoxCollider2D>().enabled = false;
-					}	
-					moves[0].GetComponent<BoxCollider2D>().enabled = true;
+					// foreach (GameObject move in moves)
+					// {
+					// 	move.GetComponent<BoxCollider2D>().enabled = false;
+					// }	
+					// moves[0].GetComponent<BoxCollider2D>().enabled = true;
 				}
-			}
-		//}
-
-		// if (handheldDevice)
-		// {
-		// 	Touch myTouch = Input.GetTouch(0);
-			
-		// 	Touch[] myTouches = Input.touches;
-
-		// 	for (int i = 0; i < Input.touchCount; i++)
-		// 	{
-		// 		// If one of my touches touches 2 and the other touches 3
-		// 	}
-		// }  
+			} 
+		}
     }
 
-
-
-	// IEnumerator CrabMove()
-	// {
-	// 	while (crab.transform.position != moveDest)
-	// 	{
-	// 		Debug.Log("Should move towards");
-	// 		canClick = false;
-	// 		crab.transform.position = Vector3.MoveTowards(crab.transform.position, moveDest, crabSpeed * Time.deltaTime);
-	// 		yield return null;
-	// 	}
-	// 	canClick = true;
-	// }
-
-
+	void UpdateMousePos () {
+		mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+	}
 
 	public void CrabRiddleSolved ()
 	{

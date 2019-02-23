@@ -6,70 +6,12 @@ using UnityEngine.UI;
 
 public class ClamPuzzle : MainPuzzleEngine {
 	private Ray2D ray;
-	// private RaycastHit2D hit;
-	// Vector2 mousePos2D;
-	// Vector3 mousePos;
-	// #region Basic Scripts Sources
-	// [Header("Input Detector")]
-	// public inputDetector myInput;
-	// [Header("Silver Eggs")]
-	// public SilverEggsManager mySilverEggMan;
-	// [Header("Selection Buttons")]
-	// public LevelSelectionButtons mySelectButton;
-	// [Header("Fafe in out variables")]
-	// public FadeInOutManager[] levelsStuff;
-	// #endregion
-	// #region GrabItem Script Variables
-	// [Header("General")]
-	// public int winLvl;
-	// public bool itemsWait;
-	// public float itemWaitAmnt;
-	// private float itemWaitTimer;
-	// private bool initialSetupOn;
-	// private bool setupChsnLvl;
-	// For Delegate Method
 	private delegate void VoidDelegate();
 	private VoidDelegate voidDelegate;
-	// private bool waitMethod;
-	// [Tooltip("For now, minimum the lenght of the silver egg tap anim.")]
-	// public float waitTime;
-	// private float waitTimer;
-	// [Header("Item Parents")]
-	// [Tooltip("GameObjects - Game objects that hold the level items, in ascending order.")]
-	// public List<GameObject> lvlItemHolders;
-	// public GameObject itemHolder;
-
-	// [Header("Level Selection Buttons")]
-	// public LevelSelectionButtons testButtons;
-	// [Tooltip("GameObjects - The level selection buttons, in ascending order. ( 1 - 0, 2 - 1, etc.")]
-	// public List<GameObject> lvlSelectButtons;
-	// [Tooltip("Scripts - The FadeInOutImage scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")]
-	// public List<FadeInOutImage> lvlSelectFades;
-	// [Tooltip("Scripts - The Scaler scripts, in ascending order. ( 1 - 0, 2 - 1, etc.")]
-	// public List<Scaler> lvlSelectScalers;
-	// private bool noFadeDelay;
-	// private bool buttonsOff;
-
-	// [Header("Initial Sequence")]
-	// public float seqTimer;
-	// public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
-	// private bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
-
-	// [Header("Scripts")]
-	// public FadeInOutImage scrnDarkImgScript;
-
-	// [Header("Hide In Inspector ^_^")]
-	// public bool canPlay;
-	// public int lvlToLoad;
-	// public float setupLvlWaitTime;
-	// public float chngLvlTimer;
-	// public int maxLvl;
-	// #endregion
-	// public int curntLvl;
 	public BeachClamLevel[] myLvls;
 	public List<BeachClam> openedClams;
 	public List<BeachClam> currentClams;
-	AudioSceneBeachPuzzle audioSceneBeachPuzzScript;
+	public AudioSceneBeachPuzzle audioSceneBeachPuzzScript;
 	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
@@ -83,7 +25,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 		// }
 
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
-
+		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
 		audioSceneBeachPuzzScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 	}
 
@@ -156,9 +98,20 @@ public class ClamPuzzle : MainPuzzleEngine {
 				else
 				{
 					seqTimer += Time.deltaTime;
-					 if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; /* lvlItemHolders[curntLvl - 1].SetActive(true); */ LvlStuffFadeIn(); }
-					 if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); mySelectButton.InteractableThreeDots(maxLvl,curntLvl);}
-					 if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+					if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; /* lvlItemHolders[curntLvl - 1].SetActive(true); */ LvlStuffFadeIn(); }
+					if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); mySelectButton.InteractableThreeDots(maxLvl,curntLvl);}
+					if (seqTimer > iniCanPlayF) {
+						if (tutorialDone) {
+							canPlay = true; 
+							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
+							sceneTapScript.canTapPauseBtn = true;
+						}
+						else {
+							slideInHelpScript.MoveBirdUpDown();
+						}
+						iniSeqStart = false;
+					}
+					
 				}
 			}
 
@@ -310,27 +263,20 @@ public class ClamPuzzle : MainPuzzleEngine {
 	}
 
 	// Once animations are finished, run the next level setup.
-	public new void NextLevelSetup()
-	{
+	public new void NextLevelSetup() {
 		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
-		{ silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);}
+		{ silEggs.ResetSilEgg(); }
 		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
-		myLvls[curntLvl-1].ResetLevel();
-		myLvls[curntLvl-1].SetUpLevel();
-		//resetTilesScript.EndOfLevelReset();
-		//itemHolder.SetActive(false);
-		// crateAnim.SetTrigger("MoveDown");
-		// StartCoroutine(MoveCrateDown());
 		chngLvlTimer = 0f;
-
-		if (curntLvl >= winLvl)
-		{
+		if (curntLvl >= winLvl) {
 			StartCoroutine(PuzzleComplete());
 			return;
 		}
+		myLvls[curntLvl-1].ResetLevel();
+		myLvls[curntLvl-1].SetUpLevel();
+
 		itemHolder.SetActive(false);
 		itemHolder = lvlItemHolders[curntLvl - 1];
-
 		itemsWait = true;
 		//for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
 		//{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
@@ -554,7 +500,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 		audioSceneBeachPuzzScript.StopSceneMusic();
 		audioSceneBeachPuzzScript.PlayTransitionMusic();
 
-		SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
+		SceneFade.SwitchScene(GlobalVariables.globVarScript.beachName);
 	}
 	#endregion
 }

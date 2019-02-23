@@ -8,15 +8,11 @@ public class BirdIntroSave : MonoBehaviour {
 	public SlideInHelpBird slideInHelpScript;
 	
 	public void SaveBirdIntro () {
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName) {
-			GlobalVariables.globVarScript.birdIntroDone = true;
-			GlobalVariables.globVarScript.SaveEggState();
-		}
+		GlobalVariables.globVarScript.birdIntroDone = true;
+		GlobalVariables.globVarScript.SaveEggState();
 	}
 
 	public void LoadBirdIntro () {
-		if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName) {
-			slideInHelpScript.introDone = GlobalVariables.globVarScript.birdIntroDone;
-		}
+		slideInHelpScript.introDone = GlobalVariables.globVarScript.birdIntroDone;
 	}
 }

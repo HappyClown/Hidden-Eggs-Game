@@ -8,11 +8,13 @@ public class HelpButton : MonoBehaviour
 	private Button button;
 	public SlideInHelpBird birdScript;
 	public SceneTapEnabler sceneTapScript;
+	public BirdIntroSave birdIntroSaveScript;
 
 	void Start () 
 	{
 		button = this.GetComponent<Button>();
 		button.onClick.AddListener(showBird);
+		birdIntroSaveScript.LoadBirdIntro();
 		if (!birdScript.introDone) {
 			button.enabled = false;
 		}

@@ -1,0 +1,569 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1491841219371188}
+  m_IsPrefabParent: 1
+--- !u!1 &1491841219371188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4589830973668160}
+  - component: {fileID: 114395684269502038}
+  - component: {fileID: 114269619705272398}
+  - component: {fileID: 114786096600108100}
+  - component: {fileID: 114452017991050328}
+  - component: {fileID: 114507411256496572}
+  - component: {fileID: 114827548566479570}
+  - component: {fileID: 114431672453251996}
+  - component: {fileID: 114695959932019824}
+  - component: {fileID: 114860124311368210}
+  - component: {fileID: 114324158033940602}
+  m_Layer: 0
+  m_Name: Game Engine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4589830973668160
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01641558, y: -0.27058735, z: -0.009605621}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114269619705272398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myInputDetector: {fileID: 0}
+  scenTapEnabScript: {fileID: 114395684269502038}
+  sceneFadeScript: {fileID: 0}
+  iniSeq: 0
+  iniSeqTimer: 0
+  iniDelay: 1
+  checkNewSilEggsF: 0
+  checkLvlCompleteF: 0
+  allowTapF: 0.5
+  iniSilEggCheckB: 0
+  iniLvlCompCheckB: 0
+  eggsFound: 0
+  totalRegEggs: 24
+  eggCounterText: {fileID: 0}
+  regEggCounterText: {fileID: 0}
+  silverEggCounterText: {fileID: 0}
+  goldenEggCounterText: {fileID: 0}
+  newCornerPos: {x: 0, y: 0, z: 0}
+  cornerExtraPos: 0.5
+  cornerPos: {fileID: 0}
+  puzzUnlockScript: {fileID: 114786096600108100}
+  puzzleSceneName: Kite Catcher
+  eggPanel: {fileID: 0}
+  eggSpots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  eggShadowsFades:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  silverEggSpots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  sceneSilEggSpaScript: {fileID: 114324158033940602}
+  goldenEggSpot: {fileID: 0}
+  goldenEggFound: 0
+  eggMoving: 0
+  eggsInPanel: 0
+  startEggFound: 0
+  eggPanelHidden: {fileID: 0}
+  eggPanelShown: {fileID: 0}
+  panelMoveSpeed: 7
+  basePanelOpenTime: 3
+  silverEggsInPanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  silEggsShadFades:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  dropDrowArrow: {fileID: 0}
+  eggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  openEggPanel: 0
+  totalEggsFound: 0
+  eggsNeeded: 31
+  silverEggsFound: 0
+  levelComplete: 0
+  levelCompleteScript: {fileID: 114827548566479570}
+  audioSceneGenScript: {fileID: 0}
+--- !u!114 &114324158033940602
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e155e8abc5f9c46ae7eee26fdab80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverEggSpawnDelay: 0.6
+  puzzSilEggCount: 0
+  sceneSilEggCount: 0
+  clickOnEggsScript: {fileID: 114269619705272398}
+  silEggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  puzzSilEggCountList: 
+  sceneSilEggCountList: 
+--- !u!114 &114395684269502038
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5eabd7921ccec4e93e45a2f0dc52ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canTapEggRidPanPuz: 0
+  canTapHelpBird: 0
+  canTapPauseBtn: 0
+  canTapGoldEgg: 0
+  canTapLvlComp: 0
+--- !u!114 &114431672453251996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37930333139ab3f4daca666c9c119fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regEggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  silEggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  golEggs:
+  - {fileID: 0}
+  regEggDelay:
+  - 0.0050636576
+  - 0.019675925
+  - 0.04296875
+  - 0.07407408
+  - 0.112123854
+  - 0.15625
+  - 0.20558448
+  - 0.25925925
+  - 0.3164062
+  - 0.37615734
+  - 0.43764463
+  - 0.49999988
+  - 0.5623553
+  - 0.62384254
+  - 0.68359375
+  - 0.7407408
+  - 0.79441553
+  - 0.84375006
+  - 0.8878763
+  - 0.92592597
+  - 0.95703125
+  - 0.9803241
+  - 0.99493635
+  - 1
+  silEggDelay:
+  - 0.07407408
+  - 0.25925928
+  - 0.5
+  - 0.7407408
+  - 0.9259259
+  - 1
+  golEggDelay:
+  - 1
+  regEggDuration: 4
+  silEggDuration: 1
+  golEggDuration: 0.1
+  spawnRegEggs: 0
+  spawnSilEggs: 4.2
+  spawnGolEggs: 5.2
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &114452017991050328
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cff2a2842e301c4f93b216b3ea942d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  gustMinCD: 15
+  gustMaxCD: 25
+  gustCD: 20
+  animEnabled: 0
+  startAnim: 0
+  puzzUnlockScript: {fileID: 114786096600108100}
+--- !u!114 &114507411256496572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb2bc39ed7760948839cf379f0849fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myInput: {fileID: 0}
+  numbers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  numberAmount: 0
+  numberOne: {fileID: 0}
+  allCells:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  goldenEgg: {fileID: 0}
+  goldenEggScript: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 768
+  hopscotchFX: {fileID: 0}
+  firework01: {fileID: 0}
+  firework02: {fileID: 0}
+  fireworksFired: 0
+  audioSceneParkScript: {fileID: 0}
+  touchOne: 0
+  touchTwo: 0
+  startMinSecTimer: 0
+  minSecTapTime: 2
+  minSecTapTimer: 2
+  lvlTapManScript: {fileID: 0}
+--- !u!114 &114695959932019824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344f7d0c2638da94a8acb873829abf6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelsCompleted: 0
+  eggBags:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  newBagDelay: 0.5
+--- !u!114 &114786096600108100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3d084c7a51bff4b89f15a0116d85c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzPiece: {fileID: 0}
+  puzzParentObj: {fileID: 0}
+  endPosObj: {fileID: 0}
+  anim: {fileID: 0}
+  PuzzPieceFXsScript: {fileID: 0}
+  pointerFadeScript: {fileID: 0}
+  puzzUnlocked: 0
+  puzzClickArea: {fileID: 0}
+  puzzShimFX: {fileID: 0}
+  puzzDustFX: {fileID: 0}
+  puzzFireworkFX: {fileID: 0}
+  puzzUnlockAmnt: 12
+  puzzAnim: {fileID: 0}
+--- !u!114 &114827548566479570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f884dfabdd3bca4ab7af7fc7a141290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inLvlCompSeqSetup: 0
+  clickOnEggsScript: {fileID: 114269619705272398}
+  lvlTapManScript: {fileID: 0}
+  levelCompleteEggSpaScript: {fileID: 114431672453251996}
+  levelCompleteEggbagScript: {fileID: 114695959932019824}
+  darkenScreen: 0.2
+  showCongrats: 0.8
+  showEggs: 1.5
+  showCounters: 3.5
+  showTap: 11.5
+  showTotalCounter: 3.5
+  startEggMove: 4.5
+  showBag: 3.75
+  lightenScreen: 0.5
+  hideCongrats: 0.5
+  hideEggs: 0.5
+  hideCounters: 0.5
+  hideTap: 0
+  hideTotalCounter: 0
+  coverMaxAlpha: 0.5
+  coverFadeTime: 1
+  coverScreen: {fileID: 0}
+  congratsFadeTime: 1
+  congratsSprts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  eggFadeTime: 1
+  eggShowDelay: 0.5
+  regEgg: {fileID: 0}
+  silEgg: {fileID: 0}
+  golEgg: {fileID: 0}
+  eggCounterSpeed: 2
+  eggCountWait: 0.5
+  eggCountFadeTime: 0.5
+  eggCountOffDelay: 0.75
+  eggCountOffDelayTimer: 0
+  animCur:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.7860657
+      value: 0.91313106
+      inSlope: 0.82928896
+      outSlope: 0.7217237
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.04766535
+    - serializedVersion: 3
+      time: 1
+      value: 1.0001526
+      inSlope: 0.01745277
+      outSlope: 0.01745277
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.012944889
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  regEggTot: 24
+  silEggTot: 6
+  golEggTot: 1
+  regEggCounterTxt: {fileID: 0}
+  silEggCounterTxt: {fileID: 0}
+  golEggCounterTxt: {fileID: 0}
+  totalCounterFadeScript: {fileID: 0}
+  tapFadeTime: 1.5
+  tapBtn: {fileID: 0}
+  tapImg: {fileID: 0}
+--- !u!114 &114860124311368210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1491841219371188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e0e9271286c194f9e968400cb13eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmp: {fileID: 0}
+  startIncrease: 0
+  eggAmnt: 0

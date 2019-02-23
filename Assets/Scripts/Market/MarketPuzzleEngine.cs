@@ -44,6 +44,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 		//mySilverEggMan.silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
 		if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
+		audioSceneMarketPuz =  GameObject.Find ("Audio").GetComponent<AudioSceneMarketPuzzle>();
 	}
 
 	void Update () {

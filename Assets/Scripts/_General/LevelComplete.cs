@@ -17,6 +17,8 @@ public class LevelComplete : MonoBehaviour
 	public LevelTapMannager lvlTapManScript;
 	public LevelCompleteEggSpawner levelCompleteEggSpaScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
+	public SceneTapEnabler sceneTapEnaScript;
+	public Button backToHubBtn;
 
 	[Header("Setup - When to Play?")]
 	public float darkenScreen; public float showCongrats, showEggs, showCounters, showTap, showTotalCounter, startEggMove, showBag; // At what time do the Methods get called.
@@ -78,6 +80,12 @@ public class LevelComplete : MonoBehaviour
 		
 		#region Start/End Level Complete Timer Sequence
 		if (inLvlCompSeqSetup) {
+			//Turn off back button
+			backToHubBtn.interactable = false;
+			sceneTapEnaScript.canTapEggRidPanPuz = false;
+			sceneTapEnaScript.canTapPauseBtn = false;
+			sceneTapEnaScript.canTapHelpBird = false;
+			
 			timer += Time.deltaTime;
 
 			if (timer > darkenScreen && !darkenScreenStarted) { DarkenScreenOnOff(); lvlTapManScript.ZoomOutCameraReset();}
