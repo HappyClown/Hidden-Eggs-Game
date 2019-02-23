@@ -420,7 +420,7 @@ MonoBehaviour:
   ToggleLevelPuz2: {fileID: 699045629}
   ToggleLevelPuz3: {fileID: 699045628}
   ResetItemBtn: {fileID: 49931954}
-  sceneMusicEvent: event:/Music/MusicScenes/Park_Puzzle
+  sceneMusicEvent: event:/Music/MusicScenes/Park
   transEvent: event:/SFX/SFX_General/TransitionsSound
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
@@ -27241,7 +27241,7 @@ MonoBehaviour:
   - {fileID: 2054433729}
   itemHolder: {fileID: 0}
   seqTimer: 0
-  iniSeqDelay: 0
+  iniSeqDelay: 1.5
   crateDownF: 0
   reqDownF: 0
   itemSpawnF: 0.15
@@ -27289,7 +27289,7 @@ MonoBehaviour:
   detectDoubleTap: 0
   minDoubleTapTime: 0.5
   detectDrag: 1
-  draggingDeathzone: 0
+  draggingDeathzone: 25
   startDragTouch: {x: 0, y: 0}
   draggingPosition: {x: 0, y: 0}
   prevDragPosition: {x: 0, y: 0}
@@ -27340,7 +27340,6 @@ MonoBehaviour:
   amntSilEggsTapped: 0
   inputDetScript: {fileID: 654759647}
   mainPuzzleEngScript: {fileID: 654759646}
-  audioScenePuzzScript: {fileID: 0}
 --- !u!114 &654759649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40265,7 +40264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &911107688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45361,7 +45360,7 @@ MonoBehaviour:
   fadeDelay: 0
   disableOnFadeOut: 0
   sprite: {fileID: 953156038}
-  myStartState: 0
+  myStartState: 1
 --- !u!212 &953156038
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47816,6 +47815,10 @@ Prefab:
         type: 2}
       propertyPath: InitialModule.startColor.minColor.b
       value: 0.7028302
+      objectReference: {fileID: 0}
+    - target: {fileID: 1915006663634260, guid: 5d416ccf46e956d46ad07a2cc765a05a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d416ccf46e956d46ad07a2cc765a05a, type: 2}
@@ -91726,7 +91729,6 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915421
@@ -91987,7 +91989,6 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915427
@@ -92248,7 +92249,6 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915433
@@ -92525,7 +92525,6 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915440
@@ -92786,7 +92785,6 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915446
@@ -93108,7 +93106,6 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915454

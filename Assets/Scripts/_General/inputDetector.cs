@@ -67,9 +67,8 @@ public class inputDetector : MonoBehaviour {
 	#endregion
 	void Awake(){
 		isPhoneDevice = false;
-		if (SystemInfo.deviceType == DeviceType.Handheld)
-        {
-           isPhoneDevice = true;
+		if (SystemInfo.deviceType == DeviceType.Handheld){
+            isPhoneDevice = true;
         }
 
 	}
@@ -90,7 +89,7 @@ public class inputDetector : MonoBehaviour {
 				tapPosition = Input.mousePosition;
 				tapped = true;
 			}
-			if(Input.touchCount == 1 && isPhoneDevice){
+			if(Input.touchCount == 1 && isPhoneDevice && !isDragging){
 				singleTap = true;
 				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled && !isDragging){					
 					tapPosition = Input.touches[0].position;
@@ -208,11 +207,11 @@ public class inputDetector : MonoBehaviour {
 					prevDragPosition = startDragTouch;
 				}	
 				
-			// 	if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
-			// 		if(isDragging){
-			// 			ResetDragging();
-			// 		}
-			// 	}			
+				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
+					if(isDragging || dragStarted){
+						ResetDragging();
+					}
+				}			
 			}
 		}
 		#endregion

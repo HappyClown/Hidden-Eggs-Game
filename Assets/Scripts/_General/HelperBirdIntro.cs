@@ -35,11 +35,11 @@ public class HelperBirdIntro : MonoBehaviour {
 		birdIntroSaveScript.LoadBirdIntro();
 		if (slideInScript.introDone) {
 			inSceneBirdBtnObj.SetActive(true);
-			dissMat.SetFloat("_DissolveAmount", 1.01f);
+			dissMat.SetFloat("_Threshold", 1.01f);
 			birdTapped = true;
 		}
 		else {
-			dissMat.SetFloat("_DissolveAmount", 0f);
+			dissMat.SetFloat("_Threshold", 0f);
 		}
 		ogBirdPos = birdObj.transform.position;
 		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
@@ -82,7 +82,7 @@ public class HelperBirdIntro : MonoBehaviour {
 		// After being tapped dissolve the black and white bird's material
 		if (isDissolving) {
 			dissAmnt += Time.deltaTime / dissDuration;
-			dissMat.SetFloat("_DissolveAmount", dissAmnt);
+			dissMat.SetFloat("_Threshold", dissAmnt);
 
 			curShapeSize = Mathf.Lerp(minShapeSize, maxShapeSize, dissAmnt);
 			var shapeMod = dissParSys.shape;

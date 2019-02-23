@@ -43,7 +43,7 @@ public class BackToMenu : MonoBehaviour
 			btnWaitTimer += Time.deltaTime; 
 			if (btnWaitTimer >= btnFadeInWait)
 			{
-				playBtnFadeScript.FadeIn();
+				//playBtnFadeScript.FadeIn();
 				rstBtnFadeScript.FadeIn();
 				fadeBtnIn = false;
 				hubScript.ResetHubSeasons();

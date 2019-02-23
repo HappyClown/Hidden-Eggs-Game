@@ -20,8 +20,11 @@ public class MoveWithCamera : MonoBehaviour
 
 
 	void LateUpdate ()
-	{
+	{ 
 		topLeftCorner = cam.ScreenToWorldPoint(new Vector3(0, cam.pixelHeight, 0));
+		if (topLeftCorner.y > 10.8037f) {
+			topLeftCorner.y = 10.8037f;
+		}
 		this.transform.position = new Vector2(topLeftCorner.x, topLeftCorner.y);
 
 		newScale = (originalObjScale * cam.orthographicSize) / originalCamSize;

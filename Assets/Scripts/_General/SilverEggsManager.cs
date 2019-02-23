@@ -17,11 +17,11 @@ public class SilverEggsManager : MonoBehaviour {
 
 	public inputDetector inputDetScript;
 	public MainPuzzleEngine mainPuzzleEngScript;
-	public AudioScenePuzzleGeneric audioScenePuzzScript;
+	//public AudioSceneMarketPuzzle audioScenePuzzScript;
 
 	void Start() {
 		silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
-		audioScenePuzzScript = GameObject.Find("Audio").GetComponent<AudioScenePuzzleGeneric>();
+		//audioScenePuzzScript = GameObject.Find("Audio").GetComponent<AudioSceneMarketPuzzle>();
 	}
 
 	void Update() {
@@ -36,7 +36,7 @@ public class SilverEggsManager : MonoBehaviour {
 					SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 					silEggTappedScript.StartSilverEggAnim();
 					hit.collider.enabled = false;
-					audioScenePuzzScript.silverEggSnd();
+					//audioScenePuzzScript.silverEggSnd();
 					if (!silEggTappedScript.hollow) { silverEggsPickedUp++; }
 					SaveSilverEggsToCorrectFile();
 					SaveNewSilEggsFound(allSilEggs.IndexOf(hit.collider.gameObject));

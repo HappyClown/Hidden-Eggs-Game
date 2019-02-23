@@ -48,7 +48,9 @@ Shader "Shader Forge/ShaderForge2dSprite" {
            CGPROGRAM
            #pragma vertex vert
            #pragma fragment frag
+           #ifndef UNITY_PASS_FORWARDBASE
            #define UNITY_PASS_FORWARDBASE
+           #endif
            #pragma multi_compile _ PIXELSNAP_ON
            #include "UnityCG.cginc"
            #pragma multi_compile_fwdbase_fullshadows
@@ -107,7 +109,9 @@ Shader "Shader Forge/ShaderForge2dSprite" {
            CGPROGRAM
            #pragma vertex vert
            #pragma fragment frag
+           #ifndef UNITY_PASS_SHADOWCASTER
            #define UNITY_PASS_SHADOWCASTER
+           #endif
            #pragma multi_compile _ PIXELSNAP_ON
            #include "UnityCG.cginc"
            #include "Lighting.cginc"
