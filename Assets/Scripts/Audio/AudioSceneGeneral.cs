@@ -7,6 +7,16 @@ using UnityEngine.SceneManagement;
 
 public class AudioSceneGeneral : MonoBehaviour 
 {
+	[Header("Buttons")]
+
+    public Button BackMenuBtn;
+    public Button BirdHelpBtn;
+    public Button RiddleBtn;
+    public Button HintBtn;
+    public Button lvlCompleteBtn;
+
+
+
 	[Header("Scene Music")]
     [FMODUnity.EventRef]
     public string sceneMusicEvent;
@@ -35,6 +45,12 @@ public class AudioSceneGeneral : MonoBehaviour
     public string goldEggShimyEvent = "event:/SFX/SFX_General/GoldenEgg_ShimyIdle";
     public FMOD.Studio.EventInstance goldEggShimySound;
 
+	[Header("Silver Eggs Slide to Panel SFX")]
+    [FMODUnity.EventRef]
+    public string silverEggSlidePanelEvent = "event:/SFX/SFX_General/SilverEggs_SlideToPanel";
+    public FMOD.Studio.EventInstance silverEggSlidePanelSound;
+
+
 	[Header("Panel SFX")]
     [FMODUnity.EventRef]
     public string panelOpenEvent = "event:/SFX/SFX_General/MenuEggOpen";
@@ -45,7 +61,11 @@ public class AudioSceneGeneral : MonoBehaviour
     public FMOD.Studio.EventInstance panelCloseSound;
 
 
-	[Header("Puzzle Unlocked Shimy Animation")]
+    [Header("Puzzle Unlocked")]
+    [FMODUnity.EventRef]
+    public string puzzlePieceEvent = "event:/SFX/SFX_General/PuzzlePiece";
+    public FMOD.Studio.EventInstance puzzlePieceSound;
+
     [FMODUnity.EventRef]
     public string puzzleUnlockedEvent;
     public FMOD.Studio.EventInstance puzzleUnlockedSound;
@@ -54,19 +74,24 @@ public class AudioSceneGeneral : MonoBehaviour
     public string puzzleButtonEvent ;
     public FMOD.Studio.EventInstance puzzleButtonSound;
 
-	[Header("Bird Help")]
+	[Header("Bird Help & Unfrozen FX")]
     [FMODUnity.EventRef]
     public string birdEvent;
     public FMOD.Studio.EventInstance birdSound;
 
-	[Header("Buttons")]
+    [FMODUnity.EventRef]
+    public string unfrozenBirdEvent = "event:/SFX/SFX_General/UnfrozenBird";
+    public FMOD.Studio.EventInstance unfrozenBirdSound;
 
-    public Button BackMenuBtn;
-    public Button BirdHelpBtn;
-    public Button RiddleBtn;
-    public Button HintBtn;
-    public Button lvlCompleteBtn;
+    [FMODUnity.EventRef]
+    public string frozenBirdShakeEvent = "event:/SFX/SFX_General/FrozenBirdShake";
+    public FMOD.Studio.EventInstance frozenBirdShakeSound;
 
+
+	[Header("Congratulations Lvl Complete")]
+    [FMODUnity.EventRef]
+    public string lvlCompleteEvent;
+    public FMOD.Studio.EventInstance lvlCompleteSound;
 
     [FMODUnity.EventRef]
     public string buttonEvent = "event:/SFX/SFX_General/Button";
@@ -105,6 +130,7 @@ public class AudioSceneGeneral : MonoBehaviour
         if(egg)
         {
             updateEggSound();
+            updateSilverEggPanelSound();
         }
 
         //FOR PUZZLE UNLOCKED TESTS 
@@ -216,9 +242,20 @@ public class AudioSceneGeneral : MonoBehaviour
     {
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(EggClickSound, egg.transform,egg.GetComponent<Rigidbody> ());
     }
+
+    public void silverEggsPanel(GameObject eggObject)
+    {
+        egg=eggObject;
+        silverEggSlidePanelSound = FMODUnity.RuntimeManager.CreateInstance(silverEggSlidePanelEvent);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject (silverEggSlidePanelSound, eggObject.transform,eggObject.GetComponent<Rigidbody> ());
+        silverEggSlidePanelSound.start();
+    }
+
+    public void updateSilverEggPanelSound()
+    {
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(silverEggSlidePanelSound, egg.transform,egg.GetComponent<Rigidbody> ());
+    }
     
-
-
     public void goldEggSound()
     {
         goldEggClickSound = FMODUnity.RuntimeManager.CreateInstance(goldEggClickEvent);
@@ -241,10 +278,18 @@ public class AudioSceneGeneral : MonoBehaviour
     }
 
     //Puzzle Animation
+
+    public void puzzlePieceAnimation()
+    {
+        puzzlePieceSound.start();
+    }
+
+
     public void puzzleAnimation()
     {
         puzzleUnlockedSound.start();
     }
+
 
     public void puzzleAnimationStart(GameObject puzzleImage)
     {
@@ -280,6 +325,17 @@ public class AudioSceneGeneral : MonoBehaviour
 
 
     //Bird SFX
+    public void unfrozenBirdSnd()
+    {
+        unfrozenBirdSound = FMODUnity.RuntimeManager.CreateInstance(unfrozenBirdEvent);
+        unfrozenBirdSound.start();
+    }
+
+    public void frozenBirdShake()
+    {
+        frozenBirdShakeSound = FMODUnity.RuntimeManager.CreateInstance(frozenBirdShakeEvent);
+        frozenBirdShakeSound.start();
+    }
 
     public void birdHelpSound()
     {
@@ -293,6 +349,14 @@ public class AudioSceneGeneral : MonoBehaviour
         puzzleUnlockedSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         //public static void DetachInstanceFromGameObject(FMOD.Studio.EventInstance instance)
     }
+
+/// Lvl complete
+    public void lvlCompleteSnd()
+    {
+        lvlCompleteSound = FMODUnity.RuntimeManager.CreateInstance(lvlCompleteEvent);
+        lvlCompleteSound.start();
+    }
+
 
 ///////////////////////////////////////////
 	

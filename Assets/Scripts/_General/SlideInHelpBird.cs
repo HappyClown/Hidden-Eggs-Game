@@ -31,9 +31,11 @@ public class SlideInHelpBird : MonoBehaviour {
 	[Header("Script References")]
 	public SceneTapEnabler scenTapEnabScript;
 	public LevelTapMannager lvlTapManScript;
+	//public AudioSceneGeneral audioSceneGenScript;
 
 	void Start () {
 		totalDist = Vector2.Distance(hiddenHelpBirdPos.position, shownHelpBirdPos.position);
+		//audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
 	}
 
 	void Update () {
@@ -125,6 +127,7 @@ public class SlideInHelpBird : MonoBehaviour {
 			scenTapEnabScript.canTapEggRidPanPuz = false;
 			if (lvlTapManScript) { lvlTapManScript.ZoomOutCameraReset(); }
 			if (introDone) { closeMenuOnClick.SetActive(true); }
+			//audioSceneGenScript.birdHelpSound();
 			return;
 		}
 		if (moveUp || isUp) {

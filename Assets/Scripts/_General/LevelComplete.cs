@@ -18,6 +18,7 @@ public class LevelComplete : MonoBehaviour
 	public LevelCompleteEggSpawner levelCompleteEggSpaScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
 	public SceneTapEnabler sceneTapEnaScript;
+	public AudioSceneGeneral audioSceneGenScript;
 	public Button backToHubBtn;
 
 	[Header("Setup - When to Play?")]
@@ -71,6 +72,7 @@ public class LevelComplete : MonoBehaviour
 	void Start () {
 		regEggWait = eggCountWait; silEggWait = eggCountWait; golEggWait = eggCountWait;
 		tapBtn.onClick.AddListener(TapBtnPress);
+		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
 	}
 	
 	void Update () {
@@ -279,6 +281,7 @@ public class LevelComplete : MonoBehaviour
 
 	void CongratsOnOff () {
 		if (congratsA <= 0) { 
+			audioSceneGenScript.lvlCompleteSnd();
 			showCongratsStarted = true;
 			congratsTxtOn = true;
 			congratsTxtOff = false;

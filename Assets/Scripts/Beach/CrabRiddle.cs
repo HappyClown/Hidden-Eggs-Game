@@ -38,6 +38,8 @@ public class CrabRiddle : MonoBehaviour
 	private Vector3 crabPos, crabPosDest;
 	public float crabMoveAmnt;
 	public inputDetector inputDetScript;
+	public AudioSceneBeach audioSceneBeachScript;
+	public SceneTapEnabler sceneTapEnabScript;
 
 
 
@@ -54,6 +56,7 @@ public class CrabRiddle : MonoBehaviour
 
 		moveDest = crab.transform.position;
 		crabOGPos = crab.transform.position;
+		audioSceneBeachScript = GameObject.Find("Audio").GetComponent<AudioSceneBeach>();
 	}
 
 
@@ -71,6 +74,7 @@ public class CrabRiddle : MonoBehaviour
 			if(crabReturning)
 			{
 				crabAnim.SetTrigger("PlayCrabClaws");
+				audioSceneBeachScript.crabClawsSFX();
 			}
 			canClick = true;
 			crabReturning = false;
@@ -78,7 +82,7 @@ public class CrabRiddle : MonoBehaviour
 
 		crab.transform.position = Vector3.MoveTowards(crab.transform.position, moveDest, crabSpeed * Time.deltaTime);
 
-		if (inputDetScript.Tapped) {
+		if (sceneTapEnabScript.canTapEggRidPanPuz && inputDetScript.Tapped) {
 			UpdateMousePos ();
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
 			if (hit)
@@ -86,6 +90,7 @@ public class CrabRiddle : MonoBehaviour
 				if (hit.collider.CompareTag("FruitBasket") && canClick)
 				{
 					if (hit.collider.GetComponent<CrabRiddleTapObjects>().left == directions[moveAmount]) {
+						audioSceneBeachScript.crabWalkSFX();
 						//moveDest = (moves[moveAmount-1].transform.position - crab.transform.position).normalized + crab.transform.position;
 						if (directions[moveAmount]) {
 							moveDest = new Vector3(crab.transform.position.x - crabMoveAmnt, crab.transform.position.y, crab.transform.position.z);
@@ -122,6 +127,7 @@ public class CrabRiddle : MonoBehaviour
 						}
 						moveAmount = 0;
 						moveDest = crabOGPos;
+						///audioSceneBeachScript.crabWalkSFX();
 					}
 				}
 				
@@ -134,6 +140,7 @@ public class CrabRiddle : MonoBehaviour
 					}
 					moveAmount = 0;
 					moveDest = crabOGPos;
+					//audioSceneBeachScript.crabWalkSFX();
 					// foreach (GameObject move in moves)
 					// {
 					// 	move.GetComponent<BoxCollider2D>().enabled = false;

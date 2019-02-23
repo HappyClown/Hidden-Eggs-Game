@@ -5,47 +5,13 @@ using UnityEngine.UI;
 
 public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric 
 {
-    /* 
-    [Header("Buttons")]
-    public Button BackBeachBtn;
-    public Button ToggleLevelPuz1;
-	public Button ToggleLevelPuz2;
-	public Button ToggleLevelPuz3;
-    public Button ResetItemBtn;
 
-    [Header("Music")]
-
-    [FMODUnity.EventRef]
-    public string sceneMusicEvent;
-    public FMOD.Studio.EventInstance sceneMusic;
-
-    [FMODUnity.EventRef]
-    public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
-    public FMOD.Studio.EventInstance transMusic;
-
-*/
 	[Header("SFX")]
 
     [FMODUnity.EventRef]
     public string ambiantEvent;
     public FMOD.Studio.EventInstance ambiantSound;
 
-
-/* 
-    [FMODUnity.EventRef]
-    public string silverEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Silver";
-    public FMOD.Studio.EventInstance silverEggClickSound;
-
-    [FMODUnity.EventRef]
-    public string silverEggTrailEvent = "event:/SFX/SFX_General/FX_trail";
-    public FMOD.Studio.EventInstance silverEggTrailSound;
-
-	
-
-    [FMODUnity.EventRef]
-    public string buttonEvent = "event:/SFX/SFX_General/Button";
-    public FMOD.Studio.EventInstance buttonSound;
-*/
 	[Header("SFX")]
     [FMODUnity.EventRef]
     public string failEvent;
@@ -123,37 +89,7 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
 
     }
 	
-    /* 
-	public void PlayTransitionMusic()
-    {
-        transMusic.start();
-    }
 
-    //////////////////
-    //  SFX
-    //////////////////
-
-    //GENERAL 
-    public void silverEggSnd()
-    {
-       silverEggClickSound = FMODUnity.RuntimeManager.CreateInstance(silverEggClickEvent);
-       silverEggClickSound.start();
-    }
-
-	public void SilverEggTrailSFX () 
-	{
-		silverEggTrailSound = FMODUnity.RuntimeManager.CreateInstance(silverEggTrailEvent);
-        silverEggTrailSound.start();
-	}
-
-    public void buttonSFX()
-    {
-        //button sound
-        buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
-        buttonSound.start();
-    }
-
-*/
     public void failSFX()
     {
         //button sound

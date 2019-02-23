@@ -1941,6 +1941,7 @@ GameObject:
   - component: {fileID: 414845248}
   - component: {fileID: 414845247}
   - component: {fileID: 414845246}
+  - component: {fileID: 414845250}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2026,6 +2027,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &414845250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 414845245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!1 &414901119
 GameObject:
   m_ObjectHideFlags: 0
@@ -7645,12 +7658,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &561789713 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114414448826633382, guid: 2c668a3931c67034d8e0b91ea2176a0d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1327337086}
-  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &567437506
 GameObject:
   m_ObjectHideFlags: 0
@@ -46464,17 +46471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b2d8bfeceeb8645a25366576489594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackBtn: {fileID: 0}
-  ToggleLevelPuz1: {fileID: 1905070410}
-  ToggleLevelPuz2: {fileID: 101442207}
-  ToggleLevelPuz3: {fileID: 288248651}
-  ResetItemBtn: {fileID: 2051489600}
-  sceneMusicEvent: event:/Music/MusicScenes/Market _Puzzle
-  transEvent: event:/SFX/SFX_General/TransitionsSound
-  silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
-  silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
-  buttonEvent: event:/SFX/SFX_General/Button
-  BackMarketBtn: {fileID: 561789713}
+  BackMarketBtn: {fileID: 1139011425}
   ResetItemBtn: {fileID: 2051489600}
   ToggleLevelPuz1: {fileID: 1905070410}
   ToggleLevelPuz2: {fileID: 101442207}

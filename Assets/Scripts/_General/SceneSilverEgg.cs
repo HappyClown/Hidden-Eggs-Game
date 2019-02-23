@@ -15,6 +15,11 @@ public class SceneSilverEgg : MonoBehaviour {
 	public float moveDuration;
 	public ParticleSystem trailFX, burstFX;
 	private bool silEggAdded = false;
+	public AudioSceneGeneral audioSceneGenScript;
+
+	void Start() {
+		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+	}
 
 	void Update () 
 	{
@@ -52,6 +57,7 @@ public class SceneSilverEgg : MonoBehaviour {
 	}
 	
 	public void SendToPanel (int numInPanel, float myDelay) {
+		audioSceneGenScript.silverEggsPanel(this.gameObject);
 		sendToPanel = true;
 		posInPanel = numInPanel;
 		spawnDelay = myDelay;

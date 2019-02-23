@@ -29,6 +29,7 @@ public class HelperBirdIntro : MonoBehaviour {
 	public SlideInHelpBird slideInScript;
 	public SceneTapEnabler scenTapEnabScript;
 	public BirdIntroSave birdIntroSaveScript;
+	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start () {
 		birdIntroSaveScript.LoadBirdIntro();
@@ -41,6 +42,7 @@ public class HelperBirdIntro : MonoBehaviour {
 			dissMat.SetFloat("_DissolveAmount", 0f);
 		}
 		ogBirdPos = birdObj.transform.position;
+		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
 	}
 	
 	void Update () {
@@ -57,6 +59,7 @@ public class HelperBirdIntro : MonoBehaviour {
 				inputDetScript.cancelDoubleTap = true;
 				birdObj.transform.position = ogBirdPos;
 				dissParSys.Play();
+				audioSceneGenScript.unfrozenBirdSnd();
 			}
 			// Periodically shake the bird to attract the player's attention
 			timer += Time.deltaTime;
@@ -70,6 +73,7 @@ public class HelperBirdIntro : MonoBehaviour {
 			if (timer > shakeCD) {
 				if (animShake) {
 					anim.SetTrigger("Shake");
+					audioSceneGenScript.frozenBirdShake();
 					timer = 0f;
 					fxPlayed = false;
 				} 

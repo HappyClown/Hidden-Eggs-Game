@@ -16989,7 +16989,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 511196391}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
@@ -19518,6 +19518,36 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114672148221311900, guid: 4ca482d1a0902e64ba6f9be7de80dd75,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 1436777457}
+    - target: {fileID: 114943615366669724, guid: 4ca482d1a0902e64ba6f9be7de80dd75,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 1436777457}
+    - target: {fileID: 114087013002812764, guid: 4ca482d1a0902e64ba6f9be7de80dd75,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 1436777457}
+    - target: {fileID: 114304085735893744, guid: 4ca482d1a0902e64ba6f9be7de80dd75,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 1436777457}
+    - target: {fileID: 114648870265010168, guid: 4ca482d1a0902e64ba6f9be7de80dd75,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 1436777457}
+    - target: {fileID: 114556079865171942, guid: 4ca482d1a0902e64ba6f9be7de80dd75,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 1436777457}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ca482d1a0902e64ba6f9be7de80dd75, type: 2}
   m_IsPrefabParent: 0
@@ -31811,6 +31841,7 @@ MonoBehaviour:
   puzzFireworkFX: {fileID: 1937804639}
   puzzUnlockAmnt: 12
   puzzAnim: {fileID: 1129381744}
+  audioSceneGenScript: {fileID: 0}
 --- !u!114 &1346920379 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114024836860949638, guid: cca0c653d108c0c48954d5b5f314c854,
@@ -32290,22 +32321,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfb9e5f0eeac434f9cda2e51f98745e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackMenuBtn: {fileID: 1929304826}
+  BirdHelpBtn: {fileID: 725424443}
+  RiddleBtn: {fileID: 931780410}
+  HintBtn: {fileID: 426848170}
+  lvlCompleteBtn: {fileID: 675634514}
   sceneMusicEvent: event:/Music/MusicScenes/Market
   transEvent: event:/SFX/SFX_General/TransitionsSound
   EggClickEvent: event:/SFX/SFX_General/Egg_Click
   goldEggClickEvent: event:/SFX/SFX_General/Egg_Click_Gold
   goldEggAnimationEvent: event:/SFX/SFX_General/GoldenEggAnimation
   goldEggShimyEvent: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
+  silverEggSlidePanelEvent: event:/SFX/SFX_General/SilverEggs_SlideToPanel
   panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
   panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
+  puzzlePieceEvent: event:/SFX/SFX_General/PuzzlePiece
   puzzleUnlockedEvent: event:/SFX/Market/PuzzleShimyLoop_market
   puzzleButtonEvent: event:/SFX/Market/Puzzle_Click
   birdEvent: event:/SFX/Market/Market_Bird
-  BackMenuBtn: {fileID: 1929304826}
-  BirdHelpBtn: {fileID: 725424443}
-  RiddleBtn: {fileID: 931780410}
-  HintBtn: {fileID: 426848170}
-  lvlCompleteBtn: {fileID: 675634514}
+  unfrozenBirdEvent: event:/SFX/SFX_General/UnfrozenBird
+  frozenBirdShakeEvent: event:/SFX/SFX_General/FrozenBirdShake
+  lvlCompleteEvent: event:/SFX/Market/Congratulations_LevelComplete
   buttonEvent: event:/SFX/SFX_General/Button
   SceneIn: 0
   AlphaValue: 0
@@ -39807,6 +39843,7 @@ MonoBehaviour:
   levelCompleteEggSpaScript: {fileID: 1799697643}
   levelCompleteEggbagScript: {fileID: 1799697644}
   sceneTapEnaScript: {fileID: 712647452}
+  audioSceneGenScript: {fileID: 0}
   backToHubBtn: {fileID: 1929304826}
   darkenScreen: 0.2
   showCongrats: 0.8
@@ -40128,6 +40165,7 @@ MonoBehaviour:
   newBagDelay: 0.5
   endLevelAfterBag: 0
   clickOnEggsScript: {fileID: 712647447}
+  audioSceneGenScript: {fileID: 0}
 --- !u!1 &1800334576
 GameObject:
   m_ObjectHideFlags: 0

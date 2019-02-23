@@ -22,6 +22,7 @@ public class AudioScenePuzzleGeneric: MonoBehaviour
     public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
     public FMOD.Studio.EventInstance transMusic;
 
+    [Header("Eggs")]
     [FMODUnity.EventRef]
     public string silverEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Silver";
     public FMOD.Studio.EventInstance silverEggClickSound;
@@ -84,4 +85,8 @@ public class AudioScenePuzzleGeneric: MonoBehaviour
         buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
         buttonSound.start();
     }
+
+
+
+
 }

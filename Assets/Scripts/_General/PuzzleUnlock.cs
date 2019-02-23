@@ -21,6 +21,11 @@ public class PuzzleUnlock : MonoBehaviour {
 	public int puzzUnlockAmnt;
 	public Animation puzzAnim;
 	//public ClickOnEggs clickOnEggsScript;
+	public AudioSceneGeneral audioSceneGenScript;
+
+	void Start() {
+		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+	}
 
 	void Update () {
 		 if (movePuzzPiece) {
@@ -48,6 +53,7 @@ public class PuzzleUnlock : MonoBehaviour {
 		//splineWalkerScript.IsPlaying = true;
 		//Play FX's through animation events
 		puzzPiece.transform.parent = puzzParentObj.transform.parent;
+		audioSceneGenScript.puzzlePieceAnimation();
 	}
 
 	public void PuzzleUnlockCheck(int eggsInPanel) {
@@ -57,6 +63,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	}
 
 	public void ActivatePuzzle() {
+		audioSceneGenScript.puzzleAnimation();
 		puzzClickArea.SetActive(true);
 		puzzPiece.SetActive(false);
 		puzzShimFX.Play(true);

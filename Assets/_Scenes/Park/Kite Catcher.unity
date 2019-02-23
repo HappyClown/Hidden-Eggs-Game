@@ -384,7 +384,6 @@ GameObject:
   m_Component:
   - component: {fileID: 17080953}
   - component: {fileID: 17080954}
-  - component: {fileID: 17080955}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -429,17 +428,7 @@ MonoBehaviour:
   pickupTileEvent: event:/SFX/Puzzle_Park/Puzzle_TilePickUp
   dropTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileDrop
   rotateTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileRotate
---- !u!114 &17080955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 17080952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15242cc1b8da77d409a8bc02490571e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  connectSparkEvent: event:/SFX/Puzzle_Park/Puzzle_Tile_ConnectFX
 --- !u!1 &36443641
 GameObject:
   m_ObjectHideFlags: 0
@@ -7282,6 +7271,7 @@ MonoBehaviour:
   - {fileID: 706273340}
   - {fileID: 526471876}
   - {fileID: 298360201}
+  audioScenePuzGenScript: {fileID: 17080954}
 --- !u!4 &208280049
 Transform:
   m_ObjectHideFlags: 0
@@ -53236,6 +53226,11 @@ Prefab:
       propertyPath: scenTapEnabScript
       value: 
       objectReference: {fileID: 654759650}
+    - target: {fileID: 114230690615300076, guid: 2dda21351f8e89745903cccd73eb6465,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dda21351f8e89745903cccd73eb6465, type: 2}
   m_IsPrefabParent: 0
@@ -91731,7 +91726,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 17080955}
+  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915421
@@ -91992,7 +91987,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 17080955}
+  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915427
@@ -92253,7 +92248,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 17080955}
+  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915433
@@ -92530,7 +92525,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 17080955}
+  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915440
@@ -92791,7 +92786,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 17080955}
+  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915446
@@ -93113,7 +93108,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
-  audioSilEggScript: {fileID: 17080955}
+  audioSilEggScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915454
@@ -102808,6 +102803,7 @@ GameObject:
   - component: {fileID: 1882696822}
   - component: {fileID: 1882696821}
   - component: {fileID: 1882696820}
+  - component: {fileID: 1882696824}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -102893,6 +102889,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1882696824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882696819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!1 &1888233797
 GameObject:
   m_ObjectHideFlags: 0
@@ -107808,6 +107816,7 @@ MonoBehaviour:
   slideInScript: {fileID: 1902172820}
   scenTapEnabScript: {fileID: 0}
   birdIntroSaveScript: {fileID: 1902172822}
+  audioSceneGenScript: {fileID: 0}
 --- !u!224 &1902172824
 RectTransform:
   m_ObjectHideFlags: 0

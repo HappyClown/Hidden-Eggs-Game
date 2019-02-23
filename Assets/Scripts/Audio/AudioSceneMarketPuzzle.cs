@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AudioSceneMarketPuzzle : AudioScenePuzzleGeneric 
+public class AudioSceneMarketPuzzle : MonoBehaviour 
 {
     [Header("Buttons")]
 

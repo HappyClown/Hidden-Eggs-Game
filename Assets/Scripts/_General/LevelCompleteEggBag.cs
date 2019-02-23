@@ -12,6 +12,11 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	private float endLevelTimer;
 	public float endLevelAfterBag;
 	public ClickOnEggs clickOnEggsScript;
+	public AudioSceneGeneral audioSceneGenScript;
+	
+	public void Start() {
+		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+	}
 
 	void Update () {
 		if (newBagOn) {
@@ -27,6 +32,7 @@ public class LevelCompleteEggBag : MonoBehaviour {
 		if (endLevel) {
 			endLevelTimer += Time.deltaTime;
 			if (endLevelTimer > endLevelAfterBag) {
+				audioSceneGenScript.TransitionMenu();
 				endLevel = false;
 				endLevelTimer = 0f;
 				clickOnEggsScript.levelComplete = true;

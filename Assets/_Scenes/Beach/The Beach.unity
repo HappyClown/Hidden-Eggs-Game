@@ -18146,22 +18146,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfb9e5f0eeac434f9cda2e51f98745e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneMusicEvent: event:/Music/MusicScenes/Beach
-  transEvent: event:/SFX/SFX_General/TransitionsSound
-  EggClickEvent: event:/SFX/SFX_General/Egg_Click
-  goldEggClickEvent: event:/SFX/SFX_General/Egg_Click_Gold
-  goldEggAnimationEvent: event:/SFX/SFX_General/GoldenEggAnimation
-  goldEggShimyEvent: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
-  panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
-  panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
-  puzzleUnlockedEvent: event:/SFX/Beach/PuzzleShimyLoop_beach
-  puzzleButtonEvent: event:/SFX/Beach/Puzzle_Click
-  birdEvent: event:/SFX/Beach/Beach_Bird
   BackMenuBtn: {fileID: 1771794753}
   BirdHelpBtn: {fileID: 2011664117}
   RiddleBtn: {fileID: 1041040802}
   HintBtn: {fileID: 542865779}
   lvlCompleteBtn: {fileID: 100327205}
+  sceneMusicEvent: event:/Music/MusicScenes/Market
+  transEvent: event:/SFX/SFX_General/TransitionsSound
+  EggClickEvent: event:/SFX/SFX_General/Egg_Click
+  goldEggClickEvent: event:/SFX/SFX_General/Egg_Click_Gold
+  goldEggAnimationEvent: event:/SFX/SFX_General/GoldenEggAnimation
+  goldEggShimyEvent: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
+  silverEggSlidePanelEvent: event:/SFX/SFX_General/SilverEggs_SlideToPanel
+  panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
+  panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
+  puzzlePieceEvent: event:/SFX/SFX_General/PuzzlePiece
+  puzzleUnlockedEvent: event:/SFX/Beach/PuzzleShimyLoop_beach
+  puzzleButtonEvent: event:/SFX/Beach/Puzzle_Click
+  birdEvent: event:/SFX/Beach/Beach_Bird
+  unfrozenBirdEvent: event:/SFX/SFX_General/UnfrozenBird
+  frozenBirdShakeEvent: event:/SFX/SFX_General/FrozenBirdShake
+  lvlCompleteEvent: event:/SFX/Beach/Congratulations_LevelComplete
   buttonEvent: event:/SFX/SFX_General/Button
   SceneIn: 0
   AlphaValue: 0
@@ -18384,6 +18389,36 @@ Prefab:
       propertyPath: moveDuration
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114660875555847430, guid: de34e5800cc3c3b4094275f7009c50aa,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 643264883}
+    - target: {fileID: 114485837040620400, guid: de34e5800cc3c3b4094275f7009c50aa,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 643264883}
+    - target: {fileID: 114163071404976242, guid: de34e5800cc3c3b4094275f7009c50aa,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 643264883}
+    - target: {fileID: 114287686955113704, guid: de34e5800cc3c3b4094275f7009c50aa,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 643264883}
+    - target: {fileID: 114275214547238188, guid: de34e5800cc3c3b4094275f7009c50aa,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 643264883}
+    - target: {fileID: 114897197154793068, guid: de34e5800cc3c3b4094275f7009c50aa,
+        type: 2}
+      propertyPath: audioSceneGenScript
+      value: 
+      objectReference: {fileID: 643264883}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de34e5800cc3c3b4094275f7009c50aa, type: 2}
   m_IsPrefabParent: 0
@@ -18957,6 +18992,16 @@ Prefab:
       propertyPath: birdIntroSaveScript
       value: 
       objectReference: {fileID: 872206905}
+    - target: {fileID: 114772648914642924, guid: f5c8c09de6348d0499bc2c92a5b47e60,
+        type: 2}
+      propertyPath: inputDetScript
+      value: 
+      objectReference: {fileID: 1777778271}
+    - target: {fileID: 114100004531591090, guid: f5c8c09de6348d0499bc2c92a5b47e60,
+        type: 2}
+      propertyPath: inputDetScript
+      value: 
+      objectReference: {fileID: 1777778271}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5c8c09de6348d0499bc2c92a5b47e60, type: 2}
   m_IsPrefabParent: 0
@@ -23672,6 +23717,7 @@ MonoBehaviour:
   newBagDelay: 0.5
   endLevelAfterBag: 0
   clickOnEggsScript: {fileID: 801276478}
+  audioSceneGenScript: {fileID: 0}
 --- !u!114 &801276474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23800,6 +23846,7 @@ MonoBehaviour:
   levelCompleteEggSpaScript: {fileID: 801276474}
   levelCompleteEggbagScript: {fileID: 801276473}
   sceneTapEnaScript: {fileID: 801276479}
+  audioSceneGenScript: {fileID: 0}
   backToHubBtn: {fileID: 1771794753}
   darkenScreen: 0.2
   showCongrats: 0.8
@@ -23904,12 +23951,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   canClick: 1
-  directions: 000101010001
+  directions: 000001010100
   firework01: {fileID: 591563641}
   firework02: {fileID: 591563640}
   fireworksFired: 0
   crabMoveAmnt: 1.5
   inputDetScript: {fileID: 1777778271}
+  audioSceneBeachScript: {fileID: 643264884}
+  sceneTapEnabScript: {fileID: 801276479}
 --- !u!114 &801276477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23935,6 +23984,7 @@ MonoBehaviour:
   puzzFireworkFX: {fileID: 2106397508}
   puzzUnlockAmnt: 12
   puzzAnim: {fileID: 0}
+  audioSceneGenScript: {fileID: 0}
 --- !u!114 &801276478
 MonoBehaviour:
   m_ObjectHideFlags: 0

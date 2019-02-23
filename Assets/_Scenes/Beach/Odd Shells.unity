@@ -82471,6 +82471,7 @@ GameObject:
   - component: {fileID: 1882696822}
   - component: {fileID: 1882696821}
   - component: {fileID: 1882696820}
+  - component: {fileID: 1882696824}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -82478,13 +82479,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1882696820
-AudioListener:
+--- !u!114 &1882696820
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1882696819}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: 0
 --- !u!124 &1882696821
 Behaviour:
   m_ObjectHideFlags: 0
@@ -82541,6 +82547,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1882696824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1882696819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b94b49ae0947c4ea7406d0a3e5c7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultHeight: 0
+  camAspect: 0
+  screenWidth: 0
+  screenHeight: 0
+  adjustCamSizeToWidth: 1
+  desiredAspectRatio: 1.77959
+  screenToWorldSideScreen: {x: 0, y: 0, z: 0}
+  adjustedMaxX: 0
+  minCamSize: 0
+  lvlTapManScript: {fileID: 0}
+  cam: {fileID: 1882696822}
 --- !u!1 &1886772089
 GameObject:
   m_ObjectHideFlags: 0
