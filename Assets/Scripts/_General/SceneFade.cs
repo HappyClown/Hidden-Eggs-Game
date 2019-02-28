@@ -13,7 +13,7 @@ public class SceneFade : MonoBehaviour
 
 	private static string sceneToLoad;
 	private string currentScene;
-	private static bool titCardSceneTrans, whtSceneTrans;
+	private static bool titCardSceneTrans, whtSceneTrans, inTransition;
 	private Image fadeImage;
 	public AnimationCurve animCurve;
 	private static float curveTime;
@@ -119,6 +119,7 @@ public class SceneFade : MonoBehaviour
 				// If scene has been loaded and title card has been on long enough.
 				if (/*currentScene == sceneToLoad*/myOperation.isDone && titleCardTimer >= minTitleCardShowTime)
 				{
+					inTransition = false;
 					fadeSceneIn = true;
 					fadeSceneOut = false;
 					//SceneManager.LoadScene(sceneToLoad);
@@ -181,6 +182,7 @@ public class SceneFade : MonoBehaviour
 					fadeSceneOut = false;
 					titleCardTimer = 0f;
 					curveTime = 0;
+					inTransition = false;
 				}
 			}
 		
@@ -206,27 +208,29 @@ public class SceneFade : MonoBehaviour
 	}
 
 
-	public static void SwitchScene (string sceneName)
-	{
-		newAlpha = 0f;
-		titCardSceneTrans = true;
-		fadeSceneOut = true;
-		sceneToLoad = sceneName;
-		if (audioTransStaticScript != null)
-		{
-			audioTransStaticScript.TransitionScenes(sceneName);
+	public static void SwitchScene (string sceneName) {
+		if (!inTransition) {
+			inTransition = true;
+			newAlpha = 0f;
+			titCardSceneTrans = true;
+			fadeSceneOut = true;
+			sceneToLoad = sceneName;
+			if (audioTransStaticScript != null) {
+				audioTransStaticScript.TransitionScenes(sceneName);
+			}
 		}
 	}
 
-	public static void SwitchSceneWhiteFade (string sceneName)
-	{
-		newAlpha = 0f;
-		whtSceneTrans = true;
-		fadeSceneOut = true;
-		sceneToLoad = sceneName;
-		if (audioTransStaticScript != null)
-		{
-			audioTransStaticScript.TransitionScenes(sceneName);
+	public static void SwitchSceneWhiteFade (string sceneName) {
+		if (!inTransition) {
+			inTransition = true;
+			newAlpha = 0f;
+			whtSceneTrans = true;
+			fadeSceneOut = true;
+			sceneToLoad = sceneName;
+			if (audioTransStaticScript != null) {
+				audioTransStaticScript.TransitionScenes(sceneName);
+			}
 		}
 	}
 
