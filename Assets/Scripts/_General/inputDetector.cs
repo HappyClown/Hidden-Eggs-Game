@@ -205,7 +205,7 @@ public class inputDetector : MonoBehaviour {
 				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
 					isDragging = true;
 					prevDragPosition = startDragTouch;
-				}	
+				}	 
 				
 				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled){
 					if(isDragging || dragStarted){
