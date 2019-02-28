@@ -124,7 +124,9 @@ public class ClickToRotateTile : MonoBehaviour {
 
 					foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
 					{
-						tile.gameObject.GetComponent<TileRotation>().CheckNeighbors();
+						GameObject tileGO = tile.gameObject;
+						tileGO.GetComponent<TileRotation>().CheckNeighbors();
+						tileGO.GetComponent<BoxCollider2D>().enabled = true;
 					}
 				}
 			}

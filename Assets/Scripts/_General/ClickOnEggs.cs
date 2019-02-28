@@ -11,7 +11,7 @@ public class ClickOnEggs : MonoBehaviour {
 	Vector3 mousePos;
 
 	public inputDetector myInputDetector;
-	public SceneTapEnabler scenTapEnabScript;
+	public SceneTapEnabler sceneTapEnabScript;
 	public SceneFade sceneFadeScript;
 
 	public bool iniSeq;
@@ -99,9 +99,9 @@ public class ClickOnEggs : MonoBehaviour {
 				if (iniSeqTimer > checkLvlCompleteF && !iniLvlCompCheckB) { if (totalEggsFound == eggsNeeded && !levelComplete) { PlayLvlCompleteSeq(); } ; iniLvlCompCheckB = true; }
 				if (iniSeqTimer > allowTapF) { 
 					if (!levelCompleteScript.inLvlCompSeqSetup) {
-						scenTapEnabScript.canTapEggRidPanPuz = true;
-						scenTapEnabScript.canTapHelpBird = true;
-						scenTapEnabScript.canTapPauseBtn = true; 
+						sceneTapEnabScript.canTapEggRidPanPuz = true;
+						sceneTapEnabScript.canTapHelpBird = true;
+						sceneTapEnabScript.canTapPauseBtn = true; 
 					}
 					iniSeq = false; 
 				}
@@ -113,7 +113,7 @@ public class ClickOnEggs : MonoBehaviour {
 			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
 			if (hit) {
-				if (scenTapEnabScript.canTapEggRidPanPuz) { // On regular eggs, puzzle, eggPanel
+				if (sceneTapEnabScript.canTapEggRidPanPuz) { // On regular eggs, puzzle, eggPanel
 					// - Egg Tapped - //
 					if (hit.collider.CompareTag("Egg")) {
 						myInputDetector.cancelDoubleTap = true;
@@ -137,6 +137,9 @@ public class ClickOnEggs : MonoBehaviour {
 					if (hit.collider.CompareTag("Puzzle")) {
 						SceneFade.SwitchScene(puzzleSceneName);
 						PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
+						sceneTapEnabScript.canTapEggRidPanPuz = false;
+						sceneTapEnabScript.canTapHelpBird = false;
+						sceneTapEnabScript.canTapPauseBtn = false;
 						//SFX puzz btn
 						audioSceneGenScript.TransitionPuzzle();
 						audioSceneGenScript.puzzleAnimationStop();
@@ -162,15 +165,15 @@ public class ClickOnEggs : MonoBehaviour {
 						}
 					}
 				}
-				if (scenTapEnabScript.canTapGoldEgg) {
+				if (sceneTapEnabScript.canTapGoldEgg) {
 					// - Golden Egg Tapped - //
 					if ((hit.collider.CompareTag("GoldenEgg"))) {
 						EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
 						eggScript.EggFound();
 						hit.collider.enabled = false;
-						scenTapEnabScript.canTapEggRidPanPuz = true;
-						scenTapEnabScript.canTapHelpBird = true;
-						scenTapEnabScript.canTapGoldEgg = false;
+						sceneTapEnabScript.canTapEggRidPanPuz = true;
+						sceneTapEnabScript.canTapHelpBird = true;
+						sceneTapEnabScript.canTapGoldEgg = false;
 						//AdjustGoldenEggCount();
 						AddEggsFound();
 						eggScript.SaveEggToCorrectFile();
@@ -227,10 +230,10 @@ public class ClickOnEggs : MonoBehaviour {
 	}
 
 	public void PlayLvlCompleteSeq() {
-		scenTapEnabScript.canTapEggRidPanPuz = false;
-		scenTapEnabScript.canTapHelpBird = false;
-		scenTapEnabScript.canTapPauseBtn = false;
-		scenTapEnabScript.canTapLvlComp = true;
+		sceneTapEnabScript.canTapEggRidPanPuz = false;
+		sceneTapEnabScript.canTapHelpBird = false;
+		sceneTapEnabScript.canTapPauseBtn = false;
+		sceneTapEnabScript.canTapLvlComp = true;
 		levelCompleteScript.inLvlCompSeqSetup = true;
 	}
 

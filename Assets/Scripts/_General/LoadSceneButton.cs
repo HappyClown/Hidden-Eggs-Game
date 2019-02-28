@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadSceneButton : MonoBehaviour {
 	private Button button;
 	public string sceneName;
+	public SceneTapEnabler sceneTapEnabScript;
 
 	void Start () {
 		button = this.GetComponent<Button>();
@@ -18,5 +19,8 @@ public class LoadSceneButton : MonoBehaviour {
 			GlobalVariables.globVarScript.toHub = true;
 		}
 		SceneFade.SwitchScene(sceneName);
+		sceneTapEnabScript.canTapEggRidPanPuz = false;
+		sceneTapEnabScript.canTapHelpBird = false;
+		sceneTapEnabScript.canTapPauseBtn = false;
 	}
 }
