@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 		if (storyAppearing) {
-			if (storyTMP.color.a >= 1) {
+			if (storyTMP.color.a >= 0.95f) {
 				storyAppearing = false;
 				storyFullyOn = true;
 			}
@@ -73,7 +73,7 @@ public class MainMenu : MonoBehaviour {
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
 		rstBtnFadeScript.FadeOut();
-		storyBtn.gameObject.SetActive(false);
+		//storyBtn.gameObject.SetActive(false);
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
 	}
@@ -97,7 +97,7 @@ public class MainMenu : MonoBehaviour {
 
 	void StoryTextAppears() {
 		storyAppearing = true;
-		storyTMP.gameObject.SetActive(true);
+		//storyTMP.gameObject.SetActive(true);
 		fadeTMPScript.FadeIn();
 		skipFrame = true;
 	}
@@ -106,7 +106,7 @@ public class MainMenu : MonoBehaviour {
 		if (storyFullyOn) {
 			fadeTMPScript.fadeDelay = false;
 			fadeTMPScript.FadeOut();
-			storyBtn.gameObject.SetActive(false);
+			//storyBtn.gameObject.SetActive(false);
 			moveClouds = true;
 			hubScript.startHubActive = true;
 		}
@@ -121,9 +121,9 @@ public class MainMenu : MonoBehaviour {
 		storyAppearing = false;
 		moveClouds = false;
 		storyTMP.gameObject.SetActive(false);
-		storyBtn.gameObject.SetActive(true);
+		//storyBtn.gameObject.SetActive(true);
 		
-		storyBtn.interactable = false;
+		//storyBtn.interactable = false;
 		fadeTMPScript.fadeDelay = true;
 
 	}
