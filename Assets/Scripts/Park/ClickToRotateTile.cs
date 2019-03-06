@@ -10,6 +10,7 @@ public class ClickToRotateTile : MonoBehaviour {
 	[Header("Mouse/Finger Stuff")]
 	public bool mouseClick;
 	public Vector3 mouseClickOGPos;
+	private bool smallReset;
 	[Header("Tile Stuff")]
 	public GameObject tileClicked;
 	public Vector3 tileClickedOGPos;
@@ -58,6 +59,7 @@ public class ClickToRotateTile : MonoBehaviour {
 		if (kitePuzzEngineScript.canPlay) {
 			// --- Click detected check to see what tile is hit
 			if (hit.collider != null && myInput.dragStarted && hit.collider.CompareTag("Tile") && hit.collider.GetComponent<TileRotation>().canBeRotated && !hit.collider.GetComponent<TileRotation>().isEmpty) {
+				smallReset = true;
 				mouseClickOGPos = mousePos;
 				// Select tile
 				mouseClick = true;
@@ -132,6 +134,16 @@ public class ClickToRotateTile : MonoBehaviour {
 					}
 				}
 			}
+		}
+		if(handheldDevice && Input.touchCount <= 0 && smallReset) {
+			tileClicked = null;
+			foreach (Transform tile in lvlTiles[kitePuzzEngineScript.curntLvl - 1].transform)
+			{
+				GameObject tileGO = tile.gameObject;
+				//tileGO.GetComponent<TileRotation>().CheckNeighbors();
+				tileGO.GetComponent<BoxCollider2D>().enabled = true;
+			}
+			smallReset = false;
 		}
 	}
 

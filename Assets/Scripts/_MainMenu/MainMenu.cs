@@ -95,6 +95,12 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
+	public void FadeMainMenu() {
+		titleFade.FadeOut();
+		playBtnFadeScript.FadeOut();
+		rstBtnFadeScript.FadeOut();
+	}
+
 	void StoryTextAppears() {
 		storyAppearing = true;
 		//storyTMP.gameObject.SetActive(true);
