@@ -5,6 +5,7 @@ using UnityEngine;
 public class inputDetector : MonoBehaviour {
 	public bool isPhoneDevice;
 	public bool cancelDoubleTap;
+	public bool twoFingerDrag;
 	#region Tap Variables
 	[Header("Tap Detection")]
 	[Tooltip("Check if you want to detect Tap")]
@@ -211,7 +212,10 @@ public class inputDetector : MonoBehaviour {
 					if(isDragging || dragStarted){
 						ResetDragging();
 					}
-				}			
+				}
+			}
+			else if (!twoFingerDrag && Input.touchCount > 1) {
+				ResetDragging();
 			}
 		}
 		#endregion
