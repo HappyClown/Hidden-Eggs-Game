@@ -5,10 +5,17 @@ using UnityEngine;
 public class StoryIntro : MonoBehaviour {
 	[Header("Scripts")]
 	public MainMenu mainMenuScript;
+	public StoryScrollingBG storyScrollBGScript;
 	[Header("Stuff")]
 	public bool inStoryIntro;
+
 	public GameObject timeNormal, timeConfused, timeDiving, gust;
 	private bool menuFaded;
+	public MeshRenderer skySprite;
+	private Material skyMat;
+	public float skyScrollSpeed;
+	private float skyScrollValue; 
+
 
 	public enum IntroStates {
 		TitleScreen, OnceUponATime, TimeFlying, Gust, TheAccident, GustsMishap, TimeConfused, EggsFalling, TimeToTheRescue, TheOneEgg, TheQuest
@@ -16,7 +23,6 @@ public class StoryIntro : MonoBehaviour {
 	public IntroStates introStates; 
 
 	void Start () {
-		
 	}
 	
 	void Update () {
@@ -60,6 +66,7 @@ public class StoryIntro : MonoBehaviour {
 	}
 
 	void OnceUponATime() {
+		storyScrollBGScript.scroll = true;
 		
 		Debug.Log(introStates);
 	}
