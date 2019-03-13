@@ -8,7 +8,8 @@ public class StoryTimeMotions : MonoBehaviour {
 	public Transform endTrans;
 	public bool timeMovesIn;
 	private float lerpValue;
-	public AnimationCurve moveInAnimCurve;
+	public AnimationCurve moveInYAnimCurve;
+	public AnimationCurve moveInXAnimCurve;
 	public AnimationCurve scaleInAnimCurve;
 	private Vector3 startPos;
 	public float endScale;
@@ -37,12 +38,17 @@ public class StoryTimeMotions : MonoBehaviour {
 				normTimeFadeScript.FadeIn();
 			}
 			lerpValue += Time.deltaTime / moveInDuration;
-			normalTime.transform.position = Vector3.Lerp(startPos, endTrans.position, moveInAnimCurve.Evaluate(lerpValue));
+
+			float moveInNewX = Mathf.Lerp(startPos.x, endTrans.position.x, moveInXAnimCurve.Evaluate(lerpValue));
+			float moveInNewY = Mathf.Lerp(startPos.y, endTrans.position.y, moveInYAnimCurve.Evaluate(lerpValue));
+			normalTime.transform.position = new Vector3(moveInNewX, moveInNewY, normalTime.transform.position.z);
+			//normalTime.transform.position = Vector3.Lerp(startPos, endTrans.position, moveInAnimCurve.Evaluate(lerpValue));
 
 			newScale = Mathf.Lerp(startScale, endScale, scaleInAnimCurve.Evaluate(lerpValue));
 			normalTime.transform.localScale = new Vector3(newScale, newScale, newScale);
 
-			if (lerpValue >= 1f) {
+
+			if (lerpValue >= 1f && !hoverUp) {
 				hoverUp = true;
 				botY = normalTime.transform.localPosition.y;
 				topY = topYTrans.localPosition.y;
