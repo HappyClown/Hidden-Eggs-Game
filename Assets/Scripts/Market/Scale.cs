@@ -42,6 +42,10 @@ public class Scale : MonoBehaviour
 	public float posLerpTimer;
 	public float platePosPerPound;
 
+	private bool setTemporalRot = false;
+	private float temporalTime = 0f;
+	private Quaternion tempCurrentRot = Quaternion.identity;
+
 
 	void Start () 
 	{
@@ -51,12 +55,12 @@ public class Scale : MonoBehaviour
 
 	void Update () 
 	{
-	curQuat = arrow.transform.rotation;
+	curQuat = arrow.transform.localRotation;
 
 	if (itemOnScale != null && itemOnScale != onScaleLastFrame)
 	{
 		plateAnimator.Play("New State", 0);
-		onDropRot = arrow.transform.rotation;
+		onDropRot = arrow.transform.localRotation;
 		onDropYPos = scalePlate.transform.localPosition.y;
 		weightDif = Mathf.Abs(weightOnScale - itemOnScale.GetComponent<Items>().weight);
 		weightOnScale = itemOnScale.GetComponent<Items>().weight;
@@ -70,7 +74,7 @@ public class Scale : MonoBehaviour
 		//if (arrowAnimator.GetCurrentAnimatorStateInfo(0).IsName("PlateGiggle")) plateAnimator.SetTrigger("Exit");
 		//plateAnimator.ResetTrigger("PlateGiggleTrig");
 		plateAnimator.Play("New State", 0);
-		onDropRot = arrow.transform.rotation;
+		onDropRot = arrow.transform.localRotation;
 		onDropYPos = scalePlate.transform.localPosition.y;
 		weightDif = Mathf.Abs(weightOnScale - 0);
 		weightOnScale = 0;
@@ -95,14 +99,43 @@ public class Scale : MonoBehaviour
 	public void AdjustScaleArrow(int weight, Quaternion startRot, float lerpTime)
 	{
 		rotLerpTimer += Time.deltaTime / (arwRotSecPerPound * lerpTime);
-		arrow.transform.rotation = Quaternion.Lerp(startRot, arwRots[weight].rotation, rotLerpTimer); 
-		if (rotLerpTimer >= 1f) 
-		{ 
-			arrow.transform.rotation = arwRots[weight].rotation;
-			arrowAnimator.SetTrigger("Wiggle"); 
-			adjustArrowRot = false;
-			rotLerpTimer = 0f;
-			return; 
+		if(lerpTime > 4 && weight > 4)
+		{
+			float secTime = 3/weight;
+			temporalTime += (Time.deltaTime /(arwRotSecPerPound *lerpTime ))*(2 - secTime);
+			if(temporalTime <= secTime){
+				arrow.transform.localRotation = Quaternion.Lerp(startRot, arwRots[3].localRotation, temporalTime); 
+			}else{
+				if(!setTemporalRot){				
+					tempCurrentRot = arrow.transform.localRotation;
+					setTemporalRot = true;
+				}
+				arrow.transform.localRotation = Quaternion.Lerp(tempCurrentRot, arwRots[weight].localRotation, rotLerpTimer); 
+				if (rotLerpTimer >= 1f) { 
+					arrow.transform.localRotation = arwRots[weight].localRotation;
+					arrowAnimator.SetTrigger("Wiggle"); 
+					adjustArrowRot = false;
+					rotLerpTimer = 0f;
+					setTemporalRot = false;
+					tempCurrentRot = Quaternion.identity;
+					temporalTime = 0f;
+					return; 
+				}
+			}
+		}
+		else{
+			arrow.transform.localRotation = Quaternion.Lerp(startRot, arwRots[weight].localRotation, rotLerpTimer); 
+			if (rotLerpTimer >= 1f) 
+			{ 
+				arrow.transform.localRotation = arwRots[weight].localRotation;
+				arrowAnimator.SetTrigger("Wiggle"); 
+				adjustArrowRot = false;
+				rotLerpTimer = 0f;
+				setTemporalRot = false;
+				tempCurrentRot = Quaternion.identity;
+				temporalTime = 0f;
+				return; 
+			}
 		}
 	}
 
