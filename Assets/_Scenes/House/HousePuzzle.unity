@@ -168,7 +168,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 103675154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 9.16, z: -2}
+  m_LocalPosition: {x: 0.5, y: 14.55, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 40924170}
@@ -239,10 +239,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &103675158
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -321,6 +324,48 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 240348763}
   m_Script: {fileID: 11500000, guid: b7ded1bf5897dcb4080ee7e457eae869, type: 3}
+--- !u!1001 &454850547
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064960444809586, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &511790641
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +391,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 511790641}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 8.15, z: -2}
+  m_LocalPosition: {x: -2.5, y: 11.45, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 40924170}
@@ -417,10 +462,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &511790645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -471,7 +519,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 695163587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 7.11, z: -2}
+  m_LocalPosition: {x: 0.5, y: 8.220001, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099343959}
@@ -542,10 +590,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &695163591
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -571,6 +622,112 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
+--- !u!1001 &759045491
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 17.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224793877508237720, guid: f6590d017bc3c234a96bcad1a157f613,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f6590d017bc3c234a96bcad1a157f613, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &759045492 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114396673171763074, guid: f6590d017bc3c234a96bcad1a157f613,
+    type: 2}
+  m_PrefabInternal: {fileID: 759045491}
+  m_Script: {fileID: 11500000, guid: bc28010026c82e24ab88c4694b62824f, type: 3}
 --- !u!114 &782015063 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114458123624669856, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -602,7 +759,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 812442789}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 8.16, z: -2}
+  m_LocalPosition: {x: -0.5, y: 11.46, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099343959}
@@ -673,10 +830,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &812442793
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -773,7 +933,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1121769276}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 7.11, z: -2}
+  m_LocalPosition: {x: -0.5, y: 8.220001, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099343959}
@@ -844,10 +1004,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &1121769280
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -924,10 +1087,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!212 &1126707934
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1094,7 +1260,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1432841268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 8.16, z: -2}
+  m_LocalPosition: {x: 0.5, y: 11.46, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099343959}
@@ -1165,10 +1331,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &1432841272
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1371,7 +1540,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1751972405}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 8.18, z: -2}
+  m_LocalPosition: {x: 1.5, y: 11.4800005, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1381637831}
@@ -1467,10 +1636,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!114 &1760548005 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114102415025031462, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -1508,7 +1680,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2092252200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 9.16, z: -2}
+  m_LocalPosition: {x: -0.5, y: 14.55, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1286927625}
@@ -1579,10 +1751,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &2092252204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1616,6 +1791,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2115131371}
+  - component: {fileID: 2115131372}
+  - component: {fileID: 2115131373}
+  - component: {fileID: 2115131374}
   m_Layer: 0
   m_Name: GameEngine
   m_TagString: Untagged
@@ -1636,6 +1814,128 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2115131372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2115131370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63ea735616491714587e02a7c3f4f31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mousePos2D: {x: 0, y: 0}
+  mousePos: {x: 0, y: 0, z: 0}
+  tutorialDone: 0
+  curntLvl: 0
+  myInput: {fileID: 2115131373}
+  mySilverEggMan: {fileID: 2115131374}
+  mySelectButton: {fileID: 759045492}
+  levelsStuff: []
+  winLvl: 0
+  itemsWait: 0
+  itemWaitAmnt: 0
+  itemWaitTimer: 0
+  initialSetupOn: 0
+  setupChsnLvl: 0
+  waitMethod: 0
+  waitTime: 0
+  waitTimer: 0
+  lvlItemHolders: []
+  itemHolder: {fileID: 0}
+  seqTimer: 0
+  iniSeqDelay: 0
+  crateDownF: 0
+  reqDownF: 0
+  itemSpawnF: 0
+  dotsSpawnF: 0
+  iniCanPlayF: 0
+  iniSeqStart: 0
+  crateDownB: 0
+  reqDownB: 0
+  itemSpawnB: 0
+  dotsSpawnB: 0
+  scrnDarkImgScript: {fileID: 0}
+  sceneTapScript: {fileID: 0}
+  puzzlePauseScript: {fileID: 0}
+  slideInHelpScript: {fileID: 0}
+  canPlay: 0
+  lvlToLoad: 0
+  setupLvlWaitTime: 0
+  chngLvlTimer: 0
+  maxLvl: 0
+  audioSceneParkPuzzScript: {fileID: 0}
+--- !u!114 &2115131373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2115131370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4357d18b7d2e474988964b80836e991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPhoneDevice: 0
+  cancelDoubleTap: 0
+  twoFingerDrag: 0
+  detectTap: 1
+  singleTap: 1
+  detectDoubleTap: 0
+  minDoubleTapTime: 0
+  detectDrag: 0
+  draggingDeathzone: 0
+  startDragTouch: {x: 0, y: 0}
+  draggingPosition: {x: 0, y: 0}
+  prevDragPosition: {x: 0, y: 0}
+  releaseDragPos: {x: 0, y: 0}
+  isDragging: 0
+  dragStarted: 0
+  dragReleased: 0
+  detectDoubleTouch: 0
+  doubleTouched: 0
+  touchOne: {x: 0, y: 0}
+  touchTwo: {x: 0, y: 0}
+  detectSwipe: 0
+  swipeDeathzoneRadius: 100
+--- !u!114 &2115131374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2115131370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16650ec3b9e7a7843a3a82401c181219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  silverEggsPickedUp: 0
+  hollowSilEgg: {fileID: 21300000, guid: 6589b1269206229449c3559558748f03, type: 3}
+  lvlSilverEggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  activeSilverEggs: []
+  allSilEggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  allSilverEggsScripts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  silverEggsActive: 0
+  skippedSeq: 0
+  amntSilEggsTapped: 0
+  inputDetScript: {fileID: 2115131373}
+  mainPuzzleEngScript: {fileID: 2115131372}
 --- !u!1 &2117977057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,7 +1961,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2117977057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 9.16, z: -2}
+  m_LocalPosition: {x: 1.5, y: 14.55, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1286927625}
@@ -1732,10 +2032,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &2117977061
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1792,7 +2095,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2135916264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 8.15, z: -2}
+  m_LocalPosition: {x: -1.5, y: 11.45, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1099343959}
@@ -1863,10 +2166,13 @@ MonoBehaviour:
   matched: 0
   falling: 0
   changeCell: 0
+  showConnections: 0
   minDistance: 0.1
   gravity: 0.98
   speed: 0
-  maxFallingSpeed: 0.15
+  maxFallingSpeed: 0.2
+  maxFallingWaterSpeed: 0.1
+  waterYpos: 3
 --- !u!61 &2135916268
 BoxCollider2D:
   m_ObjectHideFlags: 0

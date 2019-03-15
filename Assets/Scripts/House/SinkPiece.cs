@@ -14,7 +14,7 @@ public class SinkPiece : MonoBehaviour {
 	private Vector3 initialPos;
 	public PuzzleCell StartingCell, currentCell, nextCell;
 	public bool active, selected, matched, falling, changeCell,showConnections;
-	public float minDistance, gravity, speed, maxFallingSpeed;
+	public float minDistance, gravity, speed, maxFallingSpeed, maxFallingWaterSpeed, waterYpos;
 	// Use this for initialization
 	void Start () {
 		initialPos = this.gameObject.transform.position;
@@ -40,8 +40,15 @@ public class SinkPiece : MonoBehaviour {
 				}
 				else{
 					speed += gravity*Time.deltaTime;
-					if(speed > maxFallingSpeed){
-						speed = maxFallingSpeed;
+					if(this.transform.position.y > waterYpos){
+						if(speed > maxFallingSpeed){
+							speed = maxFallingSpeed;
+						}
+					}
+					else{
+						if(speed > maxFallingWaterSpeed){
+							speed = maxFallingWaterSpeed;
+						}
 					}
 					this.transform.position = Vector2.MoveTowards(this.transform.position,currentCell.gameObject.transform.position,speed);
 				}
