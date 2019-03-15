@@ -5,8 +5,8 @@ using UnityEngine;
 public class StoryTimeMotions : MonoBehaviour {
 	public GameObject normalTime;
 	[Header("Move In")]
-	public Transform endTrans;
 	public bool timeMovesIn;
+	public Transform endTrans;
 	private float lerpValue;
 	public AnimationCurve moveInYAnimCurve;
 	public AnimationCurve moveInXAnimCurve;
@@ -18,7 +18,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	[Header("Hover")]
 	public float hoverDuration;
 	private float hoverLerpValue;
-	public bool hoverUp, hoverDown;
+	private bool hoverUp, hoverDown;
 	public Transform topYTrans, botYTrans;
 	private float topY, botY;
 	private float newXMagnitude;
