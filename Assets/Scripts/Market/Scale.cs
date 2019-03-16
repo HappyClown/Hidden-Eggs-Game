@@ -98,18 +98,21 @@ public class Scale : MonoBehaviour
 
 	public void AdjustScaleArrow(int weight, Quaternion startRot, float lerpTime)
 	{
-		rotLerpTimer += Time.deltaTime / (arwRotSecPerPound * lerpTime);
-		if(lerpTime > 4 && weight > 4)
+		
+		if(lerpTime > 4)
 		{
-			float secTime = 3/weight;
-			temporalTime += (Time.deltaTime /(arwRotSecPerPound *lerpTime ))*(2 - secTime);
-			if(temporalTime <= secTime){
+			float secTime = Mathf.Abs((3 - weight)/lerpTime);
+			float restTime = 1 - secTime;
+			temporalTime += (Time.deltaTime /(arwRotSecPerPound *lerpTime * secTime ));
+			Debug.Log("temporalTime: "+temporalTime.ToString()+"  secTime: "+secTime.ToString()+" weight: "+weight.ToString());
+			if(temporalTime <= 1){
 				arrow.transform.localRotation = Quaternion.Lerp(startRot, arwRots[3].localRotation, temporalTime); 
 			}else{
 				if(!setTemporalRot){				
 					tempCurrentRot = arrow.transform.localRotation;
 					setTemporalRot = true;
 				}
+				rotLerpTimer += Time.deltaTime / (arwRotSecPerPound * lerpTime * restTime);
 				arrow.transform.localRotation = Quaternion.Lerp(tempCurrentRot, arwRots[weight].localRotation, rotLerpTimer); 
 				if (rotLerpTimer >= 1f) { 
 					arrow.transform.localRotation = arwRots[weight].localRotation;
@@ -124,6 +127,7 @@ public class Scale : MonoBehaviour
 			}
 		}
 		else{
+			rotLerpTimer += Time.deltaTime / (arwRotSecPerPound * lerpTime);
 			arrow.transform.localRotation = Quaternion.Lerp(startRot, arwRots[weight].localRotation, rotLerpTimer); 
 			if (rotLerpTimer >= 1f) 
 			{ 
