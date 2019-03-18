@@ -2571,8 +2571,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 333389964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.57, y: 0, z: -1.19}
-  m_LocalScale: {x: 15, y: 15, z: 15}
+  m_LocalPosition: {x: -28.22, y: 0, z: -1.19}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
   m_RootOrder: 0
@@ -2612,7 +2612,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 143747122a03e7948ad14fea65b86ca5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ba03cf771feb4f4ba55775880c50228, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5841,7 +5841,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 786443890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25.26, y: 0.42, z: -1.19}
+  m_LocalPosition: {x: 28.22, y: 0.42, z: -1.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
@@ -13517,7 +13517,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1675047663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.57, y: 0.42, z: -1.19}
+  m_LocalPosition: {x: -28.22, y: 0.42, z: -1.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
@@ -16060,6 +16060,7 @@ MonoBehaviour:
   storyScrollBGScript: {fileID: 2105523230}
   storyTimeMoScript: {fileID: 2105523231}
   storyTextScript: {fileID: 2105523232}
+  storyGustScript: {fileID: 2105523233}
   inStoryIntro: 0
   onceUponATimeEvents:
   - 0
@@ -16068,7 +16069,13 @@ MonoBehaviour:
   timeFlyingEvents:
   - 0
   gustEvents:
-  - 0
+  - 0.5
+  - 1.5
+  - 4
+  theAccidentEvents:
+  - 2
+  boardEvents: []
+  boardBools: 
   introStates: 0
 --- !u!114 &2105523230
 MonoBehaviour:
@@ -16201,6 +16208,8 @@ MonoBehaviour:
   endScale: 1
   moveInDuration: 4
   hoverDuration: 2.5
+  hoverUp: 0
+  hoverDown: 0
   topYTrans: {fileID: 553822880}
   botYTrans: {fileID: 336572318}
   newXMagMin: 2
@@ -16317,7 +16326,6 @@ MonoBehaviour:
   startTrans: {fileID: 1675047664}
   midTrans: {fileID: 772202691}
   endTrans: {fileID: 786443891}
-  moveMid: 0
   moveInXCurve:
     serializedVersion: 2
     m_Curve:
@@ -16342,50 +16350,91 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  moveInYCurve:
+  moveOutXCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2.601709
-      outSlope: 2.601709
+      inSlope: -0.029655172
+      outSlope: -0.029655172
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.13881542
+      outWeight: 0.046511628
     - serializedVersion: 3
-      time: 0.5
+      time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 1.120093
+      outSlope: 1.120093
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.04433137
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  moveInDur: 1.5
+  moveOutDur: 1
+  hoverYCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.115895
+      outSlope: 3.115895
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.14898255
+    - serializedVersion: 3
+      time: 0.18
+      value: 0.6
+      inSlope: 3.2556493
+      outSlope: 3.2556493
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.502704
+      value: 0.98973453
+      inSlope: 0.0035858518
+      outSlope: 0.0035858518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11745157
+    - serializedVersion: 3
+      time: 0.82
+      value: 0.6
+      inSlope: -3.088511
+      outSlope: -3.088511
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -2.9260685
-      outSlope: -2.9260685
+      value: 0.002083404
+      inSlope: -2.9233227
+      outSlope: -2.9233227
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.16491759
+      inWeight: 0.22529067
       outWeight: 0.33333334
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  moveInDur: 1.5
-  moveInUpDownDurMin: 0.2
-  moveInUpDownDurMax: 0.35
-  moveInYMultMin: 0.5
-  moveInYMultMax: 1
-  midHover: 0
-  hoverWithCircle: 1
+  hoverUpDownDurMin: 0.25
+  hoverUpDownDurMax: 0.35
+  hoverYMultMin: 0.5
+  hoverYMultMax: 1
+  hoverWithCircle: 0
   hoverRandomRadius: 1
-  hoverDur: 0.2
-  moveEnd: 0
-  moveOutDur: 1
+  hoverCircleDur: 0.25
+  yHover: 0
 --- !u!1 &2105710269
 GameObject:
   m_ObjectHideFlags: 0

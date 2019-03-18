@@ -18,7 +18,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	[Header("Hover")]
 	public float hoverDuration;
 	private float hoverLerpValue;
-	private bool hoverUp, hoverDown;
+	public bool hoverUp, hoverDown;
 	public Transform topYTrans, botYTrans;
 	private float topY, botY;
 	private float newXMagnitude;
@@ -38,16 +38,12 @@ public class StoryTimeMotions : MonoBehaviour {
 				normTimeFadeScript.FadeIn();
 			}
 			lerpValue += Time.deltaTime / moveInDuration;
-
 			float moveInNewX = Mathf.Lerp(startPos.x, endTrans.position.x, moveInXAnimCurve.Evaluate(lerpValue));
 			float moveInNewY = Mathf.Lerp(startPos.y, endTrans.position.y, moveInYAnimCurve.Evaluate(lerpValue));
 			normalTime.transform.position = new Vector3(moveInNewX, moveInNewY, normalTime.transform.position.z);
 			//normalTime.transform.position = Vector3.Lerp(startPos, endTrans.position, moveInAnimCurve.Evaluate(lerpValue));
-
 			newScale = Mathf.Lerp(startScale, endScale, scaleInAnimCurve.Evaluate(lerpValue));
 			normalTime.transform.localScale = new Vector3(newScale, newScale, newScale);
-
-
 			if (lerpValue >= 1f && !hoverUp) {
 				hoverUp = true;
 				botY = normalTime.transform.localPosition.y;
@@ -59,6 +55,7 @@ public class StoryTimeMotions : MonoBehaviour {
 				timeMovesIn = false;
 			}
 		}
+
 		if (hoverUp) {
 			hoverLerpValue += Time.deltaTime / hoverDuration;
 			float newY = Mathf.Lerp(botY, topY, hoverYAnimCurve.Evaluate(hoverLerpValue));
@@ -86,5 +83,9 @@ public class StoryTimeMotions : MonoBehaviour {
 				newXMagnitude = Random.Range(newXMagMin, newXMagMax);
 			}
 		}
+	}
+
+	public void SetPosMid() {
+		normalTime.transform.position = endTrans.position;
 	}
 }
