@@ -16,9 +16,13 @@ public class HelpIntroText : MonoBehaviour {
 	[Header ("Script References")]
 	public BirdIntroSave birdIntroSaveScript;
 	public SlideInHelpBird slideInHelpScript;
+	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start () {
 		nextBtnObj.GetComponent<Button>().onClick.AddListener(NextIntroText);
+		if (!audioSceneGenScript) {
+			audioSceneGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSceneGeneral>();
+		}
 	}
 
 	void Update () {

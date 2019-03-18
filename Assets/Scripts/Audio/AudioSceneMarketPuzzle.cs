@@ -49,6 +49,7 @@ public class AudioSceneMarketPuzzle :  AudioScenePuzzleGeneric
     void Start () 
 	{
         ResetItemBtn.onClick.AddListener(buttonSFX);
+        BackBtn.onClick.AddListener(Transition);
         ToggleLevelPuz1.onClick.AddListener(buttonSFX);
 		ToggleLevelPuz2.onClick.AddListener(buttonSFX);
 		ToggleLevelPuz3.onClick.AddListener(buttonSFX);

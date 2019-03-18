@@ -18,7 +18,9 @@ public class SceneSilverEgg : MonoBehaviour {
 	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start() {
-		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+		if (!audioSceneGenScript) {
+			audioSceneGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSceneGeneral>();
+		}
 	}
 
 	void Update () 
@@ -35,6 +37,7 @@ public class SceneSilverEgg : MonoBehaviour {
 					silEggAdded = true;
 				}
 				if (!trailFX.isPlaying) {
+					audioSceneGenScript.silverEggsPanel(this.gameObject);
 					trailFX.Play(true);
 					burstFX.Play(true);
 				}
@@ -57,9 +60,6 @@ public class SceneSilverEgg : MonoBehaviour {
 	}
 	
 	public void SendToPanel (int numInPanel, float myDelay) {
-		
-		Debug.Log("Sound - silver eggs to panel");
-		audioSceneGenScript.silverEggsPanel(this.gameObject);
 		sendToPanel = true;
 		posInPanel = numInPanel;
 		spawnDelay = myDelay;

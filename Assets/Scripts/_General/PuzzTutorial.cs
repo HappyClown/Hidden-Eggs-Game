@@ -11,11 +11,15 @@ public class PuzzTutorial : MonoBehaviour {
 	public LevelSelectionButtons levelSelectScript;
 	public MainPuzzleEngine mainPuzzScript;
 	public SceneTapEnabler sceneTapScript;
+	public AudioHelperBird audioHelperBirdScript;
 	private bool showTut;
 
 	void Start () {
 		currentTutFadeScript = tutFadeScripts[0];
 		lastTutFadeScript = tutFadeScripts[tutFadeScripts.Count - 1];
+		if (!audioHelperBirdScript) {
+			audioHelperBirdScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioHelperBird>();
+		}
 	}
 
 	void Update () {
@@ -38,6 +42,7 @@ public class PuzzTutorial : MonoBehaviour {
 				currentTutInList++;
 				currentTutFadeScript = tutFadeScripts[currentTutInList];
 				currentTutFadeScript.FadeIn();
+				audioHelperBirdScript.buttonSFX();
 			}
 			else if (lastTutFadeScript.shown) {
 				slideInHelpScript.MoveBirdUpDown();
@@ -48,6 +53,7 @@ public class PuzzTutorial : MonoBehaviour {
 				currentTutFadeScript.FadeOut();
 				currentTutFadeScript = tutFadeScripts[0];
 				currentTutInList = 0;
+				audioHelperBirdScript.buttonSFX();
 			}
 		}
 	}

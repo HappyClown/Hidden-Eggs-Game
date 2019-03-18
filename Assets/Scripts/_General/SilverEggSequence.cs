@@ -35,7 +35,7 @@ public class SilverEggSequence : MonoBehaviour
 	private bool hoverUp = true;
 	private float lerpTime;
 	
-	//public AudioScenePuzzleGeneric audioScenePuzzScript;
+	public AudioScenePuzzleGeneric audioScenePuzzScript;
 	public inputDetector inputDetScript;
 	public SilverEggsManager silverEggsManScript;
 
@@ -44,7 +44,9 @@ public class SilverEggSequence : MonoBehaviour
 	void Awake() {
 		iniHovCurDur = hoverCurDur;
 		iniStartHoverDelay = startHoverDelay;
-		//audioScenePuzzScript =  GameObject.Find ("Audio").GetComponent<AudioScenePuzzleGeneric>();
+		if (!audioScenePuzzScript) {
+			audioScenePuzzScript =  GameObject.FindGameObjectWithTag ("Audio").GetComponent<AudioScenePuzzleGeneric>();
+		}
 	}
 
 	void Update () {
@@ -117,7 +119,7 @@ public class SilverEggSequence : MonoBehaviour
 		startPos = this.transform.localPosition;
 		startScale = this.transform.localScale;
 
-		//audioScenePuzzScript.SilverEggTrailSFX();
+		audioScenePuzzScript.SilverEggTrailSFX();
 		//trailFX.Play();
 		//shimmerFX.Play();
 	}

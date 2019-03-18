@@ -42,7 +42,9 @@ public class HelperBirdIntro : MonoBehaviour {
 			dissMat.SetFloat("_Threshold", 0f);
 		}
 		ogBirdPos = birdObj.transform.position;
-		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+		if (!audioSceneGenScript) {
+			audioSceneGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSceneGeneral>();
+		}
 	}
 	
 	void Update () {

@@ -15,7 +15,9 @@ public class AudioVolumeSettings : MonoBehaviour
 
 
     //On the slider keep the values between 0 and 1 ;
+    [Range(0, 1)]
     public float MusicVolume = 0.5f;
+    [Range(0, 1)]
     public float SFXVolume = 0.5f;
 
     public float MasterVolume = 0.8f;

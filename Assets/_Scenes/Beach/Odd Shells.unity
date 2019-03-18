@@ -307,6 +307,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759646}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &3151283
@@ -6215,6 +6216,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759646}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &62816890
@@ -8490,6 +8492,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759646}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &195248178
@@ -8790,6 +8793,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759646}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &197415124
@@ -21166,7 +21170,7 @@ GameObject:
   - component: {fileID: 372008929}
   m_Layer: 0
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21205,6 +21209,32 @@ MonoBehaviour:
   playingMelody: 0
   indexNotePlaying: 0
   randomBeat: 0
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  playingPoints: []
+  playDuration: 1
 --- !u!4 &372008927
 Transform:
   m_ObjectHideFlags: 0
@@ -49709,6 +49739,11 @@ Prefab:
       propertyPath: m_Name
       value: Canvas - PuzzlePauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 114857873799661088, guid: 1da3cb9ddfe2bbe47b9b488439467e45,
+        type: 2}
+      propertyPath: sceneTapEnabScript
+      value: 
+      objectReference: {fileID: 654759649}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1da3cb9ddfe2bbe47b9b488439467e45, type: 2}
   m_IsPrefabParent: 0
@@ -51399,6 +51434,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759646}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1057703740
@@ -54197,6 +54233,7 @@ MonoBehaviour:
   levelSelectScript: {fileID: 654759647}
   mainPuzzScript: {fileID: 654759645}
   sceneTapScript: {fileID: 654759649}
+  audioHelperBirdScript: {fileID: 372008928}
 --- !u!114 &1151561697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54254,7 +54291,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   scenTapEnabScript: {fileID: 654759649}
   lvlTapManScript: {fileID: 0}
-  audioHelperBirdScript: {fileID: 0}
+  audioHelperBirdScript: {fileID: 372008928}
 --- !u!1 &1151577337
 GameObject:
   m_ObjectHideFlags: 0
@@ -61258,6 +61295,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759646}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1262618803

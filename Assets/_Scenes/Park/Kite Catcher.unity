@@ -384,9 +384,10 @@ GameObject:
   m_Component:
   - component: {fileID: 17080953}
   - component: {fileID: 17080954}
+  - component: {fileID: 17080955}
   m_Layer: 0
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,10 +426,28 @@ MonoBehaviour:
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
   buttonEvent: event:/SFX/SFX_General/Button
+  audioHelperBirdScript: {fileID: 0}
   pickupTileEvent: event:/SFX/Puzzle_Park/Puzzle_TilePickUp
   dropTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileDrop
   rotateTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileRotate
   connectSparkEvent: event:/SFX/Puzzle_Park/Puzzle_Tile_ConnectFX
+--- !u!114 &17080955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 17080952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef46ec81ab6ece540be15af2baa94988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdHelpBtn: {fileID: 2042731750}
+  RiddleBtn: {fileID: 2042731750}
+  HintBtn: {fileID: 2042731750}
+  birdEvent: event:/SFX/Park/Park_Bird
+  birdFrozenEvent: event:/SFX/Park/Park_Bird_Frozen
+  buttonEvent: event:/SFX/SFX_General/Button
 --- !u!1 &36443641
 GameObject:
   m_ObjectHideFlags: 0
@@ -27284,6 +27303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPhoneDevice: 0
   cancelDoubleTap: 0
+  twoFingerDrag: 0
   detectTap: 1
   singleTap: 0
   detectDoubleTap: 0
@@ -27340,6 +27360,7 @@ MonoBehaviour:
   amntSilEggsTapped: 0
   inputDetScript: {fileID: 654759647}
   mainPuzzleEngScript: {fileID: 654759646}
+  audioScenePuzzScript: {fileID: 0}
 --- !u!114 &654759649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91729,6 +91750,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915421
@@ -91989,6 +92011,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915427
@@ -92249,6 +92272,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915433
@@ -92525,6 +92549,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915440
@@ -92785,6 +92810,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915446
@@ -93106,6 +93132,7 @@ MonoBehaviour:
   hoverSeq: 0
   iniHovCurDur: 0
   iniStartHoverDelay: 0
+  audioScenePuzzScript: {fileID: 0}
   inputDetScript: {fileID: 654759647}
   silverEggsManScript: {fileID: 654759648}
 --- !u!114 &1819915454
@@ -107750,6 +107777,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   scenTapEnabScript: {fileID: 0}
   lvlTapManScript: {fileID: 0}
+  audioHelperBirdScript: {fileID: 0}
 --- !u!114 &1902172821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108903,6 +108931,12 @@ Transform:
   m_Father: {fileID: 1819915443}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2042731750 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114044909919022512, guid: 1cc8b26218f05ba44950789f9c027f80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1123227164}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &2047590847
 GameObject:
   m_ObjectHideFlags: 0

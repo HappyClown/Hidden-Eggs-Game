@@ -24,7 +24,9 @@ public class PuzzleUnlock : MonoBehaviour {
 	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start() {
-		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+		if (!audioSceneGenScript) {
+			audioSceneGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSceneGeneral>();
+		}
 	}
 
 	void Update () {

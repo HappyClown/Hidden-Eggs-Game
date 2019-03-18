@@ -36,7 +36,9 @@ public class SlideInHelpBird : MonoBehaviour {
 
 	void Start () {
 		totalDist = Vector2.Distance(hiddenHelpBirdPos.position, shownHelpBirdPos.position);
-		audioHelperBirdScript = GameObject.Find("Audio").GetComponent<AudioHelperBird>();
+		if (!audioHelperBirdScript) {
+			audioHelperBirdScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioHelperBird>();
+		}
 	}
 
 	void Update () {

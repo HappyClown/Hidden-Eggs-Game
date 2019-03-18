@@ -43,7 +43,11 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
     public bool timerReached = false;
     public bool playingMelody = false;
     public int indexNotePlaying =0;
-    public double randomBeat = 0; 
+    public double randomBeat = 0;
+    public AnimationCurve animCurve;
+    public List<float> playingPoints;
+    private float interval, curntInterval;
+    public float playDuration = 1f;
 
     void Start () 
 	{
@@ -65,23 +69,40 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
 
 	void Update () 
 	{
-        if(playingMelody){
-            if(!timerReached){
-                timer += Time.deltaTime;
-                randomBeat = Random.Range(0.1f,0.2f);
-            }
-            if(!timerReached && timer>randomBeat)
-            {
-                Debug.Log("Note Play : "+indexNotePlaying);
+        if (Input.GetKeyDown("space")) { // Deleeette MmeeeEEeeEEe!!!...
+            setPlayingMelody(true);
+        }
+        // if(playingMelody){
+        //     if(!timerReached){
+        //         timer += Time.deltaTime;
+        //         randomBeat = Random.Range(0.1f,0.2f);
+
+        //     }
+        //     if(!timerReached && timer>randomBeat)
+        //     {
+        //         Debug.Log("Note Play : "+indexNotePlaying);
+        //         playMusicList((string)listNotesTapped[indexNotePlaying]);
+        //         if(indexNotePlaying == listNotesTapped.Count-1){
+        //             timerReached = true;
+        //             indexNotePlaying = 0;
+        //             playingMelody = false;
+        //         }
+        //         else
+        //             indexNotePlaying++;
+        //             timer = 0;
+        //     }
+        // }
+        if (playingMelody) {
+            timer += Time.deltaTime / playDuration;
+            if (timer >= playingPoints[indexNotePlaying]) {
                 playMusicList((string)listNotesTapped[indexNotePlaying]);
-                if(indexNotePlaying == listNotesTapped.Count-1){
-                    timerReached = true;
-                    indexNotePlaying = 0;
+                indexNotePlaying++;
+                if (indexNotePlaying >= listNotesTapped.Count - 1) {
                     playingMelody = false;
-                }
-                else
-                    indexNotePlaying++;
                     timer = 0;
+                    playingPoints.Clear();
+                    listNotesTapped.Clear();
+                }
             }
         }
 	}
@@ -256,5 +277,12 @@ public void playMusicList(string s)
 
 public void setPlayingMelody(bool isPlaying){
     playingMelody = isPlaying;
+    interval = 1f / (listNotesTapped.Count - 1);
+    for(int i = 0; i < listNotesTapped.Count; i++) 
+    {
+        playingPoints.Add(animCurve.Evaluate(interval * i));
+    }
+
+    
 }
 }
