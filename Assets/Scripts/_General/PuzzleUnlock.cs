@@ -54,6 +54,7 @@ public class PuzzleUnlock : MonoBehaviour {
 		//Play FX's through animation events
 		puzzPiece.transform.parent = puzzParentObj.transform.parent;
 		audioSceneGenScript.puzzlePieceAnimation();
+		Debug.Log("sound -  Puzzle piece");
 	}
 
 	public void PuzzleUnlockCheck(int eggsInPanel) {
@@ -63,7 +64,9 @@ public class PuzzleUnlock : MonoBehaviour {
 	}
 
 	public void ActivatePuzzle() {
-		audioSceneGenScript.puzzleAnimation();
+		//audioSceneGenScript.puzzleAnimation();
+		audioSceneGenScript.puzzleAnimationStart(puzzClickArea);
+		Debug.Log("sound - Puzzle unlocked");
 		puzzClickArea.SetActive(true);
 		puzzPiece.SetActive(false);
 		puzzShimFX.Play(true);

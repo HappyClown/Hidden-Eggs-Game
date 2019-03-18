@@ -19906,6 +19906,7 @@ MonoBehaviour:
   amntSilEggsTapped: 0
   inputDetScript: {fileID: 991552000}
   mainPuzzleEngScript: {fileID: 991551997}
+  audioScenePuzzScript: {fileID: 0}
 --- !u!1 &1013700553
 GameObject:
   m_ObjectHideFlags: 0
@@ -46448,6 +46449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1743775733}
   - component: {fileID: 1743775732}
+  - component: {fileID: 1743775734}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -46466,15 +46468,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b2d8bfeceeb8645a25366576489594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackMarketBtn: {fileID: 1139011425}
-  ResetItemBtn: {fileID: 2051489600}
+  BackBtn: {fileID: 1139011425}
   ToggleLevelPuz1: {fileID: 1905070410}
   ToggleLevelPuz2: {fileID: 101442207}
   ToggleLevelPuz3: {fileID: 288248651}
+  ResetItemBtn: {fileID: 2051489600}
   sceneMusicEvent: event:/Music/MusicScenes/Market _Puzzle
   transEvent: event:/SFX/SFX_General/TransitionsSound
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
+  buttonEvent: event:/SFX/SFX_General/Button
+  audioHelperBirdScript: {fileID: 1743775734}
   pickupFruitEvent: event:/SFX/Puzzle_Market/Puzzle_fruitPickUp
   dropFruitScaleEvent: event:/SFX/Puzzle_Market/Puzzle_fruitDropScale
   dropFruitCrateEvent: event:/SFX/Puzzle_Market/Puzzle_fruitDropCrate
@@ -46484,7 +46488,6 @@ MonoBehaviour:
   scaleWiggleEvent: event:/SFX/Puzzle_Market/Puzzle_scaleWiggle
   crateSlideDownEvent: event:/SFX/Puzzle_Market/Puzzle_crateSlideDown
   crateSlideRightEvent: event:/SFX/Puzzle_Market/Puzzle_crateSlideRight
-  buttonEvent: event:/SFX/SFX_General/Button
 --- !u!4 &1743775733
 Transform:
   m_ObjectHideFlags: 0
@@ -46498,6 +46501,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1743775734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1743775731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef46ec81ab6ece540be15af2baa94988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdHelpBtn: {fileID: 610149087}
+  RiddleBtn: {fileID: 610149087}
+  HintBtn: {fileID: 610149087}
+  birdEvent: event:/SFX/Market/Market_Bird
+  birdFrozenEvent: event:/SFX/Market/Market_Bird_Frozen
+  buttonEvent: event:/SFX/SFX_General/Button
 --- !u!1 &1749358258
 GameObject:
   m_ObjectHideFlags: 0

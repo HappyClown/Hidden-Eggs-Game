@@ -3,32 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AudioSceneMarketPuzzle : MonoBehaviour 
+public class AudioSceneMarketPuzzle :  AudioScenePuzzleGeneric
 {
-    [Header("Buttons")]
-
-    public Button BackMarketBtn;
-    public Button ResetItemBtn;
-    public Button ToggleLevelPuz1;
-	public Button ToggleLevelPuz2;
-	public Button ToggleLevelPuz3;
- 	[Header(" Music")]
-    [FMODUnity.EventRef]
-    public string sceneMusicEvent;
-    public FMOD.Studio.EventInstance sceneMusic;
-	
-    [FMODUnity.EventRef]
-    public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
-    public FMOD.Studio.EventInstance transMusic;
-
-    [Header("  SFX")]
-    [FMODUnity.EventRef]
-    public string silverEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Silver";
-    public FMOD.Studio.EventInstance silverEggClickSound;
-
-    [FMODUnity.EventRef]
-    public string silverEggTrailEvent = "event:/SFX/SFX_General/FX_trail";
-    public FMOD.Studio.EventInstance silverEggTrailSound;
+[Header("SFX")]
 
     [FMODUnity.EventRef]
     public string pickupFruitEvent;
@@ -67,14 +44,10 @@ public class AudioSceneMarketPuzzle : MonoBehaviour
     public string crateSlideRightEvent;
     public FMOD.Studio.EventInstance crateSlideRightSound;
 
-    
-    [FMODUnity.EventRef]
-    public string buttonEvent = "event:/SFX/SFX_General/Button";
-    public FMOD.Studio.EventInstance buttonSound;
+
     
     void Start () 
 	{
-        BackMarketBtn.onClick.AddListener(TransitionMarket);
         ResetItemBtn.onClick.AddListener(buttonSFX);
         ToggleLevelPuz1.onClick.AddListener(buttonSFX);
 		ToggleLevelPuz2.onClick.AddListener(buttonSFX);
@@ -90,36 +63,6 @@ public class AudioSceneMarketPuzzle : MonoBehaviour
 		
 	}
 
-    //////////////////
-    //  MUSIC
-    //////////////////
-
-    public void PlaySceneMusic()
-    {
-        sceneMusic.start();
-    }
-
-    public void StopSceneMusic()
-    {
-        sceneMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-    }
-     public void TransitionMarket()
-    {
-        //puzzle button sound
-        buttonSFX();
-
-        //stop current music
-        StopSceneMusic();
-        Debug.Log("Current Music Stopped :");
-		
-		PlayTransitionMusic();
-
-    }
-	
-	public void PlayTransitionMusic()
-    {
-        transMusic.start();
-    }
     //////////////////
     //  SFX
     //////////////////
@@ -166,27 +109,7 @@ public class AudioSceneMarketPuzzle : MonoBehaviour
         crateSlideDownSound = FMODUnity.RuntimeManager.CreateInstance(crateSlideDownEvent);
         crateSlideDownSound.start();
     }
-
-    //GENERAL 
-    public void silverEggSnd()
-    {
-       silverEggClickSound = FMODUnity.RuntimeManager.CreateInstance(silverEggClickEvent);
-       silverEggClickSound.start();
-    }
-
-	public void SilverEggTrailSFX () 
-	{
-		silverEggTrailSound = FMODUnity.RuntimeManager.CreateInstance(silverEggTrailEvent);
-        silverEggTrailSound.start();
-	}
-
-    public void buttonSFX()
-    {
-        //button sound
-        buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
-        buttonSound.start();
-    }
-
+ 
     //PAnel SFX
     public void openPanel()
     {
@@ -199,4 +122,5 @@ public class AudioSceneMarketPuzzle : MonoBehaviour
         panelCloseSound = FMODUnity.RuntimeManager.CreateInstance(panelCloseEvent);
         panelCloseSound.start();
     }
+    
 }

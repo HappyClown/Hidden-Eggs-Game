@@ -149,7 +149,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
 						silEggTappedScript.StartSilverEggAnim();
 						hit.collider.enabled = false;
-						//audioSceneParkPuzzScript.silverEgg();
+		
 						if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
 						mySilverEggMan.SaveSilverEggsToCorrectFile();
 						mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
@@ -192,6 +192,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 	// Level complete, load silver eggs, start crate animation.
 	public new void SilverEggsSetup()
 	{
+	
 		//Debug.Log("New Level Setup");
 		canPlay = false;
 

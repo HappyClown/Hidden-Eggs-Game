@@ -33,6 +33,18 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
     public List<string> listSoundsUsed;
 
     public bool musicalSounds = true;
+
+    //////////// tests pour melodie /////////
+	[Header("TESTS MELODIE ")]
+
+    public List<string> listNotesTapped;
+    public FMOD.Studio.EventInstance notesTappedMelody;
+    public float timer =0;
+    public bool timerReached = false;
+    public bool playingMelody = false;
+    public int indexNotePlaying =0;
+    public double randomBeat = 0; 
+
     void Start () 
 	{
         BackBtn.onClick.AddListener(Transition);
@@ -53,7 +65,25 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
 
 	void Update () 
 	{
-		
+        if(playingMelody){
+            if(!timerReached){
+                timer += Time.deltaTime;
+                randomBeat = Random.Range(0.1f,0.2f);
+            }
+            if(!timerReached && timer>randomBeat)
+            {
+                Debug.Log("Note Play : "+indexNotePlaying);
+                playMusicList((string)listNotesTapped[indexNotePlaying]);
+                if(indexNotePlaying == listNotesTapped.Count-1){
+                    timerReached = true;
+                    indexNotePlaying = 0;
+                    playingMelody = false;
+                }
+                else
+                    indexNotePlaying++;
+                    timer = 0;
+            }
+        }
 	}
 
     //////////////////
@@ -86,6 +116,8 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
 
         //clear the list of Used Ocean Sound
         listSoundsUsed.Clear();
+        listNotesTapped.Clear();
+        listNotesTapped = new List<string>();
 
     }
 	
@@ -101,8 +133,6 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
     {
         //button sound
         buttonSFX();
-        //reset the list of Used Ocean Sounds
-        listSoundsUsed.Clear();
     }
 
     public void BubblesSFX()
@@ -195,11 +225,36 @@ public void playOceanSound(string oceanSoundEvent)
     //play the random chosen ocean sound
     currentClamSound = FMODUnity.RuntimeManager.CreateInstance(oceanSoundEvent);
     currentClamSound.start();
+
 }
 
 public void newLevel()
 {
     listSoundsUsed.Clear();
+    //reset the list of Used Ocean Sounds
+    listSoundsUsed.Clear();
+	//TEST MELODY 
+    //setPlayingMelody(true);
 }
 
+///////tests pour melodie/////
+public void addToMusicList(string clamSoundUsed)
+{   
+    //listNotesTapped.Add(clamSoundUsed);
+
+    if(!listNotesTapped.Contains(clamSoundUsed))
+        listNotesTapped.Add(clamSoundUsed);
+    
+}
+
+public void playMusicList(string s)
+{
+        notesTappedMelody = FMODUnity.RuntimeManager.CreateInstance(s);
+        notesTappedMelody.start();
+        
+}
+
+public void setPlayingMelody(bool isPlaying){
+    playingMelody = isPlaying;
+}
 }

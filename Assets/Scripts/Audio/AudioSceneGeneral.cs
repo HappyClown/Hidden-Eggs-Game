@@ -10,9 +10,6 @@ public class AudioSceneGeneral : MonoBehaviour
 	[Header("Buttons")]
 
     public Button BackMenuBtn;
-    public Button BirdHelpBtn;
-    public Button RiddleBtn;
-    public Button HintBtn;
     public Button lvlCompleteBtn;
 
 
@@ -74,10 +71,7 @@ public class AudioSceneGeneral : MonoBehaviour
     public string puzzleButtonEvent ;
     public FMOD.Studio.EventInstance puzzleButtonSound;
 
-	[Header("Bird Help & Unfrozen FX")]
-    [FMODUnity.EventRef]
-    public string birdEvent;
-    public FMOD.Studio.EventInstance birdSound;
+	[Header("Bird Unfrozen FX")]
 
     [FMODUnity.EventRef]
     public string unfrozenBirdEvent = "event:/SFX/SFX_General/UnfrozenBird";
@@ -110,17 +104,21 @@ public class AudioSceneGeneral : MonoBehaviour
 
     public GameObject egg;
 
+    ////////
+
+    public AudioHelperBird audioHelperBirdScript;
+
 	void Start () 
 	{
 		BackMenuBtn.onClick.AddListener(TransitionMenu);
         lvlCompleteBtn.onClick.AddListener(TransitionMenu);
-        BirdHelpBtn.onClick.AddListener(birdHelpSound);
-        RiddleBtn.onClick.AddListener(birdHelpSound);
-        HintBtn.onClick.AddListener(birdHelpSound);
         sceneMusic = FMODUnity.RuntimeManager.CreateInstance(sceneMusicEvent);
 		transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
         goldEggShimySound = FMODUnity.RuntimeManager.CreateInstance(goldEggShimyEvent);
         puzzleUnlockedSound = FMODUnity.RuntimeManager.CreateInstance(puzzleUnlockedEvent);
+
+        audioHelperBirdScript = GameObject.Find ("Audio").GetComponent<AudioHelperBird>();
+
         PlaySceneMusic();
 	}
 	
@@ -334,13 +332,8 @@ public class AudioSceneGeneral : MonoBehaviour
     public void frozenBirdShake()
     {
         frozenBirdShakeSound = FMODUnity.RuntimeManager.CreateInstance(frozenBirdShakeEvent);
+        audioHelperBirdScript.birdHelpSoundFrozen();
         frozenBirdShakeSound.start();
-    }
-
-    public void birdHelpSound()
-    {
-        birdSound = FMODUnity.RuntimeManager.CreateInstance(birdEvent);
-        birdSound.start();
     }
 
     //stop puzzle animation sound loop

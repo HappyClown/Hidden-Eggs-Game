@@ -19,8 +19,10 @@ public class LoadSceneButton : MonoBehaviour {
 			GlobalVariables.globVarScript.toHub = true;
 		}
 		SceneFade.SwitchScene(sceneName);
+		 
 		sceneTapEnabScript.canTapEggRidPanPuz = false;
 		sceneTapEnabScript.canTapHelpBird = false;
 		sceneTapEnabScript.canTapPauseBtn = false;
+		
 	}
 }

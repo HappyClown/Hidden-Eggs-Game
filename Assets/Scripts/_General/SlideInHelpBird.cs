@@ -31,11 +31,12 @@ public class SlideInHelpBird : MonoBehaviour {
 	[Header("Script References")]
 	public SceneTapEnabler scenTapEnabScript;
 	public LevelTapMannager lvlTapManScript;
-	//public AudioSceneGeneral audioSceneGenScript;
+
+	public AudioHelperBird audioHelperBirdScript;
 
 	void Start () {
 		totalDist = Vector2.Distance(hiddenHelpBirdPos.position, shownHelpBirdPos.position);
-		//audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+		audioHelperBirdScript = GameObject.Find("Audio").GetComponent<AudioHelperBird>();
 	}
 
 	void Update () {
@@ -129,7 +130,7 @@ public class SlideInHelpBird : MonoBehaviour {
 			allowClick = false;
 			if (lvlTapManScript) { lvlTapManScript.ZoomOutCameraReset(); }
 			if (introDone) { closeMenuOnClick.SetActive(true); }
-			//audioSceneGenScript.birdHelpSound();
+			audioHelperBirdScript.birdHelpSound();
 			return;
 		}
 		if (moveUp || isUp) {

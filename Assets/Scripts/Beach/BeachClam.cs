@@ -83,6 +83,7 @@ public class BeachClam : MonoBehaviour {
 
 				//"matched" and "dissolve" sound
 				audioBeachPuzzleScript.BubblesSFX();
+				audioBeachPuzzleScript.addToMusicList(clamSound);
 			}
 		}
 	}

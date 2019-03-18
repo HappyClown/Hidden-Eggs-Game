@@ -57,6 +57,8 @@ public class SceneSilverEgg : MonoBehaviour {
 	}
 	
 	public void SendToPanel (int numInPanel, float myDelay) {
+		
+		Debug.Log("Sound - silver eggs to panel");
 		audioSceneGenScript.silverEggsPanel(this.gameObject);
 		sendToPanel = true;
 		posInPanel = numInPanel;

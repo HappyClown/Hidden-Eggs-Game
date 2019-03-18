@@ -21162,6 +21162,8 @@ GameObject:
   m_Component:
   - component: {fileID: 372008927}
   - component: {fileID: 372008926}
+  - component: {fileID: 372008928}
+  - component: {fileID: 372008929}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -21190,12 +21192,19 @@ MonoBehaviour:
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
   buttonEvent: event:/SFX/SFX_General/Button
+  audioHelperBirdScript: {fileID: 372008928}
   ambiantEvent: event:/SFX/Puzzle_Beach/Ambiance_Underwater
   failEvent: event:/SFX/Puzzle_Beach/FAIL
   bubblesEvent: event:/SFX/Puzzle_Beach/Bubbles
   bubblePopEvent: event:/SFX/Puzzle_Beach/BubblePop
   listSoundsUsed: []
   musicalSounds: 1
+  listNotesTapped: []
+  timer: 0
+  timerReached: 0
+  playingMelody: 0
+  indexNotePlaying: 0
+  randomBeat: 0
 --- !u!4 &372008927
 Transform:
   m_ObjectHideFlags: 0
@@ -21209,6 +21218,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &372008928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372008925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef46ec81ab6ece540be15af2baa94988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdHelpBtn: {fileID: 745955758}
+  RiddleBtn: {fileID: 745955758}
+  HintBtn: {fileID: 745955758}
+  birdEvent: event:/SFX/Beach/Beach_Bird
+  birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
+  buttonEvent: event:/SFX/SFX_General/Button
+--- !u!114 &372008929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 372008925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicVolume: 0.5
+  SFXVolume: 0.5
+  MasterVolume: 0.8
+  volumeTests: 0.8
+  Muted: 0
+  Paused: 0
 --- !u!1 &378697050
 GameObject:
   m_ObjectHideFlags: 0
@@ -39968,6 +40011,7 @@ MonoBehaviour:
   amntSilEggsTapped: 0
   inputDetScript: {fileID: 654759646}
   mainPuzzleEngScript: {fileID: 654759645}
+  audioScenePuzzScript: {fileID: 0}
 --- !u!114 &654759649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46058,6 +46102,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &745955758 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114536702652311296, guid: 1da3cb9ddfe2bbe47b9b488439467e45,
+    type: 2}
+  m_PrefabInternal: {fileID: 958597874}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &748830096
 GameObject:
   m_ObjectHideFlags: 0
@@ -54204,6 +54254,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   scenTapEnabScript: {fileID: 654759649}
   lvlTapManScript: {fileID: 0}
+  audioHelperBirdScript: {fileID: 0}
 --- !u!1 &1151577337
 GameObject:
   m_ObjectHideFlags: 0

@@ -18175,6 +18175,8 @@ GameObject:
   - component: {fileID: 643264885}
   - component: {fileID: 643264883}
   - component: {fileID: 643264884}
+  - component: {fileID: 643264886}
+  - component: {fileID: 643264887}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -18194,9 +18196,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackMenuBtn: {fileID: 1771794753}
-  BirdHelpBtn: {fileID: 2011664117}
-  RiddleBtn: {fileID: 1041040802}
-  HintBtn: {fileID: 542865779}
   lvlCompleteBtn: {fileID: 100327205}
   sceneMusicEvent: event:/Music/MusicScenes/Market
   transEvent: event:/SFX/SFX_General/TransitionsSound
@@ -18210,7 +18209,6 @@ MonoBehaviour:
   puzzlePieceEvent: event:/SFX/SFX_General/PuzzlePiece
   puzzleUnlockedEvent: event:/SFX/Beach/PuzzleShimyLoop_beach
   puzzleButtonEvent: event:/SFX/Beach/Puzzle_Click
-  birdEvent: event:/SFX/Beach/Beach_Bird
   unfrozenBirdEvent: event:/SFX/SFX_General/UnfrozenBird
   frozenBirdShakeEvent: event:/SFX/SFX_General/FrozenBirdShake
   lvlCompleteEvent: event:/SFX/Beach/Congratulations_LevelComplete
@@ -18221,6 +18219,7 @@ MonoBehaviour:
   puzImage: {fileID: 0}
   currentScene: 
   egg: {fileID: 0}
+  audioHelperBirdScript: {fileID: 643264886}
 --- !u!114 &643264884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18247,6 +18246,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &643264886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643264882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef46ec81ab6ece540be15af2baa94988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdHelpBtn: {fileID: 2011664117}
+  RiddleBtn: {fileID: 1041040802}
+  HintBtn: {fileID: 542865779}
+  birdEvent: event:/SFX/Beach/Beach_Bird
+  birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
+  buttonEvent: event:/SFX/SFX_General/Button
+--- !u!114 &643264887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643264882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicVolume: 0.5
+  SFXVolume: 0.5
+  MasterVolume: 0.8
+  volumeTests: 0.8
+  Muted: 0
+  Paused: 0
 --- !u!1001 &648274353
 Prefab:
   m_ObjectHideFlags: 0

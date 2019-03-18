@@ -1722,6 +1722,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   scenTapEnabScript: {fileID: 712647450}
   lvlTapManScript: {fileID: 2119557095}
+  audioHelperBirdScript: {fileID: 0}
 --- !u!114 &184246547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7510,6 +7511,11 @@ Prefab:
       propertyPath: lvlCompleteEvent
       value: event:/SFX/Park/Congratulations_LevelComplete
       objectReference: {fileID: 0}
+    - target: {fileID: 114811448791080584, guid: fc5a3246c87773644ba787d0cee3174d,
+        type: 2}
+      propertyPath: audioHelperBirdScript
+      value: 
+      objectReference: {fileID: 715544069}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc5a3246c87773644ba787d0cee3174d, type: 2}
   m_IsPrefabParent: 0
@@ -7734,6 +7740,28 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 225597070}
   m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+--- !u!1 &715544068 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1574498488788904, guid: fc5a3246c87773644ba787d0cee3174d,
+    type: 2}
+  m_PrefabInternal: {fileID: 683836288}
+--- !u!114 &715544069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715544068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef46ec81ab6ece540be15af2baa94988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdHelpBtn: {fileID: 852181314}
+  RiddleBtn: {fileID: 350473496}
+  HintBtn: {fileID: 321168157}
+  birdEvent: event:/SFX/Park/Park_Bird
+  birdFrozenEvent: event:/SFX/Park/Park_Bird_Frozen
+  buttonEvent: event:/SFX/SFX_General/Button
 --- !u!1 &718955572 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1086704788227420, guid: 54a8b59b9fe03fd48badc60cb84e988a,
@@ -21196,6 +21224,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   scenTapEnabScript: {fileID: 0}
   lvlTapManScript: {fileID: 0}
+  audioHelperBirdScript: {fileID: 0}
 --- !u!114 &1683982894
 MonoBehaviour:
   m_ObjectHideFlags: 0

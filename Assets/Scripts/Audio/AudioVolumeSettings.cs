@@ -14,6 +14,7 @@ public class AudioVolumeSettings : MonoBehaviour
     FMOD.Studio.Bus Master;
 
 
+    //On the slider keep the values between 0 and 1 ;
     public float MusicVolume = 0.5f;
     public float SFXVolume = 0.5f;
 
@@ -38,12 +39,12 @@ public class AudioVolumeSettings : MonoBehaviour
     void Update() 
     {
         Music.setVolume(MusicVolume);
-        SFX.setVolume(MusicVolume);
-        Master.setVolume(MusicVolume);
+        SFX.setVolume(SFXVolume);
+        Master.setVolume(MasterVolume);
 
        FMODUnity.RuntimeManager.PauseAllEvents(Paused);
 
-       FMODUnity.RuntimeManager.MuteAllEvents(Paused);
+       FMODUnity.RuntimeManager.MuteAllEvents(Muted);
 
 
 

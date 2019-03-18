@@ -35,6 +35,9 @@ public class AudioScenePuzzleGeneric: MonoBehaviour
     public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
 
+    ////////////
+    public AudioHelperBird audioHelperBirdScript;
+
     public virtual void PlaySceneMusic()
     {
         sceneMusic.start();
@@ -45,7 +48,8 @@ public class AudioScenePuzzleGeneric: MonoBehaviour
         sceneMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-    void Start(){}
+    void Start(){
+    }
 
     void Update(){}
 

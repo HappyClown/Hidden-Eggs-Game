@@ -137,9 +137,6 @@ public class ClickOnEggs : MonoBehaviour {
 					if (hit.collider.CompareTag("Puzzle")) {
 						SceneFade.SwitchScene(puzzleSceneName);
 						PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
-						sceneTapEnabScript.canTapEggRidPanPuz = false;
-						sceneTapEnabScript.canTapHelpBird = false;
-						sceneTapEnabScript.canTapPauseBtn = false;
 						//SFX puzz btn
 						audioSceneGenScript.TransitionPuzzle();
 						audioSceneGenScript.puzzleAnimationStop();

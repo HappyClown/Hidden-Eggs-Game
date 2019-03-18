@@ -32372,6 +32372,7 @@ GameObject:
   - component: {fileID: 1436777455}
   - component: {fileID: 1436777457}
   - component: {fileID: 1436777456}
+  - component: {fileID: 1436777458}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -32416,9 +32417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackMenuBtn: {fileID: 1929304826}
-  BirdHelpBtn: {fileID: 725424443}
-  RiddleBtn: {fileID: 931780410}
-  HintBtn: {fileID: 426848170}
   lvlCompleteBtn: {fileID: 675634514}
   sceneMusicEvent: event:/Music/MusicScenes/Market
   transEvent: event:/SFX/SFX_General/TransitionsSound
@@ -32432,7 +32430,6 @@ MonoBehaviour:
   puzzlePieceEvent: event:/SFX/SFX_General/PuzzlePiece
   puzzleUnlockedEvent: event:/SFX/Market/PuzzleShimyLoop_market
   puzzleButtonEvent: event:/SFX/Market/Puzzle_Click
-  birdEvent: event:/SFX/Market/Market_Bird
   unfrozenBirdEvent: event:/SFX/SFX_General/UnfrozenBird
   frozenBirdShakeEvent: event:/SFX/SFX_General/FrozenBirdShake
   lvlCompleteEvent: event:/SFX/Market/Congratulations_LevelComplete
@@ -32443,6 +32440,24 @@ MonoBehaviour:
   puzImage: {fileID: 0}
   currentScene: 
   egg: {fileID: 0}
+  audioHelperBirdScript: {fileID: 0}
+--- !u!114 &1436777458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436777454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef46ec81ab6ece540be15af2baa94988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BirdHelpBtn: {fileID: 725424443}
+  RiddleBtn: {fileID: 931780410}
+  HintBtn: {fileID: 426848170}
+  birdEvent: event:/SFX/Market/Market_Bird
+  birdFrozenEvent: event:/SFX/Market/Market_Bird_Frozen
+  buttonEvent: event:/SFX/SFX_General/Button
 --- !u!1 &1447203535
 GameObject:
   m_ObjectHideFlags: 0

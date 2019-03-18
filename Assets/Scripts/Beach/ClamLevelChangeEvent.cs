@@ -11,6 +11,7 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 	public ClamPuzzle clamPuzzleScript;
 	public SilverEggsManager silverEggManScript;
 
+
 	void Update () {
 		if (endEventOn) {
 			endEventTimer += Time.deltaTime;
