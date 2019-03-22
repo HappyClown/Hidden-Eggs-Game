@@ -34,12 +34,12 @@ public class StoryText : MonoBehaviour {
 		parchment.rectTransform.sizeDelta = new Vector2(parchmentWidths[textNum], parchment.rectTransform.sizeDelta.y);
 		fadeCanvasScript.FadeIn();
 	}
-	// Fades out the current text and makes the next one fade in.
+	// Fade out the current text and make the next one fade in.
 	public void ChangeTextFade(int textNum) {
 		lastTextNum = textNum;
 		changeText = true;
 	}
-	// Turn off the text immediately.
+	// Turn off the text instantly.
 	public void TurnTextOff() {
 		fadeCanvasScript.canvasG.alpha = 0f;
 	}

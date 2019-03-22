@@ -17,7 +17,7 @@ public class StoryIntro : MonoBehaviour {
 	private bool menuFaded;
 	[Header("StoryBoard Events")]
 	public List<float> onceUponATimeEvents;
-	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents;
+	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents, gustsMishapEvents, timeConfusedEvents;
 	private float boardTimer;
 	public List<float> boardEvents;
 	public List<bool> boardBools;
@@ -47,9 +47,9 @@ public class StoryIntro : MonoBehaviour {
 				case IntroStates.TheAccident:
 					TheAccident(); break;
 				case IntroStates.GustsMishap:
-					break;
+					GustsMishap(); break;
 				case IntroStates.TimeConfused:
-					break;
+					TimeConfused(); break;
 				case IntroStates.EggsFalling:
 					break;
 				case IntroStates.TimeToTheRescue:
@@ -81,7 +81,9 @@ public class StoryIntro : MonoBehaviour {
 	}
 
 	void OnceUponATime() {
-		boardTimer += Time.deltaTime;
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
+		}
 		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
 			if (!storyScrollBGScript.scroll) {
 				storyScrollBGScript.scroll = true;
@@ -90,6 +92,7 @@ public class StoryIntro : MonoBehaviour {
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
 			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
 			boardBools[1] = true;
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
@@ -100,9 +103,9 @@ public class StoryIntro : MonoBehaviour {
 		}
 		// Condition to change the story board.
 		if (boardTimer >= boardEvents[boardEvents.Count-1] && inputDetScript.Tapped) {
-			storyBoardTextNum = 1;
 			boardTimer = 0f;
 			storyTextScript.ChangeTextFade(storyBoardTextNum);
+			storyBoardTextNum++;
 			boardEvents.Clear();
 			boardEvents = timeFlyingEvents;
 			boardBools.Clear();
@@ -127,8 +130,6 @@ public class StoryIntro : MonoBehaviour {
 			introStates = IntroStates.Gust;
 			storyTimeMoScript.normalTime.SetActive(false);
 			storyTextScript.TurnTextOff();
-			storyBoardTextNum = 2;
-
 			boardTimer = 0f;
 			boardEvents.Clear();
 			boardEvents = gustEvents;
@@ -141,28 +142,32 @@ public class StoryIntro : MonoBehaviour {
 	}
 
 	void Gust() {
-		if (blackScreenFadeScript.shown) {
+		if (blackScreenFadeScript.shown && !boardBools[0]) {
 			blackScreenFadeScript.FadeOut();
 		}
-		// Distorted sky instead of normal;
-		boardTimer += Time.deltaTime;
+		// Distorted sky instead of normal.
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
+		}
 		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
 			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
 			boardBools[0] = true;
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
-			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.midTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve, false);
+			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.midTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve);
 			storyGustScript.yHover = true;
 			boardBools[1] = true;
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyGustScript.SetupXMove(storyGustScript.midTrans.position.x, storyGustScript.endTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveOutXCurve, true);
+			storyGustScript.SetupXMove(storyGustScript.midTrans.position.x, storyGustScript.endTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveOutXCurve);
 			boardBools[2] = true;
 		}
 		if (boardBools[2] && inputDetScript.Tapped) {
 			blackScreenFadeScript.FadeIn();
+		}
+		if (boardBools[2] && blackScreenFadeScript.shown) {
 			introStates = IntroStates.TheAccident;
-
 			boardTimer = 0f;
 			boardEvents.Clear();
 			boardEvents = theAccidentEvents;
@@ -175,15 +180,111 @@ public class StoryIntro : MonoBehaviour {
 	}
 
 	void TheAccident() {
-		if (blackScreenFadeScript.shown) {
+		if (blackScreenFadeScript.shown && !boardBools[0]) {
 			blackScreenFadeScript.FadeOut();
+			storyTextScript.TurnTextOff();
 			storyTimeMoScript.normalTime.SetActive(true);
+			// Back to normal sky scrolling.
 		}
-		if (boardTimer >= boardEvents[0] && boardBools[0]) {
-			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.endTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve, true);
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
+		}
+		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
 			boardBools[0] = true;
-		}  
+		}
+		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.endTrans.position.x, storyGustScript.moveAcrossDur, storyGustScript.moveInXCurve);
+			boardBools[1] = true;
+		}
+		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
+			storyTimeMoScript.timeSpins = true;
+			boardBools[2] = true;
+		}
+		if (boardBools[2] && inputDetScript.Tapped) {
+			blackScreenFadeScript.FadeIn();
+		}
+		if (boardBools[2] && blackScreenFadeScript.shown) {
+			introStates = IntroStates.GustsMishap;
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = gustsMishapEvents;
+			boardBools.Clear();
+			for(int i = 0; i < gustsMishapEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
+		}
+	}
 
+	void GustsMishap() {
+		if (blackScreenFadeScript.shown && !boardBools[0]/*  || Input.GetKeyDown("space") */) {
+			blackScreenFadeScript.FadeOut();
+			storyTextScript.TurnTextOff();
+			storyTimeMoScript.normalTime.SetActive(false);
+			// Back to the distorted sky.
+			// boardTimer = 0f;
+			// boardEvents.Clear();
+			// boardEvents = gustsMishapEvents;
+			// boardBools.Clear();
+			// for(int i = 0; i < gustsMishapEvents.Count; i++)
+			// {
+			// 	boardBools.Add(false);
+			// }
+			// storyGustScript.yHover = true;
+		}
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
+		}
+		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
+			boardBools[0] = true;
+		}
+		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.midTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve);
+			boardBools[1] = true;
+		}
+		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
+			storyGustScript.SetupXMove(storyGustScript.midTrans.position.x, storyGustScript.topEndTrans.position.x, storyGustScript.moveAcrossDur, storyGustScript.moveOutXCurve);
+			storyGustScript.SetupYMove(storyGustScript.gust.transform.position.y, storyGustScript.topEndTrans.position.y, storyGustScript.moveAcrossDur, storyGustScript.moveOutTopYCurve);
+			storyGustScript.SetupScaleDown(storyGustScript.gust.transform.localScale.y, storyGustScript.moveOutScale, storyGustScript.moveAcrossDur, storyGustScript.moveOutTopYCurve);
+			storyGustScript.gustFadeScript.FadeOut();
+			boardBools[2] = true;
+		}
+		if (boardBools[2] && inputDetScript.Tapped) {
+			blackScreenFadeScript.FadeIn();
+		}
+		if (boardBools[2] && blackScreenFadeScript.shown) {
+			introStates = IntroStates.TimeConfused;
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = timeConfusedEvents;
+			boardBools.Clear();
+			for(int i = 0; i < timeConfusedEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
+		}
+	}
+
+	void TimeConfused() {
+		if (blackScreenFadeScript.shown && !boardBools[0]/*  || Input.GetKeyDown("space") */) {
+			blackScreenFadeScript.FadeOut();
+			storyTextScript.TurnTextOff();
+			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.bewilderedTime);
+			storyTimeMoScript.timeHovers = false;
+			storyTimeMoScript.timeSpins = true;
+			storyTimeMoScript.SetPosMid();
+		}
+		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyTextScript.SetupText(storyBoardTextNum);
+			boardBools[0] = true;
+		}
+		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+
+		}
 	}
 
 	void ResetStory() {
