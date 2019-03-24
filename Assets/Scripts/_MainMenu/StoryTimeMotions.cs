@@ -5,6 +5,7 @@ using UnityEngine;
 public class StoryTimeMotions : MonoBehaviour {
 	public GameObject normalTime, bewilderedTime, divingTime;
 	public GameObject currentTime;
+	public Transform bewilderedMidTrans;
 	[Header("Move In")]
 	public bool timeMovesIn;
 	public Transform endTrans;
@@ -30,9 +31,9 @@ public class StoryTimeMotions : MonoBehaviour {
 	public FadeInOutSprite normTimeFadeScript;
 	[Header("Spin")]
 	public bool timeSpins;
-	public float halfSpinDuration, speedDownDuration, rotateAnglePerDur, iniRotateAnglePerDur;
+	public float fastSpinDuration, slowSpinDuration, speedDownDuration, rotateAnglePerDur, iniRotateAnglePerDur;
 	public AnimationCurve spinAnimCurve;
-	private float spinLerpValue, rotateAroundValue, startSpinValue, endSpinValue;
+	private float spinLerpValue, rotateAroundValue, startSpinValue, endSpinValue, halfSpinDuration;
 	private bool switchSpinValues;
 
 	void Start () {
@@ -104,8 +105,8 @@ public class StoryTimeMotions : MonoBehaviour {
 		}
 	}
 
-	public void SetPosMid() {
-		currentTime.transform.position = endTrans.position;
+	public void SetTimePos(Vector3 timePos) {
+		currentTime.transform.position = timePos;
 	}
 
 	void TimeMovesIn() {
@@ -164,6 +165,10 @@ public class StoryTimeMotions : MonoBehaviour {
 		}
 	}
 
+	public void SetupTimeSpin(float spinDuration) {
+		halfSpinDuration = spinDuration;
+		timeSpins = true;
+	}
 	void TimeSpins() {
 		if (spinLerpValue < 1) {
 			spinLerpValue += Time.deltaTime / speedDownDuration;

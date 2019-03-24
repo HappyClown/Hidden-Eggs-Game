@@ -11,6 +11,7 @@ public class StoryIntro : MonoBehaviour {
 	public StoryTimeMotions storyTimeMoScript;
 	public StoryText storyTextScript;
 	public StoryGustMotions storyGustScript;
+	public StoryEggManager storyEggManScript;
 	[Header("Stuff")]
 	public bool inStoryIntro;
 	private int storyBoardTextNum;
@@ -199,7 +200,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[1] = true;
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyTimeMoScript.timeSpins = true;
+			storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.fastSpinDuration);
 			boardBools[2] = true;
 		}
 		if (boardBools[2] && inputDetScript.Tapped) {
@@ -270,20 +271,35 @@ public class StoryIntro : MonoBehaviour {
 	}
 
 	void TimeConfused() {
-		if (blackScreenFadeScript.shown && !boardBools[0]/*  || Input.GetKeyDown("space") */) {
+		if (blackScreenFadeScript.shown && !boardBools[0] || Input.GetKeyDown("space")) {
+			//
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = timeConfusedEvents;
+			boardBools.Clear();
+			for(int i = 0; i < timeConfusedEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
+			//
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
 			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.bewilderedTime);
 			storyTimeMoScript.timeHovers = false;
-			storyTimeMoScript.timeSpins = true;
-			storyTimeMoScript.SetPosMid();
+			storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.slowSpinDuration);
+			storyTimeMoScript.SetTimePos(storyTimeMoScript.bewilderedMidTrans.position);
+		}
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
 		}
 		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
 			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
 			boardBools[0] = true;
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
-
+			storyEggManScript.spawnEggs = true;
+			boardBools[1] = true;
 		}
 	}
 
