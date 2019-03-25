@@ -7,20 +7,15 @@ public class StoryEggMotions : MonoBehaviour {
 	public GameObject bewilderedTime;
 	public float eggFlyDuration;
 	public AnimationCurve yAnimCurve;
-	public float yMult, yMoveDist;
+	public float yMoveDist, minYMove, maxYMove;
 	public AnimationCurve xAnimCurve;
-	public float xMult, xMoveDist;
+	public float xMoveDist;
 
 	public float minScale, maxScale;
 	public float minEggAngle, maxEggAngle;
 
 	private bool spawn;
 	private float lerpValue, startY, endY, startX, endX, newX, newY, newEggAngle;
-
-
-	void Start () {
-		
-	}
 	
 	void Update () {
 		if (spawn) {
@@ -37,6 +32,7 @@ public class StoryEggMotions : MonoBehaviour {
 			xMoveDist = Mathf.Abs(xMoveDist);
 		}
 		newEggAngle = Random.Range(minEggAngle, maxEggAngle);
+		yMoveDist = Random.Range(minYMove, maxYMove);
 		this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, newEggAngle);
 		startX = eggSpawnTrans.position.x;
 		endX = eggSpawnTrans.position.x + xMoveDist;
@@ -47,8 +43,8 @@ public class StoryEggMotions : MonoBehaviour {
 	void EggMotion() {
 		if (lerpValue < 1) {
 			lerpValue += Time.deltaTime / eggFlyDuration;
-			newX = Mathf.LerpUnclamped(startX, endX, xAnimCurve.Evaluate(lerpValue)) * xMult;
-			newY = Mathf.LerpUnclamped(startY, endY, yAnimCurve.Evaluate(lerpValue)) * yMult;
+			newX = Mathf.LerpUnclamped(startX, endX, xAnimCurve.Evaluate(lerpValue));
+			newY = Mathf.LerpUnclamped(startY, endY, yAnimCurve.Evaluate(lerpValue));
 
 			this.transform.position = new Vector3(newX, newY, this.transform.position.z);
 		}

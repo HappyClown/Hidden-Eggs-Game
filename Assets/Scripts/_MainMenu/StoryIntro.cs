@@ -18,7 +18,7 @@ public class StoryIntro : MonoBehaviour {
 	private bool menuFaded;
 	[Header("StoryBoard Events")]
 	public List<float> onceUponATimeEvents;
-	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents, gustsMishapEvents, timeConfusedEvents;
+	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents, gustsMishapEvents, timeConfusedEvents, eggsFallingEvents;
 	private float boardTimer;
 	public List<float> boardEvents;
 	public List<bool> boardBools;
@@ -52,7 +52,7 @@ public class StoryIntro : MonoBehaviour {
 				case IntroStates.TimeConfused:
 					TimeConfused(); break;
 				case IntroStates.EggsFalling:
-					break;
+					EggsFalling(); break;
 				case IntroStates.TimeToTheRescue:
 					break;
 				case IntroStates.TheOneEgg:
@@ -271,16 +271,16 @@ public class StoryIntro : MonoBehaviour {
 	}
 
 	void TimeConfused() {
-		if (blackScreenFadeScript.shown && !boardBools[0] || Input.GetKeyDown("space")) {
+		if (blackScreenFadeScript.shown && !boardBools[0]/*  || Input.GetKeyDown("space") */) {
 			//
-			boardTimer = 0f;
-			boardEvents.Clear();
-			boardEvents = timeConfusedEvents;
-			boardBools.Clear();
-			for(int i = 0; i < timeConfusedEvents.Count; i++)
-			{
-				boardBools.Add(false);
-			}
+			// boardTimer = 0f;
+			// boardEvents.Clear();
+			// boardEvents = timeConfusedEvents;
+			// boardBools.Clear();
+			// for(int i = 0; i < timeConfusedEvents.Count; i++)
+			// {
+			// 	boardBools.Add(false);
+			// }
 			//
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
@@ -298,8 +298,36 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[0] = true;
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
-			storyEggManScript.spawnEggs = true;
+			storyEggManScript.spawnBagEggs = true;
 			boardBools[1] = true;
+		}
+		if (boardBools[1] && inputDetScript.Tapped) {
+			blackScreenFadeScript.FadeIn();	
+		}
+		if (boardBools[1] && blackScreenFadeScript.shown) {
+			introStates = IntroStates.EggsFalling;
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = eggsFallingEvents;
+			boardBools.Clear();
+			for(int i = 0; i < eggsFallingEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
+		}
+	}
+
+	void EggsFalling() {
+		if (blackScreenFadeScript.shown && !boardBools[0]) {
+			blackScreenFadeScript.FadeOut();
+			storyTextScript.TurnTextOff();
+			storyEggManScript.spawnBagEggs = false;
+			storyTimeMoScript.ChangeCurrentTime(null);
+		}
+		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
+			boardBools[0] = true;
 		}
 	}
 
