@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StoryEggMotions : MonoBehaviour {
+	[Header("Out of Bag")]
 	public Transform eggSpawnTrans;
 	public GameObject bewilderedTime;
 	public float eggFlyDuration;
@@ -14,17 +15,32 @@ public class StoryEggMotions : MonoBehaviour {
 	public float minScale, maxScale;
 	public float minEggAngle, maxEggAngle;
 
-	private bool spawn;
+	private bool spawnInBag;
 	private float lerpValue, startY, endY, startX, endX, newX, newY, newEggAngle;
-	
+	[Header("Falling")]
+	public AnimationCurve fallingAnimCurve;
+	public float fallDuration, fallEggScale, fallYAmnt;
+	public List<Transform> fallEggSpawnTrans;
+	private bool spawnFromTop;
+	[Header("Hover")]
+	public AnimationCurve hoverAnimCurve;
+	public float hoverDuration, hoverUpHeight;
+	private bool hover;
+
 	void Update () {
-		if (spawn) {
-			EggMotion();
+		if (spawnInBag) {
+			OutOfBag();
+		}
+		if (spawnFromTop) {
+			FallFromTop();
+		}
+		if (hover) {
+			Hover();
 		}
 	}
 
-	public void SpawnEgg() {
-		spawn = true;
+	public void SpawnEggInBag() {
+		spawnInBag = true;
 		if (bewilderedTime.transform.eulerAngles.y > 90 && bewilderedTime.transform.eulerAngles.y < 270/*  || bewilderedTime.transform.eulerAngles.y < -90 && bewilderedTime.transform.eulerAngles.y >- 180 */) {
 			xMoveDist = Mathf.Abs(xMoveDist) * -1;
 		}
@@ -40,7 +56,7 @@ public class StoryEggMotions : MonoBehaviour {
 		endY = eggSpawnTrans.position.y + yMoveDist;
 	}
 
-	void EggMotion() {
+	void OutOfBag() {
 		if (lerpValue < 1) {
 			lerpValue += Time.deltaTime / eggFlyDuration;
 			newX = Mathf.LerpUnclamped(startX, endX, xAnimCurve.Evaluate(lerpValue));
@@ -49,9 +65,31 @@ public class StoryEggMotions : MonoBehaviour {
 			this.transform.position = new Vector3(newX, newY, this.transform.position.z);
 		}
 		else {
-			spawn = false;
-			lerpValue = 0f; // Not needed
+			spawnInBag = false;
+			lerpValue = 0f;
 		}
+	}
+
+	public void SpawnEggsAtTop(Vector3 spawnPos) {
+		this.transform.localScale = new Vector3(fallEggScale, fallEggScale, fallEggScale);
+		this.transform.position = spawnPos;
+		spawnFromTop = true;
+		startY = this.transform.position.y;
+		endY = this.transform.position.y - fallYAmnt;
+	}
+
+	void FallFromTop() {
+		if (lerpValue < 1) {
+			lerpValue += Time.deltaTime / fallDuration;
+			newY = Mathf.Lerp(startY, endY, fallingAnimCurve.Evaluate(lerpValue));
+			this.transform.position = new Vector3(this.transform.position.x, newY, this.transform.position.z);
+		}
+		else {
+			spawnFromTop = false;
+			lerpValue = 0f;
+		}
+	}
+	void Hover() {
 
 	}
 }

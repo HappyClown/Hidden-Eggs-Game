@@ -12,7 +12,10 @@ public class StoryEggManager : MonoBehaviour {
 	//public int maxAmountEggs;
 	//public Transform eggSpawnTrans;
 	[Header ("Eggs from Sky")]
-	public bool spawnSkyEggs;
+	public bool spawnFallingEggs;
+	public float timeBetweenFallEggs;
+	public List<Transform> fallingEggStartTrans;
+	public List<Transform> fallingEggEndTrans;
 
 	void Start () {
 		// The first egg spawns immediately.
@@ -24,7 +27,7 @@ public class StoryEggManager : MonoBehaviour {
 			eggSpawnTimer += Time.deltaTime;
 			if (eggSpawnTimer > timeBetweenEggs) {
 				eggSpawnTimer = 0f;
-				storyEggScripts[currentEggNum].SpawnEgg();
+				storyEggScripts[currentEggNum].SpawnEggInBag();
 				currentEggNum++;
 				timeBetweenEggs = Random.Range(minTimeBetweenEggs, maxTimeBetweenEggs);
 				if (currentEggNum > storyEggScripts.Count - 1) {
@@ -34,8 +37,23 @@ public class StoryEggManager : MonoBehaviour {
 			}
 		}
 
-		if (spawnSkyEggs) {
-
+		if (spawnFallingEggs) {
+			eggSpawnTimer += Time.deltaTime;
+			if (eggSpawnTimer > timeBetweenFallEggs) {
+				eggSpawnTimer = 0f;
+				storyEggScripts[currentEggNum].SpawnEggsAtTop(fallingEggSpawnTrans[currentEggNum].position);
+				currentEggNum++;
+				if (currentEggNum > fallingEggSpawnTrans.Count - 1) {
+					currentEggNum = 0;
+					spawnFallingEggs = false;
+				}
+			}
 		}
+	}
+
+	void SpawnFallingEggs() {
+		currentEggNum = 0;
+		spawnFallingEggs = true;
+		eggSpawnTimer = 0f;
 	}
 }
