@@ -93,10 +93,13 @@ public class BeachClam : MonoBehaviour {
 		Tapped = open = matched = failed =  false;
 		closed = true;
 		timer = 0;
-		myClosedClam.fadeDelay = false;
-		myClosedClam.FadeIn();
-		myOpenClam.fadeDelay = true;
-		myOpenClam.FadeOut();
+			myClosedClam.fadeDelay = false;
+			myClosedClam.FadeIn();
+		if(myOpenClam.shown){
+			myOpenClam.fadeDelay = true;
+			myOpenClam.FadeOut();
+		}
+		
 		foreach (BeachBubbles bubbles in myBubbles)
 		{
 			bubbles.activeClam = false;
