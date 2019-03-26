@@ -35,6 +35,13 @@ public class ClamPuzzle : MainPuzzleEngine {
 				lvlToLoad = mySelectButton.lvlToLoad;
 				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
 					chngLvlTimer = 0f;
+					if(currentClams.Count > 0){
+						foreach (BeachClam myClam in currentClams)
+						{
+							myClam.ResetClams();
+						}
+						currentClams.Clear();
+					}
 					ChangeLevelSetup();
 				}
 				mySelectButton.buttonPressed = false;
@@ -314,7 +321,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 		{
 			lvlItemHolders[curntLvl - 1].SetActive(false);
 			myLvls[curntLvl-1].ResetLevel();
-			myLvls[curntLvl-1].SetUpLevel();
 			curntLvl = lvlToLoad;
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
@@ -393,7 +399,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 
 	public new void LvlStuffFadeIn()
 	{
-		levelsStuff[curntLvl -1].StartLvlFadeIn();
+		//levelsStuff[curntLvl -1].StartLvlFadeIn();
 		Debug.Log("Should fade in stuff."); // Fade in tiles
 		 if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
 		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME

@@ -18,12 +18,16 @@ public class FadeInOutManager : MonoBehaviour {
 			MyFadeInOut =  MyParent.GetComponentsInChildren<FadeInOutSprite>();
 			foreach (FadeInOutSprite myFade in MyFadeInOut)
 			{
-				myFade.FadeIn();
+				if(myFade.hidden && !myFade.shown){
+					myFade.FadeIn();
+				}
 			}
 		}
 		foreach (FadeInOutSprite myFade in FIFadeScripts)
 		{
-			myFade.FadeIn();
+			if(myFade.hidden && !myFade.shown){
+				myFade.FadeIn();
+			}
 		}
 		
 	}
@@ -36,12 +40,16 @@ public class FadeInOutManager : MonoBehaviour {
 			MyFadeInOut =  MyParent.GetComponentsInChildren<FadeInOutSprite>();
 			foreach (FadeInOutSprite myFade in MyFadeInOut)
 			{
-				myFade.FadeOut();
+				if(!myFade.hidden && myFade.shown){
+					myFade.FadeOut();
+				}
 			}
 		}
 		foreach (FadeInOutSprite myFade in FIFadeScripts)
 		{
-			myFade.FadeOut();
+			if(!myFade.hidden && myFade.shown){
+				myFade.FadeOut();
+			}
 		}
 		
 	}
