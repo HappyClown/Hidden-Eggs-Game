@@ -41,9 +41,9 @@ public class StoryEggManager : MonoBehaviour {
 			eggSpawnTimer += Time.deltaTime;
 			if (eggSpawnTimer > timeBetweenFallEggs) {
 				eggSpawnTimer = 0f;
-				storyEggScripts[currentEggNum].SpawnEggsAtTop(fallingEggSpawnTrans[currentEggNum].position);
+				storyEggScripts[currentEggNum].SpawnEggsAtTop(fallingEggStartTrans[currentEggNum].position, fallingEggEndTrans[currentEggNum].position);
 				currentEggNum++;
-				if (currentEggNum > fallingEggSpawnTrans.Count - 1) {
+				if (currentEggNum > fallingEggStartTrans.Count - 1) {
 					currentEggNum = 0;
 					spawnFallingEggs = false;
 				}
@@ -51,7 +51,7 @@ public class StoryEggManager : MonoBehaviour {
 		}
 	}
 
-	void SpawnFallingEggs() {
+	public void SpawnFallingEggs() {
 		currentEggNum = 0;
 		spawnFallingEggs = true;
 		eggSpawnTimer = 0f;

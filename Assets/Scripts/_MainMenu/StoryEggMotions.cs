@@ -18,27 +18,43 @@ public class StoryEggMotions : MonoBehaviour {
 	private bool spawnInBag;
 	private float lerpValue, startY, endY, startX, endX, newX, newY, newEggAngle;
 	[Header("Falling")]
-	public AnimationCurve fallingAnimCurve;
-	public float fallDuration, fallEggScale, fallYAmnt;
+	public AnimationCurve toMidAnimCurve;
+	public AnimationCurve toBotAnimCurve;
+	public float fallDuration, fallEggScale;
 	public List<Transform> fallEggSpawnTrans;
-	private bool spawnFromTop;
+	private bool fallFromTop, fallDown;
 	[Header("Hover")]
 	public AnimationCurve hoverAnimCurve;
 	public float hoverDuration, hoverUpHeight;
 	private bool hover;
+	private Vector3 iniHoverPos;
+	public int hoverAmnt;
+	private int hoverAmntNum;
+	[Header ("Rotate")]
+	public float minRotDur;
+	public float maxRotDur;
+	private float fullRotDuration;
+	private bool rotate;
 
 	void Update () {
 		if (spawnInBag) {
 			OutOfBag();
 		}
-		if (spawnFromTop) {
+		if (rotate) {
+			Rotate();
+		}
+		if (fallFromTop) {
 			FallFromTop();
 		}
 		if (hover) {
 			Hover();
 		}
+		if (fallDown) {
+			FallDown();
+		}
 	}
 
+	// For the "TimeConfused" storyboard.
 	public void SpawnEggInBag() {
 		spawnInBag = true;
 		if (bewilderedTime.transform.eulerAngles.y > 90 && bewilderedTime.transform.eulerAngles.y < 270/*  || bewilderedTime.transform.eulerAngles.y < -90 && bewilderedTime.transform.eulerAngles.y >- 180 */) {
@@ -69,27 +85,66 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue = 0f;
 		}
 	}
-
-	public void SpawnEggsAtTop(Vector3 spawnPos) {
+	// For the "EggsFalling" storyboard.
+	public void SpawnEggsAtTop(Vector3 startPos, Vector3 endPos) {
 		this.transform.localScale = new Vector3(fallEggScale, fallEggScale, fallEggScale);
-		this.transform.position = spawnPos;
-		spawnFromTop = true;
+		this.transform.position = startPos;
+		fallFromTop = true;
 		startY = this.transform.position.y;
-		endY = this.transform.position.y - fallYAmnt;
+		endY = endPos.y;
+		rotate = true;
+		fullRotDuration = Random.Range(minRotDur, maxRotDur);
+		int newRot = Random.Range(0, 360);
+		this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, newRot);
+	}
+
+	void Rotate() {
+		this.transform.RotateAround(this.transform.position, Vector3.back, 360 * (Time.deltaTime / fullRotDuration));
 	}
 
 	void FallFromTop() {
 		if (lerpValue < 1) {
 			lerpValue += Time.deltaTime / fallDuration;
-			newY = Mathf.Lerp(startY, endY, fallingAnimCurve.Evaluate(lerpValue));
+			newY = Mathf.Lerp(startY, endY, toMidAnimCurve.Evaluate(lerpValue));
 			this.transform.position = new Vector3(this.transform.position.x, newY, this.transform.position.z);
 		}
 		else {
-			spawnFromTop = false;
+			fallFromTop = false;
 			lerpValue = 0f;
+			hover = true;
+			iniHoverPos = this.transform.position;
 		}
 	}
-	void Hover() {
 
+	void Hover() {
+		if (lerpValue < 1) {
+			lerpValue += Time.deltaTime / hoverDuration;
+			newY = hoverAnimCurve.Evaluate(lerpValue) * hoverUpHeight;
+			this.transform.position = new Vector3(this.transform.position.x, iniHoverPos.y + newY, this.transform.position.z);
+			if (lerpValue > 0.5f && hoverAmntNum >= hoverAmnt) { // The egg starts going down from its top hover position. Wether this happens at 0.5 of the lerp or otherwise depends on the AnimationCurves peak.
+				hover = false;
+				fallDown = true;
+				lerpValue = 0f;
+				hoverAmntNum = 0;
+				startY = this.transform.position.y;
+				endY = startY - 20f; // Height of the screen to make sur all the eggs go off screen.
+			}
+		}
+		else {
+			lerpValue = 0f;
+			hoverAmntNum++;
+		}
+	}
+
+	void FallDown() {
+		if (lerpValue < 1) {
+			lerpValue += Time.deltaTime / fallDuration;
+			newY = Mathf.Lerp(startY, endY, toBotAnimCurve.Evaluate(lerpValue));
+			this.transform.position = new Vector3(this.transform.position.x, newY, this.transform.position.z);
+		}
+		else {
+			fallDown = false;
+			lerpValue = 0f;
+		}
 	}
 }

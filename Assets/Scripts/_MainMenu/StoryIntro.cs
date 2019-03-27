@@ -86,9 +86,7 @@ public class StoryIntro : MonoBehaviour {
 			boardTimer += Time.deltaTime;
 		}
 		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
-			if (!storyScrollBGScript.scroll) {
-				storyScrollBGScript.scroll = true;
-			}
+			storyScrollBGScript.SetUpClouds(storyScrollBGScript.regularSidewaysBGs, storyScrollBGScript.regSideScrollSpeed, true);
 			boardBools[0] = true;
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
@@ -328,6 +326,10 @@ public class StoryIntro : MonoBehaviour {
 			storyTextScript.SetupText(storyBoardTextNum);
 			storyBoardTextNum++;
 			boardBools[0] = true;
+		}
+		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			storyEggManScript.SpawnFallingEggs();
+			boardBools[1] = true;
 		}
 	}
 
