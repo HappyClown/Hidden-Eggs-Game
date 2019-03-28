@@ -198,6 +198,8 @@ public class StoryTimeMotions : MonoBehaviour {
 		currentTime = whichTime;
 		normalTime.SetActive(false);
 		bewilderedTime.SetActive(false);
-		currentTime.SetActive(true);
+		if (currentTime != null) {
+			currentTime.SetActive(true);
+		}
 	}
 }

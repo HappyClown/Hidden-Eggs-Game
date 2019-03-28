@@ -29,8 +29,17 @@ public class StoryIntro : MonoBehaviour {
 	public IntroStates introStates; 
 
 	void Start () {
-		// boardEvents.Add(0f);
-		// boardBools.Add(false);
+		boardEvents.Add(0f);
+		boardBools.Add(false);
+
+		boardTimer = 0f;
+		boardEvents.Clear();
+		boardEvents = eggsFallingEvents;
+		boardBools.Clear();
+		for(int i = 0; i < eggsFallingEvents.Count; i++)
+		{
+			boardBools.Add(false);
+		}
 	}
 	
 	void Update () {
@@ -317,12 +326,28 @@ public class StoryIntro : MonoBehaviour {
 
 	void EggsFalling() {
 		if (blackScreenFadeScript.shown && !boardBools[0]) {
+			//
+			// boardTimer = 0f;
+			// boardEvents.Clear();
+			// boardEvents = eggsFallingEvents;
+			// boardBools.Clear();
+			// for(int i = 0; i < eggsFallingEvents.Count; i++)
+			// {
+			// 	boardBools.Add(false);
+			// }
+			//
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
 			storyEggManScript.spawnBagEggs = false;
 			storyTimeMoScript.ChangeCurrentTime(null);
+			storyTimeMoScript.timeSpins = false;
+			storyScrollBGScript.SetUpClouds(storyScrollBGScript.verticalBGs, storyScrollBGScript.verticalScrollSpeed, false);
+		}
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
 		}
 		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyScrollBGScript.SetUpClouds(storyScrollBGScript.verticalBGs, storyScrollBGScript.verticalScrollSpeed, false);
 			storyTextScript.SetupText(storyBoardTextNum);
 			storyBoardTextNum++;
 			boardBools[0] = true;

@@ -11,7 +11,8 @@ public class StoryScrollingBG : MonoBehaviour {
 	private bool speedUp;
 	private bool sidewaysScroll;
 	[Header ("Regular Sideways")]
-	public float regSideScrollSpeed, xLimit;
+	public float regSideScrollSpeed;
+	public float xLimit;
 	public List<GameObject> regularSidewaysBGs;
 	private float scrollValue;
 	private int bgInFront = 0;
@@ -35,6 +36,9 @@ public class StoryScrollingBG : MonoBehaviour {
 		if (sidewaysScroll) {
 			SidewaysScroll();
 		}
+		if (verticalScroll) {
+			VerticalScroll();
+		}
 	}
 
 	public void SetUpClouds(List<GameObject> backGrounds, float myScrollSpeed, bool doISpeedUp) {
@@ -53,11 +57,17 @@ public class StoryScrollingBG : MonoBehaviour {
 		if (!doISpeedUp) {
 			scrollValue = myScrollSpeed;
 		}
-		if (currentBGs[0] == regularSidewaysBGs[0] || currentBGs[0] == blurredSidewaysBGs[0]) {
-			sidewaysScroll = true;
-		}
+		// if (currentBGs[0] == regularSidewaysBGs[0] || currentBGs[0] == blurredSidewaysBGs[0]) {
+		// 	sidewaysScroll = true;
+		// }
+		// else {
+		// 	sidewaysScroll = false;
+		// }
 		if (currentBGs[0] == verticalBGs[0]) {
 			verticalScroll = true;
+		}
+		else {
+			verticalScroll = false;
 		}
 	}
 
@@ -94,7 +104,7 @@ public class StoryScrollingBG : MonoBehaviour {
 		}
 		for (int i = 0; i < currentBGs.Count; i++)
 		{
-			if (currentBGs[i].transform.position.x <= xLimit) {
+			if (currentBGs[i].transform.position.y <= yLimit) {
 				bgInFront++;
 				if (bgInFront >= currentBGs.Count) {
 					bgInFront = 0;
