@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FadeInOutSprite : MonoBehaviour {
-	[HideInInspector]
+	//[HideInInspector]
 	public bool fadingOut, fadingIn, hidden, shown;
 	private float t;
 	public float fadeDelayDur;
@@ -47,6 +47,8 @@ public class FadeInOutSprite : MonoBehaviour {
 				}
 				fadingOut = false;
 				hidden = true;
+				if(shown)
+				shown = false;
 			}
 		}
 
@@ -56,6 +58,8 @@ public class FadeInOutSprite : MonoBehaviour {
 			if (t >= 1f) {
 				shown = true;
 				fadingIn = false;
+				if(hidden)
+				hidden = false;
 			}
 		}
 	}

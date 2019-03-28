@@ -320,7 +320,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 		if (chngLvlTimer > setupLvlWaitTime)
 		{
 			lvlItemHolders[curntLvl - 1].SetActive(false);
-			myLvls[curntLvl-1].ResetLevel();
 			curntLvl = lvlToLoad;
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
