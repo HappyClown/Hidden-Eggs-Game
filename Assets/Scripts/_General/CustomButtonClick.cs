@@ -11,6 +11,7 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	public bool levelSelected = false;
 	public Transform myCenterPoint;
 	public ZoomAtHub myZoom;
+	public LevelTitleVillage myTitle;
 	[Tooltip("Populate with all the OTHER level's CustomButtonClick scripts.")]
 	public List<CustomButtonClick> customButtonClickScripts;
 
@@ -26,8 +27,9 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 				seasonGlowsScript.LevelSelect(myLvlNumber);
 			}
 			levelSelected = true;
+			myTitle.OpenTitle();
 		}
-		else {
+		else {		
 			myZoom.StartZoom(myCenterPoint.position);
 			OpenScene();
 		}
