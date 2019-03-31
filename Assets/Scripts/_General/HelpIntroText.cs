@@ -11,15 +11,16 @@ public class HelpIntroText : MonoBehaviour {
 	private int sentenceCount;
 	public int maxSentence;
 	public List<Button> helpBirdBtns;
-	private bool inTxtTransition, introOn;
+	private bool inTxtTransition, introOn, canGoNext;
 	private float fadeOutDur;
 	[Header ("Script References")]
 	public BirdIntroSave birdIntroSaveScript;
 	public SlideInHelpBird slideInHelpScript;
+	public inputDetector inputDetScript;
 	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start () {
-		nextBtnObj.GetComponent<Button>().onClick.AddListener(NextIntroText);
+		//nextBtnObj.GetComponent<Button>().onClick.AddListener(NextIntroText);
 		if (!audioSceneGenScript) {
 			audioSceneGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSceneGeneral>();
 		}
@@ -38,6 +39,10 @@ public class HelpIntroText : MonoBehaviour {
 				CheckIfDone();
 			}
 		}
+
+		if (inputDetScript.Tapped && canGoNext && !inTxtTransition) {
+			NextIntroText();
+		}
 	}
 
 	public void ShowIntroText() {
@@ -46,10 +51,12 @@ public class HelpIntroText : MonoBehaviour {
 			introOn = true;
 		}
 		if (!slideInHelpScript.introDone) {
-			nextBtnObj.SetActive(true);
+			canGoNext = true;
+			//nextBtnObj.SetActive(true);
 		}
 		else {
-			nextBtnObj.SetActive(false);
+			canGoNext = false;
+			//nextBtnObj.SetActive(false);
 		}
 	}
 
@@ -63,7 +70,7 @@ public class HelpIntroText : MonoBehaviour {
 		if (sentenceCount >= maxSentence) { // check if done
 			slideInHelpScript.introDone = true;
 			slideInHelpScript.closeMenuOnClick.SetActive(true);
-			nextBtnObj.SetActive(false);
+			//nextBtnObj.SetActive(false);
 			TurnOnHelpBtns();
 			birdIntroSaveScript.SaveBirdIntro();
 		}

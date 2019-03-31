@@ -49,6 +49,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1109963304986824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224649329725260936}
+  - component: {fileID: 222339364666684420}
+  - component: {fileID: 114284907327674024}
+  m_Layer: 5
+  m_Name: ParchmentShadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1133337000688176
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +95,6 @@ GameObject:
   - component: {fileID: 114991269713227678}
   - component: {fileID: 114839007696006766}
   - component: {fileID: 114995268179813580}
-  - component: {fileID: 114554735417159862}
   m_Layer: 5
   m_Name: Lvl03 - Button
   m_TagString: Untagged
@@ -132,7 +148,6 @@ GameObject:
   - component: {fileID: 114470495847372130}
   - component: {fileID: 114920737663150060}
   - component: {fileID: 114623957049856342}
-  - component: {fileID: 114911267965506708}
   m_Layer: 5
   m_Name: Lvl01 - Button
   m_TagString: Untagged
@@ -171,7 +186,6 @@ GameObject:
   - component: {fileID: 114481753139426936}
   - component: {fileID: 114652392004954662}
   - component: {fileID: 114477810396528820}
-  - component: {fileID: 114178883023356010}
   m_Layer: 5
   m_Name: Lvl02 - Button
   m_TagString: Untagged
@@ -339,20 +353,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114178883023356010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1628192426425242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 0}
-  thisButton: {fileID: 114652392004954662}
-  levelToLoad: 2
 --- !u!114 &114187666616923982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,9 +367,16 @@ MonoBehaviour:
   fadeDuration: 1
   fadeDelayDur: 0.6
   maxAlpha: 1
+  inactiveOnFadeOut: 1
   fadeInOnStart: 1
   fadeDelay: 1
   img: {fileID: 0}
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
+  t: 0
+  myStartState: 0
 --- !u!114 &114276299591833206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,6 +398,33 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c820d4b2408e6904e9737adf80462182, type: 3}
   m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114284907327674024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109963304986824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 19008178c74b38f41b672a3293c52042, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -465,6 +499,8 @@ MonoBehaviour:
   - {fileID: 114811811116487580}
   noFadeDelay: 0
   buttonsOff: 0
+  buttonPressed: 0
+  lvlToLoad: 0
 --- !u!114 &114432123356703772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -530,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 0}
+  mySelect: {fileID: 0}
   thisButton: {fileID: 114652392004954662}
   levelToLoad: 2
 --- !u!114 &114481753139426936
@@ -560,20 +596,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114554735417159862
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1273037928703732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 0}
-  thisButton: {fileID: 114839007696006766}
-  levelToLoad: 3
 --- !u!114 &114555420078893124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -628,7 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 0}
+  mySelect: {fileID: 0}
   thisButton: {fileID: 114920737663150060}
   levelToLoad: 1
 --- !u!114 &114652392004954662
@@ -707,9 +729,16 @@ MonoBehaviour:
   fadeDuration: 1
   fadeDelayDur: 1.1
   maxAlpha: 1
+  inactiveOnFadeOut: 1
   fadeInOnStart: 1
   fadeDelay: 1
   img: {fileID: 0}
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
+  t: 0
+  myStartState: 0
 --- !u!114 &114811811116487580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -794,20 +823,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114911267965506708
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1378933569856640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 0}
-  thisButton: {fileID: 114920737663150060}
-  levelToLoad: 1
 --- !u!114 &114911294496884400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -914,7 +929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5b31012a57efd46945c5ec33a0288b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitePuzzEngineScript: {fileID: 0}
+  mySelect: {fileID: 0}
   thisButton: {fileID: 114839007696006766}
   levelToLoad: 3
 --- !u!114 &114996195180204832
@@ -931,9 +946,16 @@ MonoBehaviour:
   fadeDuration: 1
   fadeDelayDur: 0.1
   maxAlpha: 1
+  inactiveOnFadeOut: 1
   fadeInOnStart: 1
   fadeDelay: 1
   img: {fileID: 0}
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
+  t: 0
+  myStartState: 0
 --- !u!222 &222111657787407288
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -952,6 +974,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1071839760811040}
+--- !u!222 &222339364666684420
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109963304986824}
 --- !u!222 &222381618871456356
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1043,7 +1071,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224793877508237720}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1062,7 +1090,7 @@ RectTransform:
   m_Children:
   - {fileID: 224066003411496014}
   m_Father: {fileID: 224793877508237720}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1087,6 +1115,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.355, y: 0.355}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224649329725260936
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109963304986824}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224793877508237720}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.034, y: 4.657}
+  m_SizeDelta: {x: 6.4, y: 2.4}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224663074499744352
 RectTransform:
   m_ObjectHideFlags: 1
@@ -1098,7 +1144,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224793877508237720}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1116,7 +1162,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224793877508237720}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1135,7 +1181,7 @@ RectTransform:
   m_Children:
   - {fileID: 224899942794061490}
   m_Father: {fileID: 224793877508237720}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1154,7 +1200,7 @@ RectTransform:
   m_Children:
   - {fileID: 224245765632891918}
   m_Father: {fileID: 224793877508237720}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1171,6 +1217,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 224649329725260936}
   - {fileID: 224794837260298316}
   - {fileID: 224663074499744352}
   - {fileID: 224712926487629046}
@@ -1197,7 +1244,7 @@ RectTransform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 224793877508237720}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
