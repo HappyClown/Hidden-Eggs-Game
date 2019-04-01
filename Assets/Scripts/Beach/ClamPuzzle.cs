@@ -11,6 +11,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 	public BeachClamLevel[] myLvls;
 	public List<BeachClam> openedClams;
 	public List<BeachClam> currentClams;
+	public ClamLevelChangeEvent clamLevelChangeScript;
 	public AudioSceneBeachPuzzle audioSceneBeachPuzzScript;
 	void Start () {
 		canPlay = false;
@@ -179,31 +180,19 @@ public class ClamPuzzle : MainPuzzleEngine {
 	// Once, when the scene is openned.
 	public new void InitialSetup()
 	{
-		//Debug.Log("Initial Setup");
 		if(maxLvl > 3 || maxLvl < 1) { curntLvl = 1; }
 		else { curntLvl = maxLvl; }
-		//curntPounds = 0;
-		//curntAmnt = 0;
 		itemHolder = lvlItemHolders[curntLvl - 1];
-		//lvlItemHolders[crateScript.curntLvl - 1].SetActive(true); // IN THE INI SEQUENCE
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
-		//canPlay = true; // IN THE INI SEQUENCE
 		initialSetupOn = false;
-		//crateScript.UpdateRequirements(); INSERT UPDATE REQUIREMENTS FOR LEVEL X ------------------------------------------------------------
 		iniSeqStart = true;
-		//EnabledThreeDots(); // IN THE INI SEQUENCE
-		//InteractableThreeDots(); // IN THE INI SEQUENCE
 	}
 
 	// Level complete, load silver eggs, start crate animation.
 	public new void SilverEggsSetup()
 	{
-	
-		//Debug.Log("New Level Setup");
 		canPlay = false;
-
-		//Set the silver egg sprites to Hollow if the egg was found already.
 		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
 		{
 			int eggNumber = GlobalVariables.globVarScript.puzzSilEggsCount[i];
@@ -215,7 +204,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
 		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0)
 		{
-			//List<GameObject> activeSilverEggs = new List<GameObject>();
 			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform)
 			{
 				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
@@ -227,22 +215,20 @@ public class ClamPuzzle : MainPuzzleEngine {
 
 		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
 
+		EndOfLevelEvent();
 		//LvlStuffFadeOut();
-
-		//StartCoroutine(MoveCrateRight()); // INSERT KITE ANIM SEQUENCE ------------------------------------------------------------------------------------------------------
-		//reqParchMoveScript.moveToHidden = true;
-		foreach(GameObject silEgg in mySilverEggMan.activeSilverEggs) // TO BE PUT IN THE ANIM SEQ -------------------------------------------------------------------------------------------
-		{
-			silEgg.GetComponent<SilverEggSequence>().StartSequence();
-		}
-		scrnDarkImgScript.FadeIn();
+		
+		// foreach(GameObject silEgg in mySilverEggMan.activeSilverEggs) // TO BE PUT IN THE ANIM SEQ -------------------------------------------------------------------------------------------
+		// {
+		// 	silEgg.GetComponent<SilverEggSequence>().StartSequence();
+		// }
+		// scrnDarkImgScript.FadeIn();
 
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
 	public override void SilverEggsCheck()
 	{
-		//int amntSilEggsTapped = 0;
 		if (mySilverEggMan.activeSilverEggs.Count > 0)
 		{
 			if (mySilverEggMan.amntSilEggsTapped == mySilverEggMan.activeSilverEggs.Count)
@@ -251,7 +237,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 				mySilverEggMan.silverEggsActive = false;
 				mySilverEggMan.amntSilEggsTapped = 0;
 				scrnDarkImgScript.FadeOut();
-				//silverEggsPickedUp > GlobalVariables.globVarScript.marketSilverEggsCount
 				curntLvl++;
 				if (curntLvl > maxLvl)
 				{ maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); }
@@ -259,7 +244,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 				voidDelegate = NextLevelSetup;
 				if (!waitMethod) { waitMethod = true; } else { Debug.LogError("waitMethod IS ALREADY IN PROGRESS, DONT DO THAT!!"); }
 				waitTimer = waitTime;
-				// if (curntLvl  < winLvl) { bgScleScript.ScaleBG(); }
 			}
 		}
 	}
@@ -286,12 +270,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 		itemHolder.SetActive(false);
 		itemHolder = lvlItemHolders[curntLvl - 1];
 		itemsWait = true;
-		//for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		//{ resetItemsButtonScript.items[i].GetComponent<Items>().FadeIn(); }
-
-		//canPlay = true;
-		//crateScript.UpdateRequirements();
-		//reqParchMoveScript.moveToShown = true;
+		clamLevelChangeScript.bootFront.sortingLayerName = "Default";
 	}
 
 	// Prepare to change level after a level selection button has been pressed.
@@ -303,11 +282,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 		mySelectButton.UninteractableThreeDots();
 
 		LvlStuffFadeOut();
-
-		//for (int i = 0; i < resetTilesScript.tiles.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		//{ resetTilesScript.tiles[i].GetComponent<FadeInOutSprite>().FadeOut(); }
-
-		//reqParchMoveScript.moveToHidden = true;
 
 		setupChsnLvl = true;
 	}
@@ -323,13 +297,8 @@ public class ClamPuzzle : MainPuzzleEngine {
 			curntLvl = lvlToLoad;
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
-			//curntPounds = 0;
-			//curntAmnt = 0;
 			itemHolder = lvlItemHolders[curntLvl - 1];
 			itemsWait = true;
-			//bgScleScript.ScaleBG();
-			//crateScript.UpdateRequirements();
-			//reqParchMoveScript.moveToShown = true;
 			setupChsnLvl = false;
 			chngLvlTimer = 0;
 		}
@@ -337,143 +306,21 @@ public class ClamPuzzle : MainPuzzleEngine {
 	#endregion
 
 	#region General Methods
-	// Which of the three dots are interactable based on the highest playable level.
-	// void EnabledThreeDots()
-	// {
-	// 	if (maxLvl == 0) { lvlSelectButtons[0].SetActive(true); }
-	// 	for(int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
-	// 	{
-	// 		if (!lvlSelectButtons[i].activeSelf)
-	// 		{ lvlSelectButtons[i].SetActive(true); }
-	// 	}
-	// }
-
-	// Which of the three dots can be interacted with, also adjust the scale accordingly.
-	// void InteractableThreeDots()
-	// {
-	// 	if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
-	// 	for (int i = 0; i < maxLvl && i < lvlSelectButtons.Count; i++)
-	// 	{
-	// 		if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
-	// 		{
-	// 			lvlSelectButtons[i].GetComponent<Button>().interactable = false;
-	// 			lvlSelectScalers[i].ScaleUp();
-	// 		}
-	// 		else
-	// 		{
-	// 			lvlSelectButtons[i].GetComponent<Button>().interactable = true;
-	// 			lvlSelectScalers[i].ScaleDown();
-	// 		}
-	// 	}
-	// }
-
-	// Make level select buttons uninteractable between levels.
-	// void UninteractableThreeDots()
-	// {
-	// 	foreach(GameObject lvlButton in lvlSelectButtons)
-	// 	{
-	// 		if (lvlButton.activeSelf) { lvlButton.GetComponent<Button>().interactable = false; }
-	// 	}
-	// }
-
-	// After the initial level setup turn off the three dots fade delay.
-	// void TurnFadeDelayOff()
-	// {
-	// 	foreach(FadeInOutImage fadeImgScpt in lvlSelectFades)
-	// 	{ fadeImgScpt.fadeDelay = false; }
-	// }
-
-	// void TryToChangeLevel (int btnIndex)
-	// {
-	// 	// Technically dont need to check if: crateScript.curntLvl != levelToLoad && grabItemScript.maxLvl >= levelToLoad.  Because the buttons will un-interactable or the GameObject inactive.
-	// 	if (canPlay && chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad)
-	// 	{
-	// 		lvlToLoad = btnIndex;
-	// 		chngLvlTimer = 0f;
-	// 		ChangeLevelSetup();
-	// 		Debug.Log(lvlToLoad);
-	// 		//Debug.Log(tempIndex);
-	// 	}
-	// }
 
 	public new void LvlStuffFadeIn()
 	{
-		//levelsStuff[curntLvl -1].StartLvlFadeIn();
 		Debug.Log("Should fade in stuff."); // Fade in tiles
 		 if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
-		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		// childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>();
-		// for (int i = 0; i < childrenTileFadeScripts.Length; i++)
-		// { childrenTileFadeScripts[i].FadeIn(); }
-		// // Fade in tile backs
-		// if (!lvlTileBacksFadeScripts[curntLvl -1].activeSelf) lvlTileBacksFadeScripts[curntLvl -1].SetActive(true);
-		// FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		// childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>();
-		// for (int i = 0; i < childrenBackFadeScripts.Length; i++)
-		// { if (!childrenBackFadeScripts[i].gameObject.activeSelf) {childrenBackFadeScripts[i].gameObject.SetActive(true); } childrenBackFadeScripts[i].FadeIn(); }
-		// // Fade in back shadow
-		// if (!lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlBackShadowsFadeScripts[curntLvl - 1].gameObject.SetActive(true);
-		// lvlBackShadowsFadeScripts[curntLvl - 1].FadeIn();
-		// // Fade in kite & kite stuff
-		// if (!lvlKitesFadeScripts[curntLvl - 1].gameObject.activeSelf) lvlKitesFadeScripts[curntLvl - 1].gameObject.SetActive(true);
-		// lvlKitesFadeScripts[curntLvl - 1].FadeIn();
-		// if (lvlKites[curntLvl - 1].transform.childCount > 0)
-		// {
-		// 	foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
-		// 	{
-		// 		lvlKite.GetComponent<FadeInOutSprite>().FadeIn();
-		// 	}
-		// }
 	}
 
 	public new void LvlStuffFadeOut() // Fade out tiles, tile backs, kite, backshadow.
 	{
 		levelsStuff[curntLvl -1].ExitFadeOutLvl();
-		// FadeInOutSprite[] childrenTileFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		// childrenTileFadeScripts = lvlItemHolders[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>();
-		// for (int i = 0; i < childrenTileFadeScripts.Length; i++)
-		// { childrenTileFadeScripts[i].FadeOut(); }
-
-		// FadeInOutSprite[] childrenBackFadeScripts; // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-		// childrenBackFadeScripts = lvlTileBacksFadeScripts[curntLvl - 1].transform.GetComponentsInChildren<FadeInOutSprite>();
-		// for (int i = 0; i < childrenBackFadeScripts.Length; i++)
-		// { childrenBackFadeScripts[i].FadeOut(); }
-
-		// lvlBackShadowsFadeScripts[curntLvl - 1].FadeOut();
-
-		// lvlKitesFadeScripts[curntLvl - 1].FadeOut();
-		// if (lvlKites[curntLvl - 1].transform.childCount > 0)
-		// {
-		// 	foreach(Transform lvlKite in lvlKites[curntLvl - 1].transform)
-		// 	{
-		// 		lvlKite.GetComponent<FadeInOutSprite>().FadeOut();
-		// 	}
-		// }
 	}
 
-	/* public void SaveSilverEggsToCorrectFile()
-	{
-		if (silverEggsPickedUp > GlobalVariables.globVarScript.parkSilverEggsCount)
-		{
-			GlobalVariables.globVarScript.parkTotalEggsFound += 1;
-			GlobalVariables.globVarScript.parkSilverEggsCount = silverEggsPickedUp;
-			GlobalVariables.globVarScript.SaveEggState();
-		}
-	}*/
-
-	/*public void SaveNewSilEggsFound(int newSilEggFound)
-	{
-		//bool alreadySaved = false;
-		foreach (int silEggNumber in GlobalVariables.globVarScript.parkPuzzSilEggsCount)
-		{
-			if (silEggNumber == newSilEggFound)
-			{
-				return;
-			}
-		}
-		GlobalVariables.globVarScript.parkPuzzSilEggsCount.Add(newSilEggFound);
-		GlobalVariables.globVarScript.SaveEggState();
-	}*/
+	public void EndOfLevelEvent() {
+		clamLevelChangeScript.LevelChangeEvent();
+	}
 
 	public new void SaveMaxLvl()
 	{
@@ -492,8 +339,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 	#endregion
 
 	#region Coroutines
-
-
 	// All silver eggs picked up, what happenes?
 	public new IEnumerator PuzzleComplete ()
 	{

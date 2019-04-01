@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ClamLevelChangeEvent : MonoBehaviour {
 	private float endEventTimer;
+	public SpriteRenderer bootFront;
 	public bool endEventOn;
-	public float stuffFadeOutF, animStartF, activateEggsF, finishedF;
-	private bool stuffFadeOutB, activateEggsB, finishedB;
+	public float stuffFadeOutF, animStartF, activateEggsF, changeBootOrderF, finished;
+	private bool stuffFadeOutB, activateEggsB, changeBootOrderB;
 	public bool animStartB;
+	public Animator bootAnim;
 	public ClamPuzzle clamPuzzleScript;
 	public SilverEggsManager silverEggManScript;
 
@@ -20,6 +22,8 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 				clamPuzzleScript.LvlStuffFadeOut();
 			}
 			if (endEventTimer >= animStartF && !animStartB) {
+				bootAnim.SetTrigger("BootShake");
+				bootFront.sortingLayerName = "SilverEgg";
 				animStartB = true;
 			}
 			if (endEventTimer >= activateEggsF && !activateEggsB) {
@@ -28,19 +32,32 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 				{
 					silEgg.GetComponent<SilverEggSequence>().StartSequence();
 				}
+			}
+			if (endEventTimer >= changeBootOrderF && !changeBootOrderB) {
+				bootFront.sortingLayerName = "Default";
+				if (bootFront.sortingOrder != 0) {
+					bootFront.sortingOrder = 0;
+				}
+				changeBootOrderB = true;
 				clamPuzzleScript.scrnDarkImgScript.FadeIn();
 			}
-			if (endEventTimer >= finishedF && !finishedB) {
+			if (endEventTimer >= finished) {
 				endEventOn = false;
 				endEventTimer = 0f;
 				stuffFadeOutB = false;
 				animStartB = false;
 				activateEggsB = false;
+				changeBootOrderB = false;
 			}
 		}
 	}
 
 	public void LevelChangeEvent() {
 		endEventOn = true;
+		bootFront.sortingLayerName = "SilverEgg";
+		if (bootFront.sortingOrder != 1) {
+			bootFront.sortingOrder = 1;
+		}
+		Debug.Log("Hello, LevelChangeEvent speaking.");
 	}
 }
