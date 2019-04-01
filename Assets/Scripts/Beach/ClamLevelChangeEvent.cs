@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClamLevelChangeEvent : MonoBehaviour {
 	private float endEventTimer;
 	public SpriteRenderer bootFront;
+	public List<ParticleSystem> sandPartSys;
 	public bool endEventOn;
 	public float stuffFadeOutF, animStartF, activateEggsF, changeBootOrderF, finished;
 	private bool stuffFadeOutB, activateEggsB, changeBootOrderB;
@@ -24,6 +25,10 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 			if (endEventTimer >= animStartF && !animStartB) {
 				bootAnim.SetTrigger("BootShake");
 				bootFront.sortingLayerName = "SilverEgg";
+				foreach (ParticleSystem sandPart in sandPartSys) 
+				{
+					sandPart.GetComponent<Renderer>().sortingLayerName = "SilverEgg";
+				}
 				animStartB = true;
 			}
 			if (endEventTimer >= activateEggsF && !activateEggsB) {
@@ -35,6 +40,10 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 			}
 			if (endEventTimer >= changeBootOrderF && !changeBootOrderB) {
 				bootFront.sortingLayerName = "Default";
+				foreach (ParticleSystem sandPart in sandPartSys) 
+				{
+					sandPart.GetComponent<Renderer>().sortingLayerName = "Default";
+				}
 				if (bootFront.sortingOrder != 0) {
 					bootFront.sortingOrder = 0;
 				}
@@ -55,6 +64,10 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 	public void LevelChangeEvent() {
 		endEventOn = true;
 		bootFront.sortingLayerName = "SilverEgg";
+		foreach (ParticleSystem sandPart in sandPartSys) 
+		{
+			sandPart.GetComponent<Renderer>().sortingLayerName = "SilverEgg";
+		}
 		if (bootFront.sortingOrder != 1) {
 			bootFront.sortingOrder = 1;
 		}
