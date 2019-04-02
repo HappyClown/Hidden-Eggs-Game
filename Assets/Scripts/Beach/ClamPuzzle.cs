@@ -278,6 +278,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 	{
 		// Close up current level.
 		canPlay = false;
+			myLvls[curntLvl-1].CleanClamBubbles();
 
 		mySelectButton.UninteractableThreeDots();
 

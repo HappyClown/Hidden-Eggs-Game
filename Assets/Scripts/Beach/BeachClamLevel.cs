@@ -100,4 +100,10 @@ public class BeachClamLevel : MonoBehaviour {
 			levelComplete = true;
 		}
 	}
+	public void CleanClamBubbles(){
+		foreach (BeachClam clam in myClams)
+		{
+			clam.CleanBubbles();
+		}
+	}
 }

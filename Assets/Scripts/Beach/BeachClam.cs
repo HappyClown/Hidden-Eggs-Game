@@ -105,4 +105,10 @@ public class BeachClam : MonoBehaviour {
 			bubbles.activeClam = false;
 		}
 	}
+	public void CleanBubbles(){
+		foreach (BeachBubbles bubbles in myBubbles)
+		{
+			bubbles.ResetBubble();
+		}
+	}
 }
