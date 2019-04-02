@@ -7,6 +7,7 @@ public class AudioScenePuzzleGeneric: MonoBehaviour
 {
    [Header("Buttons")]
     public Button BackBtn;
+    public Button PauseBtn;
     public Button ToggleLevelPuz1;
 	public Button ToggleLevelPuz2;
 	public Button ToggleLevelPuz3;

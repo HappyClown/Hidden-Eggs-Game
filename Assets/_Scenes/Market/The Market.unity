@@ -31969,7 +31969,7 @@ MonoBehaviour:
   puzzShimFX: {fileID: 1789088195}
   puzzDustFX: {fileID: 1491005702}
   puzzFireworkFX: {fileID: 1937804639}
-  puzzUnlockAmnt: 12
+  puzzUnlockAmnt: 1
   puzzAnim: {fileID: 1129381744}
   audioSceneGenScript: {fileID: 1436777457}
 --- !u!114 &1346920379 stripped
@@ -32464,11 +32464,13 @@ MonoBehaviour:
   panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
   panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
   puzzlePieceEvent: event:/SFX/SFX_General/PuzzlePiece
+  trailFXEvent: event:/SFX/SFX_General/FX_trail
   puzzleUnlockedEvent: event:/SFX/Market/PuzzleShimyLoop_market
   puzzleButtonEvent: event:/SFX/Market/Puzzle_Click
   unfrozenBirdEvent: event:/SFX/SFX_General/UnfrozenBird
   frozenBirdShakeEvent: event:/SFX/SFX_General/FrozenBirdShake
   lvlCompleteEvent: event:/SFX/Market/Congratulations_LevelComplete
+  goldenEggStingerEvent: event:/Music/Stingers/GoldenEgg
   buttonEvent: event:/SFX/SFX_General/Button
   SceneIn: 0
   AlphaValue: 0
@@ -32476,7 +32478,7 @@ MonoBehaviour:
   puzImage: {fileID: 0}
   currentScene: 
   egg: {fileID: 0}
-  audioHelperBirdScript: {fileID: 0}
+  audioHelperBirdScript: {fileID: 1436777458}
 --- !u!114 &1436777458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32491,9 +32493,12 @@ MonoBehaviour:
   BirdHelpBtn: {fileID: 725424443}
   RiddleBtn: {fileID: 931780410}
   HintBtn: {fileID: 426848170}
+  PauseBtn: {fileID: 0}
+  XBtn: {fileID: 0}
   birdEvent: event:/SFX/Market/Market_Bird
   birdFrozenEvent: event:/SFX/Market/Market_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
+  PausebuttonEvent: event:/SFX/SFX_General/PauseButton
 --- !u!1 &1447203535
 GameObject:
   m_ObjectHideFlags: 0
@@ -37777,6 +37782,11 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -200
       objectReference: {fileID: 0}
+    - target: {fileID: 114841853296208342, guid: a13ea22b2443d2d4d8b22688e0118057,
+        type: 2}
+      propertyPath: audioHelperBirdScript
+      value: 
+      objectReference: {fileID: 1436777458}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a13ea22b2443d2d4d8b22688e0118057, type: 2}
   m_IsPrefabParent: 0

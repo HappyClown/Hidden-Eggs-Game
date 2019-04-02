@@ -9,6 +9,10 @@ public class ZoomAtHub : MonoBehaviour {
 	private float currentZoom, lerpValue, camLerpValue;
 	private Vector3 zoomPosition, startPosition;
 	public Camera myCam;
+
+	//TEST SOUNDS
+	public AudioManagerHubMenu audiomanmenuScript;
+
 	// Use this for initialization
 	void Start () {
 		zoomIn = false;
@@ -29,5 +33,8 @@ public class ZoomAtHub : MonoBehaviour {
 		zoomPosition = toPosition;
 		startPosition = myCam.transform.position;
 		currentZoom = myCam.orthographicSize;
+
+		//sound
+		audiomanmenuScript.ZoomSound();
 	}
 }

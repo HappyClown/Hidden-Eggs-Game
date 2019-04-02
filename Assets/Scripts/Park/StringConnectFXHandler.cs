@@ -8,7 +8,9 @@ public class StringConnectFXHandler : MonoBehaviour {
 	public AudioSceneParkPuzzle audioScenePuzGenScript;
 
 	void Start() {
-		audioScenePuzGenScript = GameObject.Find("Audio").GetComponent<AudioSceneParkPuzzle>();
+		if (!audioScenePuzGenScript) {
+			audioScenePuzGenScript = GameObject.Find("Audio").GetComponent<AudioSceneParkPuzzle>();
+		}
 	}
 	
 	public void PlayConnectionFX (GameObject tile, int whatConnection) {
@@ -17,19 +19,19 @@ public class StringConnectFXHandler : MonoBehaviour {
 
 		if (whatConnection == 1) { // Top
 			go.transform.position = new Vector3 (tile.transform.position.x, tile.transform.position.y + 1, go.transform.position.z);
-			//audioScenePuzGenScript.connectSparkSnd();
+			audioScenePuzGenScript.connectSparkSnd();
 		}
 		else if (whatConnection == 2) { // Right
 			go.transform.position = new Vector3 (tile.transform.position.x + 1, tile.transform.position.y, go.transform.position.z);
-			//audioScenePuzGenScript.connectSparkSnd();
+			audioScenePuzGenScript.connectSparkSnd();
 		}
 		else if (whatConnection == 3) { // Bottom
 			go.transform.position = new Vector3 (tile.transform.position.x, tile.transform.position.y - 1, go.transform.position.z);
-			//audioScenePuzGenScript.connectSparkSnd();
+			audioScenePuzGenScript.connectSparkSnd();
 		}
 		else if (whatConnection == 4) { // Left
 			go.transform.position = new Vector3 (tile.transform.position.x - 1, tile.transform.position.y, go.transform.position.z);
-			//audioScenePuzGenScript.connectSparkSnd();
+			audioScenePuzGenScript.connectSparkSnd();
 		}
 
 		ps.Play(true);

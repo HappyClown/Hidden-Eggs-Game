@@ -14,6 +14,10 @@ public class SeasonGlows : MonoBehaviour {
 	public List<FadeInOutSprite> glowFadeScripts;
 	public List<SpriteRenderer> glowSprites;
 
+	//TEST AUDIO
+	public AudioManagerHubMenu audioManHubMenuScript;
+
+
 	void Start () {
 		cycleThird = cycleDuration * 0.333f;
 	}
@@ -59,6 +63,12 @@ public class SeasonGlows : MonoBehaviour {
 	}
 
 	public void LevelSelect(int lvlSelected) {
+
+		if(lvlSelected != audioManHubMenuScript.currentlevelSelected){
+			audioManHubMenuScript.AmbianceGlowStop();
+			audioManHubMenuScript.AmbianceGlowStart(lvlSelected);
+		}
+
 		inCycle = false;
 		for (int i = 0; i < levelGlowScripts.Count; i++)
 		{

@@ -25866,6 +25866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackBtn: {fileID: 958597875}
+  PauseBtn: {fileID: 2083618089}
   ToggleLevelPuz1: {fileID: 306686005}
   ToggleLevelPuz2: {fileID: 553503273}
   ToggleLevelPuz3: {fileID: 713732389}
@@ -25941,9 +25942,12 @@ MonoBehaviour:
   BirdHelpBtn: {fileID: 745955758}
   RiddleBtn: {fileID: 745955758}
   HintBtn: {fileID: 745955758}
+  PauseBtn: {fileID: 2083618089}
+  XBtn: {fileID: 1069063005}
   birdEvent: event:/SFX/Beach/Beach_Bird
   birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
+  PausebuttonEvent: event:/SFX/SFX_General/PauseButton
 --- !u!114 &372008929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61034,6 +61038,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1da3cb9ddfe2bbe47b9b488439467e45, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1069063005 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114079957936910532, guid: 1da3cb9ddfe2bbe47b9b488439467e45,
+    type: 2}
+  m_PrefabInternal: {fileID: 1069063004}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1081884350
 GameObject:
   m_ObjectHideFlags: 0
@@ -104134,6 +104144,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9c1556a8842b97479bb4b6b7b18c034, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2083618089 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114961587069719900, guid: a9c1556a8842b97479bb4b6b7b18c034,
+    type: 2}
+  m_PrefabInternal: {fileID: 2083618088}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &2086804371
 GameObject:
   m_ObjectHideFlags: 0

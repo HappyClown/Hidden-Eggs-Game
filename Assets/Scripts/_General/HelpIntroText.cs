@@ -42,6 +42,7 @@ public class HelpIntroText : MonoBehaviour {
 
 		if (inputDetScript.Tapped && canGoNext && !inTxtTransition) {
 			NextIntroText();
+			audioSceneGenScript.birdHelpSound();
 		}
 	}
 

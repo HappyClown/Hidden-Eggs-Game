@@ -12,8 +12,6 @@ public class AudioSceneGeneral : MonoBehaviour
     public Button BackMenuBtn;
     public Button lvlCompleteBtn;
 
-
-
 	[Header("Scene Music")]
     [FMODUnity.EventRef]
     public string sceneMusicEvent;
@@ -64,6 +62,10 @@ public class AudioSceneGeneral : MonoBehaviour
     public FMOD.Studio.EventInstance puzzlePieceSound;
 
     [FMODUnity.EventRef]
+    public string trailFXEvent = "event:/SFX/SFX_General/FX_trail";
+    public FMOD.Studio.EventInstance trailFXSound;
+
+    [FMODUnity.EventRef]
     public string puzzleUnlockedEvent;
     public FMOD.Studio.EventInstance puzzleUnlockedSound;
 
@@ -87,9 +89,19 @@ public class AudioSceneGeneral : MonoBehaviour
     public string lvlCompleteEvent;
     public FMOD.Studio.EventInstance lvlCompleteSound;
 
+    [Header("Golden egg jingle test")]
+    [FMODUnity.EventRef]
+    public string goldenEggStingerEvent = "event:/Music/Stingers/GoldenEgg";
+    public FMOD.Studio.EventInstance goldenEggStingerSound;
+
     [FMODUnity.EventRef]
     public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
+
+
+
+
+
 
 	[Header("For tests and reference")]
     // TESTS UNLOCKED SOUND
@@ -117,7 +129,9 @@ public class AudioSceneGeneral : MonoBehaviour
         goldEggShimySound = FMODUnity.RuntimeManager.CreateInstance(goldEggShimyEvent);
         puzzleUnlockedSound = FMODUnity.RuntimeManager.CreateInstance(puzzleUnlockedEvent);
 
-        audioHelperBirdScript = GameObject.Find ("Audio").GetComponent<AudioHelperBird>();
+        if (!audioHelperBirdScript) {
+			audioHelperBirdScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioHelperBird>();
+		}
 
         PlaySceneMusic();
 	}
@@ -264,6 +278,12 @@ public class AudioSceneGeneral : MonoBehaviour
     {
         goldEggAnimationSound = FMODUnity.RuntimeManager.CreateInstance(goldEggAnimationEvent);
         goldEggAnimationSound.start();
+
+        //stinger golden egg
+        goldenEggStingerSound = FMODUnity.RuntimeManager.CreateInstance(goldenEggStingerEvent);
+
+        goldenEggStingerSound.start();
+
     }
 
     public void goldEggShimmerStartSound()
@@ -280,6 +300,11 @@ public class AudioSceneGeneral : MonoBehaviour
     public void puzzlePieceAnimation()
     {
         puzzlePieceSound.start();
+
+        //TrailFX
+        trailFXSound = FMODUnity.RuntimeManager.CreateInstance(trailFXEvent);
+        trailFXSound.start();
+
     }
 
 
@@ -327,14 +352,22 @@ public class AudioSceneGeneral : MonoBehaviour
     {
         unfrozenBirdSound = FMODUnity.RuntimeManager.CreateInstance(unfrozenBirdEvent);
         unfrozenBirdSound.start();
+        audioHelperBirdScript.birdHelpSound();
     }
 
     public void frozenBirdShake()
     {
         frozenBirdShakeSound = FMODUnity.RuntimeManager.CreateInstance(frozenBirdShakeEvent);
-        audioHelperBirdScript.birdHelpSoundFrozen();
         frozenBirdShakeSound.start();
+        audioHelperBirdScript.birdHelpSoundFrozen();
     }
+
+        public void birdHelpSound()
+    {
+        audioHelperBirdScript.birdHelpSound();
+    }
+
+
 
     //stop puzzle animation sound loop
     public void onDestroy()

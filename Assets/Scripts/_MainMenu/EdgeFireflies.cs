@@ -5,6 +5,10 @@ using UnityEngine;
 public class EdgeFireflies : MonoBehaviour {
 	public List<ParticleSystem> partSystems;
 	public float amountByRadius;
+
+	//TESTS SOUNDS
+	public AudioManagerHubMenu audioManHubScript;
+
 	
 	public void SetEmissionByRadius () {
 		foreach(ParticleSystem partSys in partSystems)
@@ -17,10 +21,12 @@ public class EdgeFireflies : MonoBehaviour {
 	}
 
 	public void StartFireflyFX () {
+
 		foreach(ParticleSystem partSystem in partSystems)
 		{
 			partSystem.Play(true);
 		}
+		audioManHubScript.ShimyLoopSoundStart();
 	}
 
 	public void StopFireflyFX () {
@@ -28,5 +34,6 @@ public class EdgeFireflies : MonoBehaviour {
 		{
 			partSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 		}
+		audioManHubScript.ShimyLoopSoundStop();
 	}
 }

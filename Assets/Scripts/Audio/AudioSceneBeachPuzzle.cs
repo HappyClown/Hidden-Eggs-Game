@@ -47,11 +47,12 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
     public AnimationCurve animCurve;
     public List<float> playingPoints;
     private float interval, curntInterval;
-    public float playDuration = 1f;
+    public float playDuration = 2f;
 
     void Start () 
 	{
         BackBtn.onClick.AddListener(Transition);
+        PauseBtn.onClick.AddListener(buttonSFX);
         ResetItemBtn.onClick.AddListener(buttonSFX);
         ToggleLevelPuz1.onClick.AddListener(levelSFX);
 		ToggleLevelPuz2.onClick.AddListener(levelSFX);
@@ -69,9 +70,14 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
 
 	void Update () 
 	{
+        // FOR MANUAL TESTS
         if (Input.GetKeyDown("space")) { // Deleeette MmeeeEEeeEEe!!!...
             setPlayingMelody(true);
         }
+
+        
+        //OLD SCRIPT FOR RANDOM MELODIES
+        //TIMER RESETS EACH NOTE BECAUSE RANDOM DURATION BETWEEN NOTES.
         // if(playingMelody){
         //     if(!timerReached){
         //         timer += Time.deltaTime;
@@ -93,6 +99,7 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
         //     }
         // }
         if (playingMelody) {
+            //Timer + using floats on an anim curve
             timer += Time.deltaTime / playDuration;
             if (timer >= playingPoints[indexNotePlaying]) {
                 playMusicList((string)listNotesTapped[indexNotePlaying]);
@@ -253,7 +260,7 @@ public void newLevel()
 {
     listSoundsUsed.Clear();
     //reset the list of Used Ocean Sounds
-    listSoundsUsed.Clear();
+    //listNotesTapped.Clear();
 	//TEST MELODY 
     //setPlayingMelody(true);
 }

@@ -127,7 +127,7 @@ public class CrabRiddle : MonoBehaviour
 						}
 						moveAmount = 0;
 						moveDest = crabOGPos;
-						///audioSceneBeachScript.crabWalkSFX();
+						audioSceneBeachScript.crabWalkSFX();
 					}
 				}
 				

@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackBtn: {fileID: 1000234091}
+  PauseBtn: {fileID: 949567134}
   ToggleLevelPuz1: {fileID: 699045630}
   ToggleLevelPuz2: {fileID: 699045629}
   ToggleLevelPuz3: {fileID: 699045628}
@@ -601,7 +602,7 @@ MonoBehaviour:
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
   buttonEvent: event:/SFX/SFX_General/Button
-  audioHelperBirdScript: {fileID: 0}
+  audioHelperBirdScript: {fileID: 17080955}
   pickupTileEvent: event:/SFX/Puzzle_Park/Puzzle_TilePickUp
   dropTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileDrop
   rotateTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileRotate
@@ -620,9 +621,12 @@ MonoBehaviour:
   BirdHelpBtn: {fileID: 2042731750}
   RiddleBtn: {fileID: 2042731750}
   HintBtn: {fileID: 2042731750}
+  PauseBtn: {fileID: 949567134}
+  XBtn: {fileID: 2028338937}
   birdEvent: event:/SFX/Park/Park_Bird
   birdFrozenEvent: event:/SFX/Park/Park_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
+  PausebuttonEvent: event:/SFX/SFX_General/PauseButton
 --- !u!1 &22890795
 GameObject:
   m_ObjectHideFlags: 0
@@ -27472,7 +27476,7 @@ MonoBehaviour:
   amntSilEggsTapped: 0
   inputDetScript: {fileID: 654759647}
   mainPuzzleEngScript: {fileID: 654759646}
-  audioScenePuzzScript: {fileID: 0}
+  audioScenePuzzScript: {fileID: 17080954}
 --- !u!114 &654759649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40552,6 +40556,12 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948451640}
+--- !u!114 &949567134 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114184280042345040, guid: 83affbdbade2fe147898a8cfb3fb7a1b,
+    type: 2}
+  m_PrefabInternal: {fileID: 482995284}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1001 &950039143
 Prefab:
   m_ObjectHideFlags: 0
@@ -53260,6 +53270,16 @@ Prefab:
       propertyPath: audioSceneGenScript
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114230690615300076, guid: 2dda21351f8e89745903cccd73eb6465,
+        type: 2}
+      propertyPath: audioHelperBirdScript
+      value: 
+      objectReference: {fileID: 17080955}
+    - target: {fileID: 114583905975160016, guid: 2dda21351f8e89745903cccd73eb6465,
+        type: 2}
+      propertyPath: audioHelperBirdScript
+      value: 
+      objectReference: {fileID: 17080955}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dda21351f8e89745903cccd73eb6465, type: 2}
   m_IsPrefabParent: 0

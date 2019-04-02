@@ -41,23 +41,47 @@ public class AudioManagerHubMenu : MonoBehaviour
     public Button BtnNewGame;
     public Button BackMenuBtn;
 
+    [Header("SFX")]
     [FMODUnity.EventRef]
-    public string ButtonSndEvent;
-    public FMOD.Studio.EventInstance ButtonSnd;
+    public string ButtonSndEvent = "event:/SFX/SFX_General/Button";
+    public FMOD.Studio.EventInstance buttonSnd;
 
-    [Header("SFX Uncover Map")]
     [FMODUnity.EventRef]
-    public string SFXMapUncover;
-    public FMOD.Studio.EventInstance MapSnd;
+    public string SFX_MapUncover = "event:/SFX/SFX_General/HubUncoverFX";
+    public FMOD.Studio.EventInstance mapSnd;
 
-    [Header("SFX Clouds")]
     [FMODUnity.EventRef]
-    public string SFXClouds;
+    public string SFX_Clouds = "event:/SFX/SFX_General/CloudsMoving";
     public FMOD.Studio.EventInstance CloudsSnd;
 
-    //TEST
+    [FMODUnity.EventRef]
+    public string SFX_Zoom  = "event:/SFX/SFX_General/Zoom";
+    public FMOD.Studio.EventInstance ZoomSnd;
+
+    [Header("Loops Map Glow & Scene Selection")]
+
+    [FMODUnity.EventRef]
+    public string SFX_ShimyLoopMenu = "event:/SFX/SFX_General/shimyLoopMenu";
+    public FMOD.Studio.EventInstance shimyLoopMenuSnd;
+
+    [FMODUnity.EventRef]
+    public string MarketAmbiance = "event:/SFX/Market/AmbianceMarketDreamy";
+    public FMOD.Studio.EventInstance marketAmbianceSnd;
+
+    [FMODUnity.EventRef]
+    public string ParkAmbiance = "event:/SFX/Park/AmbianceParkDreamy";
+    public FMOD.Studio.EventInstance parkAmbianceSnd;
+
+    [FMODUnity.EventRef]
+    public string BeachAmbiance = "event:/SFX/Beach/AmbianceBeachDreamy";
+    public FMOD.Studio.EventInstance beachAmbianceSnd;
+
+    //TEST level glow & ambiance
     private FMOD.Studio.EventInstance currentMusic;
 
+    private FMOD.Studio.EventInstance soundSelectedScene;
+
+    public int currentlevelSelected = -1;
 
     //TEST
     public int nbEggsBySeason;
@@ -97,6 +121,10 @@ public class AudioManagerHubMenu : MonoBehaviour
         currentMusic = menuMusic;
 
         if (!GlobalVariables.globVarScript.toHub) { TransitionMenu(); } else { TransitionHub();}
+
+        //---TEST: LOOPS Menu Glow etc
+
+        shimyLoopMenuSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_ShimyLoopMenu);
     }
     void Update()
     {
@@ -215,6 +243,9 @@ public class AudioManagerHubMenu : MonoBehaviour
     {
         //SceneMusicFadeOut(alphafade,fadePara);
         hubMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        AmbianceGlowStop();
+        ShimyLoopSoundStop();
+
     }
 
 
@@ -229,6 +260,8 @@ public class AudioManagerHubMenu : MonoBehaviour
     { 
         StopHubMusicFade(); //stop hub music
         PlayMenuMusic(); //start menu music
+        AmbianceGlowStop();
+        ShimyLoopSoundStop();
     }
 
     public FMOD.Studio.EventInstance getCurrentMusic()
@@ -266,8 +299,8 @@ public class AudioManagerHubMenu : MonoBehaviour
     }
     public void ButtonSound()
     {
-        ButtonSnd = FMODUnity.RuntimeManager.CreateInstance(ButtonSndEvent);
-        ButtonSnd.start();
+        buttonSnd = FMODUnity.RuntimeManager.CreateInstance(ButtonSndEvent);
+        buttonSnd.start();
     }
 
 
@@ -276,16 +309,64 @@ public class AudioManagerHubMenu : MonoBehaviour
     public void MapUncover()
     {
         //To script with the hub music system in conjunction with the "Hub.cs" script
-        MapSnd = FMODUnity.RuntimeManager.CreateInstance(SFXMapUncover);
-        MapSnd.start();
+        mapSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_MapUncover);
+        mapSnd.start();
     }
 
-        public void CloudsMoving()
+    public void CloudsMoving()
     {
-        CloudsSnd = FMODUnity.RuntimeManager.CreateInstance(SFXClouds);
+        CloudsSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_Clouds);
         CloudsSnd.start();
     }
 
-    
+    // -------ZOOM sound ------//
+
+    public void ZoomSound()
+    {
+        ZoomSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_Zoom);
+        ZoomSnd.start();
+    }
+
+    //--------LOOP map selection-----//
+
+    public void ShimyLoopSoundStart()
+    {
+        shimyLoopMenuSnd.start();
+    }
+
+        public void ShimyLoopSoundStop()
+    {
+        shimyLoopMenuSnd.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public void AmbianceGlowStart(int levelSelected)
+    {
+        currentlevelSelected = levelSelected;
+        //QUICK TEST NOT IDEAL
+        Debug.Log("AUDIO : int scene selected = "+levelSelected);
+        if(levelSelected == 0){
+            soundSelectedScene = FMODUnity.RuntimeManager.CreateInstance(MarketAmbiance);
+            Debug.Log("AUDIO : scene selected = Market");
+        }
+        else if(levelSelected == 1){
+            soundSelectedScene = FMODUnity.RuntimeManager.CreateInstance(ParkAmbiance);
+            Debug.Log("AUDIO : scene selected = Park");
+        }
+        else if(levelSelected == 2){
+            soundSelectedScene = FMODUnity.RuntimeManager.CreateInstance(BeachAmbiance);
+            Debug.Log("AUDIO : scene selected = Beach");
+            
+        }
+
+        soundSelectedScene.start();
+
+        Debug.Log("AUDIO : AMB start");
+        ButtonSound();
+    }
+    public void AmbianceGlowStop()
+    {
+        soundSelectedScene.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        Debug.Log("AUDIO : AMB stop");
+    }
 
 }

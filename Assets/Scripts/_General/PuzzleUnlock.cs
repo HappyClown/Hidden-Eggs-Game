@@ -55,6 +55,8 @@ public class PuzzleUnlock : MonoBehaviour {
 		//splineWalkerScript.IsPlaying = true;
 		//Play FX's through animation events
 		puzzPiece.transform.parent = puzzParentObj.transform.parent;
+
+
 		audioSceneGenScript.puzzlePieceAnimation();
 		Debug.Log("sound -  Puzzle piece");
 	}

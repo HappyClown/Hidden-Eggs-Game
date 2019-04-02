@@ -42,7 +42,7 @@ public class PuzzTutorial : MonoBehaviour {
 				currentTutInList++;
 				currentTutFadeScript = tutFadeScripts[currentTutInList];
 				currentTutFadeScript.FadeIn();
-				audioHelperBirdScript.buttonSFX();
+				audioHelperBirdScript.birdHelpSound();
 			}
 			else if (lastTutFadeScript.shown) {
 				slideInHelpScript.MoveBirdUpDown();
@@ -53,7 +53,7 @@ public class PuzzTutorial : MonoBehaviour {
 				currentTutFadeScript.FadeOut();
 				currentTutFadeScript = tutFadeScripts[0];
 				currentTutInList = 0;
-				audioHelperBirdScript.buttonSFX();
+				audioHelperBirdScript.birdHelpSound();
 			}
 		}
 	}

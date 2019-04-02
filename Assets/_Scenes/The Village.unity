@@ -1735,6 +1735,7 @@ MonoBehaviour:
   speed: 0.35
   zoomSpeed: 0.35
   myCam: {fileID: 0}
+  audiomanmenuScript: {fileID: 1042977692}
 --- !u!124 &123505483
 Behaviour:
   m_ObjectHideFlags: 0
@@ -11286,8 +11287,14 @@ MonoBehaviour:
   BtnNewGame: {fileID: 1272692221}
   BackMenuBtn: {fileID: 1901679803}
   ButtonSndEvent: event:/SFX/SFX_General/Button
-  SFXMapUncover: event:/SFX/SFX_General/HubUncoverFX
-  SFXClouds: event:/SFX/SFX_General/CloudsMoving
+  SFX_MapUncover: event:/SFX/SFX_General/HubUncoverFX
+  SFX_Clouds: event:/SFX/SFX_General/CloudsMoving
+  SFX_Zoom: event:/SFX/SFX_General/Zoom
+  SFX_ShimyLoopMenu: event:/SFX/SFX_General/shimyLoopMenu
+  MarketAmbiance: event:/SFX/Market/AmbianceMarketDreamy
+  ParkAmbiance: event:/SFX/Park/AmbianceParkDreamy
+  BeachAmbiance: event:/SFX/Beach/AmbianceBeachDreamy
+  currentlevelSelected: -1
   nbEggsBySeason: 0
   dissolvingSnd: 0
   nbUnlockedSeasons: 1
@@ -14486,6 +14493,7 @@ MonoBehaviour:
   - {fileID: 1048358145}
   - {fileID: 2100528021}
   - {fileID: 684842334}
+  audioManHubMenuScript: {fileID: 1042977692}
 --- !u!1 &1294814133
 GameObject:
   m_ObjectHideFlags: 0
@@ -15615,6 +15623,7 @@ MonoBehaviour:
   - {fileID: 448039646}
   - {fileID: 952920112}
   amountByRadius: 0.5
+  audioManHubScript: {fileID: 1042977692}
 --- !u!4 &1354210264
 Transform:
   m_ObjectHideFlags: 0
