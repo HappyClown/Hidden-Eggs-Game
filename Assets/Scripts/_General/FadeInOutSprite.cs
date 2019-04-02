@@ -42,13 +42,13 @@ public class FadeInOutSprite : MonoBehaviour {
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(1f * maxAlpha, 0f, t));
 			if (t >= 1f) {
-				if(disableOnFadeOut) {
-					this.gameObject.SetActive(false);
-				}
 				fadingOut = false;
 				hidden = true;
 				if(shown)
-				shown = false;
+				shown = false;				
+				if(disableOnFadeOut) {
+					this.gameObject.SetActive(false);
+				}
 			}
 		}
 
