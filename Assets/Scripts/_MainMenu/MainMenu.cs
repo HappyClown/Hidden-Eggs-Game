@@ -5,18 +5,22 @@ using UnityEngine.UI;
 using TMPro;
 
 public class MainMenu : MonoBehaviour {
+	public Color zeroAlpha;
 	[Header("Background Stuff")]
 	public List<MoveCloud> cloudsToMove;
 	public FadeInOutImage titleFade;
+	public Image titleImg;
 	public FadeInOutSprite solidBGFade;
 
 	[Header("Play Button")]
 	public Button playBtn;
 	public FadeInOutImage playBtnFadeScript;
+	public Image playBtnImg;
 
 	[Header("Reset Button")]
 	public Button rstBtn;
 	public FadeInOutImage rstBtnFadeScript;
+	public Image resetBtnImg;
 
 	[Header("Story")]
 	public Button storyBtn;
@@ -34,7 +38,7 @@ public class MainMenu : MonoBehaviour {
 		rstBtn.onClick.AddListener(DeleteSaveFile);
 		rstBtn.onClick.AddListener(NewGameBtn);
 		if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
-			PlayBtn();
+			ToHub();
 		}
 	}
 
@@ -74,6 +78,22 @@ public class MainMenu : MonoBehaviour {
 		playBtnFadeScript.FadeOut();
 		rstBtnFadeScript.FadeOut();
 		//storyBtn.gameObject.SetActive(false);
+		// Starts countdown timer to doing Village stuff 
+		hubScript.startHubActive = true;
+	}
+
+	void ToHub() {
+		// - MAKE THE CLOUDS PART - //
+		 foreach(MoveCloud cloud in cloudsToMove)
+		{
+			cloud.MoveOut();
+		}
+		// - FADE OUT SOLID BACKGROUND - //
+		solidBGFade.FadeOut();
+		// Deactivate Title & Buttons to avoid seeing them.
+		playBtnImg.color = new Color(playBtnImg.color.r, playBtnImg.color.g, playBtnImg.color.b, 0);
+		resetBtnImg.color = new Color(resetBtnImg.color.r, resetBtnImg.color.g, resetBtnImg.color.b, 0);
+		titleImg.color = new Color(titleImg.color.r, titleImg.color.g, titleImg.color.b, 0);
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
 	}
