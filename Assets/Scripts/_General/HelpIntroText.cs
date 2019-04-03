@@ -27,7 +27,7 @@ public class HelpIntroText : MonoBehaviour {
 	}
 
 	void Update () {
-		if (slideInHelpScript.isUp && !slideInHelpScript.introDone) {
+		if (slideInHelpScript.isUp && !slideInHelpScript.introDone/*  || slideInHelpScript.isUp && slideInHelpScript.introDone &&  */) {
 			ShowIntroText();
 		}
 
@@ -48,7 +48,8 @@ public class HelpIntroText : MonoBehaviour {
 
 	public void ShowIntroText() {
 		if (!introOn) { 
-			introTMPs[0].gameObject.SetActive(true);
+			//introTMPs[0].gameObject.SetActive(true);
+			introTMPs[0].FadeIn();
 			introOn = true;
 		}
 		if (!slideInHelpScript.introDone) {
@@ -74,6 +75,9 @@ public class HelpIntroText : MonoBehaviour {
 			//nextBtnObj.SetActive(false);
 			TurnOnHelpBtns();
 			birdIntroSaveScript.SaveBirdIntro();
+			sentenceCount = 0;
+			canGoNext = false;
+			introOn = false;
 		}
 		else { // if not show next
 			introTMPs[sentenceCount].FadeIn();

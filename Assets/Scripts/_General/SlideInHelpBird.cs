@@ -20,7 +20,7 @@ public class SlideInHelpBird : MonoBehaviour {
 	[Header("Bird Movement")]
 	public float duration;
 	private float newDuration;
-	public bool moveUp, moveDown, isUp, isDown = true, allowClick;
+	public bool moveUp, moveDown, isUp, isDown = true, allowClick = true;
 	public Transform helpBirdTrans, hiddenHelpBirdPos, shownHelpBirdPos;
 	public Vector3 curHelpBirdPos;
 	private float totalDist;
@@ -29,7 +29,7 @@ public class SlideInHelpBird : MonoBehaviour {
 	private float lerpValue;
 	public AnimationCurve animCur;
 	[Header("Script References")]
-	public SceneTapEnabler scenTapEnabScript;
+	public SceneTapEnabler sceneTapScript;
 	public LevelTapMannager lvlTapManScript;
 
 	public AudioHelperBird audioHelperBirdScript;
@@ -107,11 +107,13 @@ public class SlideInHelpBird : MonoBehaviour {
 		// Allow Clicking on eggs, puzzle, etc
 		if (moveDown && !allowClick || isDown && !allowClick) {
 			if (allowClickTimer > 0.05f) { // Skipping 2 frames to avoid disabling the close help button and tapping on an egg at the same time
-				scenTapEnabScript.canTapEggRidPanPuz = true;
+				if (sceneTapScript) {
+					sceneTapScript.TapLevelStuffTrue();
+				}
 				allowClickTimer = 0;
 				allowClick = true;
 			}
-			if (!scenTapEnabScript.canTapEggRidPanPuz) {
+			if (!sceneTapScript.canTapEggRidPanPuz) {
 				allowClickTimer += Time.deltaTime;
 			}
 		}
@@ -128,10 +130,13 @@ public class SlideInHelpBird : MonoBehaviour {
 			moveDown = false;
 			isDown = false;
 			moveUp = true;
-			scenTapEnabScript.canTapEggRidPanPuz = false;
+			sceneTapScript.canTapEggRidPanPuz = false;
 			allowClick = false;
 			if (lvlTapManScript) { lvlTapManScript.ZoomOutCameraReset(); }
 			if (introDone) { closeMenuOnClick.SetActive(true); }
+			if (sceneTapScript) {
+				sceneTapScript.TapLevelStuffFalse();
+			}
 			audioHelperBirdScript.birdHelpSound();
 			return;
 		}

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PuzzCloseMenuBtn : MonoBehaviour {
 	public PuzzlePauseMenu puzzPauseScript;
 	public Button button;
+	public SceneTapEnabler sceneTapScript;
 
 	void Start () {
 		button = this.GetComponent<Button>();
@@ -14,5 +15,6 @@ public class PuzzCloseMenuBtn : MonoBehaviour {
 	
 	void CloseMenu () {
 		puzzPauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
+		//sceneTapScript.TapLevelStuffTrue();
 	}
 }

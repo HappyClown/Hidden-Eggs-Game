@@ -12,4 +12,16 @@ public class SceneTapEnabler : MonoBehaviour
 	public bool canTapLvlComp;
 	// [Header("Puzzle")]
 	// public bool canTapPuzzReset;
+
+	public void TapLevelStuffFalse() {
+		canTapEggRidPanPuz = false;
+		canTapHelpBird = false;
+		canTapPauseBtn = false;
+	}
+
+	public void TapLevelStuffTrue() {
+		canTapEggRidPanPuz = true;
+		canTapHelpBird = true;
+		canTapPauseBtn = true;
+	}
 }

@@ -8,14 +8,35 @@ public class PuzzHelpBtn : MonoBehaviour {
 	public SlideInHelpBird slideInHelpScript;
 	public PuzzlePauseMenu puzzlePauseScript;
 	public Button button;
+	public bool inScene;
 
 	void Start () {
 		button = this.GetComponent<Button>();
 		button.onClick.AddListener(ShowTut);
 	}
+
+	void Update () {
+		if (inScene && !slideInHelpScript.introDone) {
+			button.interactable = false;
+		}
+		else {
+			button.interactable = true;
+		}
+	}
 	
 	void ShowTut () {
-		slideInHelpScript.MoveBirdUpDown();
-		puzzlePauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
+		// if (inScene) {
+		// 	if (slideInHelpScript.introDone) {
+		// 		slideInHelpScript.MoveBirdUpDown();
+		// 		puzzlePauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
+		// 	}
+		// }
+		// else {
+			if (inScene) {
+				slideInHelpScript.introDone = false;
+			}
+			slideInHelpScript.MoveBirdUpDown();
+			puzzlePauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
+		// }
 	}
 }

@@ -41,7 +41,9 @@ public class HelperBirdHint : MonoBehaviour {
 	}
 
 	public void StartHint() {
-		hintManScript.startHint = true;
+		if (hintManScript.hintAvailable) {
+			hintManScript.startHint = true;
+		}
 		slideInScript.MoveBirdUpDown();
 	}
 }

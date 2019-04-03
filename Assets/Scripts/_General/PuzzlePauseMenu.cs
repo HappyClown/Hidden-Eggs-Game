@@ -21,6 +21,8 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	public CanvasGroup menuCG, sceneUICG;
 	private float lerpValue;
 	public float fadeDuration;
+	//public bool inScene;
+	public SceneTapEnabler sceneTapScript;
 
 	void Start () {
 		menuCG.alpha = 0;
@@ -51,7 +53,12 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	void TurnOn() {
 		sceneUICG.interactable = false;
 		menuStates = MenuStates.TurningOn;
-		puzzEngScript.canPlay = false;
+		if (puzzEngScript) {
+			puzzEngScript.canPlay = false;
+		}
+		if (sceneTapScript) {
+			sceneTapScript.TapLevelStuffFalse();
+		}
 		col.enabled = true;
 	}
 
@@ -83,6 +90,9 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	void TurnOff() {
 		menuCG.interactable = false;
 		menuStates = MenuStates.TurningOff;
+		if (sceneTapScript) {
+			sceneTapScript.TapLevelStuffTrue();
+		}
 		col.enabled = false;
 	}
 
@@ -96,7 +106,9 @@ public class PuzzlePauseMenu : MonoBehaviour {
 			menuStates = MenuStates.IsOff;
 			sceneUICG.interactable = true;
 			menuActive = false;
-			puzzEngScript.canPlay = true;
+			if (puzzEngScript) {
+				puzzEngScript.canPlay = true;
+			}
 		}
 	}
 
