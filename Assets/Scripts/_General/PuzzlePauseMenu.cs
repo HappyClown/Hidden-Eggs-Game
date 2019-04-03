@@ -83,6 +83,9 @@ public class PuzzlePauseMenu : MonoBehaviour {
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
 			if (hit && !hit.collider.CompareTag("PuzzlePauseMenu")) {
 				menuStates = MenuStates.TurnOff;
+				if (sceneTapScript) {
+					sceneTapScript.TapLevelStuffTrue();
+				}
 			}
 		}
 	}
@@ -90,9 +93,6 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	void TurnOff() {
 		menuCG.interactable = false;
 		menuStates = MenuStates.TurningOff;
-		if (sceneTapScript) {
-			sceneTapScript.TapLevelStuffTrue();
-		}
 		col.enabled = false;
 	}
 

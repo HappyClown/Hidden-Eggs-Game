@@ -27553,6 +27553,7 @@ MonoBehaviour:
   menuCG: {fileID: 435900315}
   sceneUICG: {fileID: 2036681055}
   fadeDuration: 0.25
+  sceneTapScript: {fileID: 654759650}
 --- !u!114 &654759652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45988,6 +45989,7 @@ MonoBehaviour:
   slideInHelpScript: {fileID: 1284238530}
   puzzlePauseScript: {fileID: 654759651}
   button: {fileID: 2042731750}
+  inScene: 0
 --- !u!222 &1050010916
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -53308,6 +53310,11 @@ Prefab:
       propertyPath: audioHelperBirdScript
       value: 
       objectReference: {fileID: 17080955}
+    - target: {fileID: 114230690615300076, guid: 2dda21351f8e89745903cccd73eb6465,
+        type: 2}
+      propertyPath: sceneTapScript
+      value: 
+      objectReference: {fileID: 654759650}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dda21351f8e89745903cccd73eb6465, type: 2}
   m_IsPrefabParent: 0
@@ -106887,7 +106894,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  scenTapEnabScript: {fileID: 0}
+  sceneTapScript: {fileID: 0}
   lvlTapManScript: {fileID: 0}
   audioHelperBirdScript: {fileID: 0}
 --- !u!114 &1902172821
@@ -117318,6 +117325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzPauseScript: {fileID: 654759651}
   button: {fileID: 2028338937}
+  sceneTapScript: {fileID: 0}
 --- !u!114 &2028338937
 MonoBehaviour:
   m_ObjectHideFlags: 0

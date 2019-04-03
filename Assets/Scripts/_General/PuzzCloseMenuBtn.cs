@@ -15,6 +15,8 @@ public class PuzzCloseMenuBtn : MonoBehaviour {
 	
 	void CloseMenu () {
 		puzzPauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
-		//sceneTapScript.TapLevelStuffTrue();
+		if (sceneTapScript) {
+			sceneTapScript.TapLevelStuffTrue();
+		}
 	}
 }

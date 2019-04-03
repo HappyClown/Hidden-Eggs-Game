@@ -27,7 +27,7 @@ public class HelperBirdIntro : MonoBehaviour {
 	[Header("Script References")]
 	public inputDetector inputDetScript;
 	public SlideInHelpBird slideInScript;
-	public SceneTapEnabler scenTapEnabScript;
+	public SceneTapEnabler sceneTapEnabScript;
 	public BirdIntroSave birdIntroSaveScript;
 	public AudioSceneGeneral audioSceneGenScript;
 
@@ -48,7 +48,7 @@ public class HelperBirdIntro : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (!birdTapped && scenTapEnabScript.canTapHelpBird) {
+		if (!birdTapped && sceneTapEnabScript.canTapHelpBird) {
 			if(inputDetScript.Tapped){ // If frozen bird has not been tapped yep cast a ray on tap
 				mousePos = Camera.main.ScreenToWorldPoint(inputDetScript.TapPosition);
 				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
@@ -61,17 +61,18 @@ public class HelperBirdIntro : MonoBehaviour {
 				inputDetScript.cancelDoubleTap = true;
 				birdObj.transform.position = ogBirdPos;
 				dissParSys.Play();
+				sceneTapEnabScript.canTapPauseBtn = false;
 				audioSceneGenScript.unfrozenBirdSnd();
 			}
 			// Periodically shake the bird to attract the player's attention
 			timer += Time.deltaTime;
 			if (timer > shakeFXCD && !fxPlayed) {
-					foreach (ParticleSystem ps in shakeParSys)
-					{
-						ps.Play();
-					}
-					fxPlayed = true;
+				foreach (ParticleSystem ps in shakeParSys)
+				{
+					ps.Play();
 				}
+				fxPlayed = true;
+			}
 			if (timer > shakeCD) {
 				if (animShake) {
 					anim.SetTrigger("Shake");

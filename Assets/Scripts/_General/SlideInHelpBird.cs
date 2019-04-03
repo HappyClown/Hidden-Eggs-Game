@@ -130,8 +130,8 @@ public class SlideInHelpBird : MonoBehaviour {
 			moveDown = false;
 			isDown = false;
 			moveUp = true;
-			sceneTapScript.canTapEggRidPanPuz = false;
-			allowClick = false;
+			allowClick = true;
+			//sceneTapScript.canTapEggRidPanPuz = false;
 			if (lvlTapManScript) { lvlTapManScript.ZoomOutCameraReset(); }
 			if (introDone) { closeMenuOnClick.SetActive(true); }
 			if (sceneTapScript) {
@@ -147,6 +147,7 @@ public class SlideInHelpBird : MonoBehaviour {
 			isUp = false;
 			moveDown = true; 
 			txtBubFadedIn = false;
+			allowClick = false;			
 		}
 	}
 	#endregion
