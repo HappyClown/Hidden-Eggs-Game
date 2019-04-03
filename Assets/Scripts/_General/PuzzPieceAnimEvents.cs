@@ -12,6 +12,7 @@ public class PuzzPieceAnimEvents : MonoBehaviour {
 	public AnimationCurve animCurve;
 	public float scaleMult;
 	private float puzzNewScale, fxNewScale;
+	public GameObject puzzPiece, puzzParentObj;
 
 	void Update () {
 		if (splineWalkerScript.isPlaying) {
@@ -55,7 +56,7 @@ public class PuzzPieceAnimEvents : MonoBehaviour {
 
 	public void PuzzPieceSplineMove() {
 		splineWalkerScript.IsPlaying = true;
-
+		puzzPiece.transform.parent = puzzParentObj.transform.parent;
 	}
 
 	public void TakeAnimScale () {

@@ -77,6 +77,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 						heldItem = hit.collider.gameObject;
 						heldItem.transform.parent = itemHolder.transform;
 						heldItem.transform.localScale = heldItem.transform.localScale * itemScaleMult;
+						heldItem.GetComponent<SpriteRenderer>().sprite = heldItem.GetComponent<Items>().item;
 
 						if (heldItem == scaleScript.itemOnScale) {
 							scaleScript.isAnItemOnScale = false;
@@ -114,6 +115,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 				UpdateMousePos();
 				holdingItem = false;
 				heldItem.transform.localScale = heldItem.transform.localScale / itemScaleMult;
+				heldItem.GetComponent<SpriteRenderer>().sprite = heldItem.GetComponent<Items>().itemWithShadow;
 
 				RaycastHit2D[] hits;
 				hits = Physics2D.RaycastAll(mousePos2D, Vector3.forward, 50f);

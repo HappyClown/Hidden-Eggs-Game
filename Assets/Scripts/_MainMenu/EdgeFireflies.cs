@@ -8,7 +8,12 @@ public class EdgeFireflies : MonoBehaviour {
 
 	//TESTS SOUNDS
 	public AudioManagerHubMenu audioManHubScript;
-
+	
+	void Start(){
+		if (!audioManHubScript) {
+			audioManHubScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerHubMenu>();
+		}
+	}
 	
 	public void SetEmissionByRadius () {
 		foreach(ParticleSystem partSys in partSystems)

@@ -11,12 +11,19 @@ public class LevelTitleVillage : MonoBehaviour {
 	private float lerpValue, currentLenght;
 	private RectTransform myRectTransform;
 	public LevelTitleVillage[] AllTitles;
+	public AudioManagerHubMenu audioManHubMenuScript;
+
 	// Use this for initialization
+	
 	void Start () {
 		myRectTransform = this.GetComponent<RectTransform>();
 		ResetTittle ();
+
+		if (!audioManHubMenuScript) {
+			audioManHubMenuScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerHubMenu>();
+		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if(openTitle){
@@ -63,6 +70,8 @@ public class LevelTitleVillage : MonoBehaviour {
 					titles.CloseTitle();
 				}
 			}
+		//Sound
+		audioManHubMenuScript.StatPaperSound_on();
 		}
 	}
 	public void ForceOpen(){
@@ -75,6 +84,10 @@ public class LevelTitleVillage : MonoBehaviour {
 		if(!openTitle){
 			closeTitle = true;
 		}
+
+	//Sound
+	audioManHubMenuScript.StatPaperSound_off();
 	}
+	
 
 }

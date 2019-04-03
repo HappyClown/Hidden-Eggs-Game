@@ -35,11 +35,6 @@ public class AudioManagerHubMenu : MonoBehaviour
     ////////////////////////////
     //  SFX & BUTTONS
     ///////////////////////////
-    
-    [Header("Buttons")]
-    public Button BtnPlay;
-    public Button BtnNewGame;
-    public Button BackMenuBtn;
 
     [Header("SFX")]
     [FMODUnity.EventRef]
@@ -58,6 +53,15 @@ public class AudioManagerHubMenu : MonoBehaviour
     public string SFX_Zoom  = "event:/SFX/SFX_General/Zoom";
     public FMOD.Studio.EventInstance ZoomSnd;
 
+    //-- stat paper --
+    [FMODUnity.EventRef]
+    public string SFX_statPaperOn  = "event:/SFX/SFX_General/StatsPaperVillageOn";
+    public FMOD.Studio.EventInstance SFX_statPaperOnSnd;
+
+    [FMODUnity.EventRef]
+    public string SFX_statPaperOff  = "event:/SFX/SFX_General/StatsPaperVillageOff";
+    public FMOD.Studio.EventInstance SFX_statPaperOffSnd;
+
     [Header("Loops Map Glow & Scene Selection")]
 
     [FMODUnity.EventRef]
@@ -75,6 +79,12 @@ public class AudioManagerHubMenu : MonoBehaviour
     [FMODUnity.EventRef]
     public string BeachAmbiance = "event:/SFX/Beach/AmbianceBeachDreamy";
     public FMOD.Studio.EventInstance beachAmbianceSnd;
+    
+    [Header("Buttons")]
+    public Button BtnPlay;
+    public Button BtnNewGame;
+    public Button BackMenuBtn;
+
 
     //TEST level glow & ambiance
     private FMOD.Studio.EventInstance currentMusic;
@@ -319,6 +329,21 @@ public class AudioManagerHubMenu : MonoBehaviour
         CloudsSnd.start();
     }
 
+    //------Stats Paper Map------//
+    
+    public void StatPaperSound_on(){
+        SFX_statPaperOnSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_statPaperOn);
+        SFX_statPaperOnSnd.start();
+
+    }
+
+    public void StatPaperSound_off(){
+        SFX_statPaperOffSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_statPaperOff);
+        SFX_statPaperOffSnd.start();
+
+    }
+
+
     // -------ZOOM sound ------//
 
     public void ZoomSound()
@@ -342,6 +367,8 @@ public class AudioManagerHubMenu : MonoBehaviour
     public void AmbianceGlowStart(int levelSelected)
     {
         currentlevelSelected = levelSelected;
+
+        /*
         //QUICK TEST NOT IDEAL
         Debug.Log("AUDIO : int scene selected = "+levelSelected);
         if(levelSelected == 0){
@@ -357,7 +384,8 @@ public class AudioManagerHubMenu : MonoBehaviour
             Debug.Log("AUDIO : scene selected = Beach");
             
         }
-
+        */
+        
         soundSelectedScene.start();
 
         Debug.Log("AUDIO : AMB start");

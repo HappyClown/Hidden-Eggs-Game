@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Items : MonoBehaviour 
 {
+	public Sprite item;
+	public Sprite itemWithShadow;
 	public int weight;
 	public Vector3 initialPos;
 	public bool inCrate;

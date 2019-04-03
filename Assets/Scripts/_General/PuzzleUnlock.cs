@@ -21,6 +21,9 @@ public class PuzzleUnlock : MonoBehaviour {
 	public int puzzUnlockAmnt;
 	public Animation puzzAnim;
 	//public ClickOnEggs clickOnEggsScript;
+	public FadeInOutImage darkScreenFadeScript;
+	public SceneTapEnabler sceneTapScript;
+	public LevelTapMannager levelTapScript;
 	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start() {
@@ -42,11 +45,15 @@ public class PuzzleUnlock : MonoBehaviour {
 				PuzzPieceFXsScript.PieceRaysFX();
 				puzzFireworkFX.Play(true);
 				ActivatePuzzle();
+				darkScreenFadeScript.FadeOut();
+				sceneTapScript.canTapEggRidPanPuz = true;
+				sceneTapScript.canTapHelpBird = true;
+				sceneTapScript.canTapPauseBtn = true;
 				//Debug.Log("activated puzz");
 			}
 		}
 	}
-	
+
 	public void UnlockPuzzle() {
 		movePuzzPiece = true;
 		endPos = endPosObj.transform.position;
@@ -54,8 +61,12 @@ public class PuzzleUnlock : MonoBehaviour {
 		anim.SetTrigger("PuzzPiecePop");
 		//splineWalkerScript.IsPlaying = true;
 		//Play FX's through animation events
-		puzzPiece.transform.parent = puzzParentObj.transform.parent;
-
+		//puzzPiece.transform.parent = puzzParentObj.transform.parent;
+		darkScreenFadeScript.FadeIn();
+		sceneTapScript.canTapEggRidPanPuz = false;
+		sceneTapScript.canTapHelpBird = false;
+		sceneTapScript.canTapPauseBtn = false;
+		levelTapScript.ZoomOutCameraReset();
 
 		audioSceneGenScript.puzzlePieceAnimation();
 		Debug.Log("sound -  Puzzle piece");

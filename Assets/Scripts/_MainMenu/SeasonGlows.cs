@@ -20,6 +20,10 @@ public class SeasonGlows : MonoBehaviour {
 
 	void Start () {
 		cycleThird = cycleDuration * 0.333f;
+		
+		if (!audioManHubMenuScript) {
+			audioManHubMenuScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerHubMenu>();
+		}
 	}
 	
 	void Update () {

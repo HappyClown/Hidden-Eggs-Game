@@ -18,13 +18,14 @@ public class FadeInOutImage : MonoBehaviour
 	//[Header("Eyes only 	٩(｡•́‿•̀｡)۶")]
 	public Image img;
 	//[HideInInspector]
+	[Header("State")]
+	public StartState myStartState;
 	public bool fadingOut, fadingIn, hidden, shown;
 	//[HideInInspector]
 	public float t;
 	public enum StartState {
 		startShown, startHidden
 	}
-	public StartState myStartState;
 
 	void Start () {
 		img = this.gameObject.GetComponent<Image>();

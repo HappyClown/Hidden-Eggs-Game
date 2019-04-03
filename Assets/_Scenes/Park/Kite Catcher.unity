@@ -7829,6 +7829,7 @@ GameObject:
   - component: {fileID: 230426876}
   - component: {fileID: 230426877}
   - component: {fileID: 230426878}
+  - component: {fileID: 230426879}
   m_Layer: 0
   m_Name: Kite Lvl 03
   m_TagString: Untagged
@@ -7965,6 +7966,19 @@ MonoBehaviour:
   disableOnFadeOut: 0
   sprite: {fileID: 0}
   myStartState: 1
+--- !u!114 &230426879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 230426873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e1832e8fdfaa442be8f0eea4fd8275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kiteMovingEvent: event:/SFX/Puzzle_Park/KiteMoving
+  kiteFlyingEvent: event:/SFX/Puzzle_Park/KiteFlying
 --- !u!1 &263754953
 GameObject:
   m_ObjectHideFlags: 0
@@ -52921,6 +52935,7 @@ GameObject:
   - component: {fileID: 1243802127}
   - component: {fileID: 1243802128}
   - component: {fileID: 1243802129}
+  - component: {fileID: 1243802130}
   m_Layer: 0
   m_Name: Kite Lvl 01
   m_TagString: Untagged
@@ -53045,6 +53060,19 @@ MonoBehaviour:
   kiteSprite: {fileID: 1243802125}
   kiteLevelChangeScript: {fileID: 654759652}
   mainPuzzEngScript: {fileID: 654759646}
+--- !u!114 &1243802130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1243802124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e1832e8fdfaa442be8f0eea4fd8275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kiteMovingEvent: event:/SFX/Puzzle_Park/KiteMoving
+  kiteFlyingEvent: event:/SFX/Puzzle_Park/KiteFlying
 --- !u!1001 &1250335335
 Prefab:
   m_ObjectHideFlags: 0
@@ -58670,6 +58698,7 @@ GameObject:
   - component: {fileID: 1444577630}
   - component: {fileID: 1444577633}
   - component: {fileID: 1444577634}
+  - component: {fileID: 1444577635}
   m_Layer: 0
   m_Name: Kite Lvl 02
   m_TagString: Untagged
@@ -58690,7 +58719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadingOut: 0
   fadingIn: 0
-  hidden: 0
+  hidden: 1
   shown: 0
   fadeDelayDur: 0
   maxAlpha: 1
@@ -58796,6 +58825,19 @@ MonoBehaviour:
   kiteSprite: {fileID: 1444577631}
   kiteLevelChangeScript: {fileID: 654759652}
   mainPuzzEngScript: {fileID: 654759646}
+--- !u!114 &1444577635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1444577629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0e1832e8fdfaa442be8f0eea4fd8275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kiteMovingEvent: event:/SFX/Puzzle_Park/KiteMoving
+  kiteFlyingEvent: event:/SFX/Puzzle_Park/KiteFlying
 --- !u!1 &1451170444
 GameObject:
   m_ObjectHideFlags: 0

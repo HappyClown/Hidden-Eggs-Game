@@ -3241,6 +3241,7 @@ MonoBehaviour:
   - {fileID: 209895966}
   - {fileID: 1745178124}
   - {fileID: 1960444313}
+  audioManHubMenuScript: {fileID: 0}
 --- !u!114 &209895967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11261,7 +11262,7 @@ GameObject:
   - component: {fileID: 1042977692}
   m_Layer: 0
   m_Name: Audio
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11283,17 +11284,19 @@ MonoBehaviour:
   AutumnOn: 0
   WinterOn: 0
   SpringOn: 0
-  BtnPlay: {fileID: 1727510752}
-  BtnNewGame: {fileID: 1272692221}
-  BackMenuBtn: {fileID: 1901679803}
   ButtonSndEvent: event:/SFX/SFX_General/Button
   SFX_MapUncover: event:/SFX/SFX_General/HubUncoverFX
   SFX_Clouds: event:/SFX/SFX_General/CloudsMoving
   SFX_Zoom: event:/SFX/SFX_General/Zoom
+  SFX_statPaperOn: event:/SFX/SFX_General/StatsPaperVillageOn
+  SFX_statPaperOff: event:/SFX/SFX_General/StatsPaperVillageOff
   SFX_ShimyLoopMenu: event:/SFX/SFX_General/shimyLoopMenu
   MarketAmbiance: event:/SFX/Market/AmbianceMarketDreamy
   ParkAmbiance: event:/SFX/Park/AmbianceParkDreamy
   BeachAmbiance: event:/SFX/Beach/AmbianceBeachDreamy
+  BtnPlay: {fileID: 1727510752}
+  BtnNewGame: {fileID: 1272692221}
+  BackMenuBtn: {fileID: 1901679803}
   currentlevelSelected: -1
   nbEggsBySeason: 0
   dissolvingSnd: 0
@@ -19802,6 +19805,7 @@ MonoBehaviour:
   - {fileID: 209895966}
   - {fileID: 1745178124}
   - {fileID: 1960444313}
+  audioManHubMenuScript: {fileID: 0}
 --- !u!114 &1745178125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22346,6 +22350,7 @@ MonoBehaviour:
   - {fileID: 209895966}
   - {fileID: 1745178124}
   - {fileID: 1960444313}
+  audioManHubMenuScript: {fileID: 0}
 --- !u!114 &1960444314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22924,8 +22929,8 @@ MonoBehaviour:
   playBtn: {fileID: 1727510752}
   playBtnFadeScript: {fileID: 1727510755}
   playBtnImg: {fileID: 1727510753}
-  rstBtn: {fileID: 1272692221}
-  rstBtnFadeScript: {fileID: 1272692225}
+  resetBtn: {fileID: 1272692221}
+  resetBtnFadeScript: {fileID: 1272692225}
   resetBtnImg: {fileID: 1272692222}
   storyBtn: {fileID: 0}
   storyTMP: {fileID: 1885987300}

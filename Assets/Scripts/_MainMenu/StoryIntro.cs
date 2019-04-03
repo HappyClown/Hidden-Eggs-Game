@@ -77,7 +77,7 @@ public class StoryIntro : MonoBehaviour {
 			mainMenuScript.FadeMainMenu();
 			menuFaded = true;
 		}
-		if (mainMenuScript.titleFade.hidden/*  && mainMenuScript.playBtnFadeScript.hidden */ && mainMenuScript.rstBtnFadeScript.hidden) {
+		if (mainMenuScript.titleFade.hidden/*  && mainMenuScript.playBtnFadeScript.hidden */ && mainMenuScript.resetBtnFadeScript.hidden) {
 			introStates = IntroStates.OnceUponATime;
 			storyBoardTextNum = 0;
 			//boardEvents.Clear();

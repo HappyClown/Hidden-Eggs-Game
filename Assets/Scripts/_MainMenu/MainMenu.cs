@@ -18,8 +18,8 @@ public class MainMenu : MonoBehaviour {
 	public Image playBtnImg;
 
 	[Header("Reset Button")]
-	public Button rstBtn;
-	public FadeInOutImage rstBtnFadeScript;
+	public Button resetBtn;
+	public FadeInOutImage resetBtnFadeScript;
 	public Image resetBtnImg;
 
 	[Header("Story")]
@@ -35,14 +35,20 @@ public class MainMenu : MonoBehaviour {
 
 	void Start () {
 		playBtn.onClick.AddListener(PlayBtn);
-		rstBtn.onClick.AddListener(DeleteSaveFile);
-		rstBtn.onClick.AddListener(NewGameBtn);
-		if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
-			ToHub();
-		}
+		resetBtn.onClick.AddListener(DeleteSaveFile);
+		resetBtn.onClick.AddListener(NewGameBtn);
+		// if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
+		// 	ToHub();
+		// }
 	}
 
 	void Update () {
+		if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
+			ToHub();
+			GlobalVariables.globVarScript.toHub = false;
+			Debug.Log("How many times do I go to hubbabubbaland!");
+		}
+
 		if (inputDetScript.Tapped && !skipFrame) {
 			if (storyAppearing || storyFullyOn) {
 				StorySkipContinue();
@@ -76,7 +82,7 @@ public class MainMenu : MonoBehaviour {
 		solidBGFade.FadeOut();
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
-		rstBtnFadeScript.FadeOut();
+		resetBtnFadeScript.FadeOut();
 		//storyBtn.gameObject.SetActive(false);
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
@@ -92,8 +98,14 @@ public class MainMenu : MonoBehaviour {
 		solidBGFade.FadeOut();
 		// Deactivate Title & Buttons to avoid seeing them.
 		playBtnImg.color = new Color(playBtnImg.color.r, playBtnImg.color.g, playBtnImg.color.b, 0);
+		playBtnFadeScript.shown = false;
+		playBtnFadeScript.hidden = true;
 		resetBtnImg.color = new Color(resetBtnImg.color.r, resetBtnImg.color.g, resetBtnImg.color.b, 0);
+		resetBtnFadeScript.shown = false;
+		resetBtnFadeScript.hidden = true;
 		titleImg.color = new Color(titleImg.color.r, titleImg.color.g, titleImg.color.b, 0);
+		titleFade.shown = false;
+		titleFade.hidden = true;
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
 	}
@@ -103,7 +115,7 @@ public class MainMenu : MonoBehaviour {
 		titleFade.FadeOut();
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
-		rstBtnFadeScript.FadeOut();
+		resetBtnFadeScript.FadeOut();
 		StoryTextAppears();
 	}
 
@@ -118,7 +130,7 @@ public class MainMenu : MonoBehaviour {
 	public void FadeMainMenu() {
 		titleFade.FadeOut();
 		playBtnFadeScript.FadeOut();
-		rstBtnFadeScript.FadeOut();
+		resetBtnFadeScript.FadeOut();
 	}
 
 	void StoryTextAppears() {

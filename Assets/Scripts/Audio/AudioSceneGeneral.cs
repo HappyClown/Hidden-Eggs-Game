@@ -98,11 +98,6 @@ public class AudioSceneGeneral : MonoBehaviour
     public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
 
-
-
-
-
-
 	[Header("For tests and reference")]
     // TESTS UNLOCKED SOUND
     public bool SceneIn;
@@ -373,6 +368,7 @@ public class AudioSceneGeneral : MonoBehaviour
     public void onDestroy()
     {
         puzzleUnlockedSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+		frozenBirdShakeSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         //public static void DetachInstanceFromGameObject(FMOD.Studio.EventInstance instance)
     }
 
