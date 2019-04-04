@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelTitleVillage : MonoBehaviour {
 
@@ -11,19 +12,58 @@ public class LevelTitleVillage : MonoBehaviour {
 	private float lerpValue, currentLenght;
 	private RectTransform myRectTransform;
 	public LevelTitleVillage[] AllTitles;
-	public AudioManagerHubMenu audioManHubMenuScript;
+	public Image NormalEgg, silverEgg, goldenEgg;
+	public Sprite spriteNormalEgg, spriteSilverEgg, spriteGoldenEgg, spriteEmptyEgg;
+	public string myLevel;
 
 	// Use this for initialization
-	
 	void Start () {
 		myRectTransform = this.GetComponent<RectTransform>();
 		ResetTittle ();
+		if(myLevel == GlobalVariables.globVarScript.marketName){
+			if(GlobalVariables.globVarScript.marketNE)
+			NormalEgg.sprite = spriteNormalEgg;
+			else
+			NormalEgg.sprite = spriteEmptyEgg;
+			if(GlobalVariables.globVarScript.marketSE)
+			silverEgg.sprite = spriteSilverEgg;
+			else
+			silverEgg.sprite = spriteEmptyEgg;
+			if(GlobalVariables.globVarScript.marketGE)
+			goldenEgg.sprite = spriteGoldenEgg;
+			else
+			goldenEgg.sprite = spriteEmptyEgg;
+		}else if(myLevel == GlobalVariables.globVarScript.parkName){
+			if(GlobalVariables.globVarScript.parkNE)
+			NormalEgg.sprite = spriteNormalEgg;
+			else
+			NormalEgg.sprite = spriteEmptyEgg;
+			if(GlobalVariables.globVarScript.parkSE)
+			silverEgg.sprite = spriteSilverEgg;
+			else
+			silverEgg.sprite = spriteEmptyEgg;
+			if(GlobalVariables.globVarScript.parkGE)
+			goldenEgg.sprite = spriteGoldenEgg;
+			else
+			goldenEgg.sprite = spriteEmptyEgg;
 
-		if (!audioManHubMenuScript) {
-			audioManHubMenuScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerHubMenu>();
+		}else if(myLevel == GlobalVariables.globVarScript.beachName){
+			if(GlobalVariables.globVarScript.beachNE)
+			NormalEgg.sprite = spriteNormalEgg;
+			else
+			NormalEgg.sprite = spriteEmptyEgg;
+			if(GlobalVariables.globVarScript.beachSE)
+			silverEgg.sprite = spriteSilverEgg;
+			else
+			silverEgg.sprite = spriteEmptyEgg;
+			if(GlobalVariables.globVarScript.beachGE)
+			goldenEgg.sprite = spriteGoldenEgg;
+			else
+			goldenEgg.sprite = spriteEmptyEgg;
+
 		}
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
 		if(openTitle){
@@ -70,8 +110,6 @@ public class LevelTitleVillage : MonoBehaviour {
 					titles.CloseTitle();
 				}
 			}
-		//Sound
-		audioManHubMenuScript.StatPaperSound_on();
 		}
 	}
 	public void ForceOpen(){
@@ -84,10 +122,9 @@ public class LevelTitleVillage : MonoBehaviour {
 		if(!openTitle){
 			closeTitle = true;
 		}
-
-	//Sound
-	audioManHubMenuScript.StatPaperSound_off();
 	}
-	
+	public void UpdateEggs(){
+
+	}
 
 }

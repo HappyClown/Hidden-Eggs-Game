@@ -40,6 +40,10 @@ public class GlobalVariables : MonoBehaviour
 	public GameObject eggHolder;
 	public DissolveSeasons dissSeasonsScript;
 
+	//camilo bools for level titles
+	//[HideInInspector]
+	public bool marketSE, marketGE, marketNE, parkSE, parkGE, parkNE, beachSE, beachGE, beachNE;
+
 	void OnEnable () 
 	{
 		if (globVarScript == null)
@@ -127,6 +131,7 @@ public class GlobalVariables : MonoBehaviour
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
 		// Market
 		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName || SceneManager.GetActiveScene().name == menuName) {
+			riddleSolved = false;
 			eggsFoundBools = MarketSaveLoadManager.LoadMarketEggs();
 			eggsFoundOrder = MarketSaveLoadManager.LoadMarketEggsOrder();
 			silverEggsCount = MarketSaveLoadManager.LoadMarketSilverEggs();
@@ -138,7 +143,6 @@ public class GlobalVariables : MonoBehaviour
 			levelComplete = MarketSaveLoadManager.LoadMarketLevelComplete();
 			birdIntroDone = MarketSaveLoadManager.LoadMarketBirdIntro();
 			puzzIntroDone = MarketSaveLoadManager.LoadMarketPuzzIntro();
-
 			List<bool> loadedEggs = MarketSaveLoadManager.LoadMarketEggs();
 			if (loadedEggs.Count > 2) {
 				eggsFoundBools = loadedEggs;
@@ -150,6 +154,24 @@ public class GlobalVariables : MonoBehaviour
 					eggsFoundOrder.Add(0);
 				}
 			}
+
+			///camilo script to count eggs for the titles
+			int eggsFoundAmmount = 0;
+			if(silverEggsCount == 6){
+				marketSE = true;
+			}
+			if(riddleSolved){
+				marketGE = true;
+			}
+			foreach (bool contEggs in eggsFoundBools)			{
+				if(contEggs)
+				eggsFoundAmmount ++;
+			}
+			if(eggsFoundAmmount == eggsFoundBools.Count && eggsFoundAmmount > 0)			{
+				marketNE = true;
+			}
+			//end camiloScript
+
 			hubTotalEggsFound += totalEggsFound;
 		}	
 		// Park
@@ -181,6 +203,23 @@ public class GlobalVariables : MonoBehaviour
 				}
 			}
 
+			///camilo script to count eggs for the titles
+			int eggsFoundAmmount = 0;
+			if(silverEggsCount == 6){
+				parkSE = true;
+			}
+			if(riddleSolved){
+				parkGE = true;
+			}
+			foreach (bool contEggs in eggsFoundBools)			{
+				if(contEggs)
+				eggsFoundAmmount ++;
+			}
+			if(eggsFoundAmmount == eggsFoundBools.Count && eggsFoundAmmount > 0)			{
+				parkNE = true;
+			}
+			//end camiloScript
+
 			hubTotalEggsFound += totalEggsFound;
 		}
 		// Beach
@@ -211,6 +250,23 @@ public class GlobalVariables : MonoBehaviour
 					eggsFoundOrder.Add(0);
 				}
 			}
+			
+			///camilo script to count eggs for the titles
+			int eggsFoundAmmount = 0;
+			if(silverEggsCount == 6){
+				beachSE = true;
+			}
+			if(riddleSolved){
+				beachGE = true;
+			}
+			foreach (bool contEggs in eggsFoundBools)			{
+				if(contEggs)
+				eggsFoundAmmount ++;
+			}
+			if(eggsFoundAmmount == eggsFoundBools.Count && eggsFoundAmmount > 0)			{
+				beachNE = true;
+			}
+			//end camiloScript
 
 			hubTotalEggsFound += totalEggsFound;
 		}
