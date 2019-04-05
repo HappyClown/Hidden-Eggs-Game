@@ -272,7 +272,7 @@ public class AudioSceneGeneral : MonoBehaviour
     public void goldEggAnimSound()
     {
         goldEggAnimationSound = FMODUnity.RuntimeManager.CreateInstance(goldEggAnimationEvent);
-        goldEggAnimationSound.start();
+        //goldEggAnimationSound.start();
 
         //stinger golden egg
         goldenEggStingerSound = FMODUnity.RuntimeManager.CreateInstance(goldenEggStingerEvent);
@@ -294,6 +294,7 @@ public class AudioSceneGeneral : MonoBehaviour
 
     public void puzzlePieceAnimation()
     {
+        puzzlePieceSound = FMODUnity.RuntimeManager.CreateInstance(puzzlePieceEvent);
         puzzlePieceSound.start();
 
         //TrailFX
@@ -318,14 +319,14 @@ public class AudioSceneGeneral : MonoBehaviour
         puzzleUnlocked = true;
         FMODUnity.RuntimeManager.AttachInstanceToGameObject (puzzleUnlockedSound, puzzleImage.transform,puzzleImage.GetComponent<Rigidbody> ());
         puzzleUnlockedSound.start();
-        Debug.Log("puzzle Unlocked Sound is playing");
+       // Debug.Log("puzzle Unlocked Sound is playing");
     }
 
 
         public void puzzleAnimationStop()
     {
         puzzleUnlockedSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        Debug.Log("puzzle Unlocked Sound is stopped");
+       // Debug.Log("puzzle Unlocked Sound is stopped");
     }
 
     //PAnel SFX

@@ -32,6 +32,8 @@ public class MainMenu : MonoBehaviour {
 	public Hub hubScript;
 	public HubEggcounts hubEggCountsScript;
 	public inputDetector inputDetScript;
+	public List<LevelTitleVillage> levelTitleScripts;
+	public List<CustomButtonClick> customButtonScripts;
 
 	void Start () {
 		playBtn.onClick.AddListener(PlayBtn);
@@ -86,6 +88,14 @@ public class MainMenu : MonoBehaviour {
 		//storyBtn.gameObject.SetActive(false);
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
+		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
+		{
+			levelTitleScript.CloseTitle();
+		}
+		foreach(CustomButtonClick customButtonScript in customButtonScripts)
+		{
+			customButtonScript.levelSelected = false;
+		}
 	}
 
 	void ToHub() {
@@ -117,6 +127,14 @@ public class MainMenu : MonoBehaviour {
 		playBtnFadeScript.FadeOut();
 		resetBtnFadeScript.FadeOut();
 		StoryTextAppears();
+		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
+		{
+			levelTitleScript.CloseTitle();
+		}
+		foreach(CustomButtonClick customButtonScript in customButtonScripts)
+		{
+			customButtonScript.levelSelected = false;
+		}
 	}
 
 	void MoveClouds() {
@@ -163,12 +181,16 @@ public class MainMenu : MonoBehaviour {
 		
 		//storyBtn.interactable = false;
 		fadeTMPScript.fadeDelay = true;
-
 	}
 
 	public void DeleteSaveFile() {
 		GlobalVariables.globVarScript.DeleteAllData();
 		hubEggCountsScript.AdjustTotEggCount();
 		GlobalVariables.globVarScript.LoadHubDissolve();
+		GlobalVariables.globVarScript.ResetParchmentEggs();
+		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
+		{
+			levelTitleScript.UpdateEggs();
+		}
 	}
 }

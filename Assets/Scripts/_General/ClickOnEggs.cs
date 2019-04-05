@@ -170,6 +170,7 @@ public class ClickOnEggs : MonoBehaviour {
 						hit.collider.enabled = false;
 						sceneTapEnabScript.canTapEggRidPanPuz = true;
 						sceneTapEnabScript.canTapHelpBird = true;
+						sceneTapEnabScript.canTapPauseBtn = true;
 						sceneTapEnabScript.canTapGoldEgg = false;
 						//AdjustGoldenEggCount();
 						AddEggsFound();

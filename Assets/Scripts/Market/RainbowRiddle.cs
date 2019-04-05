@@ -30,6 +30,7 @@ public class RainbowRiddle : MonoBehaviour
 	public AudioSceneMarket audioSceneMarket;
 	public LevelTapMannager lvlTapManScript;
 	public inputDetector inputDetScript;
+	public ClickOnEggs clickOnEggsScript;
 
 
     void Start ()
@@ -147,6 +148,10 @@ public class RainbowRiddle : MonoBehaviour
 
     public void RainbowRiddleSolved ()
 	{
+		if (clickOnEggsScript.goldenEggFound == 0) {
+			clickOnEggsScript.goldenEggFound = 1;
+			clickOnEggsScript.AddEggsFound();
+		}
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

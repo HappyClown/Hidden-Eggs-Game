@@ -10,8 +10,15 @@ public class SceneTapEnabler : MonoBehaviour
 	public bool canTapPauseBtn;
 	public bool canTapGoldEgg;
 	public bool canTapLvlComp;
+	public inputDetector inputDetectorScript;
 	// [Header("Puzzle")]
 	// public bool canTapPuzzReset;
+
+	void Update () {
+		if (inputDetectorScript && inputDetectorScript.detectDoubleTap != canTapEggRidPanPuz) {
+			inputDetectorScript.detectDoubleTap = canTapEggRidPanPuz;
+		}
+	}
 
 	public void TapLevelStuffFalse() {
 		canTapEggRidPanPuz = false;

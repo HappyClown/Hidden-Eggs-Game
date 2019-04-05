@@ -79,6 +79,10 @@ public class GlobalVariables : MonoBehaviour
 		VillageSaveLoadManager.SaveVillage(this);
 	}
 
+	public void SaveGeneralData() {
+		GeneralSaveLoadManager.SaveGeneralData(this);
+	}
+
 	public void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -163,11 +167,12 @@ public class GlobalVariables : MonoBehaviour
 			if(riddleSolved){
 				marketGE = true;
 			}
-			foreach (bool contEggs in eggsFoundBools)			{
-				if(contEggs)
+			for (int i = 0; i < eggsFoundBools.Count - 1; i++)
+			{
+				if(eggsFoundBools[i])
 				eggsFoundAmmount ++;
 			}
-			if(eggsFoundAmmount == eggsFoundBools.Count && eggsFoundAmmount > 0)			{
+			if(eggsFoundAmmount == (eggsFoundBools.Count-1) && eggsFoundAmmount > 0)			{
 				marketNE = true;
 			}
 			//end camiloScript
@@ -211,11 +216,12 @@ public class GlobalVariables : MonoBehaviour
 			if(riddleSolved){
 				parkGE = true;
 			}
-			foreach (bool contEggs in eggsFoundBools)			{
-				if(contEggs)
+			for (int i = 0; i < eggsFoundBools.Count - 1; i++)
+			{
+				if(eggsFoundBools[i])
 				eggsFoundAmmount ++;
 			}
-			if(eggsFoundAmmount == eggsFoundBools.Count && eggsFoundAmmount > 0)			{
+			if(eggsFoundAmmount == (eggsFoundBools.Count-1) && eggsFoundAmmount > 0)			{
 				parkNE = true;
 			}
 			//end camiloScript
@@ -259,11 +265,12 @@ public class GlobalVariables : MonoBehaviour
 			if(riddleSolved){
 				beachGE = true;
 			}
-			foreach (bool contEggs in eggsFoundBools)			{
-				if(contEggs)
+			for (int i = 0; i < eggsFoundBools.Count - 1; i++)
+			{
+				if(eggsFoundBools[i])
 				eggsFoundAmmount ++;
 			}
-			if(eggsFoundAmmount == eggsFoundBools.Count && eggsFoundAmmount > 0)			{
+			if(eggsFoundAmmount == (eggsFoundBools.Count-1) && eggsFoundAmmount > 0)			{
 				beachNE = true;
 			}
 			//end camiloScript
@@ -272,11 +279,16 @@ public class GlobalVariables : MonoBehaviour
 		}
 	}
 
+	public void ResetParchmentEggs() {
+		marketGE = marketNE = marketSE = parkGE = parkNE = parkSE = beachGE = beachNE = beachSE = false;
+	}
+
 	public void DeleteAllData()
 	{
 		MarketSaveLoadManager.DeleteMarketSaveFile();
 		ParkSaveLoadManager.DeleteParkSaveFile();
 		BeachSaveLoadManager.DeleteBeachSaveFile();
 		VillageSaveLoadManager.DeleteVillageSaveFile();
+		GeneralSaveLoadManager.DeleteGeneralSaveFile();
 	}
 }

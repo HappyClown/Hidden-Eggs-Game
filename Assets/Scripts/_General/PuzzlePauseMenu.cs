@@ -30,6 +30,15 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (puzzEngScript) {
+			if (!puzzEngScript.canPlay) {
+				sceneTapScript.canTapPauseBtn = false;
+			}
+			else {
+				sceneTapScript.canTapPauseBtn = true;
+			}
+		}
+
 		if (menuActive) {
 			switch (menuStates) {
 				case MenuStates.TurnOn:

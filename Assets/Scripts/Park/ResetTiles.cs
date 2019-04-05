@@ -8,11 +8,21 @@ public class ResetTiles : MonoBehaviour
 	public Button resetButton;
 	public List<GameObject> tiles;
 	public KitePuzzEngine kitePuzzEngineScript;
+	public SceneTapEnabler sceneTapEnaScript;
 
 	void Start () 
 	{
 		resetButton = this.GetComponent<Button>();
 		resetButton.onClick.AddListener(ResetTilePos);
+	}
+
+	void Update () {
+		if (!sceneTapEnaScript.canTapPauseBtn) {
+			resetButton.interactable = false;
+		}
+		else {
+			resetButton.interactable = true;
+		}
 	}
 
 	public void FillTileResetArray ()

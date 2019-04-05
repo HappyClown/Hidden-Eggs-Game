@@ -195,7 +195,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 						if (tutorialDone) {
 							canPlay = true;
 							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
-							sceneTapScript.canTapPauseBtn = true;
+							//sceneTapScript.canTapPauseBtn = true;
 						}
 						else {
 							slideInHelpScript.MoveBirdUpDown();
@@ -254,6 +254,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 	public new void SilverEggsSetup() {
 		//Debug.Log("New Level Setup");
 		canPlay = false;
+		//sceneTapScript.canTapPauseBtn = false;
 		//Set the silver egg sprites to Hollow if the egg was found already.
 		for (int i = 0; i < GlobalVariables.globVarScript.puzzSilEggsCount.Count; i++)
 		{
@@ -301,6 +302,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 				voidDelegate = NextLevelSetup;
 				if (!waitMethod) { waitMethod = true; } else { Debug.LogError("waitMethod IS ALREADY IN PROGRESS, DONT DO THAT!!"); }
 				waitTime = waitBeforeCrteDown;
+				//sceneTapScript.canTapPauseBtn = true;
 			}
 		}
 	}

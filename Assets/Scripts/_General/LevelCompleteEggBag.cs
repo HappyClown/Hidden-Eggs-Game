@@ -15,7 +15,9 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	public AudioSceneGeneral audioSceneGenScript;
 	
 	public void Start() {
-		audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
+		if (!audioSceneGenScript) {
+			audioSceneGenScript = GameObject.FindWithTag("Audio").GetComponent<AudioSceneGeneral>();
+		}
 	}
 
 	void Update () {
@@ -57,6 +59,6 @@ public class LevelCompleteEggBag : MonoBehaviour {
 
 	public void SaveLevelsCompleted() {
 		GlobalVariables.globVarScript.levelsCompleted = levelsCompleted;
-		GlobalVariables.globVarScript.SaveEggState();
+		GlobalVariables.globVarScript.SaveGeneralData();
 	}
 }

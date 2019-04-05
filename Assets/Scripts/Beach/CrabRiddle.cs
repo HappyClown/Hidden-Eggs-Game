@@ -40,6 +40,7 @@ public class CrabRiddle : MonoBehaviour
 	public inputDetector inputDetScript;
 	public AudioSceneBeach audioSceneBeachScript;
 	public SceneTapEnabler sceneTapEnabScript;
+	public ClickOnEggs clickOnEggsScript;
 
 
 
@@ -158,6 +159,10 @@ public class CrabRiddle : MonoBehaviour
 
 	public void CrabRiddleSolved ()
 	{
+		if (clickOnEggsScript.goldenEggFound == 0) {
+			clickOnEggsScript.goldenEggFound = 1;
+			clickOnEggsScript.AddEggsFound();
+		}
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

@@ -37,6 +37,7 @@ public class HopscotchRiddle : MonoBehaviour
 	public float minSecTapTime, minSecTapTimer;
 	public LevelTapMannager lvlTapManScript;
 	public SceneTapEnabler sceneTapEnaScript;
+	public ClickOnEggs clickOnEggsScript;
 
 
 	void Start () 
@@ -344,6 +345,10 @@ public class HopscotchRiddle : MonoBehaviour
 
 	public void HopscotchRiddleSolved ()
 	{
+		if (clickOnEggsScript.goldenEggFound == 0) {
+			clickOnEggsScript.goldenEggFound = 1;
+			clickOnEggsScript.AddEggsFound();
+		}
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

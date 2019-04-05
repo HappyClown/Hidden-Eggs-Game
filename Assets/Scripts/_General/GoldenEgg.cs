@@ -354,9 +354,9 @@ public class GoldenEgg : MonoBehaviour
 
 	public void CannotTaps()
 	{
-		if (scenTapEnabScript.canTapEggRidPanPuz) { scenTapEnabScript.canTapEggRidPanPuz = false; }
-		if (scenTapEnabScript.canTapPauseBtn) { scenTapEnabScript.canTapPauseBtn = false; }
-		if (scenTapEnabScript.canTapHelpBird) { scenTapEnabScript.canTapHelpBird = false; }
+		scenTapEnabScript.canTapEggRidPanPuz = false;
+		scenTapEnabScript.canTapPauseBtn = false;
+		scenTapEnabScript.canTapHelpBird = false;
 	}
 
 	public void CanTaps()
