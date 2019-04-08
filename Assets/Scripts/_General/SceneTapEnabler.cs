@@ -17,6 +17,7 @@ public class SceneTapEnabler : MonoBehaviour
 	void Update () {
 		if (inputDetectorScript && inputDetectorScript.detectDoubleTap != canTapEggRidPanPuz) {
 			inputDetectorScript.detectDoubleTap = canTapEggRidPanPuz;
+			inputDetectorScript.detectDoubleTouch = canTapEggRidPanPuz;
 		}
 	}
 

@@ -19,12 +19,22 @@ public class SilverEggsManager : MonoBehaviour {
 	public MainPuzzleEngine mainPuzzleEngScript;
 	public AudioScenePuzzleGeneric audioScenePuzzScript;
 
+	private float skipTimer = 0f;
+	public float skipWaitTime = 0.01f;
+
 	void Start() {
 		silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
 		audioScenePuzzScript = GameObject.Find("Audio").GetComponent<AudioScenePuzzleGeneric>();
 	}
 
 	void Update() {
+		if (skippedSeq) {
+			if (skipTimer >= skipWaitTime) {
+				skippedSeq = false;
+				skipTimer = 0f;
+			}
+			skipTimer += Time.deltaTime;
+		}
 		// Clicking on a silver egg.
 		if (inputDetScript.Tapped && !skippedSeq) {
 			UpdateMousePos();
@@ -45,7 +55,6 @@ public class SilverEggsManager : MonoBehaviour {
 				}
 			}
 		}
-		skippedSeq = false;
 	}
 
 	public void UpdateMousePos() {

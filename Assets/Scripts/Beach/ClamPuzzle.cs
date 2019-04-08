@@ -147,26 +147,26 @@ public class ClamPuzzle : MainPuzzleEngine {
 			// Turn off interaction for all three level select dots.
 			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
 
-			#region Click On SilverEggs
-			// Clicking on a silver egg.
-			if (myInput.Tapped) {
-				UpdateMousePos();
-				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit) {
-					if (hit.collider.CompareTag("Egg")) {
-						SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-						silEggTappedScript.StartSilverEggAnim();
-						hit.collider.enabled = false;
+			// #region Click On SilverEggs
+			// // Clicking on a silver egg.
+			// if (myInput.Tapped) {
+			// 	UpdateMousePos();
+			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+			// 	if (hit) {
+			// 		if (hit.collider.CompareTag("Egg")) {
+			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
+			// 			silEggTappedScript.StartSilverEggAnim();
+			// 			hit.collider.enabled = false;
 		
-						if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
-						mySilverEggMan.SaveSilverEggsToCorrectFile();
-						mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-						mySilverEggMan.amntSilEggsTapped++;
-						SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-					}
-				}
-			}
-			#endregion
+			// 			if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
+			// 			mySilverEggMan.SaveSilverEggsToCorrectFile();
+			// 			mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
+			// 			mySilverEggMan.amntSilEggsTapped++;
+			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
+			// 		}
+			// 	}
+			// }
+			// #endregion
 		}
 
 		if (waitMethod)

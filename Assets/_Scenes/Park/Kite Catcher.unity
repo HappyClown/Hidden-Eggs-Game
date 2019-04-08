@@ -27412,7 +27412,7 @@ MonoBehaviour:
   slideInHelpScript: {fileID: 1284238530}
   canPlay: 0
   lvlToLoad: 0
-  setupLvlWaitTime: 2.02
+  setupLvlWaitTime: 2.1
   chngLvlTimer: 0
   maxLvl: 0
   audioSceneParkPuzzScript: {fileID: 17080954}
@@ -27496,6 +27496,7 @@ MonoBehaviour:
   inputDetScript: {fileID: 654759647}
   mainPuzzleEngScript: {fileID: 654759646}
   audioScenePuzzScript: {fileID: 17080954}
+  skipWaitTime: 0.01
 --- !u!114 &654759649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27539,6 +27540,7 @@ MonoBehaviour:
   canTapPauseBtn: 0
   canTapGoldEgg: 0
   canTapLvlComp: 0
+  inputDetectorScript: {fileID: 0}
 --- !u!114 &654759651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85393,6 +85395,21 @@ Prefab:
       propertyPath: myStartState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114379791070754492, guid: dae81d163e2a647478192fbc62e45d8a,
+        type: 2}
+      propertyPath: hidden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 223666425193504902, guid: dae81d163e2a647478192fbc62e45d8a,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1739209455
+      objectReference: {fileID: 0}
+    - target: {fileID: 223666425193504902, guid: dae81d163e2a647478192fbc62e45d8a,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
   m_IsPrefabParent: 0
@@ -91142,7 +91159,7 @@ MonoBehaviour:
   fadingOut: 0
   fadingIn: 0
   hidden: 0
-  shown: 0
+  shown: 1
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -91403,7 +91420,7 @@ MonoBehaviour:
   fadingOut: 0
   fadingIn: 0
   hidden: 0
-  shown: 0
+  shown: 1
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -91664,7 +91681,7 @@ MonoBehaviour:
   fadingOut: 0
   fadingIn: 0
   hidden: 0
-  shown: 0
+  shown: 1
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -91941,7 +91958,7 @@ MonoBehaviour:
   fadingOut: 0
   fadingIn: 0
   hidden: 0
-  shown: 0
+  shown: 1
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -92202,7 +92219,7 @@ MonoBehaviour:
   fadingOut: 0
   fadingIn: 0
   hidden: 0
-  shown: 0
+  shown: 1
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
@@ -92524,7 +92541,7 @@ MonoBehaviour:
   fadingOut: 0
   fadingIn: 0
   hidden: 0
-  shown: 0
+  shown: 1
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 2
