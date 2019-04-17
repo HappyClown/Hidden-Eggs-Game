@@ -17,7 +17,7 @@ public class DissolveSeasons : MonoBehaviour {
 	public void SeasonDissolveCheck () {
 
 		bool change = false;
-		if (!GlobalVariables.globVarScript.dissSeasonsBools[0] && hubEggcountsScript.TotEgg >= summerAmnt) {
+		if (GlobalVariables.globVarScript.dissSeasonsBools.Count > 0 && !GlobalVariables.globVarScript.dissSeasonsBools[0] && hubEggcountsScript.TotEgg >= summerAmnt) {
 			dissSeasonsTemp[0] = true; change = true;
 		}
 		if (!GlobalVariables.globVarScript.dissSeasonsBools[1] && hubEggcountsScript.TotEgg >= fallAmnt) {
