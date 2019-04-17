@@ -34,8 +34,8 @@ public class HelperBirdHint : MonoBehaviour {
 		}
 
 		if (!slideInScript.isUp && showHint) {
-			hintFadeInOutScript.FadeOut();
 			hintBtn.interactable = false;
+			hintFadeInOutScript.FadeOut();
 			showHint = false;
 		}
 	}

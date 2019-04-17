@@ -31,18 +31,19 @@ public class FadeInOutImage : MonoBehaviour
 		img = this.gameObject.GetComponent<Image>();
 		if (myStartState == StartState.startShown) {
 			img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
+			if(!fadingOut && !fadingIn)
 			shown = true;
 		}
 		else if (myStartState == StartState.startHidden) {
 			img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
+			if(!fadingOut && !fadingIn)
 			hidden = true;
 		}
 		if (maxAlpha <= 0f) { 
 			maxAlpha = 1f; 
 		}
-		if (fadeInOnStart) { 
+		if (fadeInOnStart) {  
 			FadeIn();  
-			new Color(img.color.r, img.color.g, img.color.b, 0f); 
 		}
 	}
 

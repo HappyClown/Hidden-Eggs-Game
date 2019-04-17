@@ -42,9 +42,10 @@ public class HelperBirdRiddle : MonoBehaviour {
 		}
 
 		if (!slideInScript.isUp && riddBtnOn) {
+			riddBtnOn = false;
 			riddFadeScript.FadeOut();
 			riddleBtn.interactable = false;
-			riddBtnOn = false;
+			
 		}
 
 		if (slideInScript.moveDown && riddTextOn) {
