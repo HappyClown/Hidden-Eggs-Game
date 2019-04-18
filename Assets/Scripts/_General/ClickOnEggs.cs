@@ -9,11 +9,10 @@ public class ClickOnEggs : MonoBehaviour {
 	RaycastHit2D hit;
 	Vector2 mousePos2D;
 	Vector3 mousePos;
+	public static bool inASequence; // Currently in a sequence; BirdIntro, BirdDialog?, PuzzleUnlock, SilverEggsToPanel, GoldenEgg, LevelComplete 
+	public bool seqChecker; // to delete
 
-	public inputDetector myInputDetector;
-	public SceneTapEnabler sceneTapEnabScript;
-	public SceneFade sceneFadeScript;
-
+	[Header("Initial Sequence")]
 	public bool iniSeq;
 	public float iniSeqTimer;
 	public float iniDelay; // waiting for titlecard to fade away
@@ -68,7 +67,10 @@ public class ClickOnEggs : MonoBehaviour {
 	public bool levelComplete;
 	public LevelComplete levelCompleteScript;
 
-	[Header("Audio Script References")]
+	[Header("Script References")]
+	public inputDetector myInputDetector;
+	public SceneTapEnabler sceneTapEnabScript;
+	public SceneFade sceneFadeScript;
 	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start () {
@@ -88,6 +90,11 @@ public class ClickOnEggs : MonoBehaviour {
 	}
 
 	void Update () {
+		if (seqChecker != inASequence) { //delete this later plzzz ty
+			seqChecker = inASequence;
+			Debug.Log("Cmon just say: " + seqChecker);
+		}
+
 		// initial delay  -> check silver eggs -> check lvl complete -> allow play
 		if (iniSeq) {
 			if (iniDelay > 0) { 
@@ -182,14 +189,6 @@ public class ClickOnEggs : MonoBehaviour {
 				}
 			}
 		}
-		// - Play the level complete sequence - //
-		if (totalEggsFound == eggsNeeded && !levelComplete  && !iniSeq) {
-			if (eggMoving <= 0) {
-				openEggPanel = false;
-				lockDropDownPanel = false;
-				PlayLvlCompleteSeq();
-			}
-		}
 		// -- Egg Panel Movement -- //
 		if (eggMoving <= 0 && !lockDropDownPanel) {
 			// - Hide Egg Panel - //
@@ -211,6 +210,7 @@ public class ClickOnEggs : MonoBehaviour {
 
 
 	#region Methods
+
 	public void UpdateEggsString() {
 		totalEggsFound = /* startEggFound +  */eggsInPanel + silverEggsFound + goldenEggFound;
 		
@@ -225,6 +225,16 @@ public class ClickOnEggs : MonoBehaviour {
 
 	public void AddEggsFound() {
 		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
+	}
+	// - Play the level complete sequence - //
+	public void LevelCompleteCheck() {
+		if (totalEggsFound == eggsNeeded && !levelComplete && !iniSeq) {
+			if (eggMoving <= 0) {
+				openEggPanel = false;
+				lockDropDownPanel = false;
+				PlayLvlCompleteSeq();
+			}
+		}
 	}
 
 	public void PlayLvlCompleteSeq() {

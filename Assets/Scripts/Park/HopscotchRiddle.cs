@@ -18,30 +18,19 @@ public class HopscotchRiddle : MonoBehaviour
 	public HopscotchCell[] allCells;
 	public GameObject goldenEgg;
 	public GoldenEgg goldenEggScript;
-
     public LayerMask layerMask;
-
 	// public bool desktopDevice = false;
 	// public bool handheldDevice = false;
 	public ParticleSystem hopscotchFX;
-
-	public ParticleSystem firework01; 
-	public ParticleSystem firework02;
-
-	public bool fireworksFired;
-
-	public AudioScenePark audioSceneParkScript;
-
-
 	public bool touchOne, touchTwo, startMinSecTimer;
 	public float minSecTapTime, minSecTapTimer;
-	public LevelTapMannager lvlTapManScript;
+	//public LevelTapMannager lvlTapManScript;
 	public SceneTapEnabler sceneTapEnaScript;
 	public ClickOnEggs clickOnEggsScript;
+	public inputDetector inputDetScript;
+	public AudioScenePark audioSceneParkScript;
 
-
-	void Start () 
-	{
+	void Start () {
 		// if (SystemInfo.deviceType == DeviceType.Handheld)
 		// {
 		// 	handheldDevice = true;
@@ -51,8 +40,7 @@ public class HopscotchRiddle : MonoBehaviour
 		// 	desktopDevice = true;
 		// }
 
-		if (GlobalVariables.globVarScript.riddleSolved == true)
-		{
+		if (GlobalVariables.globVarScript.riddleSolved == true)	{
 			foreach (GameObject number in numbers)
 			{
 				number.SetActive(false);
@@ -61,9 +49,7 @@ public class HopscotchRiddle : MonoBehaviour
 		}
 	}
 
-
-	void Update ()
-    {
+	void Update () {
 		// if (desktopDevice)
 		// {
 			// if (!GlobalVariables.globVarScript.hopscotchRiddleSolved && (myInput.Tapped || myInput.DoubleTouched) )
@@ -79,11 +65,9 @@ public class HopscotchRiddle : MonoBehaviour
 
 			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
 
-			if (startMinSecTimer)
-			{
+			if (startMinSecTimer) {
 				minSecTapTimer-=Time.deltaTime;
-				if (minSecTapTimer <= 0)
-				{
+				if (minSecTapTimer <= 0) {
 					startMinSecTimer = false;
 					minSecTapTimer = minSecTapTime;
 					touchOne = false;
@@ -95,8 +79,7 @@ public class HopscotchRiddle : MonoBehaviour
 				}
 			}
 
-			if (touchOne && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-			{
+			if (touchOne && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
 				startMinSecTimer = false;
 				minSecTapTimer = minSecTapTime;
 				touchOne = false;
@@ -112,60 +95,43 @@ public class HopscotchRiddle : MonoBehaviour
 			//	touchOne = true;
 			//}
 
-			if (!GlobalVariables.globVarScript.riddleSolved && myInput.Tapped && sceneTapEnaScript.canTapEggRidPanPuz/* Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began */)
-			{
+			if (!GlobalVariables.globVarScript.riddleSolved && myInput.Tapped && sceneTapEnaScript.canTapEggRidPanPuz/* Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began */) {
 				mousePos = Camera.main.ScreenToWorldPoint( myInput.TapPosition/* Input.GetTouch(0).position */);
 				mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
 				//Debug.Log("SHOT FIRST RAYCAST AND HIT");
-				if (hit)
-				{
-					if (hit.collider.CompareTag("OnClickFX"))
-					{
+				if (hit) {
+					if (hit.collider.CompareTag("OnClickFX")) {
 						hopscotchFX.gameObject.transform.position = mousePos2D;
 						hopscotchFX.Play();
 						//SFX hit number of Hopscotch puzzle
 						audioSceneParkScript.goldenEggGameSFX();
 					}
 
-					if (hit.collider.CompareTag("FruitBasket"))
-					{
+					if (hit.collider.CompareTag("FruitBasket")) {
 						hopscotchFX.gameObject.transform.position = mousePos2D;
 						hopscotchFX.Play();
-						//SFX hit number of Hopscotch puzzle
+						// SFX hit number of Hopscotch puzzle.
 						audioSceneParkScript.goldenEggGameSFX();
-
 						HopscotchCell currentCell = hit.collider.gameObject.GetComponent<HopscotchCell>();
 						//Debug.Log("THIS IS THE FIRST TAPPED CELL" + currentCell);
-						
 						if (currentCell.doubleCell) { touchOne = true; startMinSecTimer = true; }
-
 						//numberAmount += 1;
-
 						//hit.collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-						if(currentCell.myNumber == numberOne.myNumber){                                  // if its One reset all
+						if(currentCell.myNumber == numberOne.myNumber) { // If its One reset all cells.
 							foreach ( HopscotchCell myCells in allCells)
 							{
 								myCells.ResetCell();
 							}
 						}
-						currentCell.checkCell();                                  // if its One it will set its own collider true, if not One col false, and next ones true
+						currentCell.checkCell(); // If its One it will set its own collider true, if not One col false, and next ones true.
+						inputDetScript.ResetDoubleTap();
 						
-						
-						if (currentCell.goalCell)                                  // tapped last cell
-						{
-							lvlTapManScript.ZoomOutCameraReset();
+						if (currentCell.goalCell) { // Tapped last cell.
 							HopscotchRiddleSolved();
-							//SpawnGoldenEgg;
+							// Activate the Golden Egg sequence.
 							goldenEgg.SetActive(true);
-							goldenEggScript.inGoldenEggSequence = true;
-
-							if (!fireworksFired)
-							{
-								firework01.Play(true);
-								firework02.Play(true);
-								fireworksFired = true;
-							}
+							goldenEggScript.waitingToStartSeq = true;
 							//Disable/destroy all basket colliders;
 							foreach (GameObject number in numbers)
 							{
@@ -175,8 +141,7 @@ public class HopscotchRiddle : MonoBehaviour
 						}
 					}
 
-					if (!hit.collider.CompareTag("FruitBasket") && !GlobalVariables.globVarScript.riddleSolved)         // tapped not on the good riddle numb or anywhere else reset all cells
-					{
+					if (!hit.collider.CompareTag("FruitBasket") && !GlobalVariables.globVarScript.riddleSolved) { // Tapped not on the good riddle number or anywhere else, reset all cells.
 						foreach ( HopscotchCell myCells in allCells)
 						{
 							myCells.ResetCell();
@@ -188,7 +153,6 @@ public class HopscotchRiddle : MonoBehaviour
 					}
 				}
 			}
-
 
 			// if (!GlobalVariables.globVarScript.hopscotchRiddleSolved && touchOne && Input.touchCount > 1 && Input.GetTouch(1).phase == TouchPhase.Began && startMinSecTimer)
 			// {
@@ -341,10 +305,7 @@ public class HopscotchRiddle : MonoBehaviour
 		// }  
     }
 
-
-
-	public void HopscotchRiddleSolved ()
-	{
+	public void HopscotchRiddleSolved () {
 		if (clickOnEggsScript.goldenEggFound == 0) {
 			clickOnEggsScript.goldenEggFound = 1;
 			clickOnEggsScript.AddEggsFound();

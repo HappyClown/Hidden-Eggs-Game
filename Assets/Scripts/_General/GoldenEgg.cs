@@ -4,12 +4,9 @@ using UnityEngine.UI;
 public class GoldenEgg : MonoBehaviour 
 {
 	[HideInInspector]
-	public bool inGoldenEggSequence;
+	public bool inGoldenEggSequence, waitingToStartSeq;
 	private bool inSendingToCorner;
 	public PolygonCollider2D goldenEggCollider;
-	public EggGoToCorner eggGoToCornerScript;
-	public ClickOnEggs clickOnEggsScript;
-	public SceneTapEnabler scenTapEnabScript;
 
 	[Header("Egg Animation")]
 	public Animator anim;
@@ -36,7 +33,8 @@ public class GoldenEgg : MonoBehaviour
 	private float partShaftsA, partShaftsMatA;
 	private Material partShaftsMat;
 	public float partShaftsFadeTime, partShaftsShrinkTime;
-	private bool partShaftsFade;
+	private bool partShaftsFade, fireworksFired;
+	public ParticleSystem firework01, firework02;
 	private float partTrailSize;
 
 	[Header("After Tap Sequence")]
@@ -49,6 +47,11 @@ public class GoldenEgg : MonoBehaviour
 	private bool clickDown;
 	private RaycastHit2D hit;
 
+	[Header("Script References")]
+	public LevelTapMannager lvlTapManScript;
+	public EggGoToCorner eggGoToCornerScript;
+	public ClickOnEggs clickOnEggsScript;
+	public SceneTapEnabler scenTapEnabScript;
 	public AudioSceneGeneral audioSceneGeneralScript;
 
 
@@ -121,7 +124,20 @@ public class GoldenEgg : MonoBehaviour
 		// }
 		// - END TESTING - //
 		#endregion
-		
+		// Wait until no other sequences are playing to start the Golden Egg sequence.
+		if (waitingToStartSeq && !ClickOnEggs.inASequence) {
+			inGoldenEggSequence = true;
+			// In a sequence.
+			ClickOnEggs.inASequence = true;
+			lvlTapManScript.ZoomOutCameraReset();
+			if (!fireworksFired)
+			{
+				firework01.Play(true);
+				firework02.Play(true);
+				fireworksFired = true;
+			}
+		}
+
 		// -- START GOLDEN EGG SEQUENCE -- //
 		if (inGoldenEggSequence)
 		{
@@ -187,10 +203,11 @@ public class GoldenEgg : MonoBehaviour
 			if (eggToCornerTimer >= congratsOffTime) { congratsTxtOff = true; }
 			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); clickOnEggsScript.eggMoving += 1; clickOnEggsScript.openEggPanel = true; }
 
-			if (eggToCornerTimer > coverOffTime 
-			&& eggToCornerTimer > congratsOffTime 
-			&& eggToCornerTimer > eggToCornerTime) 
-			{ inSendingToCorner = false; }
+			if (eggToCornerTimer > coverOffTime && eggToCornerTimer > congratsOffTime && eggToCornerTimer > eggToCornerTime) { 
+				inSendingToCorner = false; 
+				// Sequence finished.
+				ClickOnEggs.inASequence = false;
+			}
 		}
 
 		// Fade in darkened screen.

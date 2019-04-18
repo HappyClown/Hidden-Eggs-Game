@@ -19354,9 +19354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myInputDetector: {fileID: 1467130400}
-  sceneTapEnabScript: {fileID: 712647452}
-  sceneFadeScript: {fileID: 1964742052}
+  seqChecker: 0
   iniSeq: 0
   iniSeqTimer: 0
   iniDelay: 1
@@ -19489,6 +19487,9 @@ MonoBehaviour:
   silverEggsFound: 0
   levelComplete: 0
   levelCompleteScript: {fileID: 1799697637}
+  myInputDetector: {fileID: 1467130400}
+  sceneTapEnabScript: {fileID: 712647452}
+  sceneFadeScript: {fileID: 1964742052}
   audioSceneGenScript: {fileID: 1436777457}
 --- !u!114 &712647452
 MonoBehaviour:
@@ -39139,6 +39140,21 @@ Prefab:
       propertyPath: m_Size.y
       value: 12.62
       objectReference: {fileID: 0}
+    - target: {fileID: 114627722277348762, guid: 5acf7bd208c3c64459aed8005e12cd80,
+        type: 2}
+      propertyPath: firework01
+      value: 
+      objectReference: {fileID: 1205126006}
+    - target: {fileID: 114627722277348762, guid: 5acf7bd208c3c64459aed8005e12cd80,
+        type: 2}
+      propertyPath: firework02
+      value: 
+      objectReference: {fileID: 1093652977}
+    - target: {fileID: 114627722277348762, guid: 5acf7bd208c3c64459aed8005e12cd80,
+        type: 2}
+      propertyPath: lvlTapManScript
+      value: 
+      objectReference: {fileID: 911702553}
     m_RemovedComponents:
     - {fileID: 114487596843088368, guid: 5acf7bd208c3c64459aed8005e12cd80, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5acf7bd208c3c64459aed8005e12cd80, type: 2}
@@ -40956,10 +40972,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e155e8abc5f9c46ae7eee26fdab80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnSilverEggs: 0
   silverEggSpawnDelay: 0.6
   puzzSilEggCount: 0
   sceneSilEggCount: 0
-  clickOnEggsScript: {fileID: 712647447}
   silEggs:
   - {fileID: 1044490169}
   - {fileID: 1546663502}
@@ -40969,6 +40985,7 @@ MonoBehaviour:
   - {fileID: 1982570330}
   puzzSilEggCountList: 
   sceneSilEggCountList: 
+  clickOnEggsScript: {fileID: 712647447}
 --- !u!114 &1799697639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41036,10 +41053,10 @@ MonoBehaviour:
   fireworksFired: 0
   appleBasket: {fileID: 928656636}
   scenTapEnabScript: {fileID: 712647452}
-  audioSceneMarket: {fileID: 1436777456}
   lvlTapManScript: {fileID: 911702553}
   inputDetScript: {fileID: 1467130400}
   clickOnEggsScript: {fileID: 712647447}
+  audioSceneMarket: {fileID: 1436777456}
 --- !u!4 &1799697642
 Transform:
   m_ObjectHideFlags: 0

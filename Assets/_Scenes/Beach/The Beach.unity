@@ -24253,10 +24253,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e155e8abc5f9c46ae7eee26fdab80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnSilverEggs: 0
   silverEggSpawnDelay: 0.6
   puzzSilEggCount: 0
   sceneSilEggCount: 0
-  clickOnEggsScript: {fileID: 801276478}
   silEggs:
   - {fileID: 1142096064}
   - {fileID: 87982254}
@@ -24266,6 +24266,7 @@ MonoBehaviour:
   - {fileID: 40875392}
   puzzSilEggCountList: 
   sceneSilEggCountList: 
+  clickOnEggsScript: {fileID: 801276478}
 --- !u!114 &801276472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24546,9 +24547,6 @@ MonoBehaviour:
     m_Bits: 768
   canClick: 1
   directions: 000001010100
-  firework01: {fileID: 591563641}
-  firework02: {fileID: 591563640}
-  fireworksFired: 0
   crabMoveAmnt: 1.5
   inputDetScript: {fileID: 1777778271}
   audioSceneBeachScript: {fileID: 643264884}
@@ -24595,9 +24593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e19454926c8a0448d77ea383a004b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myInputDetector: {fileID: 1777778271}
-  sceneTapEnabScript: {fileID: 801276479}
-  sceneFadeScript: {fileID: 239570646}
+  seqChecker: 0
   iniSeq: 0
   iniSeqTimer: 0
   iniDelay: 1
@@ -24732,6 +24728,9 @@ MonoBehaviour:
   silverEggsFound: 0
   levelComplete: 0
   levelCompleteScript: {fileID: 801276475}
+  myInputDetector: {fileID: 1777778271}
+  sceneTapEnabScript: {fileID: 801276479}
+  sceneFadeScript: {fileID: 239570646}
   audioSceneGenScript: {fileID: 0}
 --- !u!114 &801276479
 MonoBehaviour:
@@ -55315,6 +55314,21 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: af468c4e9c79ccf4cb50684f26e1e8b9,
         type: 3}
+    - target: {fileID: 114595662140871116, guid: 237b3315c768c164eb9371cb7ce0b175,
+        type: 2}
+      propertyPath: lvlTapManScript
+      value: 
+      objectReference: {fileID: 1777778272}
+    - target: {fileID: 114595662140871116, guid: 237b3315c768c164eb9371cb7ce0b175,
+        type: 2}
+      propertyPath: firework01
+      value: 
+      objectReference: {fileID: 591563641}
+    - target: {fileID: 114595662140871116, guid: 237b3315c768c164eb9371cb7ce0b175,
+        type: 2}
+      propertyPath: firework02
+      value: 
+      objectReference: {fileID: 591563640}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 237b3315c768c164eb9371cb7ce0b175, type: 2}
   m_IsPrefabParent: 0

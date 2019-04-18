@@ -7,7 +7,6 @@ public class SceneSilverEgg : MonoBehaviour {
 	public bool sendToPanel;
 	public ClickOnEggs clickOnEggsScript;
 	public int posInPanel;
-	public FadeInOutSprite myEggPanelShadow;
 	private float spawnDelay;
 	private Vector3 iniPos;
 	public float lerpTimer;
@@ -15,6 +14,8 @@ public class SceneSilverEgg : MonoBehaviour {
 	public float moveDuration;
 	public ParticleSystem trailFX, burstFX;
 	private bool silEggAdded = false;
+	public bool lastSpawned = false;
+	public FadeInOutSprite myEggPanelShadow;
 	public AudioSceneGeneral audioSceneGenScript;
 
 	void Start() {
@@ -54,6 +55,11 @@ public class SceneSilverEgg : MonoBehaviour {
 					clickOnEggsScript.UpdateEggsString();
 					myEggPanelShadow.FadeIn();
 					trailFX.Stop(true);
+					if (lastSpawned) {	
+						// Sequence finished.
+						ClickOnEggs.inASequence = false;
+						lastSpawned = false;
+					}
 				}
 			}
 		}
@@ -68,19 +74,6 @@ public class SceneSilverEgg : MonoBehaviour {
 	}
 
 	public void AddToSceneSilEgg() {
-		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.marketName)
-		// {
 			GlobalVariables.globVarScript.sceneSilEggsCount.Add(posInPanel); 
-		// }
-
-		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.parkName)
-		// {
-		// 	GlobalVariables.globVarScript.sceneSilEggsCount.Add(posInPanel); 
-		// }
-
-		// if (SceneManager.GetActiveScene().name == GlobalVariables.globVarScript.beachName)
-		// {
-
-		// }
 	}
 }

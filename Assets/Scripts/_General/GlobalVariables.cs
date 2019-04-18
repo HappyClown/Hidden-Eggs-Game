@@ -85,7 +85,7 @@ public class GlobalVariables : MonoBehaviour
 
 	public void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown("r"))
 		{
 			DeleteAllData();
 		}
