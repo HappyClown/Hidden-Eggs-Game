@@ -388,13 +388,13 @@ public class AudioManagerHubMenu : MonoBehaviour
         
         soundSelectedScene.start();
 
-        Debug.Log("AUDIO : AMB start");
+        //Debug.Log("AUDIO : AMB start");
         ButtonSound();
     }
     public void AmbianceGlowStop()
     {
         soundSelectedScene.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        Debug.Log("AUDIO : AMB stop");
+        //Debug.Log("AUDIO : AMB stop");
     }
 
 }

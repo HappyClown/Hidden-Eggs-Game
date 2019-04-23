@@ -6,7 +6,7 @@ using TMPro;
 
 public class LevelTitleVillage : MonoBehaviour {
 
-	public float speed, maxLenght;
+	public float duration, maxLenght;
 	public bool openTitle, closeTitle;
 	private bool  openingTitle, closingTitle, closed, open;
 	private float lerpValue, currentLenght;
@@ -39,14 +39,14 @@ public class LevelTitleVillage : MonoBehaviour {
 			open = false;
 		}
 		if(openingTitle){
-			lerpValue += Time.deltaTime*speed;
+			lerpValue += Time.deltaTime / duration;
 			myRectTransform.sizeDelta = new Vector2(Mathf.Lerp(0,maxLenght,lerpValue),myRectTransform.sizeDelta.y);
 			if(lerpValue >= 1){
 				openingTitle = false;
 				open = true;
 			}
 		}else if(closingTitle){
-			lerpValue += Time.deltaTime*speed;
+			lerpValue += Time.deltaTime / duration;
 			myRectTransform.sizeDelta = new Vector2(Mathf.Lerp(currentLenght,0,lerpValue),myRectTransform.sizeDelta.y);
 			if(lerpValue >= 1){
 				closingTitle = false;

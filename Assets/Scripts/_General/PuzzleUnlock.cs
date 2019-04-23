@@ -20,7 +20,9 @@ public class PuzzleUnlock : MonoBehaviour {
 	public ParticleSystem puzzShimFX, puzzDustFX, puzzFireworkFX;
 	public int puzzUnlockAmnt;
 	public Animation puzzAnim;
-	//public ClickOnEggs clickOnEggsScript;
+
+	[Header("References")]
+	public ClickOnEggs clickOnEggsScript;
 	public FadeInOutImage darkScreenFadeScript;
 	public SceneTapEnabler sceneTapScript;
 	public LevelTapMannager levelTapScript;
@@ -39,7 +41,7 @@ public class PuzzleUnlock : MonoBehaviour {
 			ClickOnEggs.inASequence = true;
 			waitToStartSeq = false;
 			UnlockPuzzle();
-			Debug.Log(ClickOnEggs.inASequence);
+			//Debug.Log(ClickOnEggs.inASequence);
 		}
 		 if (movePuzzPiece) {
 		// 	lerpValue += Time.deltaTime / moveDuration;
@@ -54,6 +56,7 @@ public class PuzzleUnlock : MonoBehaviour {
 				puzzFireworkFX.Play(true);
 				ActivatePuzzle();
 				darkScreenFadeScript.FadeOut();
+				clickOnEggsScript.eggMoving -= 1;
 				sceneTapScript.canTapEggRidPanPuz = true;
 				sceneTapScript.canTapHelpBird = true;
 				sceneTapScript.canTapPauseBtn = true;
@@ -71,6 +74,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	// Start moving the puzzle piece.
 	public void UnlockPuzzle() {
 		movePuzzPiece = true;
+		clickOnEggsScript.eggMoving += 1;
 		endPos = endPosObj.transform.position;
 		pointerFadeScript.FadeOut();
 		anim.SetTrigger("PuzzPiecePop");

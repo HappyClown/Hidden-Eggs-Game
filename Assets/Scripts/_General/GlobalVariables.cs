@@ -126,7 +126,7 @@ public class GlobalVariables : MonoBehaviour
 		if (SceneManager.GetActiveScene().name == parkName || SceneManager.GetActiveScene().name == parkPuzName) { ParkSaveLoadManager.SaveParkEggs(this); }
 		if (SceneManager.GetActiveScene().name == beachName || SceneManager.GetActiveScene().name == beachPuzName) { BeachSaveLoadManager.SaveBeachEggs(this); }
 
-		Debug.Log("Save Variables");
+		//Debug.Log("Save Variables");
 	}
 
 	public void LoadCorrectEggs() {

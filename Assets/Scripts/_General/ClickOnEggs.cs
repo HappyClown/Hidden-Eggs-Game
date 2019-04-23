@@ -92,7 +92,7 @@ public class ClickOnEggs : MonoBehaviour {
 	void Update () {
 		if (seqChecker != inASequence) { //delete this later plzzz ty
 			seqChecker = inASequence;
-			Debug.Log("Cmon just say: " + seqChecker);
+			//Debug.Log("Cmon just say inASequence is: " + seqChecker);
 		}
 
 		// initial delay  -> check silver eggs -> check lvl complete -> allow play
@@ -114,6 +114,7 @@ public class ClickOnEggs : MonoBehaviour {
 				}
 			}
 		}
+		
 		// -- ON CLICK/TAP -- //
 		if (myInputDetector.Tapped) {
 			mousePos = Camera.main.ScreenToWorldPoint(myInputDetector.TapPosition);
@@ -208,6 +209,14 @@ public class ClickOnEggs : MonoBehaviour {
 		}
 	}
 
+	void LateUpdate () {
+		LevelCompleteCheck();
+ 	}
+
+	void OnDisable () {
+		inASequence = false;
+		//Debug.Log("Oh no, ClickOnEggs has been disabled! Bummer.");
+	}
 
 	#region Methods
 
@@ -228,7 +237,7 @@ public class ClickOnEggs : MonoBehaviour {
 	}
 	// - Play the level complete sequence - //
 	public void LevelCompleteCheck() {
-		if (totalEggsFound == eggsNeeded && !levelComplete && !iniSeq) {
+		if (totalEggsFound == eggsNeeded && !levelComplete && !iniSeq && !inASequence) {
 			if (eggMoving <= 0) {
 				openEggPanel = false;
 				lockDropDownPanel = false;
