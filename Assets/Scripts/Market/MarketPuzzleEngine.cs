@@ -261,7 +261,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 			int eggNumber = GlobalVariables.globVarScript.puzzSilEggsCount[i];
 			mySilverEggMan.allSilEggs[eggNumber].GetComponent<SpriteRenderer>().sprite = mySilverEggMan.hollowSilEgg;
 			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
-			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
+			//Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
 		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0) {
 			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform)
@@ -470,7 +470,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 	public new IEnumerator PuzzleComplete () {
 		yield return new WaitForSeconds(0.5f);
 
-		Debug.Log("Puzzle Completed cognraturations!!!");
+		//Debug.Log("Puzzle Completed cognraturations!!!");
 
 		yield return new WaitForSeconds(0.5f);
 

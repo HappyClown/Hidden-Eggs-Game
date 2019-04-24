@@ -16,9 +16,9 @@ public class HelperBirdIntro : MonoBehaviour {
 	[Header("Dissolve")]
 	public Material dissMat;
 	public float dissDuration;
-	private bool birdTapped;
+	public bool waitToStartSeq;
 	private float dissAmnt;
-	private bool isDissolving, isDissolved;
+	private bool isDissolving, isDissolved, birdTapped;
 	public GameObject inSceneBirdBtnObj, birdObj;
 	private Vector3 ogBirdPos;
 	public float minShapeSize, maxShapeSize;
@@ -57,7 +57,7 @@ public class HelperBirdIntro : MonoBehaviour {
 			// If frozen bird is tapped
 			if (hit && hit.collider.CompareTag("Helper")) {
 				birdTapped = true;
-				isDissolving = true;
+				waitToStartSeq = true;
 				inputDetScript.cancelDoubleTap = true;
 				birdObj.transform.position = ogBirdPos;
 				dissParSys.Play();
@@ -82,6 +82,14 @@ public class HelperBirdIntro : MonoBehaviour {
 				} 
 			}
 		}
+		// Wait until no sequence is playing to start the Bird Intro sequence.
+		if (waitToStartSeq && !ClickOnEggs.inASequence) {
+			isDissolving = true;
+			// In a sequence.
+			ClickOnEggs.inASequence = true;
+			waitToStartSeq = false;
+			Debug.Log("Trying to start dissolving");
+		}
 		// After being tapped dissolve the black and white bird's material
 		if (isDissolving) {
 			dissAmnt += Time.deltaTime / dissDuration;
@@ -90,6 +98,10 @@ public class HelperBirdIntro : MonoBehaviour {
 			curShapeSize = Mathf.Lerp(minShapeSize, maxShapeSize, dissAmnt);
 			var shapeMod = dissParSys.shape;
 			shapeMod.radius = curShapeSize;
+			// // In a sequence.
+			// if (!ClickOnEggs.inASequence) {
+			// 	ClickOnEggs.inASequence = true;
+			// }
 			if (dissAmnt > 1f) {
 				isDissolving = false;
 				isDissolved = true;

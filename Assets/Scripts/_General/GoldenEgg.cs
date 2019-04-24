@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GoldenEgg : MonoBehaviour 
-{
+public class GoldenEgg : MonoBehaviour {
 	[HideInInspector]
-	public bool inGoldenEggSequence;
+	public bool inGoldenEggSequence, waitingToStartSeq;
 	private bool inSendingToCorner;
 	public PolygonCollider2D goldenEggCollider;
-	public EggGoToCorner eggGoToCornerScript;
-	public ClickOnEggs clickOnEggsScript;
-	public SceneTapEnabler scenTapEnabScript;
 
 	[Header("Egg Animation")]
 	public Animator anim;
@@ -36,7 +32,8 @@ public class GoldenEgg : MonoBehaviour
 	private float partShaftsA, partShaftsMatA;
 	private Material partShaftsMat;
 	public float partShaftsFadeTime, partShaftsShrinkTime;
-	private bool partShaftsFade;
+	private bool partShaftsFade, fireworksFired;
+	public ParticleSystem firework01, firework02;
 	private float partTrailSize;
 
 	[Header("After Tap Sequence")]
@@ -49,20 +46,20 @@ public class GoldenEgg : MonoBehaviour
 	private bool clickDown;
 	private RaycastHit2D hit;
 
+	[Header("Script References")]
+	public LevelTapMannager lvlTapManScript;
+	public EggGoToCorner eggGoToCornerScript;
+	public ClickOnEggs clickOnEggsScript;
+	public SceneTapEnabler scenTapEnabScript;
 	public AudioSceneGeneral audioSceneGeneralScript;
 
-
-
-	void Start ()
-	{
+	void Start () {
 		partShaftsMat = partShafts.gameObject.GetComponent<ParticleSystemRenderer>().material;
 		//  if (eggGoToCornerScript.eggFound) { this.transform.localScale += new Vector3(4, 4, 1); }
 		//  Debug.Log("EGG FOUND? :" + eggGoToCornerScript.eggFound);
 	}
 
-
-	void Update () 
-	{
+	void Update () {
 		#region For Testing
 		// - FOR TESTING - //
 		// if (Input.GetKeyDown("space"))
@@ -121,111 +118,121 @@ public class GoldenEgg : MonoBehaviour
 		// }
 		// - END TESTING - //
 		#endregion
-		
+		// Wait until no other sequences are playing to start the Golden Egg sequence.
+		if (waitingToStartSeq && !ClickOnEggs.inASequence) {
+			inGoldenEggSequence = true;
+			// In a sequence.
+			ClickOnEggs.inASequence = true;
+			waitingToStartSeq = false;
+			lvlTapManScript.ZoomOutCameraReset();
+			if (!fireworksFired) {
+				firework01.Play(true);
+				firework02.Play(true);
+				fireworksFired = true;
+			}
+		}
+
 		// -- START GOLDEN EGG SEQUENCE -- //
-		if (inGoldenEggSequence)
-		{
+		if (inGoldenEggSequence) {
 			// Set the GoldenEgg as found and save
-			if (!eggGoToCornerScript.eggFound)
-			{
+			if (!eggGoToCornerScript.eggFound) {
 				eggGoToCornerScript.eggFound = true;
 				eggGoToCornerScript.SaveEggToCorrectFile();
 			}
 
-			if (!coverOn && !eggAnimStarted) { DarkenScreen(); }
+			if (!coverOn && !eggAnimStarted) { 
+				DarkenScreen(); 
+			}
 
-			if (!congratsTxtOn && congratsTime > 0)
-			{
+			if (!congratsTxtOn && congratsTime > 0) {
 				congratsTime -= Time.deltaTime;
 				if (congratsTime <= 0) { congratsTxtOn = true; }
 			}
 
-			if (!eggAnimStarted)
-			{
+			if (!eggAnimStarted) {
 				eggAnimTimer += Time.deltaTime;
-				if (eggAnimTimer > eggAnimStart) { StartAnim(); }
+				if (eggAnimTimer > eggAnimStart) { 
+					StartAnim(); 
+				}
 			}
-
 			// Fade in the Glow up to its desired value over 1 second (+= Time.deltaTime * partGlowMaxAplha & alpha's max value is 1)
-			if (partGlow.isPlaying)
-			{
+			if (partGlow.isPlaying) {
 				var main = partGlow.main;
-				if (partGlowMaxAplha <= 0) { partGlowMaxAplha = main.startColor.color.a; }
+				if (partGlowMaxAplha <= 0) { 
+					partGlowMaxAplha = main.startColor.color.a; 
+				}
 
-				if (partGlowA < partGlowMaxAplha)
-				{
+				if (partGlowA < partGlowMaxAplha) {
 					partGlowA += Time.deltaTime * partGlowMaxAplha;
 					main.startColor = new Color (main.startColor.color.r, main.startColor.color.g, main.startColor.color.b, partGlowA);
 				}
-			} else { partGlowA = 0; partGlowMaxAplha = 0; }
-
+			} 
+			else { 
+				partGlowA = 0; partGlowMaxAplha = 0; 
+			}
 			// Fade in the shafts over 1 second (+= Time.deltaTime & alpha's max value is 1)
-			if (partShafts.isPlaying)
-			{
-				if (partShaftsA < 1)
-				{
+			if (partShafts.isPlaying) {
+				if (partShaftsA < 1) {
 					partShaftsA += Time.deltaTime;
 					var main = partShafts.main;
 					main.startColor = new Color (main.startColor.color.r, main.startColor.color.g, main.startColor.color.b, partShaftsA);
 				}
-			} else { partShaftsA = 0; }
-
+			} 
+			else { 
+				partShaftsA = 0; 
+			}
 			// Increase the trail's size when the egg swoops in
-			if (partTrail.isPlaying)
-			{
+			if (partTrail.isPlaying) {
 				partTrailSize += Time.deltaTime;
 				var main = partTrail.main;
 				main.startSizeMultiplier = partTrailSize;
-			} else { partTrailSize = 0; }
+			} 
+			else { 
+				partTrailSize = 0; 
+			}
 		}
 
 		// After the player taps the Golden Egg, timeline sequence
-		if (inSendingToCorner)
-		{
+		if (inSendingToCorner) {
 			eggToCornerTimer += Time.deltaTime;
 			if (eggToCornerTimer >= coverOffTime) { LightenScreen(); }
 			if (eggToCornerTimer >= congratsOffTime) { congratsTxtOff = true; }
 			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); clickOnEggsScript.eggMoving += 1; clickOnEggsScript.openEggPanel = true; }
 
-			if (eggToCornerTimer > coverOffTime 
-			&& eggToCornerTimer > congratsOffTime 
-			&& eggToCornerTimer > eggToCornerTime) 
-			{ inSendingToCorner = false; }
+			if (eggToCornerTimer > coverOffTime && eggToCornerTimer > congratsOffTime && eggToCornerTimer > eggToCornerTime) { 
+				inSendingToCorner = false; 
+				// Sequence finished.
+				ClickOnEggs.inASequence = false;
+			}
 		}
 
 		// Fade in darkened screen.
-		if (coverOn)
-		{
+		if (coverOn) {
 			coverAlpha += Time.deltaTime;
 			coverScreen.color = new Color (coverScreen.color.r, coverScreen.color.g, coverScreen.color.b, coverAlpha);
 			if (coverAlpha >= coverMaxAlpha) { coverOn = false; }
 		}
 		// Fade out darkened screen.
-		if (coverOff)
-		{
+		if (coverOff) {
 			coverAlpha -= Time.deltaTime;
 			coverScreen.color = new Color (coverScreen.color.r, coverScreen.color.g, coverScreen.color.b, coverAlpha);
 			if (coverAlpha <= 0) { coverOff = false; }
 		}
 
 		//Fade in the "Congratulations" game objects at the same time (not sure about dividing for performance, but it gives the time in seconds)
-		if (congratsTxtOn)
-		{
+		if (congratsTxtOn) {
 			congratsA += Time.deltaTime / congratsFadeTime;
 			foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
 			if (congratsA >= 1) { congratsTxtOn = false; }
 		}
-
-		if (congratsTxtOff)
-		{
+		if (congratsTxtOff) {
 			congratsA -= Time.deltaTime / congratsFadeTime;
 			foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
 			if (congratsA <= 0) { congratsTxtOff = false; }
 		}
 
 		// Trying to get rid of the shaft particles in a nice way
-		if (partShaftsFade)
-		{
+		if (partShaftsFade) 	{
 			// DOES NOT WORK BECASUE THE CHOSEN PARTICLE MATERIAL SHADER DOES NOT HAVE _COLOR OR _TINTCOLOR TO MODIFY ON THE MATERIAL INSTANCE OF THE SHAFT PARTICLE.
 			// partShaftsMatA -= Time.deltaTime * partShaftsFadeTime;
 			// partShaftsMat.SetColor("_TintColor",new Color(partShaftsMat.color.r, partShaftsMat.color.g, partShaftsMat.color.b, partShaftsMatA)); 
@@ -236,143 +243,100 @@ public class GoldenEgg : MonoBehaviour
 			shaftX -= Time.deltaTime * partShaftsShrinkTime;
 			shaftZ -= Time.deltaTime * partShaftsShrinkTime;
 			partShafts.transform.localScale = new Vector3(shaftX, 1, shaftZ);
-			if (shaftX <= 0 || shaftZ <= 0) { partShaftsFade = false; }
+			if (shaftX <= 0 || shaftZ <= 0) { 
+				partShaftsFade = false; 
+			}
 		}
 
 		// Set the GoldenEgg scale to 4 (its original scale) in x & y.
-		if (eggGoToCornerScript.eggFound && !inGoldenEggSequence && this.transform.localScale.x != 4)
-		{
+		if (eggGoToCornerScript.eggFound && !inGoldenEggSequence && this.transform.localScale.x != 4) {
 			this.transform.localScale += new Vector3(4 - this.transform.localScale.x, 4 - this.transform.localScale.y, 0);
 		}
 	}
 
-
-	void DarkenScreen ()
-	{
+	void DarkenScreen () {
 		coverAlpha = 0f;
 		coverOn = true;
 	}
 
-
-	void LightenScreen ()
-	{
+	void LightenScreen () {
 		coverAlpha = coverScreen.color.a;
 		coverOff = true;
 		coverOn = false;
 	}
 
-
-	void TextOnOff ()
-	{
+	void TextOnOff () {
 		if (congratsA <= 0) congratsTxtOn = true;
 		else if (congratsA >= 1) congratsTxtOff = true;
 	}
 
-
-	void StartAnim ()
-	{
+	void StartAnim () {
 		anim.SetTrigger("StartAnim");
 		eggAnimStarted = true;
 	}
 
-
-	public void EndGoldenEggSequences ()
-	{
-		// play click anim
-		// play click FX for the egg
-		// egg flies to egg panel
-		// let particle systems die out (stop them) or forcefully fade the particles out (https://docs.unity3d.com/ScriptReference/ParticleSystem.GetParticles.html)
-		// take the banner / bird talking out
-		// fade the screen cover away as the egg approaches the egg panel
-	}
-
-
 	// - CALLED DURING ANIMATIONS - // (Animation Events)
-	void StartStopGlow ()
-	{
+	void StartStopGlow () {
 		if (!partGlow.isPlaying) { partGlow.Play(true); }
 		else { partGlow.Stop(true); }
 	}
 
-
-	void StartStopShafts()
-	{
+	void StartStopShafts() {
 		if (!partShafts.isPlaying) { partShafts.Play(true); }
 		else { partShafts.Stop(true); partShaftsFade = true; /* partShaftsMatA = partShaftsMat.GetColor("_TintColor").a; */}
 	}
 
-
-	void StartStopSparkles()
-	{
+	void StartStopSparkles() {
 		if (!partSparkles.isPlaying) { partSparkles.Play(true); }
 		else { partSparkles.Stop(true); }
 	}
-
 	
-	void StartPop()
-	{
+	void StartPop() {
 		if (!partPop.isPlaying) { partPop.Play(true); }
 	}
 
-
-	void StartTrail()
-	{
+	void StartTrail() {
 		if (!partTrail.isPlaying) { partTrail.Play(true); }
 	}
 
-
-	void ActivateCollider()
-	{
+	void ActivateCollider() {
 		goldenEggCollider.enabled = true;
 	}
 
-
-	void SendEggToCornerSequence()
-	{
+	void SendEggToCornerSequence() {
 		inSendingToCorner = true;
 		//eggGoToCornerScript.GoToCorner();
 	}
 
-
-	void ClickFX()
-	{
+	void ClickFX() {
 		eggGoToCornerScript.PlayEggClickFX();
 	}
 
-
-	void StopAnim ()
-	{
+	void StopAnim () {
 		anim.enabled = false;
 	}
 
-
-	public void CanTapGold ()
-	{
+	public void CanTapGold () {
 		scenTapEnabScript.canTapGoldEgg = true;
 	}
-	
 
-	public void CannotTaps()
-	{
+	public void CannotTaps() {
 		scenTapEnabScript.canTapEggRidPanPuz = false;
 		scenTapEnabScript.canTapPauseBtn = false;
 		scenTapEnabScript.canTapHelpBird = false;
 	}
 
-	public void CanTaps()
-	{
+	public void CanTaps() {
 		scenTapEnabScript.canTapEggRidPanPuz = true;
 		scenTapEnabScript.canTapPauseBtn = true;
 		scenTapEnabScript.canTapHelpBird = true;
 	}
 
-	public void GoldEggAnimSound()
-	{
+	public void GoldEggAnimSound() {
 		audioSceneGeneralScript.goldEggAnimSound();
 	}
 
-	public void GoldEggShimmerPlaySound()
-	{
+	public void GoldEggShimmerPlaySound() {
 		audioSceneGeneralScript.goldEggShimmerStartSound();
 	}
 }

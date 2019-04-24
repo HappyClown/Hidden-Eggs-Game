@@ -9,7 +9,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	//public AnimationCurve animCurve;
 	private Vector3 /* iniPos, */ endPos, curPos;
 	//private float lerpValue, curveValue;
-	private bool movePuzzPiece;
+	private bool movePuzzPiece, waitToStartSeq;
 	public Animator anim;
 	public PuzzPieceAnimEvents PuzzPieceFXsScript;
 	public FadeInOutSprite pointerFadeScript;
@@ -20,7 +20,9 @@ public class PuzzleUnlock : MonoBehaviour {
 	public ParticleSystem puzzShimFX, puzzDustFX, puzzFireworkFX;
 	public int puzzUnlockAmnt;
 	public Animation puzzAnim;
-	//public ClickOnEggs clickOnEggsScript;
+
+	[Header("References")]
+	public ClickOnEggs clickOnEggsScript;
 	public FadeInOutImage darkScreenFadeScript;
 	public SceneTapEnabler sceneTapScript;
 	public LevelTapMannager levelTapScript;
@@ -33,6 +35,14 @@ public class PuzzleUnlock : MonoBehaviour {
 	}
 
 	void Update () {
+		// Wait until no other sequences are playing to start the Puzzle Unlock sequence.
+		if (waitToStartSeq && !ClickOnEggs.inASequence) {
+			// In a sequence.
+			ClickOnEggs.inASequence = true;
+			waitToStartSeq = false;
+			UnlockPuzzle();
+			//Debug.Log(ClickOnEggs.inASequence);
+		}
 		 if (movePuzzPiece) {
 		// 	lerpValue += Time.deltaTime / moveDuration;
 		// 	curveValue = animCurve.Evaluate(lerpValue);
@@ -46,16 +56,25 @@ public class PuzzleUnlock : MonoBehaviour {
 				puzzFireworkFX.Play(true);
 				ActivatePuzzle();
 				darkScreenFadeScript.FadeOut();
+				clickOnEggsScript.eggMoving -= 1;
 				sceneTapScript.canTapEggRidPanPuz = true;
 				sceneTapScript.canTapHelpBird = true;
 				sceneTapScript.canTapPauseBtn = true;
-				//Debug.Log("activated puzz");
+				// Sequence finished.
+				ClickOnEggs.inASequence = false;
 			}
 		}
 	}
-
+	// Check to see if enough eggs have been found to unlock the puzzle.
+	public void PuzzleUnlockCheck(int eggsInPanel) {
+		if (eggsInPanel == puzzUnlockAmnt) {
+			waitToStartSeq = true;
+		}	
+	}
+	// Start moving the puzzle piece.
 	public void UnlockPuzzle() {
 		movePuzzPiece = true;
+		clickOnEggsScript.eggMoving += 1;
 		endPos = endPosObj.transform.position;
 		pointerFadeScript.FadeOut();
 		anim.SetTrigger("PuzzPiecePop");
@@ -69,19 +88,13 @@ public class PuzzleUnlock : MonoBehaviour {
 		levelTapScript.ZoomOutCameraReset();
 
 		audioSceneGenScript.puzzlePieceAnimation();
-		Debug.Log("sound -  Puzzle piece");
+		//Debug.Log("sound -  Puzzle piece");
 	}
-
-	public void PuzzleUnlockCheck(int eggsInPanel) {
-		if (eggsInPanel == puzzUnlockAmnt) {
-			UnlockPuzzle();
-		}	
-	}
-
+	// Activate the puzzle click area. (after the puzzle piece reaches it)
 	public void ActivatePuzzle() {
 		//audioSceneGenScript.puzzleAnimation();
 		audioSceneGenScript.puzzleAnimationStart(puzzClickArea);
-		Debug.Log("sound - Puzzle unlocked");
+		//Debug.Log("sound - Puzzle unlocked");
 		puzzClickArea.SetActive(true);
 		puzzPiece.SetActive(false);
 		puzzShimFX.Play(true);

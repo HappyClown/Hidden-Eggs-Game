@@ -78,6 +78,8 @@ public class HelpIntroText : MonoBehaviour {
 			sentenceCount = 0;
 			canGoNext = false;
 			introOn = false;
+			// Sequence finished.
+			ClickOnEggs.inASequence = false;
 		}
 		else { // if not show next
 			introTMPs[sentenceCount].FadeIn();
