@@ -32,10 +32,12 @@ public class FadeInOutTMP : MonoBehaviour
 		tmp = this.gameObject.GetComponent<TextMeshProUGUI>();
 		if (myStartState == StartState.startShown) {
 			tmp.color = new Color(tmp.color.r, tmp.color.g, tmp.color.b, 1f);
+			if(!fadingIn && !fadingOut)
 			shown = true;
 		}
 		else if (myStartState == StartState.startHidden) {
 			tmp.color = new Color(tmp.color.r, tmp.color.g, tmp.color.b, 0f);
+			if(!fadingIn && !fadingOut)
 			hidden = true;
 		}
 		if (maxAlpha <= 0f) { 
