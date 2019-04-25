@@ -16,8 +16,7 @@ public class SceneSilverEggSpawner : MonoBehaviour {
 
 	void Awake () {
 		SetCorrectLevelLists();
-		if (puzzSilEggCountList.Count > 0) { puzzSilEggCount = puzzSilEggCountList.Count; }
-		if (sceneSilEggCountList.Count > 0) { sceneSilEggCount = sceneSilEggCountList.Count; }
+		SetListCounts();
 	}
 	void Update () {
 		// Wait until no other sequences are playing to start the Silver Eggs sequence.
@@ -38,6 +37,8 @@ public class SceneSilverEggSpawner : MonoBehaviour {
 	}
 	// If new Silver Eggs have been collected in the puzzle, send them to the Egg Panel.
 	public void SpawnNewSilverEggs() {
+		SetCorrectLevelLists();
+		SetListCounts();
 		if (puzzSilEggCount > sceneSilEggCount) { // Meaning I have new silver eggs to send to the panel.
 			spawnSilverEggs = true;
 		}
@@ -50,5 +51,9 @@ public class SceneSilverEggSpawner : MonoBehaviour {
 		if (GlobalVariables.globVarScript.sceneSilEggsCount.Count > 0) { 
 			sceneSilEggCountList = GlobalVariables.globVarScript.sceneSilEggsCount; 
 		}
+	}
+	void SetListCounts() {
+		if (puzzSilEggCountList.Count > 0) { puzzSilEggCount = puzzSilEggCountList.Count; }
+		if (sceneSilEggCountList.Count > 0) { sceneSilEggCount = sceneSilEggCountList.Count; }
 	}
 }

@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour {
 	public HubEggcounts hubEggCountsScript;
 	public inputDetector inputDetScript;
 	public List<LevelTitleVillage> levelTitleScripts;
+	public List<LevelFireflies> levelFirefliesScripts;
 	public List<CustomButtonClick> customButtonScripts;
 
 	void Start () {
@@ -92,6 +93,10 @@ public class MainMenu : MonoBehaviour {
 		{
 			levelTitleScript.CloseTitle();
 		}
+		foreach(LevelFireflies levelFireflies in levelFirefliesScripts)
+		{
+			levelFireflies.StopLevelFireflies();
+		}
 		foreach(CustomButtonClick customButtonScript in customButtonScripts)
 		{
 			customButtonScript.levelSelected = false;
@@ -130,6 +135,10 @@ public class MainMenu : MonoBehaviour {
 		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
 		{
 			levelTitleScript.CloseTitle();
+		}
+		foreach(LevelFireflies levelFireflies in levelFirefliesScripts)
+		{
+			levelFireflies.StopLevelFireflies();
 		}
 		foreach(CustomButtonClick customButtonScript in customButtonScripts)
 		{
@@ -178,7 +187,6 @@ public class MainMenu : MonoBehaviour {
 		moveClouds = false;
 		storyTMP.gameObject.SetActive(false);
 		//storyBtn.gameObject.SetActive(true);
-		
 		//storyBtn.interactable = false;
 		fadeTMPScript.fadeDelay = true;
 	}

@@ -15,7 +15,6 @@ public class Hub : MonoBehaviour {
 	public List<GameObject> summerButtons;
 	public List<GameObject> summerGlows;
 	public List<SeasonGlows> seasonGlowsScripts;
-	public EdgeFireflies edgeFirefliesScript;
 	public List<GameObject> fallObjs;
 	[Header("What To Do Bools")]
 	public bool dissolving;
@@ -24,6 +23,7 @@ public class Hub : MonoBehaviour {
 	[Header("References")]
 	public DissolveSeasons dissolveSeasonsScript;
 	public BackToMenu backToMenuScript;
+	public EdgeFireflies edgeFirefliesScript;
 	
 	void Start () {
 		ResetHubSeasons();
@@ -79,7 +79,7 @@ public class Hub : MonoBehaviour {
 				if (!summerObj.activeSelf) { summerObj.SetActive(true); }
 			}
 			seasonGlowsScripts[0].StartLevelGlows();
-			edgeFirefliesScript.StartFireflyFX();
+			//edgeFirefliesScript.StartFireflyFX();
 		}
 		// ...
 	}

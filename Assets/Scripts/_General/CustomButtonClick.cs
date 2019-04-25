@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	public string sceneName;
-	public SeasonGlows seasonGlowsScript;
 	public int myLvlNumber;
 	public bool levelSelected = false;
 	public Transform myCenterPoint;
-	public ZoomAtHub myZoom;
-	public LevelTitleVillage myTitle;
 	[Tooltip("Populate with all the OTHER level's CustomButtonClick scripts.")]
 	public List<CustomButtonClick> customButtonClickScripts;
+	public ZoomAtHub myZoom;
+	public LevelTitleVillage myTitle;
+	public SeasonGlows seasonGlowsScript;
+	public LevelFireflies levelFirefliesScript;
 
 	public void OnPointerClick(PointerEventData pointerEventData) {
 		Debug.Log("Button clicked on " + pointerEventData.pointerCurrentRaycast.gameObject.name);
@@ -28,6 +29,7 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 			}
 			levelSelected = true;
 			myTitle.OpenTitle();
+			levelFirefliesScript.PlayLevelFireflies();
 		}
 		else {		
 			myZoom.StartZoom(myCenterPoint.position);
