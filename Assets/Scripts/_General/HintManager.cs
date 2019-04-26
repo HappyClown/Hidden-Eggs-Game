@@ -71,7 +71,7 @@ public class HintManager : MonoBehaviour {
 	void MoveFeather() {
 		if(hintAvailable) {
 			hintAvailable = false;
-			myDirection = featherToGo.center;
+			myDirection = featherToGo.firstPoint;
 		}
 		switch(myDirection) {
 			case featherToGo.center:
@@ -91,18 +91,16 @@ public class HintManager : MonoBehaviour {
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 				}
+				else if(currentTurn == turnsToDo){
+						myDirection = featherToGo.exit;
+						currentTurn = 0;
+				}
 				else if(Vector2.Distance(feather.transform.position,currentQuadrant.firstPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.firstPoint.position,Time.deltaTime * featherMovSpeed);
 				}
 				else {
 					currentTurn ++;
-					if(currentTurn > turnsToDo) {
-						myDirection = featherToGo.exit;
-						currentTurn = 0;
-					}
-					else {
-						myDirection = featherToGo.secondPoion;
-					}
+					myDirection = featherToGo.secondPoion;
 				}
 			break;
 			case featherToGo.secondPoion:
