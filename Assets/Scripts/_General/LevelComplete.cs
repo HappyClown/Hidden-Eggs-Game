@@ -11,13 +11,14 @@ public class LevelComplete : MonoBehaviour
 	public bool inLvlCompSeqSetup;
 	private bool inLvlCompSeqEnd;
 	private float timer;
+	public bool waitingToStartSeq;
 
 	[Header("References")]
 	public ClickOnEggs clickOnEggsScript;
 	public LevelTapMannager lvlTapManScript;
 	public LevelCompleteEggSpawner levelCompleteEggSpaScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
-	public SceneTapEnabler sceneTapEnaScript;
+	public SceneTapEnabler sceneTapEnabScript;
 	public AudioSceneGeneral audioSceneGenScript;
 	public Button backToHubBtn;
 
@@ -81,12 +82,27 @@ public class LevelComplete : MonoBehaviour
 		#endregion
 		
 		#region Start/End Level Complete Timer Sequence
+		if (waitingToStartSeq && !ClickOnEggs.inASequence && clickOnEggsScript.eggMoving <= 0) {
+			clickOnEggsScript.openEggPanel = false;
+			clickOnEggsScript.lockDropDownPanel = false;
+			inLvlCompSeqSetup = true;
+			// In a sequence.
+			ClickOnEggs.inASequence = true;
+			waitingToStartSeq = false;
+
+			backToHubBtn.interactable = false;
+			sceneTapEnabScript.canTapEggRidPanPuz = false;
+			sceneTapEnabScript.canTapHelpBird = false;
+			sceneTapEnabScript.canTapPauseBtn = false;
+			sceneTapEnabScript.canTapLvlComp = true;
+		}
+
 		if (inLvlCompSeqSetup) {
 			//Turn off back button
-			backToHubBtn.interactable = false;
-			sceneTapEnaScript.canTapEggRidPanPuz = false;
-			sceneTapEnaScript.canTapPauseBtn = false;
-			sceneTapEnaScript.canTapHelpBird = false;
+			// backToHubBtn.interactable = false;
+			// sceneTapEnabScript.canTapEggRidPanPuz = false;
+			// sceneTapEnabScript.canTapPauseBtn = false;
+			// sceneTapEnabScript.canTapHelpBird = false;
 			
 			timer += Time.deltaTime;
 

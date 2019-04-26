@@ -19608,6 +19608,11 @@ Prefab:
       propertyPath: sceneTapEnabScript
       value: 
       objectReference: {fileID: 801276479}
+    - target: {fileID: 114389751255173900, guid: f5c8c09de6348d0499bc2c92a5b47e60,
+        type: 2}
+      propertyPath: dissDuration
+      value: 1.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5c8c09de6348d0499bc2c92a5b47e60, type: 2}
   m_IsPrefabParent: 0
@@ -24460,12 +24465,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inLvlCompSeqSetup: 0
+  waitingToStartSeq: 0
   clickOnEggsScript: {fileID: 801276478}
   lvlTapManScript: {fileID: 1777778272}
   levelCompleteEggSpaScript: {fileID: 801276474}
   levelCompleteEggbagScript: {fileID: 801276473}
-  sceneTapEnaScript: {fileID: 801276479}
-  audioSceneGenScript: {fileID: 0}
+  sceneTapEnabScript: {fileID: 801276479}
+  audioSceneGenScript: {fileID: 643264883}
   backToHubBtn: {fileID: 1771794753}
   darkenScreen: 0.2
   showCongrats: 0.8
@@ -24747,6 +24753,7 @@ MonoBehaviour:
   - {fileID: 593573285}
   - {fileID: 1676183461}
   - {fileID: 2140594229}
+  lockDropDownPanel: 0
   openEggPanel: 0
   totalEggsFound: 0
   eggsNeeded: 31
@@ -24756,7 +24763,7 @@ MonoBehaviour:
   myInputDetector: {fileID: 1777778271}
   sceneTapEnabScript: {fileID: 801276479}
   sceneFadeScript: {fileID: 239570646}
-  audioSceneGenScript: {fileID: 0}
+  audioSceneGenScript: {fileID: 643264883}
 --- !u!114 &801276479
 MonoBehaviour:
   m_ObjectHideFlags: 0

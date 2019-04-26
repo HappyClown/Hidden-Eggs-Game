@@ -56,7 +56,8 @@ public class ClickOnEggs : MonoBehaviour {
 	public GameObject dropDrowArrow;
 	public List<GameObject> eggs;
 	private float timer;
-	private bool lockDropDownPanel;
+	[HideInInspector]
+	public bool lockDropDownPanel;
 	[HideInInspector]
 	public bool openEggPanel;
 
@@ -237,21 +238,13 @@ public class ClickOnEggs : MonoBehaviour {
 	}
 	// - Play the level complete sequence - //
 	public void LevelCompleteCheck() {
-		if (totalEggsFound == eggsNeeded && !levelComplete && !iniSeq && !inASequence) {
-			if (eggMoving <= 0) {
-				openEggPanel = false;
-				lockDropDownPanel = false;
-				PlayLvlCompleteSeq();
-			}
+		if (totalEggsFound == eggsNeeded && !levelComplete && !iniSeq) {
+			PlayLvlCompleteSeq();
 		}
 	}
 
 	public void PlayLvlCompleteSeq() {
-		sceneTapEnabScript.canTapEggRidPanPuz = false;
-		sceneTapEnabScript.canTapHelpBird = false;
-		sceneTapEnabScript.canTapPauseBtn = false;
-		sceneTapEnabScript.canTapLvlComp = true;
-		levelCompleteScript.inLvlCompSeqSetup = true;
+		levelCompleteScript.waitingToStartSeq = true;
 	}
 
 	#region Save & Load methods
