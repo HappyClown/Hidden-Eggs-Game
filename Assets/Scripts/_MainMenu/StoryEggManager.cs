@@ -56,4 +56,11 @@ public class StoryEggManager : MonoBehaviour {
 		spawnFallingEggs = true;
 		eggSpawnTimer = 0f;
 	}
+
+	public void ResetEggs() {
+		foreach (StoryEggMotions storyEgg in storyEggScripts)
+		{
+			storyEgg.Reset();
+		}
+	}
 }

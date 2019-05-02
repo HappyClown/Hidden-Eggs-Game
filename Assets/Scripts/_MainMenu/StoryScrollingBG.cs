@@ -52,23 +52,22 @@ public class StoryScrollingBG : MonoBehaviour {
 		{
 			bg.SetActive(true);
 		}
+
 		speedUp = doISpeedUp;
 		scrollSpeed = myScrollSpeed;
 		if (!doISpeedUp) {
 			scrollValue = myScrollSpeed;
 		}
-		// if (currentBGs[0] == regularSidewaysBGs[0] || currentBGs[0] == blurredSidewaysBGs[0]) {
-		// 	sidewaysScroll = true;
-		// }
-		// else {
-		// 	sidewaysScroll = false;
-		// }
-		if (currentBGs[0] == verticalBGs[0]) {
+
+		sidewaysScroll = false;
+		verticalScroll = false;
+		if (regularSidewaysBGs.Count > 0 && currentBGs[0] == regularSidewaysBGs[0] || blurredSidewaysBGs.Count > 0 && currentBGs[0] == blurredSidewaysBGs[0]) {
+			sidewaysScroll = true;
+		}
+		if (verticalBGs.Count > 0 && currentBGs[0] == verticalBGs[0]) {
 			verticalScroll = true;
 		}
-		else {
-			verticalScroll = false;
-		}
+		bgInFront = 0;
 	}
 
 	void SidewaysScroll() {
@@ -104,14 +103,29 @@ public class StoryScrollingBG : MonoBehaviour {
 		}
 		for (int i = 0; i < currentBGs.Count; i++)
 		{
-			if (currentBGs[i].transform.position.y <= yLimit) {
+			if (currentBGs[i].transform.position.y >= yLimit) {
 				bgInFront++;
 				if (bgInFront >= currentBGs.Count) {
 					bgInFront = 0;
 				}
-				currentBGs[i].transform.position = new Vector3(currentBGs[bgInFront].transform.position.x, currentBGs[i].transform.position.y - yLimit, currentBGs[i].transform.position.z);
+				currentBGs[i].transform.position = new Vector3(currentBGs[bgInFront].transform.position.x, currentBGs[i].transform.position.y - (yLimit*2), currentBGs[i].transform.position.z);
 			}
-			currentBGs[i].transform.Translate(transform.up * Time.deltaTime * scrollValue * -1);
+			currentBGs[i].transform.Translate(transform.up * Time.deltaTime * scrollValue);
+		}
+	}
+
+	public void TurnOffScrollClouds() {
+		foreach (GameObject blurredSidewaysBG in blurredSidewaysBGs)
+		{
+			blurredSidewaysBG.SetActive(false);
+		}
+		foreach (GameObject regularSidewaysBG in regularSidewaysBGs)
+		{
+			regularSidewaysBG.SetActive(false);
+		}
+		foreach (GameObject verticalBG in verticalBGs)
+		{
+			verticalBG.SetActive(false);
 		}
 	}
 }

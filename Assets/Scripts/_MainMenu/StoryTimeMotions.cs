@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StoryTimeMotions : MonoBehaviour {
-	public GameObject normalTime, bewilderedTime, divingTime;
+	public GameObject normalTime, bewilderedTime, divingTime, glidingTime;
 	public GameObject currentTime;
 	public Transform bewilderedMidTrans;
+	private Vector3 timePos;
 	[Header("Move In")]
 	public bool timeMovesIn;
 	public Transform endTrans;
@@ -35,6 +36,23 @@ public class StoryTimeMotions : MonoBehaviour {
 	public AnimationCurve spinAnimCurve;
 	private float spinLerpValue, rotateAroundValue, startSpinValue, endSpinValue, halfSpinDuration;
 	private bool switchSpinValues;
+	[Header("Dive In")]
+	public bool timeDives;
+	public float diveInDuration, diveHoverDuration, diveOutDuration;
+	public AnimationCurve diveInCurve, diveOutCurve;
+	public Transform diveStartTrans, diveMidTrans, diveEndTrans;
+	private bool diveIn, diveOut;
+	private float diveHoverLerpValue;
+	public float hoverCircleDur, hoverRandomRadius;
+	private Vector3 circleStartPos, circleEndPos, newPos;
+	public bool diveHover, timeDivesThrough;
+	public float diveThroughDuration;
+	[Header ("Glide")]
+	public bool timeGlides;
+	public Transform glideStartTrans, glideEndTrans;
+	public float glideDur;
+	public AnimationCurve glideAnimCurve;
+	public FadeInOutSprite glidingTimeFadeScript;
 
 	void Start () {
 		currentTime = normalTime;
@@ -45,68 +63,35 @@ public class StoryTimeMotions : MonoBehaviour {
 	}
 	
 	void Update () {
-		// if (timeMovesIn) {
-		// 	if (normTimeFadeScript.hidden) {
-		// 		normTimeFadeScript.FadeIn();
-		// 	}
-		// 	lerpValue += Time.deltaTime / moveInDuration;
-		// 	float moveInNewX = Mathf.Lerp(startPos.x, endTrans.position.x, moveInXAnimCurve.Evaluate(lerpValue));
-		// 	float moveInNewY = Mathf.Lerp(startPos.y, endTrans.position.y, moveInYAnimCurve.Evaluate(lerpValue));
-		// 	normalTime.transform.position = new Vector3(moveInNewX, moveInNewY, normalTime.transform.position.z);
-		// 	//normalTime.transform.position = Vector3.Lerp(startPos, endTrans.position, moveInAnimCurve.Evaluate(lerpValue));
-		// 	newScale = Mathf.Lerp(startScale, endScale, scaleInAnimCurve.Evaluate(lerpValue));
-		// 	normalTime.transform.localScale = new Vector3(newScale, newScale, newScale);
-		// 	if (lerpValue >= 1f && !hoverUp) {
-		// 		hover = true;
-		// 		botY = normalTime.transform.localPosition.y;
-		// 		topY = topYTrans.localPosition.y;
-		// 		newXMagnitude = Random.Range(newXMagMin, newXMagMax);
-		// 	}
-		// 	if (lerpValue >= 1) {
-		// 		lerpValue = 0;
-		// 		timeMovesIn = false;
-		// 	}
-		// }
-		// if (hoverUp) {
-		// 	hoverLerpValue += Time.deltaTime / hoverDuration;
-		// 	float newY = Mathf.Lerp(botY, topY, hoverYAnimCurve.Evaluate(hoverLerpValue));
-		// 	float newX = hoverXAnimCurve.Evaluate(hoverLerpValue) * newXMagnitude;
-
-		// 	normalTime.transform.position = new Vector3(endTrans.transform.position.x + newX, newY, normalTime.transform.position.z);
-		// 	if(hoverLerpValue >= 1) {
-		// 		hoverUp = false;
-		// 		hoverDown = true;
-		// 		hoverLerpValue = 0;
-		// 		botY = botYTrans.localPosition.y;
-		// 		newXMagnitude = Random.Range(newXMagMin, newXMagMax);
-		// 	}
-		// }
-		// else if (hoverDown) {
-		// 	hoverLerpValue += Time.deltaTime / hoverDuration;
-		// 	float newY = Mathf.Lerp(topY, botY, hoverYAnimCurve.Evaluate(hoverLerpValue));
-		// 	float newX = hoverXAnimCurve.Evaluate(hoverLerpValue) * -newXMagnitude;
-			
-		// 	normalTime.transform.position = new Vector3(endTrans.transform.position.x + newX, newY, normalTime.transform.position.z);
-		// 	if(hoverLerpValue >= 1) {
-		// 		hoverUp = true;
-		// 		hoverDown = false;
-		// 		hoverLerpValue = 0;
-		// 		newXMagnitude = Random.Range(newXMagMin, newXMagMax);
-		// 	}
-		// }
 		if (timeMovesIn) {
 			TimeMovesIn();
 		}
 		if (timeHovers) {
-			Hover();
+			TimeHovers();
 		}
 		if (timeSpins) {
 			TimeSpins();
 		}
+		if (timeDives) {
+			TimeDives();
+		}
+		if (diveHover) {
+			DiveHover();
+		}
+		if (timeDivesThrough) {
+			TimeDivesThrough();
+		}
+		if (timeGlides) {
+			TimeGlides();
+		}
 	}
 
-	public void SetTimePos(Vector3 timePos) {
+	public void SetTimePos(Vector3 timePos, bool stopAllMovements) {
 		currentTime.transform.position = timePos;
+		if (stopAllMovements) {
+			timeMovesIn = timeHovers = timeSpins = timeDives = diveHover = timeDivesThrough = false;
+			lerpValue = 0f;
+		}
 	}
 
 	void TimeMovesIn() {
@@ -122,6 +107,7 @@ public class StoryTimeMotions : MonoBehaviour {
 		currentTime.transform.localScale = new Vector3(newScale, newScale, newScale);
 		if (lerpValue >= 1f && !hoverUp) {
 			timeHovers = true;
+			timePos = endTrans.transform.position;
 			botY = currentTime.transform.localPosition.y;
 			topY = topYTrans.localPosition.y;
 			newXMagnitude = Random.Range(newXMagMin, newXMagMax);
@@ -132,7 +118,7 @@ public class StoryTimeMotions : MonoBehaviour {
 		}
 	}
 
-	void Hover() {
+	void TimeHovers() {
 		if (!hoverUp && !hoverDown) {
 			hoverUp = true;
 		}
@@ -141,7 +127,7 @@ public class StoryTimeMotions : MonoBehaviour {
 			float newY = Mathf.Lerp(botY, topY, hoverYAnimCurve.Evaluate(hoverLerpValue));
 			float newX = hoverXAnimCurve.Evaluate(hoverLerpValue) * newXMagnitude;
 
-			currentTime.transform.position = new Vector3(endTrans.transform.position.x + newX, newY, currentTime.transform.position.z);
+			currentTime.transform.position = new Vector3(timePos.x + newX, newY, currentTime.transform.position.z);
 			if(hoverLerpValue >= 1) {
 				hoverUp = false;
 				hoverDown = true;
@@ -155,7 +141,7 @@ public class StoryTimeMotions : MonoBehaviour {
 			float newY = Mathf.Lerp(topY, botY, hoverYAnimCurve.Evaluate(hoverLerpValue));
 			float newX = hoverXAnimCurve.Evaluate(hoverLerpValue) * -newXMagnitude;
 			
-			currentTime.transform.position = new Vector3(endTrans.transform.position.x + newX, newY, currentTime.transform.position.z);
+			currentTime.transform.position = new Vector3(timePos.x + newX, newY, currentTime.transform.position.z);
 			if(hoverLerpValue >= 1) {
 				hoverUp = true;
 				hoverDown = false;
@@ -169,6 +155,7 @@ public class StoryTimeMotions : MonoBehaviour {
 		halfSpinDuration = spinDuration;
 		timeSpins = true;
 	}
+
 	void TimeSpins() {
 		if (spinLerpValue < 1) {
 			spinLerpValue += Time.deltaTime / speedDownDuration;
@@ -194,12 +181,93 @@ public class StoryTimeMotions : MonoBehaviour {
 		// }
 	}
 
+	void TimeDives() {
+		if (!diveIn && !diveHover && !diveOut) {
+			diveIn = true;
+		}
+		if (diveIn) {
+			lerpValue += Time.deltaTime / diveInDuration;
+			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveMidTrans.position, diveInCurve.Evaluate(lerpValue));
+			if (lerpValue >= 1f) {
+				lerpValue = 0f;
+				timePos = currentTime.transform.position;
+				newPos = Random.insideUnitCircle * hoverRandomRadius;
+				circleStartPos = currentTime.transform.position;
+				circleEndPos = timePos + newPos;
+				diveIn = false;
+				diveHover = true;
+			}
+		}
+		if (diveHover) {
+			lerpValue += Time.deltaTime;
+			if (lerpValue >= diveHoverDuration) {
+				timePos = currentTime.transform.position;
+				diveHover = false;
+				diveOut = true;
+				lerpValue = 0f;
+			}
+		}
+		if (diveOut) {
+			lerpValue += Time.deltaTime / diveOutDuration;
+			currentTime.transform.position = Vector3.Lerp(timePos, diveEndTrans.position, diveOutCurve.Evaluate(lerpValue));
+			if (lerpValue >= 1) {
+				diveOut = false;
+				timeDives = false;
+				lerpValue = 0f;
+			}
+		}
+	}
+
+	void DiveHover() {
+		diveHoverLerpValue += Time.deltaTime / hoverCircleDur;
+
+		//circleEndPos = currentTime.transform.position + newPos;
+		currentTime.transform.position = Vector3.Lerp(circleStartPos, circleEndPos, diveHoverLerpValue);
+		if (diveHoverLerpValue >= 1) {
+			diveHoverLerpValue = 0f;
+			newPos = Random.insideUnitCircle * hoverRandomRadius;
+			circleStartPos = currentTime.transform.position;
+			circleEndPos = timePos + newPos;
+		}
+	}
+
+	public void SetupDiveHover() {
+		timePos = currentTime.transform.position;
+		newPos = Random.insideUnitCircle * hoverRandomRadius;
+		circleStartPos = currentTime.transform.position;
+		circleEndPos = timePos + newPos;
+	}
+
+	void TimeDivesThrough() {
+		lerpValue += Time.deltaTime / diveThroughDuration;
+		currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
+		if (lerpValue >= 1f) {
+			lerpValue = 0f;
+			timeDivesThrough = false;
+		}
+	}
+
+	void TimeGlides() {
+		lerpValue += Time.deltaTime / glideDur;
+		currentTime.transform.position = Vector3.Lerp(glideStartTrans.position, glideEndTrans.position, glideAnimCurve.Evaluate(lerpValue));
+		if (lerpValue >= 1f) {
+			lerpValue = 0f;
+			timeGlides = false;
+		}
+	}
+
 	public void ChangeCurrentTime(GameObject whichTime) {
 		currentTime = whichTime;
 		normalTime.SetActive(false);
 		bewilderedTime.SetActive(false);
+		divingTime.SetActive(false);
+		glidingTime.SetActive(false);
 		if (currentTime != null) {
 			currentTime.SetActive(true);
 		}
+	}
+
+	public void FadeOutGlidingTime() {
+		glidingTimeFadeScript.FadeOut();
 	}
 }

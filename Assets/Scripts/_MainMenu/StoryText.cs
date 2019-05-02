@@ -43,5 +43,9 @@ public class StoryText : MonoBehaviour {
 	public void TurnTextOff() {
 		fadeCanvasScript.canvasG.alpha = 0f;
 	}
+	// Just fade out the current text.
+	public void FadeOutText() {
+		fadeCanvasScript.FadeOut();
+	}
 
 }

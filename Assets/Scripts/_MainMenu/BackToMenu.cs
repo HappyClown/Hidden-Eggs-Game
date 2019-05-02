@@ -53,7 +53,8 @@ public class BackToMenu : MonoBehaviour
 				}
 				edgeFirefliesScript.StopFireflyFX();
 				btnWaitTimer = 0f;
-				this.gameObject.SetActive(false);
+				//this.gameObject.SetActive(false);
+				//backToMenuBtn.enabled = false;
 			}
 		}
 	}
@@ -78,8 +79,12 @@ public class BackToMenu : MonoBehaviour
 			cloud.MoveIn();
 		}
 		// - FADE OUT BACKTOMENU BTN - //
-		backToMenuFadeScript.FadeOut();
-		backToMenuIconFadeScript.FadeOut();
+		// backToMenuFadeScript.FadeOut();
+		// backToMenuIconFadeScript.FadeOut();
+		foreach (FadeInOutCanvasGroup hubCanvasGroupFadeScript in hubScript.hubCanvasGroupFadeScripts)
+		{
+			hubCanvasGroupFadeScript.FadeOut();
+		}
 		// - FADE IN TITLE - //
 		titleFade.FadeIn();
 		// - FADE IN SOLID BACKGROUND - //

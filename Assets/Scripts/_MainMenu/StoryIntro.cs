@@ -5,6 +5,7 @@ using UnityEngine;
 public class StoryIntro : MonoBehaviour {
 	[Header("Scripts")]
 	public MainMenu mainMenuScript;
+	public Hub hubScript;
 	public inputDetector inputDetScript;
 	public FadeInOutImage blackScreenFadeScript;
 	public StoryScrollingBG storyScrollBGScript;
@@ -12,13 +13,14 @@ public class StoryIntro : MonoBehaviour {
 	public StoryText storyTextScript;
 	public StoryGustMotions storyGustScript;
 	public StoryEggManager storyEggManScript;
+	public StoryOneEgg storyOneEggScript;
 	[Header("Stuff")]
 	public bool inStoryIntro;
 	private int storyBoardTextNum;
 	private bool menuFaded;
 	[Header("StoryBoard Events")]
 	public List<float> onceUponATimeEvents;
-	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents, gustsMishapEvents, timeConfusedEvents, eggsFallingEvents;
+	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents, gustsMishapEvents, timeConfusedEvents, eggsFallingEvents, timeToTheRescueEvents, theOneEggEvents, theQuestEvents;
 	private float boardTimer;
 	public List<float> boardEvents;
 	public List<bool> boardBools;
@@ -32,18 +34,19 @@ public class StoryIntro : MonoBehaviour {
 		boardEvents.Add(0f);
 		boardBools.Add(false);
 
+		// For testing purposes, should be commented out OR set to the first IntroState.
 		boardTimer = 0f;
-		boardEvents.Clear();
-		boardEvents = eggsFallingEvents;
-		boardBools.Clear();
-		for(int i = 0; i < eggsFallingEvents.Count; i++)
-		{
-			boardBools.Add(false);
-		}
+		//boardEvents.Clear();
+		//boardEvents = theQuestEvents;
+		//boardBools.Clear();
+		//for(int i = 0; i < theQuestEvents.Count; i++)
+		//{
+		//	boardBools.Add(false);
+		//}
 	}
 	
 	void Update () {
-		Debug.Log(introStates);
+		//Debug.Log(introStates);
 		if (inStoryIntro) {
 			switch(introStates) {
 				case IntroStates.TitleScreen:
@@ -63,11 +66,11 @@ public class StoryIntro : MonoBehaviour {
 				case IntroStates.EggsFalling:
 					EggsFalling(); break;
 				case IntroStates.TimeToTheRescue:
-					break;
+					TimeToTheRescue(); break;
 				case IntroStates.TheOneEgg:
-					break;
+					TheOneEgg(); break;
 				case IntroStates.TheQuest:
-					break;
+					TheQuest(); break;
 			}
 		}
 	}
@@ -294,7 +297,7 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.bewilderedTime);
 			storyTimeMoScript.timeHovers = false;
 			storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.slowSpinDuration);
-			storyTimeMoScript.SetTimePos(storyTimeMoScript.bewilderedMidTrans.position);
+			storyTimeMoScript.SetTimePos(storyTimeMoScript.bewilderedMidTrans.position, false);
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
 			boardTimer += Time.deltaTime;
@@ -312,6 +315,7 @@ public class StoryIntro : MonoBehaviour {
 			blackScreenFadeScript.FadeIn();	
 		}
 		if (boardBools[1] && blackScreenFadeScript.shown) {
+			storyEggManScript.ResetEggs();
 			introStates = IntroStates.EggsFalling;
 			boardTimer = 0f;
 			boardEvents.Clear();
@@ -347,7 +351,7 @@ public class StoryIntro : MonoBehaviour {
 			boardTimer += Time.deltaTime;
 		}
 		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
-			storyScrollBGScript.SetUpClouds(storyScrollBGScript.verticalBGs, storyScrollBGScript.verticalScrollSpeed, false);
+			storyScrollBGScript.SetUpClouds(storyScrollBGScript.verticalBGs, storyScrollBGScript.verticalScrollSpeed, false); // Take out when not testing
 			storyTextScript.SetupText(storyBoardTextNum);
 			storyBoardTextNum++;
 			boardBools[0] = true;
@@ -356,8 +360,150 @@ public class StoryIntro : MonoBehaviour {
 			storyEggManScript.SpawnFallingEggs();
 			boardBools[1] = true;
 		}
+		if (boardBools[1] && inputDetScript.Tapped) {
+			blackScreenFadeScript.FadeIn();	
+		}
+		if (boardBools[1] && blackScreenFadeScript.shown) {
+			storyEggManScript.ResetEggs();
+			introStates = IntroStates.TimeToTheRescue;
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = timeToTheRescueEvents;
+			boardBools.Clear();
+			for(int i = 0; i < timeToTheRescueEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
+		}
 	}
 
+	void TimeToTheRescue() {
+		if (blackScreenFadeScript.shown && !boardBools[0]) {
+			blackScreenFadeScript.FadeOut();
+			storyTextScript.TurnTextOff();
+			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.divingTime);
+		}
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
+		}
+		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
+			boardBools[0] = true;
+		}
+		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			storyTimeMoScript.timeDives = true;
+			//storyTimeMoScript.SetupDiveHover();
+			//storyTimeMoScript.diveHover = true;
+			boardBools[1] = true;
+		}
+		if (boardBools[1] && inputDetScript.Tapped) {
+			blackScreenFadeScript.FadeIn();	
+		}
+		if (boardBools[1] && blackScreenFadeScript.shown) {
+			introStates = IntroStates.TheOneEgg;
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = theOneEggEvents;
+			boardBools.Clear();
+			for(int i = 0; i < theOneEggEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
+		}
+	}
+
+	void TheOneEgg() {
+		if (blackScreenFadeScript.shown && !boardBools[0]) {
+			blackScreenFadeScript.FadeOut();
+			storyTextScript.TurnTextOff();
+			storyTimeMoScript.SetTimePos(storyTimeMoScript.diveStartTrans.position, true);
+			storyOneEggScript.theOneEgg.SetActive(true);
+			storyOneEggScript.rotate = true;
+		}
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
+		}
+		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
+			boardBools[0] = true;
+		}
+		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			storyTimeMoScript.timeDivesThrough = true;
+			boardBools[1] = true;
+		}
+		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
+			storyOneEggScript.theOneEgg.SetActive(false);
+			storyOneEggScript.rotate = false;
+			boardBools[2] = true;
+		}
+		if (boardBools[2] && inputDetScript.Tapped) {
+			blackScreenFadeScript.FadeIn();	
+		}
+		if (boardBools[2] && blackScreenFadeScript.shown) {
+			introStates = IntroStates.TheQuest;
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = theQuestEvents;
+			boardBools.Clear();
+			for(int i = 0; i < theQuestEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
+		}
+	}
+
+	void TheQuest() {
+		if (blackScreenFadeScript.shown && !boardBools[0]) {
+			blackScreenFadeScript.FadeOut();
+			storyTextScript.TurnTextOff();
+			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.glidingTime);
+			// turn off the scrolling clouds
+			storyScrollBGScript.TurnOffScrollClouds();
+			// mainMenuScript.ToHub(); Without the hubScript.startHubActive = true; so that it fades out the main menu but only shows the grey village
+			mainMenuScript.ToHub(false);
+		}
+		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
+			boardTimer += Time.deltaTime;
+		}
+		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
+			storyTextScript.SetupText(storyBoardTextNum);
+			storyBoardTextNum++;
+			boardBools[0] = true;
+		}
+		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			// TimeTopView flies in from the bottom right
+			storyTimeMoScript.timeGlides = true;
+			boardBools[1] = true;
+		}
+		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
+			// TheOneEgg flies from under time to the middle scaling to regular scene egg size
+			storyOneEggScript.SetupFlyOutOfTime();
+			boardBools[2] = true;
+		}
+		if (boardTimer >= boardEvents[3] && !boardBools[3]) {
+			// It shakes and sparkles
+
+		}
+		if (boardTimer >= boardEvents[4] && !boardBools[4] && inputDetScript.Tapped) {
+			// Tap (anywhere or on it)
+			// Text fades out, time fades out,
+			storyTextScript.FadeOutText();
+			storyTimeMoScript.FadeOutGlidingTime();
+			// Regular hub gets activated
+			hubScript.startHubActive = true;
+			boardBools[4] = true;
+		}
+		if (boardBools[4]) {
+			introStates = IntroStates.TitleScreen;
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardBools.Clear();
+			inStoryIntro = false;
+		}
+	}
+	
 	void ResetStory() {
 		menuFaded = false;
 	}

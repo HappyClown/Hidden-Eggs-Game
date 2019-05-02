@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FadeInOutCanvasGroup : MonoBehaviour {
-	[HideInInspector]
-	public bool fadingOut, fadingIn, hidden, shown;
 	private float t;
 	public float fadeDelayDur;
 	[Range(0f, 1f)]
@@ -14,10 +12,12 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 	public bool fadeOnStart = true;
 	public bool fadeDelay, disableOnFadeOut;
 	public CanvasGroup canvasG;
+	public bool interactable, blocksRaycasts, ignoreParentGroups;
 	public enum StartState {
 		startShown, startHidden
 	}
 	public StartState myStartState;
+	public bool fadingOut, fadingIn, hidden, shown;
 
 	void Start () {
 		canvasG = this.gameObject.GetComponent<CanvasGroup>();
@@ -28,6 +28,7 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 		else if (myStartState == StartState.startHidden) {
 			canvasG.alpha = 0f;
 			hidden = true;
+			SetCanvasOptions(false);
 		}
 		if (maxAlpha <= 0f) { 
 			maxAlpha = 1f; 
@@ -55,6 +56,7 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 			t += Time.deltaTime / fadeDuration;
 			canvasG.alpha = Mathf.SmoothStep(0f, 1f * maxAlpha, t);
 			if (t >= 1f) {
+				SetCanvasOptions(true);
 				shown = true;
 				fadingIn = false;
 			}
@@ -68,6 +70,7 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
 			shown = false;
+			SetCanvasOptions(false);
 		}
 	}
 
@@ -86,5 +89,38 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 
 	public void ResetAplpha(float value){
 		canvasG.alpha = value;
+		if (value == maxAlpha || value == 1f) {
+			shown = true;
+		}
+		if (value == 0) {
+			hidden = true;
+		}
+	}
+
+	void SetCanvasOptions(bool enabled) {
+		if (interactable) {
+			if (enabled) {
+				canvasG.interactable = true;
+			}
+			else {
+				canvasG.interactable = false;
+			}
+		}
+		if (blocksRaycasts) {
+			if (enabled) {
+				canvasG.blocksRaycasts = true;
+			}
+			else {
+				canvasG.blocksRaycasts = false;
+			}
+		}
+		if (ignoreParentGroups) {
+			if (enabled) {
+				canvasG.ignoreParentGroups = true;
+			}
+			else {
+				canvasG.ignoreParentGroups = false;
+			}
+		}
 	}
 }

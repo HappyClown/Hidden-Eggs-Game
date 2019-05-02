@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Hub : MonoBehaviour {
 	public float hubActiveWait;
 	private float hubActiveWaitTimer;
+	public List<FadeInOutCanvasGroup> hubCanvasGroupFadeScripts;
 	[Header("Dissolve")]
 	public float dissAmnt;
 	public float dissSpeed;
@@ -66,12 +67,16 @@ public class Hub : MonoBehaviour {
 	}
 
 	void EnableHubObjects() { // Enable general Village objects (UI, etc) 
-		backToMenuScript.backToMenuFadeScript.FadeIn();
-		backToMenuScript.backToMenuIconFadeScript.FadeIn();
+		//backToMenuScript.backToMenuFadeScript.FadeIn();
+		//backToMenuScript.backToMenuIconFadeScript.FadeIn();
+		foreach (FadeInOutCanvasGroup hubCanvasGroupFadeScript in hubCanvasGroupFadeScripts)
+		{
+			hubCanvasGroupFadeScript.FadeIn();
+		}
 	}
 
 	void EnableSeasonObjs() { // Enable Season objects (Scene buttons) 
-		backToMenuScript.backToMenuBtn.enabled = true;
+		//backToMenuScript.backToMenuBtn.enabled = true;
 		// foreach true...
 		if (GlobalVariables.globVarScript.dissSeasonsBools[0]) {
 			foreach(GameObject summerObj in summerButtons)

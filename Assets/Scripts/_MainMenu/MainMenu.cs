@@ -47,9 +47,9 @@ public class MainMenu : MonoBehaviour {
 
 	void Update () {
 		if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
-			ToHub();
+			ToHub(true);
 			GlobalVariables.globVarScript.toHub = false;
-			Debug.Log("How many times do I go to hubbabubbaland!");
+			// Debug.Log("How many times do I go to hubbabubbaland!");
 		}
 
 		if (inputDetScript.Tapped && !skipFrame) {
@@ -86,7 +86,7 @@ public class MainMenu : MonoBehaviour {
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
 		resetBtnFadeScript.FadeOut();
-		//storyBtn.gameObject.SetActive(false);
+		// storyBtn.gameObject.SetActive(false);
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
 		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
@@ -103,7 +103,7 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-	void ToHub() {
+	public void ToHub(bool startHubActive) {
 		// - MAKE THE CLOUDS PART - //
 		 foreach(MoveCloud cloud in cloudsToMove)
 		{
@@ -122,7 +122,9 @@ public class MainMenu : MonoBehaviour {
 		titleFade.shown = false;
 		titleFade.hidden = true;
 		// Starts countdown timer to doing Village stuff 
-		hubScript.startHubActive = true;
+		if (startHubActive) {
+			hubScript.startHubActive = true;
+		}
 	}
 
 	void NewGameBtn() {

@@ -147,4 +147,9 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue = 0f;
 		}
 	}
+
+	public void Reset() {
+		spawnInBag = rotate = fallFromTop = hover = fallDown = false;
+		this.transform.position = fallEggSpawnTrans[0].position;
+	}
 }
