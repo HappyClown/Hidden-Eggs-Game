@@ -12,7 +12,7 @@ public class LevelTitleVillage : MonoBehaviour {
 	private float lerpValue, currentLenght;
 	private RectTransform myRectTransform;
 	public LevelTitleVillage[] AllTitles;
-	public Image NormalEgg, silverEgg, goldenEgg;
+	public Image NormalEgg, silverEgg, goldenEgg, NShadow, SShadow, GShadow;
 	public Sprite spriteNormalEgg, spriteSilverEgg, spriteGoldenEgg, spriteEmptyEgg;
 	public string myLevel;
 
@@ -84,45 +84,63 @@ public class LevelTitleVillage : MonoBehaviour {
 	}
 	public void UpdateEggs(){
 		if(myLevel == GlobalVariables.globVarScript.marketName){
-			if(GlobalVariables.globVarScript.marketNE)
+			if(GlobalVariables.globVarScript.marketNE){
 			NormalEgg.sprite = spriteNormalEgg;
-			else
+			NShadow.gameObject.SetActive(true);}
+			else{
 			NormalEgg.sprite = spriteEmptyEgg;
-			if(GlobalVariables.globVarScript.marketSE)
+			NShadow.gameObject.SetActive(false);}
+			if(GlobalVariables.globVarScript.marketSE){
 			silverEgg.sprite = spriteSilverEgg;
-			else
+			SShadow.gameObject.SetActive(true);}
+			else{
 			silverEgg.sprite = spriteEmptyEgg;
-			if(GlobalVariables.globVarScript.marketGE)
+			SShadow.gameObject.SetActive(false);}
+			if(GlobalVariables.globVarScript.marketGE){
 			goldenEgg.sprite = spriteGoldenEgg;
-			else
+			GShadow.gameObject.SetActive(true);}
+			else{
 			goldenEgg.sprite = spriteEmptyEgg;
+			GShadow.gameObject.SetActive(false);}
 		}else if(myLevel == GlobalVariables.globVarScript.parkName){
-			if(GlobalVariables.globVarScript.parkNE)
+			if(GlobalVariables.globVarScript.parkNE){
 			NormalEgg.sprite = spriteNormalEgg;
-			else
+			NShadow.gameObject.SetActive(true);}
+			else{
 			NormalEgg.sprite = spriteEmptyEgg;
-			if(GlobalVariables.globVarScript.parkSE)
+			NShadow.gameObject.SetActive(false);}
+			if(GlobalVariables.globVarScript.parkSE){
 			silverEgg.sprite = spriteSilverEgg;
-			else
+			SShadow.gameObject.SetActive(true);}
+			else{
 			silverEgg.sprite = spriteEmptyEgg;
-			if(GlobalVariables.globVarScript.parkGE)
+			SShadow.gameObject.SetActive(false);}
+			if(GlobalVariables.globVarScript.parkGE){
 			goldenEgg.sprite = spriteGoldenEgg;
-			else
+			GShadow.gameObject.SetActive(true);}
+			else{
 			goldenEgg.sprite = spriteEmptyEgg;
+			GShadow.gameObject.SetActive(false);}
 
 		}else if(myLevel == GlobalVariables.globVarScript.beachName){
-			if(GlobalVariables.globVarScript.beachNE)
+			if(GlobalVariables.globVarScript.beachNE){
 			NormalEgg.sprite = spriteNormalEgg;
-			else
+			NShadow.gameObject.SetActive(true);}
+			else{
 			NormalEgg.sprite = spriteEmptyEgg;
-			if(GlobalVariables.globVarScript.beachSE)
+			NShadow.gameObject.SetActive(false);}
+			if(GlobalVariables.globVarScript.beachSE){
 			silverEgg.sprite = spriteSilverEgg;
-			else
+			SShadow.gameObject.SetActive(true);}
+			else{
 			silverEgg.sprite = spriteEmptyEgg;
-			if(GlobalVariables.globVarScript.beachGE)
+			SShadow.gameObject.SetActive(false);}
+			if(GlobalVariables.globVarScript.beachGE){
 			goldenEgg.sprite = spriteGoldenEgg;
-			else
+			GShadow.gameObject.SetActive(true);}
+			else{
 			goldenEgg.sprite = spriteEmptyEgg;
+			GShadow.gameObject.SetActive(false);}
 
 		}
 	}

@@ -28,7 +28,7 @@ public class HubEggcounts : MonoBehaviour
 	{
 		GlobalVariables.globVarScript.LoadCorrectEggs();
 		// NEED TO MAKE SOEMTHIGN ELSE THAT GETS ALL THE SCENE TOTAL EGGS, or sumtin simila
-		int totEgg = GlobalVariables.globVarScript.hubTotalEggsFound;
+		totEgg = GlobalVariables.globVarScript.hubTotalEggsFound;
 
 		if (totEgg <= 0)
 		{ totEggCount.text = "000"; return; }
