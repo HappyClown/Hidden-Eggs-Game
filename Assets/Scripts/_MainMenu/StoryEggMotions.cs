@@ -35,6 +35,10 @@ public class StoryEggMotions : MonoBehaviour {
 	public float maxRotDur;
 	private float fullRotDuration;
 	private bool rotate;
+	[Header ("Scene Egg")]
+	public FadeInOutSprite thisEggFadeScript;
+	public FadeInOutSprite sceneEggFadeScript;
+
 
 	void Update () {
 		if (spawnInBag) {
@@ -113,6 +117,8 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue = 0f;
 			hover = true;
 			iniHoverPos = this.transform.position;
+			sceneEggFadeScript.FadeIn();
+			thisEggFadeScript.FadeOut();
 		}
 	}
 

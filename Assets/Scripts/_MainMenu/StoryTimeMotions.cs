@@ -6,6 +6,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	public GameObject normalTime, bewilderedTime, divingTime, glidingTime;
 	public GameObject currentTime;
 	public Transform bewilderedMidTrans;
+	public Vector3 accidentTimeScale;
 	private Vector3 timePos;
 	[Header("Move In")]
 	public bool timeMovesIn;
@@ -23,7 +24,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	public float hoverDuration;
 	private float hoverLerpValue;
 	private bool hoverUp, hoverDown;
-	public Transform topYTrans, botYTrans;
+	public Transform topYTrans, botYTrans, smallTopYTrans, smallBotYTrans;
 	private float topY, botY;
 	private float newXMagnitude;
 	public float newXMagMin, newXMagMax;
@@ -35,7 +36,9 @@ public class StoryTimeMotions : MonoBehaviour {
 	public float fastSpinDuration, slowSpinDuration, speedDownDuration, rotateAnglePerDur, iniRotateAnglePerDur;
 	public AnimationCurve spinAnimCurve;
 	private float spinLerpValue, rotateAroundValue, startSpinValue, endSpinValue, halfSpinDuration;
-	private bool switchSpinValues;
+	private bool switchSpinValues, spinCountCheck;
+	private int spinCount;
+	public bool changeSpinTime;
 	[Header("Dive In")]
 	public bool timeDives;
 	public float diveInDuration, diveHoverDuration, diveOutDuration;
@@ -70,6 +73,9 @@ public class StoryTimeMotions : MonoBehaviour {
 			TimeHovers();
 		}
 		if (timeSpins) {
+			if (changeSpinTime) {
+				ChangeSpinTime();
+			}
 			TimeSpins();
 		}
 		if (timeDives) {
@@ -91,6 +97,15 @@ public class StoryTimeMotions : MonoBehaviour {
 		if (stopAllMovements) {
 			timeMovesIn = timeHovers = timeSpins = timeDives = diveHover = timeDivesThrough = false;
 			lerpValue = 0f;
+		}
+	}
+
+	public void SetTimeScale(bool accidentScale) {
+		if (accidentScale) {
+			currentTime.transform.localScale = accidentTimeScale;
+		}
+		else {
+			currentTime.transform.localScale = new Vector3(1f, 1f, 1f);
 		}
 	}
 
@@ -151,6 +166,13 @@ public class StoryTimeMotions : MonoBehaviour {
 		}
 	}
 
+	public void SmallTimeHover() {
+		botY = smallBotYTrans.position.y;
+		topY = smallTopYTrans.position.y;
+		newXMagMin /= 2;
+		newXMagMax /= 2;
+	}
+
 	public void SetupTimeSpin(float spinDuration) {
 		halfSpinDuration = spinDuration;
 		timeSpins = true;
@@ -162,23 +184,24 @@ public class StoryTimeMotions : MonoBehaviour {
 			rotateAroundValue = Mathf.Lerp(iniRotateAnglePerDur, rotateAnglePerDur, spinAnimCurve.Evaluate(spinLerpValue)) * -1;
 		}
 		currentTime.transform.RotateAround(currentTime.transform.position, Vector3.up, rotateAroundValue * (Time.deltaTime / halfSpinDuration));
+		// Checking to change the currentTime bird after a certain amount of spins.
+		if (currentTime.transform.eulerAngles.y <= 90 && spinCountCheck) {
+			spinCount++;
+			spinCountCheck = false;
+		}
+		if (currentTime.transform.eulerAngles.y >= 90 && !spinCountCheck) {
+			spinCountCheck = true;
+		} 
+	}
 
-		// spinLerpValue += Time.deltaTime / halfSpinDuration;
-		// float spinCurveValue = Mathf.Lerp(startSpinValue, endSpinValue, spinAnimCurve.Evaluate(spinLerpValue));
-		// currentTime.transform.eulerAngles = new Vector3(currentTime.transform.localRotation.x, spinCurveValue, currentTime.transform.localRotation.z);
-		// if (spinLerpValue >= 1) {
-		// 	spinLerpValue = 0f;
-		// 	if (!switchSpinValues) {
-		// 		startSpinValue = 0f;
-		// 		endSpinValue = 180f;
-		// 		switchSpinValues = true;
-		// 	}
-		// 	else {
-		// 		startSpinValue = 180f;
-		// 		endSpinValue = 360f;
-		// 		switchSpinValues = false;
-		// 	}
-		// }
+	void ChangeSpinTime() {
+		if (spinCount >= 2) {
+			bewilderedTime.transform.position = currentTime.transform.position;
+			bewilderedTime.transform.eulerAngles = new Vector3(0f, 90f, 0f);
+			ChangeCurrentTime(bewilderedTime);
+			SetTimeScale(true);
+			changeSpinTime = false;
+		}
 	}
 
 	void TimeDives() {

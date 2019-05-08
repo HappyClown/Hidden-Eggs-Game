@@ -36,13 +36,13 @@ public class StoryIntro : MonoBehaviour {
 
 		// For testing purposes, should be commented out OR set to the first IntroState.
 		boardTimer = 0f;
-		//boardEvents.Clear();
-		//boardEvents = theQuestEvents;
-		//boardBools.Clear();
-		//for(int i = 0; i < theQuestEvents.Count; i++)
-		//{
-		//	boardBools.Add(false);
-		//}
+		boardEvents.Clear();
+		boardEvents = eggsFallingEvents;
+		boardBools.Clear();
+		for(int i = 0; i < eggsFallingEvents.Count; i++)
+		{
+			boardBools.Add(false);
+		}
 	}
 	
 	void Update () {
@@ -195,6 +195,8 @@ public class StoryIntro : MonoBehaviour {
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
 			storyTimeMoScript.normalTime.SetActive(true);
+			storyTimeMoScript.SetTimeScale(true);
+			storyTimeMoScript.SmallTimeHover();
 			// Back to normal sky scrolling.
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
@@ -211,12 +213,18 @@ public class StoryIntro : MonoBehaviour {
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
 			storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.fastSpinDuration);
+			storyTimeMoScript.timeHovers = false;
+			storyTimeMoScript.changeSpinTime = true;
+			storyScrollBGScript.slowDownClouds = true;
 			boardBools[2] = true;
 		}
-		if (boardBools[2] && inputDetScript.Tapped) {
+		if (boardTimer >= boardEvents[3] && !boardBools[3]) {
+			boardBools[3] = true;
+		}
+		if (boardBools[3] && inputDetScript.Tapped) {
 			blackScreenFadeScript.FadeIn();
 		}
-		if (boardBools[2] && blackScreenFadeScript.shown) {
+		if (boardBools[3] && blackScreenFadeScript.shown) {
 			introStates = IntroStates.GustsMishap;
 			boardTimer = 0f;
 			boardEvents.Clear();
@@ -233,7 +241,8 @@ public class StoryIntro : MonoBehaviour {
 		if (blackScreenFadeScript.shown && !boardBools[0]/*  || Input.GetKeyDown("space") */) {
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
-			storyTimeMoScript.normalTime.SetActive(false);
+			storyTimeMoScript.currentTime.SetActive(false);
+			storyScrollBGScript.SetCloudSpeed(storyScrollBGScript.regSideScrollSpeed);
 			// Back to the distorted sky.
 			// boardTimer = 0f;
 			// boardEvents.Clear();
@@ -295,6 +304,7 @@ public class StoryIntro : MonoBehaviour {
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
 			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.bewilderedTime);
+			storyTimeMoScript.SetTimeScale(false);
 			storyTimeMoScript.timeHovers = false;
 			storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.slowSpinDuration);
 			storyTimeMoScript.SetTimePos(storyTimeMoScript.bewilderedMidTrans.position, false);

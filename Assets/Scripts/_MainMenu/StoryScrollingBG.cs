@@ -26,6 +26,7 @@ public class StoryScrollingBG : MonoBehaviour {
 	private bool verticalScroll;
 	[Header ("Other")]
 	public List<GameObject> currentBGs;
+	public bool slowDownClouds;
 	private float scrollSpeed;
 
 	void Start () {
@@ -38,6 +39,9 @@ public class StoryScrollingBG : MonoBehaviour {
 		}
 		if (verticalScroll) {
 			VerticalScroll();
+		}
+		if (slowDownClouds) {
+			SlowDownClouds();
 		}
 	}
 
@@ -73,7 +77,7 @@ public class StoryScrollingBG : MonoBehaviour {
 	void SidewaysScroll() {
 		if (scrollSpeedLerpValue < 1 && speedUp) {
 			scrollSpeedLerpValue += Time.deltaTime / speedUpDuration;
-			scrollValue = Mathf.Lerp(0, scrollSpeed, scrollAnimCurve.Evaluate(scrollSpeedLerpValue));
+			scrollValue = Mathf.Lerp(0f, scrollSpeed, scrollAnimCurve.Evaluate(scrollSpeedLerpValue));
 			if (scrollSpeedLerpValue >= 1) {
 				speedUp = false;
 				scrollSpeedLerpValue = 0f;
@@ -112,6 +116,20 @@ public class StoryScrollingBG : MonoBehaviour {
 			}
 			currentBGs[i].transform.Translate(transform.up * Time.deltaTime * scrollValue);
 		}
+	}
+
+	public void SlowDownClouds() {
+		scrollSpeedLerpValue += Time.deltaTime / speedUpDuration;
+		scrollValue = Mathf.Lerp(scrollSpeed, 0f, scrollAnimCurve.Evaluate(scrollSpeedLerpValue));
+		if (scrollSpeedLerpValue >= 1) {
+			slowDownClouds = false;
+			scrollSpeedLerpValue = 0f;
+		}
+	}
+
+	public void SetCloudSpeed(float myScrollSpeed) {
+		scrollSpeed = myScrollSpeed;
+		scrollValue = myScrollSpeed;
 	}
 
 	public void TurnOffScrollClouds() {

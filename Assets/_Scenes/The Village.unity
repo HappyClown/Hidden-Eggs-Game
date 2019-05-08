@@ -961,14 +961,13 @@ GameObject:
   m_Component:
   - component: {fileID: 86489264}
   - component: {fileID: 86489266}
-  - component: {fileID: 86489265}
   m_Layer: 0
   m_Name: Vertical_Cloud01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &86489264
 Transform:
   m_ObjectHideFlags: 0
@@ -982,48 +981,6 @@ Transform:
   m_Father: {fileID: 470099310}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &86489265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 86489263}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e065d4fb722c3d14fa2bb0c5bae5956a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpStartPos: {x: 0, y: 0, z: 0}
-  startTrans: {fileID: 1618608665}
-  endTrans: {fileID: 2105710270}
-  lerp: 0
-  moveSpeed: 0.3
-  amIFirst: 1
-  fullMoveSpeedDuration: 3
-  moveSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!212 &86489266
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2639,6 +2596,7 @@ GameObject:
   - component: {fileID: 159530829}
   - component: {fileID: 159530831}
   - component: {fileID: 159530830}
+  - component: {fileID: 159530832}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -2655,9 +2613,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 2115403383}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 11
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &159530830
 MonoBehaviour:
@@ -2858,6 +2817,8 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 159530832}
+  sceneEggFadeScript: {fileID: 2115403384}
 --- !u!212 &159530831
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2903,6 +2864,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &159530832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159530828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 159530831}
+  myStartState: 0
 --- !u!1 &163096089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5139,7 +5123,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 333389964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.22, y: 0, z: -19.49}
+  m_LocalPosition: {x: -28.22, y: 0, z: -20.5}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
@@ -5179,7 +5163,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 957265703
   m_SortingLayer: 6
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 8ba03cf771feb4f4ba55775880c50228, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5204,7 +5188,7 @@ MonoBehaviour:
   fadingOut: 0
   fadingIn: 0
   hidden: 0
-  shown: 0
+  shown: 1
   fadeDelayDur: 0
   maxAlpha: 1
   fadeDuration: 5
@@ -5239,7 +5223,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &336841387
 Prefab:
@@ -5942,6 +5926,104 @@ RectTransform:
   m_AnchoredPosition: {x: 2.530933, y: -0.387331}
   m_SizeDelta: {x: 0.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &421133012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 421133013}
+  - component: {fileID: 421133014}
+  - component: {fileID: 421133015}
+  m_Layer: 0
+  m_Name: Egg 09, Walking Woman Dress
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &421133013
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421133012}
+  m_LocalRotation: {x: 0, y: 0, z: 0.15384822, w: 0.9880945}
+  m_LocalPosition: {x: -0.11, y: 0.11, z: -0.1}
+  m_LocalScale: {x: 3.9, y: 3.9, z: 3.9}
+  m_Children: []
+  m_Father: {fileID: 1839979171}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 17.7}
+--- !u!212 &421133014
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421133012}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 19c70c8d46543234397cf1dd8a45bbae, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.92, y: 1.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &421133015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 421133012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 421133014}
+  myStartState: 1
 --- !u!1 &432407450
 GameObject:
   m_ObjectHideFlags: 0
@@ -6997,6 +7079,7 @@ GameObject:
   - component: {fileID: 545881257}
   - component: {fileID: 545881258}
   - component: {fileID: 545881259}
+  - component: {fileID: 545881260}
   m_Layer: 0
   m_Name: GoldEgg
   m_TagString: Untagged
@@ -7013,9 +7096,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_Children: []
+  m_Children:
+  - {fileID: 698540484}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 0
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &545881258
 SpriteRenderer:
@@ -7261,6 +7345,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 545881260}
+  sceneEggFadeScript: {fileID: 698540485}
+--- !u!114 &545881260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 545881256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 545881258}
+  myStartState: 0
 --- !u!1 &553822879
 GameObject:
   m_ObjectHideFlags: 0
@@ -7287,7 +7396,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &561528582
 GameObject:
@@ -8602,6 +8711,104 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198879004095944382, guid: 88bad242bdad9364ba69cc15e1969ae1,
     type: 2}
   m_PrefabInternal: {fileID: 637093956}
+--- !u!1 &653565393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 653565394}
+  - component: {fileID: 653565395}
+  - component: {fileID: 653565396}
+  m_Layer: 0
+  m_Name: Park SilverEgg 02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &653565394
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653565393}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0, z: -0.099999115}
+  m_LocalScale: {x: 0.48499998, y: 0.46, z: 0.49999994}
+  m_Children: []
+  m_Father: {fileID: 1770786789}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &653565395
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653565393}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 7d6918677b42bc54db426be4304f8b67, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.85, y: 7.83}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &653565396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653565393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 653565395}
+  myStartState: 1
 --- !u!1 &663848551
 GameObject:
   m_ObjectHideFlags: 0
@@ -9130,6 +9337,104 @@ MonoBehaviour:
   moveDurMin: 2.5
   moveDurMax: 3.5
   moveX: 5
+--- !u!1 &698540483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 698540484}
+  - component: {fileID: 698540486}
+  - component: {fileID: 698540485}
+  m_Layer: 0
+  m_Name: Park_GoldenEgg_Smaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &698540484
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 698540483}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 545881257}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &698540485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 698540483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 698540486}
+  myStartState: 1
+--- !u!212 &698540486
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 698540483}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: eb173d24f7dfb594aafa5ca89cd412bf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.84, y: 3.6}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &703277714
 GameObject:
   m_ObjectHideFlags: 0
@@ -9639,6 +9944,104 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!1 &734959138
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 734959139}
+  - component: {fileID: 734959140}
+  - component: {fileID: 734959141}
+  m_Layer: 0
+  m_Name: Beach SilverEgg 01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734959139
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734959138}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0, z: -0.1}
+  m_LocalScale: {x: 0.485, y: 0.46, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 1435049495}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &734959140
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734959138}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 7efde32d34410e64d961fe01ecad8e5a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.85, y: 7.83}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &734959141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 734959138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 734959140}
+  myStartState: 1
 --- !u!1 &759405471
 GameObject:
   m_ObjectHideFlags: 0
@@ -9648,7 +10051,6 @@ GameObject:
   m_Component:
   - component: {fileID: 759405472}
   - component: {fileID: 759405473}
-  - component: {fileID: 759405474}
   m_Layer: 0
   m_Name: RegularSideways_Cloud01
   m_TagString: Untagged
@@ -9714,48 +10116,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &759405474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 759405471}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e065d4fb722c3d14fa2bb0c5bae5956a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpStartPos: {x: 0, y: 0, z: 0}
-  startTrans: {fileID: 1618608665}
-  endTrans: {fileID: 2105710270}
-  lerp: 0
-  moveSpeed: 0.3
-  amIFirst: 1
-  fullMoveSpeedDuration: 3
-  moveSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &772202690
 GameObject:
   m_ObjectHideFlags: 0
@@ -9778,7 +10138,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 772202690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.78, y: 0.42, z: -19.49}
+  m_LocalPosition: {x: -1.78, y: 0.42, z: -20.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
@@ -9986,7 +10346,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 786443890}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.22, y: 0.42, z: -19.49}
+  m_LocalPosition: {x: 28.22, y: 0.42, z: -20.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
@@ -10975,6 +11335,7 @@ GameObject:
   - component: {fileID: 890351758}
   - component: {fileID: 890351757}
   - component: {fileID: 890351756}
+  - component: {fileID: 890351759}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -11181,6 +11542,8 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 890351759}
+  sceneEggFadeScript: {fileID: 2031167936}
 --- !u!212 &890351757
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11235,10 +11598,34 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 2031167934}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890351759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 890351755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 890351757}
+  myStartState: 0
 --- !u!1 &890590117
 GameObject:
   m_ObjectHideFlags: 0
@@ -12807,6 +13194,104 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1012724848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1012724849}
+  - component: {fileID: 1012724851}
+  - component: {fileID: 1012724850}
+  m_Layer: 0
+  m_Name: Egg 01, Right Asparagus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1012724849
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012724848}
+  m_LocalRotation: {x: -0, y: -0, z: -0.09032341, w: 0.9959125}
+  m_LocalPosition: {x: 0, y: 0.11, z: -0.1}
+  m_LocalScale: {x: 3.85, y: 3.85, z: 3.9}
+  m_Children: []
+  m_Father: {fileID: 1698773778}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.364}
+--- !u!114 &1012724850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012724848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1012724851}
+  myStartState: 1
+--- !u!212 &1012724851
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1012724848}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: e406e19b31a3aee4b921a87aca21a2b4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.93, y: 1.09}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1013124923
 GameObject:
   m_ObjectHideFlags: 0
@@ -13772,6 +14257,104 @@ Transform:
   m_Father: {fileID: 1348921852}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1073370916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1073370917}
+  - component: {fileID: 1073370918}
+  - component: {fileID: 1073370919}
+  m_Layer: 0
+  m_Name: Egg 19, Raindbow Kite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1073370917
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073370916}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9971983, w: 0.07480468}
+  m_LocalPosition: {x: 0.05, y: -0.05, z: -0.1}
+  m_LocalScale: {x: 3.9, y: 3.9, z: 3.9}
+  m_Children: []
+  m_Father: {fileID: 2035948075}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 171.42}
+--- !u!212 &1073370918
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073370916}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: c562d45d86c6987449068a17d4122c9d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.82, y: 1.02}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &1073370919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1073370916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1073370918}
+  myStartState: 1
 --- !u!1 &1076247651
 GameObject:
   m_ObjectHideFlags: 0
@@ -13847,7 +14430,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 957265703
-  m_SortingOrder: 6
+  m_SortingOrder: 7
   m_TargetDisplay: 0
 --- !u!1 &1098211053
 GameObject:
@@ -13859,6 +14442,7 @@ GameObject:
   - component: {fileID: 1098211054}
   - component: {fileID: 1098211055}
   - component: {fileID: 1098211056}
+  - component: {fileID: 1098211057}
   m_Layer: 0
   m_Name: GoldEgg
   m_TagString: Untagged
@@ -13875,9 +14459,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 1646745138}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1098211055
 SpriteRenderer:
@@ -14123,6 +14708,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1098211057}
+  sceneEggFadeScript: {fileID: 1646745139}
+--- !u!114 &1098211057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1098211053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1098211055}
+  myStartState: 0
 --- !u!1 &1101688701
 GameObject:
   m_ObjectHideFlags: 0
@@ -14133,6 +14743,7 @@ GameObject:
   - component: {fileID: 1101688702}
   - component: {fileID: 1101688704}
   - component: {fileID: 1101688703}
+  - component: {fileID: 1101688705}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -14149,9 +14760,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 1661987781}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1101688703
 MonoBehaviour:
@@ -14352,6 +14964,8 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1101688705}
+  sceneEggFadeScript: {fileID: 1661987782}
 --- !u!212 &1101688704
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14397,6 +15011,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1101688705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1101688701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1101688704}
+  myStartState: 0
 --- !u!1 &1128403504
 GameObject:
   m_ObjectHideFlags: 0
@@ -15333,56 +15970,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1175395466}
   - component: {fileID: 1175395465}
-  - component: {fileID: 1175395464}
   m_Layer: 0
   m_Name: Vertical_Cloud02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1175395464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1175395463}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e065d4fb722c3d14fa2bb0c5bae5956a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpStartPos: {x: 0, y: 0, z: 0}
-  startTrans: {fileID: 1618608665}
-  endTrans: {fileID: 2105710270}
-  lerp: 0
-  moveSpeed: 0.3
-  amIFirst: 0
-  fullMoveSpeedDuration: 3
-  moveSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_IsActive: 0
 --- !u!212 &1175395465
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16149,7 +16743,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1241573379
 SpriteRenderer:
@@ -16755,7 +17349,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1272692218
 GameObject:
@@ -17234,6 +17828,7 @@ GameObject:
   - component: {fileID: 1299789569}
   - component: {fileID: 1299789570}
   - component: {fileID: 1299789571}
+  - component: {fileID: 1299789572}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -17250,9 +17845,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 1571841852}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1299789570
 SpriteRenderer:
@@ -17498,6 +18094,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1299789572}
+  sceneEggFadeScript: {fileID: 1571841853}
+--- !u!114 &1299789572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1299789568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1299789570}
+  myStartState: 0
 --- !u!1 &1300023753
 GameObject:
   m_ObjectHideFlags: 0
@@ -17591,7 +18212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1334668056
 Prefab:
@@ -18199,6 +18820,8 @@ Transform:
   - {fileID: 1063827851}
   - {fileID: 890590118}
   - {fileID: 455488276}
+  - {fileID: 1466657005}
+  - {fileID: 2040643488}
   - {fileID: 553822880}
   - {fileID: 336572318}
   - {fileID: 1501944592}
@@ -18507,11 +19130,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -19122,7 +19745,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 957265703
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &1430686091
 MonoBehaviour:
@@ -19171,6 +19794,7 @@ GameObject:
   - component: {fileID: 1435049495}
   - component: {fileID: 1435049496}
   - component: {fileID: 1435049497}
+  - component: {fileID: 1435049498}
   m_Layer: 0
   m_Name: SilverEgg
   m_TagString: Untagged
@@ -19187,9 +19811,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_Children: []
+  m_Children:
+  - {fileID: 734959139}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1435049496
 SpriteRenderer:
@@ -19435,6 +20060,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1435049498}
+  sceneEggFadeScript: {fileID: 734959141}
+--- !u!114 &1435049498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1435049494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1435049496}
+  myStartState: 0
 --- !u!1001 &1440903617
 Prefab:
   m_ObjectHideFlags: 0
@@ -19961,6 +20611,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1466657004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1466657005}
+  m_Layer: 0
+  m_Name: SmallHoverTopPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1466657005
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1466657004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.34, y: 2.52, z: -19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1348921852}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1466924644
 GameObject:
   m_ObjectHideFlags: 0
@@ -20115,6 +20793,104 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1466924644}
+--- !u!1 &1470869545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1470869546}
+  - component: {fileID: 1470869547}
+  - component: {fileID: 1470869548}
+  m_Layer: 0
+  m_Name: Market SilverEgg 01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470869546
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470869545}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0, z: -0.099999115}
+  m_LocalScale: {x: 0.48499998, y: 0.46, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 1768825121}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1470869547
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470869545}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: b914bc3454538254b978cafca2779665, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.85, y: 7.83}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &1470869548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470869545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1470869547}
+  myStartState: 0
 --- !u!1001 &1485190212
 Prefab:
   m_ObjectHideFlags: 0
@@ -20569,7 +21345,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1499943250
 GameObject:
@@ -20924,7 +21700,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1501944593
 SpriteRenderer:
@@ -25896,7 +26672,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1562810744
 Prefab:
@@ -26074,6 +26850,104 @@ Transform:
   m_PrefabParentObject: {fileID: 4549972480336414, guid: 88bad242bdad9364ba69cc15e1969ae1,
     type: 2}
   m_PrefabInternal: {fileID: 1562810744}
+--- !u!1 &1571841851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1571841852}
+  - component: {fileID: 1571841854}
+  - component: {fileID: 1571841853}
+  m_Layer: 0
+  m_Name: Egg 08, Left Bananas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1571841852
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1571841851}
+  m_LocalRotation: {x: 0, y: 0, z: -0.32003427, w: 0.947406}
+  m_LocalPosition: {x: -0, y: -0.17, z: -0.1}
+  m_LocalScale: {x: 3.9, y: 3.9, z: 3.9}
+  m_Children: []
+  m_Father: {fileID: 1299789569}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -37.33}
+--- !u!114 &1571841853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1571841851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1571841854}
+  myStartState: 1
+--- !u!212 &1571841854
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1571841851}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 6c42bae8cd4ce7246a0a6402dadebc9f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.88, y: 0.99}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1576225481
 GameObject:
   m_ObjectHideFlags: 0
@@ -27046,6 +27920,202 @@ MonoBehaviour:
   moveDurMin: 2.5
   moveDurMax: 3.5
   moveX: 5
+--- !u!1 &1646745137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1646745138}
+  - component: {fileID: 1646745140}
+  - component: {fileID: 1646745139}
+  m_Layer: 0
+  m_Name: Beach_GoldenEgg_Smaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1646745138
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1646745137}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1098211054}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1646745139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1646745137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 0}
+  myStartState: 1
+--- !u!212 &1646745140
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1646745137}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: af468c4e9c79ccf4cb50684f26e1e8b9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.84, y: 3.61}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!1 &1661987780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1661987781}
+  - component: {fileID: 1661987783}
+  - component: {fileID: 1661987782}
+  m_Layer: 0
+  m_Name: Egg 14, BlueDress Girl PinkDot Hat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1661987781
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661987780}
+  m_LocalRotation: {x: 0, y: 0, z: 0.35167825, w: 0.9361209}
+  m_LocalPosition: {x: 0, y: -0.11, z: -0.1}
+  m_LocalScale: {x: 3.9, y: 3.9, z: 3.9}
+  m_Children: []
+  m_Father: {fileID: 1101688702}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 41.18}
+--- !u!114 &1661987782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661987780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1661987783}
+  myStartState: 1
+--- !u!212 &1661987783
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1661987780}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 810b2c9f36f84cf448d99e57f41cec1c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.89, y: 0.92}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1675047663
 GameObject:
   m_ObjectHideFlags: 0
@@ -27068,7 +28138,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1675047663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.22, y: 0.42, z: -19.49}
+  m_LocalPosition: {x: -28.22, y: 0.42, z: -20.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
@@ -27168,6 +28238,7 @@ GameObject:
   - component: {fileID: 1698773778}
   - component: {fileID: 1698773780}
   - component: {fileID: 1698773779}
+  - component: {fileID: 1698773781}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -27184,9 +28255,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 1012724849}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1698773779
 MonoBehaviour:
@@ -27387,6 +28459,8 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1698773781}
+  sceneEggFadeScript: {fileID: 1012724850}
 --- !u!212 &1698773780
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -27432,6 +28506,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1698773781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1698773777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1698773780}
+  myStartState: 0
 --- !u!1 &1714127788
 GameObject:
   m_ObjectHideFlags: 0
@@ -27737,6 +28834,7 @@ GameObject:
   - component: {fileID: 1722967133}
   - component: {fileID: 1722967135}
   - component: {fileID: 1722967134}
+  - component: {fileID: 1722967136}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -27753,9 +28851,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 1798994237}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 13
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1722967134
 MonoBehaviour:
@@ -27956,6 +29055,8 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1722967136}
+  sceneEggFadeScript: {fileID: 1798994238}
 --- !u!212 &1722967135
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -28001,6 +29102,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1722967136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1722967132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1722967135}
+  myStartState: 0
 --- !u!1 &1727510750
 GameObject:
   m_ObjectHideFlags: 0
@@ -28485,6 +29609,7 @@ GameObject:
   - component: {fileID: 1768825121}
   - component: {fileID: 1768825122}
   - component: {fileID: 1768825123}
+  - component: {fileID: 1768825124}
   m_Layer: 0
   m_Name: SilverEgg
   m_TagString: Untagged
@@ -28501,9 +29626,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 1470869546}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1768825122
 SpriteRenderer:
@@ -28749,6 +29875,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1768825124}
+  sceneEggFadeScript: {fileID: 1470869548}
+--- !u!114 &1768825124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1768825120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1768825122}
+  myStartState: 0
 --- !u!1 &1770786788
 GameObject:
   m_ObjectHideFlags: 0
@@ -28759,6 +29910,7 @@ GameObject:
   - component: {fileID: 1770786789}
   - component: {fileID: 1770786791}
   - component: {fileID: 1770786790}
+  - component: {fileID: 1770786792}
   m_Layer: 0
   m_Name: SilverEgg
   m_TagString: Untagged
@@ -28775,9 +29927,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 653565394}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1770786790
 MonoBehaviour:
@@ -28978,6 +30131,8 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1770786792}
+  sceneEggFadeScript: {fileID: 653565396}
 --- !u!212 &1770786791
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -29023,6 +30178,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1770786792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1770786788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1770786791}
+  myStartState: 0
 --- !u!1 &1774153030
 GameObject:
   m_ObjectHideFlags: 0
@@ -29306,6 +30484,104 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.52, y: 0.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!1 &1798994236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1798994237}
+  - component: {fileID: 1798994239}
+  - component: {fileID: 1798994238}
+  m_Layer: 0
+  m_Name: Egg 23, Cat Face
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1798994237
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798994236}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13493733, w: 0.99085414}
+  m_LocalPosition: {x: 0.05, y: 0, z: -0.1}
+  m_LocalScale: {x: 3.8, y: 3.8, z: 3.8}
+  m_Children: []
+  m_Father: {fileID: 1722967133}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15.51}
+--- !u!114 &1798994238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798994236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1798994239}
+  myStartState: 1
+--- !u!212 &1798994239
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798994236}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: d5cdbc3a60ef3fe4ebea775d53967e1d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.81, y: 0.98}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -29816,7 +31092,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1832104353}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.4, y: 14.4, z: -19.49}
+  m_LocalPosition: {x: 18.4, y: 14.4, z: -20.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1013124924}
@@ -29832,6 +31108,7 @@ GameObject:
   - component: {fileID: 1839979171}
   - component: {fileID: 1839979172}
   - component: {fileID: 1839979173}
+  - component: {fileID: 1839979174}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -29848,9 +31125,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 421133013}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1839979172
 SpriteRenderer:
@@ -30096,6 +31374,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 1839979174}
+  sceneEggFadeScript: {fileID: 421133015}
+--- !u!114 &1839979174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839979170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1839979172}
+  myStartState: 0
 --- !u!1 &1864445120
 GameObject:
   m_ObjectHideFlags: 0
@@ -31261,7 +32564,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1962710139}
   - component: {fileID: 1962710140}
-  - component: {fileID: 1962710141}
   m_Layer: 0
   m_Name: RegularSideways_Cloud02
   m_TagString: Untagged
@@ -31327,48 +32629,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1962710141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1962710138}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e065d4fb722c3d14fa2bb0c5bae5956a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lerpStartPos: {x: 0, y: 0, z: 0}
-  startTrans: {fileID: 1618608665}
-  endTrans: {fileID: 2105710270}
-  lerp: 0
-  moveSpeed: 0.3
-  amIFirst: 0
-  fullMoveSpeedDuration: 3
-  moveSpeedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1963593409
 GameObject:
   m_ObjectHideFlags: 0
@@ -31525,6 +32785,104 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1963593409}
+--- !u!1 &1963973994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1963973995}
+  - component: {fileID: 1963973996}
+  - component: {fileID: 1963973997}
+  m_Layer: 0
+  m_Name: Beach SilverEgg 04
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1963973995
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1963973994}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0, z: -0.099999115}
+  m_LocalScale: {x: 0.48499998, y: 0.46, z: 0.5}
+  m_Children: []
+  m_Father: {fileID: 2031177346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1963973996
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1963973994}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 216bafb32b7e5fc498418caa6f707888, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.85, y: 7.83}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &1963973997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1963973994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 1963973996}
+  myStartState: 1
 --- !u!4 &1978178943 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4246022412810332, guid: dd0cbf3c95a89d04fa86060136909b52,
@@ -31717,7 +33075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1996583294
 Transform:
   m_ObjectHideFlags: 0
@@ -32684,6 +34042,104 @@ MonoBehaviour:
   moveDurMin: 2.5
   moveDurMax: 3.5
   moveX: 5
+--- !u!1 &2031167933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2031167934}
+  - component: {fileID: 2031167935}
+  - component: {fileID: 2031167936}
+  m_Layer: 0
+  m_Name: Egg 02, RightMost Woman Bracelet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2031167934
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031167933}
+  m_LocalRotation: {x: -0, y: -0, z: -0.36554438, w: 0.9307939}
+  m_LocalPosition: {x: 0.11, y: 0, z: -0.1}
+  m_LocalScale: {x: 3.85, y: 3.85, z: 3.85}
+  m_Children: []
+  m_Father: {fileID: 890351758}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -42.882004}
+--- !u!212 &2031167935
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031167933}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: aae1be2745fb60d4dbf841dd25b5e810, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.96, y: 0.97}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &2031167936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031167933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 2031167935}
+  myStartState: 1
 --- !u!1 &2031177345
 GameObject:
   m_ObjectHideFlags: 0
@@ -32694,6 +34150,7 @@ GameObject:
   - component: {fileID: 2031177346}
   - component: {fileID: 2031177347}
   - component: {fileID: 2031177348}
+  - component: {fileID: 2031177349}
   m_Layer: 0
   m_Name: SilverEgg
   m_TagString: Untagged
@@ -32710,9 +34167,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.29999998, y: 0.29999998, z: 0.29999998}
-  m_Children: []
+  m_Children:
+  - {fileID: 1963973995}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2031177347
 SpriteRenderer:
@@ -32958,6 +34416,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 2031177349}
+  sceneEggFadeScript: {fileID: 1963973997}
+--- !u!114 &2031177349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031177345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 2031177347}
+  myStartState: 0
 --- !u!1 &2035948074
 GameObject:
   m_ObjectHideFlags: 0
@@ -32968,6 +34451,7 @@ GameObject:
   - component: {fileID: 2035948075}
   - component: {fileID: 2035948076}
   - component: {fileID: 2035948077}
+  - component: {fileID: 2035948078}
   m_Layer: 0
   m_Name: RegularEgg
   m_TagString: Untagged
@@ -32984,9 +34468,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 20, z: -10.6}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_Children: []
+  m_Children:
+  - {fileID: 1073370917}
   m_Father: {fileID: 2064899070}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2035948076
 SpriteRenderer:
@@ -33232,6 +34717,31 @@ MonoBehaviour:
   hoverAmnt: 1
   minRotDur: 2
   maxRotDur: 4.2
+  thisEggFadeScript: {fileID: 2035948078}
+  sceneEggFadeScript: {fileID: 1073370919}
+--- !u!114 &2035948078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035948074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 1
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 2035948076}
+  myStartState: 0
 --- !u!1 &2040374434
 GameObject:
   m_ObjectHideFlags: 0
@@ -33258,7 +34768,35 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1348921852}
-  m_RootOrder: 9
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2040643487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2040643488}
+  m_Layer: 0
+  m_Name: SmallHoverBotPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2040643488
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2040643487}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.34, y: 0.51, z: -19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1348921852}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042696165
 GameObject:
@@ -33353,20 +34891,20 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 545881257}
   - {fileID: 2035948075}
   - {fileID: 1101688702}
-  - {fileID: 1435049495}
+  - {fileID: 1722967133}
   - {fileID: 1698773778}
-  - {fileID: 1770786789}
   - {fileID: 1839979171}
   - {fileID: 1299789569}
+  - {fileID: 159530829}
+  - {fileID: 890351758}
+  - {fileID: 1435049495}
+  - {fileID: 1770786789}
+  - {fileID: 2031177346}
   - {fileID: 1768825121}
   - {fileID: 1098211054}
-  - {fileID: 890351758}
-  - {fileID: 159530829}
-  - {fileID: 2031177346}
-  - {fileID: 1722967133}
+  - {fileID: 545881257}
   - {fileID: 1588430660}
   - {fileID: 633587930}
   - {fileID: 1227714796}
@@ -33700,7 +35238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2105523228
 Transform:
   m_ObjectHideFlags: 0
@@ -33741,7 +35279,7 @@ MonoBehaviour:
   storyGustScript: {fileID: 2105523233}
   storyEggManScript: {fileID: 2105523234}
   storyOneEggScript: {fileID: 2105523235}
-  inStoryIntro: 0
+  inStoryIntro: 1
   onceUponATimeEvents:
   - 0
   - 1
@@ -33756,6 +35294,7 @@ MonoBehaviour:
   - 1.5
   - 3.5
   - 4.6
+  - 5
   gustsMishapEvents:
   - 1.5
   - 3
@@ -33832,6 +35371,7 @@ MonoBehaviour:
   - {fileID: 86489263}
   - {fileID: 1175395463}
   currentBGs: []
+  slowDownClouds: 0
 --- !u!114 &2105523231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33849,6 +35389,7 @@ MonoBehaviour:
   glidingTime: {fileID: 1241573377}
   currentTime: {fileID: 0}
   bewilderedMidTrans: {fileID: 455488276}
+  accidentTimeScale: {x: 0.5, y: 0.5, z: 0.5}
   timeMovesIn: 0
   endTrans: {fileID: 2069827027}
   moveInYAnimCurve:
@@ -33929,6 +35470,8 @@ MonoBehaviour:
   hoverDuration: 2.5
   topYTrans: {fileID: 553822880}
   botYTrans: {fileID: 336572318}
+  smallTopYTrans: {fileID: 1466657005}
+  smallBotYTrans: {fileID: 2040643488}
   newXMagMin: 2
   newXMagMax: 3
   hoverYAnimCurve:
@@ -34008,8 +35551,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   normTimeFadeScript: {fileID: 1176385720}
   timeSpins: 0
-  fastSpinDuration: 0.9
-  slowSpinDuration: 1.6
+  fastSpinDuration: 0.7
+  slowSpinDuration: 1.2
   speedDownDuration: 2
   rotateAnglePerDur: 180
   iniRotateAnglePerDur: 360
@@ -34037,6 +35580,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  changeSpinTime: 0
   timeDives: 0
   diveInDuration: 1.7
   diveHoverDuration: 2.4
@@ -34692,6 +36236,104 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198879004095944382, guid: 88bad242bdad9364ba69cc15e1969ae1,
     type: 2}
   m_PrefabInternal: {fileID: 2111763776}
+--- !u!1 &2115403382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2115403383}
+  - component: {fileID: 2115403385}
+  - component: {fileID: 2115403384}
+  m_Layer: 0
+  m_Name: Egg 18, TopLeft Background House
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2115403383
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2115403382}
+  m_LocalRotation: {x: 0, y: 0, z: -0.021814799, w: 0.999762}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 3.9, y: 3.9, z: 3.9}
+  m_Children: []
+  m_Father: {fileID: 159530829}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.5}
+--- !u!114 &2115403384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2115403382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d44f9ba7c143f174899164b373f749b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  fadeDelayDur: 0
+  maxAlpha: 1
+  fadeDuration: 3
+  fadeOnStart: 0
+  fadeDelay: 0
+  disableOnFadeOut: 0
+  sprite: {fileID: 2115403385}
+  myStartState: 1
+--- !u!212 &2115403385
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2115403382}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 957265703
+  m_SortingLayer: 6
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: ef6e8f9fb3ad828469d3d727d54a68e1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.81, y: 1.05}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &2119152155
 GameObject:
   m_ObjectHideFlags: 0
