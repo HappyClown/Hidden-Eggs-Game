@@ -4947,7 +4947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.23, y: -0.04}
+  m_AnchoredPosition: {x: 3.71, y: -0.04}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &304384931
@@ -5650,11 +5650,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5800,6 +5800,7 @@ GameObject:
   - component: {fileID: 410625980}
   - component: {fileID: 410625982}
   - component: {fileID: 410625981}
+  - component: {fileID: 410625983}
   m_Layer: 5
   m_Name: OpenLock
   m_TagString: Untagged
@@ -5858,6 +5859,30 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410625979}
+--- !u!114 &410625983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 410625979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 2
+  fadeDelayDur: 0
+  maxAlpha: 1
+  inactiveOnFadeOut: 1
+  fadeInOnStart: 1
+  fadeDelay: 0
+  img: {fileID: 0}
+  myStartState: 0
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
+  t: 0
 --- !u!1 &412118048
 GameObject:
   m_ObjectHideFlags: 0
@@ -7707,11 +7732,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -9716,11 +9741,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 2
-  fadeDelayDur: 0
+  fadeDelayDur: 1
   maxAlpha: 1
   inactiveOnFadeOut: 0
   fadeInOnStart: 0
-  fadeDelay: 0
+  fadeDelay: 1
   img: {fileID: 0}
   myStartState: 1
   fadingOut: 0
@@ -11192,7 +11217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.36, y: -0.04}
+  m_AnchoredPosition: {x: -3.79, y: -0.04}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &861673604
@@ -12817,8 +12842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.04}
-  m_SizeDelta: {x: 1.21, y: 3.5}
+  m_AnchoredPosition: {x: -3, y: -0.04}
+  m_SizeDelta: {x: 3.118, y: 3.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003024451
 MonoBehaviour:
@@ -18169,10 +18194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48319cbb951c2294aa626bc0576f0457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggsRequired: 50
-  whiteSpeed: 5
-  iterations: 5
+  eggsRequired: 70
+  whiteSpeed: 2
+  iterations: 2
   setUpTime: 3
+  myEggCounter: {fileID: 1516675087}
   whiteTarget: {fileID: 291997897}
   whiteImage: {fileID: 1003024450}
   whiteStartPos: {fileID: 859529228}
@@ -18184,7 +18210,7 @@ MonoBehaviour:
   myCount: {fileID: 472513353}
   myHub: {fileID: 472513352}
   locked: 1
-  comingSoonTit: 0
+  comingSoonTit: 1
   settingUp: 0
 --- !u!1 &1312125743
 GameObject:
@@ -19130,11 +19156,11 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -27064,7 +27090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 2
-  fadeDelayDur: 0
+  fadeDelayDur: 1
   maxAlpha: 1
   fadingOut: 0
   fadingIn: 0
@@ -27073,7 +27099,7 @@ MonoBehaviour:
   t: 0
   inactiveOnFadeOut: 0
   fadeInOnStart: 0
-  fadeDelay: 0
+  fadeDelay: 1
   myStartState: 1
   tmp: {fileID: 0}
 --- !u!114 &1587999497
@@ -31757,11 +31783,11 @@ MonoBehaviour:
     lineCount: 7
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -33075,7 +33101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1996583294
 Transform:
   m_ObjectHideFlags: 0
@@ -33640,7 +33666,7 @@ MonoBehaviour:
   fadeInOnStart: 0
   fadeDelay: 0
   img: {fileID: 0}
-  myStartState: 1
+  myStartState: 0
   fadingOut: 0
   fadingIn: 0
   hidden: 0
@@ -35238,7 +35264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2105523228
 Transform:
   m_ObjectHideFlags: 0

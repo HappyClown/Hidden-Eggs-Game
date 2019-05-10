@@ -181,7 +181,7 @@ public class inputDetector : MonoBehaviour {
 				draggingPosition = Input.mousePosition;
 				if(Vector2.Distance(draggingPosition,startDragTouch) > draggingDeathzone && !isDragging){
 					isDragging = true;
-					prevDragPosition = startDragTouch;
+					prevDragPosition = draggingPosition;
 				}
 			}
 			if(Input.GetMouseButtonUp(0) && !isPhoneDevice){
