@@ -29,7 +29,7 @@ public class StoryGustMotions : MonoBehaviour {
 	private float newScale;
 	// Generic Variables
 	private bool hoverHoverUp;
-	private float iniYPos, hoverIniPos, hoverYMult, hoverUpDownDur, newX, newY;
+	private float iniYPos, hoverIniPos, hoverYMult, hoverUpDownDur, newX, newY, hoverNewY;
 	private Vector3 newPos, circleStartPos, circleEndPos;
 	private float lerpValueX, lerpValueY, lerpValueScale;
 	private bool xMove, yMove, backToStartPos;
@@ -118,9 +118,10 @@ public class StoryGustMotions : MonoBehaviour {
 	}
 	void LerpYMove() {
 		lerpValueY += Time.deltaTime / durationY;
-		newY = Mathf.Lerp(startY, endY, animCurveY.Evaluate(lerpValueY));
-		gust.transform.position = new Vector3(gust.transform.position.x, hoverIniPos + newY, gust.transform.position.z);
-		iniYPos = gust.transform.position.y;
+		newY = Mathf.Lerp(0, endY, animCurveY.Evaluate(lerpValueY));
+		//gust.transform.position = new Vector3(gust.transform.position.x, hoverIniPos + newY, gust.transform.position.z);
+		iniYPos = hoverIniPos + newY;
+		//iniYPos = gust.transform.position.y;
 		if (lerpValueY >= 1f) {
 			yMove = false;
 			lerpValueY = 0f;
@@ -133,25 +134,25 @@ public class StoryGustMotions : MonoBehaviour {
 	void YHover() {
 		if (!hoverWithCircle) {
 				lerpValueHover += Time.deltaTime / hoverUpDownDur;
-				newY = hoverYCurve.Evaluate(lerpValueHover) * hoverYMult;
-				gust.transform.position = new Vector3(gust.transform.position.x, iniYPos + newY, gust.transform.position.z);
+				hoverNewY = hoverYCurve.Evaluate(lerpValueHover) * hoverYMult;
+				gust.transform.position = new Vector3(gust.transform.position.x, iniYPos + hoverNewY, gust.transform.position.z);
 				if (lerpValueHover >= 1) {
 					lerpValueHover = 0f;
 					hoverUpDownDur = Random.Range(hoverUpDownDurMin, hoverUpDownDurMax);
 					hoverYMult = Random.Range(hoverYMultMin, hoverYMultMax);
 					hoverYMult *= -hoverYMultAdjust;
 				}
+		}
+		else {
+			lerpValueHover += Time.deltaTime / hoverCircleDur;
+			gust.transform.position = Vector3.Lerp(circleStartPos, circleEndPos, lerpValueHover);
+			if (lerpValueHover >= 1) {
+				lerpValueHover = 0f;
+				newPos = Random.insideUnitCircle * hoverRandomRadius;
+				circleStartPos = gust.transform.position;
+				circleEndPos = midTrans.position + newPos;
 			}
-			else {
-				lerpValueHover += Time.deltaTime / hoverCircleDur;
-				gust.transform.position = Vector3.Lerp(circleStartPos, circleEndPos, lerpValueHover);
-				if (lerpValueHover >= 1) {
-					lerpValueHover = 0f;
-					newPos = Random.insideUnitCircle * hoverRandomRadius;
-					circleStartPos = gust.transform.position;
-					circleEndPos = midTrans.position + newPos;
-				}
-			}
+		}
 	}
 
 	public void SetupScaleDown(float lerpStart, float lerpEnd, float lerpDuration, AnimationCurve lerpAnimCurve) {

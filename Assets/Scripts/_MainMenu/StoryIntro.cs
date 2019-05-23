@@ -14,16 +14,19 @@ public class StoryIntro : MonoBehaviour {
 	public StoryGustMotions storyGustScript;
 	public StoryEggManager storyEggManScript;
 	public StoryOneEgg storyOneEggScript;
+	public StorySingleCloudManager storySingleCloudScript;
 	[Header("Stuff")]
 	public bool inStoryIntro;
+	public bool testing;
 	private int storyBoardTextNum;
 	private bool menuFaded;
+	private bool enableRaycasting;
 	[Header("StoryBoard Events")]
 	public List<float> onceUponATimeEvents;
 	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents, gustsMishapEvents, timeConfusedEvents, eggsFallingEvents, timeToTheRescueEvents, theOneEggEvents, theQuestEvents;
 	private float boardTimer;
-	public List<float> boardEvents;
-	public List<bool> boardBools;
+	public List<float> boardEvents = new List<float>();
+	public List<bool> boardBools = new List<bool>();
 
 	public enum IntroStates {
 		TitleScreen, OnceUponATime, TimeFlying, Gust, TheAccident, GustsMishap, TimeConfused, EggsFalling, TimeToTheRescue, TheOneEgg, TheQuest
@@ -31,17 +34,19 @@ public class StoryIntro : MonoBehaviour {
 	public IntroStates introStates; 
 
 	void Start () {
-		boardEvents.Add(0f);
-		boardBools.Add(false);
+		//boardEvents.Add(0f);
+		//boardBools.Add(false);
 
 		// For testing purposes, should be commented out OR set to the first IntroState.
-		boardTimer = 0f;
-		boardEvents.Clear();
-		boardEvents = eggsFallingEvents;
-		boardBools.Clear();
-		for(int i = 0; i < eggsFallingEvents.Count; i++)
-		{
-			boardBools.Add(false);
+		if (testing) {
+			boardTimer = 0f;
+			boardEvents.Clear();
+			boardEvents = eggsFallingEvents;
+			boardBools.Clear();
+			for(int i = 0; i < eggsFallingEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
 		}
 	}
 	
@@ -98,7 +103,8 @@ public class StoryIntro : MonoBehaviour {
 			boardTimer += Time.deltaTime;
 		}
 		if (boardTimer >= boardEvents[0] && !boardBools[0]) {
-			storyScrollBGScript.SetUpClouds(storyScrollBGScript.regularSidewaysBGs, storyScrollBGScript.regSideScrollSpeed, true);
+			storyScrollBGScript.SetUpClouds(storyScrollBGScript.regularSidewaysBGs, storyScrollBGScript.regSideScrollSpeed, true, true);
+			storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys);
 			boardBools[0] = true;
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
@@ -155,6 +161,7 @@ public class StoryIntro : MonoBehaviour {
 	void Gust() {
 		if (blackScreenFadeScript.shown && !boardBools[0]) {
 			blackScreenFadeScript.FadeOut();
+			storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys, storySingleCloudScript.gustSpeedMult, true);
 		}
 		// Distorted sky instead of normal.
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
@@ -197,6 +204,7 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.normalTime.SetActive(true);
 			storyTimeMoScript.SetTimeScale(true);
 			storyTimeMoScript.SmallTimeHover();
+			storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys, storySingleCloudScript.ogSpeedMult, true);
 			// Back to normal sky scrolling.
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
@@ -216,6 +224,7 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.timeHovers = false;
 			storyTimeMoScript.changeSpinTime = true;
 			storyScrollBGScript.slowDownClouds = true;
+			storySingleCloudScript.SlowDownCloudsSetup(storySingleCloudScript.xPartSys);
 			boardBools[2] = true;
 		}
 		if (boardTimer >= boardEvents[3] && !boardBools[3]) {
@@ -242,7 +251,9 @@ public class StoryIntro : MonoBehaviour {
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
 			storyTimeMoScript.currentTime.SetActive(false);
+			storyScrollBGScript.slowDownClouds = false;
 			storyScrollBGScript.SetCloudSpeed(storyScrollBGScript.regSideScrollSpeed);
+			storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys, storySingleCloudScript.gustSpeedMult, true);
 			// Back to the distorted sky.
 			// boardTimer = 0f;
 			// boardEvents.Clear();
@@ -268,7 +279,7 @@ public class StoryIntro : MonoBehaviour {
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
 			storyGustScript.SetupXMove(storyGustScript.midTrans.position.x, storyGustScript.topEndTrans.position.x, storyGustScript.moveAcrossDur, storyGustScript.moveOutXCurve);
-			storyGustScript.SetupYMove(storyGustScript.gust.transform.position.y, storyGustScript.topEndTrans.position.y, storyGustScript.moveAcrossDur, storyGustScript.moveOutTopYCurve);
+			storyGustScript.SetupYMove(storyGustScript.gust.transform.localPosition.y, storyGustScript.topEndTrans.position.y, storyGustScript.moveAcrossDur, storyGustScript.moveOutTopYCurve);
 			storyGustScript.SetupScaleDown(storyGustScript.gust.transform.localScale.y, storyGustScript.moveOutScale, storyGustScript.moveAcrossDur, storyGustScript.moveOutTopYCurve);
 			storyGustScript.gustFadeScript.FadeOut();
 			boardBools[2] = true;
@@ -308,6 +319,9 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.timeHovers = false;
 			storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.slowSpinDuration);
 			storyTimeMoScript.SetTimePos(storyTimeMoScript.bewilderedMidTrans.position, false);
+			storyScrollBGScript.SetCloudSpeed(0f);
+			storySingleCloudScript.StopActivePartSys();
+			//storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys, storySingleCloudScript.ogSpeedMult, true);
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
 			boardTimer += Time.deltaTime;
@@ -356,6 +370,7 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.ChangeCurrentTime(null);
 			storyTimeMoScript.timeSpins = false;
 			storyScrollBGScript.SetUpClouds(storyScrollBGScript.verticalBGs, storyScrollBGScript.verticalScrollSpeed, false);
+			storySingleCloudScript.PlayClouds(storySingleCloudScript.yPartSys, storySingleCloudScript.vertSpeedMult, true);
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
 			boardTimer += Time.deltaTime;
@@ -429,7 +444,7 @@ public class StoryIntro : MonoBehaviour {
 			storyTextScript.TurnTextOff();
 			storyTimeMoScript.SetTimePos(storyTimeMoScript.diveStartTrans.position, true);
 			storyOneEggScript.theOneEgg.SetActive(true);
-			storyOneEggScript.rotate = true;
+			//storyOneEggScript.rotate = true;
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
 			boardTimer += Time.deltaTime;
@@ -440,16 +455,33 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[0] = true;
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
-			storyTimeMoScript.timeDivesThrough = true;
+			//storyTimeMoScript.timeDivesThrough = true;
+			storyOneEggScript.tapIconFadeScript.FadeIn();
+			storyOneEggScript.scaleTapIcon = true;
+			enableRaycasting = true;
 			boardBools[1] = true;
 		}
-		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyOneEggScript.theOneEgg.SetActive(false);
-			storyOneEggScript.rotate = false;
-			boardBools[2] = true;
+		// if (boardTimer >= boardEvents[2] && !boardBools[2]) {
+		// 	//storyOneEggScript.theOneEgg.SetActive(false);
+		// 	//storyOneEggScript.rotate = false;
+		// 	boardBools[2] = true;
+		// }
+		if (enableRaycasting && inputDetScript.Tapped && !boardBools[2]) {
+			Vector3 mousePos = Camera.main.ScreenToWorldPoint(inputDetScript.TapPosition);
+			Vector2 mousePos2D = new Vector2 (mousePos.x, mousePos.y);
+			RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
+			if (hit && hit.collider.tag == "Egg") {
+				// TheOneEgg is set inactive in the StoryTimeMotion script.
+				storyOneEggScript.EggTap();
+				storyOneEggScript.tapIconFadeScript.FadeOut();
+				storyTimeMoScript.timeDivesThrough = true;
+				enableRaycasting = false;
+				boardBools[2] = true;
+				return;
+			}
 		}
 		if (boardBools[2] && inputDetScript.Tapped) {
-			blackScreenFadeScript.FadeIn();	
+			blackScreenFadeScript.FadeIn();
 		}
 		if (boardBools[2] && blackScreenFadeScript.shown) {
 			introStates = IntroStates.TheQuest;
@@ -471,6 +503,7 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.glidingTime);
 			// turn off the scrolling clouds
 			storyScrollBGScript.TurnOffScrollClouds();
+			storySingleCloudScript.StopActivePartSys();
 			// mainMenuScript.ToHub(); Without the hubScript.startHubActive = true; so that it fades out the main menu but only shows the grey village
 			mainMenuScript.ToHub(false);
 		}

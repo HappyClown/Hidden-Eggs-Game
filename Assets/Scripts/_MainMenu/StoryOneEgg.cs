@@ -14,12 +14,26 @@ public class StoryOneEgg : MonoBehaviour {
 	private float lerpValue, iniX, iniY, maxX, maxY, newX, newY;
 	public Vector3 endScale;
 	private Vector3 startScale;
+	[Header ("Tap Icon")]
+	public bool scaleTapIcon;
+	public GameObject tapIcon;
+	public float scaleDur;
+	public Vector3 smallScale, bigScale;
+	private float scaleTimer;
+	private bool scaleUp = false, scaleDown = true;
 	[Header ("General")]
 	public GameObject theOneEgg;
+	public Animator oneEggAnim;
+	public ParticleSystem eggClickFX;
+	private bool eggClickFXPlayed;
 	[Header ("References")]
 	public StoryTimeMotions storyTimeMoScript;
+	public FadeInOutSprite tapIconFadeScript;
 	
 	void Update () {
+		if (scaleTapIcon) {
+			ScaleTapIcon();
+		}
 		if (rotate) {
 			Rotate();
 		}
@@ -27,11 +41,37 @@ public class StoryOneEgg : MonoBehaviour {
 			FlyOutOfTime();
 		}
 	}
-
+	// Scale the Tap Icon up and down.
+	void ScaleTapIcon() {
+		scaleTimer += Time.deltaTime / scaleDur;
+		if (scaleDown) {
+			tapIcon.transform.localScale = Vector3.Lerp(bigScale, smallScale, scaleTimer);
+		}
+		if (scaleUp) {
+			tapIcon.transform.localScale = Vector3.Lerp(smallScale, bigScale, scaleTimer);
+		}
+		if (scaleTimer >= 1) {
+			if (scaleDown) {
+				scaleDown = false;
+				scaleUp = true;
+			}
+			else if (scaleUp) {
+				scaleDown = true;
+				scaleUp = false;
+			}
+			scaleTimer = 0f;
+		}
+	}
+	// The OneEgg rotates while floating in the air. (TheOneEgg #010)
 	void Rotate() {
 		theOneEgg.transform.RotateAround(theOneEgg.transform.position, Vector3.up, 180 * (Time.deltaTime / halfRotDur));
 	}
-
+	// Start the egg tap animation.
+	public void EggTap() {
+		oneEggAnim.SetTrigger("EggPop");
+		eggClickFX.Play(true);
+	}
+	// The OneEgg flies out from Time to the middle of the hub. (TheQuest #011)
 	void FlyOutOfTime() {
 		lerpValue += Time.deltaTime / flyDur;
 		newX = Mathf.Lerp(iniX, maxX, flyAnimCurveX.Evaluate(lerpValue));
@@ -43,7 +83,7 @@ public class StoryOneEgg : MonoBehaviour {
 			flyOutOfTime = false;
 		}
 	}
-
+	// Variable setup for the OneEgg flying out from Time to the middle of the hub. (TheQuest #011)
 	public void SetupFlyOutOfTime() {
 		theOneEgg.SetActive(true);
 		theOneEgg.transform.eulerAngles = Vector3.zero;

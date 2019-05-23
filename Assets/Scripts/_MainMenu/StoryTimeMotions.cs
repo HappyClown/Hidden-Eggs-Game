@@ -44,12 +44,13 @@ public class StoryTimeMotions : MonoBehaviour {
 	public float diveInDuration, diveHoverDuration, diveOutDuration;
 	public AnimationCurve diveInCurve, diveOutCurve;
 	public Transform diveStartTrans, diveMidTrans, diveEndTrans;
-	private bool diveIn, diveOut;
+	private bool diveIn, diveOut, diveDelayDone;
 	private float diveHoverLerpValue;
 	public float hoverCircleDur, hoverRandomRadius;
 	private Vector3 circleStartPos, circleEndPos, newPos;
 	public bool diveHover, timeDivesThrough;
-	public float diveThroughDuration;
+	public float diveThroughDuration, diveThroughDelay, grabOneEgg;
+	public StoryOneEgg storyOneEggScript;
 	[Header ("Glide")]
 	public bool timeGlides;
 	public Transform glideStartTrans, glideEndTrans;
@@ -262,11 +263,24 @@ public class StoryTimeMotions : MonoBehaviour {
 	}
 
 	void TimeDivesThrough() {
-		lerpValue += Time.deltaTime / diveThroughDuration;
-		currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
-		if (lerpValue >= 1f) {
-			lerpValue = 0f;
-			timeDivesThrough = false;
+		if (!diveDelayDone) {
+			lerpValue += Time.deltaTime;
+			if (lerpValue >= diveThroughDelay) {
+				diveDelayDone = true;
+				lerpValue = 0f;
+			}
+		}
+		if (diveDelayDone) {
+			lerpValue += Time.deltaTime / diveThroughDuration;
+			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
+			if (lerpValue >= grabOneEgg && storyOneEggScript.theOneEgg.activeSelf == true) {
+				storyOneEggScript.theOneEgg.SetActive(false);
+			}
+			if (lerpValue >= 1f) {
+				lerpValue = 0f;
+				timeDivesThrough = false;
+				diveDelayDone = false;
+			}
 		}
 	}
 

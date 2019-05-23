@@ -36,8 +36,12 @@ public class StoryEggMotions : MonoBehaviour {
 	private float fullRotDuration;
 	private bool rotate;
 	[Header ("Scene Egg")]
-	public FadeInOutSprite thisEggFadeScript;
-	public FadeInOutSprite sceneEggFadeScript;
+	[Tooltip ("The time it takes after this egg starts falling for the SceneEgg to start fading in over the PlainEgg.")]
+	public float fadeSceneEggTime;
+	public FadeInOutSprite thisEggFadeScript, sceneEggFadeScript;
+	public ParticleSystem partSys;
+	private bool fadeToSceneEgg = false;
+	private float fadeSceneEggTimer;
 
 
 	void Update () {
@@ -55,6 +59,9 @@ public class StoryEggMotions : MonoBehaviour {
 		}
 		if (fallDown) {
 			FallDown();
+		}
+		if (fadeToSceneEgg) {
+			FadeToSceneEgg();
 		}
 	}
 
@@ -100,6 +107,9 @@ public class StoryEggMotions : MonoBehaviour {
 		fullRotDuration = Random.Range(minRotDur, maxRotDur);
 		int newRot = Random.Range(0, 360);
 		this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, newRot);
+		lerpValue = 0f;
+		fadeSceneEggTimer = 0f;
+		fadeToSceneEgg = true;
 	}
 
 	void Rotate() {
@@ -117,8 +127,31 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue = 0f;
 			hover = true;
 			iniHoverPos = this.transform.position;
-			sceneEggFadeScript.FadeIn();
-			thisEggFadeScript.FadeOut();
+		}
+	}
+	// Fade transition from plain egg to scene egg.
+	// void FadeToSceneEgg() {
+	// 	// At which point after the egg starts falling does the SceneEgg start fading in over the plain egg.
+	// 	fadeSceneEggTimer += Time.deltaTime;
+	// 	if (fadeSceneEggTimer >= fadeSceneEggTime) {
+	// 		sceneEggFadeScript.FadeIn();
+	// 		thisEggFadeScript.FadeOut();
+	// 		fadeToSceneEgg = false;
+	// 	}
+	// 	// Start the egg trail FX
+	// 	partSys.Play();
+	// }
+	// White flash transition from plain egg to scene egg.
+	void FadeToSceneEgg() {
+		// At which point after the egg starts falling does the SceneEgg start fading in over the plain egg.
+		fadeSceneEggTimer += Time.deltaTime;
+		if (fadeSceneEggTimer >= fadeSceneEggTime) {
+			//sceneEggFadeScript.FadeIn();
+			//thisEggFadeScript.FadeOut();
+			//fadeToSceneEgg = false;
+			//// Start the egg trail FX
+			//partSys.Play();
+			
 		}
 	}
 
@@ -127,7 +160,8 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue += Time.deltaTime / hoverDuration;
 			newY = hoverAnimCurve.Evaluate(lerpValue) * hoverUpHeight;
 			this.transform.position = new Vector3(this.transform.position.x, iniHoverPos.y + newY, this.transform.position.z);
-			if (lerpValue > 0.5f && hoverAmntNum >= hoverAmnt) { // The egg starts going down from its top hover position. Wether this happens at 0.5 of the lerp or otherwise depends on the AnimationCurves peak.
+			// The egg starts going down from its top hover position. Wether this happens at 0.5 of the lerp or otherwise depends on the AnimationCurves peak.
+			if (lerpValue > 0.5f && hoverAmntNum >= hoverAmnt) {
 				hover = false;
 				fallDown = true;
 				lerpValue = 0f;
@@ -151,11 +185,17 @@ public class StoryEggMotions : MonoBehaviour {
 		else {
 			fallDown = false;
 			lerpValue = 0f;
+			partSys.Stop();
 		}
 	}
 
 	public void Reset() {
 		spawnInBag = rotate = fallFromTop = hover = fallDown = false;
 		this.transform.position = fallEggSpawnTrans[0].position;
+		lerpValue = 0f;
+		if (partSys.isPlaying) {
+			partSys.Clear();
+			partSys.Stop();
+		}
 	}
 }

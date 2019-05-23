@@ -14,7 +14,10 @@ public class StoryScrollingBG : MonoBehaviour {
 	public float regSideScrollSpeed;
 	public float xLimit;
 	public List<GameObject> regularSidewaysBGs;
+	public List<FadeInOutSprite> regSidewaysBGFadeScripts;
 	private float scrollValue;
+	public float ScrollValue
+	{ get{ return scrollValue; } }
 	private int bgInFront = 0;
 	[Header ("Blurred Sideways")]
 	public float blurSideScrollSpeed;
@@ -28,6 +31,8 @@ public class StoryScrollingBG : MonoBehaviour {
 	public List<GameObject> currentBGs;
 	public bool slowDownClouds;
 	private float scrollSpeed;
+	public float ScrollSpeed
+	{ get{ return scrollSpeed; } }
 
 	void Start () {
 
@@ -45,7 +50,7 @@ public class StoryScrollingBG : MonoBehaviour {
 		}
 	}
 
-	public void SetUpClouds(List<GameObject> backGrounds, float myScrollSpeed, bool doISpeedUp) {
+	public void SetUpClouds(List<GameObject> backGrounds, float myScrollSpeed, bool doISpeedUp = false, bool doIFadeIn = false) {
 		//scrollValue;
 		foreach (GameObject bg in currentBGs)
 		{
@@ -72,6 +77,13 @@ public class StoryScrollingBG : MonoBehaviour {
 			verticalScroll = true;
 		}
 		bgInFront = 0;
+		
+		if (doIFadeIn) {
+			foreach (FadeInOutSprite regSidewaysBGFadeScript in regSidewaysBGFadeScripts)
+			{
+				regSidewaysBGFadeScript.FadeIn();
+			}
+		}
 	}
 
 	void SidewaysScroll() {

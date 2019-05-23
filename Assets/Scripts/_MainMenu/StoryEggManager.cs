@@ -16,6 +16,10 @@ public class StoryEggManager : MonoBehaviour {
 	public float timeBetweenFallEggs;
 	public List<Transform> fallingEggStartTrans;
 	public List<Transform> fallingEggEndTrans;
+	private bool spawnFallingEggsRandom;
+	public bool randomFallingEggs;
+	//private List<int> intsForRandom;
+	private List<int> eggFallingOrder = new List<int>();
 
 	void Start () {
 		// The first egg spawns immediately.
@@ -23,6 +27,7 @@ public class StoryEggManager : MonoBehaviour {
 	}
 	
 	void Update () {
+		// Eggs pop out of Time's bag.
 		if (spawnBagEggs) {
 			eggSpawnTimer += Time.deltaTime;
 			if (eggSpawnTimer > timeBetweenEggs) {
@@ -36,7 +41,7 @@ public class StoryEggManager : MonoBehaviour {
 				}
 			}
 		}
-
+		// Eggs fall from the top of the screen. For the EggsFalling story board(#008).
 		if (spawnFallingEggs) {
 			eggSpawnTimer += Time.deltaTime;
 			if (eggSpawnTimer > timeBetweenFallEggs) {
@@ -49,15 +54,61 @@ public class StoryEggManager : MonoBehaviour {
 				}
 			}
 		}
+		if (spawnFallingEggsRandom) {
+			eggSpawnTimer += Time.deltaTime;
+			if (eggSpawnTimer > timeBetweenFallEggs) {
+				eggSpawnTimer = 0f;
+				//Debug.Log(currentEggNum + " Left should be i norder, right the random order, here we go! " + eggFallingOrder[currentEggNum]);
+				int eggNum = eggFallingOrder[currentEggNum];
+				storyEggScripts[eggNum].SpawnEggsAtTop(fallingEggStartTrans[eggNum].position, fallingEggEndTrans[eggNum].position);
+				currentEggNum++;
+			}
+			if (currentEggNum > fallingEggStartTrans.Count - 1) {
+				currentEggNum = 0;
+				spawnFallingEggsRandom = false;
+			}
+		}
 	}
 
 	public void SpawnFallingEggs() {
 		currentEggNum = 0;
-		spawnFallingEggs = true;
+		if (randomFallingEggs) {
+			spawnFallingEggsRandom = true;
+			//Debug.Log(Time.time);
+			//Fill int list in order 0 -> storyEggScripts.Count.
+			List<int> intsForRandom = new List<int>();
+			for (int i = 0; i < storyEggScripts.Count; i++)
+			{
+				intsForRandom.Add(i);
+			}
+			// Randomly assign ints to a new list once.
+			for (int i = 0; i < storyEggScripts.Count; i++)
+			{
+				currentEggNum = Random.Range(0, intsForRandom.Count);
+				while (eggFallingOrder.Contains(currentEggNum)) 
+				{
+					if (currentEggNum >= intsForRandom.Count - 1) {
+						currentEggNum = 0;
+					}
+					else {
+						currentEggNum++;
+					}
+				}
+				eggFallingOrder.Add(currentEggNum);
+			}
+			//Debug.Log(Time.time);
+			currentEggNum = 0;
+		}
+		else {
+			spawnFallingEggs = true;
+		}
 		eggSpawnTimer = 0f;
 	}
 
 	public void ResetEggs() {
+		spawnBagEggs = spawnFallingEggs = spawnFallingEggsRandom = false;
+		currentEggNum = 0;
+		eggSpawnTimer = 0f;
 		foreach (StoryEggMotions storyEgg in storyEggScripts)
 		{
 			storyEgg.Reset();
