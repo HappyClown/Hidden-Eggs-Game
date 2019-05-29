@@ -19,7 +19,7 @@ public class FadeInOutSprite : MonoBehaviour {
 	public StartState myStartState;
 
 	void Start () {
-		sprite = this.gameObject.GetComponent<SpriteRenderer>();
+		//sprite = this.gameObject.GetComponent<SpriteRenderer>();
 		if (myStartState == StartState.startShown) {
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1f);
 			shown = true;
@@ -86,7 +86,7 @@ public class FadeInOutSprite : MonoBehaviour {
 			hidden = false;
 		}
 	}
-	public void ResetAplpha(float value){
+	public void ResetAlpha(float value){
 		sprite.color = new Color(1f, 1f, 1f, value);
 		if (value == maxAlpha || value == 1f) {
 			shown = true;
@@ -94,5 +94,10 @@ public class FadeInOutSprite : MonoBehaviour {
 		if (value == 0) {
 			hidden = true;
 		}
+	}
+
+	// For Editor script
+	public void GetSpriteRef() {
+		sprite = this.gameObject.GetComponent<SpriteRenderer>();
 	}
 }

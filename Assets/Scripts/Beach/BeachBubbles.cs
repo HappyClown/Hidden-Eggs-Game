@@ -41,7 +41,7 @@ public class BeachBubbles : MonoBehaviour {
 		if(activeClam && !activeSprite){
 			currentTime += Time.deltaTime;
 			if(currentTime > lifeTimedelay){
-				myFade.ResetAplpha(0);
+				myFade.ResetAlpha(0);
 				mySprite.enabled = true;
 				activeSprite = true;
 				myFade.FadeIn();

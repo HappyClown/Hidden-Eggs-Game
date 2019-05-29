@@ -72,6 +72,7 @@ public class StoryEggManager : MonoBehaviour {
 
 	public void SpawnFallingEggs() {
 		currentEggNum = 0;
+		// To have the eggs fall into random positions.
 		if (randomFallingEggs) {
 			spawnFallingEggsRandom = true;
 			//Debug.Log(Time.time);

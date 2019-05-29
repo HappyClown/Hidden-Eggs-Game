@@ -68,8 +68,10 @@ public class SceneFade : MonoBehaviour
 	void Update () 
 	{
 		// Keep track of the current active scene.
-		currentScene = SceneManager.GetActiveScene().name;
-
+		if (currentScene != SceneManager.GetActiveScene().name) { // This causes GC alloc.
+			currentScene = SceneManager.GetActiveScene().name;
+		}
+			
 		titleCardTxt.color = new Color(titleCardTxt.color.r, titleCardTxt.color.g, titleCardTxt.color.b, titleCardImg.color.a);
 
 		#region Title Card & Black Background scene transition.
@@ -138,6 +140,7 @@ public class SceneFade : MonoBehaviour
 					newAlpha = 1-animCurve.Evaluate(curveTime);
 					fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, newAlpha);
 				}
+
 				if (newAlpha <= 0.2) { if (fadeImage.raycastTarget) { fadeImage.raycastTarget = false; } }
 				if (newAlpha <= 0)
 				{
@@ -151,6 +154,7 @@ public class SceneFade : MonoBehaviour
 			}
 		}
 		#endregion
+		
 		#region White Background scene transition.
 		if (whtSceneTrans)
 		{

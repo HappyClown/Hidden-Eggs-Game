@@ -38,11 +38,13 @@ public class StoryEggMotions : MonoBehaviour {
 	[Header ("Scene Egg")]
 	[Tooltip ("The time it takes after this egg starts falling for the SceneEgg to start fading in over the PlainEgg.")]
 	public float fadeSceneEggTime;
+	public float flashEggTime;
 	public FadeInOutSprite thisEggFadeScript, sceneEggFadeScript;
-	public ParticleSystem partSys;
-	private bool fadeToSceneEgg = false;
+	[Tooltip ("Each egg has its own Trail particle system but they all reference the same Burst particle system.")]
+	public ParticleSystem trailPartSys, burstPartSys;
+	private bool fadeToSceneEgg = false, eggFlashed, eggBurst;
 	private float fadeSceneEggTimer;
-
+	public SpriteColorFade spriteColorFadeScript;
 
 	void Update () {
 		if (spawnInBag) {
@@ -139,19 +141,31 @@ public class StoryEggMotions : MonoBehaviour {
 	// 		fadeToSceneEgg = false;
 	// 	}
 	// 	// Start the egg trail FX
-	// 	partSys.Play();
+	// 	trailPartSys.Play();
 	// }
+
 	// White flash transition from plain egg to scene egg.
 	void FadeToSceneEgg() {
-		// At which point after the egg starts falling does the SceneEgg start fading in over the plain egg.
+		// At which point after the egg starts falling does the egg flash white.
 		fadeSceneEggTimer += Time.deltaTime;
-		if (fadeSceneEggTimer >= fadeSceneEggTime) {
-			//sceneEggFadeScript.FadeIn();
-			//thisEggFadeScript.FadeOut();
-			//fadeToSceneEgg = false;
-			//// Start the egg trail FX
-			//partSys.Play();
-			
+		if (fadeSceneEggTimer >= flashEggTime && !eggFlashed) {
+			spriteColorFadeScript.FlashIn();
+			eggFlashed = true;
+		}
+		if (fadeSceneEggTimer >= spriteColorFadeScript.flashInDur + spriteColorFadeScript.autoFlashOutDelay + flashEggTime && !eggBurst) {
+			sceneEggFadeScript.ResetAlpha(1f);
+			// Move and play the egg transform FX.
+			burstPartSys.transform.position = this.transform.position;
+			burstPartSys.Play();
+			eggBurst = true;
+			// Start the egg trail FX.
+			trailPartSys.Play();
+		}
+		if (fadeSceneEggTimer >= spriteColorFadeScript.flashInDur + spriteColorFadeScript.autoFlashOutDelay + spriteColorFadeScript.flashOutDur + flashEggTime) {
+			thisEggFadeScript.ResetAlpha(0f);
+			fadeSceneEggTimer = 0f;
+			fadeToSceneEgg = false;
+			eggFlashed = false;
 		}
 	}
 
@@ -185,7 +199,7 @@ public class StoryEggMotions : MonoBehaviour {
 		else {
 			fallDown = false;
 			lerpValue = 0f;
-			partSys.Stop();
+			trailPartSys.Stop();
 		}
 	}
 
@@ -193,9 +207,9 @@ public class StoryEggMotions : MonoBehaviour {
 		spawnInBag = rotate = fallFromTop = hover = fallDown = false;
 		this.transform.position = fallEggSpawnTrans[0].position;
 		lerpValue = 0f;
-		if (partSys.isPlaying) {
-			partSys.Clear();
-			partSys.Stop();
+		if (trailPartSys.isPlaying) {
+			trailPartSys.Clear();
+			trailPartSys.Stop();
 		}
 	}
 }
