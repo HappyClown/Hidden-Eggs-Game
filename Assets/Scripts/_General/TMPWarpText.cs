@@ -37,7 +37,7 @@ public class TMPWarpText : MonoBehaviour {
 
 	public void StartSetup() {
 		m_TextComponent = this.gameObject.GetComponent<TMP_Text>();
-		Debug.Log(m_TextComponent.gameObject);
+		// Debug.Log(m_TextComponent.gameObject);
 		WarpText();
 	}
 
@@ -50,13 +50,13 @@ public class TMPWarpText : MonoBehaviour {
 
 		m_TextComponent.havePropertiesChanged = true; // Need to force the TextMeshPro Object to be updated.
 		//CurveScale *= 10;
-		float old_CurveScale = CurveScale;
-		AnimationCurve old_curve = CopyAnimationCurve(VertexCurve);
+		//float old_CurveScale = CurveScale;
+		//AnimationCurve old_curve = CopyAnimationCurve(VertexCurve);
 
 		// 
 
-		old_CurveScale = CurveScale;
-		old_curve = CopyAnimationCurve(VertexCurve);
+		//old_CurveScale = CurveScale;
+		//old_curve = CopyAnimationCurve(VertexCurve);
 
 		m_TextComponent.ForceMeshUpdate(); // Generate the mesh and populate the textInfo with data we can use and manipulate.
 
@@ -73,6 +73,9 @@ public class TMPWarpText : MonoBehaviour {
 		// Update Vertex position and rotation.
 		for (int i = 0; i < characterCount; i++)
 		{
+			if (!textInfo.characterInfo[i].isVisible)
+			continue;
+
 			int vertexIndex = textInfo.characterInfo[i].vertexIndex;
 
 			// Get the index of the mesh used by this character.
@@ -115,6 +118,8 @@ public class TMPWarpText : MonoBehaviour {
 			vertices[vertexIndex + 1] += offsetToMidBaseline;
 			vertices[vertexIndex + 2] += offsetToMidBaseline;
 			vertices[vertexIndex + 3] += offsetToMidBaseline;
+
+			Debug.Log(offsetToMidBaseline);
 		}
 
 		// Upload the mesh with the revised information
