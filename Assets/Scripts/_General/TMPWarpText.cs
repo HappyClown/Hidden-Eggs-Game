@@ -119,7 +119,7 @@ public class TMPWarpText : MonoBehaviour {
 			vertices[vertexIndex + 2] += offsetToMidBaseline;
 			vertices[vertexIndex + 3] += offsetToMidBaseline;
 
-			Debug.Log(offsetToMidBaseline);
+			//Debug.Log(offsetToMidBaseline);
 		}
 
 		// Upload the mesh with the revised information

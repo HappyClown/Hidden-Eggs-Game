@@ -1,27 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GoldenEgg : MonoBehaviour {
 	[HideInInspector]
 	public bool inGoldenEggSequence, waitingToStartSeq;
 	private bool inSendingToCorner;
+	private float seqTimer;
 	public PolygonCollider2D goldenEggCollider;
+	[Header ("Sequence")]
+	public float startCover;
+	public float startText, startEgg, startFireWorks;
+	private bool coverB, textB, eggB, fireWorksB;
 
 	[Header("Egg Animation")]
 	public Animator anim;
-	public float eggAnimStart;
-	private float eggAnimTimer;
+	//public float eggAnimStart;
+	//private float eggAnimTimer;
 	private bool eggAnimStarted;
 
 	[Header("Screen Cover")]
 	public Image coverScreen;
 	public float coverMaxAlpha;
 	private float coverAlpha;
-	private bool coverOn,coverOff;
+	private bool coverOn, coverOff;
 
 	[Header("Congratulations")]
-	public SpriteRenderer[] congratsObjs;
-	public float congratsTime, congratsFadeTime;
+	public TMPTextColorFade textFadeScript;
+	public ParticleSystem textFX;
+	public SplineWalker textSplineWScript;
+	//public SpriteRenderer[] congratsObjs;
+	//public float congratsTime, congratsFadeTime;
 	private bool congratsTxtOn, congratsTxtOff;
 	private float congratsA;
 
@@ -32,7 +41,7 @@ public class GoldenEgg : MonoBehaviour {
 	private float partShaftsA, partShaftsMatA;
 	private Material partShaftsMat;
 	public float partShaftsFadeTime, partShaftsShrinkTime;
-	private bool partShaftsFade, fireworksFired;
+	private bool partShaftsFade;
 	public ParticleSystem firework01, firework02;
 	private float partTrailSize;
 
@@ -125,36 +134,37 @@ public class GoldenEgg : MonoBehaviour {
 			ClickOnEggs.inASequence = true;
 			waitingToStartSeq = false;
 			lvlTapManScript.ZoomOutCameraReset();
-			if (!fireworksFired) {
-				firework01.Play(true);
-				firework02.Play(true);
-				fireworksFired = true;
-			}
 		}
 
 		// -- START GOLDEN EGG SEQUENCE -- //
 		if (inGoldenEggSequence) {
+			seqTimer += Time.deltaTime;
 			// Set the GoldenEgg as found and save
 			if (!eggGoToCornerScript.eggFound) {
 				eggGoToCornerScript.eggFound = true;
 				eggGoToCornerScript.SaveEggToCorrectFile();
 			}
-
-			if (!coverOn && !eggAnimStarted) { 
-				DarkenScreen(); 
+			// Start things according to the sequence timer.
+			if (seqTimer >= startCover && !coverB) { 
+				DarkenScreen();
+				coverB = true;
+			}
+			if (seqTimer >= startText && !textB) {
+				textFadeScript.startFadeIn = true;
+				textSplineWScript.isPlaying = true;
+				textFX.Play();
+				textB = true;
+			}
+			if (seqTimer >= startFireWorks && !fireWorksB) {
+				firework01.Play(true);
+				firework02.Play(true);
+				fireWorksB = true;
+			}
+			if (seqTimer >= startEgg && !eggB) {
+				StartEgg();
+				eggB = true;
 			}
 
-			if (!congratsTxtOn && congratsTime > 0) {
-				congratsTime -= Time.deltaTime;
-				if (congratsTime <= 0) { congratsTxtOn = true; }
-			}
-
-			if (!eggAnimStarted) {
-				eggAnimTimer += Time.deltaTime;
-				if (eggAnimTimer > eggAnimStart) { 
-					StartAnim(); 
-				}
-			}
 			// Fade in the Glow up to its desired value over 1 second (+= Time.deltaTime * partGlowMaxAplha & alpha's max value is 1)
 			if (partGlow.isPlaying) {
 				var main = partGlow.main;
@@ -196,7 +206,7 @@ public class GoldenEgg : MonoBehaviour {
 		if (inSendingToCorner) {
 			eggToCornerTimer += Time.deltaTime;
 			if (eggToCornerTimer >= coverOffTime) { LightenScreen(); }
-			if (eggToCornerTimer >= congratsOffTime) { congratsTxtOff = true; }
+			if (eggToCornerTimer >= congratsOffTime) { textFadeScript.startFadeOut = true; }
 			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); clickOnEggsScript.eggMoving += 1; clickOnEggsScript.openEggPanel = true; }
 
 			if (eggToCornerTimer > coverOffTime && eggToCornerTimer > congratsOffTime && eggToCornerTimer > eggToCornerTime) { 
@@ -219,17 +229,21 @@ public class GoldenEgg : MonoBehaviour {
 			if (coverAlpha <= 0) { coverOff = false; }
 		}
 
-		//Fade in the "Congratulations" game objects at the same time (not sure about dividing for performance, but it gives the time in seconds)
-		if (congratsTxtOn) {
-			congratsA += Time.deltaTime / congratsFadeTime;
-			foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
-			if (congratsA >= 1) { congratsTxtOn = false; }
-		}
-		if (congratsTxtOff) {
-			congratsA -= Time.deltaTime / congratsFadeTime;
-			foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
-			if (congratsA <= 0) { congratsTxtOff = false; }
-		}
+		// //Fade in the "Congratulations" game objects at the same time (not sure about dividing for performance, but it gives the time in seconds)
+		// if (congratsTxtOn) {
+		// 	textFadeScript.startFadeIn = true;
+		// 	congratsTxtOn = false;
+		// 	// congratsA += Time.deltaTime / congratsFadeTime;
+		// 	// foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
+		// 	// if (congratsA >= 1) { congratsTxtOn = false; }
+		// }
+		// if (congratsTxtOff) {
+		// 	textFadeScript.startFadeOut = true;
+		// 	congratsTxtOff = false;
+		// 	// congratsA -= Time.deltaTime / congratsFadeTime;
+		// 	// foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
+		// 	// if (congratsA <= 0) { congratsTxtOff = false; }
+		// }
 
 		// Trying to get rid of the shaft particles in a nice way
 		if (partShaftsFade) 	{
@@ -270,12 +284,13 @@ public class GoldenEgg : MonoBehaviour {
 		else if (congratsA >= 1) congratsTxtOff = true;
 	}
 
-	void StartAnim () {
+	void StartEgg () {
 		anim.SetTrigger("StartAnim");
 		eggAnimStarted = true;
 	}
 
 	// - CALLED DURING ANIMATIONS - // (Animation Events)
+	#region Animation Events
 	void StartStopGlow () {
 		if (!partGlow.isPlaying) { partGlow.Play(true); }
 		else { partGlow.Stop(true); }
@@ -305,7 +320,6 @@ public class GoldenEgg : MonoBehaviour {
 
 	void SendEggToCornerSequence() {
 		inSendingToCorner = true;
-		//eggGoToCornerScript.GoToCorner();
 	}
 
 	void ClickFX() {
@@ -339,4 +353,5 @@ public class GoldenEgg : MonoBehaviour {
 	public void GoldEggShimmerPlaySound() {
 		audioSceneGeneralScript.goldEggShimmerStartSound();
 	}
+	#endregion
 }

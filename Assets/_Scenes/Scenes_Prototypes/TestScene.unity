@@ -5606,7 +5606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &238778090
 Transform:
   m_ObjectHideFlags: 0
@@ -7321,6 +7321,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 689, y: 388}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &448253520
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541897311972450, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 114411843982704484, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114411843982704484, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &460089344
 GameObject:
   m_ObjectHideFlags: 0
@@ -18667,13 +18719,16 @@ MonoBehaviour:
   inGoldenEggSequence: 0
   waitingToStartSeq: 0
   goldenEggCollider: {fileID: 96661115}
+  startCover: 0
+  startText: 0
+  startEgg: 0
+  startFireWorks: 0
   anim: {fileID: 962209859}
-  eggAnimStart: 0.6
   coverScreen: {fileID: 344406802}
   coverMaxAlpha: 0.75
-  congratsObjs: []
-  congratsTime: 0
-  congratsFadeTime: 0
+  textFadeScript: {fileID: 0}
+  textFX: {fileID: 0}
+  textSplineWScript: {fileID: 0}
   partGlow: {fileID: 1937374967}
   partShafts: {fileID: 1312877031}
   partSparkles: {fileID: 1330369533}
@@ -19380,11 +19435,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1037485617}
@@ -36533,11 +36588,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

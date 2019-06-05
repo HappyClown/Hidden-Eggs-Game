@@ -17,10 +17,6 @@ public class RainbowRiddle : MonoBehaviour
 	public GoldenEgg goldenEggScript;
     public LayerMask layerMask;
 	public LayerMask layerMaskFX;
-	public ParticleSystem firework01; 
-	public ParticleSystem firework02;
-
-	public bool fireworksFired;
 	public GameObject appleBasket;
 	[Header ("Script References")]
 	public SceneTapEnabler scenTapEnabScript;

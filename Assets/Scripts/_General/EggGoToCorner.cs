@@ -18,6 +18,7 @@ public class EggGoToCorner : MonoBehaviour
 	public GameObject eggTrail;
 	public ParticleSystem eggClickFX;
 	public bool eggClickFXPlayed, amIGolden;
+	public GameObject goldenEgg;
 	public FadeInOutSprite eggShadowFade;
 
 	private float moveTimer;
@@ -68,6 +69,9 @@ public class EggGoToCorner : MonoBehaviour
 				if (clickOnEggsScript.eggsInPanel == puzzUnlockScript.puzzUnlockAmnt) {
 					puzzUnlockScript.ActivatePuzzle();
 				}
+			}
+			else {
+				goldenEgg.transform.localPosition = Vector3.zero;
 			}
 			// else 
 			// { 
