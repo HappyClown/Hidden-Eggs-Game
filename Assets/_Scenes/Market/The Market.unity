@@ -21788,6 +21788,45 @@ Prefab:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 198650861055636258, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149869990749768, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198176612228136240, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198176612228136240, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.994635
+      objectReference: {fileID: 0}
+    - target: {fileID: 198176612228136240, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.98039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 198176612228136240, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.99607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 198176612228136240, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.98039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 198176612228136240, guid: 0d9b38bda71210641ba75ca1c8a39540,
+        type: 2}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0d9b38bda71210641ba75ca1c8a39540, type: 2}
   m_IsPrefabParent: 0
@@ -42793,6 +42832,11 @@ Prefab:
       propertyPath: detectDoubleTap
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: maxCameraSize
+      value: 10.789
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
   m_IsPrefabParent: 0
@@ -46294,13 +46338,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 511196394}
-  camMovSpeed: 0
-  camZoomSpeed: 0
-  maxX: 0
-  maxY: 0
-  minCameraSize: 0
-  minDeltaDif: 0
-  maxDeltaDif: 0
+  camMovSpeed: 5
+  camZoomSpeed: 5
+  maxX: 10.1
+  maxY: 5.7
+  minCameraSize: 5
+  minDeltaDif: 30
+  maxDeltaDif: 400
 --- !u!114 &1799697640
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -202,7 +202,7 @@ public class GlobalVariables : MonoBehaviour
 			if(clickOnEggsScript != null && eggsFoundBools.Count < 1) {
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
-					Debug.Log("should be filling eggsFoundBool & eggsFoundOrder lists");
+					//Debug.Log("should be filling eggsFoundBool & eggsFoundOrder lists");
 					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
 					eggsFoundOrder.Add(0);
 				}
