@@ -17,7 +17,7 @@ public class SFXMuteButt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update(){
-		if(myMenu.sfxMute == 1){
+		if(myMenu.myAudio.SFXVolume == 0){
 			onIcon.SetActive(false);
 			offIcon.SetActive(true);
 			mute = true;

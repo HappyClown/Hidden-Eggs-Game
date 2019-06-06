@@ -15,14 +15,14 @@ public class PauseMenu : MonoBehaviour {
 		sfxVolume = PlayerPrefs.GetFloat("sfxVolume",myAudio.SFXVolume);
 		musicVolume = PlayerPrefs.GetFloat("musicVolume",myAudio.MusicVolume);
 		panningLevel =  PlayerPrefs.GetFloat("panningLevel",myTap.panningSpeed);
-		int tempsfxMute = 0;
-		int tempMusicMute = 0;
-		if(myAudio.Muted){	tempsfxMute = 1;}else{	tempsfxMute = 0;}
-		if(myAudio.Paused){	tempMusicMute = 1;}else{  tempMusicMute = 0;}
-		sfxMute = PlayerPrefs.GetInt("sfxMute",tempsfxMute);
-		musicMute = PlayerPrefs.GetInt("musicMute",tempMusicMute);
-		if(sfxMute == 1){myAudio.Muted = true;}else{myAudio.Muted = false;}
-		if(musicMute == 1){myAudio.Paused = true;}else{myAudio.Paused = false;}
+		// int tempsfxMute = 0;
+		// int tempMusicMute = 0;
+		// if(myAudio.Muted){	tempsfxMute = 1;}else{	tempsfxMute = 0;}
+		// if(myAudio.Paused){	tempMusicMute = 1;}else{  tempMusicMute = 0;}
+		// sfxMute = PlayerPrefs.GetInt("sfxMute",tempsfxMute);
+		// musicMute = PlayerPrefs.GetInt("musicMute",tempMusicMute);
+		// if(sfxMute == 1){myAudio.Muted = true;}else{myAudio.Muted = false;}
+		// if(musicMute == 1){myAudio.Paused = true;}else{myAudio.Paused = false;}
 		myAudio.SFXVolume = sfxVolume;
 		myAudio.MusicVolume = musicVolume;
 		myTap.panningSpeed = panningLevel;
@@ -42,60 +42,50 @@ public class PauseMenu : MonoBehaviour {
 	public void ChangeSFXVolume(){
 		sfxVolume = myAudio.SFXVolume = sfxSlider.value;
 		PlayerPrefs.SetFloat("sfxVolume",sfxVolume);
-		if(sfxVolume > 0){
-			myAudio.Muted = false;
-			sfxMute = 0;
-			PlayerPrefs.SetInt("sfxMute",sfxMute);
-		}else{
-			myAudio.Muted = true;
-			sfxMute = 1;
-			PlayerPrefs.SetInt("sfxMute",sfxMute);
-		}
+		
 	}
 	public void ChangeMusicVolume(){
 		musicVolume = myAudio.MusicVolume = musicSlider.value;
 		PlayerPrefs.SetFloat("musicVolume",musicVolume);
-		if(musicVolume > 0){
-			myAudio.Paused = false;
-			musicMute = 0;
-			PlayerPrefs.SetInt("musicMute",musicMute);
-		}else{
-			myAudio.Paused = true;
-			musicMute = 1;
-			PlayerPrefs.SetInt("musicMute",musicMute);
-		}
+		
 	}
 	public void SetMute(bool value){
-		myAudio.Muted = value;
+		//myAudio.Muted = value;
 		if(value){		
 			sfxMute = 1;
 			//sfxSlider.value = 0;
+			myAudio.SFXVolume = 0;
 		}
 		else{
 			sfxMute = 0;
 			if(sfxVolume <= 0){
+				myAudio.SFXVolume = minVolumeReset;
 				sfxVolume = minVolumeReset;
 				sfxSlider.value = sfxVolume;
 				PlayerPrefs.SetFloat("sfxVolume",sfxVolume);
+			}else{
+				myAudio.SFXVolume = sfxVolume;
 			}
 		}
-		PlayerPrefs.SetInt("sfxMute",sfxMute);
 	}
 	public void SetPause(bool value){
-		myAudio.Paused = value;
+		//myAudio.Paused = value;
 		if(value){		
 			musicMute = 1;
+			myAudio.MusicVolume = 0;
 			//musicSlider.value = 0;
 		}
 		else{
 			musicMute = 0;
 			if(musicVolume <= 0){
+				myAudio.MusicVolume = minVolumeReset;
 				musicVolume = minVolumeReset;
 				musicSlider.value = musicVolume;
 				PlayerPrefs.SetFloat("musicVolume",musicVolume);
+			}else{
+				myAudio.MusicVolume = musicVolume;
 			}
 		}
-		PlayerPrefs.SetInt("musicMute",musicMute);
 
 	}
 }

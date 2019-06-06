@@ -18,7 +18,7 @@ public class MusicMuteButt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update(){
-		if(myMenu.musicMute == 1){
+		if(myMenu.myAudio.MusicVolume == 0){
 			onIcon.SetActive(false);
 			offIcon.SetActive(true);
 			mute = true;
