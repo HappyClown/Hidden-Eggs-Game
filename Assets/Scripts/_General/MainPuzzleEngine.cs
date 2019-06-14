@@ -59,6 +59,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public SceneTapEnabler sceneTapScript;
 	public PuzzlePauseMenu puzzlePauseScript;
 	public SlideInHelpBird slideInHelpScript;
+	public PuzzleComplete puzzleCompScript;
 
 	[Header("Hide In Inspector ^_^")]
 	public bool canPlay;
@@ -298,7 +299,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public IEnumerator PuzzleComplete () {
 		yield return new WaitForSeconds(0.5f);
 
-		Debug.Log("Puzzle Completed cognraturations!!!");
+		//Debug.Log("Puzzle Completed cognraturations!!!");
 
 		yield return new WaitForSeconds(0.5f);
 

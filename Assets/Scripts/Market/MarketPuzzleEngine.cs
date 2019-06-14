@@ -293,8 +293,10 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 				mySilverEggMan.activeSilverEggs.Clear();
 				mySilverEggMan.silverEggsActive = false;
 				mySilverEggMan.amntSilEggsTapped = 0;
-				scrnDarkImgScript.FadeOut();
 				curntLvl++;
+				if (curntLvl != winLvl) {
+					scrnDarkImgScript.FadeOut();
+				}
 				if (curntLvl > maxLvl) {
 					maxLvl = curntLvl; SaveMaxLvl(); 
 					mySelectButton.EnabledThreeDots(maxLvl); 
@@ -319,7 +321,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
-			StartCoroutine(PuzzleComplete());
+			puzzleCompScript.endSeq = true;
+			//StartCoroutine(PuzzleComplete());
 			return;
 		}
 		itemHolder = lvlItemHolders[curntLvl - 1];
@@ -467,17 +470,18 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 	}
 
 	// All silver eggs picked up, what happenes?
-	public new IEnumerator PuzzleComplete () {
-		yield return new WaitForSeconds(0.5f);
+	// public new IEnumerator PuzzleComplete () {
+	// 	yield return new WaitForSeconds(0.5f);
 
-		//Debug.Log("Puzzle Completed cognraturations!!!");
+	// 	Debug.Log("Puzzle Completed cognraturations!!!");
+	// 	puzzleCompScript.reveal = true;
 
-		yield return new WaitForSeconds(0.5f);
+	// 	yield return new WaitForSeconds(0.5f);
 
-		audioSceneMarketPuz.StopSceneMusic();
-		audioSceneMarketPuz.PlayTransitionMusic();
+	// 	audioSceneMarketPuz.StopSceneMusic();
+	// 	audioSceneMarketPuz.PlayTransitionMusic();
 		
-		SceneFade.SwitchScene(GlobalVariables.globVarScript.marketName);
-	}
+	// 	SceneFade.SwitchScene(GlobalVariables.globVarScript.marketName);
+	// }
 	#endregion
 }

@@ -12,7 +12,7 @@ public class TMPTextColorFade : MonoBehaviour {
 	public float timeBetweenCharsIn = 0.5f;
 	public float timeBetweenCharsOut = 0.5f;
 	public Color iniCol;
-	public bool fadeOutRightLeft;
+	public bool fadeOutRightLeft, fadeInFromMid;
 	[Header ("Info")]
 	public TextState textState;
 	public enum TextState {
@@ -64,23 +64,84 @@ public class TMPTextColorFade : MonoBehaviour {
 	public IEnumerator StartTextFadeIn() {
 		textState = TextState.fadingIn;
 		TMP_TextInfo textInfo = m_TextComponent.textInfo;
-		int currentCharacter = 0;
 		Color32[] newVertexColors;
 		Color32 c0 = m_TextComponent.color;
+		// Fade the text in from the middle of the text (will probably not work if the text is spread on 2+ lines).
+		// If the text has an odd number of characters it will start from the middle character if it has an even number
+		// it will start with both middle characters.
+		if (fadeInFromMid) {
+			int currentCharacter = 0;
+			int currentCharacterLeft = 0;
+			int currentCharacterRight = 0;
+			//Debug.Log("Even if 0: " + textInfo.characterCount%2);
+			// Check if even with modulo.
+			//Even.
+			if (textInfo.characterCount%2 == 0) {
+				currentCharacterLeft = textInfo.characterCount/2 - 1;
+				currentCharacterRight = currentCharacterLeft + 1;
+				//Debug.Log("Cur char left: " + currentCharacterLeft + "  Cur char right: " + currentCharacterRight);
+				//Debug.Log("Tots num of char: " + textInfo.characterCount);
+			}
+			// Odds.
+			else {
+				currentCharacter = Mathf.CeilToInt(textInfo.characterCount/2);
+				int characterCount = textInfo.characterCount;
+				// Get the index of the material used by the current character.
+				int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
+				// Get the vertex colors of the mesh used by this text element (character or sprite).
+				newVertexColors = textInfo.meshInfo[materialIndex].colors32;
+				// Get the index of the first vertex used by this text element.
+				int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
 
-		while (currentCharacter < textInfo.characterCount)
-		{
-			int characterCount = textInfo.characterCount;
-			// Get the index of the material used by the current character.
-			int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
-			// Get the vertex colors of the mesh used by this text element (character or sprite).
-			newVertexColors = textInfo.meshInfo[materialIndex].colors32;
-			// Get the index of the first vertex used by this text element.
-			int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
+				StartCoroutine(FadeInCharacter(materialIndex, vertexIndex, currentCharacter));
+				currentCharacterLeft = currentCharacter - 1;
+				currentCharacterRight = currentCharacter + 1;
+			}
 
-			StartCoroutine(FadeInCharacter(materialIndex, vertexIndex, currentCharacter));
-			currentCharacter += 1;
-			yield return new WaitForSeconds(timeBetweenCharsIn);
+			while (currentCharacterRight < textInfo.characterCount)
+			{
+				int characterCount = textInfo.characterCount;
+				// For the character to the left.
+				// Get the index of the material used by the current character.
+				int materialIndexLeft = textInfo.characterInfo[currentCharacterLeft].materialReferenceIndex;
+				// Get the vertex colors of the mesh used by this text element (character or sprite).
+				newVertexColors = textInfo.meshInfo[materialIndexLeft].colors32;
+				// Get the index of the first vertex used by this text element.
+				int vertexIndexLeft = textInfo.characterInfo[currentCharacterLeft].vertexIndex;
+				StartCoroutine(FadeInCharacter(materialIndexLeft, vertexIndexLeft, currentCharacterLeft));
+				Debug.Log(currentCharacterLeft);
+				currentCharacterLeft--;
+
+				// For the character to the right.
+				// Get the index of the material used by the current character.
+				int materialIndexRight = textInfo.characterInfo[currentCharacterRight].materialReferenceIndex;
+				// Get the vertex colors of the mesh used by this text element (character or sprite).
+				newVertexColors = textInfo.meshInfo[materialIndexRight].colors32;
+				// Get the index of the first vertex used by this text element.
+				int vertexIndexRight = textInfo.characterInfo[currentCharacterRight].vertexIndex;
+				StartCoroutine(FadeInCharacter(materialIndexRight, vertexIndexRight, currentCharacterRight));
+				Debug.Log(currentCharacterRight);
+				currentCharacterRight++;
+
+				yield return new WaitForSeconds(timeBetweenCharsIn);
+			}
+		}
+		else {
+			int currentCharacter = 0;
+			while (currentCharacter < textInfo.characterCount)
+			{
+				int characterCount = textInfo.characterCount;
+				// Get the index of the material used by the current character.
+				int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
+				// Get the vertex colors of the mesh used by this text element (character or sprite).
+				newVertexColors = textInfo.meshInfo[materialIndex].colors32;
+				// Get the index of the first vertex used by this text element.
+				int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
+
+				StartCoroutine(FadeInCharacter(materialIndex, vertexIndex, currentCharacter));
+				currentCharacter++;
+				yield return new WaitForSeconds(timeBetweenCharsIn);
+			}
 		}
 	}
 
@@ -107,7 +168,7 @@ public class TMPTextColorFade : MonoBehaviour {
 				int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
 
 				StartCoroutine(FadeOutCharacter(materialIndex, vertexIndex, currentCharacter));
-				currentCharacter -= 1;
+				currentCharacter--;
 				yield return new WaitForSeconds(timeBetweenCharsOut);
 			}
 		}
