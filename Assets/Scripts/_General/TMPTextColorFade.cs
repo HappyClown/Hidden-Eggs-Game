@@ -14,6 +14,7 @@ public class TMPTextColorFade : MonoBehaviour {
 	public Color iniCol;
 	public bool fadeOutRightLeft, fadeInFromMid;
 	[Header ("Info")]
+	public bool lastCharacterDone;
 	public TextState textState;
 	public enum TextState {
 		blank, fadingIn, fadingOut, fullyVisible
@@ -66,6 +67,7 @@ public class TMPTextColorFade : MonoBehaviour {
 		TMP_TextInfo textInfo = m_TextComponent.textInfo;
 		Color32[] newVertexColors;
 		Color32 c0 = m_TextComponent.color;
+		lastCharacterDone = false;
 		// Fade the text in from the middle of the text (will probably not work if the text is spread on 2+ lines).
 		// If the text has an odd number of characters it will start from the middle character if it has an even number
 		// it will start with both middle characters.
@@ -109,7 +111,7 @@ public class TMPTextColorFade : MonoBehaviour {
 				// Get the index of the first vertex used by this text element.
 				int vertexIndexLeft = textInfo.characterInfo[currentCharacterLeft].vertexIndex;
 				StartCoroutine(FadeInCharacter(materialIndexLeft, vertexIndexLeft, currentCharacterLeft));
-				Debug.Log(currentCharacterLeft);
+				//Debug.Log(currentCharacterLeft);
 				currentCharacterLeft--;
 
 				// For the character to the right.
@@ -120,7 +122,7 @@ public class TMPTextColorFade : MonoBehaviour {
 				// Get the index of the first vertex used by this text element.
 				int vertexIndexRight = textInfo.characterInfo[currentCharacterRight].vertexIndex;
 				StartCoroutine(FadeInCharacter(materialIndexRight, vertexIndexRight, currentCharacterRight));
-				Debug.Log(currentCharacterRight);
+				//Debug.Log(currentCharacterRight);
 				currentCharacterRight++;
 
 				yield return new WaitForSeconds(timeBetweenCharsIn);
@@ -154,6 +156,7 @@ public class TMPTextColorFade : MonoBehaviour {
 		TMP_TextInfo textInfo = m_TextComponent.textInfo;
 		Color32[] newVertexColors;
 		Color32 c0 = m_TextComponent.color;
+		lastCharacterDone = false;
 
 		if (fadeOutRightLeft) {
 			int currentCharacter = textInfo.characterCount - 1;
@@ -248,6 +251,21 @@ public class TMPTextColorFade : MonoBehaviour {
 				warpTextScript.WarpText();
 			}
 			textState = TextState.fullyVisible;
+			lastCharacterDone = true;
+		}
+		// Keep setting their alpha value until the last character has faded out.
+		while (!lastCharacterDone)
+		{
+			c0 = new Color32(255, 255, 255, 255);
+
+			newVertexColors[vertexIndex + 0] = c0;
+			newVertexColors[vertexIndex + 1] = c0;
+			newVertexColors[vertexIndex + 2] = c0;
+			newVertexColors[vertexIndex + 3] = c0;
+
+			// Push all updated vertex data to the appropriate meshes when using either the Mesh Renderer or CanvasRenderer.
+			m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+			yield return null;
 		}
 		yield return null;
 	}
@@ -284,6 +302,7 @@ public class TMPTextColorFade : MonoBehaviour {
 			}
 			yield return null;
 		}
+
 		c0 = new Color32(255, 255, 255, 0);
 
 		newVertexColors[vertexIndex + 0] = c0;
@@ -308,7 +327,23 @@ public class TMPTextColorFade : MonoBehaviour {
 				warpTextScript.WarpText();
 			}
 			textState = TextState.blank;
+			lastCharacterDone = true;
 		}
+		// Keep setting their alpha value until the last character has faded out.
+		while (!lastCharacterDone)
+		{
+			c0 = new Color32(255, 255, 255, 0);
+
+			newVertexColors[vertexIndex + 0] = c0;
+			newVertexColors[vertexIndex + 1] = c0;
+			newVertexColors[vertexIndex + 2] = c0;
+			newVertexColors[vertexIndex + 3] = c0;
+
+			// Push all updated vertex data to the appropriate meshes when using either the Mesh Renderer or CanvasRenderer.
+			m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+			yield return null;
+		}
+		
 		yield return null;
 	}
 }

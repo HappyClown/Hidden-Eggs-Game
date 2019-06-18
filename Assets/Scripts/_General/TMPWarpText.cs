@@ -8,8 +8,8 @@ public class TMPWarpText : MonoBehaviour {
 	public bool StartAnimatedWarp, stopWarping;
 	[Header ("Settings")]
 	public AnimationCurve VertexCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1, 0f));
-	public float AngleMultiplier = 1.0f;
-	public float SpeedMultiplier = 1.0f;
+	//public float AngleMultiplier = 1.0f;
+	//public float SpeedMultiplier = 1.0f;
 	public float CurveScale = 1.0f;
 	[Header ("Info")]
 	public bool warping;

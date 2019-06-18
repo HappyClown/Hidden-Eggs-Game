@@ -7,108 +7,134 @@ public class TMPTextWave : MonoBehaviour {
 	[Header ("Triggers")]
 	public bool waveOn;
 	[Header ("Settings")]
-	public AnimationCurve VertexCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1, 0f));
-	public float yMultiplier = 1.0f;
+	public AnimationCurve waveCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1, 0f));
+	public float curveScale = 1.0f;
 	//public float SpeedMultiplier = 1.0f;
 	//public float CurveScale = 1.0f;
 	public float timeBetweenChar = 0.1f;
 	public float waveDur = 1f;
-	public float charWaveUpdateTime = 0.025f;
+	public bool randomOrder;
+	//public float charWaveUpdateTime = 0.025f;
+
 	[Header ("Info")]
-	public bool waving;
+	public bool fullyWaving;
+	private bool waving, falling;
 	public TMP_Text m_TextComponent;
-	private int curChar = 0;
+	public int curChar = 0;
 	private int updateAfterCount = 0;
 	TMP_TextInfo textInfo;
 	TMP_MeshInfo[] cachedMeshInfo;
 	int characterCount;
-	
-	void Start() {
-		textInfo = m_TextComponent.textInfo;
-		characterCount = textInfo.characterCount;
-	}
+	public List<int> charOrder;
 
 	void Update () {
 		if (waveOn) {
 			StartCoroutine(StartWave());
 			waveOn = false;
 		}
+		
+		if (fullyWaving && updateAfterCount >= characterCount * (curChar / characterCount)) {
+			m_TextComponent.ForceMeshUpdate();
+			updateAfterCount = 0;
+		}
 	}
 
 	IEnumerator StartWave() {
 		waving = true;
+		if (curChar == characterCount) {
+			curChar = 0;
+		}
+		waveCurve.preWrapMode = WrapMode.Loop;
+        waveCurve.postWrapMode = WrapMode.Loop;
 		
 		m_TextComponent.ForceMeshUpdate(); // Generate the mesh and populate the textInfo with data we can use and manipulate.
 		
-		TMP_TextInfo textInfo = m_TextComponent.textInfo;
-		int characterCount = textInfo.characterCount;
-
-		// Cache the vertex data of the text object as the Jitter FX is applied to the original position of the characters.
-		cachedMeshInfo = textInfo.CopyMeshInfoVertexData();
+		textInfo = m_TextComponent.textInfo;
+		characterCount = textInfo.characterCount;
 		
+		// Get the index of the mesh used by this character.
+		int matIndex = textInfo.characterInfo[curChar].materialReferenceIndex;
+		// Get the index of the first vertex used by this text element.
+		int vertIndex = textInfo.characterInfo[curChar].vertexIndex;
+		Vector3[] verts;
+		
+		// Populate an int list in ascending order(0,1,2,3...).
+		charOrder.Clear();
+		for (int i = 0; i < characterCount; i++)
+		{
+			charOrder.Add(i);
+		}
+		// Randomize the "character position" list.
+		if (randomOrder) {
+			// New list order.
+			for (int i = characterCount - 1; i >= 0; i--)
+			{
+				int ran = Random.Range(0, i + 1);
+				int num = charOrder[ran];
+				charOrder[ran] = charOrder[i];
+				charOrder[i] = num;
+			}
+		}
 
+		// Start the wave from Left to Right.
 		while (curChar < characterCount)
 		{
+			m_TextComponent.renderMode = TextRenderFlags.DontRender; // Instructing TextMesh Pro not to upload the mesh as we will be modifying it.
+			
 			// Get the index of the mesh used by this character.
-			int matIndex = textInfo.characterInfo[curChar].materialReferenceIndex;
+			matIndex = textInfo.characterInfo[curChar].materialReferenceIndex;
 			// Get the index of the first vertex used by this text element.
-			int vertIndex = textInfo.characterInfo[curChar].vertexIndex;
+			vertIndex = textInfo.characterInfo[curChar].vertexIndex;
 
-			StartCoroutine(ContinuousWave(matIndex, vertIndex, curChar));
+			verts = textInfo.meshInfo[matIndex].vertices;
+
+			if (textInfo.characterInfo[curChar].character.ToString() != " ") {
+				StartCoroutine(ContinuousWave(verts, matIndex, vertIndex, curChar));
+			}
 			curChar++;
 			// Delay between every text character.
 			yield return new WaitForSeconds(timeBetweenChar);
 		}
+		fullyWaving = true;
 	}
 
 	/// <summary>
-	///  Method to animate a single character along a Unity animation curve.
+	///  Method that makes a single character "wave" along a Unity animation curve.
 	/// </summary>
 	/// <param name="textComponent"></param>
 	/// <returns></returns>
-	IEnumerator ContinuousWave(int materialIndex, int vertexIndex, int currentCharacter)
-	{
+	IEnumerator ContinuousWave(Vector3[] vertices, int materialIndex, int vertexIndex, int currentCharacter) {
 		float timer = 0f;
+		//Debug.Log(textInfo.characterInfo[currentCharacter].character);
 
-		Vector3[] vertices;
-
-		vertices = textInfo.meshInfo[materialIndex].vertices;
-
-		m_TextComponent.havePropertiesChanged = true; // Need to force the TextMeshPro Object to be updated.
-
-		float originalY0 = vertices[0].y;
-		float originalY1 = vertices[1].y;
-		float originalY2 = vertices[2].y;
-		float originalY3 = vertices[3].y;
+		float originalY0 = vertices[vertexIndex + 0].y;
+		float originalY1 = vertices[vertexIndex + 1].y;
+		float originalY2 = vertices[vertexIndex + 2].y;
+		float originalY3 = vertices[vertexIndex + 3].y;
 
 		while (waving)
 		{
 			timer += Time.deltaTime / waveDur;
-
-			// Compute the baseline mid point for each character
-			Vector3 offsetToMidBaseline = new Vector2(0f, /* originalY + */ (VertexCurve.Evaluate(timer) * yMultiplier));
-
-			// Apply offset to adjust our pivot point.
-			vertices[vertexIndex + 0] = new Vector3(vertices[vertexIndex+0].x, originalY0 + VertexCurve.Evaluate(timer) * yMultiplier, 0);
-			vertices[vertexIndex + 1] = new Vector3(vertices[vertexIndex+1].x, originalY1 + VertexCurve.Evaluate(timer) * yMultiplier, 0);
-			vertices[vertexIndex + 2] = new Vector3(vertices[vertexIndex+2].x, originalY2 + VertexCurve.Evaluate(timer) * yMultiplier, 0);
-			vertices[vertexIndex + 3] = new Vector3(vertices[vertexIndex+3].x, originalY3 + VertexCurve.Evaluate(timer) * yMultiplier, 0);
-			// Upload the mesh with the revised information
-			// m_TextComponent.UpdateVertexData();
-			// Push changes into meshes
-			for (int i = 0; i < textInfo.meshInfo.Length; i++)
-			{
-				textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
-				m_TextComponent.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
-			}
-			//updateAfterCount++;
-
-			// After 100 waves reset timer to 0, makes me feel safer having this here.
-			if (timer >= 100f) {
-				timer = 0f;
-			}
+			//if (fullyWaving) {
+				// Compute the baseline mid point for each character
+				float yOffset = (waveCurve.Evaluate(timer) * curveScale);
+				// Apply offset to adjust our pivot point.
+				vertices[vertexIndex + 0].y = originalY0 + yOffset;
+				vertices[vertexIndex + 1].y = originalY1 + yOffset;
+				vertices[vertexIndex + 2].y = originalY2 + yOffset;
+				vertices[vertexIndex + 3].y = originalY3 + yOffset;
+				// Upload the mesh with the revised information
+				 m_TextComponent.UpdateVertexData();
+				 
+				// When to force update the vertices.
+				updateAfterCount++;
+				// After 100 waves reset timer to 0, makes me feel safer having this here.
+				// if (timer >= 100f) {
+				// 	timer = 0f;
+				// }
+			//}
 			// Update every x seconds.
-			yield return new WaitForSeconds(charWaveUpdateTime);
+			yield return null;
 		}
 	}
 

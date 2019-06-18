@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 31286945}
   - component: {fileID: 31286944}
   - component: {fileID: 31286947}
+  - component: {fileID: 31286948}
   m_Layer: 5
   m_Name: PuzzleComple TMP
   m_TagString: Untagged
@@ -387,7 +388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 12}
+  m_AnchoredPosition: {x: 0, y: 7.24}
   m_SizeDelta: {x: 494, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &31286944
@@ -411,6 +412,7 @@ MonoBehaviour:
   iniCol: {r: 1, g: 1, b: 1, a: 0}
   fadeOutRightLeft: 0
   fadeInFromMid: 1
+  lastCharacterDone: 0
   textState: 0
   m_TextComponent: {fileID: 31286945}
   tmp: {fileID: 31286945}
@@ -599,11 +601,62 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 1
     m_RotationOrder: 4
-  yMultiplier: 0.05555
+  yMultiplier: 1
   timeBetweenChar: 0.1
   waveDur: 1
+  CurveScale: 0.1
   charWaveUpdateTime: 0.025
   waving: 0
+  m_TextComponent: {fileID: 31286945}
+--- !u!114 &31286948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31286942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5956c26f073c64998577f51d0b17e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  warpOnce: 0
+  StartAnimatedWarp: 0
+  stopWarping: 0
+  VertexCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.1006894
+      outSlope: 5.1006894
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.023255814
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.0035858518
+      outSlope: 0.0035858518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11745157
+    - serializedVersion: 3
+      time: 1
+      value: 0.002083404
+      inSlope: -4.743784
+      outSlope: -4.743784
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.027616262
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CurveScale: 2.5
+  warping: 0
   m_TextComponent: {fileID: 31286945}
 --- !u!4 &50287044 stripped
 Transform:
@@ -38229,8 +38282,9 @@ GameObject:
   - component: {fileID: 1019995763}
   - component: {fileID: 1019995760}
   - component: {fileID: 1019995759}
+  - component: {fileID: 1019995764}
   m_Layer: 5
-  m_Name: PuzzleComple TMP wave1
+  m_Name: PuzzleComple TMP With Motion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38267,63 +38321,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveOn: 0
-  VertexCurve:
+  waveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 5.7021904
-      outSlope: 5.7021904
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.20271623
-    - serializedVersion: 3
-      time: 0.25
-      value: 1
-      inSlope: 0.00079512864
-      outSlope: 0.00079512864
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.27406204
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 0.5
-      value: 0
-      inSlope: -5.6013594
-      outSlope: -5.6013594
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.093919754
-    - serializedVersion: 3
-      time: 0.75
-      value: -1
-      inSlope: -0.011572888
-      outSlope: -0.011572888
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.30106997
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0.002083404
-      inSlope: 5.888434
-      outSlope: 5.888434
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.10038471
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
-    m_PostInfinity: 1
+    m_PostInfinity: 2
     m_RotationOrder: 4
-  yMultiplier: 0
-  timeBetweenChar: 0.1
-  waveDur: 3
-  charWaveUpdateTime: 0
-  waving: 0
+  curveScale: 1
+  timeBetweenChar: 0.025
+  waveDur: 0.5
+  randomOrder: 0
+  fullyWaving: 0
   m_TextComponent: {fileID: 1019995761}
+  curChar: 0
+  charOrder: 
 --- !u!114 &1019995760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38345,6 +38383,7 @@ MonoBehaviour:
   iniCol: {r: 1, g: 1, b: 1, a: 0}
   fadeOutRightLeft: 0
   fadeInFromMid: 1
+  lastCharacterDone: 0
   textState: 0
   m_TextComponent: {fileID: 1019995761}
   tmp: {fileID: 1019995761}
@@ -38369,7 +38408,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '  Puzzle Completino!'
+  m_text: Puzzle Completino!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 445bfdec464852140ab6fa891dfe23b6, type: 2}
   m_sharedMaterial: {fileID: 21540381189552310, guid: 445bfdec464852140ab6fa891dfe23b6,
@@ -38437,10 +38476,10 @@ MonoBehaviour:
   m_margin: {x: -19.538834, y: 0, z: -19.53894, w: 0}
   m_textInfo:
     textComponent: {fileID: 1019995761}
-    characterCount: 20
+    characterCount: 18
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 3
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -38517,11 +38556,107 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  AngleMultiplier: 1
-  SpeedMultiplier: 1
   CurveScale: 5
   warping: 0
   m_TextComponent: {fileID: 1019995761}
+--- !u!114 &1019995764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1019995757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc4b280e8b398bc4fa7199e56a58354b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallOn: 0
+  timeBetweenChar: 0.1
+  randomOrder: 1
+  fallCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -2.1136038
+      outSlope: -2.1136038
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03197676
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fallCurveScale: 10
+  fallDur: 0.5
+  bounceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.3403585
+      outSlope: 3.3403585
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10093669
+    - serializedVersion: 3
+      time: 0.18
+      value: 0.6
+      inSlope: 3.2556493
+      outSlope: 3.2556493
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.0035858518
+      outSlope: 0.0035858518
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11745157
+    - serializedVersion: 3
+      time: 0.82
+      value: 0.6
+      inSlope: -3.088511
+      outSlope: -3.088511
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.002083404
+      inSlope: -3.1497664
+      outSlope: -3.1497664
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.10093682
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 4
+  bounceCurveScale: 5
+  bounceDur: 0.5
+  bounceCount: 3
+  allFalling: 0
+  m_TextComponent: {fileID: 1019995761}
+  curChar: 0
+  charOrder: 
 --- !u!4 &1036840503
 Transform:
   m_ObjectHideFlags: 0
