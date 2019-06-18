@@ -34,6 +34,7 @@ public class ClickOnEggs : MonoBehaviour {
 	[Header("Puzzle")]
 	public PuzzleUnlock puzzUnlockScript;
 	public string puzzleSceneName;
+	public GameObject puzzleConfirmationUI;
 
 	[Header("Egg Panel")]
 	public GameObject eggPanel;
@@ -73,6 +74,7 @@ public class ClickOnEggs : MonoBehaviour {
 	public SceneTapEnabler sceneTapEnabScript;
 	public SceneFade sceneFadeScript;
 	public AudioSceneGeneral audioSceneGenScript;
+	public PuzzlePauseMenu puzzlePause;
 
 	void Start () {
 		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
@@ -144,11 +146,14 @@ public class ClickOnEggs : MonoBehaviour {
 					}
 					// - Go To Puzzle Scene - //
 					if (hit.collider.CompareTag("Puzzle")) {
-						SceneFade.SwitchScene(puzzleSceneName);
-						PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
-						//SFX puzz btn
-						audioSceneGenScript.TransitionPuzzle();
-						audioSceneGenScript.puzzleAnimationStop();
+						if(GlobalVariables.globVarScript.puzzIntroDone){
+							puzzlePause.puzzleConfActive = true;
+							puzzlePause.puzzleConfStates = PuzzlePauseMenu.PuzzleConfStates.TurnOn;
+							
+						}else{
+							LoadPuzzle();
+						}
+						
 					}
 					// - Opening Egg Panel Manually - //
 					if (hit.collider.CompareTag("EggPanel")) {
@@ -282,6 +287,13 @@ public class ClickOnEggs : MonoBehaviour {
 
 	public void AdjustLevelComplete() {
 		levelComplete = GlobalVariables.globVarScript.levelComplete;
+	}
+	public void LoadPuzzle(){
+		SceneFade.SwitchScene(puzzleSceneName);
+		PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
+		//SFX puzz btn
+		audioSceneGenScript.TransitionPuzzle();
+		audioSceneGenScript.puzzleAnimationStop();
 	}
 	#endregion
 	#endregion
