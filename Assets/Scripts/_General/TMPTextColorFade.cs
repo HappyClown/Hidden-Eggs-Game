@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 
 public class TMPTextColorFade : MonoBehaviour {
@@ -12,31 +13,41 @@ public class TMPTextColorFade : MonoBehaviour {
 	public float timeBetweenCharsIn = 0.5f;
 	public float timeBetweenCharsOut = 0.5f;
 	public Color iniCol;
-	public bool fadeOutRightLeft, fadeInFromMid;
+	public bool fadeOutRightLeft, fadeInFromMid, fadeInLeftRight, fadeInRandom;
+	public bool stayWarped;
+	[Header ("References")]
+	public TMPMotionHandler handlerScript;
+	public TMPWarpText warpScript;
+	public TMPTextFall fallScript;
+	public TMP_Text m_TextComponent;
+	public TextMeshProUGUI tmp;
 	[Header ("Info")]
 	public bool lastCharacterDone;
+	public bool updateMaxAlpha = false;
 	public TextState textState;
 	public enum TextState {
 		blank, fadingIn, fadingOut, fullyVisible
 	}
-	public TMP_Text m_TextComponent;
-	public TextMeshProUGUI tmp;
-	public TMPWarpText warpTextScript;
+	public List<int> charOrder;
 
 	void Update () {
 		if (startFadeIn) {
-			if (warpTextScript) {
-				warpTextScript.StartAnimatedWarp = true;
+			if (warpScript) {
+				warpScript.StartAnimatedWarp = true;
 			}
 			StartCoroutine(StartTextFadeIn());
 			startFadeIn = false;
 		}
 		if (startFadeOut) {
-			if (warpTextScript) {
-				warpTextScript.StartAnimatedWarp = true;
+			if (warpScript) {
+				warpScript.StartAnimatedWarp = true;
 			}
 			StartCoroutine(StartTextFadeOut());
 			startFadeOut = false;
+		}
+		if (updateMaxAlpha) {
+			tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 1);
+			updateMaxAlpha = false;
 		}
 	}
 
@@ -48,7 +59,7 @@ public class TMPTextColorFade : MonoBehaviour {
 		// Set the alpha to 0 while keeping its RGB values the same.
 		tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 0);
 		if (this.gameObject.GetComponent<TMPWarpText>()) {
-			warpTextScript = this.gameObject.GetComponent<TMPWarpText>();
+			warpScript = this.gameObject.GetComponent<TMPWarpText>();
 		}
 	}
 
@@ -68,6 +79,14 @@ public class TMPTextColorFade : MonoBehaviour {
 		Color32[] newVertexColors;
 		Color32 c0 = m_TextComponent.color;
 		lastCharacterDone = false;
+
+		if (fadeInRandom) {
+			charOrder = handlerScript.randomOrder;
+		}
+		else {
+			charOrder = handlerScript.leftRightOrder;
+		}
+		
 		// Fade the text in from the middle of the text (will probably not work if the text is spread on 2+ lines).
 		// If the text has an odd number of characters it will start from the middle character if it has an even number
 		// it will start with both middle characters.
@@ -77,7 +96,7 @@ public class TMPTextColorFade : MonoBehaviour {
 			int currentCharacterRight = 0;
 			//Debug.Log("Even if 0: " + textInfo.characterCount%2);
 			// Check if even with modulo.
-			//Even.
+			// Even.
 			if (textInfo.characterCount%2 == 0) {
 				currentCharacterLeft = textInfo.characterCount/2 - 1;
 				currentCharacterRight = currentCharacterLeft + 1;
@@ -99,7 +118,7 @@ public class TMPTextColorFade : MonoBehaviour {
 				currentCharacterLeft = currentCharacter - 1;
 				currentCharacterRight = currentCharacter + 1;
 			}
-
+			// Fade in the rest of the characters. To the Left and to the Right at the same time.
 			while (currentCharacterRight < textInfo.characterCount)
 			{
 				int characterCount = textInfo.characterCount;
@@ -110,7 +129,9 @@ public class TMPTextColorFade : MonoBehaviour {
 				newVertexColors = textInfo.meshInfo[materialIndexLeft].colors32;
 				// Get the index of the first vertex used by this text element.
 				int vertexIndexLeft = textInfo.characterInfo[currentCharacterLeft].vertexIndex;
-				StartCoroutine(FadeInCharacter(materialIndexLeft, vertexIndexLeft, currentCharacterLeft));
+				if (textInfo.characterInfo[currentCharacterLeft].character.ToString() != " ") {
+					StartCoroutine(FadeInCharacter(materialIndexLeft, vertexIndexLeft, currentCharacterLeft));
+				}
 				//Debug.Log(currentCharacterLeft);
 				currentCharacterLeft--;
 
@@ -121,30 +142,53 @@ public class TMPTextColorFade : MonoBehaviour {
 				newVertexColors = textInfo.meshInfo[materialIndexRight].colors32;
 				// Get the index of the first vertex used by this text element.
 				int vertexIndexRight = textInfo.characterInfo[currentCharacterRight].vertexIndex;
-				StartCoroutine(FadeInCharacter(materialIndexRight, vertexIndexRight, currentCharacterRight));
+				if (textInfo.characterInfo[currentCharacterRight].character.ToString() != " ") {
+					StartCoroutine(FadeInCharacter(materialIndexRight, vertexIndexRight, currentCharacterRight));
+				}
 				//Debug.Log(currentCharacterRight);
 				currentCharacterRight++;
 
 				yield return new WaitForSeconds(timeBetweenCharsIn);
 			}
 		}
+		// Fade in with the same random order as the fallScript order.
 		else {
-			int currentCharacter = 0;
-			while (currentCharacter < textInfo.characterCount)
+			int curChar = 0;
+			while (curChar < textInfo.characterCount)
 			{
-				int characterCount = textInfo.characterCount;
-				// Get the index of the material used by the current character.
-				int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
-				// Get the vertex colors of the mesh used by this text element (character or sprite).
-				newVertexColors = textInfo.meshInfo[materialIndex].colors32;
+				// Get the index of the mesh used by this character.
+				int matIndex = textInfo.characterInfo[charOrder[curChar]].materialReferenceIndex;
 				// Get the index of the first vertex used by this text element.
-				int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
+				int vertIndex = textInfo.characterInfo[charOrder[curChar]].vertexIndex;
+				// Get the vertex colors of the mesh used by this text element (character or sprite).
+				newVertexColors = textInfo.meshInfo[matIndex].colors32;
 
-				StartCoroutine(FadeInCharacter(materialIndex, vertexIndex, currentCharacter));
-				currentCharacter++;
+				if (textInfo.characterInfo[charOrder[curChar]].character.ToString() != " ") {
+					StartCoroutine(FadeInCharacter(matIndex, vertIndex, charOrder[curChar]));
+				}
+				curChar++;
+				// Delay between every text character.
 				yield return new WaitForSeconds(timeBetweenCharsIn);
 			}
 		}
+		// // From left to right.
+		// else {
+		// 	int currentCharacter = 0;
+		// 	while (currentCharacter < textInfo.characterCount)
+		// 	{
+		// 		int characterCount = textInfo.characterCount;
+		// 		// Get the index of the material used by the current character.
+		// 		int materialIndex = textInfo.characterInfo[currentCharacter].materialReferenceIndex;
+		// 		// Get the vertex colors of the mesh used by this text element (character or sprite).
+		// 		newVertexColors = textInfo.meshInfo[materialIndex].colors32;
+		// 		// Get the index of the first vertex used by this text element.
+		// 		int vertexIndex = textInfo.characterInfo[currentCharacter].vertexIndex;
+
+		// 		StartCoroutine(FadeInCharacter(materialIndex, vertexIndex, currentCharacter));
+		// 		currentCharacter++;
+		// 		yield return new WaitForSeconds(timeBetweenCharsIn);
+		// 	}
+		// }
 	}
 
 	/// <summary>
@@ -238,21 +282,24 @@ public class TMPTextColorFade : MonoBehaviour {
 		m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
 		// After all the characters have fully faded in.
-		if (currentCharacter == textInfo.characterCount - 1) {
+		if (currentCharacter == charOrder[textInfo.characterCount - 1]) {
 			// Set the TMP font settings color back to 1 in order to be able to set it back to 0, making the whole text invisible again;
-			tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 1);
+			// This is done in the update to allow other vertex modifying scripts to update their position after in the same frame. 
+			updateMaxAlpha = true;
+			//tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 1);
 			// To make sure the text stays warped after the complete fade in.
-			if (warpTextScript) {
+			if (stayWarped && warpScript) {
 				// Stop the infinite animated warp loop.
-				if (warpTextScript.warping) {
-					//warpTextScript.stopWarping = true;
+				if (warpScript.warping) {
+					//warpScript.stopWarping = true;
 				}
 				// Make it warp one last time after the colors have been changed.
-				warpTextScript.WarpText();
+				warpScript.WarpText();
 			}
 			textState = TextState.fullyVisible;
 			lastCharacterDone = true;
 		}
+
 		// Keep setting their alpha value until the last character has faded out.
 		while (!lastCharacterDone)
 		{
@@ -318,13 +365,13 @@ public class TMPTextColorFade : MonoBehaviour {
 			// Set the TMP font settings color back to 1 in order to be able to set it back to 0, making the whole text invisible again;
 			tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 0);
 			// To make sure the text stays warped after the complete fade in.
-			if (warpTextScript) {
+			if (warpScript && stayWarped) {
 				// Stop the infinite animated warp loop.
-				if (warpTextScript.warping) {
-					warpTextScript.stopWarping = true;
+				if (warpScript.warping) {
+					warpScript.stopWarping = true;
 				}
 				// Make it warp one last time after the colors have been changed.
-				warpTextScript.WarpText();
+				warpScript.WarpText();
 			}
 			textState = TextState.blank;
 			lastCharacterDone = true;

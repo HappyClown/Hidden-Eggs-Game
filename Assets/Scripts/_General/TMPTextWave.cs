@@ -15,15 +15,16 @@ public class TMPTextWave : MonoBehaviour {
 	public float waveDur = 1f;
 	public bool randomOrder;
 	//public float charWaveUpdateTime = 0.025f;
-
+	[Header ("References")]
+	public TMPMotionHandler handlerScript;
 	[Header ("Info")]
 	public bool fullyWaving;
-	private bool waving, falling;
+	private bool waving;
 	public TMP_Text m_TextComponent;
 	public int curChar = 0;
 	private int updateAfterCount = 0;
 	TMP_TextInfo textInfo;
-	TMP_MeshInfo[] cachedMeshInfo;
+	// TMP_MeshInfo[] cachedMeshInfo;
 	int characterCount;
 	public List<int> charOrder;
 
@@ -33,13 +34,14 @@ public class TMPTextWave : MonoBehaviour {
 			waveOn = false;
 		}
 		
-		if (fullyWaving && updateAfterCount >= characterCount * (curChar / characterCount)) {
+		if (waving && updateAfterCount >= characterCount * (curChar / characterCount)) {
 			m_TextComponent.ForceMeshUpdate();
 			updateAfterCount = 0;
 		}
 	}
 
 	IEnumerator StartWave() {
+		//fullyWaving = true;
 		waving = true;
 		if (curChar == characterCount) {
 			curChar = 0;
@@ -52,50 +54,39 @@ public class TMPTextWave : MonoBehaviour {
 		textInfo = m_TextComponent.textInfo;
 		characterCount = textInfo.characterCount;
 		
-		// Get the index of the mesh used by this character.
-		int matIndex = textInfo.characterInfo[curChar].materialReferenceIndex;
-		// Get the index of the first vertex used by this text element.
-		int vertIndex = textInfo.characterInfo[curChar].vertexIndex;
-		Vector3[] verts;
-		
-		// Populate an int list in ascending order(0,1,2,3...).
-		charOrder.Clear();
-		for (int i = 0; i < characterCount; i++)
-		{
-			charOrder.Add(i);
-		}
-		// Randomize the "character position" list.
 		if (randomOrder) {
-			// New list order.
-			for (int i = characterCount - 1; i >= 0; i--)
-			{
-				int ran = Random.Range(0, i + 1);
-				int num = charOrder[ran];
-				charOrder[ran] = charOrder[i];
-				charOrder[i] = num;
-			}
+			charOrder = handlerScript.randomOrder;
 		}
+		else {
+			charOrder = handlerScript.leftRightOrder;
+		}
+		
+		// Get the index of the mesh used by this character.
+		int matIndex = textInfo.characterInfo[charOrder[curChar]].materialReferenceIndex;
+		// Get the index of the first vertex used by this text element.
+		int vertIndex = textInfo.characterInfo[charOrder[curChar]].vertexIndex;
+		Vector3[] verts;
 
 		// Start the wave from Left to Right.
 		while (curChar < characterCount)
 		{
-			m_TextComponent.renderMode = TextRenderFlags.DontRender; // Instructing TextMesh Pro not to upload the mesh as we will be modifying it.
-			
+			// Instructing TextMesh Pro not to upload the mesh as we will be modifying it.
+			m_TextComponent.renderMode = TextRenderFlags.DontRender;
 			// Get the index of the mesh used by this character.
-			matIndex = textInfo.characterInfo[curChar].materialReferenceIndex;
+			matIndex = textInfo.characterInfo[charOrder[curChar]].materialReferenceIndex;
 			// Get the index of the first vertex used by this text element.
-			vertIndex = textInfo.characterInfo[curChar].vertexIndex;
+			vertIndex = textInfo.characterInfo[charOrder[curChar]].vertexIndex;
 
 			verts = textInfo.meshInfo[matIndex].vertices;
 
-			if (textInfo.characterInfo[curChar].character.ToString() != " ") {
-				StartCoroutine(ContinuousWave(verts, matIndex, vertIndex, curChar));
+			if (textInfo.characterInfo[charOrder[curChar]].character.ToString() != " ") {
+				StartCoroutine(ContinuousWave(verts, matIndex, vertIndex, charOrder[curChar]));
 			}
 			curChar++;
 			// Delay between every text character.
 			yield return new WaitForSeconds(timeBetweenChar);
 		}
-		fullyWaving = true;
+		//fullyWaving = true;
 	}
 
 	/// <summary>
@@ -105,7 +96,6 @@ public class TMPTextWave : MonoBehaviour {
 	/// <returns></returns>
 	IEnumerator ContinuousWave(Vector3[] vertices, int materialIndex, int vertexIndex, int currentCharacter) {
 		float timer = 0f;
-		//Debug.Log(textInfo.characterInfo[currentCharacter].character);
 
 		float originalY0 = vertices[vertexIndex + 0].y;
 		float originalY1 = vertices[vertexIndex + 1].y;
@@ -115,24 +105,17 @@ public class TMPTextWave : MonoBehaviour {
 		while (waving)
 		{
 			timer += Time.deltaTime / waveDur;
-			//if (fullyWaving) {
-				// Compute the baseline mid point for each character
-				float yOffset = (waveCurve.Evaluate(timer) * curveScale);
-				// Apply offset to adjust our pivot point.
-				vertices[vertexIndex + 0].y = originalY0 + yOffset;
-				vertices[vertexIndex + 1].y = originalY1 + yOffset;
-				vertices[vertexIndex + 2].y = originalY2 + yOffset;
-				vertices[vertexIndex + 3].y = originalY3 + yOffset;
-				// Upload the mesh with the revised information
-				 m_TextComponent.UpdateVertexData();
-				 
-				// When to force update the vertices.
-				updateAfterCount++;
-				// After 100 waves reset timer to 0, makes me feel safer having this here.
-				// if (timer >= 100f) {
-				// 	timer = 0f;
-				// }
-			//}
+			// Compute the Y offset for each character.
+			float yOffset = (waveCurve.Evaluate(timer) * curveScale);
+			// Apply offset to adjust our pivot point.
+			vertices[vertexIndex + 0].y = originalY0 + yOffset;
+			vertices[vertexIndex + 1].y = originalY1 + yOffset;
+			vertices[vertexIndex + 2].y = originalY2 + yOffset;
+			vertices[vertexIndex + 3].y = originalY3 + yOffset;
+			// Upload the mesh with the revised information.
+			m_TextComponent.UpdateVertexData();
+			// When to force update the vertices.
+			updateAfterCount++;
 			// Update every x seconds.
 			yield return null;
 		}

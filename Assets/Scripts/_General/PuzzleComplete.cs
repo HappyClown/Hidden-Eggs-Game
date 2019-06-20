@@ -14,18 +14,19 @@ public class PuzzleComplete : MonoBehaviour {
 	public ParticleSystem rightTrailFX;
 	[Header ("Sequence")]
 	public bool endSeq;
-	public float appear, open, stopTrail, end;
-	private bool appearB, openB, stopTrailB, endB;
+	public float appear, fx, stopTrail, end;
+	private bool appearB, fxB, stopTrailB, endB;
 	private float seqTimer;
 	[Header ("General")]
 	public float revealDur;
 	public AnimationCurve revealCurve;
-	public bool reveal;
+	public bool reveal, reset;
 	private float revTimer;
-	[Header ("Scripts")]
+	[Header ("References")]
 	public AudioSceneMarketPuzzle audioSceneMarketPuzzScript;
 	public FadeInOutSprite leftPieceFadeScript, rightPieceFadeScript;
-	public TMPTextColorFade tMPTextColorScript;
+	public TMPTextColorFade textColorScript;
+	public TMPTextFall textFallScript;
 
 	void Update () {
 		if (endSeq) {
@@ -33,18 +34,19 @@ public class PuzzleComplete : MonoBehaviour {
 			if (seqTimer >= appear && !appearB) {
 				//FadeInPieces(); 
 				FadeInText();
-				reveal = true;
 				appearB = true;
 			}
-			if (seqTimer >= open && !openB) {
-				SetupOpening();
-				openB = true;
+			if (seqTimer >= fx && !fxB) {
+				PlayFXs();
+				reveal = true;
+				fxB = true;
 			}
 			if (seqTimer >= stopTrail && !stopTrailB) {
 				StopTrailFX();
 				stopTrailB = true;
 			}
 			if (seqTimer >= end && !endB) {
+				endSeq = false;
 				EndPuzzle();
 				endB = true;
 			}
@@ -52,6 +54,10 @@ public class PuzzleComplete : MonoBehaviour {
 
 		if (reveal) {
 			Revealing();
+		}
+
+		if (reset) {
+			Reset();
 		}
 	}
 
@@ -70,7 +76,7 @@ public class PuzzleComplete : MonoBehaviour {
 		rightPieceFadeScript.FadeIn();
 	}
 
-	void SetupOpening() {
+	void PlayFXs() {
 		leftTrailFX.Play();
 		rightTrailFX.Play();
 		//reveal = true;
@@ -82,12 +88,23 @@ public class PuzzleComplete : MonoBehaviour {
 	}
 
 	void EndPuzzle() {
-		audioSceneMarketPuzzScript.StopSceneMusic();
-		audioSceneMarketPuzzScript.PlayTransitionMusic();
-		SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
+		//audioSceneMarketPuzzScript.StopSceneMusic();
+		//audioSceneMarketPuzzScript.PlayTransitionMusic();
+		//SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
 	}
 
 	void FadeInText() {
-		tMPTextColorScript.startFadeIn = true;
+		//textColorScript.startFadeIn = true;
+		textFallScript.fallOn = true;
+	}
+
+	void Reset() {
+		textColorScript.Reset();
+		seqTimer = 0f;
+		appearB = false;
+		fxB = false;
+		stopTrailB = false;
+		endB = false;
+		reset = false;
 	}
 }

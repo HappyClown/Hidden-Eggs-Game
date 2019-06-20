@@ -11,6 +11,8 @@ public class TMPWarpText : MonoBehaviour {
 	//public float AngleMultiplier = 1.0f;
 	//public float SpeedMultiplier = 1.0f;
 	public float CurveScale = 1.0f;
+	[Header ("References")]
+	public TMPMotionHandler handlerScript;
 	[Header ("Info")]
 	public bool warping;
 	public TMP_Text m_TextComponent;
