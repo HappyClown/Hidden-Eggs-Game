@@ -199,9 +199,10 @@ GameObject:
   - component: {fileID: 4044542282466906}
   - component: {fileID: 114375100551085838}
   - component: {fileID: 114240250035061422}
+  - component: {fileID: 114215625341773946}
   m_Layer: 0
   m_Name: GlobalVariables
-  m_TagString: Untagged
+  m_TagString: GlobalVariables
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,6 +249,23 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114215625341773946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1807088871088516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicVolume: 0.5
+  SFXVolume: 0.5
+  MasterVolume: 0.8
+  volumeTests: 0.8
+  Muted: 0
+  Paused: 0
 --- !u!114 &114218338253328110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -343,31 +361,31 @@ MonoBehaviour:
   parkPuzName: Kite Catcher
   beachPuzName: Odd Shells
   eggsFoundBools: 
+  eggsFoundOrder: 
   silverEggsCount: 0
-  eggToSave: 0
-  RiddleSolved: 0
-  marketEggsFoundBools: 
-  marketSilverEggsCount: 0
-  marketPuzzSilEggsCount: 
-  marketSceneSilEggsCount: 
-  rainbowRiddleSolved: 0
-  marketPuzzMaxLvl: 0
-  marketTotalEggsFound: 0
-  marketLevelComplete: 0
-  parkEggsFoundBools: 
-  parkSilverEggsCount: 0
-  parkPuzzSilEggsCount: 
-  parkSceneSilEggsCount: 
-  hopscotchRiddleSolved: 0
-  parkPuzzMaxLvl: 0
-  parkTotalEggsFound: 0
-  parkLevelComplete: 0
-  beachEggsFoundBools: 
-  beachSilverEggsCount: 0
-  crabRiddleSolved: 0
-  beachTotalEggsFound: 0
+  puzzSilEggsCount: 
+  sceneSilEggsCount: 
+  riddleSolved: 0
+  puzzMaxLvl: 0
+  totalEggsFound: 0
+  levelComplete: 0
+  birdIntroDone: 0
+  puzzIntroDone: 0
+  dissSeasonsBools: 
+  hubTotalEggsFound: 0
+  levelsCompleted: 0
   clickOnEggsScript: {fileID: 0}
   eggHolder: {fileID: 0}
+  dissSeasonsScript: {fileID: 0}
+  marketSE: 0
+  marketGE: 0
+  marketNE: 0
+  parkSE: 0
+  parkGE: 0
+  parkNE: 0
+  beachSE: 0
+  beachGE: 0
+  beachNE: 0
 --- !u!114 &114408088683098844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -473,6 +491,7 @@ MonoBehaviour:
   fadeDuration: 2.5
   setInactiveOnFadeOut: 1
   myDisplayType: 1
+  t: 0
 --- !u!114 &114554503347980576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -714,6 +733,7 @@ MonoBehaviour:
   fadeDuration: 2.5
   setInactiveOnFadeOut: 1
   myDisplayType: 1
+  t: 0
 --- !u!114 &114874146575389992
 MonoBehaviour:
   m_ObjectHideFlags: 1

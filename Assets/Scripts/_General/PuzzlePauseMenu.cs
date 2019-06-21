@@ -31,8 +31,10 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	void Start () {
 		menuCG.alpha = 0;
 		menuCG.interactable = false;
-		puzzleConfCG.alpha = 0;
-		puzzleConfCG.interactable = false;
+		if(puzzleConfCG){
+			puzzleConfCG.alpha = 0;
+			puzzleConfCG.interactable = false;
+		}
 	}
 	
 	void Update () {

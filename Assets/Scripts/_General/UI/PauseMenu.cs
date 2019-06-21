@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour {
 	public LevelTapMannager myTap;
 	public Slider musicSlider, sfxSlider, panningSlider;
 	void Awake(){
+		myAudio = GameObject.FindGameObjectWithTag("GlobalVariables").GetComponent<AudioVolumeSettings>();
 		sfxVolume = PlayerPrefs.GetFloat("sfxVolume",myAudio.SFXVolume);
 		musicVolume = PlayerPrefs.GetFloat("musicVolume",myAudio.MusicVolume);
 		panningLevel =  PlayerPrefs.GetFloat("panningLevel",myTap.panningSpeed);
@@ -23,11 +24,11 @@ public class PauseMenu : MonoBehaviour {
 		// musicMute = PlayerPrefs.GetInt("musicMute",tempMusicMute);
 		// if(sfxMute == 1){myAudio.Muted = true;}else{myAudio.Muted = false;}
 		// if(musicMute == 1){myAudio.Paused = true;}else{myAudio.Paused = false;}
+	}
+	void Start(){
 		myAudio.SFXVolume = sfxVolume;
 		myAudio.MusicVolume = musicVolume;
 		myTap.panningSpeed = panningLevel;
-	}
-	void Start(){
 		if(myAudio.Muted){	sfxSlider.value = 0;}else{	sfxSlider.value = sfxVolume;}
 		if(myAudio.Paused){	musicSlider.value = 0;}else{	musicSlider.value = musicVolume;}
 		panningSlider.value = panningLevel;
