@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 222612669367717658}
   - component: {fileID: 114233147099947780}
   - component: {fileID: 114103471835423760}
-  - component: {fileID: 114661090813848546}
+  - component: {fileID: 114819332387981464}
   m_Layer: 5
   m_Name: Cancel Button
   m_TagString: PuzzlePauseMenu
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 222669733250224688}
   - component: {fileID: 114512703376488286}
   - component: {fileID: 114735657264470394}
-  - component: {fileID: 114384642159854662}
+  - component: {fileID: 114012914933945504}
   m_Layer: 5
   m_Name: Confirm Button
   m_TagString: PuzzlePauseMenu
@@ -284,6 +284,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.13, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &114012914933945504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1499397852797612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7534cad5221fe9429029b020519827e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myClickOnEggs: {fileID: 0}
+  button: {fileID: 114735657264470394}
 --- !u!114 &114016058804859602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -493,19 +506,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114384642159854662
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1499397852797612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 439752213f2000341ac0edd05a7d944a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: The Village
-  sceneTapEnabScript: {fileID: 0}
 --- !u!114 &114400672020448196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -698,21 +698,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114661090813848546
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1311047059999090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7df18b1ac839834a8d8bcf0ae7199fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slideInHelpScript: {fileID: 0}
-  puzzlePauseScript: {fileID: 0}
-  button: {fileID: 114103471835423760}
-  inScene: 1
 --- !u!114 &114676116645125340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,6 +793,21 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114819332387981464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311047059999090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324628521c495564cb9d53c55de29b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzPauseScript: {fileID: 0}
+  button: {fileID: 114103471835423760}
+  forMainMenu: 0
+  forPuzzleMenu: 1
 --- !u!114 &114892873201816772
 MonoBehaviour:
   m_ObjectHideFlags: 1
