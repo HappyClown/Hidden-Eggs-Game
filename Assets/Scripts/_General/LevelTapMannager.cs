@@ -10,9 +10,9 @@ public class LevelTapMannager : MonoBehaviour {
 	//Click on egg script reference for the single tap
 	public ClickOnEggs myClickOnEggs;
 	//Death zone for panning move and min time for double tap and the speed
-	[Header("5 - 10 - 0.5 - 3 - 5")]
-	public float panningDeathZone;
-	public float panningSpeed, minDoubleTapTime, dTapMoveSpeed, dTapZoomSpeed;
+	[Header("Deathzone inputDetec drag section")]
+	public float panningSpeed;
+	public float dTapMoveSpeed, dTapZoomSpeed;
 	//Panning Move bool nad doubleTapped
 	private bool  doubleTapped, zoomIn;
 	//movement vectors
@@ -183,8 +183,11 @@ public class LevelTapMannager : MonoBehaviour {
 	}
 	void PanningCamera(){
 		if(cam.orthographicSize < maxCameraSize){
+		float slideMagnitude = (myInput.draggingPosition - myInput.prevDragPosition).magnitude;
 		Vector2 dir = (myInput.draggingPosition - myInput.prevDragPosition).normalized * -1;
-		cam.transform.position += new Vector3(dir.x,dir.y,0)*Time.deltaTime*panningSpeed;
+		Vector3 newPos = cam.transform.position + new Vector3(dir.x,dir.y,0)*(slideMagnitude*0.01f);
+		cam.transform.position = Vector3.Lerp(cam.transform.position,newPos,Time.deltaTime*panningSpeed);
+		//cam.transform.position += new Vector3(dir.x,dir.y,0)*Time.deltaTime*panningSpeed;
 		}
 	}
 	void FixCameraPosition(){

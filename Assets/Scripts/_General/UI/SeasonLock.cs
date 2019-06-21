@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SeasonLock : MonoBehaviour {
 
 	public float eggsRequired, whiteSpeed, iterations, setUpTime;
-	private float timer,iterCounter;
+	private float timer;
+	public TextMeshProUGUI myEggCounter;
+	private int iterCounter;
 	public RectTransform  whiteTarget, whiteImage, whiteStartPos;
 	public Image closedLock, openLock;
 	public GameObject bannerTitle,comingSoonTitle,lockMask;
@@ -25,6 +28,11 @@ public class SeasonLock : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		float eggsLeft;
+		eggsLeft = eggsRequired - myCount.totEgg;
+		if(eggsLeft <= 0){
+			eggsLeft = 0;
+		}
 		if(myHub.inHub){
 			if(!checkSeason){
 				CheckUnlock();
@@ -41,10 +49,10 @@ public class SeasonLock : MonoBehaviour {
 					Debug.Log(myCount.totEgg);
 				}
 			}
-			else if(myCount.totEgg >= eggsRequired && !unlocking && locked){
+			else if(eggsLeft <= 0 && !unlocking && locked){
 				UnlockSeason();
 			}
-			else if(unlocking){
+			else if(unlocking && locked){
 				timer += Time.deltaTime * whiteSpeed;
 				if(timer <= 1){
 					whiteImage.position = Vector3.Lerp(whiteStartPos.position,whiteTarget.position,timer);
@@ -55,7 +63,6 @@ public class SeasonLock : MonoBehaviour {
 					{
 						timer = 0;
 						locked = false;
-						unlocking = false;
 						UnlockSequence();
 					}
 					else{
@@ -64,7 +71,13 @@ public class SeasonLock : MonoBehaviour {
 					}
 				}
 			}
+			else if (unlocking)
+			{
+					RemoveLock();
+					unlocking = false;
+			}
 		}
+		myEggCounter.text = eggsLeft.ToString();
 	}
 	void CheckUnlock(){
 		//Check if the season is already unlocked
@@ -96,5 +109,26 @@ public class SeasonLock : MonoBehaviour {
 	void UnlockSequence(){
 		closedLock.gameObject.SetActive(false);
 		openLock.gameObject.SetActive(true);
+		lockMask.SetActive(false);
+	}
+	void RemoveLock(){
+		openLock.gameObject.GetComponent<FadeInOutImage>().FadeOut();
+		bannerTitle.GetComponent<FadeInOutImage>().FadeOut();
+		FadeInOutTMP[] myFade =  bannerTitle.GetComponentsInChildren<FadeInOutTMP>();
+		foreach (FadeInOutTMP fade in myFade)
+		{
+			fade.FadeOut();
+		}
+		if(comingSoonTit){
+			float delay = openLock.gameObject.GetComponent<FadeInOutImage>().fadeDuration;
+			comingSoonTitle.SetActive(true);
+			FadeInOutTMP textFade = comingSoonTitle.GetComponentInChildren<FadeInOutTMP>();
+			FadeInOutImage imgFade = comingSoonTitle.GetComponent<FadeInOutImage>();
+			textFade.FadeIn();
+			imgFade.FadeIn();
+		}
+		else{
+			//activate next season!!!
+		}
 	}
 }
