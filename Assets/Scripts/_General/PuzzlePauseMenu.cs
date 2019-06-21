@@ -143,6 +143,9 @@ public class PuzzlePauseMenu : MonoBehaviour {
 			if (puzzEngScript) {
 				puzzEngScript.canPlay = true;
 			}
+			if (sceneTapScript) {
+					sceneTapScript.TapLevelStuffTrue();
+			}
 		}
 	}
 
@@ -208,6 +211,9 @@ public class PuzzlePauseMenu : MonoBehaviour {
 			puzzleConfActive = false;
 			if (puzzEngScript) {
 				puzzEngScript.canPlay = true;
+			}
+			if (sceneTapScript) {
+					sceneTapScript.TapLevelStuffTrue();
 			}
 		}
 	}
