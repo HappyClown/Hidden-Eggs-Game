@@ -75,19 +75,16 @@ public class SceneFade : MonoBehaviour
 		titleCardTxt.color = new Color(titleCardTxt.color.r, titleCardTxt.color.g, titleCardTxt.color.b, titleCardImg.color.a);
 
 		#region Title Card & Black Background scene transition.
-		if (titCardSceneTrans)
-		{
-			
-			if(newAlpha == 0){
+		if (titCardSceneTrans) {
+			if(newAlpha == 0) {
 				myOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 				myOperation.allowSceneActivation = false;
+				//QualitySettings.asyncUploadTimeSlice = 2;
 			}
 			//if (!setupNewCard) { ChoseTitleCard(); }
 			if (fadeImage != blckFadeImage) { fadeImage = blckFadeImage;}
 			// -- FADE OUT CURRENT SCENE -- //
-			if (fadeSceneOut)
-			{
-				
+			if (fadeSceneOut) {
 				if (fadeSceneIn) { fadeSceneIn = false; }
 				// Set the transition image to raycast target to block the player from tapping on any buttons while it is transitioning.
 				if (!fadeImage.raycastTarget) { fadeImage.raycastTarget = true; }

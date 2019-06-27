@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelCompleteEggSpawner : MonoBehaviour {
-	public List<LevelCompleteEggMove> regEggs, silEggs, golEggs;
-	public List<float> regEggDelay, silEggDelay, golEggDelay;
-	private bool startEggSpawning, startedRegEggs, startedSilEggs, startedGolEggs;
-	//public float delay;
-	public float regEggDuration, silEggDuration, golEggDuration;
+	[Header ("Settings")]
+	public float regEggDuration;
+	public float  silEggDuration, golEggDuration;
 	public float spawnRegEggs, spawnSilEggs, spawnGolEggs;
-	public AnimationCurve animCurve;
+	public AnimationCurve spawnCurve;
+	[Header ("References")]
+	public List<LevelCompleteEggMove> regEggs;
+	public List<LevelCompleteEggMove> silEggs, golEggs;
+	[Header ("Info")]
+	public List<float> regEggDelay;
+	public List<float> silEggDelay, golEggDelay;
+	private bool startEggSpawning, startedRegEggs, startedSilEggs, startedGolEggs;
 	private float eggTypeTimer, regSpawnInterval, silSpawnInterval, golSpawnInterval;
-	// private float eggDelay;
-
-	void Start () {
-		//eggDelay = delay;
-	}
 
 	void Update () {
 		if (startEggSpawning) {
@@ -68,7 +68,7 @@ public class LevelCompleteEggSpawner : MonoBehaviour {
 		float spawnTime = regSpawnInterval;
 		for(int i = 0; i < regEggs.Count; i++) 
 		{
-			regEggDelay.Add(animCurve.Evaluate(spawnTime));
+			regEggDelay.Add(spawnCurve.Evaluate(spawnTime));
 			spawnTime += regSpawnInterval;
 		}
 		silEggDelay.Clear();
@@ -76,7 +76,7 @@ public class LevelCompleteEggSpawner : MonoBehaviour {
 		spawnTime = silSpawnInterval;
 		for(int i = 0; i < silEggs.Count; i++) 
 		{
-			silEggDelay.Add(animCurve.Evaluate(spawnTime));
+			silEggDelay.Add(spawnCurve.Evaluate(spawnTime));
 			spawnTime += silSpawnInterval;
 		}
 		golEggDelay.Clear();
@@ -84,7 +84,7 @@ public class LevelCompleteEggSpawner : MonoBehaviour {
 		spawnTime = golSpawnInterval;
 		for(int i = 0; i < golEggs.Count; i++) 
 		{
-			golEggDelay.Add(animCurve.Evaluate(spawnTime));
+			golEggDelay.Add(spawnCurve.Evaluate(spawnTime));
 			spawnTime += golSpawnInterval;
 		}
 	}

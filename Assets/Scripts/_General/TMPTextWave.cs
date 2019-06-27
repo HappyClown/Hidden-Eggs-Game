@@ -9,12 +9,10 @@ public class TMPTextWave : MonoBehaviour {
 	[Header ("Settings")]
 	public AnimationCurve waveCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1, 0f));
 	public float curveScale = 1.0f;
-	//public float SpeedMultiplier = 1.0f;
-	//public float CurveScale = 1.0f;
 	public float timeBetweenChar = 0.1f;
 	public float waveDur = 1f;
 	public bool randomOrder;
-	//public float charWaveUpdateTime = 0.025f;
+	public int firstChar, lastChar;
 	[Header ("References")]
 	public TMPMotionHandler handlerScript;
 	[Header ("Info")]
@@ -24,7 +22,6 @@ public class TMPTextWave : MonoBehaviour {
 	public int curChar = 0;
 	private int updateAfterCount = 0;
 	TMP_TextInfo textInfo;
-	// TMP_MeshInfo[] cachedMeshInfo;
 	int characterCount;
 	public List<int> charOrder;
 
@@ -34,7 +31,7 @@ public class TMPTextWave : MonoBehaviour {
 			waveOn = false;
 		}
 		
-		if (waving && updateAfterCount >= characterCount * (curChar / characterCount)) {
+		if (waving && updateAfterCount >= lastChar * (curChar / lastChar)) {
 			m_TextComponent.ForceMeshUpdate();
 			updateAfterCount = 0;
 		}
@@ -43,9 +40,13 @@ public class TMPTextWave : MonoBehaviour {
 	IEnumerator StartWave() {
 		//fullyWaving = true;
 		waving = true;
-		if (curChar == characterCount) {
-			curChar = 0;
-		}
+		
+		//firstChar = 0;
+		//lastChar = characterCount;
+
+		//if (curChar == lastChar) {
+			curChar = firstChar;
+		//}
 		waveCurve.preWrapMode = WrapMode.Loop;
         waveCurve.postWrapMode = WrapMode.Loop;
 		
@@ -68,7 +69,7 @@ public class TMPTextWave : MonoBehaviour {
 		Vector3[] verts;
 
 		// Start the wave from Left to Right.
-		while (curChar < characterCount)
+		while (curChar < lastChar)
 		{
 			// Instructing TextMesh Pro not to upload the mesh as we will be modifying it.
 			m_TextComponent.renderMode = TextRenderFlags.DontRender;
@@ -123,5 +124,6 @@ public class TMPTextWave : MonoBehaviour {
 
 	public void StartSetup() {
 		m_TextComponent = this.gameObject.GetComponent<TMP_Text>();
+		if (lastChar == 0) lastChar = m_TextComponent.textInfo.characterCount;
 	}
 }

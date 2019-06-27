@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneSilverEggSpawner : MonoBehaviour {
+	[Header("Settings")]
 	public bool spawnSilverEggs;
 	public float silverEggSpawnDelay;
-	private int silEggSpawned;
+	[Header ("References")]
+	public List<GameObject> silEggs;
+	public ClickOnEggs clickOnEggsScript;
+	[Header ("Info")]
 	public int puzzSilEggCount;
 	public int sceneSilEggCount;
-	public List<GameObject> silEggs;
 	public List<int> puzzSilEggCountList;
 	public List<int> sceneSilEggCountList;
-	public ClickOnEggs clickOnEggsScript;
+	private int silEggSpawned;
 
 	void Awake () {
 		SetCorrectLevelLists();

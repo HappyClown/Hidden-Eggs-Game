@@ -8,9 +8,8 @@ public class TMPWarpText : MonoBehaviour {
 	public bool StartAnimatedWarp, stopWarping;
 	[Header ("Settings")]
 	public AnimationCurve VertexCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1, 0f));
-	//public float AngleMultiplier = 1.0f;
-	//public float SpeedMultiplier = 1.0f;
 	public float CurveScale = 1.0f;
+	//public bool rotateChars;
 	[Header ("References")]
 	public TMPMotionHandler handlerScript;
 	[Header ("Info")]
@@ -39,7 +38,6 @@ public class TMPWarpText : MonoBehaviour {
 
 	public void StartSetup() {
 		m_TextComponent = this.gameObject.GetComponent<TMP_Text>();
-		// Debug.Log(m_TextComponent.gameObject);
 		WarpText();
 	}
 
@@ -49,28 +47,16 @@ public class TMPWarpText : MonoBehaviour {
 
 		Vector3[] vertices;
 		Matrix4x4 matrix;
-
-		m_TextComponent.havePropertiesChanged = true; // Need to force the TextMeshPro Object to be updated.
-		//CurveScale *= 10;
-		//float old_CurveScale = CurveScale;
-		//AnimationCurve old_curve = CopyAnimationCurve(VertexCurve);
-
-		// 
-
-		//old_CurveScale = CurveScale;
-		//old_curve = CopyAnimationCurve(VertexCurve);
-
-		m_TextComponent.ForceMeshUpdate(); // Generate the mesh and populate the textInfo with data we can use and manipulate.
+		// Need to force the TextMeshPro Object to be updated.
+		m_TextComponent.havePropertiesChanged = true;
+		// Generate the mesh and populate the textInfo with data we can use and manipulate.
+		m_TextComponent.ForceMeshUpdate(); 
 
 		TMP_TextInfo textInfo = m_TextComponent.textInfo;
 		int characterCount = textInfo.characterCount;
 
-		//vertices = textInfo.meshInfo[0].vertices;
-		//int lastVertexIndex = textInfo.characterInfo[characterCount - 1].vertexIndex;
-
 		float boundsMinX = m_TextComponent.bounds.min.x;  //textInfo.meshInfo[0].mesh.bounds.min.x;
 		float boundsMaxX = m_TextComponent.bounds.max.x;  //textInfo.meshInfo[0].mesh.bounds.max.x;
-
 
 		// Update Vertex position and rotation.
 		for (int i = 0; i < characterCount; i++)
@@ -120,8 +106,6 @@ public class TMPWarpText : MonoBehaviour {
 			vertices[vertexIndex + 1] += offsetToMidBaseline;
 			vertices[vertexIndex + 2] += offsetToMidBaseline;
 			vertices[vertexIndex + 3] += offsetToMidBaseline;
-
-			//Debug.Log(offsetToMidBaseline);
 		}
 
 		// Upload the mesh with the revised information

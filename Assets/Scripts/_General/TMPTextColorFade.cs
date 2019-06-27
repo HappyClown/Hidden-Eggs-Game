@@ -61,6 +61,9 @@ public class TMPTextColorFade : MonoBehaviour {
 		if (this.gameObject.GetComponent<TMPWarpText>()) {
 			warpScript = this.gameObject.GetComponent<TMPWarpText>();
 		}
+		if (this.gameObject.GetComponent<TMPMotionHandler>()) {
+			handlerScript = this.gameObject.GetComponent<TMPMotionHandler>();
+		}
 	}
 
 	public void Reset() {
@@ -286,7 +289,7 @@ public class TMPTextColorFade : MonoBehaviour {
 			// Set the TMP font settings color back to 1 in order to be able to set it back to 0, making the whole text invisible again;
 			// This is done in the update to allow other vertex modifying scripts to update their position after in the same frame. 
 			updateMaxAlpha = true;
-			//tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 1);
+			tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 1);
 			// To make sure the text stays warped after the complete fade in.
 			if (stayWarped && warpScript) {
 				// Stop the infinite animated warp loop.

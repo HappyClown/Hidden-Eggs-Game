@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HelperBirdIntro : MonoBehaviour {
-	private Vector3 mousePos;
-	private Vector2 mousePos2D;
-	private RaycastHit2D hit;
-	public float shakeCD, shakeFXCD;
-	private float timer;
-	private bool fxPlayed;
 	[Header("Anim Shake")]
 	public bool animShake;
 	public Animator anim;
 	public List<ParticleSystem> shakeParSys;
 	[Header("Dissolve")]
-	public Material dissMat;
 	public float dissDuration;
+	public Material dissMat;
 	public bool waitToStartSeq;
 	private float dissAmnt;
 	private bool isDissolving, isDissolved, birdTapped;
@@ -30,6 +24,13 @@ public class HelperBirdIntro : MonoBehaviour {
 	public SceneTapEnabler sceneTapEnabScript;
 	public BirdIntroSave birdIntroSaveScript;
 	public AudioSceneGeneral audioSceneGenScript;
+	[Header ("Info")]
+	private Vector3 mousePos;
+	private Vector2 mousePos2D;
+	private RaycastHit2D hit;
+	public float shakeCD, shakeFXCD;
+	private float timer;
+	private bool fxPlayed;
 
 	void Start () {
 		birdIntroSaveScript.LoadBirdIntro();

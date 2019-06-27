@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1510535766815034}
+  m_RootGameObject: {fileID: 1574498488788904}
   m_IsPrefabParent: 1
---- !u!1 &1510535766815034
+--- !u!1 &1574498488788904
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4505999315713888}
-  - component: {fileID: 114176662540091576}
-  - component: {fileID: 114447039048698858}
+  - component: {fileID: 4937784487624362}
+  - component: {fileID: 114811448791080584}
+  - component: {fileID: 114737309965395702}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -28,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4505999315713888
+--- !u!4 &4937784487624362
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1510535766815034}
+  m_GameObject: {fileID: 1574498488788904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.673231, y: 0.5812991, z: 1.8059883}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,39 +41,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114176662540091576
+--- !u!114 &114737309965395702
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1510535766815034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdfb9e5f0eeac434f9cda2e51f98745e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneMusicEvent: event:/Music/MusicScenes/Park
-  transEvent: event:/SFX/SFX_General/TransitionsSound
-  EggClickEvent: event:/SFX/SFX_General/Egg_Click
-  goldEggClickEvent: event:/SFX/SFX_General/Egg_Click_Gold
-  panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
-  panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
-  puzzleUnlockedEvent: 
-  birdEvent: event:/SFX/Park/Park_Bird
-  BackMenuBtn: {fileID: 0}
-  BirdHelpBtn: {fileID: 0}
-  RiddleBtn: {fileID: 0}
-  puzzleButtonEvent: event:/SFX/Park/Puzzle_Click
-  buttonEvent: event:/SFX/SFX_General/Button
---- !u!114 &114447039048698858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1510535766815034}
+  m_GameObject: {fileID: 1574498488788904}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01c7ac659576dfa4890f18276c339c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   childrenGameEvent: event:/SFX/Park/GoldenEgg_childrenGame
+--- !u!114 &114811448791080584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574498488788904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb9e5f0eeac434f9cda2e51f98745e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackMenuBtn: {fileID: 0}
+  lvlCompleteBtn: {fileID: 0}
+  sceneMusicEvent: event:/Music/MusicScenes/Park
+  transEvent: event:/SFX/SFX_General/TransitionsSound
+  EggClickEvent: event:/SFX/SFX_General/Egg_Click
+  goldEggClickEvent: event:/SFX/SFX_General/Egg_Click_Gold
+  goldEggAnimationEvent: event:/SFX/SFX_General/GoldenEggAnimation
+  goldEggShimyEvent: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
+  silverEggSlidePanelEvent: event:/SFX/SFX_General/SilverEggs_SlideToPanel
+  panelOpenEvent: event:/SFX/SFX_General/MenuEggOpen
+  panelCloseEvent: event:/SFX/SFX_General/MenuEggClose
+  puzzlePieceEvent: event:/SFX/SFX_General/PuzzlePiece
+  trailFXEvent: event:/SFX/SFX_General/FX_trail
+  puzzleUnlockedEvent: event:/SFX/Park/PuzzleShimyLoop_park
+  puzzleButtonEvent: event:/SFX/Park/Puzzle_Click
+  unfrozenBirdEvent: event:/SFX/SFX_General/UnfrozenBird
+  frozenBirdShakeEvent: event:/SFX/SFX_General/FrozenBirdShake
+  lvlCompleteEvent: 
+  goldenEggStingerEvent: event:/Music/Stingers/GoldenEgg
+  buttonEvent: event:/SFX/SFX_General/Button
+  SceneIn: 0
+  AlphaValue: 0
+  puzzleUnlocked: 0
+  puzImage: {fileID: 0}
+  currentScene: 
+  egg: {fileID: 0}
+  audioHelperBirdScript: {fileID: 0}
