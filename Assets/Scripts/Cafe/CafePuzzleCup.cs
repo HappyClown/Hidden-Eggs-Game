@@ -34,6 +34,7 @@ public class CafePuzzleCup : MonoBehaviour {
 				for (int i = 0; i < myLevel.myCups.Length; i++)
 				{
 					if(myLevel.myCups[i].myColor == myColor){
+						myLevel.myCups[i].nextCell.occupied = false;
 						myLevel.myCups[i].nextCell = myLevel.myCups[i].lastCell;
 						myLevel.myCups[i].SetCell();
 					}
