@@ -47,7 +47,7 @@ public class LevelCompleteEggMove : MonoBehaviour {
 					eggBagAnim.SetTrigger("Scale");
 					levelCompEggCounterScript.eggAmnt++;
 					if (levelCompEggCounterScript.eggAmnt == 1) {
-						levelCompleteEggbagScript.MakeNewBagAppear();
+						levelCompleteEggbagScript.MakeNewBagFadeIn();
 					}
 					audioSceneGenScript.silverEggsPanel(this.gameObject);
 					myFadeScript.FadeOut();

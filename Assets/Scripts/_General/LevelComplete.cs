@@ -9,8 +9,8 @@ public class LevelComplete : MonoBehaviour
 {
 	#region LevelComplete Script Variables
 	[Header("Sequence")]
-	public float darkenScreen; public float showCongrats, startTmpWave, showEggs, showTotalCounter, startEggMove, showBag, endLevel;
-	private bool darkenScreenStarted, showCongratsStarted, tmpWaveStarted, showEggsStarted, showTotalCounterStarted, startEggMoveStarted, showBagStarted, levelEnded;
+	public float darkenScreen; public float showCongrats, startTmpWave, showEggs, showTotalCounter, startEggMove, showBag, showBagGlow, endLevel;
+	private bool darkenScreenStarted, showCongratsStarted, tmpWaveStarted, showEggsStarted, showTotalCounterStarted, startEggMoveStarted, showBagStarted, showBagGlowStarted, levelEnded;
 
 	[Header("References")]
 	public ClickOnEggs clickOnEggsScript;
@@ -77,9 +77,11 @@ public class LevelComplete : MonoBehaviour
 				tmpWaveStarted = true;
 			}
 			if (timer > showEggs && !showEggsStarted) { 
-				foreach (FadeInOutSprite eggFadeScript in eggsFadeScripts)
-				{
-					eggFadeScript.FadeIn();
+				if (eggsFadeScripts.Length > 0) {
+					foreach (FadeInOutSprite eggFadeScript in eggsFadeScripts)
+					{
+						eggFadeScript.FadeIn();
+					}
 				}
 				showEggsStarted = true;
 			}
@@ -93,8 +95,13 @@ public class LevelComplete : MonoBehaviour
 				startEggMoveStarted = true;
 			}
 			if (timer > showBag && !showBagStarted) {
-				levelCompleteEggbagScript.MakeFirstBagAppear();
+				levelCompleteEggbagScript.MakeCurrentBagAppear();
 				showBagStarted = true;
+			}
+			if (timer > showBagGlow && !showBagGlowStarted) {
+				levelCompleteEggbagScript.StartCurrentBagGlow();
+				levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
+				showBagGlowStarted = true;
 			}
 			if (timer > endLevel && !levelEnded) {
 				audioSceneGenScript.TransitionMenu();

@@ -9,8 +9,8 @@ public class LevelCompleteEggSpawner : MonoBehaviour {
 	public float spawnRegEggs, spawnSilEggs, spawnGolEggs;
 	public AnimationCurve spawnCurve;
 	[Header ("References")]
-	public List<LevelCompleteEggMove> regEggs;
-	public List<LevelCompleteEggMove> silEggs, golEggs;
+	public List<LevelCompleteEggMoveSpin> regEggs;
+	public List<LevelCompleteEggMoveSpin> silEggs, golEggs;
 	[Header ("Info")]
 	public List<float> regEggDelay;
 	public List<float> silEggDelay, golEggDelay;

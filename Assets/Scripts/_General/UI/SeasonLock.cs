@@ -5,19 +5,24 @@ using UnityEngine.UI;
 using TMPro;
 
 public class SeasonLock : MonoBehaviour {
-
+	[Header ("Settings")]
+	public bool comingSoonTit;
 	public float eggsRequired, whiteSpeed, iterations, setUpTime;
-	private float timer;
+	[Header ("References")]
+	public Hub myHub;
+	public HubEggcounts myCount;
+	public FadeInOutImage backColorFadeScript;
 	public TextMeshProUGUI myEggCounter;
-	private int iterCounter;
 	public RectTransform  whiteTarget, whiteImage, whiteStartPos;
 	public Image closedLock, openLock;
-	public GameObject bannerTitle,comingSoonTitle,lockMask;
-	public HubEggcounts myCount;
-	public Hub myHub;
-	public bool locked, comingSoonTit, settingUp;
+	public GameObject bannerTitle, comingSoonTitle, lockMask;
+	[Header ("Info")]
+	public bool locked;
+	public bool settingUp;
 	private bool checkSeason, unlocking;
-	// Use this for initialization
+	private int iterCounter;
+	private float timer;
+
 	void Start () {
 		unlocking = false;
 		timer = 0;
@@ -26,7 +31,6 @@ public class SeasonLock : MonoBehaviour {
 		checkSeason = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		float eggsLeft;
 		eggsLeft = eggsRequired - myCount.totEgg;
@@ -53,6 +57,7 @@ public class SeasonLock : MonoBehaviour {
 				UnlockSeason();
 			}
 			else if(unlocking && locked){
+				// Unlock sequence starts here.
 				timer += Time.deltaTime * whiteSpeed;
 				if(timer <= 1){
 					whiteImage.position = Vector3.Lerp(whiteStartPos.position,whiteTarget.position,timer);
@@ -83,6 +88,7 @@ public class SeasonLock : MonoBehaviour {
 		//Check if the season is already unlocked
 		if(!locked && comingSoonTitle){
 			bannerTitle.SetActive(false);
+			// To be terminated once all the seasons are implemented.
 			comingSoonTitle.SetActive(true);
 			comingSoonTitle.GetComponent<FadeInOutImage>().FadeIn();
 			comingSoonTitle.GetComponentInChildren<FadeInOutTMP>().FadeIn();
@@ -99,8 +105,10 @@ public class SeasonLock : MonoBehaviour {
 			fade.FadeIn();
 		}
 		closedLock.gameObject.GetComponent<FadeInOutImage>().FadeIn();
+		backColorFadeScript.gameObject.SetActive(true);
+		backColorFadeScript.FadeIn();
 		settingUp = true;
-				Debug.Log("I'm here!!");
+		// Debug.Log("I'm here!!");
 	}
 	void UnlockSeason(){
 		unlocking = true;
@@ -128,7 +136,7 @@ public class SeasonLock : MonoBehaviour {
 			imgFade.FadeIn();
 		}
 		else{
-			//activate next season!!!
+			// Activate next season!!!
 		}
 	}
 }
