@@ -332,7 +332,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 		}
 	}
 
-	public new void UpdateMousePos()
+	public void UpdateMousePos()
 	{
 		mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);

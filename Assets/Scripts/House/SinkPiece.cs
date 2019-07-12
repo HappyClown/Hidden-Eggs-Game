@@ -11,12 +11,14 @@ public class SinkPiece : MonoBehaviour {
 		 bubble
 	 }
 	public pieceTypes pieceType;
-	private Vector3 initialPos;
+	private Vector3 initialPos, initialScale;
 	public PuzzleCell StartingCell, currentCell, nextCell;
+	public AnimationCurve scalingCurve;
 	public bool active, selected, matched, falling, changeCell,showConnections;
 	public float minDistance, gravity, speed, maxFallingSpeed, maxFallingWaterSpeed, waterYpos;
 	// Use this for initialization
 	void Start () {
+		initialScale = this.gameObject.transform.localScale;
 		initialPos = this.gameObject.transform.position;
 		currentCell = StartingCell;
 		currentCell.occupied = falling =  true;
@@ -31,8 +33,9 @@ public class SinkPiece : MonoBehaviour {
 				currentCell.occupied = false;
 				currentCell = nextCell;
 				currentCell.occupied = true;
+				changeCell = false;
 			}
-			if(falling){
+			else if(falling){
 				if(this.transform.position.y < (currentCell.gameObject.transform.position.y + minDistance)){
 					this.transform.position = currentCell.gameObject.transform.position;
 					falling = false;
@@ -55,6 +58,17 @@ public class SinkPiece : MonoBehaviour {
 			}
 			CheckCell();
 		}
+			if(matched){
+				currentCell.occupied = false;
+				active = false;
+				this.gameObject.SetActive(false);
+			}
+			if(selected){
+				float scaleValue = scalingCurve.Evaluate(Time.time);
+				this.gameObject.transform.localScale = initialScale * scaleValue;
+			}else{
+				this.gameObject.transform.localScale = initialScale;
+			}
 	}
 	public void CheckCell(){
 		if(!currentCell.edgeDown){
@@ -65,6 +79,7 @@ public class SinkPiece : MonoBehaviour {
 		}
 	}
 	public void ResetCell(){
+		this.gameObject.SetActive(true);
 		this.transform.position = initialPos;
 		currentCell = StartingCell;
 		currentCell.occupied = falling =  true;
