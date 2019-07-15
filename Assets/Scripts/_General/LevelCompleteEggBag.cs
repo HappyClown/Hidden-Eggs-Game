@@ -13,8 +13,8 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	public List<FadeInOutSprite> bagGlowsScripts;
 	public AudioSceneGeneral audioSceneGenScript;
 	[Header ("Info")]
-	public FadeInOutSprite curGlowScript;
 	public int levelsCompleted;
+	public FadeInOutSprite curGlowFadeScript, curEggbagFadeScript, nextEggbagFadeScript;
 	private float newBagTimer;
 	private bool newBagOn;
 	
@@ -28,9 +28,9 @@ public class LevelCompleteEggBag : MonoBehaviour {
 		if (newBagOn) {
 			newBagTimer += Time.deltaTime;
 			if (newBagTimer > newBagDelay) {
-				eggBags[levelsCompleted].FadeOut();
-				eggBags[levelsCompleted + 1].gameObject.SetActive(true);
-				eggBags[levelsCompleted + 1].FadeIn();
+				curEggbagFadeScript.FadeOut();
+				nextEggbagFadeScript.gameObject.SetActive(true);
+				nextEggbagFadeScript.FadeIn();
 				newBagOn = false;
 			}
 		}
@@ -38,28 +38,32 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	
 	public void MakeCurrentBagAppear() {
 		levelsCompleted = GlobalVariables.globVarScript.levelsCompleted;
-		eggBags[levelsCompleted].gameObject.SetActive(true);
-		eggBags[levelsCompleted].FadeIn();
+		// Assign local references
+		curEggbagFadeScript = eggBags[levelsCompleted];
+		nextEggbagFadeScript = eggBags[levelsCompleted + 1];
+		curEggbagFadeScript.gameObject.SetActive(true);
+		curEggbagFadeScript.FadeIn();
 	}
 
 	public void StartCurrentBagGlow() {
-	levelsCompleted = GlobalVariables.globVarScript.levelsCompleted;
-	curGlowScript = bagGlowsScripts[levelsCompleted];
-	curGlowScript.gameObject.SetActive(true);
-	curGlowScript.FadeIn();
+		// Assign local references
+		levelsCompleted = GlobalVariables.globVarScript.levelsCompleted;
+		curGlowFadeScript = bagGlowsScripts[levelsCompleted];
+		curGlowFadeScript.gameObject.SetActive(true);
+		curGlowFadeScript.FadeIn();
 	}
 
 	public void MakeNewBagFadeIn() {
 		newBagOn = true;
-		eggBags[levelsCompleted].fadeDuration = bagFadeDuration;
-		eggBags[levelsCompleted + 1].fadeDuration = bagFadeDuration;
+		curEggbagFadeScript.fadeDuration = bagFadeDuration;
+		nextEggbagFadeScript.fadeDuration = bagFadeDuration;
 	}
 
 	public void MakeNewBagAppear() {
-		eggBags[levelsCompleted].gameObject.SetActive(false);
-		eggBags[levelsCompleted + 1].gameObject.SetActive(true);
-		eggBags[levelsCompleted + 1].fadeDuration = 0.05f;
-		eggBags[levelsCompleted + 1].FadeIn();
+		curEggbagFadeScript.gameObject.SetActive(false);
+		nextEggbagFadeScript.gameObject.SetActive(true);
+		nextEggbagFadeScript.fadeDuration = 0.05f;
+		nextEggbagFadeScript.FadeIn();
 	}
 
 	public void SaveLevelsCompleted() {

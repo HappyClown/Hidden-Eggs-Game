@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	[Header ("Settings")]
 	public float spinSpeed;
-	public float moveDuration;
+	public float moveDuration, moveDelay;
 	public bool amIGolden;
 	public int myGlowValue;
 	public AnimationCurve animCurve;
@@ -14,12 +14,12 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	[Header ("References")]
 	public LevelCompEggCounter levelCompEggCounterScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
-	public FadeInOutSprite myFadeScript;
+	public FadeInOutSprite myFadeScript, myGlowFadeScript;
 	public AudioSceneGeneral audioSceneGenScript;
 	[Header ("Info")]
 	private Vector3 startPos;
-	private float lerp, mySpawnDelay, spawnTimer;
-	private bool startEggMove, moveEgg;
+	private float lerp, mySpawnDelay, spawnTimer, myMoveDelay;
+	private bool startEggMove, moveEgg, showEgg;
 	private int spinDir = 1;
 
 	void Start () {
@@ -33,29 +33,37 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 		if (startEggMove) {
 			spawnTimer += Time.deltaTime;
 			this.transform.Rotate(Vector3.forward * spinDir * (spinSpeed * Time.deltaTime));
-			if (spawnTimer > mySpawnDelay && !moveEgg) {
+			if (spawnTimer > mySpawnDelay && !showEgg) {
 				myFadeScript.FadeIn();
-				moveEgg = true;
-				endTrans = levelCompleteEggbagScript.eggBags[levelCompleteEggbagScript.levelsCompleted].gameObject.transform;
+				myGlowFadeScript.FadeIn();
+				showEgg = true;
+				endTrans = levelCompleteEggbagScript.curEggbagFadeScript.gameObject.transform;
 			}
-			if (moveEgg) {
-				if (!trailFX.isPlaying) {
-					trailFX.Play(true);
+			if (showEgg) {
+				if (spawnTimer >= myMoveDelay && !moveEgg) {
+					moveEgg = true;
 				}
-				lerp += Time.deltaTime / moveDuration;
-				this.transform.position = Vector3.Lerp(startPos, endTrans.position, animCurve.Evaluate(lerp));
-				if (lerp >= 1) {
-					levelCompEggCounterScript.eggAmnt++;
-					audioSceneGenScript.silverEggsPanel(this.gameObject);
-					myFadeScript.FadeOut();
-					arrivalFX.Play(true);
-					trailFX.Stop(true);
-					moveEgg = false;
-					startEggMove = false;
-					//levelCompleteBagGlowScript.CalculateNewAlpha(myGlowValue);
-					// if (amIGolden) {
-					// 	levelCompleteEggbagScript.MakeNewBagFadeIn();
-					// }
+				if (moveEgg) {
+					if (!trailFX.isPlaying) {
+						trailFX.Play(true);
+					}
+					lerp += Time.deltaTime / moveDuration;
+					this.transform.position = Vector3.Lerp(startPos, endTrans.position, animCurve.Evaluate(lerp));
+					if (lerp >= 1) {
+						levelCompEggCounterScript.eggAmnt++;
+						audioSceneGenScript.silverEggsPanel(this.gameObject);
+						myFadeScript.FadeOut();
+						myGlowFadeScript.FadeOut();
+						arrivalFX.Play(true);
+						trailFX.Stop(true);
+						showEgg = false;
+						startEggMove = false;
+						spawnTimer = 0f;
+						//levelCompleteBagGlowScript.CalculateNewAlpha(myGlowValue);
+						// if (amIGolden) {
+						// 	levelCompleteEggbagScript.MakeNewBagFadeIn();
+						// }
+					}
 				}
 			}
 		}
@@ -65,9 +73,11 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 		spinDir = Random.Range(0, 2) * 2 - 1;
 		startEggMove = true;
 		mySpawnDelay = spawnDelay;
+		myMoveDelay = moveDelay + mySpawnDelay;
 	} 
 
 	public void GetReferences() {
 		myFadeScript = this.GetComponent<FadeInOutSprite>();
+		myGlowFadeScript = this.transform.Find("SmallEggGlow").GetComponent<FadeInOutSprite>();
 	}
 }

@@ -11,6 +11,7 @@ public class ScriptFinder : MonoBehaviour {
 	public List<FadeInOutSprite> fadeInOutSpriteScripts = new List<FadeInOutSprite>();
 	public List<TMPTextColorFade> tmpTextColorFadeScripts = new List<TMPTextColorFade>();
 	public List<TMPWarpText> tmpWarpTextScripts = new List<TMPWarpText>();
+	public List<LevelCompleteEggMoveSpin> lvlCompEggMoveScripts = new List<LevelCompleteEggMoveSpin>();
 
 	public void FillSceneGameObjectList() {
 		Debug.Log("The time at the start of this method: " + Time.time);
@@ -119,6 +120,26 @@ public class ScriptFinder : MonoBehaviour {
 			Undo.RecordObject(tmpWarpTextScript, "Assign TMPWarpText start references");
 			tmpWarpTextScript.StartSetup();
 			EditorUtility.SetDirty(tmpWarpTextScript);
+		}
+	}
+	Debug.Log("The time at the start of this method: " + Time.time);
+	}
+
+	public void TempLvlCompEggMoveRefFinder() {
+	Debug.Log("The time at the start of this method: " + Time.time);
+	lvlCompEggMoveScripts.Clear();
+	foreach(GameObject go in allGOInScene)
+	{
+		if (go.GetComponent<LevelCompleteEggMoveSpin>()) {
+			lvlCompEggMoveScripts.Add(go.GetComponent<LevelCompleteEggMoveSpin>());
+		}
+	}
+	if (lvlCompEggMoveScripts.Count > 0) {
+		foreach(LevelCompleteEggMoveSpin lvlCompEggMoveScript in lvlCompEggMoveScripts)
+		{
+			Undo.RecordObject(lvlCompEggMoveScript, "Assign LevelCompleteEggMoveSpin references");
+			lvlCompEggMoveScript.GetReferences();
+			EditorUtility.SetDirty(lvlCompEggMoveScript);
 		}
 	}
 	Debug.Log("The time at the start of this method: " + Time.time);

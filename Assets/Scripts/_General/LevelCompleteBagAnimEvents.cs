@@ -23,8 +23,8 @@ public class LevelCompleteBagAnimEvents : MonoBehaviour {
 	}
 
 	void FadeOutBagGlow() {
-		lvlCompEggBagScript.curGlowScript.fadeDuration = glowDur;
-		lvlCompEggBagScript.curGlowScript.FadeOut();
+		lvlCompEggBagScript.curGlowFadeScript.fadeDuration = glowDur;
+		lvlCompEggBagScript.curGlowFadeScript.FadeOut();
 	}
 
 	void PlayFlashFX() {
