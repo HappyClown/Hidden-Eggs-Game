@@ -11,7 +11,9 @@ public class SeasonLock : MonoBehaviour {
 	[Header ("References")]
 	public Hub myHub;
 	public HubEggcounts myCount;
+	public Animator unlockAnim;
 	public FadeInOutImage backColorFadeScript;
+	public FadeInOutTMP amntReqFadeScript;
 	public TextMeshProUGUI myEggCounter;
 	public RectTransform  whiteTarget, whiteImage, whiteStartPos;
 	public Image closedLock, openLock;
@@ -58,28 +60,29 @@ public class SeasonLock : MonoBehaviour {
 			}
 			else if(unlocking && locked){
 				// Unlock sequence starts here.
-				timer += Time.deltaTime * whiteSpeed;
-				if(timer <= 1){
-					whiteImage.position = Vector3.Lerp(whiteStartPos.position,whiteTarget.position,timer);
-				}
-				else{
-					iterCounter ++;
-					if(iterCounter == iterations)
-					{
-						timer = 0;
-						locked = false;
-						UnlockSequence();
-					}
-					else{
-						timer = 0;
-						whiteImage.position = whiteStartPos.position;
-					}
-				}
+				// timer += Time.deltaTime * whiteSpeed;
+				// if(timer <= 1){
+				// 	whiteImage.position = Vector3.Lerp(whiteStartPos.position,whiteTarget.position,timer);
+				// }
+				// else{
+				// 	iterCounter ++;
+				// 	if(iterCounter == iterations)
+				// 	{
+				// 		timer = 0;
+				 		locked = false;
+				// 		UnlockSequence();
+				// 	}
+				// 	else{
+				// 		timer = 0;
+				// 		whiteImage.position = whiteStartPos.position;
+				// 	}
+				// }
 			}
 			else if (unlocking)
 			{
-					RemoveLock();
-					unlocking = false;
+				unlockAnim.SetTrigger("UnlockSeason");
+				RemoveLock();
+				unlocking = false;
 			}
 		}
 		myEggCounter.text = eggsLeft.ToString();
@@ -104,6 +107,7 @@ public class SeasonLock : MonoBehaviour {
 		{
 			fade.FadeIn();
 		}
+		amntReqFadeScript.FadeIn();
 		closedLock.gameObject.GetComponent<FadeInOutImage>().FadeIn();
 		backColorFadeScript.gameObject.SetActive(true);
 		backColorFadeScript.FadeIn();
@@ -112,15 +116,15 @@ public class SeasonLock : MonoBehaviour {
 	}
 	void UnlockSeason(){
 		unlocking = true;
-		lockMask.SetActive(true);
+		// lockMask.SetActive(true);
 	}
 	void UnlockSequence(){
 		closedLock.gameObject.SetActive(false);
 		openLock.gameObject.SetActive(true);
-		lockMask.SetActive(false);
+		//lockMask.SetActive(false);
 	}
 	void RemoveLock(){
-		openLock.gameObject.GetComponent<FadeInOutImage>().FadeOut();
+		// openLock.gameObject.GetComponent<FadeInOutImage>().FadeOut();
 		bannerTitle.GetComponent<FadeInOutImage>().FadeOut();
 		FadeInOutTMP[] myFade =  bannerTitle.GetComponentsInChildren<FadeInOutTMP>();
 		foreach (FadeInOutTMP fade in myFade)
