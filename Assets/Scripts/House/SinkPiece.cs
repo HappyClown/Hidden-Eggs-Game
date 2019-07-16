@@ -17,12 +17,9 @@ public class SinkPiece : MonoBehaviour {
 	public bool active, selected, matched, falling, changeCell,showConnections;
 	public float minDistance, gravity, speed, maxFallingSpeed, maxFallingWaterSpeed, waterYpos;
 	// Use this for initialization
-	void Start () {
+	void Awake () {		
 		initialScale = this.gameObject.transform.localScale;
 		initialPos = this.gameObject.transform.position;
-		currentCell = StartingCell;
-		currentCell.occupied = falling =  true;
-		changeCell = active = matched = false;
 	}
 	
 	// Update is called once per frame
@@ -79,7 +76,13 @@ public class SinkPiece : MonoBehaviour {
 		}
 	}
 	public void ResetCell(){
-		this.gameObject.SetActive(true);
+		this.gameObject.SetActive(false);			
+		currentCell = StartingCell;
+		currentCell.occupied = falling =  false;
+		changeCell = active = matched = false;
+	}
+	public void SetUp(){
+		this.gameObject.SetActive(true);	
 		this.transform.position = initialPos;
 		currentCell = StartingCell;
 		currentCell.occupied = falling =  true;
