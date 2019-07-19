@@ -9,7 +9,7 @@ public class CafePuzzleLevel : MonoBehaviour {
 	public CafePuzzleObstacle[] myObstacles;
 	public CafePuzzleCell cellGoal;
 	public int levelNumber;
-	public bool starting, finishing, loaded,finished, movigCups, setOrder;
+	public bool starting, finishing, loaded,finished, movigCups, setOrder, levelComplete;
 	public float introTime, exitTime;
 	private float currentintroTime, currentExitTime;
 	public int currentCup;
@@ -33,6 +33,7 @@ public class CafePuzzleLevel : MonoBehaviour {
 			if(!finishing){
 				loaded = false;
 				finishing = true;
+				levelComplete = true;
 			}
 		}
 		if(finishing){
@@ -95,7 +96,7 @@ public class CafePuzzleLevel : MonoBehaviour {
 			setOrder = true;
 		}
 	}
-	public void SetUp(){
+	public void SetUpLevel(){
 		loaded = finishing =  finished = false;
 		currentCup = 0;
 		cupsToMove = 0;
@@ -116,7 +117,7 @@ public class CafePuzzleLevel : MonoBehaviour {
 		}
 
 	}
-	public void Reset(){
+	public void ResetLevel(){
 		for (int i = 0; i < myCups.Length; i++)
 		{
 			myCups[i].SetUp();

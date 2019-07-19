@@ -57,7 +57,7 @@ public class inputDetector : MonoBehaviour {
 	[Tooltip("Swipe death zone detection")]
 	[Range(50,200)]
 	public float swipeDeathzoneRadius = 100f;
-	private Vector2 startSwipeTouch, swipeDelta, firstSwipeTouch;
+	public Vector2 startSwipeTouch, swipeDelta, firstSwipeTouch;
 	public Vector2 SwipeDelta{ get {return swipeDelta;}}
 	public bool SwipeLeft{get {return swipeLeft;}}
 	public bool SwipeRight{get {return swipeRight;}}
