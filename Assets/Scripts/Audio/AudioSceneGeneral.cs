@@ -118,7 +118,7 @@ public class AudioSceneGeneral : MonoBehaviour
 	void Start () 
 	{
 		BackMenuBtn.onClick.AddListener(TransitionMenu);
-        lvlCompleteBtn.onClick.AddListener(TransitionMenu);
+        //lvlCompleteBtn.onClick.AddListener(TransitionMenu);
         sceneMusic = FMODUnity.RuntimeManager.CreateInstance(sceneMusicEvent);
 		transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
         goldEggShimySound = FMODUnity.RuntimeManager.CreateInstance(goldEggShimyEvent);
