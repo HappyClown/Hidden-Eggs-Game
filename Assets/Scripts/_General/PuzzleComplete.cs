@@ -20,7 +20,7 @@ public class PuzzleComplete : MonoBehaviour {
 	[Header ("General")]
 	public float revealDur;
 	public AnimationCurve revealCurve;
-	public bool reveal, reset;
+	public bool reveal, reset, masksFromMid;
 	private float revTimer;
 	[Header ("References")]
 	public AudioSceneMarketPuzzle audioSceneMarketPuzzScript;
@@ -29,11 +29,32 @@ public class PuzzleComplete : MonoBehaviour {
 	public TMPTextFall textFallScript;
 
 	void Update () {
-		if (endSeq) {
+		if (endSeq && !masksFromMid) {
 			seqTimer += Time.deltaTime;
 			if (seqTimer >= appear && !appearB) {
 				//FadeInPieces(); 
-				FadeInText();
+				MakeTxtFall();
+				appearB = true;
+			}
+			if (seqTimer >= fx && !fxB) {
+				PlayFXs();
+				reveal = true;
+				fxB = true;
+			}
+			if (seqTimer >= stopTrail && !stopTrailB) {
+				StopTrailFX();
+				stopTrailB = true;
+			}
+			if (seqTimer >= end && !endB) {
+				endSeq = false;
+				EndPuzzle();
+				endB = true;
+			}
+		}
+		else if (endSeq && masksFromMid) {
+			seqTimer += Time.deltaTime;
+			if (seqTimer >= appear && !appearB) {
+				//FadeInText();
 				appearB = true;
 			}
 			if (seqTimer >= fx && !fxB) {
@@ -93,13 +114,19 @@ public class PuzzleComplete : MonoBehaviour {
 		//SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
 	}
 
-	void FadeInText() {
+	void MakeTxtFall() {
 		//textColorScript.startFadeIn = true;
 		textFallScript.fallOn = true;
 	}
 
 	void Reset() {
-		textColorScript.Reset();
+		if (masksFromMid) {
+			leftPuzzPiece.transform.position = leftStartPos.position;
+			rightPuzzPiece.transform.position = rightStartPos.position;
+		}
+		else {
+			textColorScript.Reset();
+		}
 		seqTimer = 0f;
 		appearB = false;
 		fxB = false;
