@@ -151,6 +151,10 @@ public class HousePuzzle : MainPuzzleEngine {
 				canSelect = true;
 				firstTouch = true;
 			}
+			if(Input.GetKey("r")){
+				myLvls[curntLvl-1].ResetLevel();
+				myLvls[curntLvl-1].SetUpLevel();
+			}
 		}
 		else
 		{
