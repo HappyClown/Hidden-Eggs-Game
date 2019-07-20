@@ -33,6 +33,7 @@ public class HousePuzzleLevel : MonoBehaviour {
 		}
 		active = false;
 		this.gameObject.SetActive(active);
+		levelComplete = false;
 	}	
 	public void CheckLevelComplete(){
 		bool check = true;

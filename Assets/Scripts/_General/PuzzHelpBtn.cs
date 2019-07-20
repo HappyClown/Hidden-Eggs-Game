@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PuzzHelpBtn : MonoBehaviour {
 
 	public SlideInHelpBird slideInHelpScript;
-	public PuzzlePauseMenu puzzlePauseScript;
+	public MenuStatesManager menuStatesScript;
 	public Button button;
 	public bool inScene;
 
@@ -28,7 +28,7 @@ public class PuzzHelpBtn : MonoBehaviour {
 		// if (inScene) {
 		// 	if (slideInHelpScript.introDone) {
 		// 		slideInHelpScript.MoveBirdUpDown();
-		// 		puzzlePauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
+		// 		menuStatesScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
 		// 	}
 		// }
 		// else {
@@ -36,7 +36,7 @@ public class PuzzHelpBtn : MonoBehaviour {
 				slideInHelpScript.introDone = false;
 			}
 			slideInHelpScript.MoveBirdUpDown();
-			puzzlePauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
+			menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOff;
 		// }
 	}
 }

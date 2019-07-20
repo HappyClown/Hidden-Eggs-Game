@@ -37,6 +37,7 @@ public class HousePuzzleMainLevel : MonoBehaviour {
 			lvl.ResetLevel();
 		}
 		currentLevel = 0;
+		levelComplete = false;
 	}	
 	public void ResetCurrentLevel(){
 		mylvls[currentLevel].ResetLevel();

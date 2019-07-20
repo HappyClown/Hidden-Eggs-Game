@@ -7,25 +7,44 @@ public class MusicMuteButt : MonoBehaviour {
 
 	public Button button;
 	public GameObject onIcon, offIcon;
-	public bool mute;
+	public bool mute, inpPuzzle;
 	public PauseMenu myMenu;
+	public PuzzlePauseMenu MyPuzzleMenu;
 	// Use this for initialization
 	void Start () {
 		button = this.GetComponent<Button>();
-		mute = myMenu.myAudio.Paused;
+		if(inpPuzzle){
+			mute = MyPuzzleMenu.myAudio.Paused;
+		}
+		else{
+			mute = myMenu.myAudio.Paused;
+		}
 		button.onClick.AddListener(delegate {ButtonPressed(); });
 	}
 	
 	// Update is called once per frame
 	void Update(){
-		if(myMenu.myAudio.MusicVolume == 0){
-			onIcon.SetActive(false);
-			offIcon.SetActive(true);
-			mute = true;
-		}else{
-			onIcon.SetActive(true);
-			offIcon.SetActive(false);
-			mute = false;
+		if(inpPuzzle){
+			if(MyPuzzleMenu.myAudio.MusicVolume == 0){
+				onIcon.SetActive(false);
+				offIcon.SetActive(true);
+				mute = true;
+			}else{
+				onIcon.SetActive(true);
+				offIcon.SetActive(false);
+				mute = false;
+			}
+		}
+		else{
+			if(myMenu.myAudio.MusicVolume == 0){
+				onIcon.SetActive(false);
+				offIcon.SetActive(true);
+				mute = true;
+			}else{
+				onIcon.SetActive(true);
+				offIcon.SetActive(false);
+				mute = false;
+			}
 		}
 	}
 	public void ButtonPressed () {
@@ -35,6 +54,11 @@ public class MusicMuteButt : MonoBehaviour {
 		else{
 			mute = true;
 		}
-		myMenu.SetPause(mute);
+		if(inpPuzzle){
+			MyPuzzleMenu.SetPause(mute);
+		}
+		else{
+			myMenu.SetPause(mute);
+		}
 	}
 }

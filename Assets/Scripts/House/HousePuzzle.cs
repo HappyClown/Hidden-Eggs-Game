@@ -140,7 +140,7 @@ public class HousePuzzle : MainPuzzleEngine {
 						}
 						
 					}else{
-						Debug.Log(Vector2.Distance(currentCellPos,Camera.main.ScreenToWorldPoint(myInput.draggingPosition)));
+						//Debug.Log(Vector2.Distance(currentCellPos,Camera.main.ScreenToWorldPoint(myInput.draggingPosition)));
 						if(Vector2.Distance(currentCellPos,Camera.main.ScreenToWorldPoint(myInput.draggingPosition)) > cellRadius && myPieces.Count > 0){
 							ResetPieces();
 						}
@@ -356,6 +356,7 @@ public class HousePuzzle : MainPuzzleEngine {
 		if (chngLvlTimer > setupLvlWaitTime)
 		{
 			lvlItemHolders[curntLvl - 1].SetActive(false);
+			myLvls[curntLvl-1].ResetLevel();
 			curntLvl = lvlToLoad;
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();

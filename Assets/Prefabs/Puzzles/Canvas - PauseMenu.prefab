@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 225765635630277884}
   - component: {fileID: 114638301910344456}
   m_Layer: 5
-  m_Name: Canvas - PuzzlePauseMenu 1
+  m_Name: Canvas - PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324628521c495564cb9d53c55de29b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzPauseScript: {fileID: 0}
+  menuStatesScript: {fileID: 0}
   button: {fileID: 114354412209406814}
   forMainMenu: 1
   forPuzzleMenu: 0
@@ -1753,7 +1753,9 @@ MonoBehaviour:
   onIcon: {fileID: 1808854483668420}
   offIcon: {fileID: 1292804259771350}
   mute: 0
+  inpPuzzle: 0
   myMenu: {fileID: 114638301910344456}
+  MyPuzzleMenu: {fileID: 0}
 --- !u!114 &114801666392288726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2081,7 +2083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideInHelpScript: {fileID: 0}
-  puzzlePauseScript: {fileID: 0}
+  menuStatesScript: {fileID: 0}
   button: {fileID: 114358081241284364}
   inScene: 1
 --- !u!114 &114956992957986736
@@ -2120,7 +2122,9 @@ MonoBehaviour:
   onIcon: {fileID: 1714374213227742}
   offIcon: {fileID: 1261092572662074}
   mute: 0
+  inpPuzzle: 0
   myMenu: {fileID: 114638301910344456}
+  MyPuzzleMenu: {fileID: 0}
 --- !u!114 &114963058303403728
 MonoBehaviour:
   m_ObjectHideFlags: 1

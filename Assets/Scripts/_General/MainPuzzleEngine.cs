@@ -57,7 +57,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	[Header("Scripts")]
 	public FadeInOutImage scrnDarkImgScript;
 	public SceneTapEnabler sceneTapScript;
-	public PuzzlePauseMenu puzzlePauseScript;
+	public MenuStatesManager menuStatesScript;
 	public SlideInHelpBird slideInHelpScript;
 	public PuzzleComplete puzzleCompScript;
 

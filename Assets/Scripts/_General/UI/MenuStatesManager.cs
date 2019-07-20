@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuzzlePauseMenu : MonoBehaviour {
+public class MenuStatesManager : MonoBehaviour {
 	public enum MenuStates {
 		TurnOn, TurningOn, IsOn, TurnOff, TurningOff, IsOff
 	}
@@ -21,7 +21,7 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	public inputDetector inputDetScript;
 	public MainPuzzleEngine puzzEngScript;
 
-	public bool menuActive, puzzleConfActive;
+	public bool menuActive, puzzleConfActive, putDragOff;
 	public CanvasGroup menuCG, sceneUICG, puzzleConfCG;
 	private float lerpValue;
 	public float fadeDuration;
@@ -96,6 +96,13 @@ public class PuzzlePauseMenu : MonoBehaviour {
 			sceneTapScript.TapLevelStuffFalse();
 		}
 		col.enabled = true;
+		
+		if(inputDetScript.detectDrag){
+			putDragOff = false;
+		}else{
+			inputDetScript.detectDrag = true;
+			putDragOff = true;
+		}
 	}
 
 	void TurningOn() {
@@ -115,14 +122,16 @@ public class PuzzlePauseMenu : MonoBehaviour {
 		}
 
 		if (inputDetScript.Tapped) {
+			Debug.Log("lalallaa");
 			UpdateMousePos();
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			if (hit && !hit.collider.CompareTag("PuzzlePauseMenu")) {
+			if (hit && !hit.collider.CompareTag("PuzzlePauseMenu") || !hit) {
 				menuStates = MenuStates.TurnOff;
 				if (sceneTapScript) {
 					sceneTapScript.TapLevelStuffTrue();
 				}
 			}
+			
 		}
 	}
 
@@ -130,6 +139,9 @@ public class PuzzlePauseMenu : MonoBehaviour {
 		menuCG.interactable = false;
 		menuStates = MenuStates.TurningOff;
 		col.enabled = false;
+		if(putDragOff){
+			inputDetScript.detectDrag = false;
+		}
 	}
 
 	void TurningOff() {
@@ -165,6 +177,12 @@ public class PuzzlePauseMenu : MonoBehaviour {
 			sceneTapScript.TapLevelStuffFalse();
 		}
 		colPuzz.enabled = true;
+		if(inputDetScript.detectDrag){
+			putDragOff = false;
+		}else{
+			inputDetScript.detectDrag = true;
+			putDragOff = true;
+		}
 	}
 
 	void PuzzleConfTurningOn() {
@@ -186,7 +204,7 @@ public class PuzzlePauseMenu : MonoBehaviour {
 		if (inputDetScript.Tapped) {
 			UpdateMousePos();
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			if (hit && !hit.collider.CompareTag("PuzzlePauseMenu")) {
+			if (hit && !hit.collider.CompareTag("PuzzlePauseMenu") || !hit) {
 				puzzleConfStates = PuzzleConfStates.TurnOff;
 				if (sceneTapScript) {
 					sceneTapScript.TapLevelStuffTrue();
@@ -199,6 +217,9 @@ public class PuzzlePauseMenu : MonoBehaviour {
 		puzzleConfCG.interactable = false;
 		puzzleConfStates = PuzzleConfStates.TurningOff;
 		colPuzz.enabled = false;
+		if(putDragOff){
+			inputDetScript.detectDrag = false;
+		}
 	}
 
 	void PuzzleConfTurningOff() {

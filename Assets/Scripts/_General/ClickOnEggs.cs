@@ -74,7 +74,7 @@ public class ClickOnEggs : MonoBehaviour {
 	public SceneTapEnabler sceneTapEnabScript;
 	public SceneFade sceneFadeScript;
 	public AudioSceneGeneral audioSceneGenScript;
-	public PuzzlePauseMenu puzzlePause;
+	public MenuStatesManager menuStatesScript;
 
 	void Start () {
 		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
@@ -147,8 +147,8 @@ public class ClickOnEggs : MonoBehaviour {
 					// - Go To Puzzle Scene - //
 					if (hit.collider.CompareTag("Puzzle")) {
 						if(GlobalVariables.globVarScript.puzzIntroDone){
-							puzzlePause.puzzleConfActive = true;
-							puzzlePause.puzzleConfStates = PuzzlePauseMenu.PuzzleConfStates.TurnOn;
+							menuStatesScript.puzzleConfActive = true;
+							menuStatesScript.puzzleConfStates = MenuStatesManager.PuzzleConfStates.TurnOn;
 							
 						}else{
 							LoadPuzzle();

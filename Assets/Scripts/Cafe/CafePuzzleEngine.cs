@@ -68,7 +68,6 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 			// 	}
 			// }
 			if(!myLvls[curntLvl-1].movigCups && myLvls[curntLvl-1].loaded){
-				Debug.Log("asdasdasd");
 				if(myInput.SwipeLeft || myInput.SwipeRight || myInput.SwipeUp || myInput.SwipeDown){
 					Vector2 touchPosition = Camera.main.ScreenToWorldPoint(myInput.firstSwipeTouch);
 					hit = Physics2D.Raycast(touchPosition, Vector3.forward, 50f);
@@ -77,24 +76,27 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 					{
 						if (hit.collider.CompareTag("Tile"))
 						{
-							Debug.DrawRay(touchPosition, Vector3.forward, Color.red, 60f);
-							string color = hit.collider.gameObject.GetComponent<CafePuzzleCup>().myColor.ToString();
+							CafePuzzleCup currentCup = hit.collider.gameObject.GetComponent<CafePuzzleCup>();
+							if(currentCup.active){
+								Debug.DrawRay(touchPosition, Vector3.forward, Color.red, 60f);
+								string color = hit.collider.gameObject.GetComponent<CafePuzzleCup>().myColor.ToString();
 
-							if(myInput.SwipeLeft)
-							{
-								myLvls[curntLvl-1].Swipe(color,"left");
-							}
-							if(myInput.SwipeRight)
-							{
-								myLvls[curntLvl-1].Swipe(color,"right");							
-							}
-							if(myInput.SwipeUp)
-							{
-								myLvls[curntLvl-1].Swipe(color,"up");							
-							}
-							if(myInput.SwipeDown)
-							{
-								myLvls[curntLvl-1].Swipe(color,"down");							
+								if(myInput.SwipeLeft)
+								{
+									myLvls[curntLvl-1].Swipe(color,"left");
+								}
+								if(myInput.SwipeRight)
+								{
+									myLvls[curntLvl-1].Swipe(color,"right");							
+								}
+								if(myInput.SwipeUp)
+								{
+									myLvls[curntLvl-1].Swipe(color,"up");							
+								}
+								if(myInput.SwipeDown)
+								{
+									myLvls[curntLvl-1].Swipe(color,"down");							
+								}
 							}
 						}
 					}
@@ -105,8 +107,8 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 
 			}
 			if(Input.GetKey("r")){
-				myLvls[curntLvl-1].ResetLevel();
 				CleanGrid();
+				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
 			}
 		}
 		else
@@ -197,8 +199,8 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 		if(maxLvl > 3 || maxLvl < 1) { curntLvl = 1; }
 		else { curntLvl = maxLvl; }
 		itemHolder = lvlItemHolders[curntLvl - 1];
-		myLvls[curntLvl-1].ResetLevel();
 		CleanGrid();
+		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
 		initialSetupOn = false;
 		iniSeqStart = true;
@@ -279,8 +281,8 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 			StartCoroutine(PuzzleComplete());
 			return;
 		}
-		myLvls[curntLvl-1].ResetLevel();
 		CleanGrid();
+		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
 
 		itemHolder.SetActive(false);
@@ -311,9 +313,10 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 		if (chngLvlTimer > setupLvlWaitTime)
 		{
 			lvlItemHolders[curntLvl - 1].SetActive(false);
-			curntLvl = lvlToLoad;
 			myLvls[curntLvl-1].ResetLevel();
+			curntLvl = lvlToLoad;
 			CleanGrid();
+			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
 			itemHolder = lvlItemHolders[curntLvl - 1];
 			itemsWait = true;

@@ -118,6 +118,9 @@ public class CafePuzzleLevel : MonoBehaviour {
 
 	}
 	public void ResetLevel(){
+		cellGoal.cellLeft.edgeRight = true;
+		cellGoal.cellLeft.cellRight = null;
+		levelComplete = false;
 		for (int i = 0; i < myCups.Length; i++)
 		{
 			myCups[i].SetUp();

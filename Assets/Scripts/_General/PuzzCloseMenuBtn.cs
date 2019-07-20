@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PuzzCloseMenuBtn : MonoBehaviour {
-	public PuzzlePauseMenu puzzPauseScript;
+	public MenuStatesManager menuStatesScript;
 	public Button button;
 	public bool forMainMenu, forPuzzleMenu;
 
@@ -17,9 +17,9 @@ public class PuzzCloseMenuBtn : MonoBehaviour {
 	}
 	
 	void CloseMenu () {
-		puzzPauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOff;
+		menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOff;
 	}
 	void closePuzzleMenu () {
-		puzzPauseScript.puzzleConfStates = PuzzlePauseMenu.PuzzleConfStates.TurnOff;
+		menuStatesScript.puzzleConfStates = MenuStatesManager.PuzzleConfStates.TurnOff;
 	}
 }

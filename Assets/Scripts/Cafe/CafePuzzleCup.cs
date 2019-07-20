@@ -33,7 +33,7 @@ public class CafePuzzleCup : MonoBehaviour {
 			if(reverse){
 				for (int i = 0; i < myLevel.myCups.Length; i++)
 				{
-					if(myLevel.myCups[i].myColor == myColor){
+					if(myLevel.myCups[i].myColor == myColor && myLevel.myCups[i].active){
 						myLevel.myCups[i].nextCell.occupied = false;
 						myLevel.myCups[i].nextCell = myLevel.myCups[i].lastCell;
 						myLevel.myCups[i].SetCell();
@@ -46,6 +46,7 @@ public class CafePuzzleCup : MonoBehaviour {
 					moving = false;
 					curretCell = nextCell;
 					if(nextCell.goalCup){
+						Debug.Log("here");
 						myLevel.cupsLeft --;
 						active = false;
 						lastCell = curretCell;
@@ -89,6 +90,8 @@ public class CafePuzzleCup : MonoBehaviour {
 		nextPos = nextCell.gameObject.transform.position;
 		if(nextCell.goalCup){
 			if(myLevel.cupsOrder[myLevel.currentCup].ToString() == myColor.ToString()){
+				Debug.Log(myLevel.cupsOrder[myLevel.currentCup].ToString());
+				Debug.Log(myColor.ToString());
 				myLevel.currentCup ++;
 				if(myLevel.currentCup == myLevel.cupsOrder.Length){
 					myLevel.currentCup = 0;

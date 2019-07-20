@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PuzzlePauseMenuBtn : MonoBehaviour {
-	public PuzzlePauseMenu puzzlePauseScript;
+	public MenuStatesManager menuStatesScript;
 	public SceneTapEnabler sceneTapEnaScript;
 	public Button button;
 
@@ -22,7 +22,7 @@ public class PuzzlePauseMenuBtn : MonoBehaviour {
 	}
 
 	void PauseMenuOn() {
-		puzzlePauseScript.menuActive = true;
-		puzzlePauseScript.menuStates = PuzzlePauseMenu.MenuStates.TurnOn;
+		menuStatesScript.menuActive = true;
+		menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOn;
 	}
 }

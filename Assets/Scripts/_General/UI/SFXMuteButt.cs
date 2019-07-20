@@ -6,25 +6,44 @@ using UnityEngine.UI;
 public class SFXMuteButt : MonoBehaviour {
 	public Button button;
 	public GameObject onIcon, offIcon;
-	public bool mute;
+	public bool mute, inpPuzzle;
 	public PauseMenu myMenu;
+	public PuzzlePauseMenu MyPuzzleMenu;
 	// Use this for initialization
 	void Start () {
 		button = this.GetComponent<Button>();
-		mute = myMenu.myAudio.Muted;
+		if(inpPuzzle){
+			mute = MyPuzzleMenu.myAudio.Muted;
+		}
+		else{
+			mute = myMenu.myAudio.Muted;
+		}
 		button.onClick.AddListener(delegate {ButtonPressed(); });
 	}
 	
 	// Update is called once per frame
 	void Update(){
-		if(myMenu.myAudio.SFXVolume == 0){
-			onIcon.SetActive(false);
-			offIcon.SetActive(true);
-			mute = true;
-		}else{
-			onIcon.SetActive(true);
-			offIcon.SetActive(false);
-			mute = false;
+		if(inpPuzzle){
+			if(MyPuzzleMenu.myAudio.SFXVolume == 0){
+				onIcon.SetActive(false);
+				offIcon.SetActive(true);
+				mute = true;
+			}else{
+				onIcon.SetActive(true);
+				offIcon.SetActive(false);
+				mute = false;
+			}
+		}
+		else{
+			if(myMenu.myAudio.SFXVolume == 0){
+				onIcon.SetActive(false);
+				offIcon.SetActive(true);
+				mute = true;
+			}else{
+				onIcon.SetActive(true);
+				offIcon.SetActive(false);
+				mute = false;
+			}
 		}
 	}
 	public void ButtonPressed () {
@@ -34,6 +53,11 @@ public class SFXMuteButt : MonoBehaviour {
 		else{
 			mute = true;
 		}
-		myMenu.SetMute(mute);
+		if(inpPuzzle){
+			MyPuzzleMenu.SetMute(mute);
+		}
+		else{
+			myMenu.SetMute(mute);
+		}
 	}
 }
