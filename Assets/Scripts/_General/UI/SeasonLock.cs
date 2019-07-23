@@ -7,25 +7,25 @@ using TMPro;
 public class SeasonLock : MonoBehaviour {
 	[Header ("Settings")]
 	public bool comingSoonTit;
-	public float eggsRequired, whiteSpeed, iterations, setUpTime;
-	public float maxEggsPerSec, eggReqSpeedDamp;
+	public float eggsRequired, setUpTime, scaleUpTime;
+	public float maxEggsPerSec, eggReqSpeedDamp, seasonObjsDelay, scaleDownDelay, removeLockAnimDelay;
 	[Header ("References")]
-	public Hub myHub;
-	public HubEggcounts myCount;
-	public Animator unlockAnim, eggReqAnim;
+	public Hub myHubScript;
 	public FadeInOutImage backColorFadeScript;
+	public List<FadeInOutImage> playCinematicFadeScripts;
 	public FadeInOutTMP amntReqFadeScript;
 	public TextMeshProUGUI myEggCounter;
-	public RectTransform  whiteTarget, whiteImage, whiteStartPos;
+	public Animator unlockAnim, eggReqAnim, groupAnim;
 	public Image closedLock, openLock;
 	public GameObject bannerTitle, comingSoonTitle, lockMask;
 	public ParticleSystem oneReqSparkFX, multiReqSparkFX;
 	[Header ("Info")]
 	public bool locked;
 	public bool settingUp;
-	private bool checkSeason, unlocking, lerpEggAmnt;
+	private bool checkSeason, unlocking, lerpEggAmnt, enableSeasonObjsDelay, scaledUp;
+	private bool startLockAnimDelay;
 	private int iterCounter;
-	private float timer, lastEggVal, newEggVal, eggLerpTimer;
+	private float timer, lastEggVal, newEggVal, seasonObjsTimer;
 	private int eggAmntForAnim;
 	private float eggsLeft, curEggReqSpeed;
 
@@ -39,7 +39,7 @@ public class SeasonLock : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(myHub.inHub){
+		if(myHubScript.inHub){
 			if(!checkSeason){
 				// Check if the season is already unlocked.
 				CheckUnlock();
@@ -50,8 +50,17 @@ public class SeasonLock : MonoBehaviour {
 				}
 				checkSeason = true;
 			}
+			// Check if new eggs were found.
 			if(settingUp) {
+				if (lastEggVal == newEggVal) {
+					myHubScript.EnableSeasonObjs();
+					settingUp = false;
+				}
 				timer += Time.deltaTime;
+				if (timer >= scaleUpTime && !scaledUp) {
+					groupAnim.SetTrigger("ScaleUp");
+					scaledUp = true;
+				}
 				if(timer >= setUpTime){
 					settingUp = false;
 					if (lastEggVal != newEggVal) {
@@ -60,11 +69,14 @@ public class SeasonLock : MonoBehaviour {
 					timer = 0;
 				}
 			}
+			// Decrease the egg required counter.
 			if (lerpEggAmnt) {
+				// Gradually increase the count going down speed, up to a maximum speed amount.
 				if (curEggReqSpeed < maxEggsPerSec) {
 					curEggReqSpeed += Time.deltaTime / eggReqSpeedDamp;
 				}
 				lastEggVal -= curEggReqSpeed;
+				// Trigger an animation every time the unlock counter amount changes.
 				if (eggAmntForAnim != Mathf.RoundToInt(lastEggVal)) {
 					eggReqAnim.SetTrigger("ScaleCounter");
 					oneReqSparkFX.Play();
@@ -76,35 +88,33 @@ public class SeasonLock : MonoBehaviour {
 					lastEggVal = newEggVal;
 					SaveNewLastEggVal();
 					multiReqSparkFX.Play();
+					if (lastEggVal <= 0) {
+						startLockAnimDelay = true;
+					}
+					else {
+						enableSeasonObjsDelay = true;
+					}
 				}
 			}
-			else if(eggsLeft <= 0 && !unlocking && locked){
-				UnlockSeason();
+			// Start the season unlocked sequence.
+			if (startLockAnimDelay) {
+				removeLockAnimDelay -= Time.deltaTime;
+				if (removeLockAnimDelay <= 0f) {
+					unlockAnim.SetTrigger("UnlockSeason");
+					FadeOutBanner();
+					startLockAnimDelay = false;
+				}
 			}
-			else if(unlocking && locked){
-				// Unlock sequence starts here.
-				// timer += Time.deltaTime * whiteSpeed;
-				// if(timer <= 1){
-				// 	whiteImage.position = Vector3.Lerp(whiteStartPos.position,whiteTarget.position,timer);
-				// }
-				// else{
-				// 	iterCounter ++;
-				// 	if(iterCounter == iterations)
-				// 	{
-				// 		timer = 0;
-				 		locked = false;
-				// 		UnlockSequence();
-				// 	}
-				// 	else{
-				// 		timer = 0;
-				// 		whiteImage.position = whiteStartPos.position;
-				// 	}
-				// }
-			}
-			else if (unlocking) {
-				unlockAnim.SetTrigger("UnlockSeason");
-				RemoveLock();
-				unlocking = false;
+			// Enable the level glows, buttons, etc.
+			if (enableSeasonObjsDelay) {
+				seasonObjsTimer += Time.deltaTime;
+				if (seasonObjsTimer >= scaleDownDelay) {
+					groupAnim.SetTrigger("ScaleDown");
+				}
+				if (seasonObjsTimer >= seasonObjsDelay) {
+					myHubScript.EnableSeasonObjs();
+					enableSeasonObjsDelay = false;
+				}
 			}
 		}
 	}
@@ -135,24 +145,20 @@ public class SeasonLock : MonoBehaviour {
 		settingUp = true;
 		// Debug.Log("I'm here!!");
 	}
-	void UnlockSeason(){
-		unlocking = true;
-		// lockMask.SetActive(true);
-	}
 	void UnlockSequence(){
 		closedLock.gameObject.SetActive(false);
 		openLock.gameObject.SetActive(true);
-		//lockMask.SetActive(false);
 	}
-	void RemoveLock(){
-		// openLock.gameObject.GetComponent<FadeInOutImage>().FadeOut();
+	void FadeOutBanner(){
 		bannerTitle.GetComponent<FadeInOutImage>().FadeOut();
 		FadeInOutTMP[] myFade =  bannerTitle.GetComponentsInChildren<FadeInOutTMP>();
 		foreach (FadeInOutTMP fade in myFade)
 		{
 			fade.FadeOut();
 		}
-		if(comingSoonTit){
+	}
+	public void CinematicButton() {
+		if(comingSoonTit) {
 			float delay = openLock.gameObject.GetComponent<FadeInOutImage>().fadeDuration;
 			comingSoonTitle.SetActive(true);
 			FadeInOutTMP textFade = comingSoonTitle.GetComponentInChildren<FadeInOutTMP>();
@@ -160,8 +166,11 @@ public class SeasonLock : MonoBehaviour {
 			textFade.FadeIn();
 			imgFade.FadeIn();
 		}
-		else{
-			// Activate next season!!!
+		else {
+			foreach (FadeInOutImage fadeScript in playCinematicFadeScripts)
+			{
+				fadeScript.FadeIn();
+			}
 		}
 	}
 
@@ -183,5 +192,9 @@ public class SeasonLock : MonoBehaviour {
 	void SaveNewLastEggVal() {
 		GlobalVariables.globVarScript.lastEggTotVal = newEggVal;
 		GeneralSaveLoadManager.SaveGeneralData(GlobalVariables.globVarScript);
+	}
+
+	public void ScaleDownGroup() {
+		groupAnim.SetTrigger("ScaleDown");
 	}
 }

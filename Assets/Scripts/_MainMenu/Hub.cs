@@ -7,6 +7,8 @@ public class Hub : MonoBehaviour {
 	public float hubActiveWait;
 	private float hubActiveWaitTimer;
 	public List<FadeInOutCanvasGroup> hubCanvasGroupFadeScripts;
+	public FadeInOutCanvasGroup hubCGInteractFadeScript;
+	public FadeInOutCanvasGroup hubCGUninteractFadeScript;
 	[Header("Dissolve")]
 	public float dissAmnt;
 	public float dissSpeed;
@@ -59,7 +61,7 @@ public class Hub : MonoBehaviour {
 			}
 			else {
 				dissolveSeasonsScript.SaveSeasonDissolves();
-				EnableSeasonObjs();
+				//EnableSeasonObjs();
 				matsToDissolve.Clear();
 				dissolving = false;
 			}
@@ -69,13 +71,15 @@ public class Hub : MonoBehaviour {
 	void EnableHubObjects() { // Enable general Village objects (UI, etc) 
 		//backToMenuScript.backToMenuFadeScript.FadeIn();
 		//backToMenuScript.backToMenuIconFadeScript.FadeIn();
-		foreach (FadeInOutCanvasGroup hubCanvasGroupFadeScript in hubCanvasGroupFadeScripts)
-		{
-			hubCanvasGroupFadeScript.FadeIn();
-		}
+		hubCGInteractFadeScript.FadeIn();
+		hubCGUninteractFadeScript.FadeIn();
+		// foreach (FadeInOutCanvasGroup hubCanvasGroupFadeScript in hubCanvasGroupFadeScripts)
+		// {
+		// 	hubCanvasGroupFadeScript.FadeIn();
+		// }
 	}
 
-	void EnableSeasonObjs() { // Enable Season objects (Scene buttons) 
+	public void EnableSeasonObjs() { // Enable Season objects (Scene buttons) 
 		//backToMenuScript.backToMenuBtn.enabled = true;
 		// foreach true...
 		if (GlobalVariables.globVarScript.dissSeasonsBools[0]) {
