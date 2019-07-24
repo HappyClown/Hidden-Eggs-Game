@@ -9,12 +9,13 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	public bool amIGolden;
 	public int myGlowValue;
 	public AnimationCurve animCurve;
-	public ParticleSystem trailFX, arrivalFX;
+	public ParticleSystem trailFX, arrivalFX, spawnFX;
 	public Transform endTrans;
 	[Header ("References")]
 	public LevelCompEggCounter levelCompEggCounterScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
-	public FadeInOutSprite myFadeScript, myGlowFadeScript;
+	public FadeInOutSprite myFadeScript, myGlowFadeScript, plainEggFadeScript;
+	public SpriteRenderer whiteOverlaySprite;
 	public AudioSceneGeneral audioSceneGenScript;
 	[Header ("Info")]
 	private Vector3 startPos;
@@ -36,6 +37,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 			if (spawnTimer > mySpawnDelay && !showEgg) {
 				myFadeScript.FadeIn();
 				myGlowFadeScript.FadeIn();
+				spawnFX.Play();
 				showEgg = true;
 				endTrans = levelCompleteEggbagScript.curEggbagFadeScript.gameObject.transform;
 			}
@@ -79,5 +81,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	public void GetReferences() {
 		myFadeScript = this.GetComponent<FadeInOutSprite>();
 		myGlowFadeScript = this.transform.Find("SmallEggGlow").GetComponent<FadeInOutSprite>();
+		SpriteMask sMask = this.GetComponent<SpriteMask>();
+		sMask.sprite = this.GetComponent<SpriteRenderer>().sprite;
+		whiteOverlaySprite = this.transform.Find("WhiteOverlay").GetComponent<SpriteRenderer>();
+		plainEggFadeScript = this.transform.Find("PlainEgg").GetComponent<FadeInOutSprite>();
 	}
 }
