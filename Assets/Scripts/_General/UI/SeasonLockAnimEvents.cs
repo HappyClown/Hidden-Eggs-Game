@@ -61,4 +61,8 @@ public class SeasonLockAnimEvents : MonoBehaviour {
 	void ShowCinematicButton() {
 		seasonLockScript.CinematicButton();
 	}
+
+	void EnableLevelObjs() {
+		seasonLockScript.enableSeasonObjsDelay = true;
+	}
 }

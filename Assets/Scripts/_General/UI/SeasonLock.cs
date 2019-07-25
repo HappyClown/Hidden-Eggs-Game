@@ -21,8 +21,8 @@ public class SeasonLock : MonoBehaviour {
 	public ParticleSystem oneReqSparkFX, multiReqSparkFX;
 	[Header ("Info")]
 	public bool locked;
-	public bool settingUp;
-	private bool checkSeason, unlocking, lerpEggAmnt, enableSeasonObjsDelay, scaledUp;
+	public bool settingUp, enableSeasonObjsDelay;
+	private bool checkSeason, unlocking, lerpEggAmnt, scaledUp;
 	private bool startLockAnimDelay;
 	private int iterCounter;
 	private float timer, lastEggVal, newEggVal, seasonObjsTimer;
