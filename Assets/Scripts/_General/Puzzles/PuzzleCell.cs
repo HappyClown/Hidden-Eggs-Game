@@ -11,8 +11,10 @@ public class PuzzleCell : MonoBehaviour {
 	public PuzzleCell cellRight;
 	//the bools define if the cell is next to an edge of the board or if it is the goal;
 	public bool edgeUp, edgeDown, edgeLeft, edgeRight;
-	//the ovvupied bool defines if the cell has something on it
-	public bool occupied;
+	//the occupied bool defines if the cell has something on it
+	public bool occupied, goalCell;
+	//Ammount of times it goes the check
+	public int CheckTimes;
 	// Use this for initialization
 	void Start () {
 		
@@ -23,7 +25,7 @@ public class PuzzleCell : MonoBehaviour {
 		
 	}
 	//when the player moves a cup, the cells will check by functions if its cells next to it are occupied
-	public PuzzleCell CheckUp(){
+	public PuzzleCell CheckUp( int myNum = 0){
 		//The cell returns itself if the cell next to it in the selected direction is occupied or if there is an edge 
 		if(edgeUp){
 			return this;
@@ -32,11 +34,13 @@ public class PuzzleCell : MonoBehaviour {
 			return this;
 		}
 		else{
+			myNum ++;
+			CheckTimes = myNum;
 		//if not, the next cell will repeat the process. the same script applies for each direction.
-			return cellUp.CheckUp();
+			return cellUp.CheckUp( myNum);
 		}
 	}
-	public PuzzleCell CheckDown(){
+	public PuzzleCell CheckDown( int myNum = 0){
 		if(edgeDown){
 			return this;
 		}
@@ -44,10 +48,12 @@ public class PuzzleCell : MonoBehaviour {
 			return this;
 		}
 		else{
+			myNum ++;
+			CheckTimes = myNum;
 			return cellDown.CheckDown();
 		}
 	}
-	public PuzzleCell CheckLeft(){
+	public PuzzleCell CheckLeft( int myNum = 0){
 		if(edgeLeft){
 			return this;
 		}
@@ -55,10 +61,12 @@ public class PuzzleCell : MonoBehaviour {
 			return this;
 		}
 		else{
+			myNum ++;
+			CheckTimes = myNum;
 			return cellLeft.CheckLeft();
 		}
 	}
-	public PuzzleCell CheckRight(){
+	public PuzzleCell CheckRight( int myNum = 0){
 		if(edgeRight){
 			return this;
 		}
@@ -66,7 +74,43 @@ public class PuzzleCell : MonoBehaviour {
 			return this;
 		}
 		else{
+			myNum ++;
+			CheckTimes = myNum;
 			return cellRight.CheckRight();
+		}
+	}
+	public PuzzleCell CheckUpAmmount(int times){
+		//The cell returns itself if the cell next to it in the selected direction is occupied or if there is an edge 
+		if(times == 0){
+			return this;
+		}
+		else {
+		//if not, the next cell will repeat the process. the same script applies for each direction.
+			return cellUp.CheckUpAmmount(times - 1);
+		}
+	}
+	public PuzzleCell CheckDownAmmount(int times){
+		if(times == 0){
+			return this;
+		}
+		else {
+			return cellDown.CheckDownAmmount(times - 1);
+		}
+	}
+	public PuzzleCell CheckLeftAmmount(int times){
+		if(times == 0){
+			return this;
+		}
+		else {
+			return cellLeft.CheckLeftAmmount(times - 1);
+		}
+	}
+	public PuzzleCell CheckRightAmmount(int times){
+		if(times == 0){
+			return this;
+		}
+		else {
+			return cellRight.CheckRightAmmount( times - 1);
 		}
 	}
 }
