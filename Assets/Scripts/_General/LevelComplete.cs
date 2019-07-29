@@ -91,7 +91,7 @@ public class LevelComplete : MonoBehaviour
 				showTotalCounterStarted = true;
 			}
 			if (timer > startEggMove && !startEggMoveStarted) {
-				levelCompleteEggSpaScript.StartEggSpawning();
+				levelCompleteEggSpaScript.StartAllEggSpawn();
 				startEggMoveStarted = true;
 			}
 			if (timer > showBag && !showBagStarted) {
@@ -99,8 +99,8 @@ public class LevelComplete : MonoBehaviour
 				showBagStarted = true;
 			}
 			if (timer > showBagGlow && !showBagGlowStarted) {
-				levelCompleteEggbagScript.StartCurrentBagGlow();
-				levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
+				// levelCompleteEggbagScript.StartCurrentBagGlow();
+				// levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
 				showBagGlowStarted = true;
 			}
 			if (timer > endLevel && !levelEnded) {

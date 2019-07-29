@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	[Header ("Settings")]
 	public float spinSpeed;
-	public float moveDuration, moveDelay;
-	public bool amIGolden;
+	public float moveDuration, spinTime, becomeWhite, becomePlain;
+	public bool amIGolden, amIFirst;
 	public int myGlowValue;
 	public AnimationCurve animCurve;
 	public ParticleSystem trailFX, arrivalFX, spawnFX;
@@ -15,12 +15,12 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	public LevelCompEggCounter levelCompEggCounterScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
 	public FadeInOutSprite myFadeScript, myGlowFadeScript, plainEggFadeScript;
-	public SpriteRenderer whiteOverlaySprite;
+	public SpriteRenderer mySprite, whiteOverlaySprite;
 	public AudioSceneGeneral audioSceneGenScript;
 	[Header ("Info")]
 	private Vector3 startPos;
-	private float lerp, mySpawnDelay, spawnTimer, myMoveDelay;
-	private bool startEggMove, moveEgg, showEgg;
+	private float lerp, mySpawnDelay, spawnTimer, moveDelay, whiteDelay, plainDelay;
+	private bool startEggMove, moveEgg, showEgg, white, plain;
 	private int spinDir = 1;
 
 	void Start () {
@@ -42,7 +42,15 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 				endTrans = levelCompleteEggbagScript.curEggbagFadeScript.gameObject.transform;
 			}
 			if (showEgg) {
-				if (spawnTimer >= myMoveDelay && !moveEgg) {
+				if (spawnTimer >= whiteDelay && !white) {
+					myFadeScript.FadeOut();
+					white = true;
+				}
+				if (spawnTimer >= plainDelay && !plain) {
+					plainEggFadeScript.FadeIn();
+					plain = true;
+				}
+				if (spawnTimer >= moveDelay && !moveEgg) {
 					moveEgg = true;
 				}
 				if (moveEgg) {
@@ -54,7 +62,8 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					if (lerp >= 1) {
 						levelCompEggCounterScript.eggAmnt++;
 						audioSceneGenScript.silverEggsPanel(this.gameObject);
-						myFadeScript.FadeOut();
+						//myFadeScript.FadeOut();
+						plainEggFadeScript.FadeOut();
 						myGlowFadeScript.FadeOut();
 						arrivalFX.Play(true);
 						trailFX.Stop(true);
@@ -62,9 +71,13 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 						startEggMove = false;
 						spawnTimer = 0f;
 						//levelCompleteBagGlowScript.CalculateNewAlpha(myGlowValue);
-						// if (amIGolden) {
-						// 	levelCompleteEggbagScript.MakeNewBagFadeIn();
-						// }
+						if (amIFirst) {
+							levelCompleteEggbagScript.StartCurrentBagGlow();
+							levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
+						}
+						if (amIGolden) {
+							levelCompleteEggbagScript.bagAnim.SetTrigger("Explode");
+						}
 					}
 				}
 			}
@@ -75,7 +88,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 		spinDir = Random.Range(0, 2) * 2 - 1;
 		startEggMove = true;
 		mySpawnDelay = spawnDelay;
-		myMoveDelay = moveDelay + mySpawnDelay;
+		whiteDelay = becomeWhite + mySpawnDelay;
+		plainDelay = becomePlain + mySpawnDelay;
+		moveDelay = spinTime + mySpawnDelay;
 	} 
 
 	public void GetReferences() {
