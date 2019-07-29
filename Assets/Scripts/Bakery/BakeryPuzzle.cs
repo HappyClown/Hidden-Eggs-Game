@@ -65,35 +65,35 @@ public class BakeryPuzzle : MainPuzzleEngine {
 			// 		Debug.Log("puzzle complete");
 			// 	}
 			// }
-			if(!myLvls[curntLvl-1].movingBaguet && myLvls[curntLvl-1].loaded){
+			if(!myLvls[curntLvl-1].movingBaguet){
 				if(myInput.SwipeLeft || myInput.SwipeRight || myInput.SwipeUp || myInput.SwipeDown){
 					Vector2 touchPosition = Camera.main.ScreenToWorldPoint(myInput.firstSwipeTouch);
 					hit = Physics2D.Raycast(touchPosition, Vector3.forward, 50f);
-					
+					Debug.DrawRay(touchPosition,Vector3.forward,Color.red,1f);
 					if (hit)
 					{
 						if (hit.collider.CompareTag("Tile"))
 						{
-							CafePuzzleCup currentCup = hit.collider.gameObject.GetComponent<CafePuzzleCup>();
-							if(currentCup.active){
+							BakeryBaguette currentBaguette = hit.collider.gameObject.GetComponent<BakeryBaguette>();
+							if(currentBaguette.active){
 								Debug.DrawRay(touchPosition, Vector3.forward, Color.red, 60f);
-								string color = hit.collider.gameObject.GetComponent<CafePuzzleCup>().myColor.ToString();
+								string color = hit.collider.gameObject.GetComponent<BakeryBaguette>().myColor.ToString();
 
 								if(myInput.SwipeLeft)
 								{
-									
+									Debug.Log("swipeLeft");
 								}
 								if(myInput.SwipeRight)
 								{
-									
+									Debug.Log("swipeRight");									
 								}
 								if(myInput.SwipeUp)
-								{
-									
+								{									
+									Debug.Log("swipeup");
 								}
 								if(myInput.SwipeDown)
-								{
-									
+								{									
+									Debug.Log("swipeDown");
 								}
 							}
 						}

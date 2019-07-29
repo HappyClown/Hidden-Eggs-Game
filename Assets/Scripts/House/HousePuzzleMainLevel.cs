@@ -21,6 +21,7 @@ public class HousePuzzleMainLevel : MonoBehaviour {
 				currentLevel ++;
 				if(currentLevel >= mylvls.Length){
 					levelComplete = true;
+					currentLevel = 0;
 				}
 				else{
 					StartLevel();				
@@ -36,7 +37,6 @@ public class HousePuzzleMainLevel : MonoBehaviour {
 		{
 			lvl.ResetLevel();
 		}
-		currentLevel = 0;
 		levelComplete = false;
 	}	
 	public void ResetCurrentLevel(){
