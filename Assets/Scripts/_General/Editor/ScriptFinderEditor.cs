@@ -41,5 +41,10 @@ public class ScriptFinderEditor : Editor {
 			scriptFinderScript.TempLvlCompEggMoveRefFinder();
 			EditorUtility.SetDirty(scriptFinderScript);
 		}
+		if (GUILayout.Button("Set LvlCompEggAnim Ref")) {
+			Undo.RecordObject(scriptFinderScript,"Set LvlCompEggAnim Ref");
+			scriptFinderScript.LvlCompEggAnimRefFinder();
+			EditorUtility.SetDirty(scriptFinderScript);
+		}
 	}
 }

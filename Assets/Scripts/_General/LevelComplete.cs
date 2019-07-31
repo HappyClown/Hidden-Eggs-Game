@@ -9,8 +9,8 @@ public class LevelComplete : MonoBehaviour
 {
 	#region LevelComplete Script Variables
 	[Header("Sequence")]
-	public float darkenScreen; public float showCongrats, startTmpWave, showEggs, showTotalCounter, startEggMove, showBag, showBagGlow, endLevel;
-	private bool darkenScreenStarted, showCongratsStarted, tmpWaveStarted, showEggsStarted, showTotalCounterStarted, startEggMoveStarted, showBagStarted, showBagGlowStarted, levelEnded;
+	public float darkenScreen; public float showCongrats, startTmpWave, /* showEggs, */ showTotalCounter, spawnEggs, showBag, /* showBagGlow, */ endLevel;
+	private bool darkenScreenStarted, showCongratsStarted, tmpWaveStarted, /* showEggsStarted, */ showTotalCounterStarted, spawnEggsStarted, showBagStarted, /* showBagGlowStarted, */ levelEnded;
 
 	[Header("References")]
 	public ClickOnEggs clickOnEggsScript;
@@ -76,33 +76,33 @@ public class LevelComplete : MonoBehaviour
 				congratsWaveScript.waveOn = true;
 				tmpWaveStarted = true;
 			}
-			if (timer > showEggs && !showEggsStarted) { 
-				if (eggsFadeScripts.Length > 0) {
-					foreach (FadeInOutSprite eggFadeScript in eggsFadeScripts)
-					{
-						eggFadeScript.FadeIn();
-					}
-				}
-				showEggsStarted = true;
-			}
+			// if (timer > showEggs && !showEggsStarted) { 
+			// 	if (eggsFadeScripts.Length > 0) {
+			// 		foreach (FadeInOutSprite eggFadeScript in eggsFadeScripts)
+			// 		{
+			// 			eggFadeScript.FadeIn();
+			// 		}
+			// 	}
+			// 	showEggsStarted = true;
+			// }
 			if (timer > showTotalCounter && !showTotalCounterStarted) {
-				lineFadeScript.FadeIn();
+				// lineFadeScript.FadeIn();
 				totalCounterFadeScript.FadeIn();
 				showTotalCounterStarted = true;
 			}
-			if (timer > startEggMove && !startEggMoveStarted) {
+			if (timer > spawnEggs && !spawnEggsStarted) {
 				levelCompleteEggSpaScript.StartAllEggSpawn();
-				startEggMoveStarted = true;
+				spawnEggsStarted = true;
 			}
 			if (timer > showBag && !showBagStarted) {
 				levelCompleteEggbagScript.MakeCurrentBagAppear();
 				showBagStarted = true;
 			}
-			if (timer > showBagGlow && !showBagGlowStarted) {
-				// levelCompleteEggbagScript.StartCurrentBagGlow();
-				// levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
-				showBagGlowStarted = true;
-			}
+			// if (timer > showBagGlow && !showBagGlowStarted) {
+			// 	// levelCompleteEggbagScript.StartCurrentBagGlow();
+			// 	// levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
+			// 	showBagGlowStarted = true;
+			// }
 			if (timer > endLevel && !levelEnded) {
 				audioSceneGenScript.TransitionMenu();
 				clickOnEggsScript.levelComplete = true;

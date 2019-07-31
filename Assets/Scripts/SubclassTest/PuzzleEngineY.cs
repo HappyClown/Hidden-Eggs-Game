@@ -9,7 +9,7 @@ public class PuzzleEngineY : GreatBigPuzzleEngine {
 		PlayMessage(puzzYFive);
 	}
 	
-	public void PlayMessage (int diffNumber) {
+	public new void PlayMessage (int diffNumber) {
 		Debug.Log("This plays a message not a massege. BIG difference. Also the number you have inpotatoed is: " + diffNumber);
 	}
 }

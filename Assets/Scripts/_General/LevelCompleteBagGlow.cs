@@ -47,6 +47,7 @@ public class LevelCompleteBagGlow : MonoBehaviour {
 	}
 
 	public void CalculateTotal() {
-		totalValue = regValue * lvlCompSpawnerScript.regEggs.Count + silValue * lvlCompSpawnerScript.silEggs.Count + golValue * lvlCompSpawnerScript.golEggs.Count;
+		// totalValue = regValue * lvlCompSpawnerScript.regEggs.Count + silValue * lvlCompSpawnerScript.silEggs.Count + golValue * lvlCompSpawnerScript.golEggs.Count;
+		totalValue = lvlCompSpawnerScript.allEggs.Count;
 	}
 }

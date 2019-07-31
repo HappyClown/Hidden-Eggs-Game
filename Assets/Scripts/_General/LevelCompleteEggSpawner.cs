@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class LevelCompleteEggSpawner : MonoBehaviour {
 	[Header ("Settings")]
-	public float regEggDuration;
-	public float  silEggDuration, golEggDuration, allEggDuration;
-	public float spawnRegEggs, spawnSilEggs, spawnGolEggs, spawnAllEggs;
-	public AnimationCurve spawnCurve;
+	// public float regEggDuration;
+	public float  /* silEggDuration, golEggDuration, */ allEggSpawnDuration;
+	public float allEggToBagDuration;
+	// public float spawnRegEggs, spawnSilEggs, spawnGolEggs, spawnAllEggs;
+	public AnimationCurve spawnCurve, toBagCurve;
 	[Header ("References")]
-	public List<LevelCompleteEggMoveSpin> regEggs;
-	public List<LevelCompleteEggMoveSpin> silEggs, golEggs, allEggs;
+	//public List<LevelCompleteEggMoveSpin> regEggs;
+	public List<LevelCompleteEggMoveSpin> /* silEggs, golEggs, */ allEggs;
 	[Header ("Info")]
-	public List<float> regEggDelay;
-	public List<float> silEggDelay, golEggDelay, allEggDelay;
-	private bool startEggSpawning, startedRegEggs, startedSilEggs, startedGolEggs;
-	private float eggTypeTimer, regSpawnInterval, silSpawnInterval, golSpawnInterval, allSpawnInterval;
+	// public List<float> regEggDelay;
+	public List<float> /* silEggDelay, golEggDelay, */ allEggSpawnDelay;
+	public List<float> allEggToBagDelay;
+	// private bool startEggSpawning, startedRegEggs, startedSilEggs, startedGolEggs;
+	private float /* eggTypeTimer, regSpawnInterval, silSpawnInterval, golSpawnInterval, */ allSpawnInterval;
 
 	void Update () {
 		// if (startEggSpawning) {
@@ -43,7 +45,7 @@ public class LevelCompleteEggSpawner : MonoBehaviour {
 	public void StartAllEggSpawn() {
 		for(int i = 0; i < allEggs.Count; i++)
 		{
-			allEggs[i].StartEggMovement(allEggDelay[i] * allEggDuration);
+			allEggs[i].StartEggMovement(allEggSpawnDelay[i] * allEggSpawnDuration, allEggToBagDelay[i] * allEggToBagDuration);
 		}
 	}
 	// public void StartRegEggSpawn() {
@@ -69,12 +71,22 @@ public class LevelCompleteEggSpawner : MonoBehaviour {
 	// }
 
 	public void CalculateIntervals() {
-		allEggDelay.Clear();
 		allSpawnInterval = 1f / allEggs.Count;
 		float spawnTime = allSpawnInterval;
+
+		allEggSpawnDelay.Clear();
 		for(int i = 0; i < allEggs.Count; i++)
 		{
-			allEggDelay.Add(spawnCurve.Evaluate(spawnTime));
+			allEggSpawnDelay.Add(spawnCurve.Evaluate(spawnTime));
+			spawnTime += allSpawnInterval;
+		}
+
+		spawnTime = allSpawnInterval;
+
+		allEggToBagDelay.Clear();
+		for(int i = 0; i < allEggs.Count; i++)
+		{
+			allEggToBagDelay.Add(toBagCurve.Evaluate(spawnTime));
 			spawnTime += allSpawnInterval;
 		}
 		// regEggDelay.Clear();

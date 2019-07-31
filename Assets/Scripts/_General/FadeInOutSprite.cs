@@ -5,7 +5,7 @@ using UnityEngine;
 public class FadeInOutSprite : MonoBehaviour {
 	//[HideInInspector]
 	public bool fadingOut, fadingIn, hidden, shown;
-	private float t;
+	private float t, iniVal;
 	public float fadeDelayDur;
 	[Range(0f, 1f)]
 	public float maxAlpha = 1f;
@@ -40,7 +40,7 @@ public class FadeInOutSprite : MonoBehaviour {
 	void Update () {
 		if (fadingOut == true) {
 			t += Time.deltaTime / fadeDuration;
-			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(1f * maxAlpha, 0f, t));
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(1f * maxAlpha, iniVal, t));
 			if (t >= 1f) {
 				fadingOut = false;
 				hidden = true;
@@ -54,7 +54,7 @@ public class FadeInOutSprite : MonoBehaviour {
 
 		if (fadingIn == true) {
 			t += Time.deltaTime / fadeDuration;
-			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(0f, 1f * maxAlpha, t));
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(iniVal, 1f * maxAlpha, t));
 			if (t >= 1f) {
 				shown = true;
 				fadingIn = false;
@@ -64,8 +64,9 @@ public class FadeInOutSprite : MonoBehaviour {
 		}
 	}
 
-	public void FadeOut () {
+	public void FadeOut (float startVal = 0f) {
 		if (fadingOut == false) { // Potentially implement a waitmode, to wait until it is faded in/out to fade it in/out.
+			iniVal = startVal;
 			fadingIn = false;
 			fadingOut = true;
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
@@ -74,11 +75,12 @@ public class FadeInOutSprite : MonoBehaviour {
 		}
 	}
 
-	public void FadeIn () {
+	public void FadeIn (float startVal = 0f) {
 		if (!this.gameObject.activeSelf) {
 			this.gameObject.SetActive(true);
 		}
 		if (fadingIn == false) {
+			iniVal = startVal;
 			fadingOut = false;
 			fadingIn = true;
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
