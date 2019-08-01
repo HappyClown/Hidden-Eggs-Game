@@ -14,6 +14,7 @@ public class ScriptFinder : MonoBehaviour {
 	public List<LevelCompleteEggMoveSpin> lvlCompEggMoveScripts = new List<LevelCompleteEggMoveSpin>();
 	public List<LevelCompEggAnimEvents> lvlCompEggAnimScripts = new List<LevelCompEggAnimEvents>();
 
+	#if UNITY_EDITOR
 	public void FillSceneGameObjectList() {
 		Debug.Log("The time at the start of this method: " + Time.time);
 		allGOInScene.Clear();
@@ -165,4 +166,5 @@ public class ScriptFinder : MonoBehaviour {
 		}
 		Debug.Log("The time at the end of this method: " + Time.time);
 	}
+	#endif
 }
