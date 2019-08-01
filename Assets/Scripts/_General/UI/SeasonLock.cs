@@ -51,7 +51,9 @@ public class SeasonLock : MonoBehaviour {
 				checkSeason = true;
 			}
 			// Check if new eggs were found.
-			if(settingUp) {
+			if(settingUp && myHubScript.dissolveDone) {
+				Debug.Log(lastEggVal);
+				Debug.Log(newEggVal);
 				if (lastEggVal == newEggVal) {
 					myHubScript.EnableSeasonObjs();
 					settingUp = false;
@@ -143,7 +145,7 @@ public class SeasonLock : MonoBehaviour {
 		backColorFadeScript.gameObject.SetActive(true);
 		backColorFadeScript.FadeIn();
 		settingUp = true;
-		// Debug.Log("I'm here!!");
+		Debug.Log("I'm here  setup should be true");
 	}
 	void UnlockSequence(){
 		closedLock.gameObject.SetActive(false);

@@ -14,6 +14,7 @@ public class Hub : MonoBehaviour {
 	public float dissSpeed;
 	public List<Material> dissolveMats;
 	public List<Material> matsToDissolve;
+	public bool dissolveDone;
 	[Header("Season Objects")]
 	public List<GameObject> summerButtons;
 	public List<GameObject> summerGlows;
@@ -64,6 +65,7 @@ public class Hub : MonoBehaviour {
 				//EnableSeasonObjs();
 				matsToDissolve.Clear();
 				dissolving = false;
+				dissolveDone = true;
 			}
 		}
 	}
@@ -80,7 +82,7 @@ public class Hub : MonoBehaviour {
 	}
 
 	public void EnableSeasonObjs() { // Enable Season objects (Scene buttons) 
-		//backToMenuScript.backToMenuBtn.enabled = true;
+		backToMenuScript.backToMenuBtn.enabled = true;
 		// foreach true...
 		if (GlobalVariables.globVarScript.dissSeasonsBools[0]) {
 			foreach(GameObject summerObj in summerButtons)
