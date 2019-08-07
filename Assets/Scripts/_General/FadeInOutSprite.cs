@@ -40,7 +40,7 @@ public class FadeInOutSprite : MonoBehaviour {
 	void Update () {
 		if (fadingOut == true) {
 			t += Time.deltaTime / fadeDuration;
-			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(1f * maxAlpha, iniVal, t));
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(maxAlpha, iniVal, t));
 			if (t >= 1f) {
 				fadingOut = false;
 				hidden = true;
@@ -54,7 +54,7 @@ public class FadeInOutSprite : MonoBehaviour {
 
 		if (fadingIn == true) {
 			t += Time.deltaTime / fadeDuration;
-			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(iniVal, 1f * maxAlpha, t));
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(iniVal, maxAlpha, t));
 			if (t >= 1f) {
 				shown = true;
 				fadingIn = false;

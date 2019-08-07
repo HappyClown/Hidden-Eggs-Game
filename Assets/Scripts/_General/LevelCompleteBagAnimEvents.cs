@@ -8,7 +8,7 @@ public class LevelCompleteBagAnimEvents : MonoBehaviour {
 	public float overlayDur, glowDur;
 	[Header ("References")]
 	public LevelCompleteEggBag lvlCompEggBagScript;
-	public ParticleSystem flashFX, sparkleDustFX, backShaftsFX;
+	public ParticleSystem flashFX, sparkleDustFX, backShaftsFX, popFX, afterSparkleFX;
 	[Header ("Info")]
 	private float backShaftsNewScale;
 
@@ -33,6 +33,14 @@ public class LevelCompleteBagAnimEvents : MonoBehaviour {
 
 	void PlaySparkleDustFX() {
 		sparkleDustFX.Play();
+	}
+
+	void PlayPopFX() {
+		popFX.Play();
+	}
+
+	void PlayAfterSparkleFX() {
+		afterSparkleFX.Play();
 	}
 
 	void PlayBackShaftsFX() {

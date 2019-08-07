@@ -10,7 +10,13 @@ public class LevelCompEggCounter : MonoBehaviour {
 	
 	void Update () {
 		if (eggAmnt != prevEggAmnt) {
-			tmp.text = "x" + eggAmnt;
+			// tmp.text = "x" + eggAmnt;
+			if (eggAmnt < 10) {
+				tmp.text = "0" + eggAmnt;
+			}
+			else {
+				tmp.text = "" + eggAmnt;
+			}
 		}
 		prevEggAmnt = eggAmnt;
 	}

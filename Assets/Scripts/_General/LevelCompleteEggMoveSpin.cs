@@ -6,6 +6,8 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	[Header ("Settings")]
 	public float spinSpeed;
 	public float moveDuration, startMove, becomeWhite, becomePlain, startShake;
+	public float glowToMax;
+	public float bagExplodeDelay;
 	public bool amIGolden, amIFirst;
 	public int myGlowValue;
 	public AnimationCurve animCurve;
@@ -13,6 +15,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	[Header ("References")]
 	public LevelCompEggCounter levelCompEggCounterScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
+	public LevelCompleteEggSpawner lvlCompEggSpawnScript;
+	public IncreasePartSysSimulationSpeed FXSpeedScript;
+	public RotateFX rotateFXScript;
 	public FadeInOutSprite myFadeScript, myGlowFadeScript, plainEggFadeScript;
 	public SpriteRenderer mySprite, whiteOverlaySprite;
 	public AudioSceneGeneral audioSceneGenScript;
@@ -21,9 +26,14 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	[Header ("Info")]
 	private Vector3 startPos;
 	private float lerp, mySpawnDelay, spawnTimer, moveDelay, whiteDelay, plainDelay, shakeDelay;
+	private float glowMaxDelay;
 	private bool startEggMove, showEgg, white, plain, glowOut, shakeStarted;
+	private bool glowMax;
 	public bool moveEgg;
 	private int spinDir = 1;
+	private float explodeTimer;
+	private bool bagExplosionWait;
+
 
 	void Start () {
 		startPos = this.transform.position;
@@ -37,6 +47,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 			spawnTimer += Time.deltaTime;
 			this.transform.Rotate(Vector3.forward * spinDir * (spinSpeed * Time.deltaTime));
 			if (spawnTimer > mySpawnDelay && !showEgg) {
+				// if (amIFirst) {
+				// 	rotateFXScript.RotatePlayFX();
+				// }
 				myFadeScript.FadeIn();
 				myGlowFadeScript.FadeIn();
 				spawnFX.Play();
@@ -44,22 +57,49 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 				endTrans = levelCompleteEggbagScript.curEggbagFadeScript.gameObject.transform;
 			}
 			if (showEgg) {
-				// if (spawnTimer >= whiteDelay && !white) {
-				// 	myFadeScript.FadeOut();
-				// 	white = true;
-				// }
-				// if (spawnTimer >= plainDelay && !plain) {
-				// 	plainEggFadeScript.FadeIn();
-				// 	plain = true;
-				// }
-				if (spawnTimer >= shakeDelay && !shakeStarted) {
-					eggAnim.SetTrigger("Shake");
+				// Glow from current alpha value to 1f (maximum).
+				if (spawnTimer >= glowMaxDelay && !glowMax) {
+					myGlowFadeScript.maxAlpha = 1f;
+					myGlowFadeScript.FadeIn(myGlowFadeScript.sprite.color.a);
+					if (amIFirst) {
+						rotateFXScript.RotatePlayFX();
+					}
+					glowMax = true;
+				}
+				// Scene egg fades out.
+				if (spawnTimer >= whiteDelay && !white) {
 					myFadeScript.FadeOut();
+					if (amIFirst) {
+						rotateFXScript.RotatePlayFX();
+					}
+					white = true;
+				}
+				// Plain egg fades in.
+				if (spawnTimer >= plainDelay && !plain) {
+					myGlowFadeScript.FadeOut(0.25f);
+					plainEggFadeScript.FadeIn();
+					if (amIFirst) {
+						rotateFXScript.RotatePlayFX();
+					}
+					// myFadeScript.FadeOut();
+					plain = true;
+				}
+				// Shake anim.
+				if (spawnTimer >= shakeDelay && !shakeStarted) {
+					// eggAnim.SetTrigger("Shake");
+					// myFadeScript.FadeOut();
 					// Hardcoded because 1f is always the max.
 					myGlowFadeScript.maxAlpha = 1f;
 					myGlowFadeScript.FadeIn(myGlowFadeScript.sprite.color.a);
 					shakeStarted = true;
 					// moveEgg gets set to true at the end of the "Shake" animation.
+				}
+				// Move egg.
+				if (spawnTimer >= moveDelay && !moveEgg) {
+					if (amIFirst) {
+						rotateFXScript.RotatePlayFX(lvlCompEggSpawnScript.allEggToBagDuration);
+					}
+					moveEgg = true;
 				}
 				if (moveEgg) {
 					if (!trailFX.isPlaying) {
@@ -67,10 +107,10 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					}
 					lerp += Time.deltaTime / moveDuration;
 					this.transform.position = Vector3.Lerp(startPos, endTrans.position, animCurve.Evaluate(lerp));
-					if (lerp >= 0.5f && !glowOut) {
-						myGlowFadeScript.FadeOut();
-						glowOut = true;
-					}
+					// if (lerp >= 0.5f && !glowOut) {
+					// 	myGlowFadeScript.FadeOut();
+					// 	glowOut = true;
+					// }
 					if (lerp >= 1) {
 						levelCompEggCounterScript.eggAmnt++;
 						audioSceneGenScript.silverEggsPanel(this.gameObject);
@@ -87,12 +127,22 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 						if (amIFirst) {
 							levelCompleteEggbagScript.StartCurrentBagGlow();
 							levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
+							FXSpeedScript.myPartSys.Play();
 						}
 						if (amIGolden) {
-							levelCompleteEggbagScript.bagAnim.SetTrigger("Explode");
+							bagExplosionWait = true;
+							FXSpeedScript.IncreaseSimulationSpeed();
 						}
 					}
 				}
+			}
+		}
+		
+		if (bagExplosionWait) {
+			bagExplodeDelay -= Time.deltaTime;
+			if (bagExplodeDelay <= 0f) {
+				levelCompleteEggbagScript.bagAnim.SetTrigger("Explode");
+				bagExplosionWait = false;
 			}
 		}
 	}
@@ -102,9 +152,10 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 		startEggMove = true;
 		mySpawnDelay = spawnDelay;
 		whiteDelay = becomeWhite + mySpawnDelay;
+		glowMaxDelay = glowToMax + mySpawnDelay;
 		plainDelay = becomePlain + mySpawnDelay;
 		shakeDelay = startShake + toBagDelay;
-		moveDelay = startMove + mySpawnDelay;
+		moveDelay = startMove + toBagDelay;
 	} 
 
 	public void GetReferences() {

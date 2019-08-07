@@ -30,7 +30,7 @@ public class DissolveSeasons : MonoBehaviour {
 			dissSeasonsTemp[3] = true; change = true;
 		}
 
-		Debug.Log("Was a new season unlocked? " + change);
+		// Debug.Log("Was a new season unlocked? " + change);
 	}
 
 	public void SaveSeasonDissolves ()
@@ -40,7 +40,7 @@ public class DissolveSeasons : MonoBehaviour {
 			if (!GlobalVariables.globVarScript.dissSeasonsBools[i] && dissSeasonsTemp[i])
 			{
 				GlobalVariables.globVarScript.dissSeasonsBools[i] = true;
-				Debug.Log("Assigned newly dissolved season: " + i + " to GlobalVarScript");
+				// Debug.Log("Assigned newly dissolved season: " + i + " to GlobalVarScript");
 			}
 		}
 		GlobalVariables.globVarScript.SaveVillageState();

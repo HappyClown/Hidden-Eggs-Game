@@ -68,7 +68,7 @@ public class GlobalVariables : MonoBehaviour
 
 	void OnLevelWasLoaded()
 	{
-		Debug.Log("Level loaded check.");
+		// Debug.Log("Level loaded check.");
 		FindClickOnEggScript();
 		FindEggHolderScript();
 		LoadCorrectEggs();

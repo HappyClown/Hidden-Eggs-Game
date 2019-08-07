@@ -10,7 +10,9 @@ public class LevelComplete : MonoBehaviour
 	#region LevelComplete Script Variables
 	[Header("Sequence")]
 	public float darkenScreen; public float showCongrats, startTmpWave, /* showEggs, */ showTotalCounter, spawnEggs, showBag, /* showBagGlow, */ endLevel;
+	public float birdIn;
 	private bool darkenScreenStarted, showCongratsStarted, tmpWaveStarted, /* showEggsStarted, */ showTotalCounterStarted, spawnEggsStarted, showBagStarted, /* showBagGlowStarted, */ levelEnded;
+	private bool birdInStarted;
 
 	[Header("References")]
 	public ClickOnEggs clickOnEggsScript;
@@ -18,6 +20,7 @@ public class LevelComplete : MonoBehaviour
 	public LevelTapMannager lvlTapManScript;
 	public LevelCompleteEggSpawner levelCompleteEggSpaScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
+	public LevelCompHelpBird lvlCompBirdScript;
 	public TMPTextColorFade congratsColorFadeScript;
 	public TMPTextWave congratsWaveScript;
 	public FadeInOutImage coverFadeScript;
@@ -26,8 +29,8 @@ public class LevelComplete : MonoBehaviour
 	public FadeInOutTMP totalCounterFadeScript;
 	public SplineWalker splineWalkerScript;
 	public ParticleSystem splineWalkerFX;
-	public Button backToHubBtn;
-	public Button tapBtn;
+	public Button endLvlBtn;
+	//public Button tapBtn;
 	public AudioSceneGeneral audioSceneGenScript;
 
 	[Header ("Info")]
@@ -38,10 +41,11 @@ public class LevelComplete : MonoBehaviour
 	#endregion
 
 	void Start () {
-		tapBtn.onClick.AddListener(TapBtnPress);
+		//tapBtn.onClick.AddListener(TapBtnPress);
 		if (!audioSceneGenScript) {
 			audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
 		}
+		endLvlBtn.onClick.AddListener(EndLevel);
 	}
 	
 	void Update () {
@@ -52,7 +56,7 @@ public class LevelComplete : MonoBehaviour
 			// In a sequence.
 			ClickOnEggs.inASequence = true;
 			waitingToStartSeq = false;
-			backToHubBtn.interactable = false;
+			//endLvlBtn.interactable = false;
 			sceneTapEnabScript.canTapEggRidPanPuz = false;
 			sceneTapEnabScript.canTapHelpBird = false;
 			sceneTapEnabScript.canTapPauseBtn = false;
@@ -65,6 +69,10 @@ public class LevelComplete : MonoBehaviour
 				coverFadeScript.FadeIn();
 				lvlTapManScript.ZoomOutCameraReset();
 				darkenScreenStarted = true;
+			}
+			if (timer >= birdIn && !birdInStarted) {
+				lvlCompBirdScript.moveUp = true;
+				birdInStarted = true;
 			}
 			if (timer > showCongrats && !showCongratsStarted) {
 				congratsColorFadeScript.startFadeIn = true;
@@ -87,7 +95,8 @@ public class LevelComplete : MonoBehaviour
 			// }
 			if (timer > showTotalCounter && !showTotalCounterStarted) {
 				// lineFadeScript.FadeIn();
-				totalCounterFadeScript.FadeIn();
+				// totalCounterFadeScript.FadeIn();
+				lvlCompBirdScript.waitForConTxtOut = true;
 				showTotalCounterStarted = true;
 			}
 			if (timer > spawnEggs && !spawnEggsStarted) {
@@ -104,13 +113,7 @@ public class LevelComplete : MonoBehaviour
 			// 	showBagGlowStarted = true;
 			// }
 			if (timer > endLevel && !levelEnded) {
-				audioSceneGenScript.TransitionMenu();
-				clickOnEggsScript.levelComplete = true;
-				clickOnEggsScript.SaveLevelComplete();
-				levelCompleteEggbagScript.levelsCompleted++;
-				levelCompleteEggbagScript.SaveLevelsCompleted();
-				GlobalVariables.globVarScript.toHub = true;
-				SceneFade.SwitchSceneWhiteFade(GlobalVariables.globVarScript.menuName);
+				lvlCompBirdScript.waitForCountOut = true;
 				levelEnded = true;
 			}
 		}
@@ -121,5 +124,15 @@ public class LevelComplete : MonoBehaviour
 		clickOnEggsScript.SaveLevelComplete();
 		levelCompleteEggbagScript.levelsCompleted++;
 		levelCompleteEggbagScript.SaveLevelsCompleted();
+	}
+
+	void EndLevel() {
+		audioSceneGenScript.TransitionMenu();
+		clickOnEggsScript.levelComplete = true;
+		clickOnEggsScript.SaveLevelComplete();
+		levelCompleteEggbagScript.levelsCompleted++;
+		levelCompleteEggbagScript.SaveLevelsCompleted();
+		GlobalVariables.globVarScript.toHub = true;
+		SceneFade.SwitchSceneWhiteFade(GlobalVariables.globVarScript.menuName);
 	}
 }

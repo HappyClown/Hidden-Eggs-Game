@@ -19,7 +19,7 @@ public class EnaDisaButtonOnFade : MonoBehaviour {
 		else if (refImg.color.a >= enableThreshold) {
 			thisBtn.enabled = true;
 		}
-		Debug.Log(thisBtn.enabled);
+		// Debug.Log(thisBtn.enabled);
 	}
 	
 	void Update () {

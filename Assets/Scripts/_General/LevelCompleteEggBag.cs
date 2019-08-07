@@ -14,7 +14,7 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	public AudioSceneGeneral audioSceneGenScript;
 	[Header ("Info")]
 	public int levelsCompleted;
-	public FadeInOutSprite curGlowFadeScript, curEggbagFadeScript, nextEggbagFadeScript;
+	public FadeInOutSprite curGlowFadeScript, curEggbagFadeScript, nextEggbagFadeScript, nextGlowFadeScript;
 	private float newBagTimer;
 	private bool newBagOn;
 	
@@ -43,12 +43,14 @@ public class LevelCompleteEggBag : MonoBehaviour {
 		nextEggbagFadeScript = eggBags[levelsCompleted + 1];
 		curEggbagFadeScript.gameObject.SetActive(true);
 		curEggbagFadeScript.FadeIn();
+		bagAnim.SetTrigger("Hover");
 	}
 
 	public void StartCurrentBagGlow() {
 		// Assign local references
 		levelsCompleted = GlobalVariables.globVarScript.levelsCompleted;
 		curGlowFadeScript = bagGlowsScripts[levelsCompleted];
+		nextGlowFadeScript = bagGlowsScripts[levelsCompleted + 1];
 		curGlowFadeScript.gameObject.SetActive(true);
 		curGlowFadeScript.FadeIn();
 	}
@@ -62,6 +64,8 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	public void MakeNewBagAppear() {
 		curEggbagFadeScript.gameObject.SetActive(false);
 		nextEggbagFadeScript.gameObject.SetActive(true);
+		nextGlowFadeScript.fadeDuration = 0.05f;
+		nextGlowFadeScript.FadeIn();
 		nextEggbagFadeScript.fadeDuration = 0.05f;
 		nextEggbagFadeScript.FadeIn();
 	}

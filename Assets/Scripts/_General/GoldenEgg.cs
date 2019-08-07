@@ -26,7 +26,9 @@ public class GoldenEgg : MonoBehaviour {
 	private bool coverOn, coverOff;
 
 	[Header("Congratulations")]
+	public Animator titleAnim;
 	public TMPTextColorFade textFadeScript;
+	public TMPWarpText textWarpScript;
 	public ParticleSystem textFX;
 	public SplineWalker textSplineWScript;
 	//public SpriteRenderer[] congratsObjs;
@@ -150,9 +152,11 @@ public class GoldenEgg : MonoBehaviour {
 				coverB = true;
 			}
 			if (seqTimer >= startText && !textB) {
+				titleAnim.SetTrigger("PopIn");
+				//textWarpScript.StartAnimatedWarp = true;
 				textFadeScript.startFadeIn = true;
-				textSplineWScript.isPlaying = true;
-				textFX.Play();
+				//textSplineWScript.isPlaying = true;
+				//textFX.Play();
 				textB = true;
 			}
 			if (seqTimer >= startFireWorks && !fireWorksB) {
