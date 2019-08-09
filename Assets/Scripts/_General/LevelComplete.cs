@@ -75,6 +75,7 @@ public class LevelComplete : MonoBehaviour
 				birdInStarted = true;
 			}
 			if (timer > showCongrats && !showCongratsStarted) {
+				// AUDIO - CONGRATS TITLE STARTS APPEARING!
 				congratsColorFadeScript.startFadeIn = true;
 				splineWalkerScript.isPlaying = true;
 				splineWalkerFX.Play();

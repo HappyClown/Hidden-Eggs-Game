@@ -114,13 +114,16 @@ public class StoryIntro : MonoBehaviour {
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
 			if (!storyTimeMoScript.timeMovesIn) {
+				// AUDIO - TIME DIVES IN!
 				storyTimeMoScript.timeMovesIn = true;
 			}
 			boardBools[2] = true;
 		}
+
 		// Condition to change the story board.
 		if (boardTimer >= boardEvents[boardEvents.Count-1] && inputDetScript.Tapped) {
 			boardTimer = 0f;
+			// AUDIO - BOARD CHANGE TIME HOVER SOUND SHOULD STOP!
 			storyTextScript.ChangeTextFade(storyBoardTextNum);
 			storyBoardTextNum++;
 			boardEvents.Clear();
@@ -145,6 +148,7 @@ public class StoryIntro : MonoBehaviour {
 		}
 		if (blackScreenFadeScript.shown && boardBools[0]) {
 			introStates = IntroStates.Gust;
+			// AUDIO - BOARD CHANGE TIME HOVER SOUND SHOULD STOP!
 			storyTimeMoScript.normalTime.SetActive(false);
 			storyTextScript.TurnTextOff();
 			boardTimer = 0f;
@@ -175,10 +179,12 @@ public class StoryIntro : MonoBehaviour {
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
 			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.midTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve);
 			storyGustScript.yHover = true;
+			// AUDIO - GUST MOVES IN!
 			boardBools[1] = true;
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
 			storyGustScript.SetupXMove(storyGustScript.midTrans.position.x, storyGustScript.endTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveOutXCurve);
+			// AUDIO - GUST MOVES OUT!
 			boardBools[2] = true;
 		}
 		if (boardBools[2] && inputDetScript.Tapped) {
@@ -217,10 +223,12 @@ public class StoryIntro : MonoBehaviour {
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
 			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.endTrans.position.x, storyGustScript.moveAcrossDur, storyGustScript.moveInXCurve);
+			// AUDIO - GUST MOVES IN!
 			boardBools[1] = true;
 		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
 			storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.fastSpinDuration);
+			// AUDIO - TIME SPINS!
 			storyTimeMoScript.timeHovers = false;
 			storyTimeMoScript.changeSpinTime = true;
 			storyScrollBGScript.slowDownClouds = true;
@@ -473,6 +481,7 @@ public class StoryIntro : MonoBehaviour {
 			if (hit && hit.collider.tag == "Egg") {
 				// TheOneEgg is set inactive in the StoryTimeMotion script.
 				storyOneEggScript.EggTap();
+				// AUDIO - EGG CLICKED/TAPPED!
 				storyOneEggScript.tapIconFadeScript.FadeOut();
 				storyTimeMoScript.timeDivesThrough = true;
 				enableRaycasting = false;

@@ -2512,7 +2512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798ef7fba95cca840829229c7bb8e4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzlePauseScript: {fileID: 1256586950}
+  menuStatesScript: {fileID: 1256586950}
   sceneTapEnaScript: {fileID: 712647450}
   button: {fileID: 238361861}
 --- !u!114 &238361861
@@ -2636,6 +2636,11 @@ Prefab:
       propertyPath: clickOnEggsScript
       value: 
       objectReference: {fileID: 712647447}
+    - target: {fileID: 114215625341773946, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: MasterVolume
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}
   m_IsPrefabParent: 0
@@ -2694,6 +2699,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1807088871088516, guid: 3f7590356a743604fb777e4025228310,
     type: 2}
   m_PrefabInternal: {fileID: 239570645}
+--- !u!114 &239570696 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114215625341773946, guid: 3f7590356a743604fb777e4025228310,
+    type: 2}
+  m_PrefabInternal: {fileID: 239570645}
+  m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
 --- !u!1001 &245521184
 Prefab:
   m_ObjectHideFlags: 0
@@ -13754,6 +13765,16 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114638301910344456, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: myAudio
+      value: 
+      objectReference: {fileID: 239570696}
+    - target: {fileID: 114049625511536420, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: menuStatesScript
+      value: 
+      objectReference: {fileID: 1256586950}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d6502d86b4b4714f882706c8fa59669, type: 2}
   m_IsPrefabParent: 0
@@ -17134,6 +17155,7 @@ MonoBehaviour:
   puzzEngScript: {fileID: 0}
   menuActive: 0
   puzzleConfActive: 0
+  putDragOff: 0
   menuCG: {fileID: 1366828226}
   sceneUICG: {fileID: 1812296077}
   puzzleConfCG: {fileID: 1952319835}

@@ -123,6 +123,7 @@ public class StoryTimeMotions : MonoBehaviour {
 		currentTime.transform.localScale = new Vector3(newScale, newScale, newScale);
 		if (lerpValue >= 1f && !hoverUp) {
 			timeHovers = true;
+			// AUDIO - TIME STARTS HOVERING!
 			timePos = endTrans.transform.position;
 			botY = currentTime.transform.localPosition.y;
 			topY = topYTrans.localPosition.y;
@@ -275,6 +276,7 @@ public class StoryTimeMotions : MonoBehaviour {
 			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
 			if (lerpValue >= grabOneEgg && storyOneEggScript.theOneEgg.activeSelf == true) {
 				storyOneEggScript.theOneEgg.SetActive(false);
+				// AUDIO - EGG COLLECTED!
 			}
 			if (lerpValue >= 1f) {
 				lerpValue = 0f;

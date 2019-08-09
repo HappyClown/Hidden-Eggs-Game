@@ -16,14 +16,12 @@ public class LevelTitleVillage : MonoBehaviour {
 	public Sprite spriteNormalEgg, spriteSilverEgg, spriteGoldenEgg, spriteEmptyEgg;
 	public string myLevel;
 
-	// Use this for initialization
 	void Start () {
 		myRectTransform = this.GetComponent<RectTransform>();
 		ResetTittle ();
 		UpdateEggs();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if(openTitle){
 			ResetTittle();

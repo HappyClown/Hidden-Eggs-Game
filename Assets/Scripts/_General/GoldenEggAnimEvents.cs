@@ -7,11 +7,11 @@ public class GoldenEggAnimEvents : MonoBehaviour {
 	public Animator anim;
 	public SpriteRenderer overlaySprite;
 
-	void Update () {
-		if (Input.GetKeyDown("space")) {
-			anim.SetTrigger("FallAnim");
-		}
-	}
+	// void Update () {
+	// 	if (Input.GetKeyDown("space")) {
+	// 		anim.SetTrigger("FallAnim");
+	// 	}
+	// }
 
 	public void PlayFallSparkles() {
 		if (fallSparkles.isPlaying) {

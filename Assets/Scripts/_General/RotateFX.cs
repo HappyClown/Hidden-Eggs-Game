@@ -33,6 +33,7 @@ public class RotateFX : MonoBehaviour {
 			curRotDur = rotationDuration;
 		}
 		this.transform.eulerAngles = Vector3.zero;
+		// AUDIO - ROTATION STARTS!
 		rotFX.Play();
 	}
 }

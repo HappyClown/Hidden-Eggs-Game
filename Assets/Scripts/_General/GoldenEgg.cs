@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -28,6 +30,7 @@ public class GoldenEgg : MonoBehaviour {
 	[Header("Congratulations")]
 	public Animator titleAnim;
 	public TMPTextColorFade textFadeScript;
+	public List<FadeInOutSprite> starFadeScripts;
 	public TMPWarpText textWarpScript;
 	public ParticleSystem textFX;
 	public SplineWalker textSplineWScript;
@@ -210,11 +213,17 @@ public class GoldenEgg : MonoBehaviour {
 		if (inSendingToCorner) {
 			eggToCornerTimer += Time.deltaTime;
 			if (eggToCornerTimer >= coverOffTime) { LightenScreen(); }
-			if (eggToCornerTimer >= congratsOffTime) { textFadeScript.startFadeOut = true; }
+			if (eggToCornerTimer >= congratsOffTime) { 
+				textFadeScript.startFadeOut = true; 
+				foreach( FadeInOutSprite starFadeScript in starFadeScripts)
+				{
+					starFadeScript.FadeOut();
+				}
+			}
 			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); clickOnEggsScript.eggMoving += 1; clickOnEggsScript.openEggPanel = true; }
 
 			if (eggToCornerTimer > coverOffTime && eggToCornerTimer > congratsOffTime && eggToCornerTimer > eggToCornerTime) { 
-				inSendingToCorner = false; 
+				inSendingToCorner = false;
 				// Sequence finished.
 				ClickOnEggs.inASequence = false;
 			}

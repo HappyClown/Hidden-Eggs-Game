@@ -50,6 +50,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 				// if (amIFirst) {
 				// 	rotateFXScript.RotatePlayFX();
 				// }
+				// AUDIO - EGG APPEARS!
 				myFadeScript.FadeIn();
 				myGlowFadeScript.FadeIn();
 				spawnFX.Play();
@@ -113,6 +114,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					// }
 					if (lerp >= 1) {
 						levelCompEggCounterScript.eggAmnt++;
+						// AUDIO - EGG REACHES BAG!
 						audioSceneGenScript.silverEggsPanel(this.gameObject);
 						//myFadeScript.FadeOut();
 						plainEggFadeScript.FadeOut();

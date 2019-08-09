@@ -128,6 +128,7 @@ public class StoryEggMotions : MonoBehaviour {
 			fallFromTop = false;
 			lerpValue = 0f;
 			hover = true;
+			// AUDIO - FALLING EGG STARTS HOVERING!
 			iniHoverPos = this.transform.position;
 		}
 	}
@@ -157,6 +158,7 @@ public class StoryEggMotions : MonoBehaviour {
 			// Move and play the egg transform FX.
 			burstPartSys.transform.position = this.transform.position;
 			burstPartSys.Play();
+			// AUDIO - PLAIN EGG BECOMES SCENE EGG (Particle effects included)!
 			eggBurst = true;
 			// Start the egg trail FX.
 			trailPartSys.Play();

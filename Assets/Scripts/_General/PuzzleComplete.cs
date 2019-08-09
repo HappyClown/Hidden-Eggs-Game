@@ -74,6 +74,7 @@ public class PuzzleComplete : MonoBehaviour {
 		}
 
 		if (reveal) {
+			// STARTS REVEALING HERE! 
 			Revealing();
 		}
 

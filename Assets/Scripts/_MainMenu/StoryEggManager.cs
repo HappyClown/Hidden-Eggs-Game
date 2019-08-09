@@ -33,6 +33,7 @@ public class StoryEggManager : MonoBehaviour {
 			if (eggSpawnTimer > timeBetweenEggs) {
 				eggSpawnTimer = 0f;
 				storyEggScripts[currentEggNum].SpawnEggInBag();
+				// AUDIO - EGG COMES OUT OF BAG!
 				currentEggNum++;
 				timeBetweenEggs = Random.Range(minTimeBetweenEggs, maxTimeBetweenEggs);
 				if (currentEggNum > storyEggScripts.Count - 1) {

@@ -70,6 +70,7 @@ public class StoryOneEgg : MonoBehaviour {
 	public void EggTap() {
 		oneEggAnim.SetTrigger("EggPop");
 		eggClickFX.Play(true);
+		// AUDIO - EGG CLICKED/TAPPED!
 	}
 	// The OneEgg flies out from Time to the middle of the hub. (TheQuest #011)
 	void FlyOutOfTime() {

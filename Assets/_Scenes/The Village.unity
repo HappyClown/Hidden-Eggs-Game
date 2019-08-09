@@ -6877,6 +6877,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: ad9558493b7815846a6a27307da3229e, type: 2}
   - {fileID: 2100000, guid: b5721716259dc6f4cbb81ba4f3503285, type: 2}
   matsToDissolve: []
+  dissolveDone: 0
   summerButtons:
   - {fileID: 991682264}
   - {fileID: 1213598927}
@@ -25177,6 +25178,7 @@ MonoBehaviour:
   multiReqSparkFX: {fileID: 1943173044}
   locked: 1
   settingUp: 0
+  enableSeasonObjsDelay: 0
 --- !u!1 &1127232304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1032243879596674, guid: 0971c82b1a975624f9d044e1ff8ca6be,
@@ -27834,6 +27836,7 @@ MonoBehaviour:
   multiReqSparkFX: {fileID: 836653428}
   locked: 1
   settingUp: 0
+  enableSeasonObjsDelay: 0
 --- !u!198 &1310787474 stripped
 ParticleSystem:
   m_PrefabParentObject: {fileID: 198768499615837952, guid: 999ca432418a02b4fa0320ea942591dd,
@@ -39905,6 +39908,11 @@ Prefab:
       objectReference: {fileID: 1607509963}
     - target: {fileID: 1702867767258264, guid: 0971c82b1a975624f9d044e1ff8ca6be, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114650275086631916, guid: 0971c82b1a975624f9d044e1ff8ca6be,
+        type: 2}
+      propertyPath: inStoryIntro
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
