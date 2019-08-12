@@ -62,9 +62,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 				if (spawnTimer >= glowMaxDelay && !glowMax) {
 					myGlowFadeScript.maxAlpha = 1f;
 					myGlowFadeScript.FadeIn(myGlowFadeScript.sprite.color.a);
-					if (amIFirst) {
-						rotateFXScript.RotatePlayFX();
-					}
+					// if (amIFirst) {
+					// 	rotateFXScript.RotatePlayFX();
+					// }
 					glowMax = true;
 				}
 				// Scene egg fades out.
@@ -90,8 +90,8 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					// eggAnim.SetTrigger("Shake");
 					// myFadeScript.FadeOut();
 					// Hardcoded because 1f is always the max.
-					myGlowFadeScript.maxAlpha = 1f;
-					myGlowFadeScript.FadeIn(myGlowFadeScript.sprite.color.a);
+					// myGlowFadeScript.maxAlpha = 1f;
+					// myGlowFadeScript.FadeIn(myGlowFadeScript.sprite.color.a);
 					shakeStarted = true;
 					// moveEgg gets set to true at the end of the "Shake" animation.
 				}
@@ -128,7 +128,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 						//levelCompleteBagGlowScript.CalculateNewAlpha(myGlowValue);
 						if (amIFirst) {
 							levelCompleteEggbagScript.StartCurrentBagGlow();
-							levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
+							//levelCompleteEggbagScript.iniYPos = levelCompleteEggbagScript.curEggBagTrans.position.y;
+							//levelCompleteEggbagScript.bagRise = true;
+							//levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
 							FXSpeedScript.myPartSys.Play();
 						}
 						if (amIGolden) {
