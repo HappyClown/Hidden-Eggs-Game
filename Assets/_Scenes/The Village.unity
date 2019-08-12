@@ -676,6 +676,7 @@ MonoBehaviour:
   spriteGoldenEgg: {fileID: 21300000, guid: 02056a3d7fb1db04ab01a081ac0851c9, type: 3}
   spriteEmptyEgg: {fileID: 21300000, guid: 91aff9f08ceb67b4883e3c32434202a8, type: 3}
   myLevel: The Market
+  audioManHubMenuScript: {fileID: 0}
 --- !u!114 &51618818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +990,7 @@ Prefab:
     - target: {fileID: 114375100551085838, guid: 3f7590356a743604fb777e4025228310,
         type: 2}
       propertyPath: hubTotalEggsFound
-      value: 0
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}
@@ -3167,6 +3168,7 @@ MonoBehaviour:
   spriteGoldenEgg: {fileID: 21300000, guid: 02056a3d7fb1db04ab01a081ac0851c9, type: 3}
   spriteEmptyEgg: {fileID: 21300000, guid: 91aff9f08ceb67b4883e3c32434202a8, type: 3}
   myLevel: The Beach
+  audioManHubMenuScript: {fileID: 0}
 --- !u!114 &209895967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23234,6 +23236,7 @@ GameObject:
   - component: {fileID: 984254661}
   - component: {fileID: 984254662}
   - component: {fileID: 984254663}
+  - component: {fileID: 984254664}
   m_Layer: 5
   m_Name: Unlock Anim
   m_TagString: Untagged
@@ -23301,6 +23304,23 @@ MonoBehaviour:
   multiReqSparkTrans: {fileID: 836653426}
   reqSparkDownDuration: 0.5
   seasonLockScript: {fileID: 1306444488}
+--- !u!114 &984254664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984254660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941b9ac7be4d6bf42834baea06ce35d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggCounterEvent: event:/SFX/ANIMS/Season Unlocked/Egg Counter tick
+  lockScaleEvent: event:/SFX/ANIMS/Season Unlocked/Lock Zoom
+  lockImploseEvent: event:/SFX/ANIMS/Season Unlocked/Implose
+  lockUnlockEvent: event:/SFX/ANIMS/Season Unlocked/Unlock
+  lockFireworksTrailBurstEvent: event:/SFX/ANIMS/Season Unlocked/FireworkTrailBurst
+  listNotes: []
 --- !u!1 &991682264
 GameObject:
   m_ObjectHideFlags: 0
@@ -24312,6 +24332,7 @@ GameObject:
   - component: {fileID: 1042977694}
   - component: {fileID: 1042977693}
   - component: {fileID: 1042977692}
+  - component: {fileID: 1042977695}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Audio
@@ -24384,6 +24405,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042977695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1042977691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941b9ac7be4d6bf42834baea06ce35d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggCounterEvent: event:/SFX/ANIMS/Season Unlocked/Egg Counter tick
+  lockScaleEvent: event:/SFX/ANIMS/Season Unlocked/Lock Zoom
+  lockImploseEvent: event:/SFX/ANIMS/Season Unlocked/Implose
+  lockUnlockEvent: event:/SFX/ANIMS/Season Unlocked/Unlock
+  lockFireworksTrailBurstEvent: event:/SFX/ANIMS/Season Unlocked/FireworkTrailBurst
+  listNotes: []
 --- !u!1 &1043847248
 GameObject:
   m_ObjectHideFlags: 0
@@ -25179,6 +25217,7 @@ MonoBehaviour:
   locked: 1
   settingUp: 0
   enableSeasonObjsDelay: 0
+  myAudio: {fileID: 0}
 --- !u!1 &1127232304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1032243879596674, guid: 0971c82b1a975624f9d044e1ff8ca6be,
@@ -27837,6 +27876,7 @@ MonoBehaviour:
   locked: 1
   settingUp: 0
   enableSeasonObjsDelay: 0
+  myAudio: {fileID: 0}
 --- !u!198 &1310787474 stripped
 ParticleSystem:
   m_PrefabParentObject: {fileID: 198768499615837952, guid: 999ca432418a02b4fa0320ea942591dd,
@@ -41043,6 +41083,7 @@ MonoBehaviour:
   spriteGoldenEgg: {fileID: 21300000, guid: 02056a3d7fb1db04ab01a081ac0851c9, type: 3}
   spriteEmptyEgg: {fileID: 21300000, guid: 91aff9f08ceb67b4883e3c32434202a8, type: 3}
   myLevel: The Market
+  audioManHubMenuScript: {fileID: 0}
 --- !u!114 &1745178125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47893,6 +47934,7 @@ MonoBehaviour:
   spriteGoldenEgg: {fileID: 21300000, guid: 02056a3d7fb1db04ab01a081ac0851c9, type: 3}
   spriteEmptyEgg: {fileID: 21300000, guid: 91aff9f08ceb67b4883e3c32434202a8, type: 3}
   myLevel: The Park
+  audioManHubMenuScript: {fileID: 0}
 --- !u!114 &1960444314
 MonoBehaviour:
   m_ObjectHideFlags: 0

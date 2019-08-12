@@ -99,10 +99,11 @@ public class CrabRiddle : MonoBehaviour {
 					else {
 						if (moveAmount > 0) {
 							crabReturning = true;
+							audioSceneBeachScript.crabWalkSFX();
 						}
 						moveAmount = 0;
 						moveDest = crabOGPos;
-						audioSceneBeachScript.crabWalkSFX();
+						//audioSceneBeachScript.crabWalkSFX();
 					}
 				}
 				
@@ -110,6 +111,7 @@ public class CrabRiddle : MonoBehaviour {
 				if (!hit.collider.CompareTag("FruitBasket") && canClick) {
 					if (moveAmount > 0) {
 						crabReturning = true;
+						audioSceneBeachScript.crabWalkSFX();
 					}
 					moveAmount = 0;
 					moveDest = crabOGPos;

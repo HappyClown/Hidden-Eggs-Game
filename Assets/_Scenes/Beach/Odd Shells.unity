@@ -25953,7 +25953,7 @@ MonoBehaviour:
   RiddleBtn: {fileID: 1369350560}
   HintBtn: {fileID: 1369350560}
   PauseBtn: {fileID: 2083618089}
-  XBtn: {fileID: 969175514}
+  CloseMenuBtn: {fileID: 969175514}
   birdEvent: event:/SFX/Beach/Beach_Bird
   birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
@@ -25969,10 +25969,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent: event:/SFX/SFX_General/Button
+  muteEvent_perc: event:/SFX/SFX_General/muteButton_perc
+  unMuteEvent_perc: event:/SFX/SFX_General/unMuteButton_perc
+  muteEvent_harp: event:/SFX/SFX_General/muteButton_harp
+  unMuteEvent_harp: event:/SFX/SFX_General/unMuteButton_harp
+  sliderEvent: event:/SFX/SFX_General/sliderSound
   MusicVolume: 0.5
   SFXVolume: 0.5
-  MasterVolume: 0.8
-  volumeTests: 0.8
   Muted: 0
   Paused: 0
 --- !u!1 &378697050
@@ -86208,6 +86212,7 @@ GameObject:
   - component: {fileID: 1576060543}
   - component: {fileID: 1576060545}
   - component: {fileID: 1576060546}
+  - component: {fileID: 1576060547}
   m_Layer: 0
   m_Name: BootMain
   m_TagString: Untagged
@@ -86307,6 +86312,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partFX: {fileID: 843740838}
+--- !u!114 &1576060547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1576060542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0468e1e8fcc85bb4d877eb2642dea685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootShakeEvent: event:/SFX/Puzzle_Beach/BootShake
 --- !u!1 &1583179703
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,10 +16,15 @@ public class LevelTitleVillage : MonoBehaviour {
 	public Sprite spriteNormalEgg, spriteSilverEgg, spriteGoldenEgg, spriteEmptyEgg;
 	public string myLevel;
 
+	public AudioManagerHubMenu audioManHubMenuScript;
 	void Start () {
 		myRectTransform = this.GetComponent<RectTransform>();
 		ResetTittle ();
 		UpdateEggs();
+
+		if (!audioManHubMenuScript) {
+			audioManHubMenuScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManagerHubMenu>();
+		}
 	}
 	
 	void Update () {
@@ -61,10 +66,15 @@ public class LevelTitleVillage : MonoBehaviour {
 	public void OpenTitle(){
 		if(!openingTitle && !open){
 			openTitle = true;
+			//sound
+			audioManHubMenuScript.StatPaperSound_on();
+
 			foreach (LevelTitleVillage titles in AllTitles)
 			{	
 				if(titles.open || titles.openingTitle){
 					titles.CloseTitle();
+					//sound
+					audioManHubMenuScript.StatPaperSound_off();
 				}
 			}
 		}

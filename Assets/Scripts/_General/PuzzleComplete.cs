@@ -23,10 +23,18 @@ public class PuzzleComplete : MonoBehaviour {
 	public bool reveal, reset, masksFromMid;
 	private float revTimer;
 	[Header ("References")]
-	public AudioSceneMarketPuzzle audioSceneMarketPuzzScript;
+	//public AudioSceneMarketPuzzle audioSceneMarketPuzzScript;
 	public FadeInOutSprite leftPieceFadeScript, rightPieceFadeScript;
 	public TMPTextColorFade textColorScript;
 	public TMPTextFall textFallScript;
+
+	public AudioScenePuzzleGeneric audioScenePuzGenScript;
+	bool jingle = true;
+
+	void Awake(){
+		audioScenePuzGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioScenePuzzleGeneric>();
+	}
+
 
 	void Update () {
 		if (endSeq && !masksFromMid) {
@@ -76,6 +84,14 @@ public class PuzzleComplete : MonoBehaviour {
 		if (reveal) {
 			// STARTS REVEALING HERE! 
 			Revealing();
+
+			if(jingle){
+				//1 shot sound jingle
+				audioScenePuzGenScript.puzPieceJingleSnd();
+				jingle=false;
+			}
+
+			audioScenePuzGenScript.puzPieceSnd(); //sound pieces
 		}
 
 		if (reset) {

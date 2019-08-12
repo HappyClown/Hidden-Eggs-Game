@@ -47,7 +47,7 @@ public class AudioSceneMarketPuzzle :  AudioScenePuzzleGeneric
 
     
     void Start () 
-	{
+	{  
         ResetItemBtn.onClick.AddListener(buttonSFX);
         BackBtn.onClick.AddListener(Transition);
         PauseBtn.onClick.AddListener(buttonSFX);

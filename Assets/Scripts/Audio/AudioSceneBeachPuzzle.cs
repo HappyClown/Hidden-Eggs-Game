@@ -26,6 +26,7 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
     public FMOD.Studio.EventInstance bubblePopSound;
 
 
+
     public static List<string> listOceanSounds;
     public static List<string> listMusicalSounds;
 
@@ -72,7 +73,7 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
 	{
         // FOR MANUAL TESTS
         if (Input.GetKeyDown("space")) { // Deleeette MmeeeEEeeEEe!!!...
-            setPlayingMelody(true);
+            //setPlayingMelody(true);
         }
 
         
@@ -150,9 +151,7 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
     }
 	
 
-    public void failSFX()
-    {
-        //button sound
+    public void failSFX(){
         failSound = FMODUnity.RuntimeManager.CreateInstance(failEvent);
         failSound.start();
     }
@@ -162,6 +161,8 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
         //button sound
         buttonSFX();
     }
+
+
 
     public void BubblesSFX()
     {

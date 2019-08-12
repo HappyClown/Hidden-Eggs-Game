@@ -13,7 +13,7 @@ public class AudioHelperBird : MonoBehaviour
     public Button RiddleBtn;
     public Button HintBtn;
     public Button PauseBtn;
-    public Button XBtn;
+    public Button CloseMenuBtn;
 
 
 	[Header("Bird Help")]
@@ -42,14 +42,20 @@ public class AudioHelperBird : MonoBehaviour
 
 	void Start () 
 	{
-        BirdHelpBtn.onClick.AddListener(birdHelpSound);
-        RiddleBtn.onClick.AddListener(birdHelpSound);
-        HintBtn.onClick.AddListener(birdHelpSound);
+        if(BirdHelpBtn){
+            BirdHelpBtn.onClick.AddListener(birdHelpSound);
+            }
+        if(RiddleBtn){
+            RiddleBtn.onClick.AddListener(birdHelpSound);
+            }
+        if(HintBtn){
+            HintBtn.onClick.AddListener(birdHelpSound);
+            }
         if(PauseBtn){
            PauseBtn.onClick.AddListener(PausebuttonSFX); 
         }
-        if(XBtn){
-               XBtn.onClick.AddListener(buttonSFX);
+        if(CloseMenuBtn){
+               CloseMenuBtn.onClick.AddListener(buttonSFX);
         }
 	}
 	

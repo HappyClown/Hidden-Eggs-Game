@@ -65,12 +65,15 @@ public class GoldenEgg : MonoBehaviour {
 	public EggGoToCorner eggGoToCornerScript;
 	public ClickOnEggs clickOnEggsScript;
 	public SceneTapEnabler scenTapEnabScript;
-	public AudioSceneGeneral audioSceneGeneralScript;
+	//public AudioSceneGeneral audioSceneGeneralScript;
+
+	public AudioRiddleSolvedAnim audioRiddleSolvedAnimScript;
 
 	void Start () {
 		partShaftsMat = partShafts.gameObject.GetComponent<ParticleSystemRenderer>().material;
 		//  if (eggGoToCornerScript.eggFound) { this.transform.localScale += new Vector3(4, 4, 1); }
 		//  Debug.Log("EGG FOUND? :" + eggGoToCornerScript.eggFound);
+		audioRiddleSolvedAnimScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioRiddleSolvedAnim>();
 	}
 
 	void Update () {
@@ -161,11 +164,20 @@ public class GoldenEgg : MonoBehaviour {
 				//textSplineWScript.isPlaying = true;
 				//textFX.Play();
 				textB = true;
+
+				//sound text pop
+				audioRiddleSolvedAnimScript.riddleSolvedTextSnd();
+
 			}
 			if (seqTimer >= startFireWorks && !fireWorksB) {
 				firework01.Play(true);
 				firework02.Play(true);
 				fireWorksB = true;
+
+				//explosion sounds tests
+				audioRiddleSolvedAnimScript.fireworkTrailBurstSnd();
+				//audioRiddleSolvedAnimScript.fireworkTrailBurstSnd();
+
 			}
 			if (seqTimer >= startEgg && !eggB) {
 				StartEgg();
@@ -360,11 +372,13 @@ public class GoldenEgg : MonoBehaviour {
 	}
 
 	public void GoldEggAnimSound() {
-		audioSceneGeneralScript.goldEggAnimSound();
+		audioRiddleSolvedAnimScript.goldenEggIdleSnd();
+		//audioSceneGeneralScript.goldEggAnimSound();
 	}
 
 	public void GoldEggShimmerPlaySound() {
-		audioSceneGeneralScript.goldEggShimmerStartSound();
+		//audioSceneGeneralScript.goldEggShimmerStartSound();
+		audioRiddleSolvedAnimScript.goldenEggIdleSnd();
 	}
 	#endregion
 }

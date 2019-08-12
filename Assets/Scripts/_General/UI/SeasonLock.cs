@@ -29,6 +29,8 @@ public class SeasonLock : MonoBehaviour {
 	private int eggAmntForAnim;
 	private float eggsLeft, curEggReqSpeed;
 
+	public AudioSeasonUnlockAnim myAudio;
+
 	void Start () {
 		unlocking = false;
 		timer = 0;
@@ -36,6 +38,8 @@ public class SeasonLock : MonoBehaviour {
 		lockMask.SetActive(false);
 		checkSeason = false;
 		maxEggsPerSec *= Time.deltaTime;
+
+		myAudio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSeasonUnlockAnim>();
 	}
 	
 	void Update () {
@@ -61,6 +65,7 @@ public class SeasonLock : MonoBehaviour {
 				timer += Time.deltaTime;
 				if (timer >= scaleUpTime && !scaledUp) {
 					// AUDIO - LOCK SCALES UP!
+					//myAudio.lockScaleUpSnd();
 					groupAnim.SetTrigger("ScaleUp");
 					scaledUp = true;
 				}
@@ -82,6 +87,7 @@ public class SeasonLock : MonoBehaviour {
 				// Trigger an animation every time the unlock counter amount changes.
 				if (eggAmntForAnim != Mathf.RoundToInt(lastEggVal)) {
 					// AUDIO - COUNTER GOES DOWN BY ONE!
+					myAudio.eggCounterSnd();
 					eggReqAnim.SetTrigger("ScaleCounter");
 					oneReqSparkFX.Play();
 				}
@@ -114,6 +120,7 @@ public class SeasonLock : MonoBehaviour {
 				seasonObjsTimer += Time.deltaTime;
 				if (seasonObjsTimer >= scaleDownDelay) {
 					// AUDIO - LOCK SCALES DOWN!
+					//myAudio.lockScaleDown();
 					groupAnim.SetTrigger("ScaleDown");
 				}
 				if (seasonObjsTimer >= seasonObjsDelay) {
@@ -153,6 +160,9 @@ public class SeasonLock : MonoBehaviour {
 	void UnlockSequence(){
 		closedLock.gameObject.SetActive(false);
 		openLock.gameObject.SetActive(true);
+		//TEST sounds
+		myAudio.lockUnlockSnd();
+		myAudio.lockFireworksTrailBurstSnd();
 	}
 	void FadeOutBanner(){
 		bannerTitle.GetComponent<FadeInOutImage>().FadeOut();
