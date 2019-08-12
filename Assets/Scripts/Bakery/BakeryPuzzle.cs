@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BakeryPuzzle : MainPuzzleEngine {
 	public BakeryLevel[] myLvls;
+	public BakeryBaguette selectedBaguette;
+	public bool holdingBaguette;
 	private delegate void VoidDelegate();
 	private VoidDelegate voidDelegate;	
 	private bool raycastDone, puzzleDone;
@@ -65,42 +67,63 @@ public class BakeryPuzzle : MainPuzzleEngine {
 			// 		Debug.Log("puzzle complete");
 			// 	}
 			// }
-			if(!myLvls[curntLvl-1].movingBaguet){
-				if(myInput.SwipeLeft || myInput.SwipeRight || myInput.SwipeUp || myInput.SwipeDown){
-					Vector2 touchPosition = Camera.main.ScreenToWorldPoint(myInput.firstSwipeTouch);
-					hit = Physics2D.Raycast(touchPosition, Vector3.forward, 50f);
-					Debug.DrawRay(touchPosition,Vector3.forward,Color.red,1f);
-					if (hit)
-					{
-						if (hit.collider.CompareTag("Tile"))
+				if(myInput.isDragging){
+					if(holdingBaguette){
+						Vector2 dragMousePos = Camera.main.ScreenToWorldPoint(myInput.draggingPosition);
+						Vector2 prevMousePos = Camera.main.ScreenToWorldPoint(myInput.prevDragPosition);
+						if(selectedBaguette.vertical){
+							if(myInput.draggingPosition.y > myInput.prevDragPosition.y){
+								 selectedBaguette.MoveUp();
+								 if(selectedBaguette.canMove){ 
+									 float ammountToMove = dragMousePos.y - prevMousePos.y;
+									 selectedBaguette.currentPos.y += ammountToMove; 
+									// selectedBaguette.canMove = false;
+								 }
+							}
+							else{
+								selectedBaguette.MoveDown();
+								 if(selectedBaguette.canMove){ 
+									 float ammountToMove =dragMousePos.y - prevMousePos.y;
+									 selectedBaguette.currentPos.y += ammountToMove; 
+									// selectedBaguette.canMove = false;
+								 }
+							}
+						}else if(selectedBaguette.horizontal){
+							if(myInput.draggingPosition.x > myInput.prevDragPosition.x){
+								selectedBaguette.MoveRight();
+								 if(selectedBaguette.canMove){ 
+									 float ammountToMove = dragMousePos.x - prevMousePos.x;
+									 selectedBaguette.currentPos.x += ammountToMove; 
+									// selectedBaguette.canMove = false;
+								 }
+							}
+							else{
+								selectedBaguette.MoveLeft();
+								 if(selectedBaguette.canMove){ 
+									 float ammountToMove = dragMousePos.x - prevMousePos.x;
+									 selectedBaguette.currentPos.x += ammountToMove; 
+									// selectedBaguette.canMove = false;
+								 }
+							}
+						}
+					}else{
+						Vector2 touchPosition = Camera.main.ScreenToWorldPoint(myInput.startDragTouch);
+						hit = Physics2D.Raycast(touchPosition, Vector3.forward, 50f);
+						Debug.DrawRay(touchPosition,Vector3.forward,Color.red,1f);
+						if (hit)
 						{
-							BakeryBaguette currentBaguette = hit.collider.gameObject.GetComponent<BakeryBaguette>();
-							if(currentBaguette.active){
-								Debug.DrawRay(touchPosition, Vector3.forward, Color.red, 60f);
-								string color = hit.collider.gameObject.GetComponent<BakeryBaguette>().myColor.ToString();
-
-								if(myInput.SwipeLeft)
-								{
-									Debug.Log("swipeLeft");
-								}
-								if(myInput.SwipeRight)
-								{
-									Debug.Log("swipeRight");									
-								}
-								if(myInput.SwipeUp)
-								{									
-									Debug.Log("swipeup");
-								}
-								if(myInput.SwipeDown)
-								{									
-									Debug.Log("swipeDown");
-								}
+							if (hit.collider.CompareTag("Tile"))
+							{									
+								selectedBaguette =  hit.collider.gameObject.GetComponent<BakeryBaguette>();
+								holdingBaguette = true;
 							}
 						}
 					}
+					
 				}
 				else{
 					raycastDone = false;
+					holdingBaguette = false;
 				}
 
 			}
@@ -108,7 +131,7 @@ public class BakeryPuzzle : MainPuzzleEngine {
 				//CleanGrid();
 				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
 			}
-		}
+		
 		else
 		{
 			// When this Scene is loaded.
