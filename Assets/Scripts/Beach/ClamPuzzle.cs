@@ -236,8 +236,10 @@ public class ClamPuzzle : MainPuzzleEngine {
 				mySilverEggMan.activeSilverEggs.Clear();
 				mySilverEggMan.silverEggsActive = false;
 				mySilverEggMan.amntSilEggsTapped = 0;
-				scrnDarkImgScript.FadeOut();
 				curntLvl++;
+				if (curntLvl != winLvl) {
+					scrnDarkImgScript.FadeOut();
+				}
 				if (curntLvl > maxLvl)
 				{ maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); }
 
@@ -261,7 +263,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
-			StartCoroutine(PuzzleComplete());
+			puzzleCompScript.endSeq = true;
 			return;
 		}
 		myLvls[curntLvl-1].ResetLevel();
@@ -339,20 +341,20 @@ public class ClamPuzzle : MainPuzzleEngine {
 	}
 	#endregion
 
-	#region Coroutines
-	// All silver eggs picked up, what happenes?
-	public new IEnumerator PuzzleComplete ()
-	{
-		yield return new WaitForSeconds(0.5f);
+	// #region Coroutines
+	// // All silver eggs picked up, what happenes?
+	// public new IEnumerator PuzzleComplete ()
+	// {
+	// 	yield return new WaitForSeconds(0.5f);
 
-		Debug.Log("Puzzle Completed cognraturations!!!");
+	// 	Debug.Log("Puzzle Completed cognraturations!!!");
 
-		yield return new WaitForSeconds(0.5f);
+	// 	yield return new WaitForSeconds(0.5f);
 
-		audioSceneBeachPuzzScript.StopSceneMusic();
-		audioSceneBeachPuzzScript.PlayTransitionMusic();
+	// 	audioSceneBeachPuzzScript.StopSceneMusic();
+	// 	audioSceneBeachPuzzScript.PlayTransitionMusic();
 
-		SceneFade.SwitchScene(GlobalVariables.globVarScript.beachName);
-	}
-	#endregion
+	// 	SceneFade.SwitchScene(GlobalVariables.globVarScript.beachName);
+	// }
+	// #endregion
 }

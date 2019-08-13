@@ -31,9 +31,11 @@ public class MenuStatesManager : MonoBehaviour {
 	void Start () {
 		menuCG.alpha = 0;
 		menuCG.interactable = false;
+		menuCG.blocksRaycasts = false;
 		if(puzzleConfCG){
 			puzzleConfCG.alpha = 0;
 			puzzleConfCG.interactable = false;
+			puzzleConfCG.blocksRaycasts = false;
 		}
 	}
 	
@@ -119,6 +121,7 @@ public class MenuStatesManager : MonoBehaviour {
 	void IsOn() {
 		if (!menuCG.interactable) {
 			menuCG.interactable = true;
+			menuCG.blocksRaycasts = true;
 		}
 
 		if (inputDetScript.Tapped) {
@@ -137,6 +140,7 @@ public class MenuStatesManager : MonoBehaviour {
 
 	void TurnOff() {
 		menuCG.interactable = false;
+		menuCG.blocksRaycasts = false;
 		menuStates = MenuStates.TurningOff;
 		col.enabled = false;
 		if(putDragOff){
@@ -199,6 +203,7 @@ public class MenuStatesManager : MonoBehaviour {
 	void PuzzleConfIsOn() {
 		if (!puzzleConfCG.interactable) {
 			puzzleConfCG.interactable = true;
+			puzzleConfCG.blocksRaycasts = true;
 		}
 
 		if (inputDetScript.Tapped) {
@@ -215,6 +220,7 @@ public class MenuStatesManager : MonoBehaviour {
 
 	void PuzzleConfTurnOff() {
 		puzzleConfCG.interactable = false;
+		puzzleConfCG.blocksRaycasts = false;
 		puzzleConfStates = PuzzleConfStates.TurningOff;
 		colPuzz.enabled = false;
 		if(putDragOff){

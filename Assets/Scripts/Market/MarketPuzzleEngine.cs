@@ -322,7 +322,6 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
 			puzzleCompScript.endSeq = true;
-			//StartCoroutine(PuzzleComplete());
 			return;
 		}
 		itemHolder = lvlItemHolders[curntLvl - 1];

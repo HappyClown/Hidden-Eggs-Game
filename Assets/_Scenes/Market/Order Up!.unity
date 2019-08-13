@@ -932,11 +932,6 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198248677672175834, guid: 9d45dcb5e6b7e9745be6f4b287e1843f,
     type: 2}
   m_PrefabInternal: {fileID: 2079631882}
---- !u!198 &232263762 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198159467562763626, guid: 31532c5d8bbe7ba46bf6a35db5a179e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 237068721}
 --- !u!1001 &237068721
 Prefab:
   m_ObjectHideFlags: 0
@@ -976,16 +971,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114597174880208984, guid: 31532c5d8bbe7ba46bf6a35db5a179e0,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114597174880208984, guid: 31532c5d8bbe7ba46bf6a35db5a179e0,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114714480934380678, guid: 31532c5d8bbe7ba46bf6a35db5a179e0,
         type: 2}
-      propertyPath: leftTrailFX
+      propertyPath: audioScenePuzzGeneScript
       value: 
-      objectReference: {fileID: 232263762}
-    - target: {fileID: 114714480934380678, guid: 31532c5d8bbe7ba46bf6a35db5a179e0,
-        type: 2}
-      propertyPath: rightTrailFX
-      value: 
-      objectReference: {fileID: 1632304124}
+      objectReference: {fileID: 1743775732}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31532c5d8bbe7ba46bf6a35db5a179e0, type: 2}
   m_IsPrefabParent: 0
@@ -19341,7 +19341,7 @@ MonoBehaviour:
   dotsSpawnB: 0
   scrnDarkImgScript: {fileID: 519633174}
   sceneTapScript: {fileID: 991552001}
-  menuStatesScript: {fileID: 0}
+  menuStatesScript: {fileID: 991552003}
   slideInHelpScript: {fileID: 1336508386}
   puzzleCompScript: {fileID: 373288716}
   canPlay: 0
@@ -41916,11 +41916,6 @@ MonoBehaviour:
   col: {fileID: 1631480709}
   silEggSeqScript: {fileID: 1631480708}
   hollow: 0
---- !u!198 &1632304124 stripped
-ParticleSystem:
-  m_PrefabParentObject: {fileID: 198370995343506082, guid: 31532c5d8bbe7ba46bf6a35db5a179e0,
-    type: 2}
-  m_PrefabInternal: {fileID: 237068721}
 --- !u!1001 &1642644274
 Prefab:
   m_ObjectHideFlags: 0
@@ -42549,6 +42544,11 @@ Prefab:
       propertyPath: sceneName
       value: The Market
       objectReference: {fileID: 0}
+    - target: {fileID: 114793142138888738, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: myAudio
+      value: 
+      objectReference: {fileID: 1922388780}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3468eaf8d67f7974ba5fc0717704b390, type: 2}
   m_IsPrefabParent: 0
@@ -52624,6 +52624,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1807088871088516, guid: 3f7590356a743604fb777e4025228310,
     type: 2}
   m_PrefabInternal: {fileID: 1922388729}
+--- !u!114 &1922388780 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114215625341773946, guid: 3f7590356a743604fb777e4025228310,
+    type: 2}
+  m_PrefabInternal: {fileID: 1922388729}
+  m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
 --- !u!1 &1925050542
 GameObject:
   m_ObjectHideFlags: 0

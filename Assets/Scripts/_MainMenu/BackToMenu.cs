@@ -23,6 +23,7 @@ public class BackToMenu : MonoBehaviour
 	public Hub hubScript;
 	public MainMenu mainMenuScript;
 	public List<SeasonGlows> seasonGlowScripts;
+	public List<SeasonLock> seasonLockScripts;
 	public EdgeFireflies edgeFirefliesScript;
 
 	[Header("Back To Menu Button")]
@@ -84,6 +85,11 @@ public class BackToMenu : MonoBehaviour
 		foreach (FadeInOutCanvasGroup hubCanvasGroupFadeScript in hubScript.hubCanvasGroupFadeScripts)
 		{
 			hubCanvasGroupFadeScript.FadeOut();
+		}
+		// Season Unlock
+		foreach (SeasonLock seasonLockScript in seasonLockScripts)
+		{
+			seasonLockScript.BackToMenu();
 		}
 		// - FADE IN TITLE - //
 		titleFade.FadeIn();

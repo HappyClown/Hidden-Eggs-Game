@@ -134,8 +134,10 @@ public class KitePuzzEngine : MainPuzzleEngine
 				mySilverEggMan.activeSilverEggs.Clear();
 				mySilverEggMan.silverEggsActive = false;
 				mySilverEggMan.amntSilEggsTapped = 0;
-				scrnDarkImgScript.FadeOut();
 				curntLvl++;
+				if (curntLvl != winLvl) {
+					scrnDarkImgScript.FadeOut();
+				}
 				if (curntLvl > maxLvl) { 
 					maxLvl = curntLvl; SaveMaxLvl(); mySelectButton.EnabledThreeDots(maxLvl); 
 				}
@@ -162,7 +164,7 @@ public class KitePuzzEngine : MainPuzzleEngine
 		resetTilesScript.EndOfLevelReset();
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
-			StartCoroutine(PuzzleComplete());
+			puzzleCompScript.endSeq = true;
 			return;
 		}
 		itemHolder.SetActive(false);
@@ -219,19 +221,19 @@ public class KitePuzzEngine : MainPuzzleEngine
 	}
 	#endregion
 
-	#region Coroutines
-	// All silver eggs picked up, what happenes?
-	public new IEnumerator PuzzleComplete () {
-		yield return new WaitForSeconds(0.5f);
+	// #region Coroutines
+	// // All silver eggs picked up, what happenes?
+	// public new IEnumerator PuzzleComplete () {
+	// 	yield return new WaitForSeconds(0.5f);
 
-		Debug.Log("Puzzle Completed cognraturations!!!");
+	// 	Debug.Log("Puzzle Completed cognraturations!!!");
 
-		yield return new WaitForSeconds(0.5f);
+	// 	yield return new WaitForSeconds(0.5f);
 
-		audioSceneParkPuzzScript.StopSceneMusic();
-		audioSceneParkPuzzScript.PlayTransitionMusic();
+	// 	audioSceneParkPuzzScript.StopSceneMusic();
+	// 	audioSceneParkPuzzScript.PlayTransitionMusic();
 
-		SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
-	}
-	#endregion
+	// 	SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
+	// }
+	// #endregion
 }

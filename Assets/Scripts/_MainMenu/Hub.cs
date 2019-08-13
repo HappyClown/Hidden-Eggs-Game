@@ -115,6 +115,7 @@ public class Hub : MonoBehaviour {
 		matsToDissolve.Clear();
 		startHubActive = false;
 		hubActiveWaitTimer = hubActiveWait;
+		dissolveDone = false;
 		// Turn off all the Glows
 		foreach(GameObject summerGlow in summerGlows)
 		{

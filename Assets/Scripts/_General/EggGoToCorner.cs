@@ -71,6 +71,7 @@ public class EggGoToCorner : MonoBehaviour
 				}
 			}
 			else {
+				goldenEgg.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
 				goldenEgg.transform.localPosition = Vector3.zero;
 			}
 			// else 
@@ -89,7 +90,7 @@ public class EggGoToCorner : MonoBehaviour
 			}
 			eggShadowFade.FadeIn();
 		}
-		else {	
+		else {
 			//openPanelSpotx = mySpotInPanel.transform.position.x - (clickOnEggsScript.eggPanelHidden.transform.position.x - clickOnEggsScript.eggPanelShown.transform.position.x);
 			//openPanelSpoty = mySpotInPanel.transform.position.y - (clickOnEggsScript.eggPanelHidden.transform.position.y - clickOnEggsScript.eggPanelShown.transform.position.y);
 			//openPanelSpotz = mySpotInPanel.transform.position.z - (clickOnEggsScript.eggPanelHidden.transform.position.z - clickOnEggsScript.eggPanelShown.transform.position.z);
@@ -98,7 +99,9 @@ public class EggGoToCorner : MonoBehaviour
 			myStartPos = new Vector3 (this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f));
 			myStartRot = new Vector3 (this.transform.rotation.x, this.transform.rotation.y, this.transform.rotation.z);
 			if (!amIGolden) { myStartScale = new Vector3(1.4f ,1.4f ,1); } // Hardcoded, needs to be set to the end scale size of the egg in the "EggPop" animation which all the normal eggs use.
-			else { myStartScale = new Vector3 (this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z); }
+			else { 
+				myStartScale = new Vector3 (this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z); 
+			}
 
 			// distToSpot = Vector3.Distance(new Vector3 (this.transform.position.x, this.transform.position.y, -4 + (clickOnEggsScript.eggsFound * -0.1f)), startSpotInPanel);
 			// constantSpeed = (distToSpot + settleEggDist)/ timeToMove;
@@ -142,7 +145,12 @@ public class EggGoToCorner : MonoBehaviour
 				//this.transform.localScale = cornerEggScale;
 				moveThisEgg = false;
 				clickOnEggsScript.eggMoving -= 1;
-				if (!amIGolden) { clickOnEggsScript.eggsInPanel++; } else { clickOnEggsScript.AdjustGoldenEggCount(); }
+				if (!amIGolden) {
+					clickOnEggsScript.eggsInPanel++; 
+				} else {
+					clickOnEggsScript.AdjustGoldenEggCount(); 
+					goldenEgg.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+				}
 				puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.eggsInPanel);
 				clickOnEggsScript.UpdateEggsString();
 				this.transform.parent = clickOnEggsScript.eggPanel.transform;
