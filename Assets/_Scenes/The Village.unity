@@ -990,7 +990,7 @@ Prefab:
     - target: {fileID: 114375100551085838, guid: 3f7590356a743604fb777e4025228310,
         type: 2}
       propertyPath: hubTotalEggsFound
-      value: 70
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}
@@ -23252,7 +23252,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 984254660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.10000001}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2132678492}
@@ -25215,10 +25215,10 @@ MonoBehaviour:
   lockMask: {fileID: 1383224840}
   oneReqSparkFX: {fileID: 1459413365}
   multiReqSparkFX: {fileID: 1943173044}
+  myAudio: {fileID: 0}
   locked: 1
   settingUp: 0
   enableSeasonObjsDelay: 0
-  myAudio: {fileID: 0}
 --- !u!1 &1127232304 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1032243879596674, guid: 0971c82b1a975624f9d044e1ff8ca6be,
@@ -27874,10 +27874,10 @@ MonoBehaviour:
   lockMask: {fileID: 515948238}
   oneReqSparkFX: {fileID: 875536020}
   multiReqSparkFX: {fileID: 836653428}
+  myAudio: {fileID: 984254664}
   locked: 1
   settingUp: 0
   enableSeasonObjsDelay: 0
-  myAudio: {fileID: 984254664}
 --- !u!198 &1310787474 stripped
 ParticleSystem:
   m_PrefabParentObject: {fileID: 198768499615837952, guid: 999ca432418a02b4fa0320ea942591dd,
@@ -48478,6 +48478,8 @@ MonoBehaviour:
   - {fileID: 1213598929}
   - {fileID: 1032129699}
   - {fileID: 991682265}
+  seasonLockScripts:
+  - {fileID: 1306444488}
 --- !u!1001 &2000058030
 Prefab:
   m_ObjectHideFlags: 0

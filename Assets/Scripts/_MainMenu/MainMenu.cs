@@ -35,6 +35,7 @@ public class MainMenu : MonoBehaviour {
 	public List<LevelTitleVillage> levelTitleScripts;
 	public List<LevelFireflies> levelFirefliesScripts;
 	public List<CustomButtonClick> customButtonScripts;
+	public List<SeasonLock> seasonLockScripts;
 
 	void Start () {
 		playBtn.onClick.AddListener(PlayBtn);
@@ -201,6 +202,11 @@ public class MainMenu : MonoBehaviour {
 		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
 		{
 			levelTitleScript.UpdateEggs();
+		}
+		// This probably should be a variable saved in the village save load manager.
+		foreach(SeasonLock seasonLockScript in seasonLockScripts)
+		{
+			seasonLockScript.NewGame();
 		}
 	}
 }

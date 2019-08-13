@@ -35,8 +35,8 @@ public class PuzzHelpBtn : MonoBehaviour {
 			if (inScene) {
 				slideInHelpScript.introDone = false;
 			}
-			slideInHelpScript.MoveBirdUpDown();
 			menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOff;
+			slideInHelpScript.MoveBirdUpDown();
 		// }
 	}
 }

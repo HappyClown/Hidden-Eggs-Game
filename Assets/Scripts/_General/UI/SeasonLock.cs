@@ -19,6 +19,7 @@ public class SeasonLock : MonoBehaviour {
 	public Image closedLock, openLock;
 	public GameObject bannerTitle, comingSoonTitle, lockMask;
 	public ParticleSystem oneReqSparkFX, multiReqSparkFX;
+	public AudioSeasonUnlockAnim myAudio;
 	[Header ("Info")]
 	public bool locked;
 	public bool settingUp, enableSeasonObjsDelay;
@@ -28,8 +29,6 @@ public class SeasonLock : MonoBehaviour {
 	private float timer, lastEggVal, newEggVal, seasonObjsTimer;
 	private int eggAmntForAnim;
 	private float eggsLeft, curEggReqSpeed;
-
-	public AudioSeasonUnlockAnim myAudio;
 
 	void Start () {
 		unlocking = false;
@@ -74,7 +73,7 @@ public class SeasonLock : MonoBehaviour {
 					if (lastEggVal != newEggVal) {
 						lerpEggAmnt = true;
 					}
-					timer = 0;
+					timer = 0f;
 				}
 			}
 			// Decrease the egg required counter.
@@ -110,9 +109,11 @@ public class SeasonLock : MonoBehaviour {
 			if (startLockAnimDelay) {
 				removeLockAnimDelay -= Time.deltaTime;
 				if (removeLockAnimDelay <= 0f) {
+					unlockAnim.enabled = true;
 					unlockAnim.SetTrigger("UnlockSeason");
 					FadeOutBanner();
 					startLockAnimDelay = false;
+					locked = false;
 				}
 			}
 			// Enable the level glows, buttons, etc.
@@ -126,6 +127,7 @@ public class SeasonLock : MonoBehaviour {
 				if (seasonObjsTimer >= seasonObjsDelay) {
 					myHubScript.EnableSeasonObjs();
 					enableSeasonObjsDelay = false;
+					seasonObjsTimer = 0f;
 				}
 			}
 		}
@@ -138,6 +140,7 @@ public class SeasonLock : MonoBehaviour {
 			comingSoonTitle.SetActive(true);
 			comingSoonTitle.GetComponent<FadeInOutImage>().FadeIn();
 			comingSoonTitle.GetComponentInChildren<FadeInOutTMP>().FadeIn();
+			myHubScript.EnableSeasonObjs();
 		}
 	}
 	void SetUpTitle(){
@@ -215,12 +218,26 @@ public class SeasonLock : MonoBehaviour {
 
 	public void BackToMenu() {
 		checkSeason = false;
-		timer = 0f;
-		lastEggVal = 0f;
-		newEggVal = 0f;
+		scaledUp = false;
 		seasonObjsTimer = 0f;
 		eggAmntForAnim = 0;
 		eggsLeft = 0f;
 		curEggReqSpeed = 0f;
+	}
+
+	public void NewGame() {
+		locked = true;
+		//unlockAnim.enabled = false;
+		unlockAnim.transform.localScale = new Vector3(1,1,1);
+		unlockAnim.transform.localPosition = new Vector3(-9.53f, 4.82f, -0.3f);
+		closedLock.transform.localScale = new Vector3(1,1,1);
+		closedLock.GetComponent<Image>().color = new Color(1,1,1,1);
+		closedLock.transform.eulerAngles = Vector3.zero;
+		closedLock.transform.localPosition = new Vector3(9.53f, -4.82f, 0);
+		openLock.transform.eulerAngles = Vector3.zero;
+		openLock.transform.localScale = new Vector3(1,1,1);
+		openLock.transform.localPosition = new Vector3(9.53f, -4.82f, 0);
+		openLock.GetComponent<Image>().color = new Color(1,1,1,1);
+		openLock.gameObject.SetActive(false);
 	}
 }
