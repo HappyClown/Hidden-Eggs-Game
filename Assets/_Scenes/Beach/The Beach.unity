@@ -12204,6 +12204,26 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114821193900930092, guid: 73a7d01577bae1f4791f75fc6f6fc447,
+        type: 2}
+      propertyPath: audioRiddleSolvedAnimScript
+      value: 
+      objectReference: {fileID: 643264888}
+    - target: {fileID: 114152054093604796, guid: 73a7d01577bae1f4791f75fc6f6fc447,
+        type: 2}
+      propertyPath: audioRiddleSolvedAnimScript
+      value: 
+      objectReference: {fileID: 643264888}
+    - target: {fileID: 114494510420464310, guid: 73a7d01577bae1f4791f75fc6f6fc447,
+        type: 2}
+      propertyPath: audioRiddleSolvedAnimScript
+      value: 
+      objectReference: {fileID: 643264888}
+    - target: {fileID: 114118017961683784, guid: 73a7d01577bae1f4791f75fc6f6fc447,
+        type: 2}
+      propertyPath: audioRiddleSolvedAnimScript
+      value: 
+      objectReference: {fileID: 643264888}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73a7d01577bae1f4791f75fc6f6fc447, type: 2}
   m_IsPrefabParent: 0
@@ -18371,7 +18391,7 @@ GameObject:
   - component: {fileID: 643264883}
   - component: {fileID: 643264884}
   - component: {fileID: 643264886}
-  - component: {fileID: 643264887}
+  - component: {fileID: 643264888}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Audio
@@ -18390,8 +18410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfb9e5f0eeac434f9cda2e51f98745e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cancelBtn: {fileID: 1908399235}
+  confirmBtn: {fileID: 1908399234}
+  closeMenuBtn: {fileID: 1908399233}
   BackMenuBtn: {fileID: 1057647554}
-  lvlCompleteBtn: {fileID: 0}
   sceneMusicEvent: event:/Music/MusicScenes/Beach
   transEvent: event:/SFX/SFX_General/TransitionsSound
   EggClickEvent: event:/SFX/SFX_General/Egg_Click
@@ -18457,13 +18479,13 @@ MonoBehaviour:
   BirdHelpBtn: {fileID: 2011664117}
   RiddleBtn: {fileID: 1041040802}
   HintBtn: {fileID: 542865779}
-  PauseBtn: {fileID: 0}
-  XBtn: {fileID: 0}
+  PauseBtn: {fileID: 1152622488}
+  CloseMenuBtn: {fileID: 1057647603}
   birdEvent: event:/SFX/Beach/Beach_Bird
   birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
---- !u!114 &643264887
+--- !u!114 &643264888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -18471,15 +18493,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 643264882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
+  m_Script: {fileID: 11500000, guid: a46c3992f87e9c24b825de06b6a6ce69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MusicVolume: 0.5
-  SFXVolume: 0.5
-  MasterVolume: 0.8
-  volumeTests: 0.8
-  Muted: 0
-  Paused: 0
+  zoomEggEvent: event:/SFX/ANIMS/Riddle Solved/Zoom egg
+  eggImploseFeathersEvent: event:/SFX/ANIMS/Riddle Solved/EggImposeFeathers
+  zoomEggMidEvent: event:/SFX/ANIMS/Riddle Solved/ZoomEggFromMid
+  riddleSolvedTextEvent: event:/SFX/ANIMS/Riddle Solved/textPopSfx
+  spiningStarsEvent: event:/SFX/ANIMS/Riddle Solved/SpinningStars
+  fireworkTrailEvent: event:/SFX/ANIMS/Riddle Solved/Firework Trail
+  fireworkExplosionEvent: event:/SFX/ANIMS/Riddle Solved/Firework Explosion
+  fireworkTrailBurstEvent: event:/SFX/ANIMS/Riddle Solved/FireworkTrailBurst
+  goldenEggIdleEvent: event:/SFX/ANIMS/Riddle Solved/IdleSquish
+  goldenEggIdleShimmyEvent: event:/SFX/ANIMS/Riddle Solved/IdleShimmy
 --- !u!1001 &648274353
 Prefab:
   m_ObjectHideFlags: 0
@@ -26408,12 +26434,12 @@ Prefab:
     - target: {fileID: 224531102451650002, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 4
+      value: 5.268
       objectReference: {fileID: 0}
     - target: {fileID: 224531102451650002, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 1.78
+      value: 7.532
       objectReference: {fileID: 0}
     - target: {fileID: 224608583784709082, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
@@ -26508,22 +26534,22 @@ Prefab:
     - target: {fileID: 224092126178791158, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 4.44
+      value: 6.54
       objectReference: {fileID: 0}
     - target: {fileID: 224092126178791158, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 1.606
+      value: 9.059
       objectReference: {fileID: 0}
     - target: {fileID: 224923780755662816, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 4.425
+      value: 6.525
       objectReference: {fileID: 0}
     - target: {fileID: 224923780755662816, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 1.6209999
+      value: 9.074
       objectReference: {fileID: 0}
     - target: {fileID: 224410231791935226, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
@@ -26563,12 +26589,12 @@ Prefab:
     - target: {fileID: 61973795383703806, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_Size.x
-      value: 3.9
+      value: 5.25
       objectReference: {fileID: 0}
     - target: {fileID: 61973795383703806, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: m_Size.y
-      value: 1.7
+      value: 7.51
       objectReference: {fileID: 0}
     - target: {fileID: 223465561480040132, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
@@ -26629,7 +26655,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 643264887}
+      objectReference: {fileID: 0}
     - target: {fileID: 114638301910344456, guid: 3d6502d86b4b4714f882706c8fa59669,
         type: 2}
       propertyPath: myTap
@@ -26896,6 +26922,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1320034564216376, guid: 3d6502d86b4b4714f882706c8fa59669,
     type: 2}
   m_PrefabInternal: {fileID: 1057647551}
+--- !u!114 &1057647603 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114354412209406814, guid: 3d6502d86b4b4714f882706c8fa59669,
+    type: 2}
+  m_PrefabInternal: {fileID: 1057647551}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1066244905
 Prefab:
   m_ObjectHideFlags: 0
@@ -27190,7 +27222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798ef7fba95cca840829229c7bb8e4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuStatesScript: {fileID: 0}
+  menuStatesScript: {fileID: 801276481}
   sceneTapEnaScript: {fileID: 801276479}
   button: {fileID: 1152622488}
 --- !u!114 &1152622488
@@ -55381,6 +55413,24 @@ GameObject:
   m_PrefabParentObject: {fileID: 1677942349442132, guid: e646f27085f9da3478eb6c26bb4151fd,
     type: 2}
   m_PrefabInternal: {fileID: 1908399216}
+--- !u!114 &1908399233 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114506715603804822, guid: e646f27085f9da3478eb6c26bb4151fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1908399216}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1908399234 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114735657264470394, guid: e646f27085f9da3478eb6c26bb4151fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1908399216}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+--- !u!114 &1908399235 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114103471835423760, guid: e646f27085f9da3478eb6c26bb4151fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1908399216}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1909333887 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4997492839317646, guid: a8b986e6c53177947adbdb9775b12edf,
