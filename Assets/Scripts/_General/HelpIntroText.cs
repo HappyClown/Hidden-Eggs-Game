@@ -47,7 +47,7 @@ public class HelpIntroText : MonoBehaviour {
 	}
 
 	public void ShowIntroText() {
-		if (!introOn) { 
+		if (!introOn) {
 			//introTMPs[0].gameObject.SetActive(true);
 			introTMPs[0].FadeIn();
 			introOn = true;

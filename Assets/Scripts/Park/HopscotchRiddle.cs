@@ -132,6 +132,7 @@ public class HopscotchRiddle : MonoBehaviour
 							// Activate the Golden Egg sequence.
 							goldenEgg.SetActive(true);
 							goldenEggScript.waitingToStartSeq = true;
+							goldenEggScript.CannotTaps();
 							//Disable/destroy all basket colliders;
 							foreach (GameObject number in numbers)
 							{

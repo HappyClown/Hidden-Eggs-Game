@@ -212,4 +212,15 @@ public class SeasonLock : MonoBehaviour {
 	public void ScaleDownGroup() {
 		groupAnim.SetTrigger("ScaleDown");
 	}
+
+	public void BackToMenu() {
+		checkSeason = false;
+		timer = 0f;
+		lastEggVal = 0f;
+		newEggVal = 0f;
+		seasonObjsTimer = 0f;
+		eggAmntForAnim = 0;
+		eggsLeft = 0f;
+		curEggReqSpeed = 0f;
+	}
 }

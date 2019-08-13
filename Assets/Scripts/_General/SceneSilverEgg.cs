@@ -53,6 +53,7 @@ public class SceneSilverEgg : MonoBehaviour {
 					clickOnEggsScript.silverEggsFound++;
 					clickOnEggsScript.AddEggsFound();
 					clickOnEggsScript.UpdateEggsString();
+					myEggPanelShadow = clickOnEggsScript.silEggsShadFades[posInPanel];
 					myEggPanelShadow.FadeIn();
 					trailFX.Stop(true);
 					if (lastSpawned) {	

@@ -12,6 +12,7 @@ public class LevelCompHelpBird : MonoBehaviour {
 	public GameObject helperBird;
 	public Transform hiddenTrans, shownTrans;
 	public SpriteRenderer textBubSpriteRend;
+	public Animator congratsTextAnim;
 	public FadeInOutSprite textBubFadeScript;
 	public FadeInOutSprite textBubPointerFadeScript;
 	public FadeInOutTMP congratsTextFadeScript;
@@ -41,6 +42,7 @@ public class LevelCompHelpBird : MonoBehaviour {
 			}
 		}
 		if (waitForBubIn && textBubFadeScript.shown) {
+			congratsTextAnim.SetTrigger("PopIn");
 			congratsTextFadeScript.FadeIn();
 			waitForBubIn = false;
 		}

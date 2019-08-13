@@ -21,9 +21,10 @@ public class PuzzleComplete : MonoBehaviour {
 	public float revealDur;
 	public AnimationCurve revealCurve;
 	public bool reveal, reset, masksFromMid;
+	public string sceneName;
 	private float revTimer;
 	[Header ("References")]
-	//public AudioSceneMarketPuzzle audioSceneMarketPuzzScript;
+	public AudioScenePuzzleGeneric audioScenePuzzGeneScript;
 	public FadeInOutSprite leftPieceFadeScript, rightPieceFadeScript;
 	public TMPTextColorFade textColorScript;
 	public TMPTextFall textFallScript;
@@ -126,9 +127,11 @@ public class PuzzleComplete : MonoBehaviour {
 	}
 
 	void EndPuzzle() {
-		//audioSceneMarketPuzzScript.StopSceneMusic();
-		//audioSceneMarketPuzzScript.PlayTransitionMusic();
-		//SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
+		if (audioScenePuzzGeneScript) {
+			audioScenePuzzGeneScript.StopSceneMusic();
+			audioScenePuzzGeneScript.PlayTransitionMusic();
+		}
+		SceneFade.SwitchScene(sceneName);
 	}
 
 	void MakeTxtFall() {

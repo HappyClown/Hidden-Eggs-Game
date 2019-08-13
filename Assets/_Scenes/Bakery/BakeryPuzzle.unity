@@ -16377,16 +16377,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0274fcd6726c5f546b4f50b3a6d4025e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontal: 1
-  vertical: 0
+  horizontal: 0
+  vertical: 1
   myColor: 0
+  timesToMove: 0
   active: 0
+  gettingPushed: 0
+  canMove: 0
+  onGoal: 0
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
   startPos: {x: 0, y: 0, z: 0}
-  myCells: []
-  firstCell: {fileID: 850715315}
-  lastCell: {fileID: 694288545}
+  myCells:
+  - {fileID: 694288545}
+  - {fileID: 850715315}
+  firstCell: {fileID: 0}
+  lastCell: {fileID: 0}
+  nextCell: {fileID: 0}
 --- !u!114 &931712713 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114272664552427512, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -32311,7 +32318,11 @@ MonoBehaviour:
   horizontal: 1
   vertical: 0
   myColor: 0
+  timesToMove: 0
   active: 0
+  gettingPushed: 0
+  canMove: 0
+  onGoal: 0
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
   startPos: {x: 0, y: 0, z: 0}
@@ -32320,6 +32331,7 @@ MonoBehaviour:
   - {fileID: 1004405215}
   firstCell: {fileID: 0}
   lastCell: {fileID: 0}
+  nextCell: {fileID: 0}
 --- !u!1 &1715187385
 GameObject:
   m_ObjectHideFlags: 0
@@ -60667,6 +60679,8 @@ MonoBehaviour:
   audioSceneParkPuzzScript: {fileID: 0}
   myLvls:
   - {fileID: 1155922131}
+  selectedBaguette: {fileID: 0}
+  holdingBaguette: 0
 --- !u!114 &2115131373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60685,7 +60699,7 @@ MonoBehaviour:
   singleTap: 1
   detectDoubleTap: 0
   minDoubleTapTime: 0
-  detectDrag: 0
+  detectDrag: 1
   draggingDeathzone: 10
   startDragTouch: {x: 0, y: 0}
   draggingPosition: {x: 0, y: 0}
@@ -60698,7 +60712,7 @@ MonoBehaviour:
   doubleTouched: 0
   touchOne: {x: 0, y: 0}
   touchTwo: {x: 0, y: 0}
-  detectSwipe: 1
+  detectSwipe: 0
   swipeDeathzoneRadius: 50
   startSwipeTouch: {x: 0, y: 0}
   swipeDelta: {x: 0, y: 0}

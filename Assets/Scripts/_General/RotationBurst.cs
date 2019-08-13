@@ -14,6 +14,7 @@ public class RotationBurst : MonoBehaviour {
 	public float firstCoolDownDur;
 	[Header("References")]
 	public List<ParticleSystem> tipFXs;
+	public List<TrailRenderer> tipTrails;
 	[Header("Info")]
 	public bool rotationOn;
 	public bool coolDownOn;
@@ -85,7 +86,7 @@ public class RotationBurst : MonoBehaviour {
 				rotationOn = false;
 				//curCoolDown = Random.Range(minCoolDown, maxCoolDown);
 				coolDownOn = true;
-				StopTipFXs();
+				//StopTipFXs();
 			}
 		}
 		if (coolDownOn) {
@@ -103,7 +104,7 @@ public class RotationBurst : MonoBehaviour {
 				else {
 					targetRot = ((curRotAmnt * 360) * direction) + iniZRot;
 				}
-				StartTipFXs();
+				//StartTipFXs();
 				rotationOn = true;
 
 				//reset sound
@@ -120,7 +121,11 @@ public class RotationBurst : MonoBehaviour {
 					targetRot = ((curRotAmnt * 360) * direction) + iniZRot;
 				}
 				angleLerp = iniZRot;
-				StartTipFXs();
+				//StartTipFXs();
+				foreach(TrailRenderer tipTrail in tipTrails)
+				{
+					tipTrail.enabled = true;
+				}
 				rotationOn = true;
 				firstCoolDown = false;
 

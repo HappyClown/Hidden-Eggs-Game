@@ -344,6 +344,7 @@ public class GoldenEgg : MonoBehaviour {
 	}
 
 	void SendEggToCornerSequence() {
+		//CanTaps();
 		inSendingToCorner = true;
 	}
 

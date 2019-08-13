@@ -75,12 +75,10 @@ public class RainbowRiddle : MonoBehaviour
 					if (basketNumber >= 6) {
 						basketNumber = 0;
 						RainbowRiddleSolved();
-						scenTapEnabScript.canTapEggRidPanPuz = false;
-						scenTapEnabScript.canTapHelpBird = false;
-						//scenTapEnabScript.canTapPauseBtn = true;
 						// Activate the Golden Egg sequence.
 						goldenEgg.SetActive(true);
 						goldenEggScript.waitingToStartSeq = true;
+						goldenEggScript.CannotTaps();
 						// Disable all basket colliders.
 						foreach (GameObject basket in fruitBaskets)
 						{
