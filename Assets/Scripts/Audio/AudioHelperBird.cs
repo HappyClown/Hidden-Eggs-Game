@@ -21,7 +21,6 @@ public class AudioHelperBird : MonoBehaviour
     public string birdEvent;
     public FMOD.Studio.EventInstance birdSound;
 
-    [FMODUnity.EventRef]
     public string birdFrozenEvent;
     public FMOD.Studio.EventInstance birdFrozenSound;
 
@@ -31,13 +30,14 @@ public class AudioHelperBird : MonoBehaviour
     public string lvlCompleteEvent;
     public FMOD.Studio.EventInstance lvlCompleteSound;
 */
-    [FMODUnity.EventRef]
     public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
 
-    [FMODUnity.EventRef]
     public string PausebuttonEvent = "event:/SFX/SFX_General/PauseButton";
     public FMOD.Studio.EventInstance PausebuttonSound;
+
+    public string youDidItEvent = "event:/SFX/ANIMS/Level Complete/YouDidIt";
+    public FMOD.Studio.EventInstance youDidItSound;
 
 
 	void Start () 
@@ -91,6 +91,12 @@ public class AudioHelperBird : MonoBehaviour
     {
         birdSound = FMODUnity.RuntimeManager.CreateInstance(birdEvent);
         birdSound.start();
+    }
+
+        public void youDidItSnd()
+    {
+        youDidItSound = FMODUnity.RuntimeManager.CreateInstance(youDidItEvent);
+        youDidItSound.start();
     }
 
 

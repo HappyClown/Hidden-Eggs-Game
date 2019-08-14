@@ -22,6 +22,8 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	public SpriteRenderer mySprite, whiteOverlaySprite;
 	public AudioSceneGeneral audioSceneGenScript;
 	public ParticleSystem trailFX, arrivalFX, spawnFX;
+	public AudioLevelCompleteAnim audioLevelCompleteScript;
+
 	public Animator eggAnim;
 	[Header ("Info")]
 	private Vector3 startPos;
@@ -35,11 +37,16 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 	private bool bagExplosionWait;
 
 
+	public bool audioGlow = false;
+	public bool audioMoveToBag = false;
+
+
 	void Start () {
 		startPos = this.transform.position;
 		if (!audioSceneGenScript) {
 			audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
 		}
+		if (!audioLevelCompleteScript) {audioLevelCompleteScript = GameObject.Find("Audio").GetComponent<AudioLevelCompleteAnim>();}
 	}
 
 	void Update () {
@@ -50,7 +57,10 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 				// if (amIFirst) {
 				// 	rotateFXScript.RotatePlayFX();
 				// }
+
 				// AUDIO - EGG APPEARS!
+				audioLevelCompleteScript.circleEggsSoloSnd();
+
 				myFadeScript.FadeIn();
 				myGlowFadeScript.FadeIn();
 				spawnFX.Play();
@@ -66,6 +76,10 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					// 	rotateFXScript.RotatePlayFX();
 					// }
 					glowMax = true;
+
+				// AUDIO - EGG APPEARS!
+				audioLevelCompleteScript.circleEggsSoloGoldSnd();
+
 				}
 				// Scene egg fades out.
 				if (spawnTimer >= whiteDelay && !white) {
@@ -74,6 +88,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 						rotateFXScript.RotatePlayFX();
 					}
 					white = true;
+					
+				// AUDIO - WHITE EGGS APPEARS!
+					audioLevelCompleteScript.circleEggsGlowSnd();
 				}
 				// Plain egg fades in.
 				if (spawnTimer >= plainDelay && !plain) {
@@ -84,6 +101,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					}
 					// myFadeScript.FadeOut();
 					plain = true;
+
+				// AUDIO - PLAIN EGGS APPEARS!
+					audioLevelCompleteScript.circleEggsSoloPlainSnd();
 				}
 				// Shake anim.
 				if (spawnTimer >= shakeDelay && !shakeStarted) {
@@ -94,6 +114,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					// myGlowFadeScript.FadeIn(myGlowFadeScript.sprite.color.a);
 					shakeStarted = true;
 					// moveEgg gets set to true at the end of the "Shake" animation.
+
 				}
 				// Move egg.
 				if (spawnTimer >= moveDelay && !moveEgg) {
@@ -101,6 +122,14 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 						rotateFXScript.RotatePlayFX(lvlCompEggSpawnScript.allEggToBagDuration);
 					}
 					moveEgg = true;
+
+					//AUDIO EGGS  IN BAG MOUVEMENT?
+					if(!audioMoveToBag){
+						audioLevelCompleteScript.eggsMoveInBagSnd();
+						audioMoveToBag = true;
+
+					}
+
 				}
 				if (moveEgg) {
 					if (!trailFX.isPlaying) {
@@ -114,8 +143,11 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					// }
 					if (lerp >= 1) {
 						levelCompEggCounterScript.eggAmnt++;
-						// AUDIO - EGG REACHES BAG!
-						audioSceneGenScript.silverEggsPanel(this.gameObject);
+
+						// AUDIO - EGG REACHES BAG!						
+						audioLevelCompleteScript.eggsCounterSnd();
+
+
 						//myFadeScript.FadeOut();
 						plainEggFadeScript.FadeOut();
 						myGlowFadeScript.FadeOut();
@@ -136,6 +168,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 						if (amIGolden) {
 							bagExplosionWait = true;
 							FXSpeedScript.IncreaseSimulationSpeed();
+
+							// //AUDIO particules in bag
+							audioLevelCompleteScript.particulesInBagSnd();
 						}
 					}
 				}
@@ -147,6 +182,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 			if (bagExplodeDelay <= 0f) {
 				levelCompleteEggbagScript.bagAnim.SetTrigger("Explode");
 				bagExplosionWait = false;
+
 			}
 		}
 	}

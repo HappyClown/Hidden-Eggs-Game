@@ -12,6 +12,8 @@ public class LevelCompleteEggSpawner : MonoBehaviour {
 	[Header ("References")]
 	//public List<LevelCompleteEggMoveSpin> regEggs;
 	public List<LevelCompleteEggMoveSpin> /* silEggs, golEggs, */ allEggs;
+
+
 	[Header ("Info")]
 	// public List<float> regEggDelay;
 	public List<float> /* silEggDelay, golEggDelay, */ allEggSpawnDelay;

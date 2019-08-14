@@ -146,8 +146,8 @@ public class AudioVolumeSettings : MonoBehaviour
     public void sliderSFX()
     {
         //sliding sound
-        sliderSnd = FMODUnity.RuntimeManager.CreateInstance(sliderEvent);
-        sliderSnd.start();
+       // sliderSnd = FMODUnity.RuntimeManager.CreateInstance(sliderEvent);
+       // sliderSnd.start();
 
     }
 

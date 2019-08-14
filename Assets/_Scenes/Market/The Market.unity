@@ -43687,6 +43687,26 @@ Animator:
   m_PrefabParentObject: {fileID: 95076019746794108, guid: b2d7bb6cd7e7b5e4a905d36a763c4c50,
     type: 2}
   m_PrefabInternal: {fileID: 970841980}
+--- !u!114 &1015164751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1015164747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020ae8d0e1da319419fe6dba79985476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggsCounterEvent: event:/SFX/ANIMS/Level Complete/EggsCounter
+  bagAppearEvent: event:/SFX/ANIMS/Level Complete/BagAppear
+  bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
+  circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
+  circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
+  bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
+  congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
 --- !u!1 &1017940619 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1324178051962468, guid: 3d6502d86b4b4714f882706c8fa59669,
@@ -46426,6 +46446,7 @@ GameObject:
   - component: {fileID: 1436777456}
   - component: {fileID: 1436777458}
   - component: {fileID: 1436777459}
+  - component: {fileID: 1436777460}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Audio
@@ -46539,6 +46560,26 @@ MonoBehaviour:
   fireworkTrailBurstEvent: event:/SFX/ANIMS/Riddle Solved/FireworkTrailBurst
   goldenEggIdleEvent: event:/SFX/ANIMS/Riddle Solved/IdleSquish
   goldenEggIdleShimmyEvent: event:/SFX/ANIMS/Riddle Solved/IdleShimmy
+--- !u!114 &1436777460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1436777454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020ae8d0e1da319419fe6dba79985476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggsCounterEvent: event:/SFX/ANIMS/Level Complete/EggsCounter
+  bagAppearEvent: event:/SFX/ANIMS/Level Complete/BagAppear
+  bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
+  circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
+  circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
+  bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
+  congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
 --- !u!1 &1438096411 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1718773329021664, guid: b2d7bb6cd7e7b5e4a905d36a763c4c50,
@@ -56784,6 +56825,7 @@ MonoBehaviour:
   splineWalkerFX: {fileID: 1405649170}
   endLvlBtn: {fileID: 765991145}
   audioSceneGenScript: {fileID: 1436777457}
+  audioLevelCompleteScript: {fileID: 0}
   waitingToStartSeq: 0
   inLvlCompSeqSetup: 0
 --- !u!114 &1799697638
@@ -56985,6 +57027,7 @@ MonoBehaviour:
   - {fileID: 103779927}
   - {fileID: 458141880}
   - {fileID: 1499069538}
+  audioLevelCompleteScript: {fileID: 0}
   allEggSpawnDelay:
   - 0.0011111113
   - 0.004444445
@@ -57092,7 +57135,6 @@ MonoBehaviour:
   - {fileID: 1900130661}
   - {fileID: 1162258291}
   - {fileID: 2062511475}
-  audioSceneGenScript: {fileID: 1436777457}
   levelsCompleted: 0
   curGlowFadeScript: {fileID: 0}
   curEggbagFadeScript: {fileID: 0}
@@ -57178,6 +57220,7 @@ MonoBehaviour:
   congratsTextFadeScript: {fileID: 370289766}
   counterCGFadeScript: {fileID: 726539095}
   backBtnCGFadeScript: {fileID: 2090732092}
+  audioHelperBirdScript: {fileID: 0}
   moveUp: 0
   waitForBubIn: 0
   waitForConTxtOut: 0

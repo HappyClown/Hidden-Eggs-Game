@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class AudioSeasonUnlockAnim : MonoBehaviour 
 {
 
-    [FMODUnity.EventRef]
     public string eggCounterEvent = "event:/SFX/ANIMS/Season Unlocked/Egg Counter tick";
     public FMOD.Studio.EventInstance eggCounterSound;
 
@@ -89,7 +88,7 @@ public class AudioSeasonUnlockAnim : MonoBehaviour
         // }
 
         //descending notes
-        if(notesIndex>0 && !ascending && eggIndex%2==0){
+        if(notesIndex>0 && !ascending){
         notesIndex--;
         currentNote = FMODUnity.RuntimeManager.CreateInstance((string)listNotes[notesIndex]);
         currentNote.start();
@@ -100,7 +99,7 @@ public class AudioSeasonUnlockAnim : MonoBehaviour
             currentNote.start();
             notesIndex++;
         }
-        else if (notesIndex<14 && ascending && eggIndex%2==0){
+        else if (notesIndex<14 && ascending){
             currentNote = FMODUnity.RuntimeManager.CreateInstance((string)listNotes[notesIndex]);
             currentNote.start();
             notesIndex++;
@@ -109,8 +108,6 @@ public class AudioSeasonUnlockAnim : MonoBehaviour
             ascending = false;
         }
         
-
-
     }
     public void lockScaleUpSnd(){
         lockScaleSound = FMODUnity.RuntimeManager.CreateInstance(lockScaleEvent);

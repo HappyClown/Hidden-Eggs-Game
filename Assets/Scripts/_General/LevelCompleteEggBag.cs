@@ -13,7 +13,7 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	public FadeInOutSprite whiteOverlayScript;
 	public List<FadeInOutSprite> eggBags;
 	public List<FadeInOutSprite> bagGlowsScripts;
-	public AudioSceneGeneral audioSceneGenScript;
+
 	[Header ("Info")]
 	public int levelsCompleted;
 	public FadeInOutSprite curGlowFadeScript, curEggbagFadeScript, nextEggbagFadeScript, nextGlowFadeScript;
@@ -25,9 +25,6 @@ public class LevelCompleteEggBag : MonoBehaviour {
 	public float iniYPos;
 	
 	public void Start() {
-		if (!audioSceneGenScript) {
-			audioSceneGenScript = GameObject.FindWithTag("Audio").GetComponent<AudioSceneGeneral>();
-		}
 	}
 
 	void Update () {

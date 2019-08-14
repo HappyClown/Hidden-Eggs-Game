@@ -22,51 +22,39 @@ public class AudioSceneGeneral : MonoBehaviour
     public FMOD.Studio.EventInstance sceneMusic;
 
     [Header("Cue Title Card Transition")]
-    [FMODUnity.EventRef]
     public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
     public FMOD.Studio.EventInstance transMusic;
 
 
 	[Header("Egg SFX")]
-    [FMODUnity.EventRef]
     public string EggClickEvent = "event:/SFX/SFX_General/Egg_Click";
     public FMOD.Studio.EventInstance EggClickSound;
 
-    [FMODUnity.EventRef]
     public string goldEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Gold";
     public FMOD.Studio.EventInstance goldEggClickSound;
 
-    [FMODUnity.EventRef]
     public string goldEggAnimationEvent = "event:/SFX/SFX_General/GoldenEggAnimation";
     public FMOD.Studio.EventInstance goldEggAnimationSound;
-
-    [FMODUnity.EventRef]
     public string goldEggShimyEvent = "event:/SFX/SFX_General/GoldenEgg_ShimyIdle";
     public FMOD.Studio.EventInstance goldEggShimySound;
 
 
 	[Header("Silver Eggs Slide to Panel SFX")]
-    [FMODUnity.EventRef]
     public string silverEggSlidePanelEvent = "event:/SFX/SFX_General/SilverEggs_SlideToPanel";
     public FMOD.Studio.EventInstance silverEggSlidePanelSound;
 
 
 	[Header("Panel SFX")]
-    [FMODUnity.EventRef]
     public string panelOpenEvent = "event:/SFX/SFX_General/MenuEggOpen";
     public FMOD.Studio.EventInstance panelOpenSound;
-
-    [FMODUnity.EventRef]
     public string panelCloseEvent = "event:/SFX/SFX_General/MenuEggClose";
     public FMOD.Studio.EventInstance panelCloseSound;
 
 
     [Header("Puzzle Unlocked")]
-    [FMODUnity.EventRef]
+
     public string puzzlePieceEvent = "event:/SFX/SFX_General/PuzzlePiece";
     public FMOD.Studio.EventInstance puzzlePieceSound;
-
-    [FMODUnity.EventRef]
     public string trailFXEvent = "event:/SFX/SFX_General/FX_trail";
     public FMOD.Studio.EventInstance trailFXSound;
 

@@ -15,7 +15,8 @@ public class LevelCompleteEggMove : MonoBehaviour {
 	public LevelCompEggCounter levelCompEggCounterScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
 	public FadeInOutSprite myFadeScript;
-	public AudioSceneGeneral audioSceneGenScript;
+	public AudioLevelCompleteAnim audioLevelCompleteScript;
+
 	[Header ("Info")]
 	private Vector3 startPos;
 	private float lerp, mySpawnDelay, spawnTimer;
@@ -23,9 +24,8 @@ public class LevelCompleteEggMove : MonoBehaviour {
 
 	void Start () {
 		startPos = this.transform.position;
-		if (!audioSceneGenScript) {
-			audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
-		}
+
+	if (!audioLevelCompleteScript) {audioLevelCompleteScript = GameObject.Find("Audio").GetComponent<AudioLevelCompleteAnim>();}
 	}
 
 	void Update () {
@@ -49,7 +49,9 @@ public class LevelCompleteEggMove : MonoBehaviour {
 					if (levelCompEggCounterScript.eggAmnt == 1) {
 						levelCompleteEggbagScript.MakeNewBagFadeIn();
 					}
-					audioSceneGenScript.silverEggsPanel(this.gameObject);
+					//AUDIO SOUND EGGS COUNTER
+					audioLevelCompleteScript.eggsCounterSnd();
+
 					myFadeScript.FadeOut();
 					arrivalFX.Play(true);
 					trailFX.Stop(true);
