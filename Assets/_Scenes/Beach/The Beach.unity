@@ -18392,6 +18392,7 @@ GameObject:
   - component: {fileID: 643264884}
   - component: {fileID: 643264886}
   - component: {fileID: 643264888}
+  - component: {fileID: 643264887}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Audio
@@ -18485,6 +18486,31 @@ MonoBehaviour:
   birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
+  youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
+--- !u!114 &643264887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 643264882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020ae8d0e1da319419fe6dba79985476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggsCounterEvent: event:/SFX/ANIMS/Level Complete/EggsCounter
+  bagAppearEvent: event:/SFX/ANIMS/Level Complete/BagAppear
+  bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
+  circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
+  circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  circleEggsSoloPlainEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloPlain
+  circleEggsSoloSilverEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloSilver
+  circleEggsSoloGoldEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloGold
+  particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  eggsMoveInBagEvent: event:/SFX/ANIMS/Level Complete/EggsMoveInBag
+  bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
+  bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
+  congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
 --- !u!114 &643264888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24528,7 +24554,6 @@ MonoBehaviour:
   - {fileID: 1521874576}
   - {fileID: 1521874575}
   - {fileID: 1521874574}
-  audioSceneGenScript: {fileID: 643264883}
   levelsCompleted: 0
   curGlowFadeScript: {fileID: 0}
   curEggbagFadeScript: {fileID: 0}
@@ -24728,6 +24753,7 @@ MonoBehaviour:
   splineWalkerFX: {fileID: 494862551}
   endLvlBtn: {fileID: 1521875642}
   audioSceneGenScript: {fileID: 643264883}
+  audioLevelCompleteScript: {fileID: 0}
   waitingToStartSeq: 0
   inLvlCompSeqSetup: 0
 --- !u!114 &801276476
@@ -25057,6 +25083,7 @@ MonoBehaviour:
   congratsTextFadeScript: {fileID: 1521874609}
   counterCGFadeScript: {fileID: 1521874607}
   backBtnCGFadeScript: {fileID: 1521874605}
+  audioHelperBirdScript: {fileID: 0}
   moveUp: 0
   waitForBubIn: 0
   waitForConTxtOut: 0
@@ -43181,6 +43208,30 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1521874543}
   m_Script: {fileID: 11500000, guid: 488c786b462492d42a9f6997b85a5b10, type: 3}
+--- !u!114 &1521875772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1521874937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020ae8d0e1da319419fe6dba79985476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggsCounterEvent: event:/SFX/ANIMS/Level Complete/EggsCounter
+  bagAppearEvent: event:/SFX/ANIMS/Level Complete/BagAppear
+  bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
+  circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
+  circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  circleEggsSoloPlainEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloPlain
+  circleEggsSoloSilverEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloSilver
+  circleEggsSoloGoldEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloGold
+  particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  eggsMoveInBagEvent: event:/SFX/ANIMS/Level Complete/EggsMoveInBag
+  bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
+  bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
+  congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
 --- !u!4 &1532983996 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4459411516244418, guid: 9466236e388db2648ac37c01766a6b88,

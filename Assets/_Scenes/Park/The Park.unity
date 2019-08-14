@@ -7820,6 +7820,7 @@ MonoBehaviour:
   birdFrozenEvent: event:/SFX/Park/Park_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
+  youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
 --- !u!114 &715544070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7841,6 +7842,30 @@ MonoBehaviour:
   fireworkTrailBurstEvent: event:/SFX/ANIMS/Riddle Solved/FireworkTrailBurst
   goldenEggIdleEvent: event:/SFX/ANIMS/Riddle Solved/IdleSquish
   goldenEggIdleShimmyEvent: event:/SFX/ANIMS/Riddle Solved/IdleShimmy
+--- !u!114 &715544071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715544068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020ae8d0e1da319419fe6dba79985476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggsCounterEvent: event:/SFX/ANIMS/Level Complete/EggsCounter
+  bagAppearEvent: event:/SFX/ANIMS/Level Complete/BagAppear
+  bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
+  circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
+  circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  circleEggsSoloPlainEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloPlain
+  circleEggsSoloSilverEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloSilver
+  circleEggsSoloGoldEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloGold
+  particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  eggsMoveInBagEvent: event:/SFX/ANIMS/Level Complete/EggsMoveInBag
+  bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
+  bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
+  congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
 --- !u!1 &716721805 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1812207682167864, guid: b2d7bb6cd7e7b5e4a905d36a763c4c50,
@@ -13366,8 +13391,11 @@ MonoBehaviour:
   trailFX: {fileID: 1469807746}
   arrivalFX: {fileID: 1470816119}
   spawnFX: {fileID: 838215913}
+  audioLevelCompleteScript: {fileID: 0}
   eggAnim: {fileID: 1111909031}
   moveEgg: 0
+  audioGlow: 0
+  audioMoveToBag: 0
 --- !u!212 &794578195
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22435,6 +22463,7 @@ MonoBehaviour:
   splineWalkerFX: {fileID: 1565400998}
   endLvlBtn: {fileID: 1565400997}
   audioSceneGenScript: {fileID: 1013716343}
+  audioLevelCompleteScript: {fileID: 0}
   waitingToStartSeq: 0
   inLvlCompSeqSetup: 0
 --- !u!114 &1256586952
@@ -22483,7 +22512,6 @@ MonoBehaviour:
   - {fileID: 1565401010}
   - {fileID: 1565401008}
   - {fileID: 1565401006}
-  audioSceneGenScript: {fileID: 1013716343}
   levelsCompleted: 0
   curGlowFadeScript: {fileID: 0}
   curEggbagFadeScript: {fileID: 0}
@@ -22819,6 +22847,7 @@ MonoBehaviour:
   congratsTextFadeScript: {fileID: 1565401000}
   counterCGFadeScript: {fileID: 1565401033}
   backBtnCGFadeScript: {fileID: 1565401041}
+  audioHelperBirdScript: {fileID: 0}
   moveUp: 0
   waitForBubIn: 0
   waitForConTxtOut: 0
@@ -44845,6 +44874,30 @@ GameObject:
   m_PrefabParentObject: {fileID: 1269111479778994, guid: b2d7bb6cd7e7b5e4a905d36a763c4c50,
     type: 2}
   m_PrefabInternal: {fileID: 1565400966}
+--- !u!114 &1787143033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1787143031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 020ae8d0e1da319419fe6dba79985476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eggsCounterEvent: event:/SFX/ANIMS/Level Complete/EggsCounter
+  bagAppearEvent: event:/SFX/ANIMS/Level Complete/BagAppear
+  bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
+  circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
+  circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  circleEggsSoloPlainEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloPlain
+  circleEggsSoloSilverEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloSilver
+  circleEggsSoloGoldEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloGold
+  particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  eggsMoveInBagEvent: event:/SFX/ANIMS/Level Complete/EggsMoveInBag
+  bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
+  bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
+  congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
 --- !u!1 &1792754363
 GameObject:
   m_ObjectHideFlags: 0

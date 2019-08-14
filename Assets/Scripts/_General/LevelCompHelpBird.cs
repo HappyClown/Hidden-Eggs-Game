@@ -77,7 +77,6 @@ public class LevelCompHelpBird : MonoBehaviour {
 
 				//AUDIO BIRD HELP SOUND
 				audioHelperBirdScript.birdHelpSound();
-				Debug.Log("AUDIO : COUNTER BIRD?");
 			}
 		}
 		if (waitForCountOut) {
@@ -94,7 +93,6 @@ public class LevelCompHelpBird : MonoBehaviour {
 				
 				//AUDIO BIRD HELP SOUND
 				audioHelperBirdScript.birdHelpSound();
-				Debug.Log("AUDIO : EXIT BIRD?");
 			}
 		}
 
