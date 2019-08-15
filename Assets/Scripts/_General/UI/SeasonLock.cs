@@ -26,7 +26,7 @@ public class SeasonLock : MonoBehaviour {
 	private bool checkSeason, unlocking, lerpEggAmnt, scaledUp;
 	private bool startLockAnimDelay;
 	private int iterCounter;
-	public float timer, lastEggVal, newEggVal, seasonObjsTimer;
+	private float timer, lastEggVal, newEggVal, seasonObjsTimer;
 	private int eggAmntForAnim;
 	private float eggsLeft, curEggReqSpeed;
 
@@ -219,11 +219,9 @@ public class SeasonLock : MonoBehaviour {
 	public void BackToMenu() {
 		checkSeason = false;
 		scaledUp = false;
-		seasonObjsTimer = 0f;
 		eggAmntForAnim = 0;
 		eggsLeft = 0f;
 		curEggReqSpeed = 0f;
-		//Debug.Log("Back To Menu TRIIIGGEGERERERERD");
 	}
 
 	public void NewGame() {
@@ -240,7 +238,5 @@ public class SeasonLock : MonoBehaviour {
 		openLock.transform.localPosition = new Vector3(9.53f, -4.82f, 0);
 		openLock.GetComponent<Image>().color = new Color(1,1,1,1);
 		openLock.gameObject.SetActive(false);
-		removeLockAnimDelay = 0.25f;
-		unlockAnim.SetTrigger("Reset");
 	}
 }

@@ -18433,6 +18433,7 @@ MonoBehaviour:
   lvlCompleteEvent: event:/SFX/Beach/Congratulations_LevelComplete
   goldenEggStingerEvent: event:/Music/Stingers/GoldenEgg
   buttonEvent: event:/SFX/SFX_General/Button
+  puzzConfirmEvent: event:/SFX/SFX_General/PuzzleConfirmationButton
   SceneIn: 0
   AlphaValue: 0
   puzzleUnlocked: 0
@@ -18487,6 +18488,8 @@ MonoBehaviour:
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
   youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
+  hintEvent: event:/SFX/SFX_General/HintSpark
+  hintLongEvent: event:/SFX/SFX_General/HintSparkLong
 --- !u!114 &643264887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19689,6 +19692,16 @@ Prefab:
       propertyPath: m_margin.y
       value: -26.17129
       objectReference: {fileID: 0}
+    - target: {fileID: 114894203373827422, guid: f5c8c09de6348d0499bc2c92a5b47e60,
+        type: 2}
+      propertyPath: plainGoldEggFadeScript
+      value: 
+      objectReference: {fileID: 2068954103}
+    - target: {fileID: 114905833852476380, guid: f5c8c09de6348d0499bc2c92a5b47e60,
+        type: 2}
+      propertyPath: audioHelperBirdScript
+      value: 
+      objectReference: {fileID: 643264886}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5c8c09de6348d0499bc2c92a5b47e60, type: 2}
   m_IsPrefabParent: 0
@@ -19817,6 +19830,11 @@ MonoBehaviour:
 --- !u!224 &741916436 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224111430033066960, guid: f5c8c09de6348d0499bc2c92a5b47e60,
+    type: 2}
+  m_PrefabInternal: {fileID: 741916411}
+--- !u!224 &741916437 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224718199587079942, guid: f5c8c09de6348d0499bc2c92a5b47e60,
     type: 2}
   m_PrefabInternal: {fileID: 741916411}
 --- !u!4 &751682811 stripped
@@ -25033,6 +25051,7 @@ MonoBehaviour:
   sceneTapScript: {fileID: 801276479}
   slideHelpBirdScript: {fileID: 741916412}
   lvlTapManScript: {fileID: 1777778272}
+  audioSceneGeneralScript: {fileID: 0}
 --- !u!114 &801276482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55383,6 +55402,24 @@ Prefab:
       propertyPath: menuStatesScript
       value: 
       objectReference: {fileID: 801276481}
+    - target: {fileID: 1311047059999090, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243451637647628, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224411738013585456, guid: e646f27085f9da3478eb6c26bb4151fd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.05000019
+      objectReference: {fileID: 0}
+    - target: {fileID: 224269890389845950, guid: e646f27085f9da3478eb6c26bb4151fd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
   m_IsPrefabParent: 0
@@ -61018,6 +61055,99 @@ Transform:
   m_PrefabParentObject: {fileID: 4543114266839502, guid: ffc94fe78e676f34da6a03d632967891,
     type: 2}
   m_PrefabInternal: {fileID: 2066492876}
+--- !u!1 &2068954101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2068954102}
+  - component: {fileID: 2068954105}
+  - component: {fileID: 2068954104}
+  - component: {fileID: 2068954103}
+  m_Layer: 5
+  m_Name: PlainGoldEgg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2068954102
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068954101}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99997675, y: 0.99997663, z: 0.9999768}
+  m_Children: []
+  m_Father: {fileID: 741916437}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 208.39998, y: 43.59999}
+  m_SizeDelta: {x: 31.1742, y: 37.98}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2068954103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068954101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.4
+  fadeDelayDur: 0
+  maxAlpha: 1
+  inactiveOnFadeOut: 1
+  fadeInOnStart: 1
+  fadeDelay: 1
+  img: {fileID: 2068954104}
+  myStartState: 1
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  t: 0
+--- !u!114 &2068954104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068954101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 02056a3d7fb1db04ab01a081ac0851c9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &2068954105
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068954101}
 --- !u!1001 &2080051240
 Prefab:
   m_ObjectHideFlags: 0

@@ -1631,6 +1631,7 @@ MonoBehaviour:
   hintFadeScript: {fileID: 321168156}
   riddFadeScript: {fileID: 350473495}
   riddTextFadeScript: {fileID: 1163066994}
+  plainGoldEggFadeScript: {fileID: 208902475}
 --- !u!114 &184246548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,6 +1651,7 @@ MonoBehaviour:
   clickOnEggsScript: {fileID: 712647447}
   hintFadeInOutScript: {fileID: 321168156}
   riddFadeInOutScript: {fileID: 350473495}
+  audioHelperBirdScript: {fileID: 715544069}
 --- !u!114 &184246549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,6 +1806,99 @@ GameObject:
   m_PrefabParentObject: {fileID: 1478420679111826, guid: 3d6502d86b4b4714f882706c8fa59669,
     type: 2}
   m_PrefabInternal: {fileID: 995171065}
+--- !u!1 &208902471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 208902472}
+  - component: {fileID: 208902474}
+  - component: {fileID: 208902473}
+  - component: {fileID: 208902475}
+  m_Layer: 5
+  m_Name: PlainGoldEgg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &208902472
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208902471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1163066993}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 208.4, y: 43.6}
+  m_SizeDelta: {x: 31.1742, y: 37.98}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &208902473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208902471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 02056a3d7fb1db04ab01a081ac0851c9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &208902474
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208902471}
+--- !u!114 &208902475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208902471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.4
+  fadeDelayDur: 0
+  maxAlpha: 1
+  inactiveOnFadeOut: 1
+  fadeInOnStart: 1
+  fadeDelay: 1
+  img: {fileID: 208902473}
+  myStartState: 1
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  t: 0
 --- !u!1 &212406437 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1479991955698900, guid: 73a7d01577bae1f4791f75fc6f6fc447,
@@ -7821,6 +7916,8 @@ MonoBehaviour:
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
   youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
+  hintEvent: event:/SFX/SFX_General/HintSpark
+  hintLongEvent: event:/SFX/SFX_General/HintSparkLong
 --- !u!114 &715544070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21316,7 +21413,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4.807692, y: 4.878049, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 208902472}
   m_Father: {fileID: 1111776726}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21380,7 +21478,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278196770
+    rgba: 4280690214
   m_fontColor: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
@@ -21438,10 +21536,10 @@ MonoBehaviour:
   m_margin: {x: -144.16658, y: -19.421112, z: -115.930176, w: -24.916574}
   m_textInfo:
     textComponent: {fileID: 1163066995}
-    characterCount: 44
+    characterCount: 32
     spriteCount: 0
-    spaceCount: 9
-    wordCount: 10
+    spaceCount: 3
+    wordCount: 4
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -22397,6 +22495,7 @@ MonoBehaviour:
   sceneTapScript: {fileID: 712647450}
   slideHelpBirdScript: {fileID: 184246546}
   lvlTapManScript: {fileID: 2119557095}
+  audioSceneGeneralScript: {fileID: 0}
 --- !u!114 &1256586951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39382,6 +39481,12 @@ Prefab:
       propertyPath: audioRiddleSolvedAnimScript
       value: 
       objectReference: {fileID: 715544070}
+    - target: {fileID: 212669417656910486, guid: 73a7d01577bae1f4791f75fc6f6fc447,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eb173d24f7dfb594aafa5ca89cd412bf,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73a7d01577bae1f4791f75fc6f6fc447, type: 2}
   m_IsPrefabParent: 0
@@ -46440,6 +46545,24 @@ Prefab:
       propertyPath: menuStatesScript
       value: 
       objectReference: {fileID: 1256586950}
+    - target: {fileID: 1311047059999090, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243451637647628, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224411738013585456, guid: e646f27085f9da3478eb6c26bb4151fd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.05000019
+      objectReference: {fileID: 0}
+    - target: {fileID: 224269890389845950, guid: e646f27085f9da3478eb6c26bb4151fd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
   m_IsPrefabParent: 0

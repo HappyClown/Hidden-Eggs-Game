@@ -19,12 +19,14 @@ public class HelperBirdRiddle : MonoBehaviour {
 	public ClickOnEggs clickOnEggsScript;
 	public FadeInOutImage hintFadeScript, riddFadeScript;
 	public FadeInOutTMP riddTextFadeScript;
+	public FadeInOutImage plainGoldEggFadeScript;
 
 	void Start () {
 		riddleBtn = riddleBtnObj.GetComponent<Button>();
 		riddleImg = riddleBtnObj.GetComponent<Image>();
 		riddleBtn.onClick.AddListener(ShowRiddleText);
 		riddTextFadeScript.fadeDelayDur = riddFadeScript.fadeDuration;
+		plainGoldEggFadeScript.fadeDelayDur = riddFadeScript.fadeDuration;
 	}
 	
 	void Update () {
@@ -49,7 +51,10 @@ public class HelperBirdRiddle : MonoBehaviour {
 		}
 
 		if (slideInScript.moveDown && riddTextOn) {
+			riddTextFadeScript.fadeDelayDur = 0f;
+			plainGoldEggFadeScript.fadeDelayDur = 0f;
 			riddTextFadeScript.FadeOut();
+			plainGoldEggFadeScript.FadeOut();
 		}
 	}
 
@@ -57,7 +62,10 @@ public class HelperBirdRiddle : MonoBehaviour {
 		int random = Random.Range(0, riddleHints.Count);
 		riddleHints[random].SetActive(true);
 		riddleCurntActive = riddleHints[random];
+		riddTextFadeScript.fadeDelayDur = riddFadeScript.fadeDuration;
+		plainGoldEggFadeScript.fadeDelayDur = riddFadeScript.fadeDuration;
 		riddTextFadeScript.FadeIn();
+		plainGoldEggFadeScript.FadeIn();
 		riddTextOn = true;
 
 		dontCloseMenu.SetActive(false);

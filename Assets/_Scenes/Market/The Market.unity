@@ -31409,6 +31409,24 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1311047059999090, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1243451637647628, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224411738013585456, guid: e646f27085f9da3478eb6c26bb4151fd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.05000019
+      objectReference: {fileID: 0}
+    - target: {fileID: 224269890389845950, guid: e646f27085f9da3478eb6c26bb4151fd,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e646f27085f9da3478eb6c26bb4151fd, type: 2}
   m_IsPrefabParent: 0
@@ -43703,7 +43721,11 @@ MonoBehaviour:
   bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
   circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
   circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  circleEggsSoloPlainEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloPlain
+  circleEggsSoloSilverEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloSilver
+  circleEggsSoloGoldEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloGold
   particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  eggsMoveInBagEvent: event:/SFX/ANIMS/Level Complete/EggsMoveInBag
   bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
   bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
   congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
@@ -46512,6 +46534,7 @@ MonoBehaviour:
   lvlCompleteEvent: event:/SFX/Market/Congratulations_LevelComplete
   goldenEggStingerEvent: event:/Music/Stingers/GoldenEgg
   buttonEvent: event:/SFX/SFX_General/Button
+  puzzConfirmEvent: event:/SFX/SFX_General/PuzzleConfirmationButton
   SceneIn: 0
   AlphaValue: 0
   puzzleUnlocked: 0
@@ -46539,6 +46562,9 @@ MonoBehaviour:
   birdFrozenEvent: event:/SFX/Market/Market_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
+  youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
+  hintEvent: event:/SFX/SFX_General/HintSpark
+  hintLongEvent: event:/SFX/SFX_General/HintSparkLong
 --- !u!114 &1436777459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46576,7 +46602,11 @@ MonoBehaviour:
   bagHoverEvent: event:/SFX/ANIMS/Level Complete/BagHover
   circleEggsGlowEvent: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
   circleEggsSoloEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
+  circleEggsSoloPlainEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloPlain
+  circleEggsSoloSilverEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloSilver
+  circleEggsSoloGoldEvent: event:/SFX/ANIMS/Level Complete/CircleEggsSoloGold
   particulesInBagEvent: event:/SFX/ANIMS/Level Complete/ParticulesInBag
+  eggsMoveInBagEvent: event:/SFX/ANIMS/Level Complete/EggsMoveInBag
   bagExplodeEvent: event:/SFX/ANIMS/Level Complete/BagExplode
   bagRumbleEvent: event:/SFX/ANIMS/Level Complete/BagRumble
   congratsTxtEvent: event:/SFX/ANIMS/Level Complete/CongratsTxt
@@ -52261,6 +52291,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114913506586538706, guid: a13ea22b2443d2d4d8b22688e0118057,
+        type: 2}
+      propertyPath: plainGoldEggFadeScript
+      value: 
+      objectReference: {fileID: 1704571444}
+    - target: {fileID: 114398405535122960, guid: a13ea22b2443d2d4d8b22688e0118057,
+        type: 2}
+      propertyPath: audioHelperBirdScript
+      value: 
+      objectReference: {fileID: 1436777458}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a13ea22b2443d2d4d8b22688e0118057, type: 2}
   m_IsPrefabParent: 0
@@ -52395,6 +52435,11 @@ MonoBehaviour:
 --- !u!224 &1510686118 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224015964339181726, guid: a13ea22b2443d2d4d8b22688e0118057,
+    type: 2}
+  m_PrefabInternal: {fileID: 1510686092}
+--- !u!224 &1510686119 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224110104555801308, guid: a13ea22b2443d2d4d8b22688e0118057,
     type: 2}
   m_PrefabInternal: {fileID: 1510686092}
 --- !u!1 &1517881556 stripped
@@ -54040,6 +54085,99 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 198184740719540128, guid: a8b986e6c53177947adbdb9775b12edf,
     type: 2}
   m_PrefabInternal: {fileID: 1697528297}
+--- !u!1 &1704571442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1704571443}
+  - component: {fileID: 1704571446}
+  - component: {fileID: 1704571445}
+  - component: {fileID: 1704571444}
+  m_Layer: 5
+  m_Name: PlainGoldEgg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1704571443
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704571442}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99997675, y: 0.99997663, z: 0.9999768}
+  m_Children: []
+  m_Father: {fileID: 1510686119}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 208.39998, y: 43.59999}
+  m_SizeDelta: {x: 31.1742, y: 37.98}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1704571444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704571442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.4
+  fadeDelayDur: 0
+  maxAlpha: 1
+  inactiveOnFadeOut: 1
+  fadeInOnStart: 1
+  fadeDelay: 1
+  img: {fileID: 1704571445}
+  myStartState: 1
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  t: 0
+--- !u!114 &1704571445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704571442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 02056a3d7fb1db04ab01a081ac0851c9, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1704571446
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704571442}
 --- !u!1001 &1706438163
 Prefab:
   m_ObjectHideFlags: 0
@@ -57027,7 +57165,6 @@ MonoBehaviour:
   - {fileID: 103779927}
   - {fileID: 458141880}
   - {fileID: 1499069538}
-  audioLevelCompleteScript: {fileID: 0}
   allEggSpawnDelay:
   - 0.0011111113
   - 0.004444445
@@ -57170,6 +57307,7 @@ MonoBehaviour:
   sceneTapScript: {fileID: 712647452}
   slideHelpBirdScript: {fileID: 1510686094}
   lvlTapManScript: {fileID: 911702553}
+  audioSceneGeneralScript: {fileID: 0}
 --- !u!114 &1799697646
 MonoBehaviour:
   m_ObjectHideFlags: 0
