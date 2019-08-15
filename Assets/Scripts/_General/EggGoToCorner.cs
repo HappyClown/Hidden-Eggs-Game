@@ -147,11 +147,11 @@ public class EggGoToCorner : MonoBehaviour
 				clickOnEggsScript.eggMoving -= 1;
 				if (!amIGolden) {
 					clickOnEggsScript.eggsInPanel++; 
+					puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.eggsInPanel);
 				} else {
 					clickOnEggsScript.AdjustGoldenEggCount(); 
 					goldenEgg.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
 				}
-				puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.eggsInPanel);
 				clickOnEggsScript.UpdateEggsString();
 				this.transform.parent = clickOnEggsScript.eggPanel.transform;
 				this.transform.localScale = cornerEggScale;

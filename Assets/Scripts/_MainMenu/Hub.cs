@@ -47,7 +47,6 @@ public class Hub : MonoBehaviour {
 		if(hubActiveWaitTimer <= 0f && !inHub) {
 			startHubActive = false;
 			hubActiveWaitTimer = hubActiveWait;
-			EnableHubObjects();
 			inHub = true;
 			dissolving = true;
 		}
@@ -66,6 +65,7 @@ public class Hub : MonoBehaviour {
 				matsToDissolve.Clear();
 				dissolving = false;
 				dissolveDone = true;
+				EnableHubObjects();
 			}
 		}
 	}
