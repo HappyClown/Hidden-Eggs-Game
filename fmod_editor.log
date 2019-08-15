@@ -2,13 +2,20 @@
 [LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=11008 (96768), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=44100, nAvgBytesPerSec=352800, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
+<<<<<<< HEAD
 [LOG] OutputWASAPI::init                       : Output buffer size: 3760 samples, latency: 0.00ms, period: 10.16ms, DSP buffer: 1024 * 4
 [WRN] SystemI::init                            : Output requires a sample rate of 44100Hz, resampling will occur.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
 [LOG] AsyncManager::init                       : manager 0000000064623028 isAsync 0 updatePeriod 0.02
+=======
+[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
+[LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
+[LOG] AsyncManager::init                       : manager 000000007628E048 isAsync 0 updatePeriod 0.02
+>>>>>>> SoundImpl_OTAKU
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -16,12 +23,769 @@
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+<<<<<<< HEAD
+=======
+[LOG] SoundI::release                          : babybongo_hits (000000006B3A59A8)
+[LOG] SoundI::release                          :     babybongo_hits (000000006BD21148)
+[LOG] SoundI::release                          :     babybongo_hits (000000006B3A5B58)
+[LOG] SoundI::release                          : divers_windshime_1 (000000006B3A6A88)
+[LOG] SoundI::release                          :     divers_windshime_1 (000000006BD20FA8)
+[LOG] SoundI::release                          :     divers_windshime_1 (000000006B3A52E8)
+[LOG] SoundI::release                          : bellballs (000000006B3A6C38)
+[LOG] SoundI::release                          :     bellballs (000000006BD20C68)
+[LOG] SoundI::release                          :     bellballs (000000006B3A6F98)
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3EA68 : node = 000000000DD08150
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3EA68
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08268
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSound                     :     filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     :     setdata soundi = 0000000075D3E3A8 : node = 000000000DD083F0
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] SystemI::createSound                     :     add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3EA68
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E3A8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08508
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E3A8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3EA68.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E3A8.  Subsound index 0 / 1
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E048 : node = 000000000DD08690
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E048
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD087A8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E048
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E048.  Subsound index 0 / 1
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E8B8 : node = 000000000DD08BD0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E8B8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08CE8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6119
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E8B8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E8B8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E3A8)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016388018)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3E1F8)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3F128 : node = 000000000DD08930
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3F128
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08A48
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3F128
+[LOG] SoundI::getSubSound                      : sound 0000000075D3F128.  Subsound index 0 / 1
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E048)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20C68)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3E708)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E1F8 : node = 000000000DD083F0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E1F8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08508
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E1F8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E1F8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3F128)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD21148)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F488)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3EDC8 : node = 000000000DD08930
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3EDC8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08A48
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3EDC8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3EDC8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E1F8)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20C68)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F2D8)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3F2D8 : node = 000000000DD07970
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3F2D8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD07A88
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3F2D8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3F2D8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3EA68)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016389878)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3E558)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3F128 : node = 000000000DD08150
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3F128
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08268
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3F128
+[LOG] SoundI::getSubSound                      : sound 0000000075D3F128.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3EDC8)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD21148)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F488)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E048 : node = 000000000DD083F0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E048
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08508
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E048
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E048.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3F2D8)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20C68)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3EF78)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3EDC8 : node = 000000000DD08930
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3EDC8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08A48
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3EDC8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3EDC8.  Subsound index 0 / 1
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E558 : node = 000000000DD08690
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E558
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD087A8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E558
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E558.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E8B8)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20FA8)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3EC18)
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E048)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016388018)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3E1F8)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3F488 : node = 000000000DD083F0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3F488
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08508
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3F488
+[LOG] SoundI::getSubSound                      : sound 0000000075D3F488.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3EDC8)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20C68)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3D988)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E3A8 : node = 000000000DD08930
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E3A8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08A48
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E3A8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E3A8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3F488)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20FA8)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3E048)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E8B8 : node = 000000000DD083F0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E8B8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08508
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E8B8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E8B8.  Subsound index 0 / 1
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E048 : node = 000000000DD08A80
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E048
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08B98
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E048
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E048.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3F128)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016389878)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3DCE8)
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E3A8)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20C68)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3EC18)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3DB38 : node = 000000000DD07970
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3DB38
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD07A88
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3DB38
+[LOG] SoundI::getSubSound                      : sound 0000000075D3DB38.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E8B8)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD20FA8)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F488)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E708 : node = 000000000DD08150
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E708
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08268
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E708
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E708.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E558)
+[LOG] SoundI::release                          :     chimes_midi_desc (000000006BD21148)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F2D8)
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3DB38)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016389878)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F128)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3E3A8 : node = 000000000DD083F0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3E3A8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08508
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3E3A8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3E3A8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E708)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016388018)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F488)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3EA68 : node = 000000000DD08BD0
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3EA68
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD08CE8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3EA68
+[LOG] SoundI::getSubSound                      : sound 0000000075D3EA68.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E3A8)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016389878)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3EF78)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000075D3EDC8 : node = 000000000DD07970
+[LOG] SystemI::createSound                     : add node to async list : head = 000000006BD1DCF8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000075D3EDC8
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 45872576
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 645216
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000000DD07A88
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 6331
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='chimes_midi_desc', format=2, channels=2, frequency=48000, lengthbytes=229472, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.153137.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000075D3EDC8
+[LOG] SoundI::getSubSound                      : sound 0000000075D3EDC8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3EA68)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016388018)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3DB38)
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3E048)
+[LOG] SoundI::release                          :     chimes_midi_desc (00000000163869C8)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3F638)
+[LOG] SoundI::release                          : chimes_midi_desc (0000000075D3EDC8)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000016389878)
+[LOG] SoundI::release                          :     chimes_midi_desc (0000000075D3D988)
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 3
+[WRN] AsyncCommandBuffer::growBuffer           : Growing command buffer to 1192649546 bytes. Initial command buffer size can be tuned to avoid dynamic growth using Studio::System::setAdvancedSettings()
+[LOG] SoundI::release                          :  (000000006B19DE78)
+[LOG] SoundI::release                          :     Notes_harp_07 (00000000763D8EC8)
+[LOG] SoundI::release                          :  (0000000016352488)
+[LOG] SoundI::release                          :     CIN_SingleEggSpin_01 (000000006BD1EBE8)
+[LOG] SoundI::release                          :  (000000007484A8F8)
+[LOG] SoundI::release                          :     Notes_harp_06 (000000007608B698)
+[LOG] SoundI::release                          :  (00000000748487E8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highD (000000006B107298)
+[LOG] SoundI::release                          :  (000000007484BA38)
+[LOG] SoundI::release                          :     Notes_harp_11 (000000007608A318)
+[LOG] SoundI::release                          :  (000000007484A618)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highE (000000007608B358)
+[LOG] SoundI::release                          :  (000000007484AA68)
+[LOG] SoundI::release                          :     fruitBasket_click_1 (000000007608CBB8)
+[LOG] SoundI::release                          :  (000000006B19DFE8)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (2) (00000000763D6148)
+[LOG] SoundI::release                          :  (000000000DCF66E8)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (3) (000000006BD20448)
+[LOG] SoundI::release                          :  (00000000749DAC78)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (4) (000000006B9168F8)
+[LOG] SoundI::release                          :  (00000000749DB518)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (000000006B91A518)
+[LOG] SoundI::release                          :  (00000000744AE568)
+[LOG] SoundI::release                          :     Dolphin (00000000763D7668)
+[LOG] SoundI::release                          :  (00000000749D9E18)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highG (000000006B919818)
+[LOG] SoundI::release                          :  (00000000748491F8)
+[LOG] SoundI::release                          :     Notes_harp_09 (000000007608B4F8)
+[LOG] SoundI::release                          :  (000000006B19EFB8)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (2) (00000000763D7808)
+[LOG] SoundI::release                          :  (00000000744AE6D8)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (3) (00000000763D89E8)
+[LOG] SoundI::release                          :  (000000007484B198)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (4) (000000007608D3D8)
+[LOG] SoundI::release                          :  (000000007484A4A8)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (5) (000000007608CA18)
+[LOG] SoundI::release                          :  (000000007484AEB8)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (6) (000000007608A7F8)
+[LOG] SoundI::release                          :  (0000000074848958)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (000000007608BEB8)
+[LOG] SoundI::release                          :  (000000000DCF69C8)
+[LOG] SoundI::release                          :     FOT_SFX_Egg_trail_reverse (000000006BD20E08)
+[LOG] SoundI::release                          :  (00000000744B0958)
+[LOG] SoundI::release                          :     Notes_harp_05 (00000000763D86A8)
+[LOG] SoundI::release                          :  (00000000744AF818)
+[LOG] SoundI::release                          :     Notes_harp_01 (00000000763D81C8)
+[LOG] SoundI::release                          :  (000000000DCF6298)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_G (000000006BD212E8)
+[LOG] SoundI::release                          :  (000000006B19E158)
+[LOG] SoundI::release                          :     SFX_CheersChilds (000000006BD1E3C8)
+[LOG] SoundI::release                          :  (000000006B19E888)
+[LOG] SoundI::release                          :     SFX_CheersDucks_v1_test (000000006BD1ED88)
+[LOG] SoundI::release                          :  (00000000749DB0C8)
+[LOG] SoundI::release                          :     Stinger_congrats_G_v2 (000000006B916F78)
+[LOG] SoundI::release                          :  (000000006B19F6E8)
+[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (2) (00000000763D8D28)
+[LOG] SoundI::release                          :  (00000000749D9B38)
+[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (4) (000000006B917798)
+[LOG] SoundI::release                          :  (000000006B19DD08)
+[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (000000006BD1FF68)
+[LOG] SoundI::release                          :  (00000000744AE288)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highB (00000000763D8B88)
+[LOG] SoundI::release                          :  (00000000744AF6A8)
+[LOG] SoundI::release                          :     Orca (00000000763D74C8)
+[LOG] SoundI::release                          :  (00000000749DA6B8)
+[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 (000000006B9194D8)
+[LOG] SoundI::release                          :  (00000000744AD9E8)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (2) (00000000763D9208)
+[LOG] SoundI::release                          :  (000000007484A1C8)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (3) (000000007608C538)
+[LOG] SoundI::release                          :  (0000000074849088)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (5) (000000007608D098)
+[LOG] SoundI::release                          :  (00000000749D9858)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (000000006B917938)
+[LOG] SoundI::release                          :  (00000000749DB968)
+[LOG] SoundI::release                          :     FOT_SFX_Map (000000006B91A1D8)
+[LOG] SoundI::release                          :  (00000000163525F8)
+[LOG] SoundI::release                          :     Stinger_congrats_G_v1 (000000006BD1E568)
+[LOG] SoundI::release                          :  (0000000074849C08)
+[LOG] SoundI::release                          :     babybongo_roll_02 (0000000076089FD8)
+[LOG] SoundI::release                          :  (000000006B19DA28)
+[LOG] SoundI::release                          :     lock_shakeAccelere (00000000763D5928)
+[LOG] SoundI::release                          :  (00000000744AF538)
+[LOG] SoundI::release                          :     Notes_harp_08 (00000000763D6968)
+[LOG] SoundI::release                          :  (0000000074848DA8)
+[LOG] SoundI::release                          :     BubblePop1 (000000007608CEF8)
+[LOG] SoundI::release                          :  (00000000749DB238)
+[LOG] SoundI::release                          :     BubblePop2 (000000006B918638)
+[LOG] SoundI::release                          :  (00000000744ADCC8)
+[LOG] SoundI::release                          :     BubblePop3 (00000000763D7328)
+[LOG] SoundI::release                          :  (00000000744AE118)
+[LOG] SoundI::release                          :     CIN_GustFly_01 (00000000763D8848)
+[LOG] SoundI::release                          :  (000000006B19D8B8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_D (00000000763D6488)
+[LOG] SoundI::release                          :  (00000000749D85A8)
+[LOG] SoundI::release                          :     FOT_SFX_fruits2 (000000006B917C78)
+[LOG] SoundI::release                          :  (000000006B19EB68)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_E (000000006BD1E228)
+[LOG] SoundI::release                          :  (00000000749D89F8)
+[LOG] SoundI::release                          :     scale_plate_creak_1 (00000000763D6B08)
+[LOG] SoundI::release                          :  (00000000749DA3D8)
+[LOG] SoundI::release                          :     scale_plate_creak_2 (000000006B917118)
+[LOG] SoundI::release                          :  (00000000749D82C8)
+[LOG] SoundI::release                          :     Whale (000000006B9199B8)
+[LOG] SoundI::release                          :  (0000000074848508)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (2) (000000006B1070F8)
+[LOG] SoundI::release                          :  (0000000074848678)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (3) (000000007608C878)
+[LOG] SoundI::release                          :  (00000000744AE9B8)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (4) (00000000763D79A8)
+[LOG] SoundI::release                          :  (000000000DCF6408)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (000000006BD1E088)
+[LOG] SoundI::release                          :  (000000000DCF4FE8)
+[LOG] SoundI::release                          :     fail (000000006BD1EA48)
+[LOG] SoundI::release                          :  (000000006B19E718)
+[LOG] SoundI::release                          :     Notes_harp_10 (000000006BD1E8A8)
+[LOG] SoundI::release                          :  (0000000016352BB8)
+[LOG] SoundI::release                          :     Notes_harp_03 (000000006BD1F268)
+[LOG] SoundI::release                          :  (0000000074849D78)
+[LOG] SoundI::release                          :     FOT_SFX_UI_MenuOeufs (000000007608A998)
+[LOG] SoundI::release                          :  (0000000016352768)
+[LOG] SoundI::release                          :     tile_rotate_1 - Trimmed (000000006BD205E8)
+[LOG] SoundI::release                          :  (00000000744B0F18)
+[LOG] SoundI::release                          :     tile_rotate_2 - Trimmed (00000000763D5FA8)
+[LOG] SoundI::release                          :  (000000006B19F128)
+[LOG] SoundI::release                          :     tile_rotate_3 - Trimmed (000000006BD202A8)
+[LOG] SoundI::release                          :  (00000000744AFDD8)
+[LOG] SoundI::release                          :     tile_rotate_4 - Trimmed (00000000763D6FE8)
+[LOG] SoundI::release                          :  (00000000744B1088)
+[LOG] SoundI::release                          :     tile_rotate_5 - Trimmed (00000000763D93A8)
+[LOG] SoundI::release                          :  (000000007484BFF8)
+[LOG] SoundI::release                          :     lock_clik (000000007608C6D8)
+[LOG] SoundI::release                          :  (00000000744ADFA8)
+[LOG] SoundI::release                          :     perc_frozen_bird (00000000763D8508)
+[LOG] SoundI::release                          :  (000000000DCF6858)
+[LOG] SoundI::release                          :     Wave (000000006BD1F8E8)
+[LOG] SoundI::release                          :  (00000000749DAB08)
+[LOG] SoundI::release                          :     SwooshMelo (000000006B918FF8)
+[LOG] SoundI::release                          :  (00000000744AE848)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highA (00000000763D7188)
+[LOG] SoundI::release                          :  (00000000749DB688)
+[LOG] SoundI::release                          :     Notes_harp_02 (000000006B91A6B8)
+[LOG] SoundI::release                          :  (000000007484AD48)
+[LOG] SoundI::release                          :     Frog (000000006B1087B8)
+[LOG] SoundI::release                          :  (000000007484B758)
+[LOG] SoundI::release                          :     Bottle Rocket-SoundBible.com-332895117 (000000007608C1F8)
+[LOG] SoundI::release                          :  (00000000749D9578)
+[LOG] SoundI::release                          :     harp_ui_button_2 (000000006B91A378)
+[LOG] SoundI::release                          :  (00000000749DA828)
+[LOG] SoundI::release                          :     Walrus (000000006B919678)
+[LOG] SoundI::release                          :  (0000000074849928)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_A (000000007608B018)
+[LOG] SoundI::release                          :  (00000000749D8FB8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highF (000000006B9172B8)
+[LOG] SoundI::release                          :  (0000000074848F18)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_C (000000007608A658)
+[LOG] SoundI::release                          :  (0000000074848AC8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_B (000000007608C058)
+[LOG] SoundI::release                          :  (0000000016353178)
+[LOG] SoundI::release                          :     Stinger_congrats_G_v3_harps (000000006BD1DD48)
+[LOG] SoundI::release                          :  (00000000749DADE8)
+[LOG] SoundI::release                          :     Boat (000000006B919E98)
+[LOG] SoundI::release                          :  (00000000749DA268)
+[LOG] SoundI::release                          :     crate_slide_multiple - Trimmed (2) (000000006B916C38)
+[LOG] SoundI::release                          :  (00000000749DAF58)
+[LOG] SoundI::release                          :     FOT_SFX_chimy_random (000000006B916A98)
+[LOG] SoundI::release                          :  (000000007484B308)
+[LOG] SoundI::release                          :     Bubbles1 (000000007608CD58)
+[LOG] SoundI::release                          :  (00000000749D9F88)
+[LOG] SoundI::release                          :     Bubbles2 (000000006B919338)
+[LOG] SoundI::release                          :  (000000006B19E2C8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highC (000000006BD1DEE8)
+[LOG] SoundI::release                          :  (00000000749D9408)
+[LOG] SoundI::release                          :     crate_slide_multiple - Trimmed (000000006B9187D8)
+[LOG] SoundI::release                          :  (0000000074848C38)
+[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 - Trimmed (0000000076089958)
+[LOG] SoundI::release                          :  (0000000074848398)
+[LOG] SoundI::release                          :     FOT_SFX_fruits (000000007608B1B8)
+[LOG] SoundI::release                          :  (00000000744B0508)
+[LOG] SoundI::release                          :     Seal (00000000763D5C68)
+[LOG] SoundI::release                          :  (00000000749DA548)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (2) (000000006B917AD8)
+[LOG] SoundI::release                          :  (000000007484BD18)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (000000007608AE78)
+[LOG] SoundI::release                          :  (00000000744AEB28)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (5) (00000000763D7B48)
+[LOG] SoundI::release                          :  (00000000749D9128)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (4) (000000006B918498)
+[LOG] SoundI::release                          :  (0000000074849368)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (3) (000000007608B9D8)
+[LOG] SoundI::release                          :  (00000000744B0DA8)
+[LOG] SoundI::release                          :     Intro_orchestral_violins - Trimmed (2) (00000000763D6628)
+[LOG] SoundI::release                          :  (000000007484ABD8)
+[LOG] SoundI::release                          :     Intro_orchestral_violins - Trimmed (3) (000000007608C398)
+[LOG] SoundI::release                          :  (00000000744AF3C8)
+[LOG] SoundI::release                          :     Intro_orchestral_cellos - Trimmed (3) (00000000763D7CE8)
+[LOG] SoundI::release                          :  (00000000744B0678)
+[LOG] SoundI::release                          :     Intro_orchestral_cellos - Trimmed (00000000763D8368)
+[LOG] SoundI::release                          :  (000000007484BBA8)
+[LOG] SoundI::release                          :     Intro_orchestral_violas - Trimmed (2) (0000000076089E38)
+[LOG] SoundI::release                          :  (00000000749D96E8)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (2) (000000006B917FB8)
+[LOG] SoundI::release                          :  (0000000074849648)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (000000007608BD18)
+[LOG] SoundI::release                          :  (00000000749D8718)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (4) (000000006B9182F8)
+[LOG] SoundI::release                          :  (000000007484BE88)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (3) (000000006B108C98)
+[LOG] SoundI::release                          :  (000000000DCF5718)
+[LOG] SoundI::release                          :     59285__transitking__needledrop01 (000000006BD20928)
+[LOG] SoundI::release                          :  (00000000748497B8)
+[LOG] SoundI::release                          :     harp_ui_button_1 (000000007608AB38)
+[LOG] SoundI::release                          :  (0000000016352318)
+[LOG] SoundI::release                          :     trumpets_Beach_GM (000000006BD1D868)
+[LOG] SoundI::release                          :  (000000007484B028)
+[LOG] SoundI::release                          :     Harp_strum_Beach_GM (000000007608B838)
+[LOG] SoundI::release                          :  (00000000744ADB58)
+[LOG] SoundI::release                          :     Harp_Chord_Beach_GM (00000000763D5E08)
+[LOG] SoundI::release                          :  (0000000074849A98)
+[LOG] SoundI::release                          :     Notes_harp_04 (000000007608D578)
+[LOG] SoundI::release                          :  (000000007484B8C8)
+[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (2) - Trimmed (000000007608ACD8)
+[LOG] SoundI::release                          :  (00000000749DB3A8)
+[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (3) - Trimmed (000000006B918B18)
+[LOG] SoundI::release                          :  (00000000744B07E8)
+[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (2) (00000000763D6E48)
+[LOG] SoundI::release                          :  (00000000749D8888)
+[LOG] SoundI::release                          :     divers_squish_1 (000000006B918E58)
+[LOG] SoundI::release                          :  (000000007484C168)
+[LOG] SoundI::release                          :     divers_squish_3-001 (000000007608A178)
+[LOG] SoundI::release                          :  (00000000748494D8)
+[LOG] SoundI::release                          :     divers_squish_3 (000000007608D718)
+[LOG] SoundI::release                          :  (00000000744AD598)
+[LOG] SoundI::release                          :     divers_squish_4 (00000000763D67C8)
+[LOG] SoundI::release                          :  (000000007484A788)
+[LOG] SoundI::release                          :     divers_squish_5 (000000006B108958)
+[LOG] SoundI::release                          :  (00000000744B11F8)
+[LOG] SoundI::release                          :     SeaGull (00000000763D62E8)
+[LOG] SoundI::release                          :  (000000000DCF5438)
+[LOG] SoundI::release                          :     Notes_harp_14 (000000006BD1F0C8)
+[LOG] SoundI::release                          :  (00000000749D99C8)
+[LOG] SoundI::release                          :     Notes_harp_12 (000000006B9175F8)
+[LOG] SoundI::release                          :  (000000007484A058)
+[LOG] SoundI::release                          :     Notes_harp_13 (000000007608A4B8)
+[LOG] SoundI::release                          :  (000000007484B478)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_1 (000000007608D238)
+[LOG] SoundI::release                          :  (000000006B19E438)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_4 (000000006BD1D6C8)
+[LOG] SoundI::release                          :  (00000000744ADE38)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_3 (00000000763D5788)
+[LOG] SoundI::release                          :  (0000000016352A48)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_2 (000000006BD1DA08)
+[LOG] SoundI::release                          :  (00000000744AFAF8)
+[LOG] SoundI::release                          :     FOT_SFX_UI_button (00000000763D6CA8)
+[LOG] SoundI::release                          :  (00000000744AF988)
+[LOG] SoundI::release                          :     FOT_SFX_goose1 (00000000763D9068)
+[LOG] SoundI::release                          :  (00000000749D7E78)
+[LOG] SoundI::release                          :     FOT_SFX_goose2 (000000006B917E18)
+[LOG] SoundI::release                          :  (00000000749D8158)
+[LOG] SoundI::release                          :     FOT_SFX_goose3 (000000006B916DD8)
+[LOG] SoundI::release                          :  (00000000749DA998)
+[LOG] SoundI::release                          :     Trumpets_Park_DM (000000006B919CF8)
+[LOG] SoundI::release                          :  (00000000749DB7F8)
+[LOG] SoundI::release                          :     Harp_strum_Park_DM (000000006B91A038)
+[LOG] SoundI::release                          :  (0000000074849EE8)
+[LOG] SoundI::release                          :     Harp_chord_Park_DM (0000000076089AF8)
+[LOG] SoundI::release                          :  (000000000DCF5158)
+[LOG] SoundI::release                          :     Park_section2_glock - Trimmed (000000006BD1E708)
+[LOG] SoundI::release                          :  (00000000749D7FE8)
+[LOG] SoundI::release                          :     Park_section2_glock - Trimmed (2) (000000006B918CB8)
+[LOG] SoundI::release                          :  (000000007484B5E8)
+[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 - Trimmed (2) (0000000076089C98)
+[LOG] SoundI::release                          :  (00000000744AE3F8)
+[LOG] SoundI::release                          :     divers_squish_2 (00000000763D7E88)
+[LOG] SoundI::release                          :  (00000000744B0C38)
+[LOG] SoundI::release                          :     169549__jorickhoofd__gravel-impact-3 (1) (00000000763D5AC8)
+[LOG] SoundI::release                          :  (000000000DCF5CD8)
+[LOG] SoundI::release                          :     item_pickup_1 (000000006BD1F408)
+[LOG] SoundI::release                          :  (00000000749D7D08)
+[LOG] SoundI::release                          :     item_pickup_3 (000000006B918978)
+[LOG] SoundI::release                          :  (0000000016351628)
+[LOG] SoundI::release                          :     item_pickup_2 (000000006BD1EF28)
+[LOG] SoundI::release                          :  (00000000749DA0F8)
+[LOG] SoundI::release                          :     mutedBells_hits (000000006B918158)
+[LOG] SoundI::release                          :  (00000000749DBAD8)
+[LOG] SoundI::release                          :     scale_plate_creak_3 (000000006B917458)
+[LOG] SoundI::release                          :  (00000000749D8CD8)
+[LOG] SoundI::release                          :     FOT_SFX_Chimy2 (000000006B919198)
+[LOG] SoundI::release                          :  (00000000749D8E48)
+[LOG] SoundI::release                          :     FOT_SFX_Chimes1 (00000000763D8028)
+[LOG] SoundI::release                          : V2_Market_Acc_long_strings (000000006B3A5648)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_strings (000000006BD20108)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_strings (000000006B3A6068)
+[LOG] SoundI::release                          : V2_Market_Acc_long_Melo_flutes (000000006B3A5498)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_Melo_flutes (000000006BD1FDC8)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_Melo_flutes (000000006B3A6728)
+[LOG] SoundI::release                          : V2_Market_Acc_long_MeloLyr_Clar (000000006B3A6578)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloLyr_Clar (000000006BD1FC28)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloLyr_Clar (000000006B3A57F8)
+[LOG] SoundI::release                          : V2_Market_Acc_long_MeloFun_harp (000000000DC94E78)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloFun_harp (000000006BD1FA88)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloFun_harp (000000006B3A5EB8)
+[LOG] SoundI::release                          : V2_Market_Acc_long_guit (00000000431D2418)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_guit (000000006BD20788)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_guit (000000006B3A68D8)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
@@ -29,3 +793,21 @@
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] SystemI::close                           : Closed.
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+>>>>>>> SoundImpl_OTAKU
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 3
+<<<<<<< HEAD
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.
+=======
+>>>>>>> SoundImpl_OTAKU

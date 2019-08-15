@@ -90,7 +90,8 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					white = true;
 					
 				// AUDIO - WHITE EGGS APPEARS!
-					audioLevelCompleteScript.circleEggsGlowSnd();
+					//audioLevelCompleteScript.circleEggsGlowSnd(); //nicer sound but doesnt help the gitching??
+					audioLevelCompleteScript.circleEggsSoloSilverSnd();	
 				}
 				// Plain egg fades in.
 				if (spawnTimer >= plainDelay && !plain) {
