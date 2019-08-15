@@ -91,6 +91,11 @@ public class AudioSceneGeneral : MonoBehaviour
     public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
 
+    
+    public string puzzConfirmEvent = "event:/SFX/SFX_General/PuzzleConfirmationButton";
+    public FMOD.Studio.EventInstance puzzConfirmSound;
+
+
 	[Header("For tests and reference")]
     // TESTS Transistions scenes
     public bool SceneIn;
@@ -234,6 +239,13 @@ public class AudioSceneGeneral : MonoBehaviour
         //button sound
         buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
         buttonSound.start();
+    }
+
+        public void puzzConfirmSFX()
+    {
+        //button sound
+        puzzConfirmSound = FMODUnity.RuntimeManager.CreateInstance(puzzConfirmEvent);
+        puzzConfirmSound.start();
     }
 
     //EGGS

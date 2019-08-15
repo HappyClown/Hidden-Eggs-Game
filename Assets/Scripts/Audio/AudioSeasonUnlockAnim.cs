@@ -67,11 +67,12 @@ public class AudioSeasonUnlockAnim : MonoBehaviour
     }
 
     public void eggCounterSnd(){
-        eggCounterSound = FMODUnity.RuntimeManager.CreateInstance(eggCounterEvent);
-        eggCounterSound.start();
+        //eggCounterSound = FMODUnity.RuntimeManager.CreateInstance(eggCounterEvent);  //ticking sound
+        //eggCounterSound.start();
         eggIndex--;
-        //ascending notes
 
+        
+        //ascending notes
         // if(notesIndex<14 && ascending){
         // currentNote = FMODUnity.RuntimeManager.CreateInstance((string)listNotes[notesIndex]);
         // currentNote.start();

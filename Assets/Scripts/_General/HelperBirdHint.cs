@@ -15,10 +15,16 @@ public class HelperBirdHint : MonoBehaviour {
 	public ClickOnEggs clickOnEggsScript;
 	public FadeInOutImage hintFadeInOutScript, riddFadeInOutScript;
 
+		public AudioHelperBird audioHelperBirdScript;
+
 	void Start () {
 		hintBtn = hintBtnObj.GetComponent<Button>();
 		hintImg = hintBtnObj.GetComponent<Image>();
-		hintBtn.onClick.AddListener(StartHint);
+		hintBtn.onClick.AddListener(StartHint);		
+
+		
+		
+		if(!audioHelperBirdScript){audioHelperBirdScript= GameObject.Find("Audio").GetComponent<AudioHelperBird>();}
 	}
 
 	void Update () {
@@ -31,6 +37,7 @@ public class HelperBirdHint : MonoBehaviour {
 				hintBtn.interactable = false;
 			}
 			showHint = true;
+
 		}
 
 		if (!slideInScript.isUp && showHint) {
@@ -43,6 +50,9 @@ public class HelperBirdHint : MonoBehaviour {
 	public void StartHint() {
 		if (hintManScript.hintAvailable) {
 			hintManScript.startHint = true;
+
+			//sound long
+			audioHelperBirdScript.hintSndOnLong();
 		}
 		slideInScript.MoveBirdUpDown();
 	}

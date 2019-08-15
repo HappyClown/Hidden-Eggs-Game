@@ -30,6 +30,8 @@ public class MenuStatesManager : MonoBehaviour {
 	public SlideInHelpBird slideHelpBirdScript;
 	public LevelTapMannager lvlTapManScript;
 
+	public AudioSceneGeneral audioSceneGeneralScript;
+
 	void Start () {
 		menuCG.alpha = 0;
 		menuCG.interactable = false;
@@ -39,6 +41,9 @@ public class MenuStatesManager : MonoBehaviour {
 			puzzleConfCG.interactable = false;
 			puzzleConfCG.blocksRaycasts = false;
 		}
+
+				
+		if(!audioSceneGeneralScript){audioSceneGeneralScript= GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();}
 	}
 	
 	void Update () {
@@ -107,7 +112,7 @@ public class MenuStatesManager : MonoBehaviour {
 			inputDetScript.detectDrag = true;
 			putDragOff = true;
 		}
-		lvlTapManScript.ZoomOutCameraReset();
+		lvlTapManScript.ZoomOutCameraReset();		
 	}
 
 	void TurningOn() {
@@ -193,6 +198,10 @@ public class MenuStatesManager : MonoBehaviour {
 			putDragOff = true;
 		}
 		lvlTapManScript.ZoomOutCameraReset();
+
+		
+		//sound click
+		audioSceneGeneralScript.puzzConfirmSFX();
 	}
 
 	void PuzzleConfTurningOn() {

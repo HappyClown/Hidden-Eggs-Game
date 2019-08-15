@@ -39,6 +39,12 @@ public class AudioHelperBird : MonoBehaviour
     public string youDidItEvent = "event:/SFX/ANIMS/Level Complete/YouDidIt";
     public FMOD.Studio.EventInstance youDidItSound;
 
+    public string hintEvent = "event:/SFX/SFX_General/HintSpark";
+    public FMOD.Studio.EventInstance hintSound;
+
+    public string hintLongEvent = "event:/SFX/SFX_General/HintSparkLong";
+    public FMOD.Studio.EventInstance hintLongSound;
+
 
 	void Start () 
 	{
@@ -57,6 +63,8 @@ public class AudioHelperBird : MonoBehaviour
         if(CloseMenuBtn){
                CloseMenuBtn.onClick.AddListener(buttonSFX);
         }
+
+            hintLongSound = FMODUnity.RuntimeManager.CreateInstance(hintLongEvent);
 	}
 	
 	void Update () 
@@ -97,6 +105,27 @@ public class AudioHelperBird : MonoBehaviour
     {
         youDidItSound = FMODUnity.RuntimeManager.CreateInstance(youDidItEvent);
         youDidItSound.start();
+    }
+
+    
+    public void hintSndOn()
+
+    {
+        hintSound = FMODUnity.RuntimeManager.CreateInstance(hintEvent);
+        hintSound.start();
+    }
+        public void hintSndOnLong()
+    {
+
+
+        hintLongSound.start(); 
+
+    }
+            public void hintSndOnLongStop()
+    {
+
+        hintLongSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
     }
 
 

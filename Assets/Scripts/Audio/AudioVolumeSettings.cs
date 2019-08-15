@@ -61,7 +61,7 @@ public class AudioVolumeSettings : MonoBehaviour
     [Range(0, 1)]
     public float SFXVolume = 0.5f;
 
-    float MasterVolume = 1.2f;
+    float MasterVolume = 2f;
 
 
     public bool Muted;
