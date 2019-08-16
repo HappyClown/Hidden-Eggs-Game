@@ -6,14 +6,11 @@ using UnityEngine.UI;
 public class CloseMenu : MonoBehaviour 
 {
 	public Button closeMenuOnClickButton;
-	//public GameObject closeMenuOnClick;
 	public SlideInHelpBird birdScript;
 
 
-	void Start () 
-	{
+	void Start () {
 		closeMenuOnClickButton = this.GetComponent<Button>();
 		closeMenuOnClickButton.onClick.AddListener(birdScript.MoveBirdUpDown);
-		//this.gameObject.SetActive(false);
 	}
 }

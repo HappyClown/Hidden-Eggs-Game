@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 114375100551085838}
   - component: {fileID: 114240250035061422}
   - component: {fileID: 114215625341773946}
+  - component: {fileID: 114099185153647444}
   m_Layer: 0
   m_Name: GlobalVariables
   m_TagString: GlobalVariables
@@ -222,6 +223,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114099185153647444
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1807088871088516}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a3308a6871c8ee4eae96f68432be2f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114135123417797106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,10 +272,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent: event:/SFX/SFX_General/Button
+  muteEvent_perc: event:/SFX/SFX_General/muteButton_perc
+  unMuteEvent_perc: event:/SFX/SFX_General/unMuteButton_perc
+  muteEvent_harp: event:/SFX/SFX_General/muteButton_harp
+  unMuteEvent_harp: event:/SFX/SFX_General/unMuteButton_harp
+  sliderEvent: event:/SFX/SFX_General/sliderSound
   MusicVolume: 0.5
   SFXVolume: 0.5
-  MasterVolume: 0.8
-  volumeTests: 0.8
   Muted: 0
   Paused: 0
 --- !u!114 &114218338253328110
@@ -285,7 +301,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d7e82b32ea6ff3e48922d839a10a077e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65a29c5015280914b9b219c921e35002, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -374,6 +390,7 @@ MonoBehaviour:
   dissSeasonsBools: 
   hubTotalEggsFound: 0
   levelsCompleted: 0
+  lastEggTotVal: 0
   clickOnEggsScript: {fileID: 0}
   eggHolder: {fileID: 0}
   dissSeasonsScript: {fileID: 0}
@@ -1013,7 +1030,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 113.96, y: -41.6}
+  m_AnchoredPosition: {x: 0, y: -174.00002}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224399277113352640
@@ -1129,8 +1146,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28.49, y: 10.4}
-  m_SizeDelta: {x: 1278, y: 1053}
+  m_AnchoredPosition: {x: 0, y: 15}
+  m_SizeDelta: {x: 1826, y: 1226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224909618873530886
 RectTransform:
