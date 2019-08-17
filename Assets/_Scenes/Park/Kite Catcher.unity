@@ -432,11 +432,13 @@ MonoBehaviour:
   ToggleLevelPuz2: {fileID: 699045629}
   ToggleLevelPuz3: {fileID: 699045628}
   ResetItemBtn: {fileID: 49931954}
-  sceneMusicEvent: event:/Music/MusicScenes/Park
+  sceneMusicEvent: event:/Music/MusicScenes/Park_Puzzle
   transEvent: event:/SFX/SFX_General/TransitionsSound
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
   buttonEvent: event:/SFX/SFX_General/Button
+  puzPieceEvent: event:/SFX/ANIMS/Puzzle Completed/puzzlePieces
+  puzPieceJingleEvent: event:/SFX/ANIMS/Puzzle Completed/puzzleTextJingle
   audioHelperBirdScript: {fileID: 17080955}
   pickupTileEvent: event:/SFX/Puzzle_Park/Puzzle_TilePickUp
   dropTileEvent: event:/SFX/Puzzle_Park/Puzzle_TileDrop
@@ -457,11 +459,12 @@ MonoBehaviour:
   RiddleBtn: {fileID: 1358923218}
   HintBtn: {fileID: 1358923218}
   PauseBtn: {fileID: 949567134}
-  XBtn: {fileID: 2006332619}
+  CloseMenuBtn: {fileID: 2006332619}
   birdEvent: event:/SFX/Park/Park_Bird
   birdFrozenEvent: event:/SFX/Park/Park_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
+  youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
 --- !u!1 &29706662 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1640143831542430, guid: f6590d017bc3c234a96bcad1a157f613,
@@ -26419,6 +26422,8 @@ MonoBehaviour:
   puzzleConfCG: {fileID: 0}
   fadeDuration: 0.25
   sceneTapScript: {fileID: 654759650}
+  slideHelpBirdScript: {fileID: 0}
+  lvlTapManScript: {fileID: 0}
 --- !u!114 &654759652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83372,6 +83377,40 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 15.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 13.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114534901454968610, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864152886398384, guid: 3468eaf8d67f7974ba5fc0717704b390, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114306357341021782, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: sceneName
+      value: The Park
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3468eaf8d67f7974ba5fc0717704b390, type: 2}

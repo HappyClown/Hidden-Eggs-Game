@@ -25,8 +25,8 @@ public class AudioSceneParkPuzzle: AudioScenePuzzleGeneric
  
     void Start () 
 	{
-        BackBtn.onClick.AddListener(Transition);
 
+        BackBtn.onClick.AddListener(Transition);
         ResetItemBtn.onClick.AddListener(buttonSFX);
         ToggleLevelPuz1.onClick.AddListener(buttonSFX);
 		ToggleLevelPuz2.onClick.AddListener(buttonSFX);

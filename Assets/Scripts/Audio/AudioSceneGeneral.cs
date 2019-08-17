@@ -7,10 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class AudioSceneGeneral : MonoBehaviour 
 {
-	[Header("Buttons")]
+	[Header("Puzzle Confirmation Buttons")]
+    public Button cancelBtn;
+    public Button confirmBtn;
+    public Button closeMenuBtn;
 
+    [Header("Scene Buttons")]
     public Button BackMenuBtn;
-    public Button lvlCompleteBtn;
+    //public Button lvlCompleteBtn;
 
 	[Header("Scene Music")]
     [FMODUnity.EventRef]
@@ -18,50 +22,39 @@ public class AudioSceneGeneral : MonoBehaviour
     public FMOD.Studio.EventInstance sceneMusic;
 
     [Header("Cue Title Card Transition")]
-    [FMODUnity.EventRef]
     public string transEvent = "event:/SFX/SFX_General/TransitionsSound";
     public FMOD.Studio.EventInstance transMusic;
 
 
 	[Header("Egg SFX")]
-    [FMODUnity.EventRef]
     public string EggClickEvent = "event:/SFX/SFX_General/Egg_Click";
     public FMOD.Studio.EventInstance EggClickSound;
 
-    [FMODUnity.EventRef]
     public string goldEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Gold";
     public FMOD.Studio.EventInstance goldEggClickSound;
 
-    [FMODUnity.EventRef]
     public string goldEggAnimationEvent = "event:/SFX/SFX_General/GoldenEggAnimation";
     public FMOD.Studio.EventInstance goldEggAnimationSound;
-
-    [FMODUnity.EventRef]
     public string goldEggShimyEvent = "event:/SFX/SFX_General/GoldenEgg_ShimyIdle";
     public FMOD.Studio.EventInstance goldEggShimySound;
 
+
 	[Header("Silver Eggs Slide to Panel SFX")]
-    [FMODUnity.EventRef]
     public string silverEggSlidePanelEvent = "event:/SFX/SFX_General/SilverEggs_SlideToPanel";
     public FMOD.Studio.EventInstance silverEggSlidePanelSound;
 
 
 	[Header("Panel SFX")]
-    [FMODUnity.EventRef]
     public string panelOpenEvent = "event:/SFX/SFX_General/MenuEggOpen";
     public FMOD.Studio.EventInstance panelOpenSound;
-
-    [FMODUnity.EventRef]
     public string panelCloseEvent = "event:/SFX/SFX_General/MenuEggClose";
     public FMOD.Studio.EventInstance panelCloseSound;
 
 
     [Header("Puzzle Unlocked")]
-    [FMODUnity.EventRef]
+
     public string puzzlePieceEvent = "event:/SFX/SFX_General/PuzzlePiece";
     public FMOD.Studio.EventInstance puzzlePieceSound;
-
-    [FMODUnity.EventRef]
     public string trailFXEvent = "event:/SFX/SFX_General/FX_trail";
     public FMOD.Studio.EventInstance trailFXSound;
 
@@ -98,8 +91,13 @@ public class AudioSceneGeneral : MonoBehaviour
     public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
 
+    
+    public string puzzConfirmEvent = "event:/SFX/SFX_General/PuzzleConfirmationButton";
+    public FMOD.Studio.EventInstance puzzConfirmSound;
+
+
 	[Header("For tests and reference")]
-    // TESTS UNLOCKED SOUND
+    // TESTS Transistions scenes
     public bool SceneIn;
     public float AlphaValue;
 
@@ -117,12 +115,19 @@ public class AudioSceneGeneral : MonoBehaviour
 
 	void Start () 
 	{
+        //Puzzle Confirmation Buttons
+        if(cancelBtn){cancelBtn.onClick.AddListener(buttonSFX);}
+        if(confirmBtn){confirmBtn.onClick.AddListener(buttonSFX);}
+        if(closeMenuBtn){closeMenuBtn.onClick.AddListener(buttonSFX);}
+
 		BackMenuBtn.onClick.AddListener(TransitionMenu);
         //lvlCompleteBtn.onClick.AddListener(TransitionMenu);
         sceneMusic = FMODUnity.RuntimeManager.CreateInstance(sceneMusicEvent);
 		transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
         goldEggShimySound = FMODUnity.RuntimeManager.CreateInstance(goldEggShimyEvent);
         puzzleUnlockedSound = FMODUnity.RuntimeManager.CreateInstance(puzzleUnlockedEvent);
+
+
 
         if (!audioHelperBirdScript) {
 			audioHelperBirdScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioHelperBird>();
@@ -236,6 +241,13 @@ public class AudioSceneGeneral : MonoBehaviour
         buttonSound.start();
     }
 
+        public void puzzConfirmSFX()
+    {
+        //button sound
+        puzzConfirmSound = FMODUnity.RuntimeManager.CreateInstance(puzzConfirmEvent);
+        puzzConfirmSound.start();
+    }
+
     //EGGS
     public void ClickEggsSound(GameObject eggObject)
     {
@@ -281,6 +293,7 @@ public class AudioSceneGeneral : MonoBehaviour
 
     }
 
+/////////////////OLD GOLDEN EGG ////////////////////
     public void goldEggShimmerStartSound()
     {
         goldEggShimySound.start();
@@ -289,6 +302,7 @@ public class AudioSceneGeneral : MonoBehaviour
     {
         goldEggShimySound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
+
 
     //Puzzle Animation
 

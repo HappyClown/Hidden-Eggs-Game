@@ -32,6 +32,7 @@ public class LevelComplete : MonoBehaviour
 	public Button endLvlBtn;
 	//public Button tapBtn;
 	public AudioSceneGeneral audioSceneGenScript;
+	public AudioLevelCompleteAnim audioLevelCompleteScript;
 
 	[Header ("Info")]
 	public bool waitingToStartSeq;
@@ -42,9 +43,8 @@ public class LevelComplete : MonoBehaviour
 
 	void Start () {
 		//tapBtn.onClick.AddListener(TapBtnPress);
-		if (!audioSceneGenScript) {
-			audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
-		}
+		if (!audioSceneGenScript) {audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();}
+		if (!audioLevelCompleteScript) {audioLevelCompleteScript = GameObject.Find("Audio").GetComponent<AudioLevelCompleteAnim>();}
 		endLvlBtn.onClick.AddListener(EndLevel);
 	}
 	
@@ -76,6 +76,8 @@ public class LevelComplete : MonoBehaviour
 			}
 			if (timer > showCongrats && !showCongratsStarted) {
 				// AUDIO - CONGRATS TITLE STARTS APPEARING!
+				audioLevelCompleteScript.congratsTxtSnd();
+
 				congratsColorFadeScript.startFadeIn = true;
 				splineWalkerScript.isPlaying = true;
 				splineWalkerFX.Play();

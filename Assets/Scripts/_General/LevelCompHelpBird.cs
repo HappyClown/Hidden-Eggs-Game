@@ -18,6 +18,9 @@ public class LevelCompHelpBird : MonoBehaviour {
 	public FadeInOutTMP congratsTextFadeScript;
 	public FadeInOutCanvasGroup counterCGFadeScript;
 	public FadeInOutCanvasGroup backBtnCGFadeScript;
+
+	public AudioHelperBird audioHelperBirdScript;
+
 	[Header ("Info")]
 	public bool moveUp;
 	public bool waitForBubIn, waitForConTxtOut, waitForCountOut;
@@ -26,11 +29,23 @@ public class LevelCompHelpBird : MonoBehaviour {
 	private bool adjustingBubSize;
 	private float newBubSize, prevBubSize, curBubSize, bubLerp;
 
+	private bool audioBirdPop = false;
+
+	void Start () {
+		if (!audioHelperBirdScript) {audioHelperBirdScript = GameObject.Find("Audio").GetComponent<AudioHelperBird>();}
+	}
 	
 	void Update () {
 		if (moveUp) {
 			lerp += Time.deltaTime / moveDur;
 			helperBird.transform.position = Vector3.Lerp(hiddenTrans.position, shownTrans.position, moveCurve.Evaluate(lerp));
+
+			if(!audioBirdPop){			
+			//AUDIO SWOOSH BIRD
+			audioHelperBirdScript.youDidItSnd();
+			audioBirdPop = true;
+			}
+
 			if (lerp >= 1f) {
 				helperBird.transform.position = shownTrans.position;
 				lerp = 0f;
@@ -39,12 +54,15 @@ public class LevelCompHelpBird : MonoBehaviour {
 				textBubFadeScript.FadeIn();
 				textBubPointerFadeScript.FadeIn();
 				AdjustBubSize(bubSizeA);
-			}
+			 }
 		}
 		if (waitForBubIn && textBubFadeScript.shown) {
 			congratsTextAnim.SetTrigger("PopIn");
 			congratsTextFadeScript.FadeIn();
 			waitForBubIn = false;
+
+				//AUDIO BIRD HELP SOUND
+				audioHelperBirdScript.birdHelpSound();
 		}
 		if (waitForConTxtOut) {
 			if (congratsTextFadeScript.shown) {
@@ -56,6 +74,9 @@ public class LevelCompHelpBird : MonoBehaviour {
 			if (congratsTextFadeScript.hidden && counterCGFadeScript.hidden && curBubSize == bubSizeB) {
 				counterCGFadeScript.FadeIn();
 				waitForConTxtOut = false;
+
+				//AUDIO BIRD HELP SOUND
+				audioHelperBirdScript.birdHelpSound();
 			}
 		}
 		if (waitForCountOut) {
@@ -68,6 +89,10 @@ public class LevelCompHelpBird : MonoBehaviour {
 			if (counterCGFadeScript.hidden && backBtnCGFadeScript.hidden && curBubSize == bubSizeC) {
 				backBtnCGFadeScript.FadeIn();
 				waitForConTxtOut = false;
+
+				
+				//AUDIO BIRD HELP SOUND
+				audioHelperBirdScript.birdHelpSound();
 			}
 		}
 

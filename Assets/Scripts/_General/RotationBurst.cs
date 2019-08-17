@@ -29,6 +29,12 @@ public class RotationBurst : MonoBehaviour {
 	public float curCoolDown;
 	public float curRotDur;
 
+	public AudioRiddleSolvedAnim audioRiddleSolvedAnimScript;
+	public bool rotationSoundOn = false;
+
+	void Awake(){
+		audioRiddleSolvedAnimScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioRiddleSolvedAnim>();
+	}
 	public void StartRotation() {
 		//curRotDur = Random.Range(minRotDur, maxRotDur);
 		//curCoolDown = Random.Range(minCoolDown, maxCoolDown);
@@ -49,12 +55,18 @@ public class RotationBurst : MonoBehaviour {
 			targetRot = ((curRotAmnt * 360) + iniZRot) * direction;
 		}
 		firstCoolDown = true;
+
+		//sound one shot/rotation
+		audioRiddleSolvedAnimScript.spiningStarsSnd(); //sound
 	}
 	
 	void Update () {
 		if (rotationOn) {
-			// STARTS SPINNING HERE. 
-
+			if(!rotationSoundOn){
+				//sound one shot/rotation
+				audioRiddleSolvedAnimScript.spiningStarsSnd(); //sound
+				rotationSoundOn = true;
+			}
 			curveLerp += Time.deltaTime / curRotDur;
 			//curRotSpeed = rotCurve.Evaluate(curveLerp) * rotSpeed * direction;
 			//curRot += curRotSpeed;
@@ -94,6 +106,9 @@ public class RotationBurst : MonoBehaviour {
 				}
 				//StartTipFXs();
 				rotationOn = true;
+
+				//reset sound
+				rotationSoundOn = false;
 			}
 		}
 		if (firstCoolDown) {
@@ -113,6 +128,9 @@ public class RotationBurst : MonoBehaviour {
 				}
 				rotationOn = true;
 				firstCoolDown = false;
+
+				//reset sound
+				rotationSoundOn = false;
 			}
 		}
 	}

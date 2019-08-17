@@ -17,11 +17,17 @@ public class HintManager : MonoBehaviour {
 	public featherToGo myDirection;
 	public float minDistanceToPoint, featherMovSpeed;
 	public int turnsToDo, currentTurn, eggsFound;
+
+	
+	public AudioHelperBird audioHelperBirdScript;
 	
 	void Start () {
 		hintAvailable = true;
 		currentTurn = 0;
 		feather.transform.position = featherInitialPos.position;
+
+		
+		if(!audioHelperBirdScript){audioHelperBirdScript= GameObject.Find("Audio").GetComponent<AudioHelperBird>();}
 	}
 	
 	void Update () {
@@ -47,6 +53,10 @@ public class HintManager : MonoBehaviour {
 		}
 		if(movingFeather){
 			MoveFeather();
+
+			
+			//SOUND
+			audioHelperBirdScript.hintSndOn();
 		}
 		else{
 			//feather.SetActive(false);
@@ -147,6 +157,9 @@ public class HintManager : MonoBehaviour {
 					movingFeather = false;
 					hintAvailable = true;
 					sceneTapScript.canTapHelpBird = true;
+
+				//STOP
+				audioHelperBirdScript.hintSndOnLongStop();
 				}
 			break;
 		}

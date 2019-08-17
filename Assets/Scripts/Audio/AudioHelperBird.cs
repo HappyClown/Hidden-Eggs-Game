@@ -13,7 +13,7 @@ public class AudioHelperBird : MonoBehaviour
     public Button RiddleBtn;
     public Button HintBtn;
     public Button PauseBtn;
-    public Button XBtn;
+    public Button CloseMenuBtn;
 
 
 	[Header("Bird Help")]
@@ -21,7 +21,6 @@ public class AudioHelperBird : MonoBehaviour
     public string birdEvent;
     public FMOD.Studio.EventInstance birdSound;
 
-    [FMODUnity.EventRef]
     public string birdFrozenEvent;
     public FMOD.Studio.EventInstance birdFrozenSound;
 
@@ -31,26 +30,41 @@ public class AudioHelperBird : MonoBehaviour
     public string lvlCompleteEvent;
     public FMOD.Studio.EventInstance lvlCompleteSound;
 */
-    [FMODUnity.EventRef]
     public string buttonEvent = "event:/SFX/SFX_General/Button";
     public FMOD.Studio.EventInstance buttonSound;
 
-    [FMODUnity.EventRef]
     public string PausebuttonEvent = "event:/SFX/SFX_General/PauseButton";
     public FMOD.Studio.EventInstance PausebuttonSound;
+
+    public string youDidItEvent = "event:/SFX/ANIMS/Level Complete/YouDidIt";
+    public FMOD.Studio.EventInstance youDidItSound;
+
+    public string hintEvent = "event:/SFX/SFX_General/HintSpark";
+    public FMOD.Studio.EventInstance hintSound;
+
+    public string hintLongEvent = "event:/SFX/SFX_General/HintSparkLong";
+    public FMOD.Studio.EventInstance hintLongSound;
 
 
 	void Start () 
 	{
-        BirdHelpBtn.onClick.AddListener(birdHelpSound);
-        RiddleBtn.onClick.AddListener(birdHelpSound);
-        HintBtn.onClick.AddListener(birdHelpSound);
+        if(BirdHelpBtn){
+            BirdHelpBtn.onClick.AddListener(birdHelpSound);
+            }
+        if(RiddleBtn){
+            RiddleBtn.onClick.AddListener(birdHelpSound);
+            }
+        if(HintBtn){
+            HintBtn.onClick.AddListener(birdHelpSound);
+            }
         if(PauseBtn){
            PauseBtn.onClick.AddListener(PausebuttonSFX); 
         }
-        if(XBtn){
-               XBtn.onClick.AddListener(buttonSFX);
+        if(CloseMenuBtn){
+               CloseMenuBtn.onClick.AddListener(buttonSFX);
         }
+
+            hintLongSound = FMODUnity.RuntimeManager.CreateInstance(hintLongEvent);
 	}
 	
 	void Update () 
@@ -85,6 +99,33 @@ public class AudioHelperBird : MonoBehaviour
     {
         birdSound = FMODUnity.RuntimeManager.CreateInstance(birdEvent);
         birdSound.start();
+    }
+
+        public void youDidItSnd()
+    {
+        youDidItSound = FMODUnity.RuntimeManager.CreateInstance(youDidItEvent);
+        youDidItSound.start();
+    }
+
+    
+    public void hintSndOn()
+
+    {
+        hintSound = FMODUnity.RuntimeManager.CreateInstance(hintEvent);
+        hintSound.start();
+    }
+        public void hintSndOnLong()
+    {
+
+
+        hintLongSound.start(); 
+
+    }
+            public void hintSndOnLongStop()
+    {
+
+        hintLongSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
     }
 
 

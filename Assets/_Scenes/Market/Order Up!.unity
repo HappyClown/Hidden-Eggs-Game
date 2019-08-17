@@ -19593,6 +19593,8 @@ MonoBehaviour:
   puzzleConfCG: {fileID: 0}
   fadeDuration: 0.25
   sceneTapScript: {fileID: 991552001}
+  slideHelpBirdScript: {fileID: 0}
+  lvlTapManScript: {fileID: 0}
 --- !u!114 &991552004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42359,6 +42361,8 @@ MonoBehaviour:
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
   buttonEvent: event:/SFX/SFX_General/Button
+  puzPieceEvent: event:/SFX/ANIMS/Puzzle Completed/puzzlePieces
+  puzPieceJingleEvent: event:/SFX/ANIMS/Puzzle Completed/puzzleTextJingle
   audioHelperBirdScript: {fileID: 1743775734}
   pickupFruitEvent: event:/SFX/Puzzle_Market/Puzzle_fruitPickUp
   dropFruitScaleEvent: event:/SFX/Puzzle_Market/Puzzle_fruitDropScale
@@ -42397,11 +42401,12 @@ MonoBehaviour:
   RiddleBtn: {fileID: 1851989196}
   HintBtn: {fileID: 761520257}
   PauseBtn: {fileID: 1327337087}
-  XBtn: {fileID: 1681846597}
+  CloseMenuBtn: {fileID: 1681846597}
   birdEvent: event:/SFX/Market/Market_Bird
   birdFrozenEvent: event:/SFX/Market/Market_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
+  youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
 --- !u!1001 &1748408210
 Prefab:
   m_ObjectHideFlags: 0
@@ -42549,6 +42554,16 @@ Prefab:
       propertyPath: myAudio
       value: 
       objectReference: {fileID: 1922388780}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 15.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3468eaf8d67f7974ba5fc0717704b390, type: 2}
   m_IsPrefabParent: 0
@@ -52565,6 +52580,11 @@ Prefab:
         type: 2}
       propertyPath: startBackgroundFade
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114375100551085838, guid: 3f7590356a743604fb777e4025228310,
+        type: 2}
+      propertyPath: levelComplete
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 2}

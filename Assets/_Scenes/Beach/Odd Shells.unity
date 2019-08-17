@@ -25856,7 +25856,6 @@ GameObject:
   - component: {fileID: 372008927}
   - component: {fileID: 372008926}
   - component: {fileID: 372008928}
-  - component: {fileID: 372008929}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Audio
@@ -25886,6 +25885,8 @@ MonoBehaviour:
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
   buttonEvent: event:/SFX/SFX_General/Button
+  puzPieceEvent: event:/SFX/ANIMS/Puzzle Completed/puzzlePieces
+  puzPieceJingleEvent: event:/SFX/ANIMS/Puzzle Completed/puzzleTextJingle
   audioHelperBirdScript: {fileID: 372008928}
   ambiantEvent: event:/SFX/Puzzle_Beach/Ambiance_Underwater
   failEvent: event:/SFX/Puzzle_Beach/FAIL
@@ -25953,28 +25954,12 @@ MonoBehaviour:
   RiddleBtn: {fileID: 1369350560}
   HintBtn: {fileID: 1369350560}
   PauseBtn: {fileID: 2083618089}
-  XBtn: {fileID: 969175514}
+  CloseMenuBtn: {fileID: 969175514}
   birdEvent: event:/SFX/Beach/Beach_Bird
   birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
---- !u!114 &372008929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 372008925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicVolume: 0.5
-  SFXVolume: 0.5
-  MasterVolume: 0.8
-  volumeTests: 0.8
-  Muted: 0
-  Paused: 0
+  youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
 --- !u!1 &378697050
 GameObject:
   m_ObjectHideFlags: 0
@@ -48887,6 +48872,16 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 224640280722554070, guid: 3468eaf8d67f7974ba5fc0717704b390,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 15.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3468eaf8d67f7974ba5fc0717704b390, type: 2}
   m_IsPrefabParent: 0
@@ -49546,6 +49541,8 @@ MonoBehaviour:
   puzzleConfCG: {fileID: 0}
   fadeDuration: 0.25
   sceneTapScript: {fileID: 654759649}
+  slideHelpBirdScript: {fileID: 0}
+  lvlTapManScript: {fileID: 0}
 --- !u!114 &654759651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86208,6 +86205,7 @@ GameObject:
   - component: {fileID: 1576060543}
   - component: {fileID: 1576060545}
   - component: {fileID: 1576060546}
+  - component: {fileID: 1576060547}
   m_Layer: 0
   m_Name: BootMain
   m_TagString: Untagged
@@ -86307,6 +86305,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partFX: {fileID: 843740838}
+--- !u!114 &1576060547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1576060542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0468e1e8fcc85bb4d877eb2642dea685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bootShakeEvent: event:/SFX/Puzzle_Beach/BootShake
 --- !u!1 &1583179703
 GameObject:
   m_ObjectHideFlags: 0

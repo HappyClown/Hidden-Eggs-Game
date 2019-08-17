@@ -29,6 +29,14 @@ public class PuzzleComplete : MonoBehaviour {
 	public TMPTextColorFade textColorScript;
 	public TMPTextFall textFallScript;
 
+	public AudioScenePuzzleGeneric audioScenePuzGenScript;
+	bool jingle = true;
+
+	void Awake(){
+		audioScenePuzGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioScenePuzzleGeneric>();
+	}
+
+
 	void Update () {
 		if (endSeq && !masksFromMid) {
 			seqTimer += Time.deltaTime;
@@ -77,6 +85,14 @@ public class PuzzleComplete : MonoBehaviour {
 		if (reveal) {
 			// STARTS REVEALING HERE! 
 			Revealing();
+
+			if(jingle){
+				//1 shot sound jingle
+				audioScenePuzGenScript.puzPieceJingleSnd();
+				jingle=false;
+			}
+
+			audioScenePuzGenScript.puzPieceSnd(); //sound pieces
 		}
 
 		if (reset) {

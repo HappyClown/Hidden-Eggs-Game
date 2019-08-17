@@ -42,11 +42,13 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	public void ChangeSFXVolume(){
 		sfxVolume = myAudio.SFXVolume = sfxSlider.value;
 		PlayerPrefs.SetFloat("sfxVolume",sfxVolume);
+		myAudio.sliderSFX(); //slider sound
 		
 	}
 	public void ChangeMusicVolume(){
 		musicVolume = myAudio.MusicVolume = musicSlider.value;
 		PlayerPrefs.SetFloat("musicVolume",musicVolume);
+		myAudio.sliderSFX(); //slider sound
 		
 	}
 	public void SetMute(bool value){
@@ -67,6 +69,7 @@ public class PuzzlePauseMenu : MonoBehaviour {
 				myAudio.SFXVolume = sfxVolume;
 			}
 		}
+		myAudio.muteSFX(); //ui sound
 	}
 	public void SetPause(bool value){
 		//myAudio.Paused = value;
@@ -86,6 +89,8 @@ public class PuzzlePauseMenu : MonoBehaviour {
 				myAudio.MusicVolume = musicVolume;
 			}
 		}
+
+		myAudio.muteMusicSFX(); //ui sound
 
 	}
 }
