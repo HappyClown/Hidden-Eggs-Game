@@ -18,7 +18,7 @@ public class StoryScrollingBG : MonoBehaviour {
 	private float scrollValue;
 	public float ScrollValue
 	{ get{ return scrollValue; } }
-	private int bgInFront = 0;
+	private int bgHInFront = 0;
 	[Header ("Blurred Sideways")]
 	public float blurSideScrollSpeed;
 	public List<GameObject> blurredSidewaysBGs;
@@ -27,6 +27,7 @@ public class StoryScrollingBG : MonoBehaviour {
 	public float yLimit;
 	public List<GameObject> verticalBGs;
 	private bool verticalScroll;
+	private int bgVInFront = 0;
 	[Header ("Other")]
 	public List<GameObject> currentBGs;
 	public bool slowDownClouds;
@@ -52,6 +53,7 @@ public class StoryScrollingBG : MonoBehaviour {
 
 	public void SetUpClouds(List<GameObject> backGrounds, float myScrollSpeed, bool doISpeedUp = false, bool doIFadeIn = false) {
 		//scrollValue;
+		// Set the current background inactive, activate the chosen backgrounds.
 		foreach (GameObject bg in currentBGs)
 		{
 			bg.SetActive(false);
@@ -61,13 +63,13 @@ public class StoryScrollingBG : MonoBehaviour {
 		{
 			bg.SetActive(true);
 		}
-
+		// Gradually speed up the clouds.
 		speedUp = doISpeedUp;
 		scrollSpeed = myScrollSpeed;
 		if (!doISpeedUp) {
 			scrollValue = myScrollSpeed;
 		}
-
+		// Set the correct bool true according to which background was chosen when the method was called.
 		sidewaysScroll = false;
 		verticalScroll = false;
 		if (regularSidewaysBGs.Count > 0 && currentBGs[0] == regularSidewaysBGs[0] || blurredSidewaysBGs.Count > 0 && currentBGs[0] == blurredSidewaysBGs[0]) {
@@ -76,8 +78,8 @@ public class StoryScrollingBG : MonoBehaviour {
 		if (verticalBGs.Count > 0 && currentBGs[0] == verticalBGs[0]) {
 			verticalScroll = true;
 		}
-		bgInFront = 0;
-		
+		//bgHInFront = 0;
+		// Fade in the clouds.
 		if (doIFadeIn) {
 			foreach (FadeInOutSprite regSidewaysBGFadeScript in regSidewaysBGFadeScripts)
 			{
@@ -87,6 +89,7 @@ public class StoryScrollingBG : MonoBehaviour {
 	}
 
 	void SidewaysScroll() {
+		// Speed up.
 		if (scrollSpeedLerpValue < 1 && speedUp) {
 			scrollSpeedLerpValue += Time.deltaTime / speedUpDuration;
 			scrollValue = Mathf.Lerp(0f, scrollSpeed, scrollAnimCurve.Evaluate(scrollSpeedLerpValue));
@@ -95,14 +98,17 @@ public class StoryScrollingBG : MonoBehaviour {
 				scrollSpeedLerpValue = 0f;
 			}
 		}
+
 		for (int i = 0; i < currentBGs.Count; i++)
 		{
 			if (currentBGs[i].transform.position.x <= xLimit) {
-				bgInFront++;
-				if (bgInFront >= currentBGs.Count) {
-					bgInFront = 0;
+				int otherBG = 1;
+				//bgHInFront++;
+				if (i+1 >= currentBGs.Count) {
+					//bgHInFront = 0;
+					otherBG = 0;
 				}
-				currentBGs[i].transform.position = new Vector3(currentBGs[bgInFront].transform.position.x - xLimit, currentBGs[i].transform.position.y, currentBGs[i].transform.position.z);
+				currentBGs[i].transform.position = new Vector3(currentBGs[otherBG].transform.position.x - xLimit, currentBGs[i].transform.position.y, currentBGs[i].transform.position.z);
 			}
 			currentBGs[i].transform.Translate(transform.right * Time.deltaTime * scrollValue * -1);
 		}
@@ -120,11 +126,11 @@ public class StoryScrollingBG : MonoBehaviour {
 		for (int i = 0; i < currentBGs.Count; i++)
 		{
 			if (currentBGs[i].transform.position.y >= yLimit) {
-				bgInFront++;
-				if (bgInFront >= currentBGs.Count) {
-					bgInFront = 0;
+				bgVInFront++;
+				if (bgVInFront >= currentBGs.Count) {
+					bgVInFront = 0;
 				}
-				currentBGs[i].transform.position = new Vector3(currentBGs[bgInFront].transform.position.x, currentBGs[i].transform.position.y - (yLimit*2), currentBGs[i].transform.position.z);
+				currentBGs[i].transform.position = new Vector3(currentBGs[bgVInFront].transform.position.x, currentBGs[i].transform.position.y - (yLimit*2), currentBGs[i].transform.position.z);
 			}
 			currentBGs[i].transform.Translate(transform.up * Time.deltaTime * scrollValue);
 		}
