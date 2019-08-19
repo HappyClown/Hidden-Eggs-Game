@@ -23,9 +23,11 @@ public class MainMenu : MonoBehaviour {
 	public Image resetBtnImg;
 
 	[Header("Story")]
+	public bool fullIntro;
 	public Button storyBtn;
 	public TextMeshProUGUI storyTMP;
 	public FadeInOutTMP fadeTMPScript;
+	public StoryIntro storyIntroScript;
 	private bool storyAppearing, storyFullyOn, moveClouds, skipFrame;
 
 	[Header("References")]
@@ -134,7 +136,12 @@ public class MainMenu : MonoBehaviour {
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
 		resetBtnFadeScript.FadeOut();
-		StoryTextAppears();
+		if (fullIntro) {
+			storyIntroScript.inStoryIntro = true;
+		}
+		else {
+			StoryTextAppears();
+		}
 		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
 		{
 			levelTitleScript.CloseTitle();

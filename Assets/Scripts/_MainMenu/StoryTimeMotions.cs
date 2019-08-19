@@ -57,6 +57,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	public float glideDur;
 	public AnimationCurve glideAnimCurve;
 	public FadeInOutSprite glidingTimeFadeScript;
+	public Animator glideAnim;
 
 	void Start () {
 		currentTime = normalTime;
@@ -292,6 +293,7 @@ public class StoryTimeMotions : MonoBehaviour {
 		if (lerpValue >= 1f) {
 			lerpValue = 0f;
 			timeGlides = false;
+			glideAnim.SetTrigger("StartHovering");
 		}
 	}
 

@@ -21,7 +21,7 @@ public class FadeInOutSprite : MonoBehaviour {
 	void Start () {
 		//sprite = this.gameObject.GetComponent<SpriteRenderer>();
 		if (myStartState == StartState.startShown) {
-			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1f);
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a);
 			shown = true;
 		}
 		else if (myStartState == StartState.startHidden) {

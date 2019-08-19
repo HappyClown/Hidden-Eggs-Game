@@ -7,6 +7,8 @@ public class StoryGustMotions : MonoBehaviour {
 	public GameObject gust;
 	public FadeInOutSprite gustFadeScript;
 	public Transform startTrans, midTrans, endTrans, topEndTrans;
+	public GameObject gustEyes;
+	public Transform lookFrontPos, lookBackPos;
 	[Header("X Move")]
 	public AnimationCurve moveInXCurve; 
 	public AnimationCurve moveOutXCurve;
@@ -35,42 +37,18 @@ public class StoryGustMotions : MonoBehaviour {
 	private bool xMove, yMove, backToStartPos;
 	private float startX, endX, startY, endY, startScale, endScale, durationX, durationY, durationScale;
 	private AnimationCurve animCurveX, animCurveY, animCurveScale;
+	[Header("Collision with Time")]
+	public float gustCollisionScale;
+	private float iniScale;
 
 	void Start () {
+		iniScale = gust.transform.localScale.x;
 		iniYPos = gust.transform.position.y;
 		hoverUpDownDur = Random.Range(hoverUpDownDurMin, hoverUpDownDurMax);
 		hoverYMult = Random.Range(hoverYMultMin, hoverYMultMax);
 	}
 	
 	void Update () {
-		// if (moveMid) {
-		// 	lerpValue += Time.deltaTime / moveInDur;
-		// 	newX = Mathf.Lerp(startTrans.position.x, midTrans.position.x, moveInXCurve.Evaluate(lerpValue));
-
-		// 	gust.transform.position = new Vector3(newX, startY + newY, gust.transform.position.z);
-		// 	if (lerpValue >= 1f) {
-		// 		moveMid = false;
-		// 		yHover = true;
-		// 		lerpValue = 0f;
-		// 		newPos = Random.insideUnitCircle * hoverRandomRadius;
-		// 		circleStartPos = gust.transform.position;
-		// 		circleEndPos = midTrans.position + newPos;
-		// 	}
-		// }
-
-		// if (moveMidEnd) {
-		// 	lerpValue += Time.deltaTime / moveInDur;
-		// 	newX = Mathf.Lerp(midTrans.position.x, endTrans.position.x, moveInXCurve.Evaluate(lerpValue));
-
-		// 	gust.transform.position = new Vector3(newX, startY + newY, gust.transform.position.z);
-		// 	if (lerpValue >= 1f) {
-		// 		moveMidEnd = false;
-		// 		lerpValue = 0f;
-		// 		gust.transform.position = startTrans.position;
-		// 	}
-		// }
-
-
 		if (xMove) {
 			LerpXMove();
 		}
@@ -165,10 +143,29 @@ public class StoryGustMotions : MonoBehaviour {
 	void ScaleDown() {
 		lerpValueScale += Time.deltaTime / durationScale;
 		newScale = Mathf.Lerp(startScale, endScale, animCurveScale.Evaluate(lerpValueScale));
-		gust.transform.localScale = new Vector3(newScale * -1, newScale, newScale);
+		gust.transform.localScale = new Vector3(newScale, newScale, newScale);
 		if (lerpValueScale >= 1) {
 			lerpValueScale = 0f;
 			scaleDown = false;
+		}
+	}
+
+	public void ChangeEyePos() {
+		// Change gust's eye position based on where they are now. Could be a bool.
+		if (Vector2.Distance(gustEyes.transform.position, lookFrontPos.position) < 0.1f) {
+			gustEyes.transform.position = lookBackPos.position;
+		}
+		else {
+			gustEyes.transform.position = lookFrontPos.position;
+		}
+	}
+	public void ChangeScale() {
+		//Change gust's scale based on its current scale. Could be a bool.
+		if (gust.transform.localScale.x - iniScale <= 0.1f) {
+			gust.transform.localScale = new Vector3(gustCollisionScale, gustCollisionScale, gustCollisionScale);
+		}
+		else {
+			gust.transform.localScale = new Vector3(iniScale, iniScale, iniScale);
 		}
 	}
 }

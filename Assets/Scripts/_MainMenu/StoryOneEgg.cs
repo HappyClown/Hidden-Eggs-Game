@@ -8,7 +8,7 @@ public class StoryOneEgg : MonoBehaviour {
 	public float halfRotDur;
 	[Header ("Fly To Middle")]
 	public float flyDur;
-	public AnimationCurve flyAnimCurveX, flyAnimCurveY;
+	public AnimationCurve flyAnimCurveX, flyAnimCurveY, speedCurve;
 	public Transform flyEndTrans;
 	private bool flyOutOfTime;
 	private float lerpValue, iniX, iniY, maxX, maxY, newX, newY;
@@ -24,11 +24,12 @@ public class StoryOneEgg : MonoBehaviour {
 	[Header ("General")]
 	public GameObject theOneEgg;
 	public Animator oneEggAnim;
-	public ParticleSystem eggClickFX;
+	public ParticleSystem eggClickFX, eggTrailFX;
 	private bool eggClickFXPlayed;
 	[Header ("References")]
 	public StoryTimeMotions storyTimeMoScript;
 	public FadeInOutSprite tapIconFadeScript;
+	public FadeInOutSprite oneEggShadowFadeScript;
 	
 	void Update () {
 		if (scaleTapIcon) {
@@ -75,13 +76,17 @@ public class StoryOneEgg : MonoBehaviour {
 	// The OneEgg flies out from Time to the middle of the hub. (TheQuest #011)
 	void FlyOutOfTime() {
 		lerpValue += Time.deltaTime / flyDur;
-		newX = Mathf.Lerp(iniX, maxX, flyAnimCurveX.Evaluate(lerpValue));
-		newY = Mathf.Lerp(iniY, maxY, flyAnimCurveY.Evaluate(lerpValue));
+		float speedLerpValue = speedCurve.Evaluate(lerpValue);
+		newX = Mathf.Lerp(iniX, maxX, flyAnimCurveX.Evaluate(speedLerpValue));
+		newY = Mathf.Lerp(iniY, maxY, flyAnimCurveY.Evaluate(speedLerpValue));
 		theOneEgg.transform.position = new Vector3(newX, newY, theOneEgg.transform.position.z);
-		theOneEgg.transform.localScale = Vector3.Lerp(startScale, endScale, flyAnimCurveY.Evaluate(lerpValue));
-		if (lerpValue >= 1f) {
-			lerpValue = 0f;
+		theOneEgg.transform.localScale = Vector3.Lerp(startScale, endScale, flyAnimCurveY.Evaluate(speedLerpValue));
+		if (speedLerpValue >= 1f) {
+			speedLerpValue = 0f;
 			flyOutOfTime = false;
+		}
+		if (speedLerpValue >= 0.5f && oneEggShadowFadeScript.shown) {
+			oneEggShadowFadeScript.FadeOut();
 		}
 	}
 	// Variable setup for the OneEgg flying out from Time to the middle of the hub. (TheQuest #011)
