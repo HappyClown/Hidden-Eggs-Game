@@ -82,6 +82,7 @@ public class StoryIntro : MonoBehaviour {
 	}
 
 	void TitleScreen() {
+		//ResetStory();
 		if (!menuFaded) {
 			mainMenuScript.FadeMainMenu();
 			menuFaded = true;
@@ -577,10 +578,15 @@ public class StoryIntro : MonoBehaviour {
 				boardBools.Add(false);
 			}
 			inStoryIntro = false;
+			mainMenuScript.fullIntro = false;
 		}
 	}
 	
 	void ResetStory() {
 		menuFaded = false;
+		storyTimeMoScript.ResetNormalTime();
+		storyGustScript.gust.transform.position = storyGustScript.startTrans.position;
+		storyGustScript.gustFadeScript.FadeIn();
+		
 	}
 }

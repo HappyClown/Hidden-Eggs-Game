@@ -8,6 +8,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	public Transform bewilderedMidTrans;
 	public Vector3 accidentTimeScale;
 	private Vector3 timePos;
+	private Vector3 iniNormPos, iniNormScale;
 	[Header("Move In")]
 	public bool timeMovesIn;
 	public Transform endTrans;
@@ -65,6 +66,8 @@ public class StoryTimeMotions : MonoBehaviour {
 		startScale = normalTime.transform.localScale.x;
 		startSpinValue = 0f;
 		endSpinValue = 180f;
+		iniNormPos = normalTime.transform.position;
+		iniNormScale = normalTime.transform.localScale;
 	}
 	
 	void Update () {
@@ -310,5 +313,11 @@ public class StoryTimeMotions : MonoBehaviour {
 
 	public void FadeOutGlidingTime() {
 		glidingTimeFadeScript.FadeOut();
+	}
+
+	public void ResetNormalTime() {
+		normalTime.transform.position = iniNormPos;
+		normalTime.transform.localScale = iniNormScale;
+		normTimeFadeScript.FadeOut();
 	}
 }
