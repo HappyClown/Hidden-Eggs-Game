@@ -23,6 +23,7 @@ public class StoryOneEgg : MonoBehaviour {
 	private bool scaleUp = false, scaleDown = true;
 	[Header ("General")]
 	public GameObject theOneEgg;
+	public GameObject behindTheOneEgg;
 	public Animator oneEggAnim;
 	public ParticleSystem eggClickFX, eggTrailFX;
 	private bool eggClickFXPlayed;
@@ -30,6 +31,7 @@ public class StoryOneEgg : MonoBehaviour {
 	public StoryTimeMotions storyTimeMoScript;
 	public FadeInOutSprite tapIconFadeScript;
 	public FadeInOutSprite oneEggShadowFadeScript;
+	public FadeInOutSprite behindTheOneEggFadeScript, theOneEggFadeScript;
 	
 	void Update () {
 		if (scaleTapIcon) {
@@ -80,10 +82,11 @@ public class StoryOneEgg : MonoBehaviour {
 		newX = Mathf.Lerp(iniX, maxX, flyAnimCurveX.Evaluate(speedLerpValue));
 		newY = Mathf.Lerp(iniY, maxY, flyAnimCurveY.Evaluate(speedLerpValue));
 		theOneEgg.transform.position = new Vector3(newX, newY, theOneEgg.transform.position.z);
-		theOneEgg.transform.localScale = Vector3.Lerp(startScale, endScale, flyAnimCurveY.Evaluate(speedLerpValue));
+		//theOneEgg.transform.localScale = Vector3.Lerp(startScale, endScale, flyAnimCurveY.Evaluate(speedLerpValue));
 		if (speedLerpValue >= 1f) {
 			speedLerpValue = 0f;
 			flyOutOfTime = false;
+			behindTheOneEggFadeScript.FadeOut();
 		}
 		if (speedLerpValue >= 0.5f && oneEggShadowFadeScript.shown) {
 			oneEggShadowFadeScript.FadeOut();
@@ -92,9 +95,12 @@ public class StoryOneEgg : MonoBehaviour {
 	// Variable setup for the OneEgg flying out from Time to the middle of the hub. (TheQuest #011)
 	public void SetupFlyOutOfTime() {
 		theOneEgg.SetActive(true);
+		oneEggAnim.enabled = false;
+		oneEggAnim.transform.localScale = new Vector3(1,1,1);
 		theOneEgg.transform.eulerAngles = Vector3.zero;
 		iniX = storyTimeMoScript.currentTime.transform.position.x;
 		iniY = storyTimeMoScript.currentTime.transform.position.y;
+		theOneEgg.transform.position = new Vector3(iniX, iniY, theOneEgg.transform.position.z);
 		maxX = flyEndTrans.position.x;
 		maxY = flyEndTrans.position.y;
 		startScale = theOneEgg.transform.localScale;

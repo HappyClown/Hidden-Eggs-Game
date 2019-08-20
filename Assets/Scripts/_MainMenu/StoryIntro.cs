@@ -528,6 +528,7 @@ public class StoryIntro : MonoBehaviour {
 			storyScrollBGScript.TurnOffScrollClouds();
 			storySingleCloudScript.StopActivePartSys();
 			// mainMenuScript.ToHub(); Without the hubScript.startHubActive = true; so that it fades out the main menu but only shows the grey village
+			storyOneEggScript.behindTheOneEgg.SetActive(true);
 			mainMenuScript.ToHub(false);
 			storyOneEggScript.eggTrailFX.Stop();
 		}
@@ -558,6 +559,7 @@ public class StoryIntro : MonoBehaviour {
 			// Text fades out, time fades out,
 			storyTextScript.FadeOutText();
 			storyTimeMoScript.FadeOutGlidingTime();
+			storyOneEggScript.theOneEggFadeScript.FadeOut();
 			// Regular hub gets activated
 			hubScript.startHubActive = true;
 			boardBools[4] = true;
