@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114810708153632012}
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   EditorEvents:
   - {fileID: 114031621284357914}
   - {fileID: 114023431874814588}
@@ -95,7 +95,6 @@ MonoBehaviour:
   - {fileID: 114399595009889110}
   - {fileID: 114340216024007486}
   - {fileID: 114368208044216836}
-  - {fileID: 114982584249287232}
   - {fileID: 114431127387762302}
   - {fileID: 114290288450561278}
   - {fileID: 114848307953000268}
@@ -187,10 +186,27 @@ MonoBehaviour:
   - {fileID: 114207324236626886}
   - {fileID: 114437981865355940}
   - {fileID: 114135855638940782}
-  MasterBankRef: {fileID: 114345301081709216}
+  - {fileID: 114735360344955530}
+  - {fileID: 114868569867990470}
+  MasterBankRef: {fileID: 114880858214539258}
   StringsBankRef: {fileID: 114810708153632012}
-  stringsBankWriteTime: 637016439709392836
+  stringsBankWriteTime: 637018414846432883
   cacheVersion: 2
+--- !u!114 &114003302779264244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114008563671947542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +221,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/unfrozenBird
   guid: 3e1a24426ebdbd40a84b12f87445dd89
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -213,6 +229,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2800
+--- !u!114 &114008988336144942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114012050436018086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,15 +258,45 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/CircleEggsSoloGold
   guid: af79dcd4165727479be24e7df26bed33
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114790859832220890}
+  - {fileID: 114119738252662590}
   MinDistance: 0
   MaxDistance: 0
   Length: 624
+--- !u!114 &114012409283134310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114012973136076174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114013244657423652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,14 +311,29 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/SingleEggSpin
   guid: 087aee8a79f474428c57081915907d90
   Banks:
-  - {fileID: 114345301081709216}
-  IsStream: 0
+  - {fileID: 114880858214539258}
+  IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 7000
+  Length: 15272
+--- !u!114 &114013721408446634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114015430716665612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +348,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/Congratulations_LevelComplete
   guid: 58d0ddca97eb4f4f87a80b93beeae7f3
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -294,7 +370,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_07
   guid: 046a7d05838a09419530d976616897da
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -302,6 +378,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 770
+--- !u!114 &114024312088621498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114025137415543114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114025234379337668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +422,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/StatsPaperVillageOn
   guid: 4a4f7343cd2dcc428961f61db2673813
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -324,6 +430,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 860
+--- !u!114 &114025294246953314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114026005083936756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,6 +460,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114026781837365800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114027585687870784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +489,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/ShimyLoopMenu
   guid: d4f7344e6857ef4c916b6916b3ff210f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -375,7 +511,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Puzzle_Click
   guid: b6c299eecdd0644a87d95edda0657001
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -397,15 +533,45 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/Collision
   guid: 3e9bf4b9a4c50848aa3ed64f5036a425
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 6500
+  Length: 9800
+--- !u!114 &114030515904451346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114031014478848962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114031210456565380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -434,7 +600,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/F2
   guid: 03e7dd6d731d3144bad749fbadc28093
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -442,6 +608,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114032525958066098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114034034481980152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,15 +637,30 @@ MonoBehaviour:
   Path: event:/SFX/Park/PuzzleShimyLoop_park
   guid: 9d9ceaa159bb9841b012665ff4725dc0
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114531834071751672}
+  - {fileID: 114824341262533248}
   MinDistance: 0
   MaxDistance: 0
   Length: 4500
+--- !u!114 &114036087138365228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114037258857233490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +675,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/A2
   guid: b7f7ca7ff1a7f147b22c70b22d0bd7ef
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -487,6 +683,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114037941894048940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114038024609142368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114038945466673842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,7 +727,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/B2
   guid: 48dafcf0c3b7cf45be5f519b3aabc6ad
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -523,7 +749,7 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/Time Dive
   guid: d645835e8b4e6c46a00be30fd7be4543
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -531,6 +757,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10553
+--- !u!114 &114041726482580852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114041924339002800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +786,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_06
   guid: 0bdc8530660e934bb97562216c9a670f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -553,6 +794,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 780
+--- !u!114 &114042662027630694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114043908732556720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,7 +823,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/G
   guid: 44011daeaa604b499ac10b0c6d27c146
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -575,6 +831,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114045218336787112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114046011517015600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114051907356662674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +876,51 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114052658615113240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114054721526288630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114055074768408836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114061857804466674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +935,7 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/Time Spin Loop
   guid: 05748bbcdae48640b0684081ab8edc29
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -626,7 +957,7 @@ MonoBehaviour:
   Path: event:/Music/Stingers/PuzzleUnlocked
   guid: dd8d18a69d2b8548bffa1e66118fe403
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -634,6 +965,81 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &114065895744735430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114068009753521146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114068090123211822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114069360119904862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114070696129398198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114071973376344614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,7 +1054,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_crateSlideDown
   guid: d5666ce0d108774c907c3effd33edd99
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -671,6 +1077,81 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114073131994218936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114076745294831982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114076996592306318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114077513191502226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114080284547567660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114080839258466286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,7 +1166,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/IdleSquish
   guid: 86c564dc647222479a19596f4b394080
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -707,7 +1188,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/Market_Bird
   guid: e58d1cedfaeab047b247e9387f97458b
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -730,6 +1211,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0.42
+--- !u!114 &114088617636109634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114089181753769368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,7 +1240,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/PlayButton
   guid: 8297cde92754c44e8faed333e2142614
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -752,6 +1248,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 7575
+--- !u!114 &114089186048545412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114096037134461038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114096199863150980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114096846509950902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,7 +1307,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_fruitPickUp
   guid: 4e2bfb3e0914b94284764daccba941c9
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -788,14 +1329,29 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/Eggs drops from basket
   guid: 14ce85bfcfca1542bebcf6f65b459e3f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 24058
+  Length: 400
+--- !u!114 &114097963990233586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114098200036298738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,7 +1366,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/PuzzleConfirmationButton
   guid: b78d77561b77614b8dd64a10034b6511
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -818,6 +1374,66 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 821
+--- !u!114 &114102122405413278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114105498663036720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114105846087099700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114106148012699954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114106207370664812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,7 +1448,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/Market_Bird_Frozen
   guid: b7720caba9a0fc418dbfd5231504bb02
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -840,6 +1456,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 289
+--- !u!114 &114106447791514154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114111272613016470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114113446363869546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114114511078501792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,7 +1515,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/CloudsMoving
   guid: 374a0819390a5648b9381839f0974815
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -862,6 +1523,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 7800
+--- !u!114 &114119738252662590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114120031100081798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114120466861971684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +1567,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/MenuEggClose
   guid: 8493d94b756a0f4d90b188fbbb6500a2
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -884,6 +1575,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1375
+--- !u!114 &114120476164028776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114122265638023596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114124992734939686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,7 +1619,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Button
   guid: e37410c7cb097a4b9bb5e7de4b0562ee
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -906,6 +1627,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 200
+--- !u!114 &114125868564074110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114126545651430248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +1656,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/FAIL
   guid: a21147f1da095d45b3b31b36e7c4e10b
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -929,6 +1665,21 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 199
 --- !u!114 &114129844769509172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114130630362286896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -957,19 +1708,34 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Hub
   guid: 0c357a572991734da767e5e09934f0f0
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114361268571768270}
-  - {fileID: 114224442579029946}
-  - {fileID: 114143066309521220}
-  - {fileID: 114140975882410512}
-  - {fileID: 114085592971437792}
+  - {fileID: 114145471776403550}
+  - {fileID: 114096037134461038}
+  - {fileID: 114803803092425242}
+  - {fileID: 114054721526288630}
+  - {fileID: 114593780053439146}
   MinDistance: 0
   MaxDistance: 0
   Length: 72071
+--- !u!114 &114135845331417116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114135855638940782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +1750,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/YouDidIt
   guid: fe962bd090f01949990781b7638aa2f9
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -992,6 +1758,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &114138175759353360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114139125443588694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114139161351727676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,7 +1802,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Whale
   guid: 947175da120ca1419c6ff569544c4e81
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1029,6 +1825,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 1
+--- !u!114 &114141278498883804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114141828180125110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,7 +1854,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/PuzzlePiece
   guid: af898314a784b948b2c6926714607601
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1081,6 +1892,36 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114145471776403550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114146103676707430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114148095916514928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,14 +1936,29 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/Time Hover Loop
   guid: eecba9b9cc3758449f24e38be102704e
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 13500
+  Length: 11600
+--- !u!114 &114157163356154936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114158208383625586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,7 +1973,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/Park_Bird_Frozen
   guid: 36ed6b07e18bb1418ad63540dd1307ff
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1125,6 +1981,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 880
+--- !u!114 &114159225295663720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114159249547659774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1139,7 +2010,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/FX_trail
   guid: 229b8aa1161a0b44a44223e02e746af0
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1147,6 +2018,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4200
+--- !u!114 &114160926582434036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114162480100345260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1161,7 +2047,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_13
   guid: ed62d446f4ab0345b207a8f9b63638b8
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1183,7 +2069,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/HubUncoverFX
   guid: 5c403f039a6c3049b0ded5f15c1740ed
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1191,6 +2077,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5979
+--- !u!114 &114169852550328546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114169896785269108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114173373933199780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1220,7 +2136,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/GoldenEgg_basketsClick
   guid: 2dac281d182a2d4293ffad7c97f78e87
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1228,6 +2144,111 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2531
+--- !u!114 &114176250591116066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114176483096171466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114178271992107156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114180770843770562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114182730819868438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114183619849028326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114188235394294364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114190651252550124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,14 +2263,89 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/Gust Hover Loop
   guid: 6cf61c374e0de54c93392c8104f5f9bb
   Banks:
-  - {fileID: 114345301081709216}
-  IsStream: 0
+  - {fileID: 114880858214539258}
+  IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 10000
+  Length: 18800
+--- !u!114 &114191939274468408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114192629569341506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114196725599837024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114198156029969000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114198774968320100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114201867303046100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1264,7 +2360,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/MuteButton_harp
   guid: bf33b3e3fe83024d80e02ea52f821e4f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1272,6 +2368,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3237
+--- !u!114 &114202177155326120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114203286655779950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114205806944330790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114207324236626886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,7 +2427,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/SliderSound
   guid: f99622da973c344089a5ab4baa30c888
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1294,6 +2435,81 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 15
+--- !u!114 &114208716393689356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114211906501922740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114214522493295846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114214950694922870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114215378099181462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114215504934616654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1308,12 +2524,12 @@ MonoBehaviour:
   Path: event:/SFX/Park/PuzzleShimyLoop_park_OLD
   guid: a73e23f40807ca409a7a9f5ada6f481b
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114589474169408604}
+  - {fileID: 114382569164420922}
   MinDistance: 0
   MaxDistance: 0
   Length: 21446
@@ -1331,7 +2547,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_fruitDropScale
   guid: 5043d61078bf4f4bb147476a0c3efcd8
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1339,6 +2555,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 750
+--- !u!114 &114217509697329078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114218025943938564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,7 +2584,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/EggImposeFeathers
   guid: abb7bd3c5604c14bac7e3f3520027f2e
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1361,6 +2592,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5250
+--- !u!114 &114221383845002882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114223401323229378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114224442579029946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1390,7 +2651,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/CongratsTxt
   guid: 69d326cffe5efc4bac8b73d6d16be121
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1412,7 +2673,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Puzzle Completed/puzzleTextJingle
   guid: 338209c451b9f242affdfac2c136ebf1
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1420,6 +2681,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5500
+--- !u!114 &114230924360173458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114231025585060800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,14 +2710,29 @@ MonoBehaviour:
   Path: event:/SFX/INTRO/TimeAppearMap
   guid: 5909723eb2cff44089a4bf4e21779b02
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 11075
+  Length: 7000
+--- !u!114 &114231144753282516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114232231027963578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1456,7 +2747,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/ParticulesInBag
   guid: b0eb2c3f55876d43b2e13112698aba92
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1464,6 +2755,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114234842213483606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114236976401978872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114241148698388138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,15 +2799,105 @@ MonoBehaviour:
   Path: event:/SFX/Beach/PuzzleShimyLoop_beach
   guid: 16f9c4c113eea948a3654cc6f8c20f94
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114026005083936756}
+  - {fileID: 114106447791514154}
   MinDistance: 0
   MaxDistance: 0
   Length: 4500
+--- !u!114 &114241340559182328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114242262209809938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114246977153393526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114247261566439652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114248732920415770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114248834358547786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114253924018074202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,7 +2912,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/Bubbles
   guid: d935b1cde6ba624b925916c48a9bd7bd
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1523,7 +2934,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Lock Zoom
   guid: c7c6d5cee7ee644ba1517c3ae9caf20d
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1531,6 +2942,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 450
+--- !u!114 &114258387081821548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114262419813816898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,7 +2971,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/BagExplode
   guid: 9efc113d115ccc49aa4adcf295c8dee7
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1582,7 +3008,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Walrus
   guid: c1b29c774e2e3d42a4c5d67f689c7056
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1590,6 +3016,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1670
+--- !u!114 &114263820191899350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114265809198833416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1634,7 +3075,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/Zoom egg
   guid: d71b68be0272d14f90866bc7d1c3b276
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1642,6 +3083,66 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2719
+--- !u!114 &114279536308965756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114282062807357358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114282266563448638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114284771868747028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114285475375437978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,7 +3157,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Orca
   guid: 4c5652c85d859f458ac1f9257a2a286f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1664,6 +3165,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1572
+--- !u!114 &114287531009342070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114287610181413650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1678,7 +3194,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_10
   guid: a77e9ba33c931f498678b3e87eb65bff
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1700,7 +3216,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Beach_Bird
   guid: 7f360318a335fa49a3f4d551add2fcda
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1708,6 +3224,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 187
+--- !u!114 &114292761217193504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114295337761654210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114306728478190128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114307441634938626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1722,7 +3283,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/D2
   guid: 0e68917b8f5ee84fae0cc80cf328384a
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1744,7 +3305,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/TransitionsSound
   guid: e1d8e326accf83438848463a94f7aa99
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1752,6 +3313,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 8750
+--- !u!114 &114309024370378638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114309461611686270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1766,7 +3342,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Egg_Click_Silver
   guid: 4c8798c17790564caf0a185e39581688
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1774,6 +3350,81 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 600
+--- !u!114 &114309666829643266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114312241559728590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114313464579264766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114314015083731726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114315334551662486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114315721330261674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1788,7 +3439,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_TileRotate
   guid: aceabdbaa816944caf55818f4a1ef5fa
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1796,6 +3447,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 656
+--- !u!114 &114316201100782854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114317621537039046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114323721670514180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114323809658566846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,7 +3506,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Egg Counter tick
   guid: 2f666f490ec0e2488a305371b32dbf2f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1818,6 +3514,66 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 69
+--- !u!114 &114324385057977114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114329144853296448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114329234775820208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114330112171689394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114333754587107402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1832,7 +3588,7 @@ MonoBehaviour:
   Path: event:/Music/Stingers/GoldenEgg
   guid: 44853ea29fbf7449a4adf38d2bf499fd
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -1869,12 +3625,12 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Market
   guid: b2321fa30ea7e54485fe5e82cfb142e1
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114983728560503768}
+  - {fileID: 114323721670514180}
   MinDistance: 0
   MaxDistance: 0
   Length: 237635
@@ -1892,15 +3648,30 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Park
   guid: d8aeddf391423d46b7cf5f85d04f4320
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114431490553503458}
+  - {fileID: 114658022874336694}
   MinDistance: 0
   MaxDistance: 0
   Length: 216536
+--- !u!114 &114340108732239352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114340216024007486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,7 +3686,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/BubblePop
   guid: 7b9215e663d1a44d887482211c2c7382
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1923,6 +3694,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 560
+--- !u!114 &114341234488297932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114345301081709216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1957,7 +3743,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Crab_Click
   guid: 0da8263dae31654cb1225e55d763b373
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1965,6 +3751,66 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 306
+--- !u!114 &114347819689663016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114348105804285966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114353917606933546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114358338638333154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114361268571768270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,6 +3823,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114361867728744958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114363417683668126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114367899839017298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
   Min: 0
   Max: 1
   Default: 0
@@ -1994,7 +3885,7 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Park_Puzzle
   guid: 7c15c4dc85c6dc4d9e016dfb0846c0ff
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -2002,6 +3893,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 218250
+--- !u!114 &114368817626907464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114370456252132336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2016,7 +3922,7 @@ MonoBehaviour:
   Path: event:/Music/Stingers/GoldenEgg_OLD
   guid: 1e64c370917c554391b2af15fb6a9d74
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2053,7 +3959,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/BagRumble
   guid: 0c306995db7b0b4cb5b7ea3e3c44a5da
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -2061,6 +3967,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2294
+--- !u!114 &114375045771796262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114375773387959988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2075,7 +3996,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_arrowWiggle
   guid: 3ae3622401dfe94ca4c763a3fbb07fb6
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2097,7 +4018,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Egg_Click_Gold
   guid: 349accb1e219ed44b76f22fe61d7a05f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2105,6 +4026,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2900
+--- !u!114 &114377703426523300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114380049081602550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114382569164420922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114385774126682302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2119,7 +4085,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_Tile_ConnectFX_temp
   guid: 390858b91f0178419f480b40fd862f36
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2127,6 +4093,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2320
+--- !u!114 &114386076612375684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114388095175162908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,6 +4120,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114389018399341576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114389717164969352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
   Min: 0
   Max: 1
   Default: 0
@@ -2156,7 +4167,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/unMuteButton_perc
   guid: 2bc7015dae981647a82e823680b548b1
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2164,6 +4175,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 200
+--- !u!114 &114392614100473418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114393485845741450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114394000706804844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,7 +4219,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/PauseButton
   guid: ac920d206427f946b7ac9137006297b8
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2200,7 +4241,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_Tile_ConnectFX
   guid: 77fc23500f37eb4fb0b74fe7839a835a
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2208,6 +4249,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 624
+--- !u!114 &114403465898442184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114404129158484358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114406018094913482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,15 +4293,45 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/SilverEggs_SlideToPanel
   guid: ccff6248d057de459ef82ef828a9b506
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114858448091891306}
+  - {fileID: 114552938699133112}
   MinDistance: 0
   MaxDistance: 0
   Length: 1775
+--- !u!114 &114409106277973836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114411309892508780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114416273214071948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2245,7 +4346,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/BagAppear
   guid: c590b8c52c3fc14aaac96f4fbf44ba12
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2253,6 +4354,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 450
+--- !u!114 &114416883481567062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114419242199944876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2283,6 +4399,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114425458139451648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114428110536422570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,7 +4428,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/ZoomEggFromMid
   guid: 24ca06ebeba39640a679f67ec33447fd
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2305,6 +4436,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 5861
+--- !u!114 &114428368960126328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114429295945653728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2319,7 +4465,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_12
   guid: e8cc094ff2c2c04896abf1bfc08a6ff2
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2327,6 +4473,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1120
+--- !u!114 &114430284057404278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114431127387762302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2341,12 +4502,12 @@ MonoBehaviour:
   Path: event:/SFX/Beach/PuzzleShimyLoop_beach_OLD
   guid: 7f2387518744134eb1ce91cec4296cf6
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114072289783564642}
+  - {fileID: 114203286655779950}
   MinDistance: 0
   MaxDistance: 0
   Length: 21446
@@ -2365,6 +4526,21 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114433284233563586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114436339787393892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,7 +4570,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/SpinningStars
   guid: fa1df20454023144ab543da1dceeb7a4
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2402,6 +4578,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 930
+--- !u!114 &114439874933967616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114444387050106966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114450934226488974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2416,7 +4622,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/KiteFlying
   guid: 1c2c4800621e834fa2647c5dfae44d8c
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2438,7 +4644,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/FX_Squish
   guid: 51aba8e2bd87ed46a2ef47dcb7e5f2ee
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2447,6 +4653,21 @@ MonoBehaviour:
   MaxDistance: 0
   Length: 1500
 --- !u!114 &114456057409827154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114457792704938982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2475,7 +4696,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_crateSlideRight
   guid: 77c530b61bfac446b5b3251fadf1e5a1
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2498,6 +4719,36 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114464822103028772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114465947635473374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114468819460502698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2512,15 +4763,30 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_fruitDropCrate
   guid: 44f1368b4af97e4f9921a8e433ed74a3
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114424150702028602}
+  - {fileID: 114764647322721982}
   MinDistance: 0
   MaxDistance: 0
   Length: 890
+--- !u!114 &114473372181598690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114482670298112142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2535,7 +4801,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/IdleShimmy
   guid: 17945eeefa709b4499e6eccca68cba4c
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2543,6 +4809,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4000
+--- !u!114 &114483222625603832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114484287870748076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114484490101792572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2557,7 +4853,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/Firework explosion
   guid: 30f710321d4ff244a5532797fb387176
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2565,6 +4861,66 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10857
+--- !u!114 &114488803230730400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114488887216802246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114489973231181110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114491370460572824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114491482049700298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2579,7 +4935,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/AmbianceBeachDreamy
   guid: 25a5b26b9ed3724fb38a40baa5e0c8aa
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -2601,15 +4957,60 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Beach_Puzzle
   guid: ec43b25130dff748aecb2e45b859859e
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114371772651485064}
+  - {fileID: 114329144853296448}
   MinDistance: 0
   MaxDistance: 0
   Length: 155387
+--- !u!114 &114493706506913646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114495211784647370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114497779043084334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114500835464960484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2624,7 +5025,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/PuzzleShimyLoop_market
   guid: eeefa2667912984fb78e6f327e2179a8
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2646,7 +5047,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_14
   guid: e899d401febae840afcf812f0e0dc6e6
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2654,6 +5055,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2225
+--- !u!114 &114505881259065184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114508586110266072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114510482562978264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114512976462635986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2668,7 +5114,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/HintSpark
   guid: 1f4da06646b624418cb9ebfc7d43d918
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2676,6 +5122,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1000
+--- !u!114 &114513242475899526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114514251618535524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114516858518671946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2690,7 +5166,7 @@ MonoBehaviour:
   Path: event:/Music/Stingers/SilverEgg
   guid: 2cd0deb819bccf41a41e3ff4fee29efb
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2698,6 +5174,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &114517790634430336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114518064300300578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114518838484958862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,7 +5218,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/G2
   guid: 300a72b4c28e0c4782c052f6f85b0dec
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2734,7 +5240,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/KiteMoving
   guid: 51243e90f1a26a4fb40c062d2cd81b25
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2801,7 +5307,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Seal
   guid: e03ab2a01e1e684ab79b655a15bbb3eb
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2809,6 +5315,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1612
+--- !u!114 &114526485808659158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114526568933651156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114529751650520926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2838,7 +5374,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/unMuteButton_harp
   guid: e2a39ba187ece74084211c8efb91e1e5
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2875,7 +5411,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Congratulations_LevelComplete
   guid: a7da5b51a372de4a9e64e29344022400
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -2883,6 +5419,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 8000
+--- !u!114 &114533123407127924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114536999555607330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114537787736492972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114538601349689576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2897,7 +5478,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Dolphin
   guid: 2db7b07d055a3c44a3401e5a2b9ecf97
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2919,7 +5500,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/Ambiance_Underwater
   guid: 2f80ffec75cc164982b6e0ea025815e0
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -2927,6 +5508,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 161875
+--- !u!114 &114540542636912082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114540840902819982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114547155512653094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2941,7 +5552,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_TileDrop
   guid: f96ad98e15aaf9478726207454bcc361
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2963,7 +5574,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_TilePickUp
   guid: f23c6fdbc441ef47a819ebd36f1f8723
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2971,6 +5582,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 624
+--- !u!114 &114552938699133112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114556071543923282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114560982197697640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114562258367798172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2986,6 +5642,51 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114562415158038892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114563555855703996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114571775561556756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114571925952862178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3000,7 +5701,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/HintSparkLong
   guid: 9e0c5a08578ee649a21ad9abcd098c40
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3022,7 +5723,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/FrozenBirdShake
   guid: b0665ea9a16d4c439f3469b774851108
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3044,7 +5745,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/MenuEggOpen
   guid: acc31d7925c0a5418862990ab0fe6869
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3052,6 +5753,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &114580237087109788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114580882597353230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114585163277226862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3066,7 +5797,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/GoldenEgg_childrenGame
   guid: ddd4f3d99d9569419c7d391e40a01c93
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3103,7 +5834,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Wave
   guid: 0cde7b774e48c14cbcf5bb2e4985579d
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3111,6 +5842,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2489
+--- !u!114 &114593780053439146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114596354213047326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114597549832012278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3125,7 +5886,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/textPopSfx
   guid: d2b1770634583c43ae7ee0a02fc48709
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3147,7 +5908,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Zoom
   guid: 63a907a1d901ff438d6693034f25faa3
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3155,6 +5916,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 6500
+--- !u!114 &114598882110062194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114602595971277762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114603000323454354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114612718448645804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3169,12 +5975,12 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/EggsCounter
   guid: 3503c847419d7546808499a8e01b5c90
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114459432369521966}
+  - {fileID: 114488803230730400}
   MinDistance: 0
   MaxDistance: 0
   Length: 69
@@ -3192,7 +5998,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/F
   guid: cb33722a9097e449a1a5e40805f3aa67
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3214,12 +6020,12 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/CircleEggsSoloPlain
   guid: 3dd636aa5ff52d469c8340f25952c5ee
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114129844769509172}
+  - {fileID: 114681855660797150}
   MinDistance: 0
   MaxDistance: 0
   Length: 155
@@ -3237,7 +6043,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/AmbianceParkDreamy
   guid: c144d1cd262f7d4ea0ba4f5ab10b4d58
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -3245,6 +6051,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 34000
+--- !u!114 &114616743357903112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114620811762565684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114626480841727006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3259,7 +6095,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_04
   guid: e41365b85c13ac4ea523af1dffed3f3c
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3267,6 +6103,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 999
+--- !u!114 &114627482597732254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114628522298087532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114631338575199314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3281,7 +6147,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/Market_Bird_youdidit
   guid: 534ec7f78c7e5540a141a3656698a48b
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3303,7 +6169,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/A
   guid: c785ffc74b07c2499080e6fc7de67623
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3311,6 +6177,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &114636796292535892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114640805408040700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3325,7 +6206,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/GoldenEggAnimation
   guid: 61b8b96cd9bee341bfa3a40c25d4037e
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3333,6 +6214,81 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10857
+--- !u!114 &114643587809916674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114645911746124268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114646942131467120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114647183674669234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114647336684931888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114647346150603288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3347,7 +6303,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Implose
   guid: 75decaa4a647b044b14fcaee2514f29b
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3355,6 +6311,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1900
+--- !u!114 &114648944258449812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114648975892773820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3370,6 +6341,36 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114649643451746330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114658022874336694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114660497515141364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3384,7 +6385,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Frog
   guid: bce8a2ddd5441b42af3261d119816ea8
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3392,6 +6393,201 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1570
+--- !u!114 &114667623001907526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114669194087060750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114670339313976668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114670449949209832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114670865274989854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114671233304713970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114674564463550818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114675337655696872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114675958773303186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114678083789599888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114680454768198110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114681855660797150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114684095529368982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114686889783808764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3406,7 +6602,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/CircleEggsGlow_DESK
   guid: 208abac73730ea469db0b36366a1078e
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3414,6 +6610,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 7400
+--- !u!114 &114687698398792454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114690875999391400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114692408188817710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114695835183786540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3428,15 +6669,60 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/CircleEggsSoloSilver
   guid: 0620150f8502714b9d4e41c5f77fb4af
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114388095175162908}
+  - {fileID: 114783396992695030}
   MinDistance: 0
   MaxDistance: 0
   Length: 624
+--- !u!114 &114696774431130054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114697094133612844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114697731305480584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114700338210347220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3449,6 +6735,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114700996926087712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114701114186106626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114707646143431470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
   Min: 0
   Max: 1
   Default: 0
@@ -3466,7 +6797,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/C2
   guid: dde827dbe6f6764c92fa05d628acefff
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3503,7 +6834,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_02
   guid: bc4ceba22632d74e9e39cacf00713105
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3511,6 +6842,81 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1200
+--- !u!114 &114714647185175018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114718704813211844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114721516415923120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114723038476939970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114725731238570722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114728917046808046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3523,6 +6929,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114729995876618648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114732265359522212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114732751283308378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
   Min: 0
   Max: 1
   Default: 0
@@ -3540,7 +6991,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_03
   guid: ac8f12b17ef5fe49b1ae783f62c000a5
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3548,6 +6999,60 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 930
+--- !u!114 &114735360344955530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/Music/MusicScenes/IntroMusic
+  guid: c1dd7f1d3656a443a20ea8ba2035da06
+  Banks:
+  - {fileID: 114880858214539258}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 114196725599837024}
+  - {fileID: 114248732920415770}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 102267
+--- !u!114 &114735974664647258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114736011018838894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114738418176415430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3562,7 +7067,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/StatsPaperVillageOff
   guid: a4a5133d736664478d57c6afaec5eaf5
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3584,7 +7089,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Market/Puzzle_scaleWiggle
   guid: 93b7cd19c1583547ac233a862dd45457
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3592,6 +7097,186 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1000
+--- !u!114 &114740277631212934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114741662284897250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114743852580594878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114743989923428128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114744609685590632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114748132578482556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114750514747308330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114751192356989546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114757426066615704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114764647322721982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114766095067665878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114766452333748132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114775097434774700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3604,16 +7289,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: event:/SFX/INTRO/Eggs pop transform
-  guid: 52313c222a700b428eb7660c6d68f74f
+  guid: 83684f1e246bfc40ab75cb76745f4f32
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 114828314056677652}
   MinDistance: 0
   MaxDistance: 0
-  Length: 0
+  Length: 624
+--- !u!114 &114776070845566192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114776981875120882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3628,7 +7329,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/E
   guid: 9303f2f86e1f764faaec5e52c610f097
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3650,7 +7351,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/GoldenEgg_ShimyIdle
   guid: e5c570ec395a3540ac8304278e082bfe
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -3658,6 +7359,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10000
+--- !u!114 &114779688675654028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114781691384177890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114782190419590504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114782242372477620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3672,7 +7418,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/B
   guid: d29d202d403782499e5ea3442faf13de
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3680,6 +7426,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114783396992695030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114783945500148354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114786159994951312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3692,9 +7468,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: event:/SFX/INTRO/Time Woosh
-  guid: ae7e04b8500b3244bb1259a378534507
+  guid: 56485bf1fc53fe4cb8511eae2ea427a0
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3702,6 +7478,51 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 20569
+--- !u!114 &114787630385512246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114789341951109636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
+--- !u!114 &114789441504840002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114790859832220890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3731,7 +7552,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_11
   guid: 1e2a07fa02400942871a8a1f4ff16c98
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3753,7 +7574,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Park/Puzzle_Tile_PuffFX
   guid: cb06030a2df52847aedeba48eb74ee1f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3761,6 +7582,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 624
+--- !u!114 &114794117700849280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114796715887397264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3775,7 +7611,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/Congratulations_LevelComplete
   guid: f2930291346ed34599dd9c0bfee18a4c
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3783,6 +7619,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 8000
+--- !u!114 &114799755563841752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114801318060699890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3812,15 +7663,60 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Egg_Click
   guid: 9bd66f5f728c00489503ee43d620bc7c
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114562258367798172}
+  - {fileID: 114341234488297932}
   MinDistance: 0
   MaxDistance: 0
   Length: 3275
+--- !u!114 &114803803092425242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114806342074491936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114806429302604770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114810708153632012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3833,14 +7729,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: FmodAssets\Desktop\Master Bank.strings.bank
-  lastModified: 637016439709392836
+  lastModified: 637018414846432883
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 9392
+    Value: 9440
   - Name: Mobile
-    Value: 9392
+    Value: 9440
   Exists: 1
+--- !u!114 &114810906586034108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114820050622709388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114821438116217846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3855,7 +7781,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_01
   guid: 3eea0a817773d641980fe11ab26c9228
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3863,6 +7789,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1200
+--- !u!114 &114821557435569818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114822352580220334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3877,7 +7818,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/Firework trail
   guid: bd11e59c39f4e348a3ce2056acf0586c
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3885,6 +7826,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114822566937194578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114823154068945938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3899,7 +7855,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Crab_Walk
   guid: b81f234b44784345b4f23ac0fcb9efa5
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -3907,6 +7863,81 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 780
+--- !u!114 &114824179395293526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114824341262533248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114828314056677652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114830309601614230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114831972346241414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114832208238097372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3922,6 +7953,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114835551427903184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114839674121074036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3936,7 +7982,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/AmbianceMarketDreamy
   guid: e42d38fa2fd47e4bb0d367a4abbc9972
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -3944,6 +7990,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 43000
+--- !u!114 &114840480587672498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114841065859019028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3958,12 +8019,12 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Beach
   guid: a006a97312ce2b418dfc0479fa8559f0
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114265809198833416}
+  - {fileID: 114766095067665878}
   MinDistance: 0
   MaxDistance: 0
   Length: 157387
@@ -3981,7 +8042,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/Puzzle_Click
   guid: 8143c75712b63043b6e00ec6e2156f55
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -3989,6 +8050,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &114851916169449832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114855817180565614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4003,7 +8079,7 @@ MonoBehaviour:
   Path: event:/SFX/Beach/Beach_Bird_Frozen
   guid: 077fbaccc16ca142a92110ef059236f7
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4040,7 +8116,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/C
   guid: d1c4921a8630f34ab72bd080f73112ba
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4062,7 +8138,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/BootShake
   guid: de67e7624560fd4a9e52dcb4ec4c5433
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4070,6 +8146,88 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1050
+--- !u!114 &114865612490757686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114868569867990470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/INTRO/Gust Mishap Loop
+  guid: aea56edd2eb99a408002054712d19c5d
+  Banks:
+  - {fileID: 114880858214539258}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 20400
+--- !u!114 &114868722207734846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114869072496879918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114869820367853450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114870438927111336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4084,7 +8242,7 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Market_Puzzle
   guid: 1808ee3a98adf3419fb59d9e4c4e52f3
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -4092,6 +8250,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 237635
+--- !u!114 &114872232655506876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114874888309499170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4106,7 +8279,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_08
   guid: 77771f1d2e631c468cc403090b8ce978
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4114,6 +8287,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &114875774455604742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114878470750161600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4128,7 +8316,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/CircleEggsGlow
   guid: 44c62276274c25489186eae97551870c
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4136,6 +8324,71 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2800
+--- !u!114 &114878499558456844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114879290289263756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114880306633318464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114880858214539258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: Q:\Users\LY\Documents\JEU_FOT\Hidden-Eggs-Game\FmodAssets\Desktop\Master Bank.bank
+  lastModified: 637018414846132598
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 46735008
+  - Name: Mobile
+    Value: 111958592
+  Exists: 1
 --- !u!114 &114883161051308370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4150,7 +8403,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/SeaGull
   guid: e5e192396ba85147b903b2f1b7304005
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4158,6 +8411,81 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1670
+--- !u!114 &114885234306862664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114885992015560086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114887026374091642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114888896870893924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114889203751793964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114889322091149522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4172,7 +8500,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/E2
   guid: 26ba4374400833449dd4ebf68a77f84e
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4180,6 +8508,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114891082244240152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114891833983081354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114892570930387230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4194,7 +8552,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/PuzzleShimyLoop_market_OLD
   guid: 457db81a1210b24b94a74f04093dfdbf
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -4202,6 +8560,156 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 21446
+--- !u!114 &114893995271491624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114894821384526448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114896937959540982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114897231477355572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114899992295104802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114904192683300192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114907652360169716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114908255681590750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114911021930207850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114912509421360992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114913493808086986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4216,7 +8724,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_05
   guid: 3e5b88d31e5e9648b75f72c0f8e35cd8
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4238,7 +8746,7 @@ MonoBehaviour:
   Path: event:/Music/MusicScenes/Menu
   guid: 3c979abb3c5cbf4f855ebf2ce340be40
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -4246,6 +8754,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 57069
+--- !u!114 &114917203166242498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114918752436424798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4260,7 +8783,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/BagHover
   guid: 55e20e1f35b6fb4093fcac46dfc9f2a2
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4268,6 +8791,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 4200
+--- !u!114 &114919551774297798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114921316139554296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4282,7 +8820,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/FireworkTrailBurst
   guid: f1926b875c54da459040d4a39651f900
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4290,6 +8828,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10252
+--- !u!114 &114921710145852370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114923006473031524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114923130806118252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4302,6 +8870,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114924479805249954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114932496639876000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114934418329081356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
   Min: 0
   Max: 1
   Default: 0
@@ -4319,7 +8932,7 @@ MonoBehaviour:
   Path: event:/SFX/Puzzle_Beach/SoundsPuzzle/Boat
   guid: d4d0e7d5b9c50945a9a67c708e0ec23f
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4341,7 +8954,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Puzzle Completed/puzzlePieces
   guid: bb11753f21655f4694b5ce6516cc5962
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4349,6 +8962,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 250
+--- !u!114 &114939360769527218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114939535338124222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114942862672253558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4363,7 +9006,7 @@ MonoBehaviour:
   Path: event:/SFX/Park/Park_Bird
   guid: f1087fe78fdc4f4aa98201d9c185e6aa
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4400,7 +9043,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Puzzle_Click_OLD
   guid: efca2b00aae0cb4da66dd0c218e34efa
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4422,7 +9065,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/Zoom_OLD
   guid: f02daff6ee5d2847b20d4c50104c6633
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4430,6 +9073,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &114946859977153252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114947714132792984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114949536695496730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4444,7 +9117,7 @@ MonoBehaviour:
   Path: event:/SFX/SFX_General/MuteButton_perc
   guid: c483bc3737233942a5eaa9aefa0ea3ff
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4452,6 +9125,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 847
+--- !u!114 &114950461371766024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114954133607014214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4466,7 +9154,7 @@ MonoBehaviour:
   Path: event:/SFX/Market/Puzzle_Click
   guid: c390c33b2d093d4badd3c278b0afbdcf
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4474,6 +9162,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &114957931293696692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114959972603833572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114964606559341966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4488,7 +9206,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Notes/Notes_harp_09
   guid: 3850f8870d11d84a95d735a74a8c76ec
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4496,6 +9214,111 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 870
+--- !u!114 &114966225072741300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114967514630557742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114969004581935748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114973649795812586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114975055092499390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114975318593477608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114976400666244024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114976482436619710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4510,15 +9333,30 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/CircleEggsSolo
   guid: 3f3669256c0239499906daa748e95ac5
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114801318060699890}
+  - {fileID: 114740277631212934}
   MinDistance: 0
   MaxDistance: 0
   Length: 624
+--- !u!114 &114979765052697046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114980260943396138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4533,7 +9371,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Season Unlocked/Unlock
   guid: adfd7c1f90c8ab489215ad895c36e342
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4555,7 +9393,7 @@ MonoBehaviour:
   Path: event:/SFX/Notes_SFX_InC/D
   guid: 893675b7d38f6444908f41478bb27e65
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -4599,7 +9437,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Level Complete/EggsMoveInBag
   guid: 6a65a88acebe31488405001aa912fba0
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4621,7 +9459,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/FakeAnim_LevelComplete
   guid: 0bb129f0d6026841a183e35baa40135e
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -4629,6 +9467,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 20904
+--- !u!114 &114983586276324412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0.42
 --- !u!114 &114983728560503768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4644,6 +9497,66 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114987235773839426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114990696078881052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
+--- !u!114 &114991719014087228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114993300049354866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114999078359601922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4658,7 +9571,7 @@ MonoBehaviour:
   Path: event:/SFX/ANIMS/Riddle Solved/FireworkTrailBurst
   guid: 51dffa7af0469743b461fadc4aa34497
   Banks:
-  - {fileID: 114345301081709216}
+  - {fileID: 114880858214539258}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
