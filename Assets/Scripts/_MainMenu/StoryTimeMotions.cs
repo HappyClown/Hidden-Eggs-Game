@@ -59,6 +59,11 @@ public class StoryTimeMotions : MonoBehaviour {
 	public AnimationCurve glideAnimCurve;
 	public FadeInOutSprite glidingTimeFadeScript;
 	public Animator glideAnim;
+	[Header ("Audio reference")]
+	public AudioIntro audioIntroScript;
+
+
+
 
 	void Start () {
 		currentTime = normalTime;
@@ -68,6 +73,8 @@ public class StoryTimeMotions : MonoBehaviour {
 		endSpinValue = 180f;
 		iniNormPos = normalTime.transform.position;
 		iniNormScale = normalTime.transform.localScale;
+
+		if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
 	}
 	
 	void Update () {
@@ -125,13 +132,16 @@ public class StoryTimeMotions : MonoBehaviour {
 		//currentTime.transform.position = Vector3.Lerp(startPos, endTrans.position, moveInAnimCurve.Evaluate(lerpValue));
 		newScale = Mathf.Lerp(startScale, endScale, scaleInAnimCurve.Evaluate(lerpValue));
 		currentTime.transform.localScale = new Vector3(newScale, newScale, newScale);
+
 		if (lerpValue >= 1f && !hoverUp) {
 			timeHovers = true;
-			// AUDIO - TIME STARTS HOVERING!
 			timePos = endTrans.transform.position;
 			botY = currentTime.transform.localPosition.y;
 			topY = topYTrans.localPosition.y;
 			newXMagnitude = Random.Range(newXMagMin, newXMagMax);
+
+			// AUDIO - TIME STARTS HOVERING!
+			//audioIntroScript.introTimeHoverLoopSFX();
 		}
 		if (lerpValue >= 1) {
 			lerpValue = 0;

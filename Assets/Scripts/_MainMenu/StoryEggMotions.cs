@@ -45,7 +45,14 @@ public class StoryEggMotions : MonoBehaviour {
 	private bool fadeToSceneEgg = false, eggFlashed, eggBurst;
 	private float fadeSceneEggTimer;
 	public SpriteColorFade spriteColorFadeScript;
+	[Header ("Audio Script reference")]
+	public AudioIntro audioIntroScript;
 
+	public bool audioEggFallDown = true;
+
+	void Start(){
+		if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
+	}
 	void Update () {
 		if (spawnInBag) {
 			OutOfBag();
@@ -83,6 +90,10 @@ public class StoryEggMotions : MonoBehaviour {
 		endX = eggSpawnTrans.position.x + xMoveDist;
 		startY = eggSpawnTrans.position.y;
 		endY = eggSpawnTrans.position.y + yMoveDist;
+
+		// AUDIO - EGG COMES OUT OF BAG!
+		audioIntroScript.introEggDropBasketSFX();
+		Debug.Log("AUDIO: EggDDROPS");
 	}
 
 	void OutOfBag() {
@@ -112,6 +123,11 @@ public class StoryEggMotions : MonoBehaviour {
 		lerpValue = 0f;
 		fadeSceneEggTimer = 0f;
 		fadeToSceneEgg = true;
+
+		//AUDIO - EGG FALLING
+		audioIntroScript.introEggDropBasketSFX();
+		Debug.Log("AUDIO: Egg falling");
+
 	}
 
 	void Rotate() {
@@ -129,6 +145,7 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue = 0f;
 			hover = true;
 			// AUDIO - FALLING EGG STARTS HOVERING!
+			Debug.Log("AUDIO : here should be an hovering sound ?");
 			iniHoverPos = this.transform.position;
 		}
 	}
@@ -159,6 +176,11 @@ public class StoryEggMotions : MonoBehaviour {
 			burstPartSys.transform.position = this.transform.position;
 			burstPartSys.Play();
 			// AUDIO - PLAIN EGG BECOMES SCENE EGG (Particle effects included)!
+
+			//AUDIO - EGG transforming
+			audioIntroScript.introEggPopTransformSFX();
+			Debug.Log("AUDIO: Egg transform");
+
 			eggBurst = true;
 			// Start the egg trail FX.
 			trailPartSys.Play();
@@ -202,6 +224,12 @@ public class StoryEggMotions : MonoBehaviour {
 			fallDown = false;
 			lerpValue = 0f;
 			trailPartSys.Stop();
+		}
+		if(audioEggFallDown){
+			//AUDIO Egg fall down
+			audioIntroScript.introEggDropBasketSFX();
+			Debug.Log("AUDIO: Egg falling down");
+			audioEggFallDown = false;
 		}
 	}
 
