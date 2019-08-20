@@ -97,9 +97,9 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 				if (spawnTimer >= plainDelay && !plain) {
 					myGlowFadeScript.FadeOut(0.25f);
 					plainEggFadeScript.FadeIn();
-					if (amIFirst) {
-						rotateFXScript.RotatePlayFX();
-					}
+					// if (amIFirst) {
+					// 	rotateFXScript.RotatePlayFX();
+					// }
 					// myFadeScript.FadeOut();
 					plain = true;
 

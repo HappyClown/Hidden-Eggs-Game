@@ -33,11 +33,13 @@ public class LevelComplete : MonoBehaviour
 	//public Button tapBtn;
 	public AudioSceneGeneral audioSceneGenScript;
 	public AudioLevelCompleteAnim audioLevelCompleteScript;
+	public inputDetector inputDetScript;
 
 	[Header ("Info")]
 	public bool waitingToStartSeq;
 	public bool inLvlCompSeqSetup;
 	private bool inLvlCompSeqEnd;
+	private bool tapToLeave;
 	private float timer;
 	#endregion
 
@@ -117,7 +119,13 @@ public class LevelComplete : MonoBehaviour
 			// }
 			if (timer > endLevel && !levelEnded) {
 				lvlCompBirdScript.waitForCountOut = true;
+				tapToLeave = true;
 				levelEnded = true;
+			}
+
+			if (tapToLeave && inputDetScript.Tapped) {
+				endLvlBtn.interactable = false;
+				EndLevel();
 			}
 		}
 	}

@@ -49,6 +49,22 @@ public class GeneralSaveLoadManager : MonoBehaviour {
 		}
 	}
 
+	public static bool LoadFallLocked() {
+		if (File.Exists(Application.persistentDataPath + "/generalSaver.sav")) {
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream stream = new FileStream(Application.persistentDataPath + "/generalSaver.sav", FileMode.Open);
+
+			GeneralData data = bf.Deserialize(stream) as GeneralData;
+
+			stream.Close();
+			return data.fallLocked;
+		}
+		else {
+			Debug.LogWarning("FILE DOES NOT EXIST");
+			return true;
+		}
+	}
+
 	public static void DeleteGeneralSaveFile() {
 		File.Delete(Application.persistentDataPath + "/generalSaver.sav");
 		Debug.LogWarning("Save file deleted.");
@@ -59,10 +75,12 @@ public class GeneralSaveLoadManager : MonoBehaviour {
 public class GeneralData {
 	public int levelsCompleted;
 	public float lastEggTotVal;
+	public bool fallLocked;
 
 	public GeneralData(GlobalVariables generalSaver) {
 		levelsCompleted = generalSaver.levelsCompleted;
 		lastEggTotVal = generalSaver.lastEggTotVal;
+		fallLocked = generalSaver.fallLocked;
 	}
 }
 

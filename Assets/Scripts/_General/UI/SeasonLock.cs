@@ -133,9 +133,13 @@ public class SeasonLock : MonoBehaviour {
 		}
 	}
 	void CheckUnlock(){
+		locked = GlobalVariables.globVarScript.fallLocked;
 		//Check if the season is already unlocked
 		if(!locked && comingSoonTitle){
 			bannerTitle.SetActive(false);
+			closedLock.gameObject.SetActive(false);
+			backColorFadeScript.gameObject.SetActive(true);
+			backColorFadeScript.FadeIn();
 			// To be terminated once all the seasons are implemented.
 			comingSoonTitle.SetActive(true);
 			comingSoonTitle.GetComponent<FadeInOutImage>().FadeIn();
@@ -209,6 +213,7 @@ public class SeasonLock : MonoBehaviour {
 
 	void SaveNewLastEggVal() {
 		GlobalVariables.globVarScript.lastEggTotVal = newEggVal;
+		GlobalVariables.globVarScript.fallLocked = locked;
 		GeneralSaveLoadManager.SaveGeneralData(GlobalVariables.globVarScript);
 	}
 

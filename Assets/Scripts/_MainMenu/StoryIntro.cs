@@ -531,6 +531,8 @@ public class StoryIntro : MonoBehaviour {
 			storyOneEggScript.behindTheOneEgg.SetActive(true);
 			mainMenuScript.ToHub(false);
 			storyOneEggScript.eggTrailFX.Stop();
+			// Make sure the summer dissolve is reset.
+			hubScript.dissolveMats[0].SetFloat ("_Threshold", 0f);
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1]) {
 			boardTimer += Time.deltaTime;
@@ -568,7 +570,12 @@ public class StoryIntro : MonoBehaviour {
 			introStates = IntroStates.TitleScreen;
 			boardTimer = 0f;
 			boardEvents.Clear();
+			boardEvents = onceUponATimeEvents;
 			boardBools.Clear();
+			for(int i = 0; i < onceUponATimeEvents.Count; i++)
+			{
+				boardBools.Add(false);
+			}
 			inStoryIntro = false;
 		}
 	}

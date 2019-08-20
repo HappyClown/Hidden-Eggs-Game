@@ -35,6 +35,7 @@ public class GlobalVariables : MonoBehaviour
 	[Header("General Data")]
 	public int levelsCompleted;
 	public float lastEggTotVal = 0f;
+	public bool fallLocked = false;
 
 	[Header("Script References")]
 	public ClickOnEggs clickOnEggsScript;
@@ -134,6 +135,7 @@ public class GlobalVariables : MonoBehaviour
 		hubTotalEggsFound = 0;
 		levelsCompleted = GeneralSaveLoadManager.LoadLevelsCompleted();
 		lastEggTotVal = GeneralSaveLoadManager.LoadLastEggTotVal();
+		fallLocked = GeneralSaveLoadManager.LoadFallLocked();
 		// CHECK SCENE AND ASSIGN CORRECT EGGS FOUND
 		// Market
 		if (SceneManager.GetActiveScene().name == marketName || SceneManager.GetActiveScene().name == marketPuzName || SceneManager.GetActiveScene().name == menuName) {
