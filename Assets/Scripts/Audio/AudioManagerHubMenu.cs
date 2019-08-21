@@ -180,8 +180,6 @@ public class AudioManagerHubMenu : MonoBehaviour
         {
             dissolvingSnd =false;
         }
-
-        //audioIntro_ON = audioIntroScript.audioIntro_on;
     }
 
     ///////////////////
@@ -328,7 +326,8 @@ public class AudioManagerHubMenu : MonoBehaviour
         ButtonSound();
         CloudsMoving(); 
         MapUncover();
-        TransitionHub();
+        TransitionIntro();
+        //TransitionHub();
     }
 
         /// ----- BACK TO MENU BUTTON -----///

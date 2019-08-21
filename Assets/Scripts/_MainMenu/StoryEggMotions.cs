@@ -51,7 +51,6 @@ public class StoryEggMotions : MonoBehaviour {
 	public bool audioEggFallDown = true;
 	public bool audioEggOutBag =true;
 
-
 	void Start(){
 		if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
 	}
@@ -96,7 +95,6 @@ public class StoryEggMotions : MonoBehaviour {
 		
 		// AUDIO - EGG COMES OUT OF BAG!
 		audioIntroScript.introEggDropBasketSFX();
-		Debug.Log("AUDIO: EggDDROPS");
 		audioEggOutBag = false;
 		
 	}
@@ -128,11 +126,6 @@ public class StoryEggMotions : MonoBehaviour {
 		lerpValue = 0f;
 		fadeSceneEggTimer = 0f;
 		fadeToSceneEgg = true;
-
-		//AUDIO - EGG FALLING
-		//audioIntroScript.introEggFallingSFX();
-		//Debug.Log("AUDIO: Egg falling");
-
 
 	}
 
@@ -183,7 +176,6 @@ public class StoryEggMotions : MonoBehaviour {
 
 			//AUDIO - EGG transforming
 			audioIntroScript.introEggPopTransformSFX();
-			Debug.Log("AUDIO: Egg transform");
 
 			eggBurst = true;
 			// Start the egg trail FX.

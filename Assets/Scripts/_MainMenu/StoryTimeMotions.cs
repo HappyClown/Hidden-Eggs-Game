@@ -209,7 +209,6 @@ public class StoryTimeMotions : MonoBehaviour {
 			if(audioSpin)
 			{
 				audioIntroScript.introTimeSpinLoopSFX();
-				Debug.Log("AUDIO : time spin #"+spinCount);
 			}
 		}
 		if (currentTime.transform.eulerAngles.y >= 90 && !spinCountCheck) {
@@ -297,9 +296,9 @@ public class StoryTimeMotions : MonoBehaviour {
 			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
 			if (lerpValue >= grabOneEgg && storyOneEggScript.theOneEgg.activeSelf == true) {
 				storyOneEggScript.theOneEgg.SetActive(false);
-				
+
 				// // AUDIO - EGG COLLECTED!
-				// audioIntroScript.introEggPopTransformSFX();
+				audioIntroScript.SilverEggTrailSFX();
 			}
 			if (lerpValue >= 1f) {
 				lerpValue = 0f;

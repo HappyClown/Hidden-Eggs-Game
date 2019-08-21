@@ -51,12 +51,12 @@ public class AudioIntro : MonoBehaviour
 
     public string silverEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Silver";
     public FMOD.Studio.EventInstance silverEggClickSound;
-    public string silverEggTrailEvent = "event:/SFX/SFX_General/FX_trail";
+    public string silverEggTrailEvent = "vent:/SFX/SFX_General/SilverEggs_SlideToPanel";
     public FMOD.Studio.EventInstance silverEggTrailSound;
 
     
 	//audio
-	public bool audioIntro_on =true;
+	//public bool audioIntro_on =true;
 
 	void Start () 
 	{

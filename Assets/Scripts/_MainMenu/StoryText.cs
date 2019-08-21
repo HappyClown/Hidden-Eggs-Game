@@ -43,7 +43,6 @@ public class StoryText : MonoBehaviour {
 
 		//AUDIO Paper sound
 		audioManHubMenuScript.StatPaperSound_on();
-		Debug.Log("AUDIO : paper sound on ");
 	}
 	// Fade out the current text and make the next one fade in.
 	public void ChangeTextFade(int textNum) {
