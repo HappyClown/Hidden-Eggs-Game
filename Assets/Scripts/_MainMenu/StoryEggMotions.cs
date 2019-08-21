@@ -49,6 +49,8 @@ public class StoryEggMotions : MonoBehaviour {
 	public AudioIntro audioIntroScript;
 
 	public bool audioEggFallDown = true;
+	public bool audioEggOutBag =true;
+
 
 	void Start(){
 		if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
@@ -91,9 +93,12 @@ public class StoryEggMotions : MonoBehaviour {
 		startY = eggSpawnTrans.position.y;
 		endY = eggSpawnTrans.position.y + yMoveDist;
 
+		
 		// AUDIO - EGG COMES OUT OF BAG!
 		audioIntroScript.introEggDropBasketSFX();
 		Debug.Log("AUDIO: EggDDROPS");
+		audioEggOutBag = false;
+		
 	}
 
 	void OutOfBag() {
@@ -125,8 +130,9 @@ public class StoryEggMotions : MonoBehaviour {
 		fadeToSceneEgg = true;
 
 		//AUDIO - EGG FALLING
-		audioIntroScript.introEggDropBasketSFX();
-		Debug.Log("AUDIO: Egg falling");
+		//audioIntroScript.introEggFallingSFX();
+		//Debug.Log("AUDIO: Egg falling");
+
 
 	}
 
@@ -144,8 +150,6 @@ public class StoryEggMotions : MonoBehaviour {
 			fallFromTop = false;
 			lerpValue = 0f;
 			hover = true;
-			// AUDIO - FALLING EGG STARTS HOVERING!
-			Debug.Log("AUDIO : here should be an hovering sound ?");
 			iniHoverPos = this.transform.position;
 		}
 	}
@@ -224,12 +228,6 @@ public class StoryEggMotions : MonoBehaviour {
 			fallDown = false;
 			lerpValue = 0f;
 			trailPartSys.Stop();
-		}
-		if(audioEggFallDown){
-			//AUDIO Egg fall down
-			audioIntroScript.introEggDropBasketSFX();
-			Debug.Log("AUDIO: Egg falling down");
-			audioEggFallDown = false;
 		}
 	}
 

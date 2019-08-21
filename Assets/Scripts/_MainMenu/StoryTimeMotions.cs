@@ -62,6 +62,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	[Header ("Audio reference")]
 	public AudioIntro audioIntroScript;
 
+	public bool audioSpin = true;
 
 
 
@@ -139,9 +140,6 @@ public class StoryTimeMotions : MonoBehaviour {
 			botY = currentTime.transform.localPosition.y;
 			topY = topYTrans.localPosition.y;
 			newXMagnitude = Random.Range(newXMagMin, newXMagMax);
-
-			// AUDIO - TIME STARTS HOVERING!
-			//audioIntroScript.introTimeHoverLoopSFX();
 		}
 		if (lerpValue >= 1) {
 			lerpValue = 0;
@@ -200,10 +198,19 @@ public class StoryTimeMotions : MonoBehaviour {
 			rotateAroundValue = Mathf.Lerp(iniRotateAnglePerDur, rotateAnglePerDur, spinAnimCurve.Evaluate(spinLerpValue)) * -1;
 		}
 		currentTime.transform.RotateAround(currentTime.transform.position, Vector3.up, rotateAroundValue * (Time.deltaTime / halfSpinDuration));
+
 		// Checking to change the currentTime bird after a certain amount of spins.
 		if (currentTime.transform.eulerAngles.y <= 90 && spinCountCheck) {
 			spinCount++;
 			spinCountCheck = false;
+
+
+			//TEST SYNC SPIN
+			if(audioSpin)
+			{
+				audioIntroScript.introTimeSpinLoopSFX();
+				Debug.Log("AUDIO : time spin #"+spinCount);
+			}
 		}
 		if (currentTime.transform.eulerAngles.y >= 90 && !spinCountCheck) {
 			spinCountCheck = true;
@@ -290,7 +297,9 @@ public class StoryTimeMotions : MonoBehaviour {
 			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
 			if (lerpValue >= grabOneEgg && storyOneEggScript.theOneEgg.activeSelf == true) {
 				storyOneEggScript.theOneEgg.SetActive(false);
-				// AUDIO - EGG COLLECTED!
+				
+				// // AUDIO - EGG COLLECTED!
+				// audioIntroScript.introEggPopTransformSFX();
 			}
 			if (lerpValue >= 1f) {
 				lerpValue = 0f;

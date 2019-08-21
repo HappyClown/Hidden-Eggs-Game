@@ -13,6 +13,13 @@ public class StoryText : MonoBehaviour {
 	private bool changeText;
 	private int lastTextNum;
 
+
+	public AudioManagerHubMenu audioManHubMenuScript;
+
+	void Start(){
+		if (!audioManHubMenuScript) {audioManHubMenuScript = GameObject.Find("Audio").GetComponent<AudioManagerHubMenu>();}
+	}
+
 	void Update () {
 		if (changeText) {
 			if (fadeCanvasScript.shown) {
@@ -33,11 +40,16 @@ public class StoryText : MonoBehaviour {
 		texts[textNum].gameObject.SetActive(true);
 		parchment.rectTransform.sizeDelta = new Vector2(parchmentWidths[textNum], parchment.rectTransform.sizeDelta.y);
 		fadeCanvasScript.FadeIn();
+
+		//AUDIO Paper sound
+		audioManHubMenuScript.StatPaperSound_on();
+		Debug.Log("AUDIO : paper sound on ");
 	}
 	// Fade out the current text and make the next one fade in.
 	public void ChangeTextFade(int textNum) {
 		lastTextNum = textNum;
 		changeText = true;
+
 	}
 	// Turn off the text instantly.
 	public void TurnTextOff() {

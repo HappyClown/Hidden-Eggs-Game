@@ -59,7 +59,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 				// }
 
 				// AUDIO - EGG APPEARS!
-				//audioLevelCompleteScript.circleEggsSoloSnd();
+				audioLevelCompleteScript.circleEggsSoloSnd();
 
 				myFadeScript.FadeIn();
 				myGlowFadeScript.FadeIn();
@@ -78,7 +78,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					glowMax = true;
 
 				// AUDIO - EGG APPEARS!
-				//audioLevelCompleteScript.circleEggsSoloGoldSnd();
+				audioLevelCompleteScript.circleEggsSoloGoldSnd();
 
 				}
 				// Scene egg fades out.
@@ -90,7 +90,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					white = true;
 					
 				// AUDIO - WHITE EGGS APPEARS!
-					//audioLevelCompleteScript.circleEggsGlowSnd(); //nicer sound but doesnt help the gitching??
+					audioLevelCompleteScript.circleEggsGlowSnd(); //nicer sound but doesnt help the gitching??
 					//audioLevelCompleteScript.circleEggsSoloSilverSnd();	
 				}
 				// Plain egg fades in.
@@ -104,7 +104,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 					plain = true;
 
 				// AUDIO - PLAIN EGGS APPEARS!
-					//audioLevelCompleteScript.circleEggsSoloPlainSnd();
+					audioLevelCompleteScript.circleEggsSoloPlainSnd();
 				}
 				// Shake anim.
 				if (spawnTimer >= shakeDelay && !shakeStarted) {
@@ -126,7 +126,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 
 					//AUDIO EGGS  IN BAG MOUVEMENT?
 					if(!audioMoveToBag){
-						//audioLevelCompleteScript.eggsMoveInBagSnd();
+						audioLevelCompleteScript.eggsMoveInBagSnd();
 						audioMoveToBag = true;
 
 					}
@@ -146,7 +146,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 						levelCompEggCounterScript.eggAmnt++;
 
 						// AUDIO - EGG REACHES BAG!						
-						//audioLevelCompleteScript.eggsCounterSnd();
+						audioLevelCompleteScript.eggsCounterSnd();
 
 
 						//myFadeScript.FadeOut();
@@ -171,7 +171,7 @@ public class LevelCompleteEggMoveSpin : MonoBehaviour {
 							FXSpeedScript.IncreaseSimulationSpeed();
 
 							// //AUDIO particules in bag
-							//audioLevelCompleteScript.particulesInBagSnd();
+							audioLevelCompleteScript.particulesInBagSnd();
 						}
 					}
 				}

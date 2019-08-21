@@ -115,7 +115,7 @@ public class AudioLevelCompleteAnim : MonoBehaviour
         // eggsMoveInBagSound.start();    
     }
         public void bagRumbleSnd(){
-        // bagRumbleSound = FMODUnity.RuntimeManager.CreateInstance(bagRumbleEvent);
+        bagRumbleSound = FMODUnity.RuntimeManager.CreateInstance(bagRumbleEvent);
         // bagRumbleSound.start();    
     }
         public void bagExplodeSnd(){
@@ -123,8 +123,8 @@ public class AudioLevelCompleteAnim : MonoBehaviour
         // bagExplodeSound.start();    
     }
         public void bagHoverSnd(){
-        bagHoverSound = FMODUnity.RuntimeManager.CreateInstance(bagHoverEvent);
-        bagHoverSound.start();    
+        // bagHoverSound = FMODUnity.RuntimeManager.CreateInstance(bagHoverEvent);
+        // bagHoverSound.start();    
     }
         public void congratsTxtSnd(){
         congratsTxtSound = FMODUnity.RuntimeManager.CreateInstance(congratsTxtEvent);

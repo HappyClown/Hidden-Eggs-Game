@@ -24,7 +24,7 @@ public class AudioManagerHubMenu : MonoBehaviour
 
     [Header("Intro Music")]
     [FMODUnity.EventRef]
-    public string introMusicEvent = "event:/Music/MusicScenes/IntroMusic"; 
+    public string introMusicEvent = "event:/Music/MusicScenes/MenuToIntro"; 
     public FMOD.Studio.EventInstance introMusic;
 
     public FMOD.Studio.ParameterInstance Summer;
@@ -115,7 +115,10 @@ public class AudioManagerHubMenu : MonoBehaviour
 
     public FadeInOutTMP fadeInOutStory; //quick fix, find a better system
 
-    public bool audioIntro_ON = false;
+    public bool audioIntro_ON = true;
+
+    public AudioIntro audioIntroScript;
+
     void Start()
     {
         BtnPlay.onClick.AddListener(PlaySound);
@@ -135,16 +138,15 @@ public class AudioManagerHubMenu : MonoBehaviour
 
         //hubMusic.setParameterValue("nbEggsBySeason",nbEggsBySeason); //TEST
 
-        if(!audioIntro_ON){
-        currentMusic = menuMusic;}
-        else{currentMusic = introMusic;}
-
-
         if (!GlobalVariables.globVarScript.toHub) { TransitionMenu(); } else { TransitionHub();}
 
         //---TEST: LOOPS Menu Glow etc
 
         shimyLoopMenuSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_ShimyLoopMenu);
+
+        currentMusic = menuMusic;
+
+        if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
     }
     void Update()
     {
@@ -178,6 +180,8 @@ public class AudioManagerHubMenu : MonoBehaviour
         {
             dissolvingSnd =false;
         }
+
+        //audioIntro_ON = audioIntroScript.audioIntro_on;
     }
 
     ///////////////////
@@ -247,6 +251,12 @@ public class AudioManagerHubMenu : MonoBehaviour
         currentMusic = menuMusic;
     }
 
+    public void PlayIntroMusic()
+    {
+        introMusic.start();
+        currentMusic = introMusic;
+    }
+
     /// ----- MUSIC STOP  -----///
     public void StopMenuMusicFade()
     {
@@ -265,6 +275,7 @@ public class AudioManagerHubMenu : MonoBehaviour
         public void StopIntroMusicFade()
     {
         introMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
     }
 
 
@@ -273,6 +284,14 @@ public class AudioManagerHubMenu : MonoBehaviour
     {
         StopMenuMusicFade(); //stop menu music
         PlayHubMusic(); //start hub music
+        StopIntroMusicFade();
+    }
+
+    public void TransitionIntro()
+    {
+        StopMenuMusicFade(); //stop menu music
+        PlayIntroMusic(); //start intro music
+        StopHubMusicFade(); //stop hub music
     }
 
     public void TransitionMenu()
@@ -307,6 +326,8 @@ public class AudioManagerHubMenu : MonoBehaviour
     {
         nbUnlockedSeasons =1; //return to summer
         ButtonSound();
+        CloudsMoving(); 
+        MapUncover();
         TransitionHub();
     }
 
