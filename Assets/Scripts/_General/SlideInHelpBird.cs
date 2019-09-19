@@ -33,6 +33,7 @@ public class SlideInHelpBird : MonoBehaviour {
 	public LevelTapMannager lvlTapManScript;
 
 	public AudioHelperBird audioHelperBirdScript;
+	public HintManager myHint;
 
 	void Start () {
 		totalDist = Vector2.Distance(hiddenHelpBirdPos.position, shownHelpBirdPos.position);
@@ -123,7 +124,7 @@ public class SlideInHelpBird : MonoBehaviour {
 	#region Methods
 	public void MoveBirdUpDown() {
 		curHelpBirdPos = helpBirdTrans.position;
-		
+		myHint.resetHint = true;
 		if (moveDown || isDown) { // 1 is not necessary since 1 is always the lerp's max value, just there to visualize the rule of three. 
 			if (!isDown) { newDuration = duration * lerpValue / 1; } else { newDuration = duration; } 
 			lerpValue = 0;
