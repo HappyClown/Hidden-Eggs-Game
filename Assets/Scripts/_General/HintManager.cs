@@ -17,6 +17,7 @@ public class HintManager : MonoBehaviour {
 	public featherToGo myDirection;
 	public float minDistanceToPoint, featherMovSpeed;
 	public int turnsToDo, currentTurn, eggsFound;
+	public bool resetHint;
 
 	
 	public AudioHelperBird audioHelperBirdScript;
@@ -25,7 +26,7 @@ public class HintManager : MonoBehaviour {
 		hintAvailable = true;
 		currentTurn = 0;
 		feather.transform.position = featherInitialPos.position;
-
+		resetHint = false;
 		
 		if(!audioHelperBirdScript){audioHelperBirdScript= GameObject.Find("Audio").GetComponent<AudioHelperBird>();}
 	}
@@ -52,6 +53,11 @@ public class HintManager : MonoBehaviour {
 			startHint = false;
 		}
 		if(movingFeather){
+			if(myClickonEggs.eggsFound  > eggsFound || resetHint) {
+					myDirection = featherToGo.exit;
+					currentTurn = 0;
+					resetHint = false;
+			}
 			MoveFeather();
 
 			
@@ -85,11 +91,7 @@ public class HintManager : MonoBehaviour {
 		}
 		switch(myDirection) {
 			case featherToGo.center:
-				if(myClickonEggs.eggsFound  > eggsFound) {
-						myDirection = featherToGo.exit;
-						currentTurn = 0;
-				}
-				else if(Vector2.Distance(feather.transform.position,gameObject.transform.position) > minDistanceToPoint) {
+				if(Vector2.Distance(feather.transform.position,gameObject.transform.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,gameObject.transform.position,Time.deltaTime * featherMovSpeed);
 				}
 				else {
@@ -97,11 +99,7 @@ public class HintManager : MonoBehaviour {
 				}
 			break;
 			case featherToGo.firstPoint:
-				if(myClickonEggs.eggsFound  > eggsFound) {
-						myDirection = featherToGo.exit;
-						currentTurn = 0;
-				}
-				else if(currentTurn == turnsToDo){
+				if(currentTurn == turnsToDo){
 						myDirection = featherToGo.exit;
 						currentTurn = 0;
 				}
@@ -114,11 +112,7 @@ public class HintManager : MonoBehaviour {
 				}
 			break;
 			case featherToGo.secondPoion:
-				if(myClickonEggs.eggsFound  > eggsFound) {
-						myDirection = featherToGo.exit;
-						currentTurn = 0;
-				}
-				else if(Vector2.Distance(feather.transform.position,currentQuadrant.secondPoint.position) > minDistanceToPoint) {
+				if(Vector2.Distance(feather.transform.position,currentQuadrant.secondPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.secondPoint.position,Time.deltaTime * featherMovSpeed);
 				}
 				else {
@@ -126,11 +120,7 @@ public class HintManager : MonoBehaviour {
 				}
 			break;
 			case featherToGo.thirdPoint:
-				if(myClickonEggs.eggsFound  > eggsFound) {
-						myDirection = featherToGo.exit;
-						currentTurn = 0;
-				}
-				else if(Vector2.Distance(feather.transform.position,currentQuadrant.thirdPoint.position) > minDistanceToPoint) {
+				if(Vector2.Distance(feather.transform.position,currentQuadrant.thirdPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.thirdPoint.position,Time.deltaTime * featherMovSpeed);
 				}
 				else {
@@ -138,11 +128,7 @@ public class HintManager : MonoBehaviour {
 				}
 			break;
 			case featherToGo.fourthPoint:
-				if(myClickonEggs.eggsFound  > eggsFound) {
-						myDirection = featherToGo.exit;
-						currentTurn = 0;
-				}
-				else if(Vector2.Distance(feather.transform.position,currentQuadrant.fourthPoint.position) > minDistanceToPoint) {
+				if(Vector2.Distance(feather.transform.position,currentQuadrant.fourthPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.fourthPoint.position,Time.deltaTime * featherMovSpeed);
 				}
 				else {

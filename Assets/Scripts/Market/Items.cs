@@ -16,11 +16,13 @@ public class Items : MonoBehaviour
 	//private float startTime;
 	public float fadeDuration;
 	private SpriteRenderer sprite;
+	public float zPos;
 
 
 	void Start () 
 	{
 		initialPos = this.transform.position;
+		zPos = initialPos.z;
 		inCrate = false;
 		//startTime = Time.time;
 		sprite = this.gameObject.GetComponent<SpriteRenderer>();

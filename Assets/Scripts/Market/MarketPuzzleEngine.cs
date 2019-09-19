@@ -8,6 +8,8 @@ using TMPro;
 public class MarketPuzzleEngine : MainPuzzleEngine {
 	#region MarketPuzzleEngine Script Variables
 	[Header("General")]
+	public List<Items> currentLvlItems;
+	public float maxZPos, ammontZ, currentZPos;
 	public float itemScaleMult;
 	private bool holdingItem;
 	private GameObject heldItem;
@@ -78,6 +80,15 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 						heldItem.transform.parent = itemHolder.transform;
 						heldItem.transform.localScale = heldItem.transform.localScale * itemScaleMult;
 						heldItem.GetComponent<SpriteRenderer>().sprite = heldItem.GetComponent<Items>().item;
+						currentZPos =  heldItem.GetComponent<Items>().zPos;	
+						foreach (Items theItems in currentLvlItems)
+						{
+							if(theItems.zPos < currentZPos)
+							{
+								theItems.zPos += ammontZ;
+								theItems.gameObject.transform.position = new Vector3(theItems.gameObject.transform.position.x,theItems.gameObject.transform.position.y, theItems.zPos);
+							}
+						}					
 
 						if (heldItem == scaleScript.itemOnScale) {
 							scaleScript.isAnItemOnScale = false;
@@ -105,7 +116,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 				heldItemObjX = mousePos.x;
 				heldItemObjY = mousePos.y;
 
-				heldItem.transform.position = new Vector3(heldItemObjX, heldItemObjY, -5f);
+				heldItem.transform.position = new Vector3(heldItemObjX, heldItemObjY, maxZPos);
 			}
 			#endregion
 
@@ -138,7 +149,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 
 					// ON THE TABLE AREA//
 					else if (hits[i].collider.gameObject.CompareTag("Table")) {
-						heldItem.transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
+						heldItem.transform.position = new Vector3(mousePos.x, mousePos.y, maxZPos);
+						heldItem.GetComponent<Items>().zPos = maxZPos;
 						//SFX DROP ON WOOD
 						audioSceneMarketPuz.dropFruitCrate();
 						break;
@@ -147,7 +159,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 					// IN THE CRATE DIRECTLY//
 					else if (hits[i].collider.gameObject.CompareTag("InCrate")) {
 						heldItem.GetComponent<Items>().inCrate = true;
-						heldItem.transform.position = new Vector3(mousePos.x, mousePos.y, -5f);
+						heldItem.transform.position = new Vector3(mousePos.x, mousePos.y, maxZPos);
+						heldItem.GetComponent<Items>().zPos = maxZPos;
 						heldItem.transform.parent = crateParent.transform;
 						curntPounds += heldItem.GetComponent<Items>().weight;
 						curntAmnt += 1;
@@ -159,7 +172,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 					// IN THE CRATE AREA//
 					else if (hits[i].collider.gameObject.CompareTag("Crate")) {
 						heldItem.GetComponent<Items>().inCrate = true;
-						heldItem.transform.position = new Vector3(crateSnapPos.transform.position.x, crateSnapPos.transform.position.y, -5f);
+						heldItem.transform.position = new Vector3(crateSnapPos.transform.position.x, crateSnapPos.transform.position.y, maxZPos);
+						heldItem.GetComponent<Items>().zPos = maxZPos;
 						heldItem.transform.parent = crateParent.transform;
 						curntPounds += heldItem.GetComponent<Items>().weight;
 						curntAmnt += 1;
@@ -247,7 +261,9 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 		resetItemsButtonScript.FillItemResetArray();
 		initialSetupOn = false;
 		crateScript.UpdateRequirements();
-		iniSeqStart = true;
+		iniSeqStart = true;		
+		currentLvlItems.Clear();
+		itemHolder.gameObject.GetComponentsInChildren<Items>(currentLvlItems); 
 	}
 
 	// Level complete, load silver eggs, start crate animation.
@@ -329,6 +345,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 		crateScript.UpdateRequirements();
 		reqParchMoveScript.moveToShown = true;
 		audioSceneMarketPuz.openPanel();
+		currentLvlItems.Clear();
+		itemHolder.gameObject.GetComponentsInChildren<Items>(currentLvlItems); 
 	}
 
 	// Prepare to change level after a level selection button has been pressed.
@@ -361,6 +379,8 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 			audioSceneMarketPuz.openPanel();
 			setupChsnLvl = false;
 			chngLvlTimer = 0;
+			currentLvlItems.Clear();
+			itemHolder.gameObject.GetComponentsInChildren<Items>(currentLvlItems);
 		}
 	}
 	#endregion
