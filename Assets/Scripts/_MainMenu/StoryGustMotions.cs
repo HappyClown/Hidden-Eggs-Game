@@ -12,6 +12,7 @@ public class StoryGustMotions : MonoBehaviour {
 	[Header("X Move")]
 	public AnimationCurve moveInXCurve; 
 	public AnimationCurve moveOutXCurve;
+	public AnimationCurve moveAcrossCurve;
 	[Header("Y Move")]
 	public AnimationCurve moveOutTopYCurve;
 	[Header ("Durations")]

@@ -11,7 +11,8 @@ public class StoryText : MonoBehaviour {
 	public FadeInOutCanvasGroup fadeCanvasScript;
 	//[Header("Change Text Fade")]
 	private bool changeText;
-	private int lastTextNum;
+	public int lastTextNum;
+	public StoryParchment storyParchScript;
 
 
 	public AudioManagerHubMenu audioManHubMenuScript;
@@ -40,6 +41,7 @@ public class StoryText : MonoBehaviour {
 		texts[textNum].gameObject.SetActive(true);
 		parchment.rectTransform.sizeDelta = new Vector2(parchmentWidths[textNum], parchment.rectTransform.sizeDelta.y);
 		fadeCanvasScript.FadeIn();
+		storyParchScript.OpenParchment(parchmentWidths[textNum]);
 
 		//AUDIO Paper sound
 		audioManHubMenuScript.StatPaperSound_on();
