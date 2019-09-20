@@ -45,7 +45,8 @@ public class StoryTimeMotions : MonoBehaviour {
 	public float diveInDuration, diveHoverDuration, diveOutDuration;
 	public AnimationCurve diveInCurve, diveOutCurve;
 	public Transform diveStartTrans, diveMidTrans, diveEndTrans;
-	private bool diveIn, diveOut, diveDelayDone;
+	private bool diveDelayDone;
+	public bool diveIn, diveOut;
 	private float diveHoverLerpValue;
 	public float hoverCircleDur, hoverRandomRadius;
 	private Vector3 circleStartPos, circleEndPos, newPos;
@@ -227,9 +228,9 @@ public class StoryTimeMotions : MonoBehaviour {
 	}
 
 	void TimeDives() {
-		if (!diveIn && !diveHover && !diveOut) {
-			diveIn = true;
-		}
+		// if (!diveIn && !diveHover && !diveOut) {
+		// 	diveIn = true;
+		// }
 		if (diveIn) {
 			lerpValue += Time.deltaTime / diveInDuration;
 			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveMidTrans.position, diveInCurve.Evaluate(lerpValue));
@@ -244,12 +245,14 @@ public class StoryTimeMotions : MonoBehaviour {
 			}
 		}
 		if (diveHover) {
-			lerpValue += Time.deltaTime;
-			if (lerpValue >= diveHoverDuration) {
+			//if (lerpValue <= diveHoverDuration) {
+				//lerpValue += Time.deltaTime;
+			//}
+			if (/* lerpValue >= diveHoverDuration &&  */diveOut) {
 				timePos = currentTime.transform.position;
 				diveHover = false;
-				diveOut = true;
-				lerpValue = 0f;
+				//diveOut = true;
+				//lerpValue = 0f;
 			}
 		}
 		if (diveOut) {

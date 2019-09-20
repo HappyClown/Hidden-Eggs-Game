@@ -22,7 +22,7 @@ public class StoryEggMotions : MonoBehaviour {
 	public AnimationCurve toBotAnimCurve;
 	public float fallDuration, fallEggScale;
 	public List<Transform> fallEggSpawnTrans;
-	private bool fallFromTop, fallDown;
+	private bool fallFromTop, fallDown, fallOffScreen;
 	[Header("Hover")]
 	public AnimationCurve hoverAnimCurve;
 	public float hoverDuration, hoverUpHeight;
@@ -195,13 +195,14 @@ public class StoryEggMotions : MonoBehaviour {
 			newY = hoverAnimCurve.Evaluate(lerpValue) * hoverUpHeight;
 			this.transform.position = new Vector3(this.transform.position.x, iniHoverPos.y + newY, this.transform.position.z);
 			// The egg starts going down from its top hover position. Wether this happens at 0.5 of the lerp or otherwise depends on the AnimationCurves peak.
-			if (lerpValue > 0.5f && hoverAmntNum >= hoverAmnt) {
+			if (lerpValue > 0.5f && fallOffScreen/* hoverAmntNum >= hoverAmnt */) {
 				hover = false;
 				fallDown = true;
 				lerpValue = 0f;
 				hoverAmntNum = 0;
+				fallOffScreen = false;
 				startY = this.transform.position.y;
-				endY = startY - 20f; // Height of the screen to make sur all the eggs go off screen.
+				endY = startY - 20f; // Height of the screen to make sure all the eggs go off screen.
 			}
 		}
 		else {
@@ -221,6 +222,10 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue = 0f;
 			trailPartSys.Stop();
 		}
+	}
+
+	public void FallOffScreen() {
+		fallOffScreen = true;
 	}
 
 	public void Reset() {

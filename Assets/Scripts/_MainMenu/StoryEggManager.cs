@@ -107,6 +107,13 @@ public class StoryEggManager : MonoBehaviour {
 		eggSpawnTimer = 0f;
 	}
 
+	public void EggsFallOffScreen() {
+		foreach (StoryEggMotions storyEgg in storyEggScripts)
+		{
+			storyEgg.FallOffScreen();
+		}
+	}
+
 	public void ResetEggs() {
 		spawnBagEggs = spawnFallingEggs = spawnFallingEggsRandom = false;
 		currentEggNum = 0;
