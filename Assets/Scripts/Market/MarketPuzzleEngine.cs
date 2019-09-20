@@ -63,7 +63,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 			if (chngLvlTimer < setupLvlWaitTime) { chngLvlTimer += Time.deltaTime; }
 
 			// Current level complete.
-			if (curntPounds == crateScript.reqPounds && curntAmnt == crateScript.reqItems) { SilverEggsSetup(); }
+			if (curntPounds == crateScript.reqPounds && curntAmnt == crateScript.reqItems && !holdingItem) { SilverEggsSetup(); }
 
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl, curntLvl); }
 
