@@ -218,7 +218,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	}
 
 	void ChangeSpinTime() {
-		if (spinCount >= 2) {
+		if (spinCount >= 1) {
 			bewilderedTime.transform.position = currentTime.transform.position;
 			bewilderedTime.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 			ChangeCurrentTime(bewilderedTime);
@@ -296,7 +296,7 @@ public class StoryTimeMotions : MonoBehaviour {
 		}
 		if (diveDelayDone) {
 			lerpValue += Time.deltaTime / diveThroughDuration;
-			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
+			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, lerpValue);
 			if (lerpValue >= grabOneEgg && storyOneEggScript.theOneEgg.activeSelf == true) {
 				storyOneEggScript.theOneEgg.SetActive(false);
 

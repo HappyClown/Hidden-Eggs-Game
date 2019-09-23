@@ -195,7 +195,7 @@ public class StoryEggMotions : MonoBehaviour {
 			newY = hoverAnimCurve.Evaluate(lerpValue) * hoverUpHeight;
 			this.transform.position = new Vector3(this.transform.position.x, iniHoverPos.y + newY, this.transform.position.z);
 			// The egg starts going down from its top hover position. Wether this happens at 0.5 of the lerp or otherwise depends on the AnimationCurves peak.
-			if (lerpValue > 0.5f && fallOffScreen/* hoverAmntNum >= hoverAmnt */) {
+			if (/* lerpValue > 0.5f &&  */fallOffScreen/* hoverAmntNum >= hoverAmnt */) {
 				hover = false;
 				fallDown = true;
 				lerpValue = 0f;
