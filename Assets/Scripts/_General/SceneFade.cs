@@ -16,8 +16,11 @@ public class SceneFade : MonoBehaviour
 	private static bool titCardSceneTrans, whtSceneTrans, inTransition;
 	private Image fadeImage;
 	public AnimationCurve animCurve;
+	public SeasonCadres seasonCadresScript;
+	public static SeasonCadres seasonCadresScriptStatic;
 	private static float curveTime;
 	private static float newAlpha;
+	//private List<ParticleSystem> cadreParticles;
 	
 
 	[Header("Title Card")]
@@ -60,10 +63,9 @@ public class SceneFade : MonoBehaviour
 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
 		titleCardImg.color = new Color(titleCardImg.color.r, titleCardImg.color.g, titleCardImg.color.b, 0f);
 		titleCardTxt.color = new Color(titleCardTxt.color.r, titleCardTxt.color.g, titleCardTxt.color.b, titleCardImg.color.a);
+		seasonCadresScriptStatic = seasonCadresScript;
 		audioTransStaticScript = audioTransScript;
 	}
-
-
 
 	void Update () 
 	{
@@ -208,7 +210,6 @@ public class SceneFade : MonoBehaviour
 
 	}
 
-
 	public static void SwitchScene (string sceneName) {
 		if (!inTransition) {
 			inTransition = true;
@@ -216,6 +217,13 @@ public class SceneFade : MonoBehaviour
 			titCardSceneTrans = true;
 			fadeSceneOut = true;
 			sceneToLoad = sceneName;
+			//SeasonCadres sC = new SeasonCadres(GlobalVariables.globVarScript);
+			List<ParticleSystem> ps = new List<ParticleSystem>();
+			ps = seasonCadresScriptStatic.GetCadreParticles(sceneToLoad);
+			foreach (ParticleSystem partSys in ps)
+			{
+				partSys.Play();
+			}
 			if (audioTransStaticScript != null) {
 				audioTransStaticScript.TransitionScenes(sceneName);
 			}
@@ -232,6 +240,12 @@ public class SceneFade : MonoBehaviour
 			if (audioTransStaticScript != null) {
 				audioTransStaticScript.TransitionScenes(sceneName);
 			}
+		}
+	}
+
+	public void ChoseTitleCard() {
+		if (sceneToLoad == GlobalVariables.globVarScript.marketName) {
+
 		}
 	}
 

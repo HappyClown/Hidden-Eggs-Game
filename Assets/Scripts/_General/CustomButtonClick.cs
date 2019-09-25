@@ -17,7 +17,7 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	public LevelFireflies levelFirefliesScript;
 
 	public void OnPointerClick(PointerEventData pointerEventData) {
-		Debug.Log("Button clicked on " + pointerEventData.pointerCurrentRaycast.gameObject.name);
+		// Debug.Log("Button clicked on " + pointerEventData.pointerCurrentRaycast.gameObject.name);
 		// Load proper scene
 		//OpenScene();
 		//Select Level / deselect other levels
@@ -32,7 +32,7 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 			levelFirefliesScript.PlayLevelFireflies();
 		}
 		else {		
-			myZoom.StartZoom(myCenterPoint.position);
+			myZoom.StartZoom(new Vector3(myCenterPoint.position.x, myCenterPoint.position.y, myZoom.myCam.transform.position.z));
 			OpenScene();
 		}
 	}
