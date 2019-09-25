@@ -27,7 +27,7 @@ public class LevelTapMannager : MonoBehaviour {
 	[Header("Camera boudaries (usually 5.9 - 3.3)")]
 	public float maxX;public float maxY;
 	//touching screen detectors
-	private bool touching = false, zooming = false;
+	private bool touching = false, zooming = false, fromZoom = false;
 	//touch variables holders
 	private Touch touchZero, touchOne;
 	[Header("Camera Min Ortho Size (usually 7.5)")]
@@ -68,7 +68,7 @@ public class LevelTapMannager : MonoBehaviour {
 		if(doubleTapped){
 			DoubleTap();
 		}
-		else if (myInput.singleTap){
+		else if (myInput.singleTap && !zooming && !fromZoom){
 			if(myInput.DoubleTapped){
 				touchZero.position = myInput.TapPosition;
 				DoubleTap();
@@ -81,7 +81,12 @@ public class LevelTapMannager : MonoBehaviour {
 		else if (Input.touchCount == 2 /*&& myInput.isPhoneDevice*/) { 
 			//activate the zoom function
 			PinchCamZoom(); 
+			fromZoom = true;
 		}else{
+			if(Input.touchCount == 1){
+				fromZoom = false;
+				myInput.startDragTouch = Input.touches[0].position;
+			}
 			//reset values when the player is not doing two contacts
 			zooming = false;
 			currentDeltaDif = 0;

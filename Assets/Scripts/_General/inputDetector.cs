@@ -193,7 +193,7 @@ public class inputDetector : MonoBehaviour {
 			if(Input.touchCount == 1 && isPhoneDevice){
 				singleTap = true;
 				if(Input.touches[0].phase == TouchPhase.Began){
-					startDragTouch = Input.touches[0].position;
+					startDragTouch = Input.touches[0].position;					
 					dragStarted = true;
 				}
 				else{
