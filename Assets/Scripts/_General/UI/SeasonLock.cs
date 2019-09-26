@@ -95,8 +95,8 @@ public class SeasonLock : MonoBehaviour {
 				if (lastEggVal <= newEggVal) {
 					lerpEggAmnt = false;
 					lastEggVal = newEggVal;
-					SaveNewLastEggVal();
 					multiReqSparkFX.Play();
+					SaveNewLastEggVal();
 					if (lastEggVal <= 0) {
 						startLockAnimDelay = true;
 					}
@@ -114,6 +114,8 @@ public class SeasonLock : MonoBehaviour {
 					FadeOutBanner();
 					startLockAnimDelay = false;
 					locked = false;
+					SaveNewLastEggVal();
+					Debug.Log("this is where it saves really this time; " + Time.time);
 				}
 			}
 			// Enable the level glows, buttons, etc.
@@ -212,9 +214,13 @@ public class SeasonLock : MonoBehaviour {
 	}
 
 	void SaveNewLastEggVal() {
+		
+		Debug.Log(locked);
 		GlobalVariables.globVarScript.lastEggTotVal = newEggVal;
 		GlobalVariables.globVarScript.fallLocked = locked;
+		Debug.Log(GlobalVariables.globVarScript.fallLocked);
 		GeneralSaveLoadManager.SaveGeneralData(GlobalVariables.globVarScript);
+		Debug.Log("after save cigaret");
 	}
 
 	public void ScaleDownGroup() {

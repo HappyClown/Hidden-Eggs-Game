@@ -5,9 +5,9 @@ using UnityEngine;
 public class SeasonCadres : MonoBehaviour {
 	public List<ParticleSystem> summerCadreParticles, fallCadreParticles, winterCadreParticles, springCadreParticles;
 	private List<ParticleSystem> cadreParticles;
-	private string seasonName;
+	//private string seasonName;
 	public Dictionary<string, List<ParticleSystem>> sceneStuff = new Dictionary<string, List<ParticleSystem>>();
-	public GlobalVariables globoVaro;
+	//public GlobalVariables globoVaro;
 	// public string SeasonName
 	// {
 	// 	get

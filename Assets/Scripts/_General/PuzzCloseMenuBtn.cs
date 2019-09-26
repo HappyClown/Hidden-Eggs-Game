@@ -20,6 +20,6 @@ public class PuzzCloseMenuBtn : MonoBehaviour {
 		menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOff;
 	}
 	void closePuzzleMenu () {
-		menuStatesScript.puzzleConfStates = MenuStatesManager.PuzzleConfStates.TurnOff;
+		menuStatesScript.puzzleConfStates = MenuStatesManager.MenuStates.TurnOff;
 	}
 }

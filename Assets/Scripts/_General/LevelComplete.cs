@@ -58,6 +58,7 @@ public class LevelComplete : MonoBehaviour
 			// In a sequence.
 			ClickOnEggs.inASequence = true;
 			waitingToStartSeq = false;
+			clickOnEggsScript.menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOff;
 			//endLvlBtn.interactable = false;
 			sceneTapEnabScript.canTapEggRidPanPuz = false;
 			sceneTapEnabScript.canTapHelpBird = false;
