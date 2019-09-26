@@ -30804,7 +30804,7 @@ MonoBehaviour:
   - {fileID: 663109048}
   lockDropDownPanel: 0
   openEggPanel: 0
-  totalEggsFound: 30
+  totalEggsFound: 0
   eggsNeeded: 30
   silverEggsFound: 0
   levelComplete: 0
@@ -52405,6 +52405,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4460020279528440, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.257488
@@ -52460,7 +52465,7 @@ Prefab:
     - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
         type: 2}
       propertyPath: panningSpeed
-      value: 15
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114880766594209746, guid: 1c6fe55fc8fad14448c072ce3f013912,
         type: 2}
@@ -52476,6 +52481,41 @@ Prefab:
         type: 2}
       propertyPath: maxCameraSize
       value: 10.789
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomDuration
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475228114338486, guid: 1c6fe55fc8fad14448c072ce3f013912,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[0].outSlope
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1c6fe55fc8fad14448c072ce3f013912, type: 2}
@@ -68032,6 +68072,36 @@ Prefab:
       propertyPath: button
       value: 
       objectReference: {fileID: 680430458}
+    - target: {fileID: 224939892253603260, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224876022813275470, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224876022813275470, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333144679082722, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333144679082722, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_Value
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333144679082722, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_MinValue
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d6502d86b4b4714f882706c8fa59669, type: 2}
   m_IsPrefabParent: 0
@@ -68370,6 +68440,13 @@ MonoBehaviour:
   dTapZoomSpeed: 5
   camMovSpeed: 2
   camZoomSpeed: 50
+  camZoomDuration: 0
+  camZoomCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   maxX: 5.9
   maxY: 3.3
   minCameraSize: 7.5

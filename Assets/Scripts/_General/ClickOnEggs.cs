@@ -148,7 +148,7 @@ public class ClickOnEggs : MonoBehaviour {
 					if (hit.collider.CompareTag("Puzzle")) {
 						if(GlobalVariables.globVarScript.puzzIntroDone){
 							menuStatesScript.puzzleConfActive = true;
-							menuStatesScript.puzzleConfStates = MenuStatesManager.PuzzleConfStates.TurnOn;
+							menuStatesScript.puzzleConfStates = MenuStatesManager.MenuStates.TurnOn;
 							
 						}else{
 							LoadPuzzle();

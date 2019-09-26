@@ -33437,6 +33437,31 @@ Prefab:
       propertyPath: myTap
       value: 
       objectReference: {fileID: 1777778272}
+    - target: {fileID: 224939892253603260, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224876022813275470, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224876022813275470, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333144679082722, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_MaxValue
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333144679082722, guid: 3d6502d86b4b4714f882706c8fa59669,
+        type: 2}
+      propertyPath: m_Value
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d6502d86b4b4714f882706c8fa59669, type: 2}
   m_IsPrefabParent: 0
@@ -67255,6 +67280,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114727432118636400, guid: 090bd951039ce9540accaf0b30f67d74,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4110108882258198, guid: 090bd951039ce9540accaf0b30f67d74, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.257488
@@ -67310,12 +67340,37 @@ Prefab:
     - target: {fileID: 114727432118636400, guid: 090bd951039ce9540accaf0b30f67d74,
         type: 2}
       propertyPath: panningSpeed
-      value: 15
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114912383229379326, guid: 090bd951039ce9540accaf0b30f67d74,
         type: 2}
       propertyPath: draggingDeathzone
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114727432118636400, guid: 090bd951039ce9540accaf0b30f67d74,
+        type: 2}
+      propertyPath: camZoomDuration
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114727432118636400, guid: 090bd951039ce9540accaf0b30f67d74,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114727432118636400, guid: 090bd951039ce9540accaf0b30f67d74,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114727432118636400, guid: 090bd951039ce9540accaf0b30f67d74,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114727432118636400, guid: 090bd951039ce9540accaf0b30f67d74,
+        type: 2}
+      propertyPath: camZoomCurve.m_Curve.Array.data[1].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 090bd951039ce9540accaf0b30f67d74, type: 2}
