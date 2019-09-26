@@ -26,6 +26,7 @@ public class StoryIntro : MonoBehaviour {
 	private bool enableRaycasting;
 	private float tapTime;
 	private bool exitingBoard;
+	public bool nextBtnPressed;
 	[Header("StoryBoard Events")]
 	public List<float> onceUponATimeEvents;
 	public List<float> timeFlyingEvents, gustEvents, theAccidentEvents, gustsMishapEvents, timeConfusedEvents, eggsFallingEvents, timeToTheRescueEvents, theOneEggEvents, theQuestEvents;
@@ -138,14 +139,15 @@ public class StoryIntro : MonoBehaviour {
 		}
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[3] && !boardBools[3]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[3] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[4] && !boardBools[4] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[4] && !boardBools[4] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[4] = true;
 		}
 		if (exitingBoard) {
@@ -183,14 +185,15 @@ public class StoryIntro : MonoBehaviour {
 		}
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[1] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[2] && !boardBools[2] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[2] && !boardBools[2] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[2] = true;
 		}
 		if (exitingBoard) {
@@ -246,14 +249,15 @@ public class StoryIntro : MonoBehaviour {
 		}
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[3] = true;
 		}
 		if (exitingBoard) {
@@ -309,14 +313,15 @@ public class StoryIntro : MonoBehaviour {
 		}
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[1] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[2] && !boardBools[2] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[2] && !boardBools[2] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[2] = true;
 		}
 		if (exitingBoard) {
@@ -399,14 +404,15 @@ public class StoryIntro : MonoBehaviour {
 		}		
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[3] = true;
 		}
 		if (exitingBoard) {
@@ -488,14 +494,15 @@ public class StoryIntro : MonoBehaviour {
 		}		
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[3] = true;
 		}
 		if (exitingBoard) {
@@ -566,14 +573,15 @@ public class StoryIntro : MonoBehaviour {
 		}		
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[3] = true;
 		}
 		if (exitingBoard) {
@@ -641,14 +649,15 @@ public class StoryIntro : MonoBehaviour {
 		// }
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[3] = true;
 		}
 		if (exitingBoard) {
@@ -816,14 +825,15 @@ public class StoryIntro : MonoBehaviour {
 		}		
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[4] && !boardBools[4]) {
-			storyIconsScript.ShowNextIcon();
+			storyIconsScript.ShowNextButton();
 			boardBools[4] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[5] && !boardBools[5] && inputDetScript.Tapped) {
-			storyIconsScript.HideNextIcon();
+		if (boardTimer >= boardEvents[5] && !boardBools[5] && nextBtnPressed) {
+			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
+			nextBtnPressed = false;
 			boardBools[5] = true;
 		}
 		if (exitingBoard) {
