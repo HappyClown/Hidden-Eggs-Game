@@ -11,6 +11,10 @@ public class StoryIcons : MonoBehaviour {
 	private float timer;
 	private float startScale, targetScale, newScale;
 
+	[Header ("Button version")]
+	public FadeInOutCanvasGroup btnCGFadeScript;
+
+
 	void Update () {
 		if (scaling) {
 			timer += Time.deltaTime / duration;
@@ -47,7 +51,15 @@ public class StoryIcons : MonoBehaviour {
 		targetScale = maxScale;
 	}
 
+	public void ShowNextButton() {
+		btnCGFadeScript.FadeIn();
+	}
+
 	public void HideNextIcon() {
 		nextIconFadeScript.FadeOut();
+	}
+
+	public void HideNextButton() {
+		btnCGFadeScript.FadeOut();
 	}
 }

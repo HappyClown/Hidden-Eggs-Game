@@ -2,14 +2,13 @@
 [LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=11008 (96768), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=8, nSamplesPerSec=48000, nAvgBytesPerSec=1536000, nBlockAlign=32, wBitsPerSample=32, cbSize=22.
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x0000063F, SubFormat=00000003-0000-0010-8000-00AA00389B71.
-[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
-[LOG] DownMix::init                            : dspbuffersize: 1024  rate: 48000. output speaker mode: 7, input speaker mode 3
-[LOG] DownMix::init                            : done.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=44100, nAvgBytesPerSec=352800, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
+[LOG] OutputWASAPI::init                       : Output buffer size: 3760 samples, latency: 0.00ms, period: 10.16ms, DSP buffer: 1024 * 4
+[WRN] SystemI::init                            : Output requires a sample rate of 44100Hz, resampling will occur.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 0000000086FFCEC8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 0000000071D94958 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -17,453 +16,544 @@
 [LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
-[LOG] SoundI::release                          : Section2_BassHarp (00000000860F1D38)
-[LOG] SoundI::release                          :     Section2_BassHarp (0000000085ACD588)
-[LOG] SoundI::release                          :     Section2_BassHarp (000000000EAD1F98)
-[LOG] SoundI::release                          : Section2_Pad (00000000860F1B88)
-[LOG] SoundI::release                          :     Section2_Pad (0000000085ACF948)
-[LOG] SoundI::release                          :     Section2_Pad (000000000EAD1578)
-[LOG] SoundI::release                          : Section2_MeloHarp (00000000860F19D8)
-[LOG] SoundI::release                          :     Section2_MeloHarp (0000000085AD1EA8)
-[LOG] SoundI::release                          :     Section2_MeloHarp (000000000EAD0B58)
-[LOG] SoundI::release                          : Section2_Violons (00000000860F1828)
-[LOG] SoundI::release                          :     Section2_Violons (0000000085ACE908)
-[LOG] SoundI::release                          :     Section2_Violons (000000000EAD07F8)
-[LOG] SoundI::release                          : Cymb2 (00000000860F1678)
-[LOG] SoundI::release                          :     Cymb2 (0000000085AD1D08)
-[LOG] SoundI::release                          :     Cymb2 (00000000860F25A8)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
-[LOG] SoundI::release                          : Cymb3 (00000000860F2098)
-[LOG] SoundI::release                          :     Cymb3 (0000000085ACF7A8)
-[LOG] SoundI::release                          :     Cymb3 (000000000EAD24A8)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
 [LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 000000000EAD1F98 : node = 0000000011C62F20
-[LOG] SystemI::createSound                     : add node to async list : head = 0000000070953648.  list count = 0
+[LOG] SystemI::createSound                     : setdata soundi = 0000000071B9CE78 : node = 0000000071B9E780
+[LOG] SystemI::createSound                     : add node to async list : head = 0000000071CA8DD8.  list count = 0
 [LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000EAD1F98
-[LOG] SystemI::createSound                     : setdata soundi = 000000000EAD07F8 : node = 0000000011C64570
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9CE78
+[LOG] SystemI::createSound                     : setdata soundi = 0000000071B9D028 : node = 0000000071B9E8D0
 [LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000070953648.  list count = 0
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000000071CA8DD8.  list count = 0
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000011C63038
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9E898
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSound                     :     filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 13982
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     :     setdata soundi = 000000000EAD13C8 : node = 0000000011C62740
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000070953648.  list count = 1
-[LOG] SystemI::createSound                     :     filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     :     setdata soundi = 000000000EAD24A8 : node = 0000000011C629E0
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000070953648.  list count = 2
-[LOG] SystemI::createSound                     :     filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     :     setdata soundi = 000000000EAD1578 : node = 0000000011C63070
-[LOG] SystemI::createSound                     :     add node to async list : head = 0000000070953648.  list count = 3
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Section1_MeloHarp', format=2, channels=2, frequency=48000, lengthbytes=177792, lengthpcm=1010625, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.037079.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000EAD1F98
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000EAD07F8
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='cymb_midi', format=2, channels=1, frequency=48000, lengthbytes=123136, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.267609.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9CE78
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9D028
 [LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000011C64688
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9E9E8
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 9602
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Section1_BassHarp', format=2, channels=2, frequency=48000, lengthbytes=223584, lengthpcm=1010625, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.024506.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000EAD07F8
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000EAD13C8
-[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000011C62858
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Section1_BassCello', format=2, channels=2, frequency=48000, lengthbytes=228672, lengthpcm=1010625, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.012299.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000EAD13C8
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000EAD24A8
-[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000011C62AF8
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Section1_Pad', format=2, channels=2, frequency=48000, lengthbytes=245600, lengthpcm=1010625, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.013397.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000EAD24A8
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000EAD1578
-[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000011C63188
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Section1_Violons', format=2, channels=2, frequency=48000, lengthbytes=229408, lengthpcm=1010625, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.034119.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000EAD1578
-[LOG] SoundI::getSubSound                      : sound 000000000EAD1F98.  Subsound index 0 / 1
-[LOG] SoundI::getSubSound                      : sound 000000000EAD07F8.  Subsound index 0 / 1
-[LOG] SoundI::getSubSound                      : sound 000000000EAD13C8.  Subsound index 0 / 1
-[LOG] SoundI::getSubSound                      : sound 000000000EAD24A8.  Subsound index 0 / 1
-[LOG] SoundI::getSubSound                      : sound 000000000EAD1578.  Subsound index 0 / 1
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000EAD1728
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000EAD1728
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000000EAD0B58
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000000EAD0B58
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000007088D748
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000007088D748
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000007088DAA8
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000007088DAA8
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000007088D598
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000007088D598
-[LOG] SoundI::release                          : Section1_BassHarp (00000000860F2248)
-[LOG] SoundI::release                          :     Section1_BassHarp (0000000085ACD8C8)
-[LOG] SoundI::release                          :     Section1_BassHarp (000000000EAD18D8)
-[LOG] SoundI::release                          : Section1_MeloHarp (00000000860F1EE8)
-[LOG] SoundI::release                          :     Section1_MeloHarp (0000000085ACD728)
-[LOG] SoundI::release                          :     Section1_MeloHarp (000000000EAD0D08)
-[LOG] SoundI::release                          : Section1_Pad (00000000860F14C8)
-[LOG] SoundI::release                          :     Section1_Pad (0000000085ACD248)
-[LOG] SoundI::release                          :     Section1_Pad (00000000860F23F8)
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='RAIN_3', format=2, channels=2, frequency=48000, lengthbytes=129184, lengthpcm=1083350, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.003693.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9D028
+[LOG] SoundI::getSubSound                      : sound 0000000071B9CE78.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 0000000071B9D028.  Subsound index 0 / 1
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
-[LOG] SoundI::release                          :  (0000000086165698)
-[LOG] SoundI::release                          :     Notes_harp_07 (0000000085AD0648)
-[LOG] SoundI::release                          :  (0000000070931308)
-[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (2) (0000000086EAAFF8)
-[LOG] SoundI::release                          :  (00000000861646C8)
-[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (3) (0000000085AD0CC8)
-[LOG] SoundI::release                          :  (0000000086162E58)
-[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (4) (0000000085AD07E8)
-[LOG] SoundI::release                          :  (000000009627CEB8)
-[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (5) (0000000086EA8A98)
-[LOG] SoundI::release                          :  (000000007092FEE8)
-[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (0000000086EAE3F8)
-[LOG] SoundI::release                          :  (000000009627D8C8)
-[LOG] SoundI::release                          :     Notes_harp_06 (0000000086EA7F38)
-[LOG] SoundI::release                          :  (000000009627AF18)
-[LOG] SoundI::release                          :     babybongo_roll_02 (0000000070760C78)
-[LOG] SoundI::release                          :  (000000006FD5F168)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highD (000000007075FDD8)
-[LOG] SoundI::release                          :  (000000009627DA38)
-[LOG] SoundI::release                          :     Notes_harp_11 (0000000086EAA498)
-[LOG] SoundI::release                          :  (0000000096278C98)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highE (0000000070762B58)
-[LOG] SoundI::release                          :  (0000000096279DD8)
-[LOG] SoundI::release                          :     fruitBasket_click_1 (0000000086EA88F8)
-[LOG] SoundI::release                          :  (00000000861632A8)
-[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (2) (0000000085AD0B28)
-[LOG] SoundI::release                          :  (00000000861650D8)
-[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (3) (0000000085AD14E8)
-[LOG] SoundI::release                          :  (000000009627D028)
-[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (4) (0000000086EAC1D8)
-[LOG] SoundI::release                          :  (000000009627AAC8)
-[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (0000000086EAA2F8)
-[LOG] SoundI::release                          :  (000000007092E0B8)
-[LOG] SoundI::release                          :     Dolphin (0000000085AD04A8)
-[LOG] SoundI::release                          :  (000000009627DE88)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highG (0000000086EA8418)
-[LOG] SoundI::release                          :  (00000000962793C8)
-[LOG] SoundI::release                          :     Notes_harp_09 (0000000086EA9E18)
-[LOG] SoundI::release                          :  (0000000086163588)
-[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (2) (0000000085ACFFC8)
-[LOG] SoundI::release                          :  (0000000070931028)
-[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (3) (0000000085ACFE28)
-[LOG] SoundI::release                          :  (0000000096278F78)
-[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (4) (0000000070761E58)
-[LOG] SoundI::release                          :  (0000000096279F48)
-[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (5) (0000000070760458)
-[LOG] SoundI::release                          :  (000000009627BA98)
-[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (6) (0000000070760118)
-[LOG] SoundI::release                          :  (000000009627A228)
-[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (0000000070761498)
-[LOG] SoundI::release                          :  (0000000086161E88)
-[LOG] SoundI::release                          :     FOT_SFX_Egg_trail_reverse (0000000085AD2868)
-[LOG] SoundI::release                          :  (0000000070931758)
-[LOG] SoundI::release                          :     Notes_harp_05 (0000000085ACF128)
-[LOG] SoundI::release                          :  (000000009627FCB8)
-[LOG] SoundI::release                          :     CIN_flutecollision (0000000086EAACB8)
-[LOG] SoundI::release                          :  (0000000086162CE8)
-[LOG] SoundI::release                          :     CIN_MeloCollision (0000000085AD3228)
-[LOG] SoundI::release                          :  (000000007092F368)
-[LOG] SoundI::release                          :     Notes_harp_01 (0000000086EADF18)
-[LOG] SoundI::release                          :  (0000000086162728)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_G (0000000085ACDF48)
-[LOG] SoundI::release                          :  (0000000086163B48)
-[LOG] SoundI::release                          :     SFX_CheersChilds (0000000085AD11A8)
-[LOG] SoundI::release                          :  (0000000086161D18)
-[LOG] SoundI::release                          :     SFX_CheersDucks_v1_test (0000000085AD0168)
-[LOG] SoundI::release                          :  (0000000096278848)
-[LOG] SoundI::release                          :     Stinger_congrats_G_v2 (0000000086EAB4D8)
-[LOG] SoundI::release                          :  (00000000861636F8)
-[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (2) (0000000085AD1348)
-[LOG] SoundI::release                          :  (000000009627B648)
-[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (4) (0000000086EA8F78)
-[LOG] SoundI::release                          :  (0000000086163138)
-[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (0000000085AD26C8)
-[LOG] SoundI::release                          :  (000000007092DF48)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highB (0000000085AD2048)
-[LOG] SoundI::release                          :  (000000007092EAC8)
-[LOG] SoundI::release                          :     Orca (0000000086EAE598)
-[LOG] SoundI::release                          :  (000000009627CA68)
-[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 (0000000086EAD078)
-[LOG] SoundI::release                          :  (0000000070931478)
-[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (2) (0000000086EACB98)
-[LOG] SoundI::release                          :  (000000009627D198)
-[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (3) (0000000070762CF8)
-[LOG] SoundI::release                          :  (000000009627CBD8)
-[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (5) (0000000070761978)
-[LOG] SoundI::release                          :  (000000009627D478)
-[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (0000000086EA9FB8)
-[LOG] SoundI::release                          :  (000000009627B7B8)
-[LOG] SoundI::release                          :     FOT_SFX_Map (0000000086EA8278)
-[LOG] SoundI::release                          :  (0000000086161FF8)
-[LOG] SoundI::release                          :     Stinger_congrats_G_v1 (0000000085ACF608)
-[LOG] SoundI::release                          :  (00000000861639D8)
-[LOG] SoundI::release                          :     lock_shakeAccelere (0000000085ACF2C8)
-[LOG] SoundI::release                          :  (0000000070930788)
-[LOG] SoundI::release                          :     Notes_harp_08 (0000000086EADBD8)
-[LOG] SoundI::release                          :  (0000000096278E08)
-[LOG] SoundI::release                          :     BubblePop1 (00000000707624D8)
-[LOG] SoundI::release                          :  (000000009627A7E8)
-[LOG] SoundI::release                          :     BubblePop2 (0000000086EA9798)
-[LOG] SoundI::release                          :  (00000000709318C8)
-[LOG] SoundI::release                          :     BubblePop3 (0000000085AD2BA8)
-[LOG] SoundI::release                          :  (00000000861622D8)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_D (0000000085AD33C8)
-[LOG] SoundI::release                          :  (0000000086162168)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_E (0000000085ACD3E8)
-[LOG] SoundI::release                          :  (0000000070930BD8)
-[LOG] SoundI::release                          :     scale_plate_creak_1 (0000000086EABCF8)
-[LOG] SoundI::release                          :  (000000009627F6F8)
-[LOG] SoundI::release                          :     scale_plate_creak_2 (0000000086EA95F8)
-[LOG] SoundI::release                          :  (000000009627F418)
-[LOG] SoundI::release                          :     Whale (0000000086EAA7D8)
-[LOG] SoundI::release                          :  (000000006FD60CB8)
-[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (2) (0000000070763038)
-[LOG] SoundI::release                          :  (00000000962796A8)
-[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (3) (00000000707617D8)
-[LOG] SoundI::release                          :  (0000000086162448)
-[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (4) (0000000085AD0E68)
-[LOG] SoundI::release                          :  (0000000086165248)
-[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (0000000085AD1B68)
-[LOG] SoundI::release                          :  (0000000086164F68)
-[LOG] SoundI::release                          :     fail (0000000085ACE288)
-[LOG] SoundI::release                          :  (0000000086164108)
-[LOG] SoundI::release                          :     Notes_harp_10 (0000000085AD21E8)
-[LOG] SoundI::release                          :  (000000009627B1F8)
-[LOG] SoundI::release                          :     Harp_strum_Beach_GM (0000000086EACED8)
-[LOG] SoundI::release                          :  (00000000861643E8)
-[LOG] SoundI::release                          :     trumpets_Beach_GM (0000000085AD1828)
-[LOG] SoundI::release                          :  (000000007092EF18)
-[LOG] SoundI::release                          :     Harp_Chord_Beach_GM (0000000086EAEC18)
-[LOG] SoundI::release                          :  (000000000EBD7EC8)
-[LOG] SoundI::release                          :     Notes_harp_03 (0000000085ACE428)
-[LOG] SoundI::release                          :  (000000009627B368)
-[LOG] SoundI::release                          :     FOT_SFX_UI_MenuOeufs (00000000707629B8)
-[LOG] SoundI::release                          :  (0000000086162A08)
-[LOG] SoundI::release                          :     tile_rotate_1 - Trimmed (0000000085AD2528)
-[LOG] SoundI::release                          :  (000000007092FD78)
-[LOG] SoundI::release                          :     tile_rotate_2 - Trimmed (0000000086EAE738)
-[LOG] SoundI::release                          :  (0000000086163CB8)
-[LOG] SoundI::release                          :     tile_rotate_3 - Trimmed (0000000085ACFC88)
-[LOG] SoundI::release                          :  (0000000070931198)
-[LOG] SoundI::release                          :     tile_rotate_4 - Trimmed (0000000085AD3088)
-[LOG] SoundI::release                          :  (00000000709308F8)
-[LOG] SoundI::release                          :     tile_rotate_5 - Trimmed (0000000086EAE8D8)
-[LOG] SoundI::release                          :  (000000009627B088)
-[LOG] SoundI::release                          :     lock_clik (0000000070760E18)
-[LOG] SoundI::release                          :  (000000007092DDD8)
-[LOG] SoundI::release                          :     CIN_GustFly_01 (0000000085AD2A08)
-[LOG] SoundI::release                          :  (0000000070930D48)
-[LOG] SoundI::release                          :     perc_frozen_bird (0000000086EAEDB8)
-[LOG] SoundI::release                          :  (000000009627CD48)
-[LOG] SoundI::release                          :     SwooshMelo (0000000086EA8DD8)
-[LOG] SoundI::release                          :  (00000000861625B8)
-[LOG] SoundI::release                          :     Wave (0000000085AD2D48)
-[LOG] SoundI::release                          :  (0000000086165528)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highA (0000000085AD2EE8)
-[LOG] SoundI::release                          :  (0000000086164558)
-[LOG] SoundI::release                          :     CIN_CymbCollision (0000000085ACD0A8)
-[LOG] SoundI::release                          :  (000000009627C338)
-[LOG] SoundI::release                          :     Notes_harp_02 (0000000086EAD218)
-[LOG] SoundI::release                          :  (000000006FD5FB78)
-[LOG] SoundI::release                          :     Frog (00000000707612F8)
-[LOG] SoundI::release                          :  (0000000096279C68)
-[LOG] SoundI::release                          :     Bottle Rocket-SoundBible.com-332895117 (0000000070762678)
-[LOG] SoundI::release                          :  (0000000096278B28)
-[LOG] SoundI::release                          :     harp_ui_button_2 (0000000086EA9938)
-[LOG] SoundI::release                          :  (000000009627C1C8)
-[LOG] SoundI::release                          :     Walrus (0000000086EA9AD8)
-[LOG] SoundI::release                          :  (000000007092E228)
-[LOG] SoundI::release                          :     FOT_SFX_fruits2 (0000000086EA7238)
-[LOG] SoundI::release                          :  (000000009627A958)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_A (00000000707605F8)
-[LOG] SoundI::release                          :  (000000009627FB48)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highF (0000000086EAA978)
-[LOG] SoundI::release                          :  (000000009627BC08)
-[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 - Trimmed (2) (0000000086EAB338)
-[LOG] SoundI::release                          :  (000000009627A0B8)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_C (0000000070762818)
-[LOG] SoundI::release                          :  (0000000096279818)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_B (00000000707631D8)
-[LOG] SoundI::release                          :  (0000000086162B78)
-[LOG] SoundI::release                          :     Stinger_congrats_G_v3_harps (0000000085AD0308)
-[LOG] SoundI::release                          :  (000000009627D5E8)
-[LOG] SoundI::release                          :     Boat (0000000086EA9458)
-[LOG] SoundI::release                          :  (000000009627E168)
-[LOG] SoundI::release                          :     crate_slide_multiple - Trimmed (2) (0000000086EAD558)
-[LOG] SoundI::release                          :  (000000009627DFF8)
-[LOG] SoundI::release                          :     FOT_SFX_chimy_random (0000000086EAAE58)
-[LOG] SoundI::release                          :  (000000009627ADA8)
-[LOG] SoundI::release                          :     Bubbles1 (0000000086EA9118)
-[LOG] SoundI::release                          :  (000000007092E678)
-[LOG] SoundI::release                          :     Bubbles2 (0000000086EA80D8)
-[LOG] SoundI::release                          :  (00000000861649A8)
-[LOG] SoundI::release                          :     Park_section2_glock - Trimmed (0000000085AD3708)
-[LOG] SoundI::release                          :  (000000007092F088)
-[LOG] SoundI::release                          :     Park_section2_glock - Trimmed (2) (0000000086EAB9B8)
-[LOG] SoundI::release                          :  (0000000086162FC8)
-[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highC (0000000085AD2388)
-[LOG] SoundI::release                          :  (00000000709304A8)
-[LOG] SoundI::release                          :     crate_slide_multiple - Trimmed (0000000086EAB818)
-[LOG] SoundI::release                          :  (000000009627C788)
-[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 - Trimmed (0000000070760938)
-[LOG] SoundI::release                          :  (0000000096279258)
-[LOG] SoundI::release                          :     FOT_SFX_fruits (0000000070760798)
-[LOG] SoundI::release                          :  (0000000070931A38)
-[LOG] SoundI::release                          :     Seal (0000000086EAC9F8)
-[LOG] SoundI::release                          :  (000000009627D758)
-[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (2) (0000000086EAD3B8)
-[LOG] SoundI::release                          :  (000000009627C618)
-[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (000000007075FF78)
-[LOG] SoundI::release                          :  (000000007092E7E8)
-[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (5) (0000000086EAC6B8)
-[LOG] SoundI::release                          :  (000000007092FA98)
-[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (4) (0000000086EAB678)
-[LOG] SoundI::release                          :  (000000009627A508)
-[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (3) (0000000086EA78B8)
-[LOG] SoundI::release                          :  (000000007092F4D8)
-[LOG] SoundI::release                          :     Intro_orchestral_violins - Trimmed (2) (0000000086EAE258)
-[LOG] SoundI::release                          :  (000000009627A678)
-[LOG] SoundI::release                          :     Intro_orchestral_violins - Trimmed (3) (0000000070760FB8)
-[LOG] SoundI::release                          :  (000000007092EC38)
-[LOG] SoundI::release                          :     Intro_orchestral_cellos - Trimmed (3) (0000000086EA7718)
-[LOG] SoundI::release                          :  (0000000070930338)
-[LOG] SoundI::release                          :     Intro_orchestral_cellos - Trimmed (0000000086EADA38)
-[LOG] SoundI::release                          :  (0000000096279538)
-[LOG] SoundI::release                          :     Intro_orchestral_violas - Trimmed (2) (0000000086EA85B8)
-[LOG] SoundI::release                          :  (000000009627EE58)
-[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (2) (0000000086EA8C38)
-[LOG] SoundI::release                          :  (000000009627D308)
-[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (0000000070762198)
-[LOG] SoundI::release                          :  (000000007092EDA8)
-[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (4) (0000000086EAC038)
-[LOG] SoundI::release                          :  (000000006FD5EFF8)
-[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (3) (0000000070762338)
-[LOG] SoundI::release                          :  (0000000086164278)
-[LOG] SoundI::release                          :     59285__transitking__needledrop01 (0000000085AD1008)
-[LOG] SoundI::release                          :  (000000009627AC38)
-[LOG] SoundI::release                          :     harp_ui_button_1 (0000000070761638)
-[LOG] SoundI::release                          :  (000000009627C4A8)
-[LOG] SoundI::release                          :     Notes_harp_04 (00000000707602B8)
-[LOG] SoundI::release                          :  (00000000962790E8)
-[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (2) - Trimmed (0000000070761CB8)
-[LOG] SoundI::release                          :  (000000009627B4D8)
-[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (3) - Trimmed (0000000086EACD38)
-[LOG] SoundI::release                          :  (00000000709315E8)
-[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (2) (0000000086EAEA78)
-[LOG] SoundI::release                          :  (0000000070930EB8)
-[LOG] SoundI::release                          :     SeaGull (0000000086EAE0B8)
-[LOG] SoundI::release                          :  (0000000086163E28)
-[LOG] SoundI::release                          :     Notes_harp_14 (0000000085ACEDE8)
-[LOG] SoundI::release                          :  (000000009627BEE8)
-[LOG] SoundI::release                          :     Notes_harp_12 (0000000086EAC518)
-[LOG] SoundI::release                          :  (000000009627DBA8)
-[LOG] SoundI::release                          :     Notes_harp_13 (0000000070761B18)
-[LOG] SoundI::release                          :  (0000000070930618)
-[LOG] SoundI::release                          :     divers_squish_1 (0000000086EABB58)
-[LOG] SoundI::release                          :  (000000009627BD78)
-[LOG] SoundI::release                          :     divers_squish_3-001 (0000000086EA92B8)
-[LOG] SoundI::release                          :  (000000009627DD18)
-[LOG] SoundI::release                          :     divers_squish_3 (0000000086EAAB18)
-[LOG] SoundI::release                          :  (0000000070930058)
-[LOG] SoundI::release                          :     divers_squish_4 (0000000086EAC858)
-[LOG] SoundI::release                          :  (000000006FD609D8)
-[LOG] SoundI::release                          :     divers_squish_5 (0000000070760AD8)
-[LOG] SoundI::release                          :  (00000000962789B8)
-[LOG] SoundI::release                          :     scale_arrow_wiggle_1 (0000000070762E98)
-[LOG] SoundI::release                          :  (0000000086164838)
-[LOG] SoundI::release                          :     scale_arrow_wiggle_4 (0000000085ACF468)
-[LOG] SoundI::release                          :  (000000007092DC68)
-[LOG] SoundI::release                          :     scale_arrow_wiggle_3 (0000000085ACEC48)
-[LOG] SoundI::release                          :  (000000000EBD7D58)
-[LOG] SoundI::release                          :     scale_arrow_wiggle_2 (0000000085AD19C8)
-[LOG] SoundI::release                          :  (0000000070930A68)
-[LOG] SoundI::release                          :     FOT_SFX_UI_button (0000000086EAD898)
-[LOG] SoundI::release                          :  (00000000709301C8)
-[LOG] SoundI::release                          :     FOT_SFX_goose1 (0000000086EADD78)
-[LOG] SoundI::release                          :  (000000007092F648)
-[LOG] SoundI::release                          :     FOT_SFX_goose2 (0000000086EAB198)
-[LOG] SoundI::release                          :  (00000000962786D8)
-[LOG] SoundI::release                          :     FOT_SFX_goose3 (0000000086EAA158)
-[LOG] SoundI::release                          :  (000000007092F1F8)
-[LOG] SoundI::release                          :     FOT_SFX_Chimes1 (0000000086EA73D8)
-[LOG] SoundI::release                          :  (0000000096279AF8)
-[LOG] SoundI::release                          :     Trumpets_Park_DM (0000000086EAA638)
-[LOG] SoundI::release                          :  (000000009627C058)
-[LOG] SoundI::release                          :     Harp_strum_Park_DM (0000000086EA9C78)
-[LOG] SoundI::release                          :  (000000009627A398)
-[LOG] SoundI::release                          :     Harp_chord_Park_DM (0000000086EA7098)
-[LOG] SoundI::release                          :  (000000007092F7B8)
-[LOG] SoundI::release                          :     divers_squish_2 (0000000086EA7578)
-[LOG] SoundI::release                          :  (000000007092F928)
-[LOG] SoundI::release                          :     169549__jorickhoofd__gravel-impact-3 (1) (0000000086EABE98)
-[LOG] SoundI::release                          :  (0000000086165808)
-[LOG] SoundI::release                          :     item_pickup_1 (0000000085AD1688)
-[LOG] SoundI::release                          :  (000000009627B928)
-[LOG] SoundI::release                          :     item_pickup_3 (0000000086EA8758)
-[LOG] SoundI::release                          :  (000000000EBD6938)
-[LOG] SoundI::release                          :     item_pickup_2 (0000000085AD0988)
-[LOG] SoundI::release                          :  (000000007092E508)
-[LOG] SoundI::release                          :     mutedBells_hits (0000000086EAC378)
-[LOG] SoundI::release                          :  (000000007092E398)
-[LOG] SoundI::release                          :     scale_plate_creak_3 (0000000086EA7A58)
-[LOG] SoundI::release                          :  (000000007092E958)
-[LOG] SoundI::release                          :     FOT_SFX_Chimy2 (0000000086EA7BF8)
-[LOG] SoundI::release                          :  (000000006FD606F8)
-[LOG] SoundI::release                          :     introCinematic_MenuToIntro_v2 - Trimmed (000000007075FC38)
-[LOG] SoundI::release                          : Section1_Violons (000000000EAD1578)
-[LOG] SoundI::release                          :     Section1_Violons (0000000085AD1EA8)
-[LOG] SoundI::release                          :     Section1_Violons (000000007088D598)
-[LOG] SoundI::release                          : Section1_Pad (000000000EAD24A8)
-[LOG] SoundI::release                          :     Section1_Pad (0000000085AD1D08)
-[LOG] SoundI::release                          :     Section1_Pad (000000007088D748)
-[LOG] SoundI::release                          : Section1_BassCello (000000000EAD13C8)
-[LOG] SoundI::release                          :     Section1_BassCello (0000000085ACF7A8)
-[LOG] SoundI::release                          :     Section1_BassCello (000000007088DAA8)
-[LOG] SoundI::release                          : Section1_BassHarp (000000000EAD07F8)
-[LOG] SoundI::release                          :     Section1_BassHarp (0000000085ACE768)
-[LOG] SoundI::release                          :     Section1_BassHarp (000000000EAD0B58)
-[LOG] SoundI::release                          : Section1_MeloHarp (000000000EAD1F98)
-[LOG] SoundI::release                          :     Section1_MeloHarp (0000000085ACE5C8)
-[LOG] SoundI::release                          :     Section1_MeloHarp (000000000EAD1728)
+[LOG] SoundI::release                          : cymb_midi (0000000071B9CE78)
+[LOG] SoundI::release                          :     cymb_midi (0000000071CAA688)
+[LOG] SoundI::release                          :     cymb_midi (0000000071B9D6E8)
+[LOG] SoundI::release                          : RAIN_3 (0000000071B9D028)
+[LOG] SoundI::release                          :     RAIN_3 (0000000071CAA008)
+[LOG] SoundI::release                          :     RAIN_3 (000000007218CB68)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000071B9CE78 : node = 0000000071B9F200
+[LOG] SystemI::createSound                     : add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9CE78
+[LOG] SystemI::createSound                     : setdata soundi = 0000000071B9D028 : node = 0000000071B9E240
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9F318
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 13982
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='cymb_midi', format=2, channels=1, frequency=48000, lengthbytes=123136, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.267609.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9CE78
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9D028
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9E358
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 9602
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='RAIN_3', format=2, channels=2, frequency=48000, lengthbytes=129184, lengthpcm=1083350, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.003693.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9D028
+[LOG] SoundI::getSubSound                      : sound 0000000071B9CE78.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 0000000071B9D028.  Subsound index 0 / 1
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] SoundI::release                          : cymb_midi (0000000071B9CE78)
+[LOG] SoundI::release                          :     cymb_midi (0000000071CAB868)
+[LOG] SoundI::release                          :     cymb_midi (0000000071B9D6E8)
+[LOG] SoundI::release                          : RAIN_3 (0000000071B9D028)
+[LOG] SoundI::release                          :     RAIN_3 (0000000071CA8FC8)
+[LOG] SoundI::release                          :     RAIN_3 (000000007218D228)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000071B9CE78 : node = 0000000071B9DA60
+[LOG] SystemI::createSound                     : add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9CE78
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSound                     :     setdata soundi = 0000000071B9D028 : node = 0000000071B9DE50
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9DB78
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 13982
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='cymb_midi', format=2, channels=1, frequency=48000, lengthbytes=123136, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.267609.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9CE78
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9D028
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9DF68
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 9602
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='RAIN_3', format=2, channels=2, frequency=48000, lengthbytes=129184, lengthpcm=1083350, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.003693.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9D028
+[LOG] SoundI::getSubSound                      : sound 0000000071B9CE78.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 0000000071B9D028.  Subsound index 0 / 1
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] SoundI::release                          : cymb_midi (0000000071B9CE78)
+[LOG] SoundI::release                          :     cymb_midi (0000000071CAC228)
+[LOG] SoundI::release                          :     cymb_midi (0000000071B9D6E8)
+[LOG] SoundI::release                          : RAIN_3 (0000000071B9D028)
+[LOG] SoundI::release                          :     RAIN_3 (0000000071CAC8A8)
+[LOG] SoundI::release                          :     RAIN_3 (000000007218C9B8)
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000071B9CE78 : node = 0000000071B9DE50
+[LOG] SystemI::createSound                     : add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9CE78
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSound                     :     setdata soundi = 0000000071B9D028 : node = 0000000071B9E4E0
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9DF68
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 13982
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='cymb_midi', format=2, channels=1, frequency=48000, lengthbytes=123136, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.267609.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9CE78
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9D028
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9E5F8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 9602
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='RAIN_3', format=2, channels=2, frequency=48000, lengthbytes=129184, lengthpcm=1083350, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.003693.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9D028
+[LOG] SoundI::getSubSound                      : sound 0000000071B9CE78.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 0000000071B9D028.  Subsound index 0 / 1
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 100)
+[LOG] SoundI::release                          : cymb_midi (0000000071B9CE78)
+[LOG] SoundI::release                          :     cymb_midi (0000000071CAB868)
+[LOG] SoundI::release                          :     cymb_midi (0000000071B9D6E8)
+[LOG] SoundI::release                          : RAIN_3 (0000000071B9D028)
+[LOG] SoundI::release                          :     RAIN_3 (0000000071CABBA8)
+[LOG] SoundI::release                          :     RAIN_3 (000000007218C808)
+[WRN] AsyncCommandBuffer::growBuffer           : Growing command buffer to 1396007754 bytes. Initial command buffer size can be tuned to avoid dynamic growth using Studio::System::setAdvancedSettings()
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0000000071B9CE78 : node = 0000000071B9E240
+[LOG] SystemI::createSound                     : add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9CE78
+[LOG] SystemI::createSound                     : filename = FmodAssets\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSound                     :     FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSound                     :     setdata soundi = 0000000071B9D028 : node = 0000000071B9F350
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSound                     :     add node to async list : head = 0000000071CA8DD8.  list count = 0
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9E358
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 13982
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='cymb_midi', format=2, channels=1, frequency=48000, lengthbytes=123136, lengthpcm=864000, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.267609.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9CE78
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000071B9D028
+[LOG] SystemI::createSoundInternal             :     Create name='FmodAssets\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 49019136
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 713376
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0000000071B9F468
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 9602
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='RAIN_3', format=2, channels=2, frequency=48000, lengthbytes=129184, lengthpcm=1083350, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.003693.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000071B9D028
+[LOG] SoundI::getSubSound                      : sound 0000000071B9CE78.  Subsound index 0 / 1
+[LOG] SoundI::getSubSound                      : sound 0000000071B9D028.  Subsound index 0 / 1
+[WRN] AsyncCommandBuffer::growBuffer           : Growing command buffer to 1396007754 bytes. Initial command buffer size can be tuned to avoid dynamic growth using Studio::System::setAdvancedSettings()
+[LOG] SoundI::release                          :  (000000007203F2B8)
+[LOG] SoundI::release                          :     Notes_harp_07 (0000000071FFF548)
+[LOG] SoundI::release                          :  (000000008C1EDE98)
+[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (2) (0000000071E95288)
+[LOG] SoundI::release                          :  (000000007203F878)
+[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (3) (0000000071FFFBC8)
+[LOG] SoundI::release                          :  (000000007203F428)
+[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (4) (0000000072001288)
+[LOG] SoundI::release                          :  (000000008C1EF428)
+[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (5) (000000008C377028)
+[LOG] SoundI::release                          :  (00000000722701C8)
+[LOG] SoundI::release                          :     Wind-Mark_DiAngelo-1940285615 - Trimmed (0000000071E96AE8)
+[LOG] SoundI::release                          :  (00000000720D51C8)
+[LOG] SoundI::release                          :     Notes_harp_06 (000000008C378068)
+[LOG] SoundI::release                          :  (00000000723F8018)
+[LOG] SoundI::release                          :     babybongo_roll_02 (00000000722C06E8)
+[LOG] SoundI::release                          :  (0000000011A22908)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highD (0000000071537C48)
+[LOG] SoundI::release                          :  (00000000720D5618)
+[LOG] SoundI::release                          :     Notes_harp_11 (000000008C377508)
+[LOG] SoundI::release                          :  (00000000723F8B98)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highE (00000000722BFEC8)
+[LOG] SoundI::release                          :  (00000000720D54A8)
+[LOG] SoundI::release                          :     fruitBasket_click_1 (000000008C375E48)
+[LOG] SoundI::release                          :  (000000007203EE68)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (2) (0000000071FFF6E8)
+[LOG] SoundI::release                          :  (000000007203E458)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (3) (00000000720000A8)
+[LOG] SoundI::release                          :  (000000008C1EE008)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (4) (000000008C3752E8)
+[LOG] SoundI::release                          :  (00000000720D4A98)
+[LOG] SoundI::release                          :     fruitBasket_click_3_long - Trimmed (000000008C375968)
+[LOG] SoundI::release                          :  (0000000072270058)
+[LOG] SoundI::release                          :     Dolphin (0000000071FFF208)
+[LOG] SoundI::release                          :  (000000008C1EE2E8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highG (000000008C3771C8)
+[LOG] SoundI::release                          :  (00000000720D58F8)
+[LOG] SoundI::release                          :     Notes_harp_09 (000000008C378888)
+[LOG] SoundI::release                          :  (000000007203ECF8)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (2) (0000000072000F48)
+[LOG] SoundI::release                          :  (0000000072271478)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (3) (0000000071E94F48)
+[LOG] SoundI::release                          :  (00000000723F7D38)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (4) (00000000722BF6A8)
+[LOG] SoundI::release                          :  (00000000723F8A28)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (5) (00000000722C0208)
+[LOG] SoundI::release                          :  (0000000011A23038)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (6) (000000001F1528F8)
+[LOG] SoundI::release                          :  (00000000723F82F8)
+[LOG] SoundI::release                          :     divers_plumes_phaser_slowed - Trimmed (000000001F151098)
+[LOG] SoundI::release                          :  (00000000720BFE58)
+[LOG] SoundI::release                          :     FOT_SFX_Egg_trail_reverse (00000000720003E8)
+[LOG] SoundI::release                          :  (000000007226FD78)
+[LOG] SoundI::release                          :     Notes_harp_05 (0000000072000DA8)
+[LOG] SoundI::release                          :  (000000008C1EECF8)
+[LOG] SoundI::release                          :     CIN_flutecollision (0000000071E95768)
+[LOG] SoundI::release                          :  (00000000722708F8)
+[LOG] SoundI::release                          :     CIN_MeloCollision (0000000072002AE8)
+[LOG] SoundI::release                          :  (000000007226FC08)
+[LOG] SoundI::release                          :     Notes_harp_01 (0000000071E96E28)
+[LOG] SoundI::release                          :  (00000000720C06F8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_G (0000000072000A68)
+[LOG] SoundI::release                          :  (000000007203F598)
+[LOG] SoundI::release                          :     SFX_CheersChilds (00000000720008C8)
+[LOG] SoundI::release                          :  (000000007203FCC8)
+[LOG] SoundI::release                          :     SFX_CheersDucks_v1_test (0000000071FFF068)
+[LOG] SoundI::release                          :  (000000008C1EDD28)
+[LOG] SoundI::release                          :     Stinger_congrats_G_v2 (000000008C374FA8)
+[LOG] SoundI::release                          :  (000000007203EB88)
+[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (2) (0000000071FFEEC8)
+[LOG] SoundI::release                          :  (00000000720D4D78)
+[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (4) (000000008C376808)
+[LOG] SoundI::release                          :  (0000000072040118)
+[LOG] SoundI::release                          :     item_drop_wood_multiples - Trimmed (0000000071FFF888)
+[LOG] SoundI::release                          :  (0000000072270A68)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highB (0000000072000728)
+[LOG] SoundI::release                          :  (0000000071E61E78)
+[LOG] SoundI::release                          :     Orca (0000000071E93548)
+[LOG] SoundI::release                          :  (00000000720D47B8)
+[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 (000000008C377B88)
+[LOG] SoundI::release                          :  (0000000071E61A28)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (2) (0000000071E93888)
+[LOG] SoundI::release                          :  (0000000011A22EC8)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (3) (000000001F152758)
+[LOG] SoundI::release                          :  (00000000723F8E78)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (5) (00000000722BF368)
+[LOG] SoundI::release                          :  (000000008C1EF708)
+[LOG] SoundI::release                          :     item_drop_metal_multiples - Trimmed (000000008C3779E8)
+[LOG] SoundI::release                          :  (00000000720D4EE8)
+[LOG] SoundI::release                          :     FOT_SFX_Map (000000008C3769A8)
+[LOG] SoundI::release                          :  (00000000720C2248)
+[LOG] SoundI::release                          :     Stinger_congrats_G_v1 (0000000072001F88)
+[LOG] SoundI::release                          :  (000000007203FB58)
+[LOG] SoundI::release                          :     lock_shakeAccelere (0000000072001DE8)
+[LOG] SoundI::release                          :  (0000000072271758)
+[LOG] SoundI::release                          :     Notes_harp_08 (0000000071E94248)
+[LOG] SoundI::release                          :  (00000000723F7498)
+[LOG] SoundI::release                          :     BubblePop1 (000000001F151718)
+[LOG] SoundI::release                          :  (00000000720D5D48)
+[LOG] SoundI::release                          :     BubblePop2 (000000008C378548)
+[LOG] SoundI::release                          :  (0000000072270618)
+[LOG] SoundI::release                          :     BubblePop3 (0000000072000C08)
+[LOG] SoundI::release                          :  (0000000072270D48)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_D (0000000072002C88)
+[LOG] SoundI::release                          :  (000000007203EA18)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_E (0000000072001768)
+[LOG] SoundI::release                          :  (0000000071E60D38)
+[LOG] SoundI::release                          :     scale_plate_creak_1 (0000000071E936E8)
+[LOG] SoundI::release                          :  (000000008C1EF2B8)
+[LOG] SoundI::release                          :     scale_plate_creak_2 (000000008C375148)
+[LOG] SoundI::release                          :  (000000008C1EEA18)
+[LOG] SoundI::release                          :     Whale (000000008C378BC8)
+[LOG] SoundI::release                          :  (0000000011A21EF8)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (2) (0000000071537768)
+[LOG] SoundI::release                          :  (0000000011A22D58)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (3) (0000000071538128)
+[LOG] SoundI::release                          :  (0000000072270BD8)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (4) (00000000720027A8)
+[LOG] SoundI::release                          :  (00000000720C02A8)
+[LOG] SoundI::release                          :     SwooshBatonPluieReverse - Trimmed (0000000072002128)
+[LOG] SoundI::release                          :  (000000007203E5C8)
+[LOG] SoundI::release                          :     fail (0000000071FFF3A8)
+[LOG] SoundI::release                          :  (000000007203F9E8)
+[LOG] SoundI::release                          :     Notes_harp_10 (00000000720010E8)
+[LOG] SoundI::release                          :  (00000000720D5338)
+[LOG] SoundI::release                          :     Harp_strum_Beach_GM (000000008C375488)
+[LOG] SoundI::release                          :  (00000000720C0CB8)
+[LOG] SoundI::release                          :     trumpets_Beach_GM (0000000072002468)
+[LOG] SoundI::release                          :  (0000000071E61FE8)
+[LOG] SoundI::release                          :     Harp_Chord_Beach_GM (0000000071E96608)
+[LOG] SoundI::release                          :  (00000000720C2C58)
+[LOG] SoundI::release                          :     Notes_harp_03 (0000000071CAAD08)
+[LOG] SoundI::release                          :  (00000000723F7328)
+[LOG] SoundI::release                          :     FOT_SFX_UI_MenuOeufs (00000000722BFD28)
+[LOG] SoundI::release                          :  (00000000720C2698)
+[LOG] SoundI::release                          :     tile_rotate_1 - Trimmed (0000000072002608)
+[LOG] SoundI::release                          :  (0000000071E622C8)
+[LOG] SoundI::release                          :     tile_rotate_2 - Trimmed (0000000071E967A8)
+[LOG] SoundI::release                          :  (000000007203F148)
+[LOG] SoundI::release                          :     tile_rotate_3 - Trimmed (0000000071FFFD68)
+[LOG] SoundI::release                          :  (00000000722704A8)
+[LOG] SoundI::release                          :     tile_rotate_4 - Trimmed (0000000071E950E8)
+[LOG] SoundI::release                          :  (0000000072270338)
+[LOG] SoundI::release                          :     tile_rotate_5 - Trimmed (0000000071E96FC8)
+[LOG] SoundI::release                          :  (00000000723F7EA8)
+[LOG] SoundI::release                          :     lock_clik (00000000722C0888)
+[LOG] SoundI::release                          :  (000000007226FEE8)
+[LOG] SoundI::release                          :     CIN_GustFly_01 (0000000071FFFF08)
+[LOG] SoundI::release                          :  (0000000072271198)
+[LOG] SoundI::release                          :     perc_frozen_bird (0000000071E94C08)
+[LOG] SoundI::release                          :  (000000008C1EE5C8)
+[LOG] SoundI::release                          :     SwooshMelo (000000008C376E88)
+[LOG] SoundI::release                          :  (0000000072040288)
+[LOG] SoundI::release                          :     Wave (0000000072001AA8)
+[LOG] SoundI::release                          :  (0000000072270788)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highA (0000000072000248)
+[LOG] SoundI::release                          :  (00000000720C0418)
+[LOG] SoundI::release                          :     CIN_CymbCollision (0000000072001C48)
+[LOG] SoundI::release                          :  (000000008C1EE738)
+[LOG] SoundI::release                          :     Notes_harp_02 (000000008C377368)
+[LOG] SoundI::release                          :  (0000000011A22628)
+[LOG] SoundI::release                          :     Frog (0000000071537288)
+[LOG] SoundI::release                          :  (00000000723F8748)
+[LOG] SoundI::release                          :     Bottle Rocket-SoundBible.com-332895117 (00000000722C0D68)
+[LOG] SoundI::release                          :  (000000008C1EF598)
+[LOG] SoundI::release                          :     harp_ui_button_2 (000000008C375CA8)
+[LOG] SoundI::release                          :  (000000008C1EE178)
+[LOG] SoundI::release                          :     Walrus (000000008C375B08)
+[LOG] SoundI::release                          :  (000000008C1EEE68)
+[LOG] SoundI::release                          :     FOT_SFX_fruits2 (0000000071E95908)
+[LOG] SoundI::release                          :  (00000000723F7608)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_A (00000000722BFB88)
+[LOG] SoundI::release                          :  (000000008C1EEB88)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highF (0000000071E96948)
+[LOG] SoundI::release                          :  (00000000720D4C08)
+[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 - Trimmed (2) (000000008C376B48)
+[LOG] SoundI::release                          :  (00000000723F7778)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_C (00000000722C0BC8)
+[LOG] SoundI::release                          :  (00000000723F8188)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_B (00000000722BF9E8)
+[LOG] SoundI::release                          :  (00000000720C0E28)
+[LOG] SoundI::release                          :     Stinger_congrats_G_v3_harps (0000000071CAC088)
+[LOG] SoundI::release                          :  (000000008C1EE458)
+[LOG] SoundI::release                          :     Boat (000000008C3783A8)
+[LOG] SoundI::release                          :  (000000008C1EEFD8)
+[LOG] SoundI::release                          :     crate_slide_multiple - Trimmed (2) (000000008C377D28)
+[LOG] SoundI::release                          :  (000000008C1EE8A8)
+[LOG] SoundI::release                          :     FOT_SFX_chimy_random (000000008C377848)
+[LOG] SoundI::release                          :  (00000000720D5788)
+[LOG] SoundI::release                          :     Bubbles1 (000000008C374E08)
+[LOG] SoundI::release                          :  (0000000071E60EA8)
+[LOG] SoundI::release                          :     Bubbles2 (0000000071E943E8)
+[LOG] SoundI::release                          :  (000000007203FFA8)
+[LOG] SoundI::release                          :     Park_section2_glock - Trimmed (00000000720015C8)
+[LOG] SoundI::release                          :  (0000000071E629F8)
+[LOG] SoundI::release                          :     Park_section2_glock - Trimmed (2) (0000000071E95AA8)
+[LOG] SoundI::release                          :  (000000007203EFD8)
+[LOG] SoundI::release                          :     FOT_Tableau01_5_stems_highC (0000000072001428)
+[LOG] SoundI::release                          :  (0000000071E612F8)
+[LOG] SoundI::release                          :     crate_slide_multiple - Trimmed (0000000071E95DE8)
+[LOG] SoundI::release                          :  (00000000723F7A58)
+[LOG] SoundI::release                          :     FOT_SFX_Oeuf_01 - Trimmed (00000000722C0F08)
+[LOG] SoundI::release                          :  (00000000723F7BC8)
+[LOG] SoundI::release                          :     FOT_SFX_fruits (00000000722BF508)
+[LOG] SoundI::release                          :  (0000000071E61188)
+[LOG] SoundI::release                          :     Seal (0000000071E96C88)
+[LOG] SoundI::release                          :  (000000008C1EDBB8)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (2) (000000008C3776A8)
+[LOG] SoundI::release                          :  (00000000723F85D8)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (000000001F150BB8)
+[LOG] SoundI::release                          :  (0000000071E618B8)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (5) (0000000071E95F88)
+[LOG] SoundI::release                          :  (0000000071E62888)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (4) (0000000071E93A28)
+[LOG] SoundI::release                          :  (00000000720D4648)
+[LOG] SoundI::release                          :     Beach_section1_viola - Trimmed (3) (000000008C375628)
+[LOG] SoundI::release                          :  (0000000071E62438)
+[LOG] SoundI::release                          :     Intro_orchestral_violins - Trimmed (2) (0000000071E955C8)
+[LOG] SoundI::release                          :  (00000000723F8FE8)
+[LOG] SoundI::release                          :     Intro_orchestral_violins - Trimmed (3) (00000000722C0068)
+[LOG] SoundI::release                          :  (0000000071E61D08)
+[LOG] SoundI::release                          :     Intro_orchestral_cellos - Trimmed (3) (0000000071E962C8)
+[LOG] SoundI::release                          :  (0000000072270EB8)
+[LOG] SoundI::release                          :     Intro_orchestral_cellos - Trimmed (0000000071E94728)
+[LOG] SoundI::release                          :  (00000000720D4088)
+[LOG] SoundI::release                          :     Intro_orchestral_violas - Trimmed (2) (000000008C375FE8)
+[LOG] SoundI::release                          :  (000000008C1EF148)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (2) (000000008C378A28)
+[LOG] SoundI::release                          :  (0000000011A22BE8)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (0000000071537F88)
+[LOG] SoundI::release                          :  (0000000071E625A8)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (4) (0000000071E933A8)
+[LOG] SoundI::release                          :  (0000000011A23318)
+[LOG] SoundI::release                          :     Beach_section1_violons - Trimmed (3) (0000000071537908)
+[LOG] SoundI::release                          :  (000000007203E738)
+[LOG] SoundI::release                          :     59285__transitking__needledrop01 (0000000071FFFA28)
+[LOG] SoundI::release                          :  (00000000723F8468)
+[LOG] SoundI::release                          :     harp_ui_button_1 (00000000722BF848)
+[LOG] SoundI::release                          :  (00000000723F88B8)
+[LOG] SoundI::release                          :     Notes_harp_04 (00000000722C10A8)
+[LOG] SoundI::release                          :  (00000000723F78E8)
+[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (2) - Trimmed (00000000722C0548)
+[LOG] SoundI::release                          :  (00000000720D3F18)
+[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (3) - Trimmed (000000008C3764C8)
+[LOG] SoundI::release                          :  (0000000072271308)
+[LOG] SoundI::release                          :     270843__arnaud-coutancier__hen - Trimmed - Trimmed (2) (0000000071E94A68)
+[LOG] SoundI::release                          :  (000000007226FA98)
+[LOG] SoundI::release                          :     SeaGull (0000000071E94DA8)
+[LOG] SoundI::release                          :  (000000007203FE38)
+[LOG] SoundI::release                          :     Notes_harp_14 (00000000720022C8)
+[LOG] SoundI::release                          :  (00000000720D4368)
+[LOG] SoundI::release                          :     Notes_harp_12 (000000008C376668)
+[LOG] SoundI::release                          :  (00000000723F8D08)
+[LOG] SoundI::release                          :     Notes_harp_13 (00000000722C0A28)
+[LOG] SoundI::release                          :  (0000000071E61468)
+[LOG] SoundI::release                          :     divers_squish_1 (0000000071E95428)
+[LOG] SoundI::release                          :  (00000000720D5A68)
+[LOG] SoundI::release                          :     divers_squish_3-001 (000000008C376188)
+[LOG] SoundI::release                          :  (00000000720D4928)
+[LOG] SoundI::release                          :     divers_squish_3 (000000008C377EC8)
+[LOG] SoundI::release                          :  (0000000071E62B68)
+[LOG] SoundI::release                          :     divers_squish_4 (0000000071E93D68)
+[LOG] SoundI::release                          :  (0000000011A21AA8)
+[LOG] SoundI::release                          :     divers_squish_5 (00000000715375C8)
+[LOG] SoundI::release                          :  (00000000723F9158)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_1 (00000000722C03A8)
+[LOG] SoundI::release                          :  (000000007203F708)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_4 (0000000072001908)
+[LOG] SoundI::release                          :  (00000000722715E8)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_3 (0000000072002948)
+[LOG] SoundI::release                          :  (00000000720C1F68)
+[LOG] SoundI::release                          :     scale_arrow_wiggle_2 (0000000071CA9B28)
+[LOG] SoundI::release                          :  (000000007226F928)
+[LOG] SoundI::release                          :     FOT_SFX_UI_button (0000000071E948C8)
+[LOG] SoundI::release                          :  (0000000072271028)
+[LOG] SoundI::release                          :     FOT_SFX_goose1 (0000000071E94588)
+[LOG] SoundI::release                          :  (0000000071E61B98)
+[LOG] SoundI::release                          :     FOT_SFX_goose2 (0000000071E940A8)
+[LOG] SoundI::release                          :  (000000008C1EF878)
+[LOG] SoundI::release                          :     FOT_SFX_goose3 (000000008C3786E8)
+[LOG] SoundI::release                          :  (0000000071E615D8)
+[LOG] SoundI::release                          :     FOT_SFX_Chimes1 (0000000071E93BC8)
+[LOG] SoundI::release                          :  (00000000720D5BD8)
+[LOG] SoundI::release                          :     Trumpets_Park_DM (000000008C376CE8)
+[LOG] SoundI::release                          :  (00000000720D44D8)
+[LOG] SoundI::release                          :     Harp_strum_Park_DM (000000008C378208)
+[LOG] SoundI::release                          :  (00000000720D5058)
+[LOG] SoundI::release                          :     Harp_chord_Park_DM (000000008C376328)
+[LOG] SoundI::release                          :  (0000000071E61018)
+[LOG] SoundI::release                          :     divers_squish_2 (0000000071E93F08)
+[LOG] SoundI::release                          :  (0000000071E61748)
+[LOG] SoundI::release                          :     169549__jorickhoofd__gravel-impact-3 (1) (0000000071E96128)
+[LOG] SoundI::release                          :  (000000007203E8A8)
+[LOG] SoundI::release                          :     item_pickup_1 (0000000072000588)
+[LOG] SoundI::release                          :  (00000000720D41F8)
+[LOG] SoundI::release                          :     item_pickup_3 (000000008C3757C8)
+[LOG] SoundI::release                          :  (00000000720BF448)
+[LOG] SoundI::release                          :     item_pickup_2 (0000000071CABA08)
+[LOG] SoundI::release                          :  (0000000071E62158)
+[LOG] SoundI::release                          :     mutedBells_hits (0000000071E97168)
+[LOG] SoundI::release                          :  (000000008C1EDA48)
+[LOG] SoundI::release                          :     scale_plate_creak_3 (0000000071E95C48)
+[LOG] SoundI::release                          :  (0000000071E62718)
+[LOG] SoundI::release                          :     FOT_SFX_Chimy2 (0000000071E96468)
+[LOG] SoundI::release                          :  (0000000011A21D88)
+[LOG] SoundI::release                          :     introCinematic_MenuToIntro_v2 - Trimmed (0000000071537428)
+[LOG] SoundI::release                          : V2_Market_Acc_long_strings (0000000071B9CCC8)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_strings (0000000071CAAEA8)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_strings (0000000071B9C0F8)
+[LOG] SoundI::release                          : V2_Market_Acc_long_Melo_flutes (0000000071B9BD98)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_Melo_flutes (0000000071CAB528)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_Melo_flutes (0000000071B9BBE8)
+[LOG] SoundI::release                          : V2_Market_Acc_long_MeloLyr_Clar (0000000071B9C2A8)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloLyr_Clar (0000000071CAA4E8)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloLyr_Clar (0000000071B9D1D8)
+[LOG] SoundI::release                          : V2_Market_Acc_long_MeloFun_harp (0000000071B9C968)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloFun_harp (0000000071CAC708)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_MeloFun_harp (0000000071B9BF48)
+[LOG] SoundI::release                          : V2_Market_Acc_long_guit (000000001F387788)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_guit (0000000071CA9CC8)
+[LOG] SoundI::release                          :     V2_Market_Acc_long_guit (0000000071B9C458)
+[LOG] SoundI::release                          : RAIN_3 (0000000071B9D028)
+[LOG] SoundI::release                          :     RAIN_3 (0000000071CA97E8)
+[LOG] SoundI::release                          :     RAIN_3 (00000000721DD108)
+[LOG] SoundI::release                          : cymb_midi (0000000071B9CE78)
+[LOG] SoundI::release                          :     cymb_midi (0000000071CABEE8)
+[LOG] SoundI::release                          :     cymb_midi (0000000071B9D6E8)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
@@ -485,4 +575,6 @@
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
 [LOG] SystemI::close                           : Closed.
