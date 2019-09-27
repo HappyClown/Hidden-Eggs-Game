@@ -41,6 +41,10 @@ public class SilverEggShimmerFXScaling : MonoBehaviour
 		if (refreshSelf)
 		{
 			refreshTimer -= Time.deltaTime;
+			if (myPartSysMain.simulationSpeed < 3f) {
+				myPartSysMain.simulationSpeed += 0.032f;
+			}
+
 			if (refreshTimer <= 0)
 			{
 				var myPartSysEm = myPartSys.emission;
@@ -48,6 +52,8 @@ public class SilverEggShimmerFXScaling : MonoBehaviour
 
 				refreshSelf = false;
 				refreshTimer = refreshDelay;
+
+				myPartSysMain.simulationSpeed = 1f;
 
 				this.transform.parent = silEggTrans;
 				this.transform.localPosition = iniPos;

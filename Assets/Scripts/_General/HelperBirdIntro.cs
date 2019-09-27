@@ -65,7 +65,7 @@ public class HelperBirdIntro : MonoBehaviour {
 				birdTapped = true;
 				waitToStartSeq = true;
 				inputDetScript.cancelDoubleTap = true;
-				birdObj.transform.position = ogBirdPos;
+				//birdObj.transform.position = ogBirdPos;
 				dissParSys.Play();
 				sceneTapEnabScript.canTapPauseBtn = false;
 				audioSceneGenScript.unfrozenBirdSnd();
