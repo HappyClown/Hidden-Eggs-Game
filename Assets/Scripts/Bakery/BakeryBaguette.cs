@@ -11,10 +11,11 @@ public class BakeryBaguette : MonoBehaviour {
 	} 
 	public baguetteColor myColor;
 	public int timesToMove;
-	public bool active, gettingPushed, canMove, onGoal;
-	public Vector3 nextPos, currentPos, startPos;
+	public bool active, gettingPushed, canMove, onGoal, selected;
+	public Vector3 nextPos, currentPos, startPos, iniPos;
 	public PuzzleCell[] myCells;
 	public PuzzleCell firstCell, lastCell, nextCell;
+	public float cellDistance = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -24,11 +25,98 @@ public class BakeryBaguette : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(canMove){
-			this.gameObject.transform.position = currentPos;	
-		}
+
 	}
-	public void MoveLeft(){
+	public void MoveHorizontal(float curPos, float prevPos){
+		if(!selected){
+			iniPos = this.gameObject.transform.position;
+			selected = true;
+			nextPos = iniPos;
+		}
+		float Diff = Mathf.Abs(curPos - prevPos);
+		if(curPos > prevPos){
+			//moving right
+			nextPos.x += Diff;
+			if(nextPos.x > iniPos.x){
+				//Is moving right from the starting point
+				if(!lastCell.edgeRight){
+					if(!lastCell.cellRight.occupied){
+						canMove = true;
+						if(Mathf.Abs(nextPos.x - iniPos.x) >= cellDistance ){
+							List<PuzzleCell> tempCells = new List<PuzzleCell>();
+							foreach (PuzzleCell cell in myCells)
+							{
+								tempCells.Add(cell.CheckRightAmmount(1));
+								cell.occupied = false;
+							}
+							for (int i = 0; i < tempCells.Count; i++)
+							{
+								myCells[i] = tempCells[i];
+								myCells[i].occupied = true;
+							}
+							firstCell = firstCell.CheckRightAmmount(1);
+							lastCell = lastCell.CheckRightAmmount(1);
+							tempCells.Clear();
+							currentPos.x += cellDistance;
+							iniPos = currentPos;
+						}
+					}else{
+						canMove = false;
+					}
+				}else{
+					canMove = false;
+				}
+			}else if(nextPos.x > this.gameObject.transform.position.x){
+		    	//Is moving right towards the starting point
+				canMove = true;
+			}
+		}else{
+			//moving left
+			nextPos.x -= Diff;
+			if(nextPos.x < iniPos.x){
+				//Is moving left from the starting point
+				if(!firstCell.edgeLeft){
+					if(!firstCell.cellLeft.occupied){
+						canMove = true;
+						if(Mathf.Abs(nextPos.x - iniPos.x) >= cellDistance){
+							List<PuzzleCell> tempCells = new List<PuzzleCell>();
+							foreach (PuzzleCell cell in myCells)
+							{
+								tempCells.Add(cell.CheckLeftAmmount(1));
+								cell.occupied = false;
+							}
+							for (int i = 0; i < tempCells.Count; i++)
+							{
+								myCells[i] = tempCells[i];
+								myCells[i].occupied = true;
+							}
+							firstCell = firstCell.CheckLeftAmmount(1);
+							lastCell = lastCell.CheckLeftAmmount(1);
+							tempCells.Clear();
+							currentPos.x -= cellDistance;	
+							iniPos = currentPos;
+						}
+					}else{
+						canMove = false;
+					}
+				}else{
+					canMove = false;
+				}
+			}else if(nextPos.x < this.gameObject.transform.position.x) {
+		    	//Is moving left towards the starting point
+				canMove = true;
+			}
+		}
+		
+		if(canMove){
+			this.gameObject.transform.position = nextPos;	
+		}
+		
+	}
+	public void MoveVertical(float curPos, float prevPos){
+		
+	}
+	/*public void MoveLeft(){
 		if(!firstCell.edgeLeft){
 			if(!firstCell.cellLeft.occupied){
 				canMove = true;
@@ -147,7 +235,7 @@ public class BakeryBaguette : MonoBehaviour {
 			lastCell = lastCell.CheckDownAmmount(1);
 			tempCells.Clear();
 		}
-	}
+	}*/
 	public void SetUpItem(){
 		if(horizontal){
 			float maxX = -1000;
@@ -193,5 +281,8 @@ public class BakeryBaguette : MonoBehaviour {
 		{	
 			cell.occupied = false;
 		}
+	}
+	public void SetPosition(){
+		this.transform.position = currentPos;
 	}
 }
