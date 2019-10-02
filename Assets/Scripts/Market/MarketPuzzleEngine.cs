@@ -500,7 +500,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 	// 	audioSceneMarketPuz.StopSceneMusic();
 	// 	audioSceneMarketPuz.PlayTransitionMusic();
 		
-	// 	SceneFade.SwitchScene(GlobalVariables.globVarScript.marketName);
+	// 	GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.marketName);
 	// }
 	#endregion
 }

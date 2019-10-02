@@ -233,7 +233,7 @@ public class KitePuzzEngine : MainPuzzleEngine
 	// 	audioSceneParkPuzzScript.StopSceneMusic();
 	// 	audioSceneParkPuzzScript.PlayTransitionMusic();
 
-	// 	SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
+	// 	GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.parkName);
 	// }
 	// #endregion
 }

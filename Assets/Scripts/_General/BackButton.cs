@@ -23,7 +23,7 @@ public class BackButton : MonoBehaviour
 		{
 			GlobalVariables.globVarScript.toHub = true;
 		}
-		SceneFade.SwitchScene(sceneName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(sceneName);
 	}
 
 }

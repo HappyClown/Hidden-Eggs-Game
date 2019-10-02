@@ -38,6 +38,6 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void OpenScene () {
-		SceneFade.SwitchScene(sceneName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(sceneName);
 	}
 }

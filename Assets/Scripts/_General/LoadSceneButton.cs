@@ -18,7 +18,7 @@ public class LoadSceneButton : MonoBehaviour {
 		if (sceneName == GlobalVariables.globVarScript.menuName) {
 			GlobalVariables.globVarScript.toHub = true;
 		}
-		SceneFade.SwitchScene(sceneName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(sceneName);
 		 
 		sceneTapEnabScript.canTapEggRidPanPuz = false;
 		sceneTapEnabScript.canTapHelpBird = false;

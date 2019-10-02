@@ -41,7 +41,7 @@ public class GlobalVariables : MonoBehaviour
 	public ClickOnEggs clickOnEggsScript;
 	public GameObject eggHolder;
 	public DissolveSeasons dissSeasonsScript;
-
+	public SceneFade sceneFadeScript;
 	//camilo bools for level titles
 	//[HideInInspector]
 	public bool marketSE, marketGE, marketNE, parkSE, parkGE, parkNE, beachSE, beachGE, beachNE;

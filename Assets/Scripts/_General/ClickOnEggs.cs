@@ -289,7 +289,7 @@ public class ClickOnEggs : MonoBehaviour {
 		levelComplete = GlobalVariables.globVarScript.levelComplete;
 	}
 	public void LoadPuzzle(){
-		SceneFade.SwitchScene(puzzleSceneName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(puzzleSceneName);
 		PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
 		//SFX puzz btn
 		audioSceneGenScript.TransitionPuzzle();

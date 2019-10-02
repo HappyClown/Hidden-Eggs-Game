@@ -8,18 +8,16 @@ using TMPro;
 
 public class SceneFade : MonoBehaviour 
 {
-	public static bool fadeSceneOut;
+	public bool fadeSceneOut;
 	private bool fadeSceneIn;
 
-	private static string sceneToLoad;
+	private string sceneToLoad;
 	private string currentScene;
-	private static bool titCardSceneTrans, whtSceneTrans, inTransition;
+	private bool titCardSceneTrans, whtSceneTrans, inTransition;
 	private Image fadeImage;
 	public AnimationCurve animCurve;
-	public SeasonCadres seasonCadresScript;
-	public static SeasonCadres seasonCadresScriptStatic;
-	private static float curveTime;
-	private static float newAlpha;
+	private float curveTime;
+	private float newAlpha;
 	//private List<ParticleSystem> cadreParticles;
 	
 
@@ -31,8 +29,13 @@ public class SceneFade : MonoBehaviour
 	[TooltipAttribute("When to start fading in the title card; based on the darkened background's alpha value.")]
 	public float startTitleCardFade;
 	private Image titleCardImg;
-	private FadeInOutBoth titleCardFadeScript;
+	public FadeInOutImage titleCardFadeScript;
+	private SeasonCadre seasonCadreScript;
+	public SeasonCadresManager seasonCadreManScript;
+	//private static SeasonCadre seasonCadreScriptStatic;
+	//public static SeasonCadresManager seasonCadreManScriptStatic;
 	private float titleCardTimer;
+	private bool changeCadreStuff;
 
 	[Header("Fade To Black")]
 	public Image blckFadeImage;
@@ -52,7 +55,7 @@ public class SceneFade : MonoBehaviour
 	//public List<TextMeshProUGUI> titleTexts;
 	//public bool setupNewCard;
 
-	public static AudioTransitions audioTransStaticScript;
+	//public AudioTransitions audioTransScript;
 	public AudioTransitions audioTransScript;
 
 	private AsyncOperation myOperation;
@@ -60,11 +63,10 @@ public class SceneFade : MonoBehaviour
 	void Awake () 
 	{
 		titleCardImg = titleCardObj.GetComponent<Image>();
-		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
 		titleCardImg.color = new Color(titleCardImg.color.r, titleCardImg.color.g, titleCardImg.color.b, 0f);
 		titleCardTxt.color = new Color(titleCardTxt.color.r, titleCardTxt.color.g, titleCardTxt.color.b, titleCardImg.color.a);
-		seasonCadresScriptStatic = seasonCadresScript;
-		audioTransStaticScript = audioTransScript;
+		//seasonCadreManScriptStatic = seasonCadreManScript;
+		//audioTransScript = audioTransScript;
 	}
 
 	void Update () 
@@ -210,35 +212,37 @@ public class SceneFade : MonoBehaviour
 
 	}
 
-	public static void SwitchScene (string sceneName) {
+	public void SwitchScene (string sceneName) {
 		if (!inTransition) {
 			inTransition = true;
 			newAlpha = 0f;
 			titCardSceneTrans = true;
 			fadeSceneOut = true;
 			sceneToLoad = sceneName;
-			//SeasonCadres sC = new SeasonCadres(GlobalVariables.globVarScript);
-			List<ParticleSystem> ps = new List<ParticleSystem>();
-			ps = seasonCadresScriptStatic.GetCadreParticles(sceneToLoad);
-			foreach (ParticleSystem partSys in ps)
+
+			seasonCadreScript = seasonCadreManScript.GetCadreInfo(sceneName);
+			titleCardImg.sprite = seasonCadreScript.cadreSprite;
+			//titleCardFadeScript.img = titleCardImg;
+			foreach (ParticleSystem partSys in seasonCadreScript.cadreParticles)
 			{
 				partSys.Play();
 			}
-			if (audioTransStaticScript != null) {
-				audioTransStaticScript.TransitionScenes(sceneName);
+
+			if (audioTransScript != null) {
+				audioTransScript.TransitionScenes(sceneName);
 			}
 		}
 	}
 
-	public static void SwitchSceneWhiteFade (string sceneName) {
+	public void SwitchSceneWhiteFade (string sceneName) {
 		if (!inTransition) {
 			inTransition = true;
 			newAlpha = 0f;
 			whtSceneTrans = true;
 			fadeSceneOut = true;
 			sceneToLoad = sceneName;
-			if (audioTransStaticScript != null) {
-				audioTransStaticScript.TransitionScenes(sceneName);
+			if (audioTransScript != null) {
+				audioTransScript.TransitionScenes(sceneName);
 			}
 		}
 	}
@@ -249,35 +253,9 @@ public class SceneFade : MonoBehaviour
 		}
 	}
 
-	// public void ChoseTitleCard()
-	// {
-	// 	setupNewCard = true;
-
-	// 	if (sceneToLoad == GlobalVariables.globVarScript.menuName)
-	// 	{
-	// 		titleCardObj = titleCards[0];
-	// 		titleCardImg = titleCardObj.GetComponent<Image>();
-	// 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
-	// 	}
-
-	// 	if (sceneToLoad == GlobalVariables.globVarScript.marketName || sceneToLoad == GlobalVariables.globVarScript.marketPuzName)
-	// 	{
-	// 		titleCardObj = titleCards[1];
-	// 		titleCardImg = titleCardObj.GetComponent<Image>();
-	// 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
-	// 	}
-
-	// 	if (sceneToLoad == GlobalVariables.globVarScript.parkName || sceneToLoad == GlobalVariables.globVarScript.parkPuzName)
-	// 	{
-	// 		titleCardObj = titleCards[2];
-	// 		titleCardImg = titleCardObj.GetComponent<Image>();
-	// 		titleCardFadeScript = titleCardObj.GetComponent<FadeInOutBoth>();
-	// 	}
-	// }
-
 	//// FOR UNLOCKED PUZZLE SOUND TESTS
 
-	public static float getSceneFadeAlpha()
+	public float getSceneFadeAlpha()
 	{
 		return newAlpha;
 	}

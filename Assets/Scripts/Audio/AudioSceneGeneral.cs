@@ -148,7 +148,7 @@ public class AudioSceneGeneral : MonoBehaviour
         //FOR PUZZLE UNLOCKED TESTS 
 
         currentScene = SceneManager.GetActiveScene().name;
-        AlphaValue = SceneFade.getSceneFadeAlpha();
+        AlphaValue = GlobalVariables.globVarScript.sceneFadeScript.getSceneFadeAlpha();
         if(AlphaValue ==0)
         {SceneIn =true;}
         else 

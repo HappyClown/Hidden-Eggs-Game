@@ -312,7 +312,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 
 	public new void LvlStuffFadeIn()
 	{
-		Debug.Log("Should fade in stuff."); // Fade in tiles
+		//Debug.Log("Should fade in stuff."); // Fade in tiles
 		 if (!lvlItemHolders[curntLvl -1].activeSelf) lvlItemHolders[curntLvl -1].SetActive(true);
 	}
 
@@ -354,7 +354,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 	// 	audioSceneBeachPuzzScript.StopSceneMusic();
 	// 	audioSceneBeachPuzzScript.PlayTransitionMusic();
 
-	// 	SceneFade.SwitchScene(GlobalVariables.globVarScript.beachName);
+	// 	GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.beachName);
 	// }
 	// #endregion
 }
