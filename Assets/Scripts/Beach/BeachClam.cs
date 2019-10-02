@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BeachClam : MonoBehaviour {
-
-	// Use this for initialization
 	public BeachClam myMatch;
 	public FadeInOutSprite myOpenClam;
 	public FadeInOutSprite myClosedClam;
+	public Animator clamAnim;
 	public GameObject ClamSpriteParent;
 	public BeachBubbles[] myBubbles;
 	private CircleCollider2D myCollider;
@@ -15,6 +14,12 @@ public class BeachClam : MonoBehaviour {
 	public float timeDelay;
 	private float timer;
 	public bool Tapped, open, matched, failed, closed, forceClose;
+
+	public bool clamWaiting;
+	private bool setFadeDurToPlay;
+	public float clamUpDelay;
+	private float showClamTimer;
+	public float iniFadeInDur, playFadeInDur;
 
 
 	//tests for sounds
@@ -32,7 +37,6 @@ public class BeachClam : MonoBehaviour {
 		audioBeachPuzzleScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if(Tapped){
 			if(closed){
@@ -86,6 +90,20 @@ public class BeachClam : MonoBehaviour {
 				audioBeachPuzzleScript.addToMusicList(clamSound);
 			}
 		}
+	
+		if (setFadeDurToPlay) {
+			showClamTimer += Time.deltaTime;
+			if (showClamTimer >= clamUpDelay && clamWaiting) {
+				clamAnim.SetTrigger("ShowClam");
+				myClosedClam.FadeIn();
+				clamWaiting = false;
+			}
+			if (showClamTimer >= (clamUpDelay + iniFadeInDur) && setFadeDurToPlay) {
+				myClosedClam.fadeDuration = playFadeInDur;
+				showClamTimer = 0f;
+				setFadeDurToPlay = false;
+			}
+		}
 	}
 	public void ResetClams(){
 		myCollider = this.gameObject.GetComponent<CircleCollider2D>();
@@ -94,7 +112,7 @@ public class BeachClam : MonoBehaviour {
 		closed = true;
 		timer = 0;
 			myClosedClam.fadeDelay = false;
-			myClosedClam.FadeIn();
+			//myClosedClam.FadeIn();
 		if(myOpenClam.shown){
 			myOpenClam.fadeDelay = true;
 			myOpenClam.FadeOut();
@@ -110,5 +128,11 @@ public class BeachClam : MonoBehaviour {
 		{
 			bubbles.ResetBubble();
 		}
+	}
+
+	public void ShowClams() {
+		clamWaiting = true;
+		setFadeDurToPlay = true;
+		myClosedClam.fadeDuration = iniFadeInDur;
 	}
 }

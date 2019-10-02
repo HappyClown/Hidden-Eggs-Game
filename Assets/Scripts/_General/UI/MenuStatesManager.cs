@@ -112,7 +112,9 @@ public class MenuStatesManager : MonoBehaviour {
 			inputDetScript.detectDrag = true;
 			putDragOff = true;
 		}
-		lvlTapManScript.ZoomOutCameraReset();		
+		if (lvlTapManScript) {
+			lvlTapManScript.ZoomOutCameraReset();
+		}	
 	}
 
 	void TurningOn() {

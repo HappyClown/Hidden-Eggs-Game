@@ -106,8 +106,16 @@ public class ClamPuzzle : MainPuzzleEngine {
 				else
 				{
 					seqTimer += Time.deltaTime;
-					if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; /* lvlItemHolders[curntLvl - 1].SetActive(true); */ LvlStuffFadeIn(); }
-					if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); mySelectButton.InteractableThreeDots(maxLvl,curntLvl);}
+					if (seqTimer > itemSpawnF && !itemSpawnB) { 
+						itemSpawnB = true; 
+						/* lvlItemHolders[curntLvl - 1].SetActive(true); */ 
+						LvlStuffFadeIn(); 
+						myLvls[curntLvl-1].SetUpLevel();
+					}
+					if (seqTimer > dotsSpawnF && !dotsSpawnB) { 
+						dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); 
+						mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
+					}
 					if (seqTimer > iniCanPlayF) {
 						if (tutorialDone) {
 							canPlay = true; 
@@ -129,12 +137,6 @@ public class ClamPuzzle : MainPuzzleEngine {
 				if (itemWaitTimer > itemWaitAmnt)
 				{
 					itemHolder.SetActive(true);
-
-					//for (int i = 0; i < resetTilesScript.tiles.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
-					//{ resetTilesScript.tiles[i].GetComponent<FadeInOutSprite>().FadeIn(); }
-
-					LvlStuffFadeIn();
-
 					itemsWait = false;
 					itemWaitTimer = 0f;
 					canPlay = true;
@@ -142,31 +144,9 @@ public class ClamPuzzle : MainPuzzleEngine {
 				}
 			}
 			
-
 			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad); }
 			// Turn off interaction for all three level select dots.
 			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
-
-			// #region Click On SilverEggs
-			// // Clicking on a silver egg.
-			// if (myInput.Tapped) {
-			// 	UpdateMousePos();
-			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			// 	if (hit) {
-			// 		if (hit.collider.CompareTag("Egg")) {
-			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-			// 			silEggTappedScript.StartSilverEggAnim();
-			// 			hit.collider.enabled = false;
-		
-			// 			if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
-			// 			mySilverEggMan.SaveSilverEggsToCorrectFile();
-			// 			mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-			// 			mySilverEggMan.amntSilEggsTapped++;
-			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-			// 		}
-			// 	}
-			// }
-			// #endregion
 		}
 
 		if (waitMethod)
@@ -184,7 +164,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 		else { curntLvl = maxLvl; }
 		itemHolder = lvlItemHolders[curntLvl - 1];
 		myLvls[curntLvl-1].ResetLevel();
-		myLvls[curntLvl-1].SetUpLevel();
+		//myLvls[curntLvl-1].SetUpLevel();
 		initialSetupOn = false;
 		iniSeqStart = true;
 	}
@@ -212,18 +192,9 @@ public class ClamPuzzle : MainPuzzleEngine {
 		}
 
 		mySilverEggMan.silverEggsActive = true;
-
-		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; } // Turn off the initial fade delay for the three dots. Should only happen once.
-
+		 // Turn off the initial fade delay for the three dots. Should only happen once.
+		if (!mySelectButton.noFadeDelay) { mySelectButton.TurnFadeDelayOff(); mySelectButton.noFadeDelay = true; }
 		EndOfLevelEvent();
-		//LvlStuffFadeOut();
-		
-		// foreach(GameObject silEgg in mySilverEggMan.activeSilverEggs) // TO BE PUT IN THE ANIM SEQ -------------------------------------------------------------------------------------------
-		// {
-		// 	silEgg.GetComponent<SilverEggSequence>().StartSequence();
-		// }
-		// scrnDarkImgScript.FadeIn();
-
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
@@ -280,12 +251,9 @@ public class ClamPuzzle : MainPuzzleEngine {
 	{
 		// Close up current level.
 		canPlay = false;
-			myLvls[curntLvl-1].CleanClamBubbles();
-
+		myLvls[curntLvl-1].CleanClamBubbles();
 		mySelectButton.UninteractableThreeDots();
-
 		LvlStuffFadeOut();
-
 		setupChsnLvl = true;
 	}
 
@@ -298,6 +266,7 @@ public class ClamPuzzle : MainPuzzleEngine {
 		{
 			lvlItemHolders[curntLvl - 1].SetActive(false);
 			curntLvl = lvlToLoad;
+			LvlStuffFadeIn();
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
 			itemHolder = lvlItemHolders[curntLvl - 1];
