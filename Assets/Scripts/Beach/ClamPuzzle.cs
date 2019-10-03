@@ -234,6 +234,9 @@ public class ClamPuzzle : MainPuzzleEngine {
 		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
+			if (!puzzleCompScript.gameObject.activeSelf) {
+				puzzleCompScript.gameObject.SetActive(true);
+			}
 			puzzleCompScript.endSeq = true;
 			return;
 		}

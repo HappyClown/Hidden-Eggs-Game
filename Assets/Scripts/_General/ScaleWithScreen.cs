@@ -18,7 +18,9 @@ public class ScaleWithScreen : MonoBehaviour {
 	void Update () {
 		if (!cam) {
 			cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-			iniCamSize = cam.orthographicSize;
+			if (iniCamSize <= 0f) {
+				iniCamSize = cam.orthographicSize;
+			}
 		}
 		newCamSize = cam.orthographicSize;
 		if (curCamSize != newCamSize) {
