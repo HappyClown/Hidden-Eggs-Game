@@ -65,6 +65,8 @@ public class GlobalVariables : MonoBehaviour
 		FindEggHolderScript();
 		LoadCorrectEggs();
 		LoadHubDissolve();
+
+		Application.targetFrameRate = 30;
 	}
 
 	void OnLevelWasLoaded()
