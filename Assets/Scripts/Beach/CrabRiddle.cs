@@ -71,11 +71,13 @@ public class CrabRiddle : MonoBehaviour {
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
 			if (hit) {
 				if (hit.collider.CompareTag("Riddle"))	{
+					inputDetScript.ResetDoubleTap();
 					if (hit.point.x > crab.transform.position.x && !directions[moveAmount]) {
 						audioSceneBeachScript.crabWalkSFX();
 						moveDest = new Vector3(crab.transform.position.x + crabMoveAmnt, crab.transform.position.y, crab.transform.position.z);
 						moveAmount += 1;
-					}else if(hit.point.x < crab.transform.position.x && directions[moveAmount]){
+					}
+					else if(hit.point.x < crab.transform.position.x && directions[moveAmount]){
 						audioSceneBeachScript.crabWalkSFX();
 						moveDest = new Vector3(crab.transform.position.x - crabMoveAmnt, crab.transform.position.y, crab.transform.position.z);
 						//moveDest = (moves[moveAmount-1].transform.position - crab.transform.position).normalized + crab.transform.position;
@@ -83,9 +85,12 @@ public class CrabRiddle : MonoBehaviour {
 						//hit.collider.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 					}
 					else {
-						if (moveAmount > 0) {
+						if (moveAmount > 0 && moveAmount < movesToWin) {
 							crabReturning = true;
 							audioSceneBeachScript.crabWalkSFX();
+						}
+						if (moveAmount == 0) {
+							crabAnim.SetTrigger("PlayCrabClaws");
 						}
 						moveAmount = 0;
 						moveDest = crabOGPos;
@@ -119,15 +124,25 @@ public class CrabRiddle : MonoBehaviour {
 					// }	
 					// moves[0].GetComponent<BoxCollider2D>().enabled = true;
 				//}
-			} 
+			}
 			else{
-				if (moveAmount > 0) {
+				if (moveAmount > 0 && moveAmount < movesToWin) {
 						crabReturning = true;
 						audioSceneBeachScript.crabWalkSFX();
 					}
 					moveAmount = 0;
 					moveDest = crabOGPos;
 			
+			}
+		}
+		else if (sceneTapEnabScript.canTapEggRidPanPuz && inputDetScript.Tapped) {
+			UpdateMousePos ();
+			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
+			if (hit) {
+				if (hit.collider.CompareTag("Riddle"))	{
+					inputDetScript.ResetDoubleTap();
+					Debug.Log("Hit riddle while crabby was walkin should reset double tap");
+				}
 			}
 		}
     }

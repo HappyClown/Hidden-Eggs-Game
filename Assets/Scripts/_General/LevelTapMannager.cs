@@ -199,6 +199,7 @@ public class LevelTapMannager : MonoBehaviour {
 	}
 	public void ZoomOutCameraReset(){
 		if(cam.orthographicSize < maxCameraSize){
+			 zoomIn = false;
 			 DoubleTap();
 		}
 	}
