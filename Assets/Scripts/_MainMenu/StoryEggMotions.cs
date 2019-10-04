@@ -30,6 +30,9 @@ public class StoryEggMotions : MonoBehaviour {
 	private Vector3 iniHoverPos;
 	public int hoverAmnt;
 	private int hoverAmntNum;
+	public float hoverAfterChangeDur;
+	private float timer;
+	private bool hoverBeforeFall;
 	[Header ("Rotate")]
 	public float minRotDur;
 	public float maxRotDur;
@@ -42,12 +45,12 @@ public class StoryEggMotions : MonoBehaviour {
 	public FadeInOutSprite thisEggFadeScript, sceneEggFadeScript;
 	[Tooltip ("Each egg has its own Trail particle system but they all reference the same Burst particle system.")]
 	public ParticleSystem trailPartSys, burstPartSys;
-	private bool fadeToSceneEgg = false, eggFlashed, eggBurst;
+	public bool fadeToSceneEgg = false, eggFlashed, eggBurst;
 	private float fadeSceneEggTimer;
 	public SpriteColorFade spriteColorFadeScript;
+
 	[Header ("Audio Script reference")]
 	public AudioIntro audioIntroScript;
-
 	public bool audioEggFallDown = true;
 	public bool audioEggOutBag =true;
 
@@ -72,6 +75,14 @@ public class StoryEggMotions : MonoBehaviour {
 		}
 		if (fadeToSceneEgg) {
 			FadeToSceneEgg();
+		}
+		if (hoverBeforeFall) {
+			timer += Time.deltaTime;
+			if (timer >= hoverAfterChangeDur) {
+				fallOffScreen = true;
+				timer = 0f;
+				hoverBeforeFall = false;
+			}
 		}
 	}
 
@@ -125,8 +136,7 @@ public class StoryEggMotions : MonoBehaviour {
 		this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, newRot);
 		lerpValue = 0f;
 		fadeSceneEggTimer = 0f;
-		fadeToSceneEgg = true;
-
+		// fadeToSceneEgg = true;
 	}
 
 	void Rotate() {
@@ -186,6 +196,8 @@ public class StoryEggMotions : MonoBehaviour {
 			fadeSceneEggTimer = 0f;
 			fadeToSceneEgg = false;
 			eggFlashed = false;
+			//fallOffScreen = true;
+			hoverBeforeFall = true;
 		}
 	}
 

@@ -149,6 +149,7 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[4] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
 			// Condition to change the story board.
@@ -166,8 +167,6 @@ public class StoryIntro : MonoBehaviour {
 				exitingBoard = false;
 				tapTime = 99999f;
 				introStates = IntroStates.TimeFlying;
-
-				audioManHubMenuScript.ButtonSound(); //clicking sound
 			}
 		}
 	}
@@ -180,7 +179,7 @@ public class StoryIntro : MonoBehaviour {
 			boardTimer += Time.deltaTime;
 		}
 		if (storyTextScript.fadeCanvasScript.shown && inputDetScript.Tapped) {
-			audioManHubMenuScript.ButtonSound(); //clicking sound
+			//audioManHubMenuScript.ButtonSound(); //clicking sound
 			boardBools[0] = true;
 		}
 		// SHOW TAP ICON
@@ -195,6 +194,7 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[2] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
 			if (boardTimer >= boardEvents[3] + tapTime && !boardBools[3]) {
@@ -237,14 +237,13 @@ public class StoryIntro : MonoBehaviour {
 			storyTextScript.SetupText(storyBoardTextNum);
 			storyBoardTextNum++;
 			boardBools[0] = true;
+			// AUDIO - GUST MOVES IN!
+			audioIntroScript.introGustHoverSFX();
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
 			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.midTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve);
 			storyGustScript.yHover = true;
 			boardBools[1] = true;
-
-			// AUDIO - GUST MOVES IN!
-			audioIntroScript.introGustHoverSFX();
 
 		}
 		// SHOW TAP ICON
@@ -259,6 +258,7 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[3] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
 			if (boardTimer >= (boardEvents[4] + tapTime) && !boardBools[4]) {
@@ -269,7 +269,6 @@ public class StoryIntro : MonoBehaviour {
 				blackScreenFadeScript.FadeIn();
 				//AUDIo stop wind stop from Gust HOver loop
 				audioIntroScript.STOP_introWindLoopSFX();
-				audioManHubMenuScript.ButtonSound(); //clicking sound
 				boardBools[5] = true;
 			}
 			if (boardBools[5] && blackScreenFadeScript.shown) {
@@ -299,9 +298,6 @@ public class StoryIntro : MonoBehaviour {
 			storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys, storySingleCloudScript.ogSpeedMult, true);
 			storyGustScript.ChangeScale();
 			// Back to normal sky scrolling.
-
-			// AUDIO - Collision sequence	
-			audioIntroScript.introCollisionSFX();
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1] + tapTime) {
 			boardTimer += Time.deltaTime;
@@ -323,11 +319,15 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[2] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
 			if (boardTimer >= boardEvents[3] + tapTime && !boardBools[3]) {
 				storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.endTrans.position.x, storyGustScript.moveAcrossDur, storyGustScript.moveAcrossCurve);
 				boardBools[3] = true;
+
+				// AUDIO - Collision sequence	
+				audioIntroScript.introCollisionSFX();
 			}
 			if (boardTimer >= boardEvents[4] + tapTime && !boardBools[4]) {
 				storyTimeMoScript.SetupTimeSpin(storyTimeMoScript.fastSpinDuration);
@@ -339,11 +339,12 @@ public class StoryIntro : MonoBehaviour {
 
 				// // AUDIO - TIME SPINS!
 				storyTimeMoScript.audioSpin = true;
+				//AUDIO PLAY GUST MISHAP
+				audioIntroScript.introGustMishapSFX();
 			}
 			if (boardTimer >= boardEvents[5] + tapTime && !boardBools[5]) {
 				blackScreenFadeScript.FadeIn();
 
-				audioManHubMenuScript.ButtonSound(); //clicking sound
 				// // AUDIO - TIME STOP SPINNING!
 				storyTimeMoScript.audioSpin =false;
 				boardBools[5] = true;
@@ -360,9 +361,6 @@ public class StoryIntro : MonoBehaviour {
 				}
 				tapTime = 999999f;
 				exitingBoard = false;
-
-				//AUDIO PLAY GUST MISHAP
-				audioIntroScript.introGustMishapSFX();
 				audioIntroScript.introWindLoopSFX();
 			}
 		}
@@ -414,6 +412,7 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[3] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
 			if (boardTimer >= boardEvents[4] + tapTime && !boardBools[4]) {
@@ -426,10 +425,6 @@ public class StoryIntro : MonoBehaviour {
 			}
 			if (boardTimer >= boardEvents[5] + tapTime && !boardBools[5]) {
 				blackScreenFadeScript.FadeIn();
-
-				audioManHubMenuScript.ButtonSound(); //clicking sound
-				//AUDIO stop wind loop?
-				audioIntroScript.STOP_introWindLoopSFX();
 				boardBools[5] = true;
 			}
 			if (boardBools[5] && blackScreenFadeScript.shown) {
@@ -444,10 +439,11 @@ public class StoryIntro : MonoBehaviour {
 				}
 				exitingBoard = false;
 				tapTime = 99999f;
-
-				// // AUDIO - TIME SPINS!
-				// audioIntroScript.introTimeSpinLoopSFX();
+				
 				storyTimeMoScript.audioSpin = true;
+				//AUDIO stop wind loop?
+				audioIntroScript.STOP_introWindLoopSFX();
+
 			}
 		}
 	}
@@ -504,12 +500,12 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[3] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
 			if (boardTimer >= boardEvents[4] + tapTime && !boardBools[4]) {
 				blackScreenFadeScript.FadeIn();	
 
-				audioManHubMenuScript.ButtonSound(); //clicking sound
 				boardBools[4] = true;
 			}
 			if (boardBools[4] && blackScreenFadeScript.shown) {
@@ -568,38 +564,40 @@ public class StoryIntro : MonoBehaviour {
 			storyEggManScript.SpawnFallingEggs();
 			boardBools[1] = true;
 
-			//AuDIO egg falling sequence
-			audioIntroScript.introEggFallingSFX();
+		}		
+		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
+			boardBools[1] = true;
 		}		
 		// SHOW TAP ICON
-		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
+		if (boardTimer >= boardEvents[3] && !boardBools[3]) {
 			storyIconsScript.ShowNextButton();
-			boardBools[2] = true;
+			boardBools[3] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[4] && !boardBools[4] && nextBtnPressed) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
 			nextBtnPressed = false;
-			boardBools[3] = true;
+			boardBools[4] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
-			if (boardTimer >= boardEvents[4] + tapTime && !boardBools[4]) {
-				storyEggManScript.EggsFallOffScreen();
-				boardBools[4] = true;
-			}
 			if (boardTimer >= boardEvents[5] + tapTime && !boardBools[5]) {
-				blackScreenFadeScript.FadeIn();
-				
-				audioManHubMenuScript.ButtonSound(); //clicking sound
+				boardBools[5] = true;
+				storyEggManScript.EggsFallOffScreen();
 				//AuDIO egg falling sequence
 				audioIntroScript.STOP_introEggFallingSFX();
 				//AUDIO
 				audioIntroScript.STOP_introWindLoopSFX();
-				boardBools[5] = true;
+				//AuDIO egg falling sequence
+				audioIntroScript.introEggFallingSFX();
 			}
-			if (boardBools[5] && blackScreenFadeScript.shown) {
+			if (boardTimer >= boardEvents[6] + tapTime && !boardBools[6]) {
+				blackScreenFadeScript.FadeIn();
+				boardBools[6] = true;
+			}
+			if (boardBools[6] && blackScreenFadeScript.shown) {
 				storyEggManScript.ResetEggs();
 				introStates = IntroStates.TimeToTheRescue;
 				boardTimer = 0f;
@@ -659,6 +657,12 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[3] = true;
+
+			audioManHubMenuScript.ButtonSound(); //clicking sound
+			//AUDIO TIME DIVE?
+			audioIntroScript.STOP_introTimeDiveSFX();
+			//AUDIO
+			audioIntroScript.STOP_introWindLoopSFX();
 		}
 		if (exitingBoard) {
 			if (boardTimer >= boardEvents[4] + tapTime && !boardBools[4]) {
@@ -667,12 +671,6 @@ public class StoryIntro : MonoBehaviour {
 			}
 			if (boardTimer >= boardEvents[5] + tapTime && !boardBools[5]) {
 				blackScreenFadeScript.FadeIn();	
-
-				audioManHubMenuScript.ButtonSound(); //clicking sound
-				//AUDIO TIME DIVE?
-				audioIntroScript.STOP_introTimeDiveSFX();
-				//AUDIO
-				audioIntroScript.STOP_introWindLoopSFX();
 				boardBools[5] = true;
 			}
 			if (boardBools[5] && blackScreenFadeScript.shown) {
@@ -700,6 +698,7 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.SetTimePos(storyTimeMoScript.diveStartTrans.position, true);
 			storyOneEggScript.theOneEgg.SetActive(true);
 			storyOneEggScript.eggTrailFX.Play();
+			storyScrollBGScript.SetUpClouds(storyScrollBGScript.verticalBGs, storyScrollBGScript.verticalScrollSpeedTwo, false);
 			//storyOneEggScript.rotate = true;
 
 						//AUDIO
@@ -732,29 +731,26 @@ public class StoryIntro : MonoBehaviour {
 			if (hit && hit.collider.tag == "Egg") {
 				// TheOneEgg is set inactive in the StoryTimeMotion script.
 				storyOneEggScript.EggTap();
+				storyOneEggScript.tapIconFadeScript.FadeOut();
+				storyTimeMoScript.timeDivesThrough = true;	
 
+				//AUDIO TIME DIVE?
+				audioIntroScript.introTimeDiveRescueSFX();
 				//AUDIO SINGLE EGG SPIN?
 				audioIntroScript.STOP_introSingleEggSpinLoopSFX();
 				// AUDIO - EGG CLICKED/TAPPED!
 				audioIntroScript.silverEggSnd();
-				storyOneEggScript.tapIconFadeScript.FadeOut();
-				storyTimeMoScript.timeDivesThrough = true;	
-				//AUDIO TIME DIVE?
-				audioIntroScript.introTimeDiveRescueSFX();
 
 				enableRaycasting = false;
 				tapTime = boardTimer;
 				boardBools[2] = true;
 				return;
-
-
-
 			}
 		}
 		if (boardTimer >= boardEvents[3] + tapTime && !boardBools[3]) {
 			blackScreenFadeScript.FadeIn();
 
-			audioManHubMenuScript.ButtonSound(); //clicking sound
+			//audioManHubMenuScript.ButtonSound(); //clicking sound
 			//AUDIO
 			audioIntroScript.STOP_introWindLoopSFX();
 
@@ -821,8 +817,7 @@ public class StoryIntro : MonoBehaviour {
 		}
 		if (boardTimer >= boardEvents[3] && !boardBools[3]) {
 			// It shakes and sparkles
-
-		}		
+		}
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[4] && !boardBools[4]) {
 			storyIconsScript.ShowNextButton();
@@ -835,6 +830,7 @@ public class StoryIntro : MonoBehaviour {
 			exitingBoard = true;
 			nextBtnPressed = false;
 			boardBools[5] = true;
+			audioManHubMenuScript.ButtonSound(); //clicking sound
 		}
 		if (exitingBoard) {
 			if (boardTimer >= boardEvents[6] + tapTime && !boardBools[6]) {
@@ -848,9 +844,6 @@ public class StoryIntro : MonoBehaviour {
 				// Relative to the Hub script's hubActiveWait float amount. hubActiveWait - hubActiveFaster = delay after click.
 				hubScript.hubActiveFaster = 2.5f;
 				boardBools[6] = true;
-
-				audioManHubMenuScript.ButtonSound(); //clicking sound
-
 			}
 			if (boardBools[6]) {
 				introStates = IntroStates.TitleScreen;

@@ -23,7 +23,7 @@ public class StoryScrollingBG : MonoBehaviour {
 	public float blurSideScrollSpeed;
 	public List<GameObject> blurredSidewaysBGs;
 	[Header ("Vertical")]
-	public float verticalScrollSpeed;
+	public float verticalScrollSpeed; public float verticalScrollSpeedTwo;
 	public float yLimit;
 	public List<GameObject> verticalBGs;
 	private bool verticalScroll;

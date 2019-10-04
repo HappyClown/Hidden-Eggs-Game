@@ -62,10 +62,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	public Animator glideAnim;
 	[Header ("Audio reference")]
 	public AudioIntro audioIntroScript;
-
 	public bool audioSpin = true;
-
-
 
 	void Start () {
 		currentTime = normalTime;

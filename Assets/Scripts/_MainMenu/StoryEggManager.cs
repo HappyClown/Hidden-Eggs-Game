@@ -74,7 +74,7 @@ public class StoryEggManager : MonoBehaviour {
 			eggSpawnTimer += Time.deltaTime;
 			if (eggSpawnTimer >= timeBetweenFallEggs) {
 				eggSpawnTimer = 0f;
-				storyEggScripts[currentEggNum].FallOffScreen();
+				storyEggScripts[currentEggNum].fadeToSceneEgg = true;
 				currentEggNum++;
 				if (currentEggNum > fallingEggStartTrans.Count - 1) {
 					currentEggNum = 0;
@@ -124,6 +124,7 @@ public class StoryEggManager : MonoBehaviour {
 		currentEggNum = 0;
 		eggSpawnTimer = 0f;
 		hoveringEggsFall = true;
+		//fadeToSceneEgg = true;
 	}
 
 	public void ResetEggs() {
