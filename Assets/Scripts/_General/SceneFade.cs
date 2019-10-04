@@ -231,6 +231,12 @@ public class SceneFade : MonoBehaviour
 			if (audioTransScript != null) {
 				audioTransScript.TransitionScenes(sceneName);
 			}
+			else {
+				audioTransScript = GameObject.FindWithTag("Audio").GetComponent<AudioTransitions>();
+				if (audioTransScript != null) {
+					audioTransScript.TransitionScenes(sceneName);
+				}
+			}
 		}
 	}
 
@@ -243,6 +249,12 @@ public class SceneFade : MonoBehaviour
 			sceneToLoad = sceneName;
 			if (audioTransScript != null) {
 				audioTransScript.TransitionScenes(sceneName);
+			}
+			else {
+				audioTransScript = GameObject.FindWithTag("Audio").GetComponent<AudioTransitions>();
+				if (audioTransScript != null) {
+					audioTransScript.TransitionScenes(sceneName);
+				}
 			}
 		}
 	}
