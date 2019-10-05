@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -97,6 +97,9 @@ public class BeachClam : MonoBehaviour {
 				clamAnim.SetTrigger("ShowClam");
 				myClosedClam.FadeIn();
 				clamWaiting = false;
+
+				//sound clam pop
+				audioBeachPuzzleScript.clamPopOutSFX();
 			}
 			if (showClamTimer >= (clamUpDelay + iniFadeInDur) && setFadeDurToPlay) {
 				myClosedClam.fadeDuration = playFadeInDur;

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -204,10 +204,10 @@ public class StoryTimeMotions : MonoBehaviour {
 
 
 			//TEST SYNC SPIN
-			if(audioSpin)
-			{
+			if(audioSpin){
 				audioIntroScript.introTimeSpinLoopSFX();
 			}
+			
 		}
 		if (currentTime.transform.eulerAngles.y >= 90 && !spinCountCheck) {
 			spinCountCheck = true;

@@ -28,14 +28,18 @@ public class AudioIntro : MonoBehaviour
     public string introSingleEggSpinEvent = "event:/SFX/INTRO/SingleEggSpin";
     public FMOD.Studio.EventInstance introSingleEggSpinSound;
 
-    public string introTimeDiveEvent = "event:/SFX/INTRO/Time Dive";
-    public FMOD.Studio.EventInstance introTimeDiveSound;
+    public string introTimeDiveLoopEvent = "event:/SFX/INTRO/Time Dive Loop";
+    public FMOD.Studio.EventInstance introTimeDiveLoopSound;
 
     public string introTimeDiveRescueEvent = "event:/SFX/INTRO/Time Dive Rescue";
     public FMOD.Studio.EventInstance introTimeDiveRescueSound;
 
     public string introTimeHoverLoopEvent = "event:/SFX/INTRO/Time Hover Loop";
     public FMOD.Studio.EventInstance introTimeHoverLoopSound;
+
+    
+    public string introTimeHoverLoopFarEvent = "event:/SFX/INTRO/Time Hover Loop Far";
+    public FMOD.Studio.EventInstance introTimeHoverLoopFarSound;
 
     public string introTimeWooshEvent = "event:/SFX/INTRO/Time Woosh";
     public FMOD.Studio.EventInstance introTimeWooshSound;
@@ -51,7 +55,7 @@ public class AudioIntro : MonoBehaviour
 
     public string silverEggClickEvent = "event:/SFX/SFX_General/Egg_Click_Silver";
     public FMOD.Studio.EventInstance silverEggClickSound;
-    public string silverEggTrailEvent = "vent:/SFX/SFX_General/SilverEggs_SlideToPanel";
+    public string silverEggTrailEvent = "event:/SFX/SFX_General/SilverEggs_SlideToPanel";
     public FMOD.Studio.EventInstance silverEggTrailSound;
 
     
@@ -61,11 +65,13 @@ public class AudioIntro : MonoBehaviour
 	void Start () 
 	{
         introTimeHoverLoopSound = FMODUnity.RuntimeManager.CreateInstance(introTimeHoverLoopEvent);
+        introGustHoverSound = FMODUnity.RuntimeManager.CreateInstance(introGustHoverEvent);
+        introTimeHoverLoopFarSound = FMODUnity.RuntimeManager.CreateInstance(introTimeHoverLoopFarEvent);
         introTimeSpinLoopSound = FMODUnity.RuntimeManager.CreateInstance(introTimeSpinLoopEvent);
         introWindLoopSound = FMODUnity.RuntimeManager.CreateInstance(introWindLoopEvent);
         introSingleEggSpinSound = FMODUnity.RuntimeManager.CreateInstance(introSingleEggSpinEvent);
         introEggFallingSound = FMODUnity.RuntimeManager.CreateInstance(introEggFallingEvent);
-        introTimeDiveSound = FMODUnity.RuntimeManager.CreateInstance(introTimeDiveEvent);
+        introTimeDiveLoopSound = FMODUnity.RuntimeManager.CreateInstance(introTimeDiveLoopEvent);
 	}
 	
 	void Update () 
@@ -84,13 +90,7 @@ public class AudioIntro : MonoBehaviour
         introTimeWooshSound.start();
     }      
 
-
-        public void introGustHoverSFX()
-    {
-        introGustHoverSound = FMODUnity.RuntimeManager.CreateInstance(introGustHoverEvent);
-        introGustHoverSound.start();
-    }
-        public void introGustMishapSFX()
+        public void introGustSFX()
     {
         introGustMishapSound = FMODUnity.RuntimeManager.CreateInstance(introGustMishapEvent);
         introGustMishapSound.start();
@@ -100,11 +100,8 @@ public class AudioIntro : MonoBehaviour
         introCollisionSound = FMODUnity.RuntimeManager.CreateInstance(introCollisionEvent);
         introCollisionSound.start();
     }
+
         public void introTimeDiveSFX()
-    {
-        introTimeDiveSound.start();
-    }       
-           public void introTimeDiveRescueSFX()
     {
         introTimeDiveRescueSound = FMODUnity.RuntimeManager.CreateInstance(introTimeDiveRescueEvent);
         introTimeDiveRescueSound.start();
@@ -149,11 +146,24 @@ public class AudioIntro : MonoBehaviour
     {
         introTimeHoverLoopSound.start();
     }   
+        public void introTimeHoverLoopFarSFX()
+    {
+        introTimeHoverLoopFarSound.start();
+    }  
     
+        public void introGustHoverSFX()
+    {
+        introGustHoverSound.start();
+    }
         public void introTimeSpinLoopSFX()
     {
         introTimeSpinLoopSound.start();
     } 
+
+        public void introTimeDiveLoopSFX()
+    {
+        introTimeDiveLoopSound.start();
+    }       
     
         public void introWindLoopSFX()
     {
@@ -171,7 +181,10 @@ public class AudioIntro : MonoBehaviour
     {
         introTimeHoverLoopSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }   
-
+    public void STOP_introTimeHoverLoopFarSFX()
+    {
+        introTimeHoverLoopFarSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
         public void STOP_introTimeSpinLoopSFX()
     {
         introTimeSpinLoopSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
@@ -181,7 +194,10 @@ public class AudioIntro : MonoBehaviour
     {
         introWindLoopSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
-
+        public void STOP_introGustHoverSFX()
+    {
+        introGustHoverSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
          public void STOP_introSingleEggSpinLoopSFX()
     {
         introSingleEggSpinSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
@@ -193,9 +209,10 @@ public class AudioIntro : MonoBehaviour
         introEggFallingSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-        public void STOP_introTimeDiveSFX()
+        public void STOP_introTimeDiveLoopSFX()
     {
-        introTimeDiveSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        introTimeDiveLoopSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }  
     
+
 }

@@ -157,7 +157,6 @@ MonoBehaviour:
   - {fileID: 114059066048689700}
   - {fileID: 114135881423952324}
   - {fileID: 114032140094087652}
-  - {fileID: 114002672736377434}
   - {fileID: 114360085956393194}
   - {fileID: 114277914392528380}
   - {fileID: 114446957014123670}
@@ -192,9 +191,13 @@ MonoBehaviour:
   - {fileID: 114987140740182002}
   - {fileID: 114506477648420756}
   - {fileID: 114143963540493092}
+  - {fileID: 114359794841550412}
+  - {fileID: 114027399205792220}
+  - {fileID: 114154126117463428}
+  - {fileID: 114541212619457442}
   MasterBankRef: {fileID: 114011783781245548}
   StringsBankRef: {fileID: 114145926531454728}
-  stringsBankWriteTime: 637043263822791600
+  stringsBankWriteTime: 637058122560000000
   cacheVersion: 2
 --- !u!114 &114002672736377434
 MonoBehaviour:
@@ -218,6 +221,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 9753
+--- !u!114 &114003864411084302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: item_weight
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114009419713312750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,13 +292,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\FmodAssets\Desktop\Master Bank.bank
-  lastModified: 637043263748657848
+  lastModified: 637058122520000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 49732512
+    Value: 47898048
   - Name: Mobile
-    Value: 119013248
+    Value: 114493472
   Exists: 1
 --- !u!114 &114014070815969820
 MonoBehaviour:
@@ -301,7 +319,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114250284841374808}
+  - {fileID: 114003864411084302}
   MinDistance: 0
   MaxDistance: 0
   Length: 890
@@ -327,6 +345,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &114027399205792220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/INTRO/Time Dive_OLD
+  guid: 7d7571da70fdb44693b724fa8886e2f3
+  Banks:
+  - {fileID: 114011783781245548}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 9753
 --- !u!114 &114032140094087652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +482,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114852409501493372}
+  - {fileID: 114497237097652064}
   MinDistance: 0
   MaxDistance: 0
   Length: 155
@@ -524,7 +564,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114829633474331926}
+  - {fileID: 114987086941013012}
   MinDistance: 0
   MaxDistance: 0
   Length: 4500
@@ -611,7 +651,7 @@ MonoBehaviour:
   - {fileID: 114011783781245548}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
@@ -712,6 +752,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2800
+--- !u!114 &114100953395119994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114102784499268004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +870,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114125130965913170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114132110930847944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,13 +1029,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: FmodAssets\Desktop\Master Bank.strings.bank
-  lastModified: 637043263822791600
+  lastModified: 637058122560000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 9632
+    Value: 9772
   - Name: Mobile
-    Value: 9632
+    Value: 9772
   Exists: 1
 --- !u!114 &114150275554266502
 MonoBehaviour:
@@ -1011,6 +1081,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1050
+--- !u!114 &114154126117463428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Puzzle_Beach/ClamPopOut
+  guid: aefe698ab95520458f8e0b50cf56da5b
+  Banks:
+  - {fileID: 114011783781245548}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 290
 --- !u!114 &114162899483893812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,7 +1427,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 20904
+  Length: 13296
 --- !u!114 &114237063080762640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,6 +1443,21 @@ MonoBehaviour:
   Min: 0
   Max: 24
   Default: 13.187879
+--- !u!114 &114238130881505356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114247168747945390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1519,7 +1626,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 1260
+  Length: 1250
 --- !u!114 &114277186073369438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1539,8 +1646,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114046191866274446}
-  - {fileID: 114929402899837582}
+  - {fileID: 114643955884491404}
+  - {fileID: 114405894075880720}
   MinDistance: 0
   MaxDistance: 0
   Length: 102267
@@ -1585,7 +1692,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114310845206338650}
+  - {fileID: 114402369822110336}
   MinDistance: 0
   MaxDistance: 0
   Length: 216536
@@ -1611,6 +1718,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1570
+--- !u!114 &114282495893201750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114286898091337260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,7 +1811,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114991365645394474}
+  - {fileID: 114282495893201750}
   MinDistance: 0
   MaxDistance: 0
   Length: 69
@@ -1890,11 +2012,11 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114453838343803596}
-  - {fileID: 114855625277188166}
-  - {fileID: 114424914623429190}
-  - {fileID: 114559191274652392}
-  - {fileID: 114957982001249832}
+  - {fileID: 114984646220495960}
+  - {fileID: 114845355239076252}
+  - {fileID: 114836530106565420}
+  - {fileID: 114125130965913170}
+  - {fileID: 114745236208487210}
   MinDistance: 0
   MaxDistance: 0
   Length: 72071
@@ -1979,6 +2101,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2800
+--- !u!114 &114359794841550412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/INTRO/Time Hover Loop Far
+  guid: 492f2e7fdbf33d419912f9e7604fdb76
+  Banks:
+  - {fileID: 114011783781245548}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 5550
 --- !u!114 &114360085956393194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2042,7 +2186,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114332270906802464}
+  - {fileID: 114997808187765222}
   MinDistance: 0
   MaxDistance: 0
   Length: 157387
@@ -2087,7 +2231,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114315217750302084}
+  - {fileID: 114931336641181362}
   MinDistance: 0
   MaxDistance: 0
   Length: 1775
@@ -2113,6 +2257,66 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1670
+--- !u!114 &114387331813778370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114402369822110336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
+--- !u!114 &114403041706705166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114405894075880720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114408404415774986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,7 +2424,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114034222002971862}
+  - {fileID: 114403041706705166}
   MinDistance: 0
   MaxDistance: 0
   Length: 624
@@ -2339,7 +2543,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114942272094702270}
+  - {fileID: 114919539213284224}
   MinDistance: 0
   MaxDistance: 0
   Length: 624
@@ -2453,6 +2657,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 218250
+--- !u!114 &114497237097652064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114498481536350192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2562,7 +2781,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 75000
+  Length: 75054
 --- !u!114 &114509069185116366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2615,6 +2834,28 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3000
+--- !u!114 &114541212619457442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/INTRO/Time Dive Loop
+  guid: fad5aff57c12a749a2cfff6571a54301
+  Banks:
+  - {fileID: 114011783781245548}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 7000
 --- !u!114 &114544419558645724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2637,6 +2878,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2000
+--- !u!114 &114547249640719262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114550048948702408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2777,6 +3033,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 187
+--- !u!114 &114568568181098834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114573898759332966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,6 +3107,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 10360
+--- !u!114 &114598204686421134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114598610417386014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3068,7 +3354,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114220039336888926}
+  - {fileID: 114722259357273302}
   MinDistance: 0
   MaxDistance: 0
   Length: 57069
@@ -3109,6 +3395,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114641379974121482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114642142764224512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3128,10 +3429,25 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114083629356186800}
+  - {fileID: 114387331813778370}
   MinDistance: 0
   MaxDistance: 0
   Length: 624
+--- !u!114 &114643955884491404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Summer
+  Min: 0
+  Max: 1
+  Default: 1
 --- !u!114 &114645123301639970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3394,7 +3710,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114692676826252918}
+  - {fileID: 114845423918532116}
   MinDistance: 0
   MaxDistance: 0
   Length: 3275
@@ -3419,7 +3735,22 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 9500
+  Length: 5850
+--- !u!114 &114722259357273302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114727232396754202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3530,6 +3861,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 870
+--- !u!114 &114745236208487210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114747766056343440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3632,7 +3978,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 11600
+  Length: 9800
 --- !u!114 &114758940378587958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3755,7 +4101,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114334235317135394}
+  - {fileID: 114100953395119994}
   MinDistance: 0
   MaxDistance: 0
   Length: 624
@@ -3824,7 +4170,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 9841
+  Length: 10000
 --- !u!114 &114801016798443186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3844,7 +4190,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114325517578981846}
+  - {fileID: 114641379974121482}
   MinDistance: 0
   MaxDistance: 0
   Length: 21446
@@ -3867,7 +4213,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114077254255291952}
+  - {fileID: 114598204686421134}
   MinDistance: 0
   MaxDistance: 0
   Length: 4500
@@ -3912,7 +4258,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114287863310313868}
+  - {fileID: 114547249640719262}
   MinDistance: 0
   MaxDistance: 0
   Length: 21446
@@ -3989,7 +4335,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 9700
+  Length: 6500
 --- !u!114 &114836502631748980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4002,6 +4348,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: cinematic
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114836530106565420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Autumn
   Min: 0
   Max: 1
   Default: 0
@@ -4027,6 +4388,36 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 9852
+--- !u!114 &114845355239076252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Winter
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114845423918532116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114850151325488394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4137,7 +4528,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
-  Length: 11369
+  Length: 4500
 --- !u!114 &114868775460095348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4311,7 +4702,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114216948318128196}
+  - {fileID: 114238130881505356}
   MinDistance: 0
   MaxDistance: 0
   Length: 155387
@@ -4381,6 +4772,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1400
+--- !u!114 &114919539213284224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114920711572663606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4528,6 +4934,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 31000
+--- !u!114 &114931336641181362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: eggTrail
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114936423970972004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4800,6 +5221,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114984646220495960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Spring
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114986575162963552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4822,6 +5258,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 800
+--- !u!114 &114987086941013012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: fade
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114987140740182002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4834,7 +5285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: event:/SFX/INTRO/Time Dive Rescue
-  guid: fad5aff57c12a749a2cfff6571a54301
+  guid: 77f1695af67d5a4d9dfa0558b28eeeea
   Banks:
   - {fileID: 114011783781245548}
   IsStream: 1
@@ -4881,6 +5332,21 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 1900
+--- !u!114 &114997808187765222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: EggsByScene
+  Min: 0
+  Max: 24
+  Default: 13.187879
 --- !u!114 &114998283664054286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4900,7 +5366,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114163313287469518}
+  - {fileID: 114568568181098834}
   MinDistance: 0
   MaxDistance: 0
   Length: 237635

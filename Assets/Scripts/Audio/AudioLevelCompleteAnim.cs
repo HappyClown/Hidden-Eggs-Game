@@ -51,6 +51,8 @@ public class AudioLevelCompleteAnim : MonoBehaviour
     public string levelComplete_ALLEvent = "event:/SFX/ANIMS/FakeAnim_LevelComplete";
     public FMOD.Studio.EventInstance levelComplete_ALLSound;
 
+   bool audioWholeSequencePlay = true;
+
 	void Start () 
 	{
 	}
@@ -65,77 +67,89 @@ public class AudioLevelCompleteAnim : MonoBehaviour
 
 
     public void eggsCounterSnd(){
-        // eggsCounterSound = FMODUnity.RuntimeManager.CreateInstance(eggsCounterEvent);
-        // eggsCounterSound.start();
+        if(!audioWholeSequencePlay){
+        eggsCounterSound = FMODUnity.RuntimeManager.CreateInstance(eggsCounterEvent);
+        eggsCounterSound.start();
+        }
 
     }
     public void bagAppearSnd(){
-        // bagAppearSound = FMODUnity.RuntimeManager.CreateInstance(bagAppearEvent);
-        // bagAppearSound.start();
+        if(!audioWholeSequencePlay){
+        bagAppearSound = FMODUnity.RuntimeManager.CreateInstance(bagAppearEvent);
+        bagAppearSound.start();
+        }
 
 
         //CHEAT AND PLAY THE WHOLE ANIM SEQUENCE SOUND
-         levelComplete_ALLSnd();
+        if(audioWholeSequencePlay){
+            levelComplete_ALLSound = FMODUnity.RuntimeManager.CreateInstance(levelComplete_ALLEvent);
+            levelComplete_ALLSound.start();    
+         }
 
     }
 
     public void circleEggsSoloSnd(){
-        // circleEggsSoloSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloEvent);
-        // circleEggsSoloSound.start();    
+    if(!audioWholeSequencePlay){
+        circleEggsSoloSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloEvent);
+        circleEggsSoloSound.start();  
+        }
     }
 
     public void circleEggsSoloPlainSnd(){
-        // circleEggsSoloPlainSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloPlainEvent);
-        // circleEggsSoloPlainSound.start();    
+                if(!audioWholeSequencePlay){
+        circleEggsSoloPlainSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloPlainEvent);
+        circleEggsSoloPlainSound.start();   }
     }
     
     public void circleEggsSoloSilverSnd(){
-        // circleEggsSoloSilverSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloSilverEvent);
-        // circleEggsSoloSilverSound.start();    
+                if(!audioWholeSequencePlay){
+        circleEggsSoloSilverSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloSilverEvent);
+        circleEggsSoloSilverSound.start();    }
     }
     
     public void circleEggsSoloGoldSnd(){
-        // circleEggsSoloGoldSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloGoldEvent);
-        // circleEggsSoloGoldSound.start();    
+                if(!audioWholeSequencePlay){
+        circleEggsSoloGoldSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsSoloGoldEvent);
+        circleEggsSoloGoldSound.start();   }
     }
 
 
         public void circleEggsGlowSnd(){
-        // circleEggsGlowSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsGlowEvent);
-        // circleEggsGlowSound.start();    
+                    if(!audioWholeSequencePlay){
+        circleEggsGlowSound = FMODUnity.RuntimeManager.CreateInstance(circleEggsGlowEvent);
+        circleEggsGlowSound.start();    }
     }        
         public void particulesInBagSnd(){
-        // particulesInBagSound = FMODUnity.RuntimeManager.CreateInstance(particulesInBagEvent);
-        // particulesInBagSound.start();    
+                    if(!audioWholeSequencePlay){
+        particulesInBagSound = FMODUnity.RuntimeManager.CreateInstance(particulesInBagEvent);
+        particulesInBagSound.start();    }
     }
 
     
         public void eggsMoveInBagSnd(){
-        // eggsMoveInBagSound = FMODUnity.RuntimeManager.CreateInstance(eggsMoveInBagEvent);
-        // eggsMoveInBagSound.start();    
+                    if(!audioWholeSequencePlay){
+        eggsMoveInBagSound = FMODUnity.RuntimeManager.CreateInstance(eggsMoveInBagEvent);
+        eggsMoveInBagSound.start();    }
     }
         public void bagRumbleSnd(){
+                    if(!audioWholeSequencePlay){
         bagRumbleSound = FMODUnity.RuntimeManager.CreateInstance(bagRumbleEvent);
-        // bagRumbleSound.start();    
+        // bagRumbleSound.start();   
+         }
     }
         public void bagExplodeSnd(){
-        // bagExplodeSound = FMODUnity.RuntimeManager.CreateInstance(bagExplodeEvent);
-        // bagExplodeSound.start();    
+                    if(!audioWholeSequencePlay){
+        bagExplodeSound = FMODUnity.RuntimeManager.CreateInstance(bagExplodeEvent);
+        bagExplodeSound.start();    }
     }
         public void bagHoverSnd(){
-        // bagHoverSound = FMODUnity.RuntimeManager.CreateInstance(bagHoverEvent);
-        // bagHoverSound.start();    
+                    if(!audioWholeSequencePlay){
+        bagHoverSound = FMODUnity.RuntimeManager.CreateInstance(bagHoverEvent);
+        bagHoverSound.start();    }
     }
         public void congratsTxtSnd(){
         congratsTxtSound = FMODUnity.RuntimeManager.CreateInstance(congratsTxtEvent);
         congratsTxtSound.start();    
-    }
-
-//levelComplete_ALLEvent
-
-        public void levelComplete_ALLSnd(){
-        levelComplete_ALLSound = FMODUnity.RuntimeManager.CreateInstance(levelComplete_ALLEvent);
-        levelComplete_ALLSound.start();    
     }
 
 }
