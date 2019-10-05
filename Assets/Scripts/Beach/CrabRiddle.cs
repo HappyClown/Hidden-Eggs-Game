@@ -90,6 +90,7 @@ public class CrabRiddle : MonoBehaviour {
 							audioSceneBeachScript.crabWalkSFX();
 						}
 						if (moveAmount == 0) {
+							audioSceneBeachScript.crabClawsSFX();
 							crabAnim.SetTrigger("PlayCrabClaws");
 						}
 						moveAmount = 0;
@@ -108,7 +109,15 @@ public class CrabRiddle : MonoBehaviour {
 						return;
 					}
 				}
-				
+				else{
+					if (moveAmount > 0 && moveAmount < movesToWin) {
+						crabReturning = true;
+						audioSceneBeachScript.crabWalkSFX();
+						Debug.Log("Crabby should be going back.");
+					}
+					moveAmount = 0;
+					moveDest = crabOGPos;
+				}
 				// - Player clicks anywhere else - //
 				// if (!hit.collider.CompareTag("Riddle")) {
 				// 	if (moveAmount > 0) {
@@ -127,15 +136,15 @@ public class CrabRiddle : MonoBehaviour {
 			}
 			else{
 				if (moveAmount > 0 && moveAmount < movesToWin) {
-						crabReturning = true;
-						audioSceneBeachScript.crabWalkSFX();
-					}
-					moveAmount = 0;
-					moveDest = crabOGPos;
-			
+					crabReturning = true;
+					audioSceneBeachScript.crabWalkSFX();
+					Debug.Log("Crabby should be going back.");
+				}
+				moveAmount = 0;
+				moveDest = crabOGPos;
 			}
 		}
-		else if (sceneTapEnabScript.canTapEggRidPanPuz && inputDetScript.Tapped) {
+		else if (sceneTapEnabScript.canTapEggRidPanPuz && inputDetScript.Tapped && !canClick) {
 			UpdateMousePos ();
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);
 			if (hit) {
