@@ -5186,6 +5186,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1254302686892156, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dae81d163e2a647478192fbc62e45d8a, type: 2}
   m_IsPrefabParent: 0
@@ -16282,7 +16286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &930671143
 Transform:
   m_ObjectHideFlags: 0
@@ -16397,6 +16401,7 @@ MonoBehaviour:
   lastCell: {fileID: 0}
   nextCell: {fileID: 0}
   cellDistance: 1
+  minDistance: 0.75
 --- !u!114 &931712713 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114272664552427512, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -16642,6 +16647,7 @@ MonoBehaviour:
   movingBaguet: 0
   myBaguettes:
   - {fileID: 1687917828}
+  - {fileID: 930671146}
   myGoalCells:
   - {fileID: 763860302}
   - {fileID: 1470499040}
@@ -32340,6 +32346,7 @@ MonoBehaviour:
   lastCell: {fileID: 0}
   nextCell: {fileID: 0}
   cellDistance: 1
+  minDistance: 0.75
 --- !u!1 &1715187385
 GameObject:
   m_ObjectHideFlags: 0
