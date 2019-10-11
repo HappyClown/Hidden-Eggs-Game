@@ -131,7 +131,7 @@ public class PuzzleComplete : MonoBehaviour {
 			audioScenePuzzGeneScript.StopSceneMusic();
 			audioScenePuzzGeneScript.PlayTransitionMusic();
 		}
-		SceneFade.SwitchScene(sceneName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(sceneName);
 	}
 
 	void MakeTxtFall() {

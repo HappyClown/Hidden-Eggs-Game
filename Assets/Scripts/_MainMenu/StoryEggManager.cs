@@ -16,7 +16,7 @@ public class StoryEggManager : MonoBehaviour {
 	public float timeBetweenFallEggs;
 	public List<Transform> fallingEggStartTrans;
 	public List<Transform> fallingEggEndTrans;
-	private bool spawnFallingEggsRandom;
+	private bool spawnFallingEggsRandom, hoveringEggsFall;
 	public bool randomFallingEggs;
 	//private List<int> intsForRandom;
 	private List<int> eggFallingOrder = new List<int>();
@@ -69,6 +69,19 @@ public class StoryEggManager : MonoBehaviour {
 				spawnFallingEggsRandom = false;
 			}
 		}
+		// Make the eggs fall in order after hovering.
+		if (hoveringEggsFall) {
+			eggSpawnTimer += Time.deltaTime;
+			if (eggSpawnTimer >= timeBetweenFallEggs) {
+				eggSpawnTimer = 0f;
+				storyEggScripts[currentEggNum].fadeToSceneEgg = true;
+				currentEggNum++;
+				if (currentEggNum > fallingEggStartTrans.Count - 1) {
+					currentEggNum = 0;
+					hoveringEggsFall = false;
+				}
+			}
+		}
 	}
 
 	public void SpawnFallingEggs() {
@@ -105,6 +118,13 @@ public class StoryEggManager : MonoBehaviour {
 			spawnFallingEggs = true;
 		}
 		eggSpawnTimer = 0f;
+	}
+
+	public void EggsFallOffScreen() {
+		currentEggNum = 0;
+		eggSpawnTimer = 0f;
+		hoveringEggsFall = true;
+		//fadeToSceneEgg = true;
 	}
 
 	public void ResetEggs() {

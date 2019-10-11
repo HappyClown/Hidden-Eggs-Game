@@ -306,7 +306,7 @@ public class MainPuzzleEngine : MonoBehaviour
 		audioSceneParkPuzzScript.StopSceneMusic();
 		audioSceneParkPuzzScript.PlayTransitionMusic();
 
-		SceneFade.SwitchScene(GlobalVariables.globVarScript.parkName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.parkName);
 	}
 	#endregion
 }

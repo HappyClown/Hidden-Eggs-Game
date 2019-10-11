@@ -7,13 +7,13 @@ public class MenuStatesManager : MonoBehaviour {
 	public enum MenuStates {
 		TurnOn, TurningOn, IsOn, TurnOff, TurningOff, IsOff
 	}
-	public enum PuzzleConfStates{
-		TurnOn, TurningOn, IsOn, TurnOff, TurningOff, IsOff
-	}
-	public MenuStates menuStates;
-	public PuzzleConfStates puzzleConfStates;
+	// public enum MenuStates{
+	// 	TurnOn, TurningOn, IsOn, TurnOff, TurningOff, IsOff
+	// }
+	public MenuStates menuStates, puzzleConfStates;
+	// public MenuStates puzzleConfStates;
 	public Collider2D col, colPuzz;
-	
+
 	private RaycastHit2D hit;
 	private Vector2 mousePos2D;
 	private Vector3 mousePos;
@@ -77,17 +77,17 @@ public class MenuStatesManager : MonoBehaviour {
 		
 		if(puzzleConfActive){
 			switch (puzzleConfStates) {
-				case PuzzleConfStates.TurnOn:
+				case MenuStates.TurnOn:
 					PuzzleConfTurnOn(); break;
-				case PuzzleConfStates.TurningOn:
+				case MenuStates.TurningOn:
 					PuzzleConfTurningOn(); break;
-				case PuzzleConfStates.IsOn:
+				case MenuStates.IsOn:
 					PuzzleConfIsOn(); break;
-				case PuzzleConfStates.TurnOff:
+				case MenuStates.TurnOff:
 					PuzzleConfTurnOff(); break;
-				case PuzzleConfStates.TurningOff:
+				case MenuStates.TurningOff:
 					PuzzleConfTurningOff(); break;
-				case PuzzleConfStates.IsOff:
+				case MenuStates.IsOff:
 					PuzzleConfIsOff(); break;
 				default:
 				break;
@@ -112,7 +112,9 @@ public class MenuStatesManager : MonoBehaviour {
 			inputDetScript.detectDrag = true;
 			putDragOff = true;
 		}
-		lvlTapManScript.ZoomOutCameraReset();		
+		if (lvlTapManScript) {
+			lvlTapManScript.ZoomOutCameraReset();
+		}	
 	}
 
 	void TurningOn() {
@@ -183,7 +185,7 @@ public class MenuStatesManager : MonoBehaviour {
 
 	void PuzzleConfTurnOn() {
 		sceneUICG.interactable = false;
-		puzzleConfStates = PuzzleConfStates.TurningOn;
+		puzzleConfStates = MenuStates.TurningOn;
 		if (puzzEngScript) {
 			puzzEngScript.canPlay = false;
 		}
@@ -211,7 +213,7 @@ public class MenuStatesManager : MonoBehaviour {
 		if (lerpValue >= 1) {
 			puzzleConfCG.alpha = 1;
 			lerpValue = 0;
-			puzzleConfStates = PuzzleConfStates.IsOn;
+			puzzleConfStates = MenuStates.IsOn;
 		}
 	}
 
@@ -225,7 +227,7 @@ public class MenuStatesManager : MonoBehaviour {
 			UpdateMousePos();
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
 			if (hit && !hit.collider.CompareTag("PuzzlePauseMenu") || !hit) {
-				puzzleConfStates = PuzzleConfStates.TurnOff;
+				puzzleConfStates = MenuStates.TurnOff;
 				if (sceneTapScript) {
 					sceneTapScript.TapLevelStuffTrue();
 				}
@@ -236,7 +238,7 @@ public class MenuStatesManager : MonoBehaviour {
 	void PuzzleConfTurnOff() {
 		puzzleConfCG.interactable = false;
 		puzzleConfCG.blocksRaycasts = false;
-		puzzleConfStates = PuzzleConfStates.TurningOff;
+		puzzleConfStates = MenuStates.TurningOff;
 		colPuzz.enabled = false;
 		if(putDragOff){
 			inputDetScript.detectDrag = false;
@@ -250,7 +252,7 @@ public class MenuStatesManager : MonoBehaviour {
 		if (lerpValue >= 1) {
 			puzzleConfCG.alpha = 0;
 			lerpValue = 0;
-			puzzleConfStates = PuzzleConfStates.IsOff;
+			puzzleConfStates = MenuStates.IsOff;
 			sceneUICG.interactable = true;
 			puzzleConfActive = false;
 			if (puzzEngScript) {

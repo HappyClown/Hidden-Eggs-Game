@@ -21,6 +21,12 @@ public class AudioManagerHubMenu : MonoBehaviour
     [FMODUnity.EventRef]
     public string MusicEvent;
     public FMOD.Studio.EventInstance hubMusic;
+
+    [Header("Intro Music")]
+    [FMODUnity.EventRef]
+    public string introMusicEvent = "event:/Music/MusicScenes/MenuToIntro"; 
+    public FMOD.Studio.EventInstance introMusic;
+
     public FMOD.Studio.ParameterInstance Summer;
     public FMOD.Studio.ParameterInstance Autumn;
     public FMOD.Studio.ParameterInstance Winter;
@@ -109,7 +115,10 @@ public class AudioManagerHubMenu : MonoBehaviour
 
     public FadeInOutTMP fadeInOutStory; //quick fix, find a better system
 
- 
+    public bool audioIntro_ON = true;
+
+    public AudioIntro audioIntroScript;
+
     void Start()
     {
         BtnPlay.onClick.AddListener(PlaySound);
@@ -118,6 +127,7 @@ public class AudioManagerHubMenu : MonoBehaviour
 
         menuMusic = FMODUnity.RuntimeManager.CreateInstance(menuEvent);
         hubMusic = FMODUnity.RuntimeManager.CreateInstance(MusicEvent);
+        introMusic = FMODUnity.RuntimeManager.CreateInstance(introMusicEvent);
 
         UnlockedSeasonMusic(); //to check which seasons are unlocked
         //play the associated hub music
@@ -128,13 +138,15 @@ public class AudioManagerHubMenu : MonoBehaviour
 
         //hubMusic.setParameterValue("nbEggsBySeason",nbEggsBySeason); //TEST
 
-        currentMusic = menuMusic;
-
         if (!GlobalVariables.globVarScript.toHub) { TransitionMenu(); } else { TransitionHub();}
 
         //---TEST: LOOPS Menu Glow etc
 
         shimyLoopMenuSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_ShimyLoopMenu);
+
+        currentMusic = menuMusic;
+
+        if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
     }
     void Update()
     {
@@ -190,37 +202,32 @@ public class AudioManagerHubMenu : MonoBehaviour
 
         //DEFAULT : SUMMER
 
-        if(nbUnlockedSeasons ==4)
-        {
-            SpringOn = 1f;
-            WinterOn = 0;
-            AutumnOn = 0;
-            SummerOn = 0;
-        }
-        else
-            if(nbUnlockedSeasons ==3)
-            {
+        switch(nbUnlockedSeasons){
+            case 1: 
+                SpringOn = 0;
+                WinterOn = 0;
+                AutumnOn = 0;
+                SummerOn = 1f;
+            break;
+            case 2:                    
+                SpringOn = 0;
+                WinterOn = 0;
+                AutumnOn = 1f;
+                SummerOn = 0;
+            break;
+            case 3:
                 SpringOn = 0;
                 WinterOn = 1f;
                 AutumnOn = 0;
                 SummerOn = 0;
-            }
-            else 
-                if(nbUnlockedSeasons ==2)
-                {
-                    SpringOn = 0;
-                    WinterOn = 0;
-                    AutumnOn = 1f;
-                    SummerOn = 0;}
-                else
-                    if(nbUnlockedSeasons ==1)
-                        {
-                            SpringOn = 0;
-                            WinterOn = 0;
-                            AutumnOn = 0;
-                            SummerOn = 1f;
-                        }
-
+            break;
+            case 4: 
+                SpringOn = 1f;
+                WinterOn = 0;
+                AutumnOn = 0;
+                SummerOn = 0;
+            break;
+        }
     }
 
 
@@ -242,6 +249,12 @@ public class AudioManagerHubMenu : MonoBehaviour
         currentMusic = menuMusic;
     }
 
+    public void PlayIntroMusic()
+    {
+        introMusic.start();
+        currentMusic = introMusic;
+    }
+
     /// ----- MUSIC STOP  -----///
     public void StopMenuMusicFade()
     {
@@ -257,6 +270,11 @@ public class AudioManagerHubMenu : MonoBehaviour
         ShimyLoopSoundStop();
 
     }
+        public void StopIntroMusicFade()
+    {
+        introMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+    }
 
 
     /// ----- TRANSITION TO HUB -----///
@@ -264,11 +282,20 @@ public class AudioManagerHubMenu : MonoBehaviour
     {
         StopMenuMusicFade(); //stop menu music
         PlayHubMusic(); //start hub music
+        StopIntroMusicFade();
+    }
+
+    public void TransitionIntro()
+    {
+        StopMenuMusicFade(); //stop menu music
+        PlayIntroMusic(); //start intro music
+        StopHubMusicFade(); //stop hub music
     }
 
     public void TransitionMenu()
     { 
         StopHubMusicFade(); //stop hub music
+        StopIntroMusicFade(); //stop intro music
         PlayMenuMusic(); //start menu music
         AmbianceGlowStop();
         ShimyLoopSoundStop();
@@ -297,7 +324,10 @@ public class AudioManagerHubMenu : MonoBehaviour
     {
         nbUnlockedSeasons =1; //return to summer
         ButtonSound();
-        TransitionHub();
+        CloudsMoving(); 
+        MapUncover();
+        TransitionIntro();
+        //TransitionHub();
     }
 
         /// ----- BACK TO MENU BUTTON -----///

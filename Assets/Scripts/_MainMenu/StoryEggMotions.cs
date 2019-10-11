@@ -22,7 +22,7 @@ public class StoryEggMotions : MonoBehaviour {
 	public AnimationCurve toBotAnimCurve;
 	public float fallDuration, fallEggScale;
 	public List<Transform> fallEggSpawnTrans;
-	private bool fallFromTop, fallDown;
+	private bool fallFromTop, fallDown, fallOffScreen;
 	[Header("Hover")]
 	public AnimationCurve hoverAnimCurve;
 	public float hoverDuration, hoverUpHeight;
@@ -30,6 +30,9 @@ public class StoryEggMotions : MonoBehaviour {
 	private Vector3 iniHoverPos;
 	public int hoverAmnt;
 	private int hoverAmntNum;
+	public float hoverAfterChangeDur;
+	private float timer;
+	private bool hoverBeforeFall;
 	[Header ("Rotate")]
 	public float minRotDur;
 	public float maxRotDur;
@@ -42,10 +45,18 @@ public class StoryEggMotions : MonoBehaviour {
 	public FadeInOutSprite thisEggFadeScript, sceneEggFadeScript;
 	[Tooltip ("Each egg has its own Trail particle system but they all reference the same Burst particle system.")]
 	public ParticleSystem trailPartSys, burstPartSys;
-	private bool fadeToSceneEgg = false, eggFlashed, eggBurst;
+	public bool fadeToSceneEgg = false, eggFlashed, eggBurst;
 	private float fadeSceneEggTimer;
 	public SpriteColorFade spriteColorFadeScript;
 
+	[Header ("Audio Script reference")]
+	public AudioIntro audioIntroScript;
+	public bool audioEggFallDown = true;
+	public bool audioEggOutBag =true;
+
+	void Start(){
+		if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
+	}
 	void Update () {
 		if (spawnInBag) {
 			OutOfBag();
@@ -65,6 +76,14 @@ public class StoryEggMotions : MonoBehaviour {
 		if (fadeToSceneEgg) {
 			FadeToSceneEgg();
 		}
+		if (hoverBeforeFall) {
+			timer += Time.deltaTime;
+			if (timer >= hoverAfterChangeDur) {
+				fallOffScreen = true;
+				timer = 0f;
+				hoverBeforeFall = false;
+			}
+		}
 	}
 
 	// For the "TimeConfused" storyboard.
@@ -83,6 +102,12 @@ public class StoryEggMotions : MonoBehaviour {
 		endX = eggSpawnTrans.position.x + xMoveDist;
 		startY = eggSpawnTrans.position.y;
 		endY = eggSpawnTrans.position.y + yMoveDist;
+
+		
+		// AUDIO - EGG COMES OUT OF BAG!
+		audioIntroScript.introEggDropBasketSFX();
+		audioEggOutBag = false;
+		
 	}
 
 	void OutOfBag() {
@@ -111,7 +136,7 @@ public class StoryEggMotions : MonoBehaviour {
 		this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, newRot);
 		lerpValue = 0f;
 		fadeSceneEggTimer = 0f;
-		fadeToSceneEgg = true;
+		// fadeToSceneEgg = true;
 	}
 
 	void Rotate() {
@@ -128,7 +153,6 @@ public class StoryEggMotions : MonoBehaviour {
 			fallFromTop = false;
 			lerpValue = 0f;
 			hover = true;
-			// AUDIO - FALLING EGG STARTS HOVERING!
 			iniHoverPos = this.transform.position;
 		}
 	}
@@ -159,6 +183,10 @@ public class StoryEggMotions : MonoBehaviour {
 			burstPartSys.transform.position = this.transform.position;
 			burstPartSys.Play();
 			// AUDIO - PLAIN EGG BECOMES SCENE EGG (Particle effects included)!
+
+			//AUDIO - EGG transforming
+			audioIntroScript.introEggPopTransformSFX();
+
 			eggBurst = true;
 			// Start the egg trail FX.
 			trailPartSys.Play();
@@ -168,6 +196,8 @@ public class StoryEggMotions : MonoBehaviour {
 			fadeSceneEggTimer = 0f;
 			fadeToSceneEgg = false;
 			eggFlashed = false;
+			//fallOffScreen = true;
+			hoverBeforeFall = true;
 		}
 	}
 
@@ -177,13 +207,14 @@ public class StoryEggMotions : MonoBehaviour {
 			newY = hoverAnimCurve.Evaluate(lerpValue) * hoverUpHeight;
 			this.transform.position = new Vector3(this.transform.position.x, iniHoverPos.y + newY, this.transform.position.z);
 			// The egg starts going down from its top hover position. Wether this happens at 0.5 of the lerp or otherwise depends on the AnimationCurves peak.
-			if (lerpValue > 0.5f && hoverAmntNum >= hoverAmnt) {
+			if (/* lerpValue > 0.5f &&  */fallOffScreen/* hoverAmntNum >= hoverAmnt */) {
 				hover = false;
 				fallDown = true;
 				lerpValue = 0f;
 				hoverAmntNum = 0;
+				fallOffScreen = false;
 				startY = this.transform.position.y;
-				endY = startY - 20f; // Height of the screen to make sur all the eggs go off screen.
+				endY = startY - 20f; // Height of the screen to make sure all the eggs go off screen.
 			}
 		}
 		else {
@@ -203,6 +234,10 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue = 0f;
 			trailPartSys.Stop();
 		}
+	}
+
+	public void FallOffScreen() {
+		fallOffScreen = true;
 	}
 
 	public void Reset() {

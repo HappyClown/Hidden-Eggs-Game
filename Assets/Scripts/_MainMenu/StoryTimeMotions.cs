@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,7 +45,8 @@ public class StoryTimeMotions : MonoBehaviour {
 	public float diveInDuration, diveHoverDuration, diveOutDuration;
 	public AnimationCurve diveInCurve, diveOutCurve;
 	public Transform diveStartTrans, diveMidTrans, diveEndTrans;
-	private bool diveIn, diveOut, diveDelayDone;
+	private bool diveDelayDone;
+	public bool diveIn, diveOut;
 	private float diveHoverLerpValue;
 	public float hoverCircleDur, hoverRandomRadius;
 	private Vector3 circleStartPos, circleEndPos, newPos;
@@ -59,6 +60,9 @@ public class StoryTimeMotions : MonoBehaviour {
 	public AnimationCurve glideAnimCurve;
 	public FadeInOutSprite glidingTimeFadeScript;
 	public Animator glideAnim;
+	[Header ("Audio reference")]
+	public AudioIntro audioIntroScript;
+	public bool audioSpin = true;
 
 	void Start () {
 		currentTime = normalTime;
@@ -68,6 +72,8 @@ public class StoryTimeMotions : MonoBehaviour {
 		endSpinValue = 180f;
 		iniNormPos = normalTime.transform.position;
 		iniNormScale = normalTime.transform.localScale;
+
+		if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
 	}
 	
 	void Update () {
@@ -125,9 +131,9 @@ public class StoryTimeMotions : MonoBehaviour {
 		//currentTime.transform.position = Vector3.Lerp(startPos, endTrans.position, moveInAnimCurve.Evaluate(lerpValue));
 		newScale = Mathf.Lerp(startScale, endScale, scaleInAnimCurve.Evaluate(lerpValue));
 		currentTime.transform.localScale = new Vector3(newScale, newScale, newScale);
+
 		if (lerpValue >= 1f && !hoverUp) {
 			timeHovers = true;
-			// AUDIO - TIME STARTS HOVERING!
 			timePos = endTrans.transform.position;
 			botY = currentTime.transform.localPosition.y;
 			topY = topYTrans.localPosition.y;
@@ -190,10 +196,18 @@ public class StoryTimeMotions : MonoBehaviour {
 			rotateAroundValue = Mathf.Lerp(iniRotateAnglePerDur, rotateAnglePerDur, spinAnimCurve.Evaluate(spinLerpValue)) * -1;
 		}
 		currentTime.transform.RotateAround(currentTime.transform.position, Vector3.up, rotateAroundValue * (Time.deltaTime / halfSpinDuration));
+
 		// Checking to change the currentTime bird after a certain amount of spins.
 		if (currentTime.transform.eulerAngles.y <= 90 && spinCountCheck) {
 			spinCount++;
 			spinCountCheck = false;
+
+
+			//TEST SYNC SPIN
+			if(audioSpin){
+				audioIntroScript.introTimeSpinLoopSFX();
+			}
+			
 		}
 		if (currentTime.transform.eulerAngles.y >= 90 && !spinCountCheck) {
 			spinCountCheck = true;
@@ -201,7 +215,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	}
 
 	void ChangeSpinTime() {
-		if (spinCount >= 2) {
+		if (spinCount >= 1) {
 			bewilderedTime.transform.position = currentTime.transform.position;
 			bewilderedTime.transform.eulerAngles = new Vector3(0f, 90f, 0f);
 			ChangeCurrentTime(bewilderedTime);
@@ -211,9 +225,9 @@ public class StoryTimeMotions : MonoBehaviour {
 	}
 
 	void TimeDives() {
-		if (!diveIn && !diveHover && !diveOut) {
-			diveIn = true;
-		}
+		// if (!diveIn && !diveHover && !diveOut) {
+		// 	diveIn = true;
+		// }
 		if (diveIn) {
 			lerpValue += Time.deltaTime / diveInDuration;
 			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveMidTrans.position, diveInCurve.Evaluate(lerpValue));
@@ -228,12 +242,14 @@ public class StoryTimeMotions : MonoBehaviour {
 			}
 		}
 		if (diveHover) {
-			lerpValue += Time.deltaTime;
-			if (lerpValue >= diveHoverDuration) {
+			//if (lerpValue <= diveHoverDuration) {
+				//lerpValue += Time.deltaTime;
+			//}
+			if (/* lerpValue >= diveHoverDuration &&  */diveOut) {
 				timePos = currentTime.transform.position;
 				diveHover = false;
-				diveOut = true;
-				lerpValue = 0f;
+				//diveOut = true;
+				//lerpValue = 0f;
 			}
 		}
 		if (diveOut) {
@@ -277,10 +293,12 @@ public class StoryTimeMotions : MonoBehaviour {
 		}
 		if (diveDelayDone) {
 			lerpValue += Time.deltaTime / diveThroughDuration;
-			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, diveInCurve.Evaluate(lerpValue));
+			currentTime.transform.position = Vector3.Lerp(diveStartTrans.position, diveEndTrans.position, lerpValue);
 			if (lerpValue >= grabOneEgg && storyOneEggScript.theOneEgg.activeSelf == true) {
 				storyOneEggScript.theOneEgg.SetActive(false);
-				// AUDIO - EGG COLLECTED!
+
+				// // AUDIO - EGG COLLECTED!
+				audioIntroScript.SilverEggTrailSFX();
 			}
 			if (lerpValue >= 1f) {
 				lerpValue = 0f;

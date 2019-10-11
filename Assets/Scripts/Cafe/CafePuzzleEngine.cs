@@ -367,7 +367,7 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 		//audioSceneBeachPuzzScript.StopSceneMusic();
 		//audioSceneBeachPuzzScript.PlayTransitionMusic();
 
-		//SceneFade.SwitchScene(GlobalVariables.globVarScript.beachName);
+		//GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.beachName);
 	}
 	#endregion
 

@@ -27,9 +27,12 @@ public class BeachClamLevel : MonoBehaviour {
 			}
 			int rand = Random.Range(0,availableSpots.Count);
 			clam.gameObject.transform.position = availableSpots[rand].gameObject.transform.position;
+			//clam.clamAnim.SetTrigger("ShowClam");
+			// Start anim trigger delay.
+			//clam.myClosedClam.FadeIn();
+			clam.ShowClams();
 			availableSpots[rand].occupied = true;
-			availableSpots.Clear();		
-
+			availableSpots.Clear();
 		}
 		foreach (ClamSpot clamSpot in clamSpots)
 		{
@@ -48,13 +51,11 @@ public class BeachClamLevel : MonoBehaviour {
 			Debug.Log(availableSpots.Count);
 			clam.ClamSpriteParent.transform.localRotation = availableSpots[rand].gameObject.transform.localRotation;
 			availableSpots[rand].occupied = true;
-			availableSpots.Clear();			
+			availableSpots.Clear();
 		}
-			//test sounds
-			setUpSounds();
-			audioBeachPuzzleScript.newLevel();
-
-
+		//test sounds
+		setUpSounds();
+		audioBeachPuzzleScript.newLevel();
 	}
 
 ////////  TEST FOR SOUNDS  ///////////

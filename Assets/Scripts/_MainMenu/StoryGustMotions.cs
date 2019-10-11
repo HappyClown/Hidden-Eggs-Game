@@ -12,6 +12,7 @@ public class StoryGustMotions : MonoBehaviour {
 	[Header("X Move")]
 	public AnimationCurve moveInXCurve; 
 	public AnimationCurve moveOutXCurve;
+	public AnimationCurve moveAcrossCurve;
 	[Header("Y Move")]
 	public AnimationCurve moveOutTopYCurve;
 	[Header ("Durations")]
@@ -161,7 +162,7 @@ public class StoryGustMotions : MonoBehaviour {
 	}
 	public void ChangeScale() {
 		//Change gust's scale based on its current scale. Could be a bool.
-		if (gust.transform.localScale.x - iniScale <= 0.1f) {
+		if (Mathf.Abs(gust.transform.localScale.x - iniScale) <= 0.1f) {
 			gust.transform.localScale = new Vector3(gustCollisionScale, gustCollisionScale, gustCollisionScale);
 		}
 		else {

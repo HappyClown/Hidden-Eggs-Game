@@ -49,6 +49,11 @@ public class HelperBirdIntro : MonoBehaviour {
 	}
 	
 	void Update () {
+		if(!sceneTapEnabScript.canTapHelpBird){
+			inSceneBirdBtnObj.SetActive(false);
+		}else{
+			inSceneBirdBtnObj.SetActive(true);
+		}
 		if (!birdTapped && sceneTapEnabScript.canTapHelpBird) {
 			if(inputDetScript.Tapped){ // If frozen bird has not been tapped yep cast a ray on tap
 				mousePos = Camera.main.ScreenToWorldPoint(inputDetScript.TapPosition);
@@ -60,7 +65,7 @@ public class HelperBirdIntro : MonoBehaviour {
 				birdTapped = true;
 				waitToStartSeq = true;
 				inputDetScript.cancelDoubleTap = true;
-				birdObj.transform.position = ogBirdPos;
+				//birdObj.transform.position = ogBirdPos;
 				dissParSys.Play();
 				sceneTapEnabScript.canTapPauseBtn = false;
 				audioSceneGenScript.unfrozenBirdSnd();

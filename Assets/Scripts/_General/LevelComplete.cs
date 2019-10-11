@@ -58,6 +58,7 @@ public class LevelComplete : MonoBehaviour
 			// In a sequence.
 			ClickOnEggs.inASequence = true;
 			waitingToStartSeq = false;
+			clickOnEggsScript.menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOff;
 			//endLvlBtn.interactable = false;
 			sceneTapEnabScript.canTapEggRidPanPuz = false;
 			sceneTapEnabScript.canTapHelpBird = false;
@@ -144,6 +145,6 @@ public class LevelComplete : MonoBehaviour
 		levelCompleteEggbagScript.levelsCompleted++;
 		levelCompleteEggbagScript.SaveLevelsCompleted();
 		GlobalVariables.globVarScript.toHub = true;
-		SceneFade.SwitchSceneWhiteFade(GlobalVariables.globVarScript.menuName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchSceneWhiteFade(GlobalVariables.globVarScript.menuName);
 	}
 }

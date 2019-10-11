@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +14,8 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
 
 	[Header("SFX")]
     [FMODUnity.EventRef]
-    public string failEvent;
-    public FMOD.Studio.EventInstance failSound;
+    public string clamPopOutEvent = "event:/SFX/Puzzle_Beach/ClamPopOut";
+    public FMOD.Studio.EventInstance  clamPopOutSound;
 
     [FMODUnity.EventRef]
     public string bubblesEvent;
@@ -151,9 +151,9 @@ public class AudioSceneBeachPuzzle : AudioScenePuzzleGeneric
     }
 	
 
-    public void failSFX(){
-        failSound = FMODUnity.RuntimeManager.CreateInstance(failEvent);
-        failSound.start();
+    public void clamPopOutSFX(){
+        clamPopOutSound = FMODUnity.RuntimeManager.CreateInstance(clamPopOutEvent);
+        clamPopOutSound.start();
     }
 
     public void levelSFX()

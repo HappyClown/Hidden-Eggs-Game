@@ -71,40 +71,12 @@ public class BakeryPuzzle : MainPuzzleEngine {
 					if(holdingBaguette){
 						Vector2 dragMousePos = Camera.main.ScreenToWorldPoint(myInput.draggingPosition);
 						Vector2 prevMousePos = Camera.main.ScreenToWorldPoint(myInput.prevDragPosition);
-						if(selectedBaguette.vertical){
-							if(myInput.draggingPosition.y > myInput.prevDragPosition.y){
-								 selectedBaguette.MoveUp();
-								 if(selectedBaguette.canMove){ 
-									 float ammountToMove = dragMousePos.y - prevMousePos.y;
-									 selectedBaguette.currentPos.y += ammountToMove; 
-									// selectedBaguette.canMove = false;
-								 }
-							}
-							else{
-								selectedBaguette.MoveDown();
-								 if(selectedBaguette.canMove){ 
-									 float ammountToMove =dragMousePos.y - prevMousePos.y;
-									 selectedBaguette.currentPos.y += ammountToMove; 
-									// selectedBaguette.canMove = false;
-								 }
-							}
+						if(selectedBaguette.vertical){							
+							selectedBaguette.MoveVertical(dragMousePos.y,prevMousePos.y);
+							
 						}else if(selectedBaguette.horizontal){
-							if(myInput.draggingPosition.x > myInput.prevDragPosition.x){
-								selectedBaguette.MoveRight();
-								 if(selectedBaguette.canMove){ 
-									 float ammountToMove = dragMousePos.x - prevMousePos.x;
-									 selectedBaguette.currentPos.x += ammountToMove; 
-									// selectedBaguette.canMove = false;
-								 }
-							}
-							else{
-								selectedBaguette.MoveLeft();
-								 if(selectedBaguette.canMove){ 
-									 float ammountToMove = dragMousePos.x - prevMousePos.x;
-									 selectedBaguette.currentPos.x += ammountToMove; 
-									// selectedBaguette.canMove = false;
-								 }
-							}
+							selectedBaguette.MoveHorizontal(dragMousePos.x,prevMousePos.x);
+							
 						}
 					}else{
 						Vector2 touchPosition = Camera.main.ScreenToWorldPoint(myInput.startDragTouch);
@@ -123,7 +95,12 @@ public class BakeryPuzzle : MainPuzzleEngine {
 				}
 				else{
 					raycastDone = false;
-					holdingBaguette = false;
+					if(holdingBaguette){
+						// SAVE POSITIONS HERE
+						holdingBaguette = false;
+						selectedBaguette.selected = false;
+						selectedBaguette.SetPosition();
+					}
 				}
 
 			}
@@ -388,7 +365,7 @@ public class BakeryPuzzle : MainPuzzleEngine {
 		//audioSceneBeachPuzzScript.StopSceneMusic();
 		//audioSceneBeachPuzzScript.PlayTransitionMusic();
 
-		//SceneFade.SwitchScene(GlobalVariables.globVarScript.beachName);
+		//GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.beachName);
 	}
 	#endregion
 		

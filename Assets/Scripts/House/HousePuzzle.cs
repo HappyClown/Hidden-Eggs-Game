@@ -409,7 +409,7 @@ public class HousePuzzle : MainPuzzleEngine {
 		//audioSceneBeachPuzzScript.StopSceneMusic();
 		//audioSceneBeachPuzzScript.PlayTransitionMusic();
 
-		//SceneFade.SwitchScene(GlobalVariables.globVarScript.beachName);
+		//GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.beachName);
 	}
 	#endregion
 	public void UpdateMousePos(Vector3 Pos)

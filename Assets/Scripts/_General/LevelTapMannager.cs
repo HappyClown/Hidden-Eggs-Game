@@ -22,12 +22,16 @@ public class LevelTapMannager : MonoBehaviour {
 	public float camMovSpeed;
 	[Header("Camera zoom speed (usually is 50)")]
 	public float camZoomSpeed;
+	public float camZoomDuration;
+	private float camZoomSpeedModifier;
+	public AnimationCurve camZoomCurve;
+	private float lerpValue;
 	//touch position holders
 	private Vector2 centerPoint, touchZeroPos, touchOnePos;
 	[Header("Camera boudaries (usually 5.9 - 3.3)")]
 	public float maxX;public float maxY;
 	//touching screen detectors
-	private bool touching = false, zooming = false;
+	private bool touching = false, zooming = false, fromZoom = false;
 	//touch variables holders
 	private Touch touchZero, touchOne;
 	[Header("Camera Min Ortho Size (usually 7.5)")]
@@ -35,7 +39,7 @@ public class LevelTapMannager : MonoBehaviour {
 	//max camera orthographicsize is taken from the camera
 	public float maxCameraSize;
 	//current camera size at every frame
-	private float currentCameraSize;
+	private float currentCameraSize, cameraSizeOnClick;
 	[Header("Touch Death zone Delta (usually 30)")]
 	public float minDeltaDif;
 	[Header("Touch max Delta(usually 400)")]
@@ -44,6 +48,7 @@ public class LevelTapMannager : MonoBehaviour {
 	private float initialDeltaDif, currentDeltaDif = 0;
 	//initial camera position holder
 	private Vector3 initialCameraPosition;
+	private Vector3 varCamPos;
 	private float currentX, currentY;
 	[HideInInspector]
 	public RaycastHit2D hit;
@@ -68,7 +73,7 @@ public class LevelTapMannager : MonoBehaviour {
 		if(doubleTapped){
 			DoubleTap();
 		}
-		else if (myInput.singleTap){
+		else if (myInput.singleTap && !zooming && !fromZoom){
 			if(myInput.DoubleTapped){
 				touchZero.position = myInput.TapPosition;
 				DoubleTap();
@@ -81,7 +86,12 @@ public class LevelTapMannager : MonoBehaviour {
 		else if (Input.touchCount == 2 /*&& myInput.isPhoneDevice*/) { 
 			//activate the zoom function
 			PinchCamZoom(); 
+			fromZoom = true;
 		}else{
+			if(Input.touchCount == 1){
+				fromZoom = false;
+				myInput.startDragTouch = Input.touches[0].position;
+			}
 			//reset values when the player is not doing two contacts
 			zooming = false;
 			currentDeltaDif = 0;
@@ -153,33 +163,45 @@ public class LevelTapMannager : MonoBehaviour {
 		if(!doubleTapped){
 			doubleTapped = true;
 			centerPoint =  cam.ScreenToWorldPoint(touchZero.position);
-			if(cam.orthographicSize < maxCameraSize - 0.1){
+			cameraSizeOnClick = cam.orthographicSize; 
+			if(cam.orthographicSize < maxCameraSize){
 				zoomIn = false;
+				camZoomSpeedModifier =  (1 - ((currentCameraSize - minCameraSize) / (maxCameraSize - minCameraSize))) * camZoomDuration;
+				varCamPos = cam.transform.position;
 			}
 			else{
 				zoomIn = true;
+				varCamPos = cam.ScreenToWorldPoint(touchZero.position);
 			}
 		}
 		if(zoomIn){
-			cam.transform.position = Vector3.Lerp(cam.transform.position,new Vector3(centerPoint.x,centerPoint.y,initialCameraPosition.z), Time.deltaTime * dTapMoveSpeed);
-			currentCameraSize = Mathf.Lerp(currentCameraSize,minCameraSize,Time.deltaTime * dTapZoomSpeed);
-			if(currentCameraSize <= minCameraSize + 0.01){
+			lerpValue += Time.deltaTime / camZoomDuration;
+			cam.transform.position = Vector3.Lerp(initialCameraPosition,new Vector3(varCamPos.x,varCamPos.y,initialCameraPosition.z), camZoomCurve.Evaluate(lerpValue));
+			currentCameraSize = Mathf.Lerp(cameraSizeOnClick,minCameraSize,camZoomCurve.Evaluate(lerpValue));
+			if(currentCameraSize <= minCameraSize){
 				doubleTapped = false;
+				currentCameraSize = cameraSizeOnClick = minCameraSize;
+				lerpValue = 0f;
 			}
 		}
 		else{
-			cam.transform.position = Vector3.Lerp(cam.transform.position,initialCameraPosition, Time.deltaTime * dTapMoveSpeed);
-			currentCameraSize = Mathf.Lerp(currentCameraSize,maxCameraSize,Time.deltaTime * dTapZoomSpeed);
-			if(currentCameraSize >= maxCameraSize - 0.01){
+			lerpValue += Time.deltaTime / camZoomSpeedModifier;
+			cam.transform.position = Vector3.Lerp(varCamPos,initialCameraPosition, camZoomCurve.Evaluate(lerpValue));
+			currentCameraSize = Mathf.Lerp(cameraSizeOnClick,maxCameraSize,camZoomCurve.Evaluate(lerpValue));
+			if(currentCameraSize >= maxCameraSize){
 				doubleTapped = false;
+				currentCameraSize = cameraSizeOnClick = maxCameraSize;
+				lerpValue = 0f;
 			}
 		}
 		cam.orthographicSize = Mathf.Clamp(currentCameraSize, minCameraSize, maxCameraSize);
 
 	}
 	public void ZoomOutCameraReset(){
-		doubleTapped = true;
-		zoomIn = false;
+		if(cam.orthographicSize < maxCameraSize){
+			 zoomIn = false;
+			 DoubleTap();
+		}
 	}
 	void PanningCamera(){
 		if(cam.orthographicSize < maxCameraSize){

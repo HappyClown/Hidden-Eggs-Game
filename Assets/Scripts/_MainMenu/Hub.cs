@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Hub : MonoBehaviour {
 	public float hubActiveWait;
 	private float hubActiveWaitTimer;
+	public float hubActiveFaster = 0f;
 	public List<FadeInOutCanvasGroup> hubCanvasGroupFadeScripts;
 	public FadeInOutCanvasGroup hubCGInteractFadeScript;
 	public FadeInOutCanvasGroup hubCGUninteractFadeScript;
@@ -40,6 +41,7 @@ public class Hub : MonoBehaviour {
 			if (hubActiveWaitTimer == hubActiveWait) {
 				dissolveSeasonsScript.SeasonDissolveCheck(); 
 				DecideDissolve();
+				hubActiveWaitTimer -= hubActiveFaster;
 			}
 			hubActiveWaitTimer -= Time.deltaTime;
 		}
@@ -49,6 +51,7 @@ public class Hub : MonoBehaviour {
 			hubActiveWaitTimer = hubActiveWait;
 			inHub = true;
 			dissolving = true;
+			hubActiveFaster = 0f;
 		}
 		// - Dissolve All Seasons - //
 		if (dissolving && inHub) {

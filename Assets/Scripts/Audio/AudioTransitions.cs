@@ -47,6 +47,8 @@ void Update()
 		{
 			btnSound(); //for the custom button sound of the hub 
             audioManHubScript.StopHubMusicFade();
+            audioManHubScript.StopIntroMusicFade();
+
             transMusic.start();
 		}
 		

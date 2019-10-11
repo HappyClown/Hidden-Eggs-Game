@@ -148,7 +148,7 @@ public class ClickOnEggs : MonoBehaviour {
 					if (hit.collider.CompareTag("Puzzle")) {
 						if(GlobalVariables.globVarScript.puzzIntroDone){
 							menuStatesScript.puzzleConfActive = true;
-							menuStatesScript.puzzleConfStates = MenuStatesManager.PuzzleConfStates.TurnOn;
+							menuStatesScript.puzzleConfStates = MenuStatesManager.MenuStates.TurnOn;
 							
 						}else{
 							LoadPuzzle();
@@ -289,7 +289,7 @@ public class ClickOnEggs : MonoBehaviour {
 		levelComplete = GlobalVariables.globVarScript.levelComplete;
 	}
 	public void LoadPuzzle(){
-		SceneFade.SwitchScene(puzzleSceneName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(puzzleSceneName);
 		PlayerPrefs.SetString ("LastLoadedScene", SceneManager.GetActiveScene().name);
 		//SFX puzz btn
 		audioSceneGenScript.TransitionPuzzle();

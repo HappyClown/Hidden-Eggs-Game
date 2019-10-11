@@ -21,6 +21,7 @@ public class BeachBubbles : MonoBehaviour {
 	private float currentTime;
 	private Vector3 StartPosition;
 	private SpriteRenderer mySprite;
+	public ParticleSystem bubblePopFX;
 	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
 
 	// Use this for initialization
@@ -45,7 +46,6 @@ public class BeachBubbles : MonoBehaviour {
 				mySprite.enabled = true;
 				activeSprite = true;
 				myFade.FadeIn();
-
 				//bubbles sounds ..
 				audioBeachPuzzleScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 				audioBeachPuzzleScript.BubblePopSFX();
@@ -65,6 +65,12 @@ public class BeachBubbles : MonoBehaviour {
 					fadeInOutSprite = true;
 				}
 				currentTime = 0;
+
+				bubblePopFX.transform.position = this.transform.position;
+				var bubMain = bubblePopFX.main;
+				bubMain.startSize = bubbleSize + 0.2f;
+				bubblePopFX.Play();
+
 				mySprite.enabled = false;
 				gameObject.transform.localPosition =StartPosition;
 				activeSprite = false;
@@ -77,6 +83,7 @@ public class BeachBubbles : MonoBehaviour {
 		gameObject.transform.localPosition = StartPosition;
 		activeSprite = false;
 		mySprite.enabled = false;
+		// mySprite.color = new Color( mySprite.color.r, mySprite.color.g, mySprite.color.b, 0f);
 		activeClam = false;
 	}
 }
