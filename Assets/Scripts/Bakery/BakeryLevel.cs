@@ -16,6 +16,7 @@ public class BakeryLevel : MonoBehaviour {
 		
 	}
 	public void ResetLevel(){
+		levelComplete = false;
 		foreach (BakeryBaguette bagtt in myBaguettes)
 		{
 			bagtt.ResetItem();
@@ -35,5 +36,15 @@ public class BakeryLevel : MonoBehaviour {
 		{
 			goals.SetUpExit();
 		}
+	}
+	public void CheckBaguettes(){
+		bool check = true;
+		foreach (BakeryBaguette bagtt in myBaguettes)
+		{
+			if(!bagtt.onGoal){
+				check = false;
+			}
+		}
+		levelComplete = check;
 	}
 }

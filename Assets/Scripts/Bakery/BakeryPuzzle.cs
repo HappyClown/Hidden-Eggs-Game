@@ -100,6 +100,7 @@ public class BakeryPuzzle : MainPuzzleEngine {
 						holdingBaguette = false;
 						selectedBaguette.selected = false;
 						selectedBaguette.SetPosition();
+						myLvls[curntLvl-1].CheckBaguettes();
 					}
 				}
 
@@ -279,6 +280,7 @@ public class BakeryPuzzle : MainPuzzleEngine {
 			StartCoroutine(PuzzleComplete());
 			return;
 		}
+		myLvls[curntLvl-2].ResetLevel();
 		//CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
