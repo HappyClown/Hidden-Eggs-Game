@@ -53,6 +53,12 @@ public class StoryIcons : MonoBehaviour {
 
 	public void ShowNextButton() {
 		btnCGFadeScript.FadeIn();
+		nextIconTrans.localScale = new Vector3(minScale, minScale, minScale);
+		scaling = true;
+		scaleDown = false;
+		scaleUp = true;
+		startScale = minScale;
+		targetScale = maxScale;
 	}
 
 	public void HideNextIcon() {

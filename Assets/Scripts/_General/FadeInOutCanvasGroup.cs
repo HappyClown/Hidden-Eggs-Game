@@ -12,6 +12,8 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 	public bool fadeOnStart = true;
 	public bool fadeDelay, disableOnFadeOut;
 	public CanvasGroup canvasG;
+	[Header("Canvas Group Options")]
+	public bool cgOptionsOnFadeStart;
 	public bool interactable, blocksRaycasts, ignoreParentGroups;
 	public enum StartState {
 		startShown, startHidden
@@ -84,6 +86,9 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
 			hidden = false;
+			if (cgOptionsOnFadeStart) {
+				SetCanvasOptions(true);
+			}
 		}
 	}
 

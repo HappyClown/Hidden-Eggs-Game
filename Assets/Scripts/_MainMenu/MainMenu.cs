@@ -17,10 +17,15 @@ public class MainMenu : MonoBehaviour {
 	public FadeInOutImage playBtnFadeScript;
 	public Image playBtnImg;
 
-	[Header("Reset Button")]
+	[Header("New Game Button")]
 	public Button resetBtn;
 	public FadeInOutImage resetBtnFadeScript;
 	public Image resetBtnImg;
+
+	[Header("Delete Save Button")]
+	public Button deleteSaveBtn;
+	public FadeInOutCanvasGroup deleteSaveBtnCGFadeScript;
+	public CanvasGroup deleteSaveBtnCG;
 
 	[Header("Story")]
 	public bool fullIntro;
@@ -43,6 +48,7 @@ public class MainMenu : MonoBehaviour {
 		playBtn.onClick.AddListener(PlayBtn);
 		resetBtn.onClick.AddListener(DeleteSaveFile);
 		resetBtn.onClick.AddListener(NewGameBtn);
+		deleteSaveBtn.onClick.AddListener(DeleteSaveFile);
 		// if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
 		// 	ToHub();
 		// }
@@ -89,6 +95,7 @@ public class MainMenu : MonoBehaviour {
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
 		resetBtnFadeScript.FadeOut();
+		deleteSaveBtnCGFadeScript.FadeOut();
 		// storyBtn.gameObject.SetActive(false);
 		// Starts countdown timer to doing Village stuff 
 		hubScript.startHubActive = true;
@@ -136,6 +143,7 @@ public class MainMenu : MonoBehaviour {
 		// - FADE OUT MENU BUTTONS - //
 		playBtnFadeScript.FadeOut();
 		resetBtnFadeScript.FadeOut();
+		deleteSaveBtnCGFadeScript.FadeOut();
 		if (fullIntro) {
 			storyIntroScript.inStoryIntro = true;
 		}
@@ -168,6 +176,7 @@ public class MainMenu : MonoBehaviour {
 		titleFade.FadeOut();
 		playBtnFadeScript.FadeOut();
 		resetBtnFadeScript.FadeOut();
+		deleteSaveBtnCGFadeScript.FadeOut();
 	}
 
 	void StoryTextAppears() {

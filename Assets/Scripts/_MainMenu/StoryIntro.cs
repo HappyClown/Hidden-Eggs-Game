@@ -122,8 +122,8 @@ public class StoryIntro : MonoBehaviour {
 			storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys);
 			boardBools[0] = true;
 
-				//AUDIO wind
-				audioIntroScript.introWindLoopSFX();
+			//AUDIO wind
+			audioIntroScript.introWindLoopSFX();
 
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
@@ -147,7 +147,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[3] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[4] && !boardBools[4] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[4] && !boardBools[4] && nextBtnPressed || boardTimer >= boardEvents[4] && !boardBools[4] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -192,7 +192,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[1] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[2] && !boardBools[2] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[2] && !boardBools[2] && nextBtnPressed || boardTimer >= boardEvents[2] && !boardBools[2] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -257,7 +257,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed || boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -331,7 +331,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[1] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[2] && !boardBools[2] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[2] && !boardBools[2] && nextBtnPressed || boardTimer >= boardEvents[2] && !boardBools[2] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -435,7 +435,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed || boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -506,7 +506,7 @@ public class StoryIntro : MonoBehaviour {
 			// AUDIO - wind
 			audioIntroScript.introWindLoopSFX();
 			
-			// AUDIO - TIME SPINS!			
+			// AUDIO - TIME SPINS!
 			//audioIntroScript.introTimeSpinLoopSFX();
 			storyTimeMoScript.audioSpin = true;
 		}
@@ -528,7 +528,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed || boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -605,7 +605,7 @@ public class StoryIntro : MonoBehaviour {
 
 		}		
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
-			boardBools[1] = true;
+			boardBools[2] = true;
 		}		
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[3] && !boardBools[3]) {
@@ -613,7 +613,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[3] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[4] && !boardBools[4] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[4] && !boardBools[4] && nextBtnPressed || boardTimer >= boardEvents[4] && !boardBools[4] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -692,7 +692,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[2] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[3] && !boardBools[3] && nextBtnPressed || boardTimer >= boardEvents[3] && !boardBools[3] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;
@@ -874,7 +874,7 @@ public class StoryIntro : MonoBehaviour {
 			boardBools[4] = true;
 		}
 		// TAP EVENT
-		if (boardTimer >= boardEvents[5] && !boardBools[5] && nextBtnPressed) {
+		if (boardTimer >= boardEvents[5] && !boardBools[5] && nextBtnPressed || boardTimer >= boardEvents[5] && !boardBools[5] && inputDetScript.Tapped) {
 			storyIconsScript.HideNextButton();
 			tapTime = boardTimer;
 			exitingBoard = true;

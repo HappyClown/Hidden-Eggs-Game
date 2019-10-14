@@ -25,7 +25,8 @@ public class StoryOneEgg : MonoBehaviour {
 	public GameObject theOneEgg;
 	public GameObject behindTheOneEgg;
 	public Animator oneEggAnim;
-	public ParticleSystem eggClickFX, eggTrailFX;
+	public ParticleSystem eggClickFX, eggTrailFX, eggToMidTrailFX;
+	public Animator eggSealAnim;
 	private bool eggClickFXPlayed;
 	[Header ("References")]
 	public StoryTimeMotions storyTimeMoScript;
@@ -87,6 +88,8 @@ public class StoryOneEgg : MonoBehaviour {
 			speedLerpValue = 0f;
 			flyOutOfTime = false;
 			behindTheOneEggFadeScript.FadeOut();
+			eggToMidTrailFX.Stop();
+			eggSealAnim.SetTrigger("EggSeal");
 		}
 		if (speedLerpValue >= 0.5f && oneEggShadowFadeScript.shown) {
 			oneEggShadowFadeScript.FadeOut();
@@ -104,6 +107,7 @@ public class StoryOneEgg : MonoBehaviour {
 		maxX = flyEndTrans.position.x;
 		maxY = flyEndTrans.position.y;
 		startScale = theOneEgg.transform.localScale;
+		eggToMidTrailFX.Play();
 		flyOutOfTime = true;
 	}
 }
