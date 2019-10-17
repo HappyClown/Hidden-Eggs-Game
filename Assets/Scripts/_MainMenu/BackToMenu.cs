@@ -30,6 +30,7 @@ public class BackToMenu : MonoBehaviour
 	public Button backToMenuBtn;
 	public FadeInOutBoth backToMenuFadeScript;
 	public FadeInOutImage backToMenuIconFadeScript;
+	public FadeInOutCanvasGroup deleteSaveBtnCGFadeScript;
 
 	void Start () 
 	{
@@ -46,6 +47,7 @@ public class BackToMenu : MonoBehaviour
 			{
 				playBtnFadeScript.FadeIn();
 				rstBtnFadeScript.FadeIn();
+				deleteSaveBtnCGFadeScript.FadeIn();
 				fadeBtnIn = false;
 				hubScript.ResetHubSeasons();
 				foreach(SeasonGlows seasonGlowScript in seasonGlowScripts)

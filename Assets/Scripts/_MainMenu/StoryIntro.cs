@@ -249,7 +249,6 @@ public class StoryIntro : MonoBehaviour {
 			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.midTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve);
 			storyGustScript.yHover = true;
 			boardBools[1] = true;
-
 		}
 		// SHOW TAP ICON
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {

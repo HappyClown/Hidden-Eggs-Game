@@ -121,6 +121,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		// - FADE OUT SOLID BACKGROUND - //
 		solidBGFade.FadeOut();
+		deleteSaveBtnCGFadeScript.FadeOut();
 		// Deactivate Title & Buttons to avoid seeing them.
 		playBtnImg.color = new Color(playBtnImg.color.r, playBtnImg.color.g, playBtnImg.color.b, 0);
 		playBtnFadeScript.shown = false;
