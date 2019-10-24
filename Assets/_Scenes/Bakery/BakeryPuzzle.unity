@@ -5118,6 +5118,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &150621955
 GameObject:
   m_ObjectHideFlags: 0
@@ -5313,6 +5315,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &194323921 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1259252611644288, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -5357,7 +5361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &219038034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5382,6 +5386,7 @@ MonoBehaviour:
   - {fileID: 220084669}
   - {fileID: 891240297}
   - {fileID: 29007628}
+  moveCount: 0
 --- !u!4 &219038035
 Transform:
   m_ObjectHideFlags: 0
@@ -6026,6 +6031,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &382730081 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1713217017543818, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -6189,6 +6196,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!114 &426152260 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114458123624669856, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -11272,6 +11281,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &603794454
 GameObject:
   m_ObjectHideFlags: 0
@@ -11411,6 +11422,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &605466988
 GameObject:
   m_ObjectHideFlags: 0
@@ -17019,6 +17032,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &746516284
 GameObject:
   m_ObjectHideFlags: 0
@@ -17792,6 +17807,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!61 &801068237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18571,6 +18588,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &895300731
 GameObject:
   m_ObjectHideFlags: 0
@@ -18710,6 +18729,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &930671142
 GameObject:
   m_ObjectHideFlags: 0
@@ -18848,6 +18869,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!114 &931712713 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114272664552427512, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -19382,6 +19405,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1123743665 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1752943787412716, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -19460,6 +19485,7 @@ MonoBehaviour:
   - {fileID: 482159208}
   - {fileID: 830228867}
   - {fileID: 1394448039}
+  moveCount: 0
 --- !u!1 &1170760512 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1358973348584866, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -19946,7 +19972,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1256265780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: -2.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1.5999999, y: 1.5999999, z: 1}
   m_Children: []
   m_Father: {fileID: 2063895398}
@@ -20051,15 +20077,17 @@ MonoBehaviour:
   BTPcurrentPos: {x: 0, y: 0, z: 0}
   pushingPos: {x: 0, y: 0, z: 0}
   myCells:
+  - {fileID: 1966818696}
   - {fileID: 713374304}
   - {fileID: 1663351544}
-  - {fileID: 382730085}
   startCells: []
   firstCell: {fileID: 0}
   lastCell: {fileID: 0}
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1263242972
 GameObject:
   m_ObjectHideFlags: 0
@@ -24918,6 +24946,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1288993997
 GameObject:
   m_ObjectHideFlags: 0
@@ -35745,6 +35775,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1684122364 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1535189885111810, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -35906,6 +35938,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1690897457 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1348317634272154, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -36068,6 +36102,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1712484757 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1627316509498114, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -50205,6 +50241,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!61 &1801095584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -60017,6 +60055,7 @@ MonoBehaviour:
   - {fileID: 1994607280}
   - {fileID: 2011039750}
   - {fileID: 1041699078}
+  moveCount: 0
 --- !u!4 &1929759405
 Transform:
   m_ObjectHideFlags: 0
@@ -60172,6 +60211,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1961052431
 GameObject:
   m_ObjectHideFlags: 0
@@ -60312,6 +60353,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &1966818692 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1616535150950048, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -65246,6 +65289,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1001 &2009672310
 Prefab:
   m_ObjectHideFlags: 0
@@ -65450,6 +65495,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &2011039749
 GameObject:
   m_ObjectHideFlags: 0
@@ -66156,6 +66203,8 @@ MonoBehaviour:
   nextCell: {fileID: 0}
   cellDistance: 1
   minDistance: 0.75
+  positionHistory: []
+  cellHistory: []
 --- !u!1 &2126239478 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1841280854946348, guid: 742a4ae38384f734da7555c279bd6be6,

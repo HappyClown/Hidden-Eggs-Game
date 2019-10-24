@@ -7,6 +7,7 @@ public class BakeryLevel : MonoBehaviour {
 	public bool levelComplete, movingBaguet;
 	public BakeryBaguette[] myBaguettes;
 	public BakeryGoalCell [] myGoalCells;
+	public int moveCount;
 	// Use this for initialization
 	void Start () {
 	}
@@ -16,6 +17,7 @@ public class BakeryLevel : MonoBehaviour {
 		
 	}
 	public void ResetLevel(){
+		moveCount = 0;
 		levelComplete = false;
 		foreach (BakeryBaguette bagtt in myBaguettes)
 		{
@@ -27,10 +29,12 @@ public class BakeryLevel : MonoBehaviour {
 		}
 	}
 	public void SetUpLevel(){
+		moveCount = 0;
 		movingBaguet = false;
 		foreach (BakeryBaguette bagtt in myBaguettes)
 		{
 			bagtt.SetUpItem();
+			bagtt.SaveStep(moveCount);
 		}
 		foreach (BakeryGoalCell goals in myGoalCells)
 		{
@@ -46,5 +50,36 @@ public class BakeryLevel : MonoBehaviour {
 			}
 		}
 		levelComplete = check;
+	}
+	public void SaveStep(){
+		bool ver = false;
+		foreach (BakeryBaguette bagtt in myBaguettes)
+		{
+			if(bagtt.firstCell != bagtt.cellHistory[moveCount]){
+				ver = true;
+			}
+		}
+		if(ver){
+			moveCount += 1;
+			foreach (BakeryBaguette bagtt in myBaguettes)
+			{
+				bagtt.SaveStep(moveCount);
+			}
+		}
+	}
+	public void StepBack(){	
+		moveCount -= 1;	
+		foreach (BakeryBaguette bagtt in myBaguettes)
+		{
+			foreach (PuzzleCell cell in bagtt.myCells )
+			{
+				cell.occupied = false;
+				cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
+			}
+		}
+		foreach (BakeryBaguette bagtt in myBaguettes)
+		{
+			bagtt.StepBack(moveCount);
+		}
 	}
 }

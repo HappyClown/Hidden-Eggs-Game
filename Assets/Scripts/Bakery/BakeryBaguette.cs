@@ -17,13 +17,16 @@ public class BakeryBaguette : MonoBehaviour {
 	public PuzzleCell[] myCells, startCells;
 	public PuzzleCell firstCell, lastCell, nextCell;
 	public float cellDistance = 1, minDistance = 0.75f;
-	private float maxY = 2.5f, maxX = 3.5f, minY = -2.5f, minX = -3.5f;
-	private float iniMaxY = 2.5f, iniMaxX = 3.5f, iniMinY = -2.5f, iniMinX = -3.5f;
+	private float maxY, maxX, minY, minX;
+	private float iniMaxY, iniMaxX, iniMinY, iniMinX;
+	public List<Vector3> positionHistory;
+	public List<PuzzleCell> cellHistory;
 
 	// Update is called once per frame
 	void Update () {
 
 	}
+	#region Horizontal
 	public void MoveHorizontal(float curPos, float prevPos){
 		maxX = iniMaxX;
 		minX = iniMinX;
@@ -259,6 +262,8 @@ public class BakeryBaguette : MonoBehaviour {
 		}
 		
 	}
+	#endregion
+	#region Vertical
 	public void MoveVertical(float curPos, float prevPos){		
 		maxY = iniMaxY;
 		minY = iniMinY;
@@ -352,7 +357,6 @@ public class BakeryBaguette : MonoBehaviour {
 					baguetteToPush.currentPos = BTPcurrentPos;
 				}
 
-				Debug.Log("changing cell UP "+gameObject.name);
 				foreach (PuzzleCell cell in myCells)
 				{
 					//free current baguette cells and get new cells
@@ -489,7 +493,7 @@ public class BakeryBaguette : MonoBehaviour {
 			}	
 		}
 	}
-	
+	#endregion
 	public bool CheckAllLeft(){
 		bool verify = true;
 		foreach (PuzzleCell cell in myCells)
@@ -578,6 +582,10 @@ public class BakeryBaguette : MonoBehaviour {
 			cell.occupied = true;
 			cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = this;
 		}
+		maxX = iniMaxX = 4 - (myCells.Length * 0.5f);
+		minX = iniMinX = (myCells.Length * 0.5f) - 4;
+		maxY = iniMaxY = 3 - (myCells.Length * 0.5f);
+		minY = iniMinY = (myCells.Length * 0.5f) - 3;
 	}
 	public void ResetItem(){
 		if(startPos == Vector3.zero){
@@ -602,5 +610,56 @@ public class BakeryBaguette : MonoBehaviour {
 			baguetteToPush.gameObject.transform.position = BTPcurrentPos;
 			baguetteToPush = null;
 		}
+	}
+	public void SaveStep(int move){
+		if(positionHistory.Count > move){
+			positionHistory[move] = this.gameObject.transform.position;
+			cellHistory[move] = firstCell;
+		}else{
+			positionHistory.Add(this.gameObject.transform.position);
+			cellHistory.Add(firstCell);
+		}
+	}
+	public void StepBack(int move){
+		int qty = myCells.Length;
+		if(horizontal){
+			firstCell = cellHistory[move];
+			for (int i = 0; i < qty; i++)
+			{
+				if(i == 0){ 
+					myCells[i] = firstCell;
+					myCells[i].gameObject.GetComponent<BakeryCellConn>().mybaguette = this;
+					myCells[i].occupied = true;
+				}
+				else{
+					myCells[i] = firstCell.CheckRightAmmount(i);
+					myCells[i].gameObject.GetComponent<BakeryCellConn>().mybaguette = this;
+					myCells[i].occupied = true;
+				}
+				if(i == (qty -1)){
+					lastCell = myCells[i];
+				}
+			}
+		}else if(vertical){
+			firstCell = cellHistory[move];
+			for (int i = 0; i < qty; i++)
+			{
+				if(i == 0){ 
+					myCells[i] = firstCell;
+					myCells[i].gameObject.GetComponent<BakeryCellConn>().mybaguette = this;
+					myCells[i].occupied = true;
+				}
+				else{
+					myCells[i] = firstCell.CheckUpAmmount(i);
+					myCells[i].gameObject.GetComponent<BakeryCellConn>().mybaguette = this;
+					myCells[i].occupied = true;
+				}
+				if(i == (qty -1)){
+					lastCell = myCells[i];
+				}
+			}	
+		}
+		iniPos = currentPos = positionHistory[move];
+		this.transform.position = positionHistory[move];
 	}
 }

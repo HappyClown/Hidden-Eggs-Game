@@ -100,6 +100,7 @@ public class BakeryPuzzle : MainPuzzleEngine {
 						holdingBaguette = false;
 						selectedBaguette.selected = false;
 						selectedBaguette.SetPosition();
+						myLvls[curntLvl-1].SaveStep();
 						myLvls[curntLvl-1].CheckBaguettes();
 					}
 				}
@@ -108,6 +109,10 @@ public class BakeryPuzzle : MainPuzzleEngine {
 			if(Input.GetKey("r")){
 				//CleanGrid();
 				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
+			}
+			if(Input.GetKeyDown("b")){
+				//CleanGrid();
+				myLvls[curntLvl-1].StepBack();
 			}
 		
 		else
