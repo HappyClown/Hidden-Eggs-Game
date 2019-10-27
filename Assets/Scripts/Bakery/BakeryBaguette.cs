@@ -11,12 +11,12 @@ public class BakeryBaguette : MonoBehaviour {
 	} 
 	public baguetteColor myColor;
 	public int timesToMove;
-	public bool active, pushing, canMove, onGoal, selected,directionController;
+	public bool active, pushing, canMove, onGoal, selected,directionController, movingToGoal;
 	public BakeryBaguette baguetteToPush;
 	public Vector3 nextPos, currentPos, startPos, iniPos, BTPcurrentPos, pushingPos;
 	public PuzzleCell[] myCells, startCells;
 	public PuzzleCell firstCell, lastCell, nextCell;
-	public float cellDistance = 1, minDistance = 0.75f;
+	public float cellDistance = 1, minDistance = 0.75f, maxDiff = 0.9f;
 	private float maxY, maxX, minY, minX;
 	private float iniMaxY, iniMaxX, iniMinY, iniMinX;
 	public List<Vector3> positionHistory;
@@ -28,14 +28,23 @@ public class BakeryBaguette : MonoBehaviour {
 	}
 	#region Horizontal
 	public void MoveHorizontal(float curPos, float prevPos){
-		maxX = iniMaxX;
-		minX = iniMinX;
+		if(lastCell.CheckRight().goalCell){
+			maxX = iniMaxX + cellDistance;
+		}else{
+			maxX = iniMaxX;
+		}
+		if(firstCell.CheckLeft().goalCell){
+			minX = iniMinX - cellDistance;
+		}else{
+			minX = iniMinX;
+		}
 		if(!selected){
 			iniPos = this.gameObject.transform.position;
 			selected = true;
 			nextPos = iniPos;
 		}
 		float Diff = Mathf.Abs(curPos - prevPos);
+		if(Diff > maxDiff){ Diff = maxDiff;}
 		if(curPos > prevPos){
 			//moving right
 			nextPos.x += Diff;
@@ -46,6 +55,7 @@ public class BakeryBaguette : MonoBehaviour {
 					directionController = true;					
 					SetPushedBaguette();
 					pushing = false;
+					if(movingToGoal){ movingToGoal = false;}
 				}
 				if(!lastCell.edgeRight){
 					//no board edge right
@@ -55,15 +65,8 @@ public class BakeryBaguette : MonoBehaviour {
 						if(lastCell.cellRight.goalCell){
 							//code for checking goal
 							if(lastCell.cellRight.gameObject.GetComponent<BakeryGoalCell>().myColor.ToString() == myColor.ToString()){
-								foreach (PuzzleCell cell in myCells)
-								{
-									//free current baguette cells and get new cells
-									cell.occupied = false;
-									cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
-									onGoal = true;
-									this.gameObject.SetActive(false);
-									canMove = false;
-								}
+								canMove = true;
+								movingToGoal = true;
 							}else{
 								canMove = false;
 							}
@@ -72,6 +75,8 @@ public class BakeryBaguette : MonoBehaviour {
 						if(!baguetteToPush){
 							baguetteToPush = lastCell.cellRight.gameObject.GetComponent<BakeryCellConn>().mybaguette;
 							BTPcurrentPos = baguetteToPush.transform.position;
+							float adjustedX = nextPos.x + ((myCells.Length * 0.5f) + 0.5f);
+							baguetteToPush.transform.position = new Vector3(adjustedX, baguetteToPush.transform.position.y, baguetteToPush.transform.position.z);
 							pushingPos = baguetteToPush.transform.position;
 						}
 						if(baguetteToPush.CheckAllRight()){							
@@ -141,6 +146,17 @@ public class BakeryBaguette : MonoBehaviour {
 				tempCells.Clear();
 				currentPos.x += cellDistance;	
 				iniPos = currentPos;
+				if(movingToGoal){
+					foreach (PuzzleCell cell in myCells)
+					{
+						//free current baguette cells and get new cells
+						cell.occupied = false;
+						cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
+						onGoal = true;
+						this.gameObject.SetActive(false);
+						canMove = false;
+					}
+				}
 			}
 		}else{
 			//moving left
@@ -152,6 +168,7 @@ public class BakeryBaguette : MonoBehaviour {
 					directionController = false;					
 					SetPushedBaguette();
 					pushing = false;
+					if(movingToGoal){ movingToGoal = false;}
 				}
 				if(!firstCell.edgeLeft){
 					//no board edge up
@@ -161,15 +178,8 @@ public class BakeryBaguette : MonoBehaviour {
 						if(firstCell.cellLeft.goalCell){
 							//code for checking goal
 							if(firstCell.cellLeft.gameObject.GetComponent<BakeryGoalCell>().myColor.ToString() == myColor.ToString()){
-								foreach (PuzzleCell cell in myCells)
-								{
-									//free current baguette cells and get new cells
-									cell.occupied = false;
-									cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
-									onGoal = true;
-									this.gameObject.SetActive(false);
-									canMove = false;
-								}
+								canMove = true;
+								movingToGoal = true;
 							}else{
 								canMove = false;
 							}
@@ -179,6 +189,8 @@ public class BakeryBaguette : MonoBehaviour {
 						if(!baguetteToPush){
 							baguetteToPush = firstCell.cellLeft.gameObject.GetComponent<BakeryCellConn>().mybaguette;
 							BTPcurrentPos = baguetteToPush.transform.position;
+							float adjustedX = nextPos.x - ((myCells.Length * 0.5f) + 0.5f);
+							baguetteToPush.transform.position = new Vector3(adjustedX, baguetteToPush.transform.position.y, baguetteToPush.transform.position.z);
 							pushingPos = baguetteToPush.transform.position;
 						}
 						if(baguetteToPush.CheckAllLeft()){							
@@ -228,7 +240,6 @@ public class BakeryBaguette : MonoBehaviour {
 					baguetteToPush.currentPos = BTPcurrentPos;
 				}
 				
-				Debug.Log("changing cell left "+gameObject.name);
 				foreach (PuzzleCell cell in myCells)
 				{
 					//free current baguette cells and get new cells
@@ -249,6 +260,17 @@ public class BakeryBaguette : MonoBehaviour {
 				tempCells.Clear();
 				currentPos.x -= cellDistance;	
 				iniPos = currentPos;
+				if(movingToGoal){
+					foreach (PuzzleCell cell in myCells)
+					{
+						//free current baguette cells and get new cells
+						cell.occupied = false;
+						cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
+						onGoal = true;
+						this.gameObject.SetActive(false);
+						canMove = false;
+					}
+				}
 			}
 		}
 		
@@ -265,14 +287,24 @@ public class BakeryBaguette : MonoBehaviour {
 	#endregion
 	#region Vertical
 	public void MoveVertical(float curPos, float prevPos){		
-		maxY = iniMaxY;
-		minY = iniMinY;
+		if(lastCell.CheckUp().goalCell){
+			maxY = iniMaxY + cellDistance;
+		}else{
+			maxY = iniMaxY;
+		}
+		if(firstCell.CheckDown().goalCell){
+			minY = iniMinY - cellDistance;
+		}else{
+			minY = iniMinY;
+		}
+		
 		if(!selected){
 			iniPos = this.gameObject.transform.position;
 			selected = true;
 			nextPos = iniPos;
 		}
-		float Diff = Mathf.Abs(curPos - prevPos);
+		float Diff = Mathf.Abs(curPos - prevPos);		
+		if(Diff > maxDiff){ Diff = maxDiff;}
 		if(curPos > prevPos){
 			//moving UP
 			nextPos.y += Diff;
@@ -283,6 +315,7 @@ public class BakeryBaguette : MonoBehaviour {
 					directionController = true;					
 					SetPushedBaguette();
 					pushing = false;
+					if(movingToGoal){ movingToGoal = false;}
 				}
 				if(!lastCell.edgeUp){
 					//no board edge up
@@ -292,15 +325,8 @@ public class BakeryBaguette : MonoBehaviour {
 						if(lastCell.cellUp.goalCell){
 							//code for checking goal
 							if(lastCell.cellUp.gameObject.GetComponent<BakeryGoalCell>().myColor.ToString() == myColor.ToString()){
-								foreach (PuzzleCell cell in myCells)
-								{
-									//free current baguette cells and get new cells
-									cell.occupied = false;
-									cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
-									onGoal = true;
-									this.gameObject.SetActive(false);
-									canMove = false;
-								}
+								canMove = true;
+								movingToGoal = true;
 							}else{
 								canMove = false;
 							}
@@ -309,6 +335,8 @@ public class BakeryBaguette : MonoBehaviour {
 						if(!baguetteToPush){
 							baguetteToPush = lastCell.cellUp.gameObject.GetComponent<BakeryCellConn>().mybaguette;
 							BTPcurrentPos = baguetteToPush.transform.position;
+							float adjustedY = nextPos.y + ((myCells.Length * 0.5f) + 0.5f);
+							baguetteToPush.transform.position = new Vector3(baguetteToPush.transform.position.x, adjustedY, baguetteToPush.transform.position.z);
 							pushingPos = baguetteToPush.transform.position;
 						}
 						if(baguetteToPush.CheckAllUp()){							
@@ -377,6 +405,17 @@ public class BakeryBaguette : MonoBehaviour {
 				tempCells.Clear();
 				currentPos.y += cellDistance;	
 				iniPos = currentPos;
+				if(movingToGoal){
+					foreach (PuzzleCell cell in myCells)
+					{
+						//free current baguette cells and get new cells
+						cell.occupied = false;
+						cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
+						onGoal = true;
+						this.gameObject.SetActive(false);
+						canMove = false;
+					}
+				}
 			}
 		}else{
 			//moving DOWN
@@ -388,6 +427,7 @@ public class BakeryBaguette : MonoBehaviour {
 					directionController = false;					
 					SetPushedBaguette();
 					pushing = false;
+					if(movingToGoal){ movingToGoal = false;}
 				}
 				if(!firstCell.edgeDown){
 					if(!firstCell.cellDown.occupied){
@@ -396,15 +436,8 @@ public class BakeryBaguette : MonoBehaviour {
 						if(firstCell.cellDown.goalCell){
 							//code for checking goal
 							if(firstCell.cellDown.gameObject.GetComponent<BakeryGoalCell>().myColor.ToString() == myColor.ToString()){
-								foreach (PuzzleCell cell in myCells)
-								{
-									//free current baguette cells and get new cells
-									cell.occupied = false;
-									cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
-									onGoal = true;
-									this.gameObject.SetActive(false);
-									canMove = false;
-								}
+								canMove = true;
+								movingToGoal = true;
 							}else{
 								canMove = false;
 							}
@@ -412,8 +445,12 @@ public class BakeryBaguette : MonoBehaviour {
 					}else{
 						if(!baguetteToPush){
 							baguetteToPush = firstCell.cellDown.gameObject.GetComponent<BakeryCellConn>().mybaguette;
+							//baguetteToPush.transform.position = new Vector3(baguetteToPush.transform.position.x,(baguetteToPush.transform.position.y - (this.transform.position.y - iniPos.y)),baguetteToPush.transform.position.z);
 							BTPcurrentPos = baguetteToPush.transform.position;
+							float adjustedY = nextPos.y - ((myCells.Length * 0.5f) + 0.5f);
+							baguetteToPush.transform.position = new Vector3(baguetteToPush.transform.position.x, adjustedY, baguetteToPush.transform.position.z);
 							pushingPos = baguetteToPush.transform.position;
+							//pushingPos.y += (this.transform.position.y - iniPos.y);
 						}
 						if(baguetteToPush.CheckAllDown()){							
 							//can push down
@@ -481,6 +518,17 @@ public class BakeryBaguette : MonoBehaviour {
 				tempCells.Clear();
 				currentPos.y -= cellDistance;	
 				iniPos = currentPos;
+				if(movingToGoal){
+					foreach (PuzzleCell cell in myCells)
+					{
+						//free current baguette cells and get new cells
+						cell.occupied = false;
+						cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
+						onGoal = true;
+						this.gameObject.SetActive(false);
+						canMove = false;
+					}
+				}
 			}
 		}
 		
@@ -577,6 +625,7 @@ public class BakeryBaguette : MonoBehaviour {
 		this.transform.position = startPos;
 		active = true;
 		onGoal = false;
+		movingToGoal = false;
 		foreach (PuzzleCell cell in myCells)
 		{	
 			cell.occupied = true;
@@ -599,10 +648,13 @@ public class BakeryBaguette : MonoBehaviour {
 			cell.occupied = false;
 			cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
 		}
+		cellHistory.Clear();
+		positionHistory.Clear();
 	}
 	public void SetPosition(){
 		this.transform.position = currentPos;
 		pushing = false;
+		nextPos = currentPos;
 		SetPushedBaguette();
 	}
 	public void SetPushedBaguette(){
@@ -622,7 +674,11 @@ public class BakeryBaguette : MonoBehaviour {
 	}
 	public void StepBack(int move){
 		int qty = myCells.Length;
-		if(horizontal){
+		if(onGoal && positionHistory[move] != this.transform.position){
+			onGoal = false;
+			this.gameObject.SetActive(true);
+		}
+		if(horizontal && !onGoal){
 			firstCell = cellHistory[move];
 			for (int i = 0; i < qty; i++)
 			{
@@ -640,7 +696,7 @@ public class BakeryBaguette : MonoBehaviour {
 					lastCell = myCells[i];
 				}
 			}
-		}else if(vertical){
+		}else if(vertical && !onGoal){
 			firstCell = cellHistory[move];
 			for (int i = 0; i < qty; i++)
 			{
@@ -659,7 +715,8 @@ public class BakeryBaguette : MonoBehaviour {
 				}
 			}	
 		}
-		iniPos = currentPos = positionHistory[move];
+		nextPos = iniPos = currentPos = positionHistory[move];
 		this.transform.position = positionHistory[move];
+		movingToGoal = false;
 	}
 }

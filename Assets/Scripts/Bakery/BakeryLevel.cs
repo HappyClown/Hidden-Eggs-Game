@@ -68,18 +68,20 @@ public class BakeryLevel : MonoBehaviour {
 		}
 	}
 	public void StepBack(){	
-		moveCount -= 1;	
-		foreach (BakeryBaguette bagtt in myBaguettes)
-		{
-			foreach (PuzzleCell cell in bagtt.myCells )
+		if(moveCount > 0){
+			moveCount -= 1;	
+			foreach (BakeryBaguette bagtt in myBaguettes)
 			{
-				cell.occupied = false;
-				cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
+				foreach (PuzzleCell cell in bagtt.myCells )
+				{
+					cell.occupied = false;
+					cell.gameObject.GetComponent<BakeryCellConn>().mybaguette = null;
+				}
 			}
-		}
-		foreach (BakeryBaguette bagtt in myBaguettes)
-		{
-			bagtt.StepBack(moveCount);
+			foreach (BakeryBaguette bagtt in myBaguettes)
+			{
+				bagtt.StepBack(moveCount);
+			}
 		}
 	}
 }

@@ -36,7 +36,6 @@ public class PuzzleCell : MonoBehaviour {
 		}
 		else{
 			myNum ++;
-			Debug.Log(myNum);
 		//if not, the next cell will repeat the process. the same script applies for each direction.
 			return cellUp.CheckUp( myNum);
 		}
@@ -51,7 +50,6 @@ public class PuzzleCell : MonoBehaviour {
 		}
 		else{
 			myNum ++;
-			Debug.Log(myNum);
 			return cellDown.CheckDown(myNum);
 		}
 	}
@@ -65,7 +63,6 @@ public class PuzzleCell : MonoBehaviour {
 		}
 		else{
 			myNum ++;
-			Debug.Log(myNum);
 			return cellLeft.CheckLeft(myNum);
 		}
 	}
@@ -79,7 +76,6 @@ public class PuzzleCell : MonoBehaviour {
 		}
 		else{
 			myNum ++;
-			Debug.Log(myNum);
 			return cellRight.CheckRight(myNum);
 		}
 	}

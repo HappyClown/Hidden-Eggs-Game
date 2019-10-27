@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 29007629}
   - component: {fileID: 29007628}
   - component: {fileID: 29007630}
+  - component: {fileID: 29007632}
   m_Layer: 0
   m_Name: Exit4
   m_TagString: Untagged
@@ -307,6 +308,18 @@ Transform:
   m_Father: {fileID: 670199315}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &29007632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29007627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &53202980
 GameObject:
   m_ObjectHideFlags: 0
@@ -5102,6 +5115,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -5297,6 +5311,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -5413,6 +5428,7 @@ GameObject:
   - component: {fileID: 220084668}
   - component: {fileID: 220084669}
   - component: {fileID: 220084667}
+  - component: {fileID: 220084670}
   m_Layer: 0
   m_Name: Exit2
   m_TagString: Untagged
@@ -5513,6 +5529,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myColor: 2
   myCell: {fileID: 220084668}
+--- !u!114 &220084670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220084665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1001 &223197665
 Prefab:
   m_ObjectHideFlags: 0
@@ -6014,6 +6042,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -6178,6 +6207,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -6319,6 +6349,7 @@ GameObject:
   - component: {fileID: 482159209}
   - component: {fileID: 482159208}
   - component: {fileID: 482159207}
+  - component: {fileID: 482159210}
   m_Layer: 0
   m_Name: Exit3
   m_TagString: Untagged
@@ -6419,6 +6450,18 @@ MonoBehaviour:
   occupied: 0
   goalCell: 1
   CheckTimes: 0
+--- !u!114 &482159210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 482159205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &484787848
 GameObject:
   m_ObjectHideFlags: 0
@@ -11264,6 +11307,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -11405,6 +11449,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -16794,6 +16839,7 @@ GameObject:
   - component: {fileID: 736576665}
   - component: {fileID: 736576666}
   - component: {fileID: 736576664}
+  - component: {fileID: 736576667}
   m_Layer: 0
   m_Name: Exit1
   m_TagString: Untagged
@@ -16894,6 +16940,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myColor: 0
   myCell: {fileID: 736576665}
+--- !u!114 &736576667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 736576662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &738465676
 GameObject:
   m_ObjectHideFlags: 0
@@ -17016,6 +17074,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -17045,6 +17104,7 @@ GameObject:
   - component: {fileID: 746516287}
   - component: {fileID: 746516288}
   - component: {fileID: 746516286}
+  - component: {fileID: 746516289}
   m_Layer: 0
   m_Name: Exit2
   m_TagString: Untagged
@@ -17145,6 +17205,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myColor: 0
   myCell: {fileID: 746516287}
+--- !u!114 &746516289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 746516284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &754191845
 GameObject:
   m_ObjectHideFlags: 0
@@ -17610,6 +17682,7 @@ GameObject:
   - component: {fileID: 763860303}
   - component: {fileID: 763860302}
   - component: {fileID: 763860301}
+  - component: {fileID: 763860304}
   m_Layer: 0
   m_Name: Exit1
   m_TagString: Untagged
@@ -17710,6 +17783,18 @@ MonoBehaviour:
   occupied: 0
   goalCell: 1
   CheckTimes: 0
+--- !u!114 &763860304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 763860299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &777123797 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1850602089405534, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -17789,6 +17874,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -17903,6 +17989,7 @@ GameObject:
   - component: {fileID: 830228868}
   - component: {fileID: 830228867}
   - component: {fileID: 830228866}
+  - component: {fileID: 830228869}
   m_Layer: 0
   m_Name: Exit4
   m_TagString: Untagged
@@ -18003,6 +18090,18 @@ MonoBehaviour:
   occupied: 0
   goalCell: 1
   CheckTimes: 0
+--- !u!114 &830228869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 830228864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &850498905
 GameObject:
   m_ObjectHideFlags: 0
@@ -18350,6 +18449,7 @@ GameObject:
   - component: {fileID: 891240296}
   - component: {fileID: 891240297}
   - component: {fileID: 891240295}
+  - component: {fileID: 891240298}
   m_Layer: 0
   m_Name: Exit3
   m_TagString: Untagged
@@ -18450,6 +18550,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myColor: 2
   myCell: {fileID: 891240296}
+--- !u!114 &891240298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891240293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &891320169
 GameObject:
   m_ObjectHideFlags: 0
@@ -18572,6 +18684,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -18712,6 +18825,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -18853,6 +18967,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -19074,6 +19189,7 @@ GameObject:
   - component: {fileID: 1041699079}
   - component: {fileID: 1041699078}
   - component: {fileID: 1041699077}
+  - component: {fileID: 1041699080}
   m_Layer: 0
   m_Name: Exit6
   m_TagString: Untagged
@@ -19174,6 +19290,18 @@ MonoBehaviour:
   occupied: 0
   goalCell: 1
   CheckTimes: 0
+--- !u!114 &1041699080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1041699075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &1051928028 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1628192426425242, guid: f6590d017bc3c234a96bcad1a157f613,
@@ -19389,6 +19517,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -20069,6 +20198,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -24929,6 +25059,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -29791,6 +29922,7 @@ GameObject:
   - component: {fileID: 1394448040}
   - component: {fileID: 1394448039}
   - component: {fileID: 1394448038}
+  - component: {fileID: 1394448041}
   m_Layer: 0
   m_Name: Exit5
   m_TagString: Untagged
@@ -29891,6 +30023,18 @@ MonoBehaviour:
   occupied: 0
   goalCell: 1
   CheckTimes: 0
+--- !u!114 &1394448041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1394448036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!114 &1403884585 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114414448826633382, guid: 2c668a3931c67034d8e0b91ea2176a0d,
@@ -29994,6 +30138,7 @@ GameObject:
   - component: {fileID: 1470499041}
   - component: {fileID: 1470499040}
   - component: {fileID: 1470499039}
+  - component: {fileID: 1470499042}
   m_Layer: 0
   m_Name: Exit2
   m_TagString: Untagged
@@ -30094,6 +30239,18 @@ MonoBehaviour:
   occupied: 0
   goalCell: 1
   CheckTimes: 0
+--- !u!114 &1470499042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470499037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &1481828717 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1273037928703732, guid: f6590d017bc3c234a96bcad1a157f613,
@@ -35759,6 +35916,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -35922,6 +36080,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -36085,6 +36244,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -50223,6 +50383,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -55155,6 +55316,7 @@ GameObject:
   - component: {fileID: 1903375150}
   - component: {fileID: 1903375151}
   - component: {fileID: 1903375149}
+  - component: {fileID: 1903375152}
   m_Layer: 0
   m_Name: Exit3
   m_TagString: Untagged
@@ -55255,6 +55417,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myColor: 1
   myCell: {fileID: 1903375150}
+--- !u!114 &1903375152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1903375147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &1905385932
 GameObject:
   m_ObjectHideFlags: 0
@@ -59910,6 +60084,7 @@ GameObject:
   - component: {fileID: 1927673221}
   - component: {fileID: 1927673222}
   - component: {fileID: 1927673220}
+  - component: {fileID: 1927673223}
   m_Layer: 0
   m_Name: Exit1
   m_TagString: Untagged
@@ -60010,6 +60185,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myColor: 0
   myCell: {fileID: 1927673221}
+--- !u!114 &1927673223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1927673218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &1929759403
 GameObject:
   m_ObjectHideFlags: 0
@@ -60193,6 +60380,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -60335,6 +60523,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -65050,6 +65239,7 @@ GameObject:
   - component: {fileID: 1994607279}
   - component: {fileID: 1994607280}
   - component: {fileID: 1994607278}
+  - component: {fileID: 1994607281}
   m_Layer: 0
   m_Name: Exit4
   m_TagString: Untagged
@@ -65150,6 +65340,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myColor: 1
   myCell: {fileID: 1994607279}
+--- !u!114 &1994607281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994607276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &2009535190
 GameObject:
   m_ObjectHideFlags: 0
@@ -65272,6 +65474,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -65477,6 +65680,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -65508,6 +65712,7 @@ GameObject:
   - component: {fileID: 2011039751}
   - component: {fileID: 2011039750}
   - component: {fileID: 2011039752}
+  - component: {fileID: 2011039754}
   m_Layer: 0
   m_Name: Exit5
   m_TagString: Untagged
@@ -65608,6 +65813,18 @@ Transform:
   m_Father: {fileID: 1195232621}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2011039754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2011039749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44475da2dbbfc224d800591cfaa22f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mybaguette: {fileID: 0}
 --- !u!1 &2013149461 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1822830345299350, guid: 742a4ae38384f734da7555c279bd6be6,
@@ -66186,6 +66403,7 @@ MonoBehaviour:
   onGoal: 0
   selected: 0
   directionController: 0
+  movingToGoal: 0
   baguetteToPush: {fileID: 0}
   nextPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
