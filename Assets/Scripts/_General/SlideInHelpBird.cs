@@ -26,7 +26,7 @@ public class SlideInHelpBird : MonoBehaviour {
 	private float totalDist;
 	private float distLeft;
 	private float distPercent;
-	private float lerpValue;
+	public float lerpValue;
 	public AnimationCurve animCur;
 	[Header("Script References")]
 	public SceneTapEnabler sceneTapScript;

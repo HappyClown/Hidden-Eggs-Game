@@ -18,6 +18,7 @@ public class HintManager : MonoBehaviour {
 	public float minDistanceToPoint, featherMovSpeed;
 	public int turnsToDo, currentTurn, eggsFound;
 	public bool resetHint;
+	public HintTrail hintTrailScript;
 
 	
 	public AudioHelperBird audioHelperBirdScript;
@@ -54,9 +55,12 @@ public class HintManager : MonoBehaviour {
 		}
 		if(movingFeather){
 			if(myClickonEggs.eggsFound  > eggsFound || resetHint) {
-					myDirection = featherToGo.exit;
-					currentTurn = 0;
-					resetHint = false;
+				if (hintTrailScript) {
+					hintTrailScript.UndoTrailParent();
+				}
+				myDirection = featherToGo.exit;
+				currentTurn = 0;
+				resetHint = false;
 			}
 			MoveFeather();
 
@@ -100,8 +104,11 @@ public class HintManager : MonoBehaviour {
 			break;
 			case featherToGo.firstPoint:
 				if(currentTurn == turnsToDo){
-						myDirection = featherToGo.exit;
-						currentTurn = 0;
+					if (hintTrailScript) {
+						hintTrailScript.UndoTrailParent();
+					}
+					myDirection = featherToGo.exit;
+					currentTurn = 0;
 				}
 				else if(Vector2.Distance(feather.transform.position,currentQuadrant.firstPoint.position) > minDistanceToPoint) {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.firstPoint.position,Time.deltaTime * featherMovSpeed);
@@ -109,6 +116,9 @@ public class HintManager : MonoBehaviour {
 				else {
 					currentTurn ++;
 					myDirection = featherToGo.secondPoion;
+					if (hintTrailScript) {
+						hintTrailScript.SetTrailParent();
+					}
 				}
 			break;
 			case featherToGo.secondPoion:

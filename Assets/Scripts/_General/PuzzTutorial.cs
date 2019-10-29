@@ -11,8 +11,10 @@ public class PuzzTutorial : MonoBehaviour {
 	public LevelSelectionButtons levelSelectScript;
 	public MainPuzzleEngine mainPuzzScript;
 	public SceneTapEnabler sceneTapScript;
+	public FadeInOutImage darkScreenFadeScript;
 	public AudioHelperBird audioHelperBirdScript;
 	private bool showTut;
+	private bool darkenScreen, tutOpen;
 
 	void Start () {
 		currentTutFadeScript = tutFadeScripts[0];
@@ -23,16 +25,37 @@ public class PuzzTutorial : MonoBehaviour {
 	}
 
 	void Update () {
+		// Set the tutorial as "open", used to see if the player can play the puzzle or not.
+		if (slideInHelpScript.moveUp && !tutOpen) {
+			tutOpen = true;
+		}
+		// Set the tutorial as "closed", used to allow the player to interact with the puzzle.
+		if (slideInHelpScript.moveDown && slideInHelpScript.lerpValue > 0.5f && tutOpen) {
+			tutOpen = false;
+			mainPuzzScript.canPlay = true;
+		}
+		// If the tutorial is "open" make sure the player cannot interact with the puzzle.
+		if (tutOpen) {
+			mainPuzzScript.canPlay = false;
+		}
+		// If the bird is moving up, fade in the darkened screen.
+		if (slideInHelpScript.moveUp && !darkenScreen) {
+			darkScreenFadeScript.FadeIn();
+			// mainPuzzScript.canPlay = false;
+			darkenScreen = true;
+		}
 		// If the bird is fully up, fade in the first tutorial icons.
 		if (slideInHelpScript.isUp && !showTut) {
 			tutFadeScripts[0].FadeIn();
-			showTut = true;
 			mainPuzzScript.canPlay = false;
+			showTut = true;
 		}
 		// If the bird goes down fade out the last tutorial icons.
 		if ((slideInHelpScript.moveDown || slideInHelpScript.isDown) && showTut) {
 			currentTutFadeScript.FadeOut();
+			darkScreenFadeScript.FadeOut();
 			showTut = false;
+			darkenScreen = false;
 		}
 		// To go to the next tutorial icons or close the tutorial.
 		if (inputDetScript.Tapped) {

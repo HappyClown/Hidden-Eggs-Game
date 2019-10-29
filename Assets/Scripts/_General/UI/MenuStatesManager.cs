@@ -36,13 +36,11 @@ public class MenuStatesManager : MonoBehaviour {
 		menuCG.alpha = 0;
 		menuCG.interactable = false;
 		menuCG.blocksRaycasts = false;
-		if(puzzleConfCG){
+		if(puzzleConfCG) {
 			puzzleConfCG.alpha = 0;
 			puzzleConfCG.interactable = false;
 			puzzleConfCG.blocksRaycasts = false;
 		}
-
-				
 		if(!audioSceneGeneralScript){audioSceneGeneralScript= GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();}
 	}
 	
@@ -200,8 +198,6 @@ public class MenuStatesManager : MonoBehaviour {
 			putDragOff = true;
 		}
 		lvlTapManScript.ZoomOutCameraReset();
-
-		
 		//sound click
 		audioSceneGeneralScript.puzzConfirmSFX();
 	}
@@ -243,6 +239,9 @@ public class MenuStatesManager : MonoBehaviour {
 		if(putDragOff){
 			inputDetScript.detectDrag = false;
 		}
+		if (puzzEngScript) {
+			puzzEngScript.canPlay = true;
+		}
 	}
 
 	void PuzzleConfTurningOff() {
@@ -255,9 +254,9 @@ public class MenuStatesManager : MonoBehaviour {
 			puzzleConfStates = MenuStates.IsOff;
 			sceneUICG.interactable = true;
 			puzzleConfActive = false;
-			if (puzzEngScript) {
-				puzzEngScript.canPlay = true;
-			}
+			// if (puzzEngScript) {
+			// 	puzzEngScript.canPlay = true;
+			// }
 			if (sceneTapScript) {
 					sceneTapScript.TapLevelStuffTrue();
 			}
