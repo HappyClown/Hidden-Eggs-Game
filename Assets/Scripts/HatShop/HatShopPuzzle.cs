@@ -6,8 +6,8 @@ public class HatShopPuzzle : MainPuzzleEngine {
 
 	private delegate void VoidDelegate();
 	private VoidDelegate voidDelegate;
-	public CafePuzzleCell[] gridCells;
-	public CafePuzzleLevel[] myLvls;
+	public HatShopLevel[] myLvls;
+	public float ButtonsRadius;
 	private bool raycastDone, puzzleDone;
 	void Start () {
 		canPlay = false;
@@ -67,38 +67,22 @@ public class HatShopPuzzle : MainPuzzleEngine {
 			// 		Debug.Log("puzzle complete");
 			// 	}
 			// }
-			if(!myLvls[curntLvl-1].movigCups && myLvls[curntLvl-1].loaded){
-				if(myInput.SwipeLeft || myInput.SwipeRight || myInput.SwipeUp || myInput.SwipeDown){
-					Vector2 touchPosition = Camera.main.ScreenToWorldPoint(myInput.firstSwipeTouch);
-					hit = Physics2D.Raycast(touchPosition, Vector3.forward, 50f);
-					
-					if (hit)
+			if(!myLvls[curntLvl-1].movingItem){
+				if(myInput.Tapped){
+					Vector2 touchPosition = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
+					float minDist = ButtonsRadius;
+					HatShopButton pressedButton = null;
+					foreach (HatShopButton ButtPos in myLvls[curntLvl-1].myButtons)
 					{
-						if (hit.collider.CompareTag("Tile"))
-						{
-							CafePuzzleCup currentCup = hit.collider.gameObject.GetComponent<CafePuzzleCup>();
-							if(currentCup.active){
-								Debug.DrawRay(touchPosition, Vector3.forward, Color.red, 60f);
-								string color = hit.collider.gameObject.GetComponent<CafePuzzleCup>().myColor.ToString();
-
-								if(myInput.SwipeLeft)
-								{
-									myLvls[curntLvl-1].Swipe(color,"left");
-								}
-								if(myInput.SwipeRight)
-								{
-									myLvls[curntLvl-1].Swipe(color,"right");							
-								}
-								if(myInput.SwipeUp)
-								{
-									myLvls[curntLvl-1].Swipe(color,"up");							
-								}
-								if(myInput.SwipeDown)
-								{
-									myLvls[curntLvl-1].Swipe(color,"down");							
-								}
-							}
+						float provDist = Vector2.Distance(touchPosition,ButtPos.gameObject.transform.position);
+						
+						if( provDist < minDist){
+							pressedButton = ButtPos;
+							minDist = provDist;
 						}
+					}
+					if(pressedButton){
+						pressedButton.RotateItems();
 					}
 				}
 				else{
@@ -107,7 +91,6 @@ public class HatShopPuzzle : MainPuzzleEngine {
 
 			}
 			if(Input.GetKey("r")){
-				CleanGrid();
 				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
 			}
 		}
@@ -199,7 +182,6 @@ public class HatShopPuzzle : MainPuzzleEngine {
 		if(maxLvl > 3 || maxLvl < 1) { curntLvl = 1; }
 		else { curntLvl = maxLvl; }
 		itemHolder = lvlItemHolders[curntLvl - 1];
-		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
 		initialSetupOn = false;
@@ -281,7 +263,6 @@ public class HatShopPuzzle : MainPuzzleEngine {
 			StartCoroutine(PuzzleComplete());
 			return;
 		}
-		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
 
@@ -315,7 +296,6 @@ public class HatShopPuzzle : MainPuzzleEngine {
 			lvlItemHolders[curntLvl - 1].SetActive(false);
 			myLvls[curntLvl-1].ResetLevel();
 			curntLvl = lvlToLoad;
-			CleanGrid();
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
 			itemHolder = lvlItemHolders[curntLvl - 1];
@@ -370,14 +350,5 @@ public class HatShopPuzzle : MainPuzzleEngine {
 		//GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.beachName);
 	}
 	#endregion
-
-
-
-	void CleanGrid(){
-		for (int i = 0; i < gridCells.Length; i++)
-		{
-			gridCells[i].occupied = false;
-		}
-	}
 		
 }
