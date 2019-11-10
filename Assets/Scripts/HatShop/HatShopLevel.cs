@@ -18,7 +18,10 @@ public class HatShopLevel : MonoBehaviour {
 		bool ver = false;
 		foreach (HatShopItem item in myItems)
 		{
-			if(!item.moving){ ver = true;}
+			if(item.verify && !item.moving){ 
+				ver = true;
+				item.verify = false;
+			}
 		}
 		if(ver){ 
 			CheckComplete();
@@ -32,22 +35,20 @@ public class HatShopLevel : MonoBehaviour {
 		}
 	}
 	public void ResetLevel(){
-
+		levelComplete = false;
+		foreach (HatShopItem item in myItems)
+		{
+			item.ResetItem();
+		}
 	}
 
 	public void CheckComplete(){
 		movingItem = false;
-		bool verify = false;
+		bool verify = true;
 		foreach (HatShopItem item in myItems)
 		{
-			foreach (HatShopItem.ItemType type in item.currentCell.gameObject.GetComponent<HatShopCell>().myTypes)
-			{
-				
-				if (type.ToString() == item.myType.ToString())
-				{
-					//verify = true;
-					Debug.Log(type.ToString() +"   "+  item.myType.ToString());
-				}
+			if(!item.ongoal){
+				verify = false;
 			}
 		}
 		levelComplete = verify;

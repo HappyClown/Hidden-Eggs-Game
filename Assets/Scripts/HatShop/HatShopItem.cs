@@ -13,7 +13,7 @@ public class HatShopItem : MonoBehaviour {
 	}
 	public ItemType myType;
 	public HatShopLevel myLevel;
-	public bool moving = false;
+	public bool moving = false, verify = false, ongoal = false;
 	public PuzzleCell currentCell, nextCell, initialCell;
 	public float moveDur;
 	private float timer;
@@ -27,6 +27,8 @@ public class HatShopItem : MonoBehaviour {
 				currentCell = nextCell;
 				moving = false;
 				currentCell.gameObject.GetComponent<HatShopCell>().myItem = this;
+				verify = true;
+				CheckGoal();
 			}
 		}
 		
@@ -37,5 +39,25 @@ public class HatShopItem : MonoBehaviour {
 		this.transform.position = initialCell.transform.position;
 		moving = false;
 		timer = 0;
+		verify = false;
+		CheckGoal();
+	}
+	public void ResetItem()	{
+		currentCell = initialCell;
+		currentCell.gameObject.GetComponent<HatShopCell>().myItem = this;
+		this.transform.position = initialCell.transform.position;
+		moving = false;
+		timer = 0;
+		verify = false;
+		CheckGoal();
+	}
+	public void CheckGoal(){
+		ongoal = false;
+		for (int i = 0; i < currentCell.gameObject.GetComponent<HatShopCell>().myTypes.Length; i++)
+		{
+			if(myType.ToString() == currentCell.gameObject.GetComponent<HatShopCell>().myTypes[i].ToString()){
+				ongoal = true;
+			}
+		}
 	}
 }
