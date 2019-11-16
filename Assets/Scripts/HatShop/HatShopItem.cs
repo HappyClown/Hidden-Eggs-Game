@@ -9,7 +9,11 @@ public class HatShopItem : MonoBehaviour {
 		Bow,
 		Butterfly,
 		Button,
-		Flower
+		Flower,
+		thing5,
+		thing6,
+		thing7,
+		thing8,
 	}
 	public ItemType myType;
 	public HatShopLevel myLevel;
