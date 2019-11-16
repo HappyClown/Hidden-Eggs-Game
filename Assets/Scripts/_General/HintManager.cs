@@ -56,7 +56,7 @@ public class HintManager : MonoBehaviour {
 		if(movingFeather){
 			if(myClickonEggs.eggsFound  > eggsFound || resetHint) {
 				if (hintTrailScript) {
-					hintTrailScript.UndoTrailParent();
+					hintTrailScript.UnparentFromBall();
 				}
 				myDirection = featherToGo.exit;
 				currentTurn = 0;
@@ -92,6 +92,7 @@ public class HintManager : MonoBehaviour {
 		if(hintAvailable) {
 			hintAvailable = false;
 			myDirection = featherToGo.firstPoint;
+			hintTrailScript.ClearTrail();
 		}
 		switch(myDirection) {
 			case featherToGo.center:
@@ -105,7 +106,7 @@ public class HintManager : MonoBehaviour {
 			case featherToGo.firstPoint:
 				if(currentTurn == turnsToDo){
 					if (hintTrailScript) {
-						hintTrailScript.UndoTrailParent();
+						hintTrailScript.UnparentFromBall();
 					}
 					myDirection = featherToGo.exit;
 					currentTurn = 0;
@@ -114,11 +115,12 @@ public class HintManager : MonoBehaviour {
 					feather.transform.position = Vector3.MoveTowards(feather.transform.position,currentQuadrant.firstPoint.position,Time.deltaTime * featherMovSpeed);
 				}
 				else {
+					if (hintTrailScript && currentTurn == 0) {
+						hintTrailScript.ParentTHintBall();
+						hintTrailScript.ClearTrail();
+					}
 					currentTurn ++;
 					myDirection = featherToGo.secondPoion;
-					if (hintTrailScript) {
-						hintTrailScript.SetTrailParent();
-					}
 				}
 			break;
 			case featherToGo.secondPoion:
