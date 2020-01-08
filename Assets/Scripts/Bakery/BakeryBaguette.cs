@@ -639,6 +639,12 @@ public class BakeryBaguette : MonoBehaviour {
 	public void ResetItem(){
 		if(startPos == Vector3.zero){
 			startPos = this.gameObject.transform.position;
+		}		
+		if(!startCells[0]){
+			for (int i = 0; i < myCells.Length; i++)
+			{
+				startCells[i] = myCells[i];
+			}
 		}
 		this.transform.position = startPos;
 		currentPos = startPos;
