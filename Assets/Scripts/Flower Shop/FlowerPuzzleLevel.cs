@@ -12,13 +12,7 @@ public class FlowerPuzzleLevel : MonoBehaviour {
 		
 	}
 	void Update(){
-		if(levelReady){
-			StartLevel();
-			levelReady = false;
-		}
-		if(active){
-			CheckLevelComplete();
-		}
+		
 	}
 	public void StartLevel(){
 		

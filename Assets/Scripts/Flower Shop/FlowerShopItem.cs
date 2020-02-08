@@ -6,7 +6,7 @@ public class FlowerShopItem : MonoBehaviour {
 	//Define the flower types
 	public enum FlowerType
 	{
-		Rose, Daisy, Lily
+		Rose, Daisy, Lily, Peonie
 	}
 	public FlowerType myFlowerType;
 	public FlowerShopCell myCell;
@@ -51,8 +51,8 @@ public class FlowerShopItem : MonoBehaviour {
 			 foreach (FlowerShopItem item in mylvl.MyItems)
 			 {
 				 if(item.name != this.name && item.myFlowerType == FlowerType.Rose && item.onCell){
-					 Vector2 pos1 = item.gameObject.transform.position;
-					 Vector2 pos2 = this.gameObject.transform.position;
+					 Vector2 pos1 = item.myCell.gameObject.transform.position;
+					 Vector2 pos2 = myCell.gameObject.transform.position;
 					 if(Mathf.Abs(pos1.x - pos2.x) < 2.1 && Mathf.Abs(pos1.y - pos2.y) < 2.1){
 						matched = false;
 					 }
@@ -64,8 +64,8 @@ public class FlowerShopItem : MonoBehaviour {
 			  foreach (FlowerShopItem item in mylvl.MyItems)
 			 {
 				 if(item.myFlowerType == FlowerType.Rose && item.onCell){
-					 Vector2 pos1 = item.gameObject.transform.position;
-					 Vector2 pos2 = this.gameObject.transform.position;
+					 Vector2 pos1 = item.myCell.gameObject.transform.position;
+					 Vector2 pos2 = myCell.gameObject.transform.position;
 					 if(Mathf.Abs(pos1.x - pos2.x) < 1.1 && Mathf.Abs(pos1.y - pos2.y) < 1.1){
 						matched = true;
 					 }
@@ -77,10 +77,23 @@ public class FlowerShopItem : MonoBehaviour {
 			 foreach (FlowerShopItem item in mylvl.MyItems)
 			 {
 				 if(item.name != this.name && item.myFlowerType == FlowerType.Daisy && item.onCell){
-					 Vector2 pos1 = item.gameObject.transform.position;
+					 Vector2 pos1 = item.myCell.gameObject.transform.position;
 					 Vector2 pos2 = this.gameObject.transform.position;
 					 if(Mathf.Abs(pos1.x - pos2.x) < 1.1 && Mathf.Abs(pos1.y - pos2.y) < 1.1){
 						matched = false;
+					 }
+				 }
+			 }
+			 break;
+			 case FlowerType.Peonie:
+			 matched = false;
+			 foreach (FlowerShopItem item in mylvl.MyItems)
+			 {
+				 if(item.myFlowerType == FlowerType.Daisy && item.onCell){
+					 Vector2 pos1 = item.myCell.gameObject.transform.position;
+					 Vector2 pos2 = myCell.gameObject.transform.position;
+					 if(Mathf.Abs(pos1.x - pos2.x) < 1.1 && Mathf.Abs(pos1.y - pos2.y) < 1.1 && Mathf.Abs(pos1.x - pos2.x) > 0.6 && Mathf.Abs(pos1.y - pos2.y) > 0.6){
+						matched = true;
 					 }
 				 }
 			 }
