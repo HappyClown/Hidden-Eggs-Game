@@ -66,7 +66,10 @@ public class FlowerShopItem : MonoBehaviour {
 				 if(item.myFlowerType == FlowerType.Rose && item.onCell){
 					 Vector2 pos1 = item.myCell.gameObject.transform.position;
 					 Vector2 pos2 = myCell.gameObject.transform.position;
-					 if(Mathf.Abs(pos1.x - pos2.x) < 1.1 && Mathf.Abs(pos1.y - pos2.y) < 1.1){
+					 if(Mathf.Abs(pos1.x - pos2.x) < 1.1 && Mathf.Abs(pos1.y - pos2.y) < 0.6){
+						matched = true;
+					 }
+					 else if(Mathf.Abs(pos1.x - pos2.x) < 0.6 && Mathf.Abs(pos1.y - pos2.y) < 1.1){
 						matched = true;
 					 }
 				 }
