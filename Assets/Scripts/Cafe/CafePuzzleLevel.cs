@@ -93,6 +93,7 @@ public class CafePuzzleLevel : MonoBehaviour {
 			{	
 				myCups[i].SetOrder();
 			}
+			cellGoal.occupied = false;
 			setOrder = true;
 		}
 	}

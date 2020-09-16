@@ -87,9 +87,10 @@ public class CafePuzzleCup : MonoBehaviour {
 	}
 	public void SetCell(){
 		curretCell.occupied = false;
-		nextPos = nextCell.gameObject.transform.position;
 		if(nextCell.goalCup){
 			if(myLevel.cupsOrder[myLevel.currentCup].ToString() == myColor.ToString()){
+				nextPos = nextCell.gameObject.transform.position;
+				nextCell.occupied = true;
 				Debug.Log(myLevel.cupsOrder[myLevel.currentCup].ToString());
 				Debug.Log(myColor.ToString());
 				myLevel.currentCup ++;
@@ -97,10 +98,13 @@ public class CafePuzzleCup : MonoBehaviour {
 					myLevel.currentCup = 0;
 				}
 			}else{
-				reverse = true;
+				nextCell = nextCell.cellLeft;
+				nextCell.occupied = true;
+				nextPos = nextCell.gameObject.transform.position;
 			}	
 		}else{
 			nextCell.occupied = true;
+			nextPos = nextCell.gameObject.transform.position;
 		}
 		distToPoint = Vector2.Distance(transform.position,nextPos);
 		moving = true;

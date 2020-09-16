@@ -686,7 +686,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3690de2edc26c744d949ac8cd6870f0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1235,7 +1235,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9d89aaf060e7e4341b8ad8dba4aa0472, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1609,7 +1609,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aa420970f3b1e654fb1fe74d08386429, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1746,7 +1746,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -6390,7 +6390,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -11183,7 +11183,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -16085,10 +16085,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35b345df5592b2419bc72019338f208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonEvent: event:/SFX/SFX_General/Button
+  muteEvent_perc: event:/SFX/SFX_General/muteButton_perc
+  unMuteEvent_perc: event:/SFX/SFX_General/unMuteButton_perc
+  muteEvent_harp: event:/SFX/SFX_General/muteButton_harp
+  unMuteEvent_harp: event:/SFX/SFX_General/unMuteButton_harp
+  sliderEvent: event:/SFX/SFX_General/sliderSound
   MusicVolume: 0.5
   SFXVolume: 0.5
-  MasterVolume: 0.8
-  volumeTests: 0.8
   Muted: 0
   Paused: 0
 --- !u!114 &313496581
@@ -16106,11 +16110,14 @@ MonoBehaviour:
   RiddleBtn: {fileID: 1720976915}
   HintBtn: {fileID: 1720976915}
   PauseBtn: {fileID: 1350889900}
-  XBtn: {fileID: 414067428}
+  CloseMenuBtn: {fileID: 0}
   birdEvent: event:/SFX/Beach/Beach_Bird
   birdFrozenEvent: event:/SFX/Beach/Beach_Bird_Frozen
   buttonEvent: event:/SFX/SFX_General/Button
   PausebuttonEvent: event:/SFX/SFX_General/PauseButton
+  youDidItEvent: event:/SFX/ANIMS/Level Complete/YouDidIt
+  hintEvent: event:/SFX/SFX_General/HintSpark
+  hintLongEvent: event:/SFX/SFX_General/HintSparkLong
 --- !u!114 &313496582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16133,9 +16140,11 @@ MonoBehaviour:
   silverEggClickEvent: event:/SFX/SFX_General/Egg_Click_Silver
   silverEggTrailEvent: event:/SFX/SFX_General/FX_trail
   buttonEvent: event:/SFX/SFX_General/Button
+  puzPieceEvent: event:/SFX/ANIMS/Puzzle Completed/puzzlePieces
+  puzPieceJingleEvent: event:/SFX/ANIMS/Puzzle Completed/puzzleTextJingle
   audioHelperBirdScript: {fileID: 313496581}
   ambiantEvent: event:/SFX/Puzzle_Beach/Ambiance_Underwater
-  failEvent: event:/SFX/Puzzle_Beach/FAIL
+  clamPopOutEvent: event:/SFX/Puzzle_Beach/ClamPopOut
   bubblesEvent: event:/SFX/Puzzle_Beach/Bubbles
   bubblePopEvent: event:/SFX/Puzzle_Beach/BubblePop
   listSoundsUsed: []
@@ -16200,7 +16209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &320075318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16220,6 +16229,7 @@ MonoBehaviour:
   - {fileID: 1926623369}
   - {fileID: 430098794}
   - {fileID: 936276685}
+  - {fileID: 984677814}
   cellGoal: {fileID: 46548661}
   levelNumber: 1
   starting: 0
@@ -16232,7 +16242,7 @@ MonoBehaviour:
   introTime: 5
   exitTime: 5
   currentCup: 0
-  cupsOrder: 000000000000000002000000
+  cupsOrder: 000000000200000000000000
   requiredCups: 3
   cupsLeft: 0
   cupsToMove: 0
@@ -16777,12 +16787,6 @@ Transform:
   m_Father: {fileID: 1940016807}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &414067428 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114867928536647378, guid: 3468eaf8d67f7974ba5fc0717704b390,
-    type: 2}
-  m_PrefabInternal: {fileID: 459058495}
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &430098793
 GameObject:
   m_ObjectHideFlags: 0
@@ -16811,7 +16815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3549e0347c7a19944a2ae95715846e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCell: {fileID: 488879423}
+  myCell: {fileID: 296672339}
 --- !u!212 &430098795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17633,7 +17637,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -22497,7 +22501,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 791b08c70a4ebd443a05337958481376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22940,7 +22944,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.41, y: 1.45}
+    oldSize: {x: 1.4100001, y: 1.45}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -23434,7 +23438,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fc67806eae2c66c41a98709a983aac59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23475,7 +23479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79cd951ff96a3944d8468caf0e5121ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCell: {fileID: 1893347094}
+  startingCell: {fileID: 502703351}
   curretCell: {fileID: 0}
   nextCell: {fileID: 0}
   lastCell: {fileID: 0}
@@ -23884,7 +23888,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5f4e7c81b921a654e993038f14c3ad7f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23937,7 +23941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3549e0347c7a19944a2ae95715846e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCell: {fileID: 502703351}
+  myCell: {fileID: 75341768}
 --- !u!212 &936276686
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -23983,6 +23987,93 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &984677811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 984677812}
+  - component: {fileID: 984677813}
+  - component: {fileID: 984677814}
+  m_Layer: 0
+  m_Name: obstacle4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &984677812
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984677811}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.96, y: -1.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2130383544}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &984677813
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984677811}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 03da3089400a19641ac6886e79fafc23, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.86, y: 1.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+--- !u!114 &984677814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984677811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3549e0347c7a19944a2ae95715846e82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCell: {fileID: 488879423}
 --- !u!1 &1004784111
 GameObject:
   m_ObjectHideFlags: 0
@@ -24123,7 +24214,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -29147,7 +29238,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -33968,6 +34059,9 @@ MonoBehaviour:
   puzzleConfCG: {fileID: 0}
   fadeDuration: 0.25
   sceneTapScript: {fileID: 1272416915}
+  slideHelpBirdScript: {fileID: 0}
+  lvlTapManScript: {fileID: 0}
+  audioSceneGeneralScript: {fileID: 0}
 --- !u!114 &1272416915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34467,7 +34561,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -39080,6 +39174,7 @@ MonoBehaviour:
   levelSelectScript: {fileID: 1272416912}
   mainPuzzScript: {fileID: 1272416911}
   sceneTapScript: {fileID: 1272416915}
+  darkScreenFadeScript: {fileID: 1957524878}
   audioHelperBirdScript: {fileID: 313496581}
 --- !u!114 &1500922206
 MonoBehaviour:
@@ -39112,6 +39207,7 @@ MonoBehaviour:
   hiddenHelpBirdPos: {fileID: 1599450747}
   shownHelpBirdPos: {fileID: 1693308468}
   curHelpBirdPos: {x: 0, y: 0, z: 0}
+  lerpValue: 0
   animCur:
     serializedVersion: 2
     m_Curve:
@@ -39139,6 +39235,7 @@ MonoBehaviour:
   sceneTapScript: {fileID: 1272416915}
   lvlTapManScript: {fileID: 0}
   audioHelperBirdScript: {fileID: 313496581}
+  myHint: {fileID: 0}
 --- !u!1 &1537444197
 GameObject:
   m_ObjectHideFlags: 0
@@ -39356,7 +39453,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -44437,7 +44534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79cd951ff96a3944d8468caf0e5121ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingCell: {fileID: 1666615118}
+  startingCell: {fileID: 293636499}
   curretCell: {fileID: 0}
   nextCell: {fileID: 0}
   lastCell: {fileID: 0}
@@ -44490,7 +44587,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.41, y: 1.45}
+    oldSize: {x: 1.4100001, y: 1.45}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -44625,7 +44722,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -49247,7 +49344,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -54279,7 +54376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3549e0347c7a19944a2ae95715846e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCell: {fileID: 113135014}
+  myCell: {fileID: 1008766756}
 --- !u!1 &1940016805
 GameObject:
   m_ObjectHideFlags: 0
@@ -54726,7 +54823,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.41, y: 1.45}
+    oldSize: {x: 1.4100001, y: 1.45}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -54904,7 +55001,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -59668,7 +59765,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1739209455
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
@@ -64249,6 +64346,7 @@ Transform:
   - {fileID: 1926623367}
   - {fileID: 430098796}
   - {fileID: 936276684}
+  - {fileID: 984677812}
   m_Father: {fileID: 320075319}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
