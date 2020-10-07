@@ -215,7 +215,7 @@ public class LevelTapMannager : MonoBehaviour {
 	void FixCameraPosition(){
 		currentX = (maxX*(currentCameraSize-maxCameraSize)*-1)/(maxCameraSize - minCameraSize);
 		currentY = (maxY*(currentCameraSize-maxCameraSize)*-1)/(maxCameraSize - minCameraSize);	
-				
+		
 		if(cam.transform.position.x > currentX){cam.transform.position = new Vector3(currentX,cam.transform.position.y,initialCameraPosition.z);}
 		if(cam.transform.position.x < (currentX*-1)){cam.transform.position = new Vector3((currentX*-1),cam.transform.position.y,initialCameraPosition.z);}
 		if(cam.transform.position.y > currentY){cam.transform.position = new Vector3(cam.transform.position.x,currentY,initialCameraPosition.z);}

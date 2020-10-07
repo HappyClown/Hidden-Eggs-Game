@@ -75,6 +75,8 @@ public class ClickOnEggs : MonoBehaviour {
 	public SceneFade sceneFadeScript;
 	public AudioSceneGeneral audioSceneGenScript;
 	public MenuStatesManager menuStatesScript;
+	// Birdstory 2.0
+	public SceneEggMovement sceneEggMovement;
 
 	void Start () {
 		if (sceneFadeScript == null) { sceneFadeScript = GlobalVariables.globVarScript.GetComponent<SceneFade>(); }
@@ -128,8 +130,12 @@ public class ClickOnEggs : MonoBehaviour {
 					// - Egg Tapped - //
 					if (hit.collider.CompareTag("Egg")) {
 						myInputDetector.cancelDoubleTap = true;
-						EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
-						eggScript.EggFound();
+						//EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
+						//eggScript.EggFound();
+
+						// Starts a movement coroutine for the egg found.
+						sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(hit.collider.gameObject, eggSpots[eggsFound].transform.position));
+
 						GlobalVariables.globVarScript.eggsFoundOrder[eggs.IndexOf(hit.collider.gameObject)] = eggsFound;
 						hit.collider.enabled = false;
 						eggsFound++;
@@ -142,7 +148,7 @@ public class ClickOnEggs : MonoBehaviour {
 						//Play egg  click sound
 						//audioSceneGenScript.
 						AddEggsFound();
-						eggScript.SaveEggToCorrectFile();
+						//eggScript.SaveEggToCorrectFile();
 					}
 					// - Go To Puzzle Scene - //
 					if (hit.collider.CompareTag("Puzzle")) {

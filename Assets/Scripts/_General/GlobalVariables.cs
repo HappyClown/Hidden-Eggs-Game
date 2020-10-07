@@ -106,7 +106,7 @@ public class GlobalVariables : MonoBehaviour
 	{
 		clickOnEggsScript = null;
 		// Change to find a tag or something. OR Have the clickOnEggScript give itself to GlobalVariables on awake.
-		if (GameObject.Find("Game Engine")) { clickOnEggsScript = GameObject.Find("Game Engine").GetComponent<ClickOnEggs>(); }
+		if (GameObject.Find("Eggs")) { clickOnEggsScript = GameObject.Find("Eggs").GetComponent<ClickOnEggs>(); }
 	}
 
 	public void LoadHubDissolve()
