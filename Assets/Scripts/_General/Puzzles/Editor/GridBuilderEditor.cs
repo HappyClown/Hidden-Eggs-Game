@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GridBuilderScript))]
+[CustomEditor(typeof(GridBuilderScript)),CanEditMultipleObjects]
 public class GridBuilderEditor : Editor {
 
 	public override void OnInspectorGUI(){
@@ -48,6 +48,13 @@ public class GridBuilderEditor : Editor {
 		}
 		if(GUILayout.Button("Delete Grid")){
 			myScrypt.DeleteGrid();
+		}
+		
+		if(GUILayout.Button("Remove Grid Sprites")){
+			myScrypt.RemoveSprites();
+		}
+		if(GUILayout.Button("Enable Grid Sprites")){
+			myScrypt.EnableSprites();
 		}
         GUILayout.EndVertical();
 	}

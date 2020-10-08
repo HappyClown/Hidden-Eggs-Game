@@ -141,4 +141,16 @@ public class GridBuilderScript : MonoBehaviour {
 			}
 		}
 	}
+	public void RemoveSprites(){
+		PuzzleCell[] cells = this.GetComponentsInChildren<PuzzleCell>();
+		foreach (PuzzleCell cell in cells){
+			cell.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+		}
+	}
+	public void EnableSprites(){
+		PuzzleCell[] cells = this.GetComponentsInChildren<PuzzleCell>();
+		foreach (PuzzleCell cell in cells){
+			cell.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+		}
+	}
 }

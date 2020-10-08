@@ -5,18 +5,14 @@ using UnityEngine;
 public class TheaterPuzzleLevel : MonoBehaviour {
 
 	public bool levelComplete, finished;
-	public float snapRadius;
+	public float snapRadius, backDuration;
+	private int resetCount = 0;
 	public GameObject gridHolder;
 	public PuzzleCell[] gridCells;
 	public TheaterPuzzlePiece[] myPieces;
 	// Use this for initialization
 	void Start () {
 		gridCells = gridHolder.GetComponentsInChildren<PuzzleCell>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 	public void CheckComplete(){
 		levelComplete = true;
@@ -30,14 +26,17 @@ public class TheaterPuzzleLevel : MonoBehaviour {
 		finished = false;
 	}
 	public void ResetLevel(){
-		foreach (TheaterPuzzlePiece piece in myPieces)
-		{
-			piece.ResetPiece();
+		if(resetCount >0){
+			foreach (TheaterPuzzlePiece piece in myPieces)
+			{
+				piece.ResetPiece();
+			}
+			foreach (PuzzleCell cell in gridCells)
+			{
+				cell.occupied = false;
+			}
 		}
-		foreach (PuzzleCell cell in gridCells)
-		{
-			cell.occupied = false;
-		}
+		resetCount ++;
 	}
 	public void CheckPiece(TheaterPuzzlePiece piece){
 		Vector2 snapPos = Vector2.zero;
@@ -65,6 +64,10 @@ public class TheaterPuzzleLevel : MonoBehaviour {
 			{	
 				pieceCell.GetComponent<TheaterPuzzleCellConn>().myGridConn.occupied = true;
 			}
+			foreach (SpriteRenderer spRend in piece.pieceSprites)
+			{
+				spRend.gameObject.SetActive(false);																
+			}
 			piece.gameObject.transform.position = piece.gameObject.transform.position - new Vector3(snapPos.x, snapPos.y, 0);
 			piece.placedPos = piece.gameObject.transform.position;//save placed pos in case is released
 		}else{
@@ -76,8 +79,8 @@ public class TheaterPuzzleLevel : MonoBehaviour {
 					pieceCell.occupied = true;
 				}
 			}else{
-				piece.transform.position = piece.startPos;
-				piece.placed = false;	
+				piece.BackToStart(backDuration);
+				piece.placed = false;
 			}
 		}
 		CheckComplete();

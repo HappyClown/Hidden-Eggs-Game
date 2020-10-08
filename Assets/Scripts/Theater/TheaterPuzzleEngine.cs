@@ -8,7 +8,7 @@ public class TheaterPuzzleEngine : MainPuzzleEngine {
 	private VoidDelegate voidDelegate;
 	public TheaterPuzzleLevel[] myLvls;
 	public TheaterPuzzlePiece holdedPiece;
-	public float mouseRadius;
+	public float mouseRadius, liftDiff;
 	private bool raycastDone, puzzleDone, holdingPiece;
 	public Vector2 clickdiff, holdedPos;
 	void Start () {
@@ -67,14 +67,27 @@ public class TheaterPuzzleEngine : MainPuzzleEngine {
 				UpdateMousePos(myInput.draggingPosition);
 				if(holdingPiece){
 					holdedPos = mousePos2D - clickdiff;
-					holdedPiece.transform.position = holdedPos;
+					holdedPiece.transform.position = new Vector3(holdedPos.x, holdedPos.y, -liftDiff );
+					int matchNum = 0;
 					foreach (PuzzleCell cell in holdedPiece.mycells)
 					{
 						foreach (PuzzleCell cell2 in myLvls[curntLvl-1].gridCells)
 						{
-							if(Vector2.Distance(cell.gameObject.transform.position,cell2.transform.position) < myLvls[curntLvl-1].snapRadius){
-								cell2.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+							if(Vector2.Distance(cell.gameObject.transform.position,cell2.transform.position) < myLvls[curntLvl-1].snapRadius && !cell2.occupied){
+								matchNum ++;
 							}
+						}						
+					}
+					Debug.Log(matchNum);
+					if(matchNum == holdedPiece.mycells.Length){
+						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
+						{
+							spRend.gameObject.SetActive(true);																
+						}
+					}else{
+						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
+						{
+							spRend.gameObject.SetActive(false);																
 						}
 					}
 				}else{
@@ -395,7 +408,9 @@ public class TheaterPuzzleEngine : MainPuzzleEngine {
 			foreach (PuzzleCell cell in piece.mycells)
 			{
 				if(Vector2.Distance(pos,cell.gameObject.transform.position) < mouseRadius){
-					selectedPiece = piece;
+					if(!piece.movingBack){
+						selectedPiece = piece;
+					}
 				}
 			}
 		}
