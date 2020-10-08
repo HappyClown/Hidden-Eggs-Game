@@ -173,7 +173,6 @@ public class ClickOnEggs : MonoBehaviour {
 						if (eggMoving <= 0)	{
 							openEggPanel = true;
 							lockDropDownPanel = true;
-
 							//SFX Play close panel sound
 							audioSceneGenScript.openPanel();
 						}

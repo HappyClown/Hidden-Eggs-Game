@@ -33,6 +33,13 @@ public class SceneEggMovement : MonoBehaviour {
 			timer += Time.deltaTime/moveDuration;
 			sceneEgg.transform.position = Vector3.Lerp(startPos, panelPosition, animCurve.Evaluate(timer));
 			sceneEgg.transform.localScale = Vector3.Lerp(startScale, cornerScale, animCurve.Evaluate(timer));
+			this.transform.parent = clickOnEggsScript.eggPanel.transform;
+			// Use method on clickoneggs to adjust values and check the puzzle unlock.
+			clickoneggsScript.eggMoving--;
+			clickOnEggsScript.eggsInPanel++; 
+			puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.eggsInPanel);
+			clickOnEggsScript.UpdateEggsString();
+
 			yield return null;
 		}
 	}
