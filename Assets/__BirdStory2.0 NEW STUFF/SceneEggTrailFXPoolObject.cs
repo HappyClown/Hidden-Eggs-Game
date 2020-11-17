@@ -18,7 +18,7 @@ public class SceneEggTrailFXPoolObject : MonoBehaviour {
 		ParticleSystem.MainModule mainModule = partSys.main;
 		mainModule.duration = trailDuration;
 		partSys.Play();
-		yield return new WaitForSeconds(partSys.main.duration);
+		yield return new WaitForSeconds(partSys.main.duration+partSys.main.startLifetime.constant);
 		partSys.Stop();
 		this.gameObject.SetActive(false);
 		this.transform.parent = parentPool;

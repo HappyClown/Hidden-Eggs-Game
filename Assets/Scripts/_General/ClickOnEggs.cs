@@ -134,7 +134,7 @@ public class ClickOnEggs : MonoBehaviour {
 						//eggScript.EggFound();
 
 						// Starts a movement coroutine for the egg found.
-						sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(hit.collider.gameObject, eggSpots[eggsFound].transform.position));
+						sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(hit.collider.gameObject, eggSpots[eggsFound]));
 
 						GlobalVariables.globVarScript.eggsFoundOrder[eggs.IndexOf(hit.collider.gameObject)] = eggsFound;
 						hit.collider.enabled = false;

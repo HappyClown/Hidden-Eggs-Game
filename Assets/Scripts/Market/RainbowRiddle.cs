@@ -39,7 +39,7 @@ public class RainbowRiddle : MonoBehaviour
 
     void Update ()
     {
-		if (!GlobalVariables.globVarScript.riddleSolved && Input.GetMouseButtonDown(0) && scenTapEnabScript.canTapEggRidPanPuz){
+		if (!GlobalVariables.globVarScript.riddleSolved && Input.GetMouseButtonDown(0) && scenTapEnabScript.canTapEggRidPanPuz) {
 			mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f, layerMask);

@@ -13,7 +13,7 @@ public class SceneEggClickFXPoolObject : MonoBehaviour {
 	public IEnumerator ClickFXRoutine() {
 		inUse = true;
 		partSys.Play();
-		yield return new WaitForSeconds(partSys.main.duration);
+		yield return new WaitForSeconds(partSys.main.duration+partSys.main.startLifetime.constant);
 		this.gameObject.SetActive(false);
 		inUse = false;
 	}

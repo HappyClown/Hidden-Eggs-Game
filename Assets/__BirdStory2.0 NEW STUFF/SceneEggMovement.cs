@@ -14,7 +14,7 @@ public class SceneEggMovement : MonoBehaviour {
 	public AnimationCurve animCurve;
 	public Vector3 cornerScale;
 
-	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, Vector3 panelPosition) {
+	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, GameObject panelPosition) {
 		// Ask to do pop animation, grab the animator on the scene egg, enable it, play the animation.
 		Animator animator = sceneEgg.GetComponent<Animator>();
 		animator.enabled = true;
@@ -31,7 +31,7 @@ public class SceneEggMovement : MonoBehaviour {
 		fxPool.PlayEggTrailFX(sceneEgg.transform, moveDuration);
 		while (timer < 1f) {
 			timer += Time.deltaTime/moveDuration;
-			sceneEgg.transform.position = Vector3.Lerp(startPos, panelPosition, animCurve.Evaluate(timer));
+			sceneEgg.transform.position = Vector3.Lerp(startPos, panelPosition.transform.position, animCurve.Evaluate(timer));
 			sceneEgg.transform.localScale = Vector3.Lerp(startScale, cornerScale, animCurve.Evaluate(timer));
 			yield return null;
 		}

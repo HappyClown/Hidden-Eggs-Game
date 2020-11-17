@@ -77,64 +77,6 @@ public class GoldenEgg : MonoBehaviour {
 	}
 
 	void Update () {
-		#region For Testing
-		// - FOR TESTING - //
-		// if (Input.GetKeyDown("space"))
-		// {
-		// 	if (!inGoldenEggSequence) 
-		// 	{ 
-		// 		inGoldenEggSequence = true; 
-		// 	}
-		// 	else 
-		// 	{ 
-		// 		inGoldenEggSequence = false;
-		// 		coverAlpha = 0;
-		// 		coverScreen.color = new Color (coverScreen.color.r, coverScreen.color.g, coverScreen.color.b, coverAlpha);
-		// 		anim.Play("Nothing", 0);
-		// 		eggAnimTimer = 0;
-		// 		eggAnimStarted = false;
-		// 		partGlow.Stop(true);
-		// 		partShafts.Stop(true);
-		// 		partSparkles.Stop(true);
-		// 		partPop.Stop(true);
-		// 		partTrail.Stop(true);
-		// 		partGlow.Clear(true);
-		// 		partShafts.Clear(true);
-		// 		partSparkles.Clear(true);
-		// 		partPop.Clear(true);
-		// 		partTrail.Clear(true);
-		// 	}
-		// }
-
-		// if (Input.GetMouseButtonDown(0))
-		// {
-		// 	clickDown = true;
-		// 	Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		// 	hit = Physics2D.Raycast(mousePos, Vector3.forward, 50f);
-		// 		if (hit)
-		// 		{
-		// 			if (hit.collider.CompareTag("GoldenEgg"))
-		// 			{
-		// 				Debug.Log("Hit Golden Egg yo.");
-						
-		// 				//anim.SetTrigger("TapAnim");
-
-		// 				//goldenEggCollider.enabled = false;
-
-		// 				//inGoldenEggSequence = false;
-
-		// 				//if (anim.enabled) anim.enabled = false;
-		// 				//else { anim.enabled = true; }
-		// 			}
-		// 		}
-		// }
-
-		// if (Input.GetMouseButtonUp(0))
-		// {
-		// 	clickDown = false;
-		// }
-		// - END TESTING - //
-		#endregion
 		// Wait until no other sequences are playing to start the Golden Egg sequence.
 		if (waitingToStartSeq && !ClickOnEggs.inASequence) {
 			inGoldenEggSequence = true;
@@ -159,10 +101,7 @@ public class GoldenEgg : MonoBehaviour {
 			}
 			if (seqTimer >= startText && !textB) {
 				titleAnim.SetTrigger("PopIn");
-				//textWarpScript.StartAnimatedWarp = true;
 				textFadeScript.startFadeIn = true;
-				//textSplineWScript.isPlaying = true;
-				//textFX.Play();
 				textB = true;
 
 				//sound text pop
@@ -176,8 +115,6 @@ public class GoldenEgg : MonoBehaviour {
 
 				//explosion sounds tests
 				audioRiddleSolvedAnimScript.fireworkTrailBurstSnd();
-				//audioRiddleSolvedAnimScript.fireworkTrailBurstSnd();
-
 			}
 			if (seqTimer >= startEgg && !eggB) {
 				StartEgg();
@@ -254,29 +191,8 @@ public class GoldenEgg : MonoBehaviour {
 			if (coverAlpha <= 0) { coverOff = false; }
 		}
 
-		// //Fade in the "Congratulations" game objects at the same time (not sure about dividing for performance, but it gives the time in seconds)
-		// if (congratsTxtOn) {
-		// 	textFadeScript.startFadeIn = true;
-		// 	congratsTxtOn = false;
-		// 	// congratsA += Time.deltaTime / congratsFadeTime;
-		// 	// foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
-		// 	// if (congratsA >= 1) { congratsTxtOn = false; }
-		// }
-		// if (congratsTxtOff) {
-		// 	textFadeScript.startFadeOut = true;
-		// 	congratsTxtOff = false;
-		// 	// congratsA -= Time.deltaTime / congratsFadeTime;
-		// 	// foreach(SpriteRenderer obj in congratsObjs) { obj.color = new Color(obj.color.r, obj.color.g, obj.color.b, congratsA); }
-		// 	// if (congratsA <= 0) { congratsTxtOff = false; }
-		// }
-
 		// Trying to get rid of the shaft particles in a nice way
-		if (partShaftsFade) 	{
-			// DOES NOT WORK BECASUE THE CHOSEN PARTICLE MATERIAL SHADER DOES NOT HAVE _COLOR OR _TINTCOLOR TO MODIFY ON THE MATERIAL INSTANCE OF THE SHAFT PARTICLE.
-			// partShaftsMatA -= Time.deltaTime * partShaftsFadeTime;
-			// partShaftsMat.SetColor("_TintColor",new Color(partShaftsMat.color.r, partShaftsMat.color.g, partShaftsMat.color.b, partShaftsMatA)); 
-			// if (partShaftsMatA <= 0) { partShaftsFade = false; }
-
+		if (partShaftsFade) {
 			float shaftX = partShafts.transform.localScale.x;
 			float shaftZ = partShafts.transform.localScale.z;
 			shaftX -= Time.deltaTime * partShaftsShrinkTime;
@@ -284,6 +200,7 @@ public class GoldenEgg : MonoBehaviour {
 			partShafts.transform.localScale = new Vector3(shaftX, 1, shaftZ);
 			if (shaftX <= 0 || shaftZ <= 0) { 
 				partShaftsFade = false; 
+				partShafts.gameObject.SetActive(false);
 			}
 		}
 
@@ -317,20 +234,20 @@ public class GoldenEgg : MonoBehaviour {
 	// - CALLED DURING ANIMATIONS - // (Animation Events)
 	#region Animation Events
 	void StartStopGlow () {
-		if (!partGlow.isPlaying) { partGlow.Play(true); }
-		else { partGlow.Stop(true); }
+		if (!partGlow.gameObject.activeSelf && !partGlow.isPlaying) { partGlow.gameObject.SetActive(true); partGlow.Play(true); }
+		else { partGlow.gameObject.SetActive(false); partGlow.Stop(true); }
 	}
 
 	void StartStopShafts() {
-		if (!partShafts.isPlaying) { partShafts.Play(true); }
-		else { partShafts.Stop(true); partShaftsFade = true; /* partShaftsMatA = partShaftsMat.GetColor("_TintColor").a; */}
+		if (!partShafts.gameObject.activeSelf && !partShafts.isPlaying) { partShafts.gameObject.SetActive(true); partShafts.Play(true); }
+		else { partShafts.Stop(true); partShaftsFade = true; }
 	}
 
 	void StartStopSparkles() {
-		if (!partSparkles.isPlaying) { partSparkles.Play(true); }
-		else { partSparkles.Stop(true); }
+		if (!partSparkles.gameObject.activeSelf && !partSparkles.isPlaying) { partSparkles.gameObject.SetActive(true); partSparkles.Play(true); }
+		else { partSparkles.gameObject.SetActive(false); partSparkles.Stop(true); }
 	}
-	
+
 	void StartPop() {
 		if (!partPop.isPlaying) { partPop.Play(true); }
 	}
@@ -374,11 +291,9 @@ public class GoldenEgg : MonoBehaviour {
 
 	public void GoldEggAnimSound() {
 		audioRiddleSolvedAnimScript.goldenEggIdleSnd();
-		//audioSceneGeneralScript.goldEggAnimSound();
 	}
 
 	public void GoldEggShimmerPlaySound() {
-		//audioSceneGeneralScript.goldEggShimmerStartSound();
 		audioRiddleSolvedAnimScript.goldenEggIdleSnd();
 	}
 	#endregion
