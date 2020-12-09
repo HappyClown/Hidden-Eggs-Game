@@ -56,7 +56,7 @@ public class PuzzleUnlock : MonoBehaviour {
 				puzzFireworkFX.Play(true);
 				ActivatePuzzle();
 				darkScreenFadeScript.FadeOut();
-				clickOnEggsScript.eggMoving -= 1;
+				clickOnEggsScript.EggMoving(false);
 				sceneTapScript.canTapEggRidPanPuz = true;
 				sceneTapScript.canTapHelpBird = true;
 				sceneTapScript.canTapPauseBtn = true;
@@ -74,7 +74,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	// Start moving the puzzle piece.
 	public void UnlockPuzzle() {
 		movePuzzPiece = true;
-		clickOnEggsScript.eggMoving += 1;
+		clickOnEggsScript.EggMoving(true);
 		endPos = endPosObj.transform.position;
 		pointerFadeScript.FadeOut();
 		anim.SetTrigger("PuzzPiecePop");

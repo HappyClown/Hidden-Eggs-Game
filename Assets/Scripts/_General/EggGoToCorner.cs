@@ -144,7 +144,7 @@ public class EggGoToCorner : MonoBehaviour
 				this.transform.eulerAngles = cornerRot;
 				//this.transform.localScale = cornerEggScale;
 				moveThisEgg = false;
-				clickOnEggsScript.eggMoving -= 1;
+				clickOnEggsScript.EggMoving(false);
 				if (!amIGolden) {
 					clickOnEggsScript.eggsInPanel++; 
 					puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.eggsInPanel);

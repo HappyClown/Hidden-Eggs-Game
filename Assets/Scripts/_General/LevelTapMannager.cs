@@ -164,7 +164,7 @@ public class LevelTapMannager : MonoBehaviour {
 			doubleTapped = true;
 			centerPoint =  cam.ScreenToWorldPoint(touchZero.position);
 			cameraSizeOnClick = cam.orthographicSize; 
-			if(cam.orthographicSize < maxCameraSize){
+			if(cam.orthographicSize < maxCameraSize) {
 				zoomIn = false;
 				camZoomSpeedModifier =  (1 - ((currentCameraSize - minCameraSize) / (maxCameraSize - minCameraSize))) * camZoomDuration;
 				varCamPos = cam.transform.position;

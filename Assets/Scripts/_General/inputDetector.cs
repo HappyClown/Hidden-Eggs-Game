@@ -65,6 +65,8 @@ public class inputDetector : MonoBehaviour {
 	public bool SwipeDown{get {return swipeDown;}}
 	public bool IsSwiping{get {return isSwiping;}}
 	public Vector2 FirstSwipeTouch{get {return firstSwipeTouch;}}
+	[Header("Tap Response Checks")]
+	public TapInputResponse tapInputResponse;
 	#endregion
 	void Awake(){
 		isPhoneDevice = false;
@@ -80,6 +82,7 @@ public class inputDetector : MonoBehaviour {
 		cancelDoubleTap = false;
 		
 	}
+
 	// Update is called once per frame
 	void Update () {
 		#region TapCode without double tap
@@ -89,12 +92,14 @@ public class inputDetector : MonoBehaviour {
 				singleTap = true;
 				tapPosition = Input.mousePosition;
 				tapped = true;
+				tapInputResponse.Tapped();
 			}
 			if(Input.touchCount == 1 && isPhoneDevice && !isDragging){
 				singleTap = true;
 				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled && !isDragging){					
 					tapPosition = Input.touches[0].position;
 					tapped = true;
+					tapInputResponse.Tapped();
 				}
 			}
 		}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneEggMovement : MonoBehaviour {
-	public ClickOnEggs clickoneggsScript;
+	public ClickOnEggs clickOnEggsScript;
 	public MoveWithCamera moveWithCamScript;
 	public SceneEggFXPool fxPool;
 	[Header("Click Animation")]
@@ -35,5 +35,7 @@ public class SceneEggMovement : MonoBehaviour {
 			sceneEgg.transform.localScale = Vector3.Lerp(startScale, cornerScale, animCurve.Evaluate(timer));
 			yield return null;
 		}
+		// Egg has arrived to its position in the egg panel, signal that one less egg is moving.
+		clickOnEggsScript.EggMoving(false);
 	}
 }

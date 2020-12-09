@@ -169,7 +169,7 @@ public class GoldenEgg : MonoBehaviour {
 					starFadeScript.FadeOut();
 				}
 			}
-			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); clickOnEggsScript.eggMoving += 1; clickOnEggsScript.openEggPanel = true; }
+			if (eggToCornerTimer >= eggToCornerTime) { eggGoToCornerScript.GoToCorner(); clickOnEggsScript.EggMoving(true); clickOnEggsScript.openEggPanel = true; }
 
 			if (eggToCornerTimer > coverOffTime && eggToCornerTimer > congratsOffTime && eggToCornerTimer > eggToCornerTime) { 
 				inSendingToCorner = false;

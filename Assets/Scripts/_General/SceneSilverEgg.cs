@@ -49,7 +49,7 @@ public class SceneSilverEgg : MonoBehaviour {
 				//Debug.Log("A Silver egg moves from puzz to pan! Dun dun duuuunnnn");
 				if (lerpTimer >= 1) {
 					this.transform.position = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.position;
-					clickOnEggsScript.eggMoving--; // if egg pos = panel pos
+					clickOnEggsScript.EggMoving(false); // if egg pos = panel pos
 					sendToPanel = false;
 					this.transform.parent = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.parent;
 					this.transform.localScale = iniScale;
@@ -73,7 +73,7 @@ public class SceneSilverEgg : MonoBehaviour {
 		sendToPanel = true;
 		posInPanel = numInPanel;
 		spawnDelay = myDelay;
-		clickOnEggsScript.eggMoving++;
+		clickOnEggsScript.EggMoving(true);
 		iniPos = this.transform.position;
 		iniScale = this.transform.localScale;
 	}
