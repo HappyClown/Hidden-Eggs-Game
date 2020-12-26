@@ -20,6 +20,7 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 	}
 	public StartState myStartState;
 	public bool fadingOut, fadingIn, hidden, shown;
+	private Coroutine activeRoutine;
 
 	void Start () {
 		canvasG = this.gameObject.GetComponent<CanvasGroup>();
@@ -41,28 +42,38 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 		}
 	}
 
-	void Update () {
-		if (fadingOut == true) {
+	IEnumerator FadingOut () {
+		while (fadingOut) {
 			t += Time.deltaTime / fadeDuration;
-			canvasG.alpha = Mathf.SmoothStep(1f * maxAlpha, 0f, t);
+			canvasG.alpha = Mathf.SmoothStep(maxAlpha, 0f, t);
 			if (t >= 1f) {
+				fadingOut = false;
+				hidden = true;
+				if(shown)
+				shown = false;				
 				if(disableOnFadeOut) {
 					this.gameObject.SetActive(false);
 				}
-				fadingOut = false;
-				hidden = true;
 			}
+			yield return null;
 		}
+		activeRoutine = null;
+	}
 
-		if (fadingIn == true) {
+	IEnumerator FadingIn() {
+		while (fadingIn) {
+			print(this.gameObject.name+" is fdinin in.");
 			t += Time.deltaTime / fadeDuration;
-			canvasG.alpha = Mathf.SmoothStep(0f, 1f * maxAlpha, t);
+			canvasG.alpha = Mathf.SmoothStep(0f, maxAlpha, t);
 			if (t >= 1f) {
-				SetCanvasOptions(true);
 				shown = true;
 				fadingIn = false;
+				if(hidden)
+				hidden = false;
 			}
+			yield return null;
 		}
+		activeRoutine = null;
 	}
 
 	public void FadeOut () {
@@ -74,6 +85,10 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 			shown = false;
 			SetCanvasOptions(false);
 		}
+		if (activeRoutine != null) {
+			StopCoroutine(activeRoutine);
+		}
+		activeRoutine = StartCoroutine(FadingOut());
 	}
 
 	public void FadeIn () {
@@ -90,6 +105,10 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 				SetCanvasOptions(true);
 			}
 		}
+		if (activeRoutine != null) {
+				StopCoroutine(activeRoutine);
+			}
+		activeRoutine = StartCoroutine(FadingIn());
 	}
 
 	public void ResetAplpha(float value){

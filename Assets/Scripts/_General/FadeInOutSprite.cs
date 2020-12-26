@@ -17,6 +17,7 @@ public class FadeInOutSprite : MonoBehaviour {
 		startShown, startHidden
 	}
 	public StartState myStartState;
+	private Coroutine activeRoutine;
 
 	void Start () {
 		//sprite = this.gameObject.GetComponent<SpriteRenderer>();
@@ -37,7 +38,7 @@ public class FadeInOutSprite : MonoBehaviour {
 		}
 	}
 
-	void Update () {
+	IEnumerator FadingOut () {
 		if (fadingOut == true) {
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(maxAlpha, iniVal, t));
@@ -50,9 +51,14 @@ public class FadeInOutSprite : MonoBehaviour {
 					this.gameObject.SetActive(false);
 				}
 			}
+			yield return null;
 		}
+		activeRoutine = null;
+	}
 
-		if (fadingIn == true) {
+	IEnumerator FadingIn() {
+		while (fadingIn == true) {
+			print(this.gameObject.name+" is fdinin in.");
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(iniVal, maxAlpha, t));
 			if (t >= 1f) {
@@ -61,17 +67,23 @@ public class FadeInOutSprite : MonoBehaviour {
 				if(hidden)
 				hidden = false;
 			}
+			yield return null;
 		}
+		activeRoutine = null;
 	}
 
 	public void FadeOut (float startVal = 0f) {
-		if (fadingOut == false) { // Potentially implement a waitmode, to wait until it is faded in/out to fade it in/out.
+		while (fadingOut == false) { // Potentially implement a waitmode, to wait until it is faded in/out to fade it in/out.
 			iniVal = startVal;
 			fadingIn = false;
 			fadingOut = true;
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
 			shown = false;
+			if (activeRoutine != null) {
+				StopCoroutine(activeRoutine);
+			}
+			activeRoutine = StartCoroutine(FadingOut());
 		}
 	}
 
@@ -86,6 +98,10 @@ public class FadeInOutSprite : MonoBehaviour {
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
 			hidden = false;
+			if (activeRoutine != null) {
+				StopCoroutine(activeRoutine);
+			}
+			activeRoutine = StartCoroutine(FadingIn());
 		}
 	}
 	public void ResetAlpha(float value){

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SceneEggMovement : MonoBehaviour {
 	public ClickOnEggs clickOnEggsScript;
 	public MoveWithCamera moveWithCamScript;
+	//public Transform panelParentTransform;
 	public SceneEggFXPool fxPool;
 	[Header("Click Animation")]
 	//public Animator animator;
@@ -13,6 +14,7 @@ public class SceneEggMovement : MonoBehaviour {
 	public float moveDuration;
 	public AnimationCurve animCurve;
 	public Vector3 cornerScale;
+	private Vector3 adjustedCornerScale;
 
 	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, GameObject panelPosition) {
 		// Ask to do pop animation, grab the animator on the scene egg, enable it, play the animation.
@@ -32,10 +34,15 @@ public class SceneEggMovement : MonoBehaviour {
 		while (timer < 1f) {
 			timer += Time.deltaTime/moveDuration;
 			sceneEgg.transform.position = Vector3.Lerp(startPos, panelPosition.transform.position, animCurve.Evaluate(timer));
-			sceneEgg.transform.localScale = Vector3.Lerp(startScale, cornerScale, animCurve.Evaluate(timer));
+			// Adjust the scale constantly to account for the camera zoom which makes the egg panel change in scale.
+			adjustedCornerScale = cornerScale * moveWithCamScript.newScale;
+			sceneEgg.transform.localScale = Vector3.Lerp(startScale, adjustedCornerScale, animCurve.Evaluate(timer));
 			yield return null;
 		}
 		// Egg has arrived to its position in the egg panel, signal that one less egg is moving.
 		clickOnEggsScript.EggMoving(false);
+		sceneEgg.transform.parent = clickOnEggsScript.eggPanel.transform;
+		sceneEgg.transform.position = panelPosition.transform.position;
+		sceneEgg.transform.localScale = cornerScale;
 	}
 }

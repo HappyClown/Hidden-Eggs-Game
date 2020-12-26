@@ -23,7 +23,7 @@ public class LevelTapMannager : MonoBehaviour {
 	[Header("Camera zoom speed (usually is 50)")]
 	public float camZoomSpeed;
 	public float camZoomDuration;
-	private float camZoomSpeedModifier;
+	private float camZoomSpeedModifier = 1f;
 	public AnimationCurve camZoomCurve;
 	private float lerpValue;
 	//touch position holders
@@ -64,9 +64,10 @@ public class LevelTapMannager : MonoBehaviour {
 		currentCameraSize = cam.orthographicSize;
 		//get the initial camera X and Y values
 		initialCameraPosition = cam.transform.position;
-
 		//New - Adjust the MaxX based on the screen size/ratio
 		maxX = adjustCamSizeScript.adjustedMaxX;
+		// Set camZoomSpeedModifier to something else then 0
+		//camZoomSpeedModifier =  (1 - ((currentCameraSize - minCameraSize) / (maxCameraSize - minCameraSize))) * camZoomDuration;
 	}
 	void Update ()
 	{
@@ -186,7 +187,7 @@ public class LevelTapMannager : MonoBehaviour {
 		}
 		else{
 			lerpValue += Time.deltaTime / camZoomSpeedModifier;
-			cam.transform.position = Vector3.Lerp(varCamPos,initialCameraPosition, camZoomCurve.Evaluate(lerpValue));
+			cam.transform.position = Vector3.Lerp(varCamPos, initialCameraPosition, camZoomCurve.Evaluate(lerpValue));
 			currentCameraSize = Mathf.Lerp(cameraSizeOnClick,maxCameraSize,camZoomCurve.Evaluate(lerpValue));
 			if(currentCameraSize >= maxCameraSize){
 				doubleTapped = false;

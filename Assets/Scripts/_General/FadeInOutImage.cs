@@ -10,7 +10,6 @@ public class FadeInOutImage : MonoBehaviour
 	public float fadeDelayDur;
 	[Range(0f, 1f)]
 	public float maxAlpha = 1f;
-
 	[Header("Options")]
 	public bool inactiveOnFadeOut = true;
 	public bool fadeInOnStart = true;
@@ -26,6 +25,7 @@ public class FadeInOutImage : MonoBehaviour
 	public enum StartState {
 		startShown, startHidden
 	}
+	private Coroutine activeRoutine;
 
 	void Start () {
 		img = this.gameObject.GetComponent<Image>();
@@ -47,28 +47,38 @@ public class FadeInOutImage : MonoBehaviour
 		}
 	}
 
-	void Update () {
-		if (fadingOut == true) {
+	IEnumerator FadingOut () {
+		while (fadingOut) {
 			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(1f * maxAlpha, 0f, t));
+			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(maxAlpha, 0f, t));
 			if (t >= 1f) {
-				if (inactiveOnFadeOut) {
-					this.gameObject.SetActive(false);
-				}
 				fadingOut = false;
 				hidden = true;
+				if(shown)
+				shown = false;				
+				if(inactiveOnFadeOut) {
+					this.gameObject.SetActive(false);
+				}
 			}
+			yield return null;
 		}
+		activeRoutine = null;
+	}
 
-		if (fadingIn == true) {
+	IEnumerator FadingIn() {
+		while (fadingIn) {
+			print(this.gameObject.name+" is fdinin in.");
 			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(0f, 1f * maxAlpha, t));
+			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(0f, maxAlpha, t));
 			if (t >= 1f) {
 				shown = true;
 				fadingIn = false;
+				if(hidden)
 				hidden = false;
 			}
+			yield return null;
 		}
+		activeRoutine = null;
 	}
 
 	public void FadeOut () {
@@ -78,6 +88,10 @@ public class FadeInOutImage : MonoBehaviour
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
 			shown = false;
+			if (activeRoutine != null) {
+				StopCoroutine(activeRoutine);
+			}
+			activeRoutine = StartCoroutine(FadingOut());
 		}
 	}
 
@@ -92,6 +106,10 @@ public class FadeInOutImage : MonoBehaviour
 			if(fadeDelay) { t = 0f - fadeDelayDur; }
 			else { t = 0f; }
 			hidden = false;
+			if (activeRoutine != null) {
+				StopCoroutine(activeRoutine);
+			}
+			activeRoutine = StartCoroutine(FadingIn());
 		}
 	}
 }
