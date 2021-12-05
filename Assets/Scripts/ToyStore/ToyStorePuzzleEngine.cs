@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowerShopPuzzle : MainPuzzleEngine {
+public class ToyStorePuzzleEngine : MainPuzzleEngine {
+
 	private delegate void VoidDelegate();
-	private VoidDelegate voidDelegate;	
-	public List<FlowerPuzzleMainLevel> myLvls;
-	public bool holdingItem;
-	public LayerMask tilesLayerMask;
-	public FlowerShopItem itemToHold;
-	
-	// Use this for initialization
+	private VoidDelegate voidDelegate;
+	public ToyStorePuzzleLevel[] myLvls;
+	public ToyStorePuzzlePiece holdedPiece;
+	public float mouseRadius, liftDiff;
+	private bool raycastDone, puzzleDone, holdingPiece;
+	public Vector2 clickdiff, holdedPos;
 	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
@@ -25,16 +25,19 @@ public class FlowerShopPuzzle : MainPuzzleEngine {
 
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
-		//audioSceneBeachPuzzScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
-
-
-		//curntLvl = 1;
+		raycastDone = false;
+		/* if(currentLevel >= mylevels.Length){
+			currentLevel = mylevels.Length - 1;
+		}
+		mylevels[currentLevel].SetActive(true);
+		mylvl = mylevels[currentLevel].GetComponent<CafePuzzleLevel>();
+		CleanGrid();
+		mylvl.SetUp();*/
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (canPlay && myLvls[curntLvl-1].active) {
+		if (canPlay) {
 			if (mySelectButton.buttonPressed) {
 				lvlToLoad = mySelectButton.lvlToLoad;
 				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
@@ -52,52 +55,57 @@ public class FlowerShopPuzzle : MainPuzzleEngine {
 			}
 
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
-			if(myInput.isDragging && !holdingItem){
-				UpdateMousePos(myInput.startDragTouch);
-				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-				if (hit) {
-						if(hit.collider.CompareTag("Puzzle")){						
-							itemToHold = hit.collider.gameObject.GetComponent<FlowerShopItem>();
-							holdingItem = true;
-						}
-					}
-			}
-			else if(myInput.isDragging && holdingItem){
+			//SET BEHAVIOR HERE			
+			/*if(myInput.Tapped && !holdingPiece){//Rotate free piece when tapped
+				UpdateMousePos(myInput.TapPosition);
+				RotatePiece(mousePos2D);							
+			}else if(myInput.isDragging){//check if dragging to move pieces
 				UpdateMousePos(myInput.draggingPosition);
-				itemToHold.gameObject.transform.position = new Vector3(mousePos2D.x,mousePos2D.y,itemToHold.gameObject.transform.position.z);
-				//itemToHold.transform.position = mousePos2D;
-			}
-			else if(holdingItem){
-				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f,tilesLayerMask);
-				if (hit) {
-						if(hit.collider.CompareTag("Tile")){
-							FlowerShopCell tempCell =  hit.collider.gameObject.GetComponent<FlowerShopCell>();
-							if(itemToHold.onCell){
-								if(tempCell.occupied){
-									FlowerShopItem tempItem = tempCell.myItem;
-									tempItem.AsingCell(itemToHold.myCell);
-								}else{
-									itemToHold.myCell.ResetFlowerCell();									
-								}
-								
+				if(holdingPiece){
+					holdedPos = mousePos2D - clickdiff;
+					holdedPiece.transform.position = new Vector3(holdedPos.x, holdedPos.y, -liftDiff );
+					int matchNum = 0;
+					foreach (PuzzleCell cell in holdedPiece.mycells)
+					{
+						foreach (PuzzleCell cell2 in myLvls[curntLvl-1].gridCells)
+						{
+							if(Vector2.Distance(cell.gameObject.transform.position,cell2.transform.position) < myLvls[curntLvl-1].snapRadius && !cell2.occupied){
+								matchNum ++;
 							}
-							else if(tempCell.occupied){
-									FlowerShopItem tempItem = tempCell.myItem;
-									tempItem.ResetItemPosition();
-							}
-							itemToHold.AsingCell(tempCell);
-							myLvls[curntLvl-1].CheckLevel();	
+						}						
+					}
+					Debug.Log(matchNum);
+					if(matchNum == holdedPiece.mycells.Length){
+						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
+						{
+							spRend.gameObject.SetActive(true);																
+						}
+					}else{
+						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
+						{
+							spRend.gameObject.SetActive(false);																
 						}
 					}
-					else{
-						itemToHold.ResetItemPosition();						
+				}else{
+					holdedPiece = SelectPiece(mousePos2D);
+					if(holdedPiece){
+						if(holdedPiece.placed){
+							myLvls[curntLvl-1].FreeCells(holdedPiece);
+						}
+						holdingPiece = true;
+						clickdiff = mousePos2D - new Vector2(holdedPiece.gameObject.transform.position.x, holdedPiece.gameObject.transform.position.y);
 					}
-				holdingItem = false;
-				itemToHold = null;
-			}
+				}
+			}else{
+				if(holdingPiece){
+					myLvls[curntLvl-1].CheckPiece(holdedPiece);
+					holdedPiece = null;
+					holdingPiece = false;				
+				}
+			}*/
+			
 			if(Input.GetKey("r")){
-				myLvls[curntLvl-1].ResetLevel();
-				myLvls[curntLvl-1].SetUpLevel();
+				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
 			}
 		}
 		else
@@ -188,6 +196,7 @@ public class FlowerShopPuzzle : MainPuzzleEngine {
 		if(maxLvl > 3 || maxLvl < 1) { curntLvl = 1; }
 		else { curntLvl = maxLvl; }
 		itemHolder = lvlItemHolders[curntLvl - 1];
+		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
 		initialSetupOn = false;
@@ -269,6 +278,7 @@ public class FlowerShopPuzzle : MainPuzzleEngine {
 			StartCoroutine(PuzzleComplete());
 			return;
 		}
+		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
 
@@ -302,6 +312,7 @@ public class FlowerShopPuzzle : MainPuzzleEngine {
 			lvlItemHolders[curntLvl - 1].SetActive(false);
 			myLvls[curntLvl-1].ResetLevel();
 			curntLvl = lvlToLoad;
+			CleanGrid();
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
 			itemHolder = lvlItemHolders[curntLvl - 1];
@@ -356,10 +367,50 @@ public class FlowerShopPuzzle : MainPuzzleEngine {
 		//GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.beachName);
 	}
 	#endregion
+
 	public void UpdateMousePos(Vector3 Pos)
 	{
 		mousePos = Camera.main.ScreenToWorldPoint(Pos);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 	}
-	
+
+	void CleanGrid(){
+		/*for (int i = 0; i < gridCells.Length; i++)
+		{
+			gridCells[i].occupied = false;
+		}*/
+	}
+	//Particular Puzzle functions
+	//Rotate a piece if is available
+	void RotatePiece(Vector2 pos){
+		foreach ( ToyStorePuzzlePiece piece in myLvls[curntLvl-1].myPieces)
+		{
+			foreach (PuzzleCell cell in piece.mycells)
+			{
+				if(Vector2.Distance(pos,cell.gameObject.transform.position) < mouseRadius){
+					if(!piece.placed){
+						piece.RotatePiece();
+						break;
+					}
+				}
+			}
+		}
+	}
+	//Select Piece to hold
+	ToyStorePuzzlePiece SelectPiece(Vector2 pos){
+		ToyStorePuzzlePiece selectedPiece = null;
+		foreach ( ToyStorePuzzlePiece piece in myLvls[curntLvl-1].myPieces)
+		{
+			foreach (PuzzleCell cell in piece.mycells)
+			{
+				if(Vector2.Distance(pos,cell.gameObject.transform.position) < mouseRadius){
+					if(!piece.movingBack){
+						selectedPiece = piece;
+					}
+				}
+			}
+		}
+		return selectedPiece;
+	}
 }
+
