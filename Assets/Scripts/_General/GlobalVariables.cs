@@ -9,6 +9,7 @@ public class GlobalVariables : MonoBehaviour
 	public string previousScene;
 	public string currentScene;
 	public bool toHub;
+	public bool cursorConfinedWindow;
 
 	[Header("Scene Names")]
 	public string menuName;
@@ -59,7 +60,9 @@ public class GlobalVariables : MonoBehaviour
 			return;
 		}
 		
-		Cursor.lockState = CursorLockMode.Confined;
+		if(cursorConfinedWindow) {
+			Cursor.lockState = CursorLockMode.Confined;
+		}
 
 		FindClickOnEggScript();
 		FindEggHolderScript();

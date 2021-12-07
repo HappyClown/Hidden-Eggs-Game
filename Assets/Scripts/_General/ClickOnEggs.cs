@@ -150,7 +150,7 @@ public class ClickOnEggs : MonoBehaviour {
 				if (hit.collider.CompareTag("Egg")) {
 					myInputDetector.cancelDoubleTap = true;
 					// Starts a movement coroutine for the egg found.
-					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(hit.collider.gameObject, eggSpots[eggsFound]));
+					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(hit.collider.gameObject, eggSpots[eggsFound], eggsFound));
 					GlobalVariables.globVarScript.eggsFoundOrder[eggs.IndexOf(hit.collider.gameObject)] = eggsFound;
 					hit.collider.enabled = false;
 					eggsFound++;

@@ -16,7 +16,7 @@ public class SceneEggMovement : MonoBehaviour {
 	public Vector3 cornerScale;
 	private Vector3 adjustedCornerScale;
 
-	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, GameObject panelPosition) {
+	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, GameObject panelPosition, int eggNumber) {
 		// Ask to do pop animation, grab the animator on the scene egg, enable it, play the animation.
 		Animator animator = sceneEgg.GetComponent<Animator>();
 		animator.enabled = true;
@@ -28,12 +28,16 @@ public class SceneEggMovement : MonoBehaviour {
 		animator.enabled = false;
 		// Once animation is done, activate the trail FX and move the egg to its given panel position while taking into account panel size changes caused by camera zooming.
 		float timer = 0f;
-		Vector3 startPos = sceneEgg.transform.position;
+		Vector3 startPos = new Vector3 (sceneEgg.transform.position.x, sceneEgg.transform.position.y, -5f);
 		Vector3 startScale = sceneEgg.transform.localScale;
+		float targetZ = startPos.z + 0.5f; 
+		Vector3 adjustedPanelPos = new Vector3(panelPosition.transform.position.x, panelPosition.transform.position.y, targetZ);
 		fxPool.PlayEggTrailFX(sceneEgg.transform, moveDuration);
 		while (timer < 1f) {
+			yield return new WaitForEndOfFrame();
 			timer += Time.deltaTime/moveDuration;
-			sceneEgg.transform.position = Vector3.Lerp(startPos, panelPosition.transform.position, animCurve.Evaluate(timer));
+			adjustedPanelPos = new Vector3(panelPosition.transform.position.x, panelPosition.transform.position.y, targetZ);
+			sceneEgg.transform.position = Vector3.Lerp(startPos, adjustedPanelPos, animCurve.Evaluate(timer));
 			// Adjust the scale constantly to account for the camera zoom which makes the egg panel change in scale.
 			adjustedCornerScale = cornerScale * moveWithCamScript.newScale;
 			sceneEgg.transform.localScale = Vector3.Lerp(startScale, adjustedCornerScale, animCurve.Evaluate(timer));
@@ -42,7 +46,7 @@ public class SceneEggMovement : MonoBehaviour {
 		// Egg has arrived to its position in the egg panel, signal that one less egg is moving.
 		clickOnEggsScript.EggMoving(false);
 		sceneEgg.transform.parent = clickOnEggsScript.eggPanel.transform;
-		sceneEgg.transform.position = panelPosition.transform.position;
+		sceneEgg.transform.position = new Vector3(panelPosition.transform.position.x, panelPosition.transform.position.y, panelPosition.transform.position.z-(eggNumber*0.01f));
 		sceneEgg.transform.localScale = cornerScale;
 	}
 }
