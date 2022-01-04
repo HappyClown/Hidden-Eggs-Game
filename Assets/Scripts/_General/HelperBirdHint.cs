@@ -17,33 +17,26 @@ public class HelperBirdHint : MonoBehaviour {
 	public AudioHelperBird audioHelperBirdScript;
 
 	void Start () {
-		hintBtn = hintBtnObj.GetComponent<Button>();
-		hintImg = hintBtnObj.GetComponent<Image>();
+		if (!hintBtn) { hintBtn = hintBtnObj.GetComponent<Button>(); }
+		if (!hintImg) { hintImg = hintBtnObj.GetComponent<Image>(); }
 		hintBtn.onClick.AddListener(StartHint);
 
 		if(!audioHelperBirdScript){audioHelperBirdScript= GameObject.Find("Audio").GetComponent<AudioHelperBird>();}
 	}
-
-	void Update () {
-		if (slideInScript.isUp && slideInScript.introDone && !showHint) {
-			if (clickOnEggsScript.eggsFound < clickOnEggsScript.totalRegEggs) {
-				hintBtn.interactable = true;
-			}
-			else {
-				hintBtn.interactable = false;
-				hintCGFadeScript.maxAlpha = 0.5f;
-			}
-			hintCGFadeScript.FadeIn();
-			showHint = true;
-
+	public void ShowHintButton() {
+		if (clickOnEggsScript.eggsFound < clickOnEggsScript.totalRegEggs) {
+			hintBtn.interactable = true;
 		}
-
-		if (!slideInScript.isUp && showHint) {
-			showHint = false;
-			if (!hintCGFadeScript.hidden && !hintCGFadeScript.fadingOut) {
-				hintBtn.interactable = false;
-				hintCGFadeScript.FadeOut();
-			}
+		else {
+			hintBtn.interactable = false;
+			hintCGFadeScript.maxAlpha = 0.5f;
+		}
+		hintCGFadeScript.FadeIn();
+	}
+	public void HideHintButton() {
+		if (!hintCGFadeScript.hidden && !hintCGFadeScript.fadingOut) {
+			hintBtn.interactable = false;
+			hintCGFadeScript.FadeOut();
 		}
 	}
 
@@ -53,6 +46,7 @@ public class HelperBirdHint : MonoBehaviour {
 			//sound long
 			audioHelperBirdScript.hintSndOnLong();
 		}
+		// Else possible just restart the hint from teh bird, can happen if the hint ball is far away from the bird the player can have time to press the hint button before the hint ball comes back and then nothing happens, which isn't super bad either, but it feels weird to press the button only to have nothing happen.
 		slideInScript.MoveBirdUpDown();
 		hintCGFadeScript.FadeOut();
 	}

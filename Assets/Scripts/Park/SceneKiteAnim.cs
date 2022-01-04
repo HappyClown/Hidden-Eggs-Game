@@ -13,7 +13,7 @@ public class SceneKiteAnim : MonoBehaviour
 
 	void Update () 
 	{
-		if (puzzUnlockScript.puzzUnlocked && !startAnim)
+		if (puzzUnlockScript.puzzIntroDone && !startAnim)
 		{
 			SceneKiteEnabled();
 			startAnim = true;

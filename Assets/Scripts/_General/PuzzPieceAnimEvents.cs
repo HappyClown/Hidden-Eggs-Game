@@ -14,8 +14,8 @@ public class PuzzPieceAnimEvents : MonoBehaviour {
 	private float puzzNewScale, fxNewScale;
 	public GameObject puzzPiece, puzzParentObj;
 
-	void Update () {
-		if (splineWalkerScript.isPlaying) {
+	IEnumerator ScalePuzzlePiece() {
+		while (splineWalkerScript.isPlaying) {
 			puzzNewScale = animScale.x * (animCurve.Evaluate(splineWalkerScript.Progress) * scaleMult + 1);
 			Vector3 newScaleVect3 = new Vector3(puzzNewScale, puzzNewScale, puzzNewScale);
 			this.transform.localScale = newScaleVect3;
@@ -24,38 +24,60 @@ public class PuzzPieceAnimEvents : MonoBehaviour {
 			Vector3 newFXScale = new Vector3(fxNewScale, fxNewScale, fxNewScale);
 			pieceShimFX.transform.localScale = newFXScale;
 			pieceRaysFX.transform.localScale = newFXScale;
+			yield return null;
 		}
 	}
 
 	public void PieceTrailFX() {
-		if (pieceTrailFX.isPlaying) {
-			pieceTrailFX.Play(false);
+		if(!pieceTrailFX.gameObject.activeSelf) {
+			pieceTrailFX.gameObject.SetActive(true);
 		}
 		else {
+			if (pieceTrailFX.isPlaying) {
+				pieceTrailFX.Play(false);
+			}
+			pieceTrailFX.gameObject.SetActive(false);
+			return;
+		}
+
+		if (!pieceTrailFX.isPlaying) {
 			pieceTrailFX.Play(true);
 		}
 	}
 
 	public void PieceShimFX() {
-		if (pieceShimFX.isPlaying) {
-			pieceShimFX.Play(false);
+		if(!pieceShimFX.gameObject.activeSelf) {
+			pieceShimFX.gameObject.SetActive(true);
+			if (!pieceShimFX.isPlaying) {
+				pieceShimFX.Play(true);
+			}
 		}
 		else {
-			pieceShimFX.Play(true);
+			if (pieceShimFX.isPlaying) {
+				pieceShimFX.Play(false);
+			}
+			pieceShimFX.gameObject.SetActive(false);
 		}
 	}
 
 	public void PieceRaysFX() {
-		if (pieceRaysFX.isPlaying) {
-			pieceRaysFX.Play(false);
+		if (!pieceRaysFX.gameObject.activeSelf) {
+			pieceRaysFX.gameObject.SetActive(true);
+			if (!pieceRaysFX.isPlaying) {
+				pieceRaysFX.Play(true);
+			}
 		}
 		else {
-			pieceRaysFX.Play(true);
+			if (pieceRaysFX.isPlaying) {
+				pieceRaysFX.Play(false);
+			}
+			pieceRaysFX.gameObject.SetActive(false);
 		}
 	}
 
 	public void PuzzPieceSplineMove() {
 		splineWalkerScript.IsPlaying = true;
+		StartCoroutine(ScalePuzzlePiece());
 		puzzPiece.transform.parent = puzzParentObj.transform.parent;
 	}
 

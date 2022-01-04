@@ -19,8 +19,6 @@ public class HintManager : MonoBehaviour {
 	public int turnsToDo, currentTurn, eggsFound;
 	public bool resetHint;
 	public HintTrail hintTrailScript;
-
-	
 	public AudioHelperBird audioHelperBirdScript;
 	
 	void Start () {
@@ -35,14 +33,16 @@ public class HintManager : MonoBehaviour {
 	void Update () {
 		if(/* Input.GetKey(KeyCode.I) */startHint && hintAvailable && !movingFeather){
 			eggsFound = myClickonEggs.eggsFound;
-			Vector2 eggPos = Vector2.zero ;
-			for (int i = 0; i < myClickonEggs.eggs.Count; i++)
+			Vector2 eggPos = Vector2.zero;
+
+			for (int i = 0; i < GlobalVariables.globVarScript.eggsFoundBools.Count; i++)
 			{
-				if(!myClickonEggs.eggs[i].GetComponent<EggGoToCorner>().eggFound){
-					eggPos = myClickonEggs.eggs[i].gameObject.transform.position;
-					i = myClickonEggs.eggs.Count;
+				if(!GlobalVariables.globVarScript.eggsFoundBools[i]){
+					eggPos = myClickonEggs.eggs[i].transform.position;
+					break;
 				}
 			}
+
 			movingFeather = true;
 			sceneTapScript.canTapHelpBird = false;
 			//feather.SetActive(true); Only turning on the emission for the effects instead of the object.
@@ -92,7 +92,7 @@ public class HintManager : MonoBehaviour {
 		if(hintAvailable) {
 			hintAvailable = false;
 			myDirection = featherToGo.firstPoint;
-			hintTrailScript.ClearTrail();
+			//hintTrailScript.ClearTrail();
 		}
 		switch(myDirection) {
 			case featherToGo.center:

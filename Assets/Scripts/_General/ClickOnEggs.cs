@@ -79,6 +79,7 @@ public class ClickOnEggs : MonoBehaviour {
 	public MenuStatesManager menuStatesScript;
 	// Birdstory 2.0
 	public SceneEggMovement sceneEggMovement;
+	public EggsSaveLoad eggsSaveLoad;
 
 	private ParentStartLoadOrder parentStartLoadOrder;
 
@@ -113,6 +114,8 @@ public class ClickOnEggs : MonoBehaviour {
 			iniDelay -= Time.deltaTime;
 			yield return null;
 		}
+		puzzUnlockScript.LoadPuzzleIntro();
+		eggsSaveLoad.SetEggStates();
 		while (iniSeqTimer < allowTapF) {
 			iniSeqTimer += Time.deltaTime;
 			if (iniSeqTimer > checkNewSilEggsF && !iniSilEggCheckB) { 
@@ -150,8 +153,10 @@ public class ClickOnEggs : MonoBehaviour {
 				if (hit.collider.CompareTag("Egg")) {
 					myInputDetector.cancelDoubleTap = true;
 					// Starts a movement coroutine for the egg found.
-					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(hit.collider.gameObject, eggSpots[eggsFound], eggsFound));
-					GlobalVariables.globVarScript.eggsFoundOrder[eggs.IndexOf(hit.collider.gameObject)] = eggsFound;
+					GameObject eggGO = hit.collider.gameObject;
+					int eggIndex = eggs.IndexOf(eggGO);
+					eggsSaveLoad.SaveEgg(eggIndex);
+					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(eggGO, eggSpots[eggsFound], eggsFound));
 					hit.collider.enabled = false;
 					eggsFound++;
 					EggMoving(true);
@@ -159,7 +164,7 @@ public class ClickOnEggs : MonoBehaviour {
 					// SFX Open Panel
 					if (!openEggPanel) { openEggPanel = true; audioSceneGenScript.openPanel(); }
 					// SFX Click Egg
-					audioSceneGenScript.ClickEggsSound(hit.collider.gameObject);
+					audioSceneGenScript.ClickEggsSound(eggGO);
 					//Play egg  click sound
 					AddEggsFound();
 					return;
@@ -231,8 +236,8 @@ public class ClickOnEggs : MonoBehaviour {
 		}
 	}
 
-	public void EggMoving(bool addEgg) {
-		if (addEgg) {
+	public void EggMoving(bool startOfMovement, bool iAmEgg = true) {
+		if (startOfMovement) {
 			eggMoving++;
 			if (panelMoveCoroutine != null) {
 				StopCoroutine(panelMoveCoroutine);
@@ -240,7 +245,12 @@ public class ClickOnEggs : MonoBehaviour {
 			panelMoveCoroutine = StartCoroutine(EggPanelInteraction(true));
 		}
 		else { 
-			eggMoving--; 
+			eggMoving--;
+			if (iAmEgg) { 
+				eggsInPanel++;
+				puzzUnlockScript.PuzzleUnlockCheck(eggsInPanel);
+				UpdateEggsString();
+			}
 			if (eggMoving <= 0 && !lockDropDownPanel) {
 				eggMoving = 0;
 				if (panelMoveCoroutine != null) {
@@ -261,7 +271,7 @@ public class ClickOnEggs : MonoBehaviour {
 			// Show egg panel.
 			targetPos = eggPanelShown.transform.localPosition;
 			distPercent = Vector2.Distance(eggPanel.transform.position, eggPanelShown.transform.position) / Vector2.Distance(eggPanelShown.transform.position, eggPanelHidden.transform.position);
-			print(distPercent);
+			//print(distPercent);
 			adjustedDur = panelMoveDuration * distPercent;
 			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y, 180);
 		}

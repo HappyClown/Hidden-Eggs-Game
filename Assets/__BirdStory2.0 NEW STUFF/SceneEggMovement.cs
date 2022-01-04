@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneEggMovement : MonoBehaviour {
-	public ClickOnEggs clickOnEggsScript;
+	public ClickOnEggs clickOnEggs;
 	public MoveWithCamera moveWithCamScript;
 	//public Transform panelParentTransform;
 	public SceneEggFXPool fxPool;
@@ -13,7 +13,7 @@ public class SceneEggMovement : MonoBehaviour {
 	[Header("Egg Movement")]
 	public float moveDuration;
 	public AnimationCurve animCurve;
-	public Vector3 cornerScale;
+	public Vector3 cornerScale, cornerRotation;
 	private Vector3 adjustedCornerScale;
 
 	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, GameObject panelPosition, int eggNumber) {
@@ -44,8 +44,8 @@ public class SceneEggMovement : MonoBehaviour {
 			yield return null;
 		}
 		// Egg has arrived to its position in the egg panel, signal that one less egg is moving.
-		clickOnEggsScript.EggMoving(false);
-		sceneEgg.transform.parent = clickOnEggsScript.eggPanel.transform;
+		clickOnEggs.EggMoving(false);
+		sceneEgg.transform.parent = clickOnEggs.eggPanel.transform;
 		sceneEgg.transform.position = new Vector3(panelPosition.transform.position.x, panelPosition.transform.position.y, panelPosition.transform.position.z-(eggNumber*0.01f));
 		sceneEgg.transform.localScale = cornerScale;
 	}

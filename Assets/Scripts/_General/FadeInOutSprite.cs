@@ -17,12 +17,11 @@ public class FadeInOutSprite : MonoBehaviour {
 		startShown, startHidden
 	}
 	public StartState myStartState;
-	private Coroutine activeRoutine;
+	public Coroutine activeRoutine;
 
 	void Start () {
-		//sprite = this.gameObject.GetComponent<SpriteRenderer>();
 		if (myStartState == StartState.startShown) {
-			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, sprite.color.a);
+			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 1f);
 			shown = true;
 		}
 		else if (myStartState == StartState.startHidden) {
@@ -39,7 +38,8 @@ public class FadeInOutSprite : MonoBehaviour {
 	}
 
 	IEnumerator FadingOut () {
-		if (fadingOut == true) {
+			while (fadingOut) {
+			print(this.gameObject.name+" is fdinin outtt.");
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(maxAlpha, iniVal, t));
 			if (t >= 1f) {
@@ -57,7 +57,7 @@ public class FadeInOutSprite : MonoBehaviour {
 	}
 
 	IEnumerator FadingIn() {
-		while (fadingIn == true) {
+		while (fadingIn) {
 			print(this.gameObject.name+" is fdinin in.");
 			t += Time.deltaTime / fadeDuration;
 			sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, Mathf.SmoothStep(iniVal, maxAlpha, t));
@@ -73,7 +73,7 @@ public class FadeInOutSprite : MonoBehaviour {
 	}
 
 	public void FadeOut (float startVal = 0f) {
-		while (fadingOut == false) { // Potentially implement a waitmode, to wait until it is faded in/out to fade it in/out.
+		if (!fadingOut && !hidden) { // Potentially implement a waitmode, to wait until it is faded in/out to fade it in/out.
 			iniVal = startVal;
 			fadingIn = false;
 			fadingOut = true;
@@ -84,6 +84,7 @@ public class FadeInOutSprite : MonoBehaviour {
 				StopCoroutine(activeRoutine);
 			}
 			activeRoutine = StartCoroutine(FadingOut());
+			//print(activeRoutine.ToString());
 		}
 	}
 

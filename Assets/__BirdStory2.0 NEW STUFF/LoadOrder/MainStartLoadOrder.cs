@@ -26,7 +26,7 @@ public class MainStartLoadOrder : MonoBehaviour {
             	yield return null;
 			}
         }
-		print("Main Start Load Order complete. Frame Count: " + frameCount);
+		//print("Main Start Load Order complete. Frame Count: " + frameCount);
 		countFrames = false;
 	}
 

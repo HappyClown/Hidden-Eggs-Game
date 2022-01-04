@@ -18,42 +18,70 @@ public class HelperBirdRiddle : MonoBehaviour {
 	public SlideInHelpBird slideInScript;
 	public HelperBirdHint helperBirdHintScript;
 	public ClickOnEggs clickOnEggsScript;
-	public FadeInOutCanvasGroup hintCGFadeScript, riddCGFadeScript;
+	public FadeInOutCanvasGroup hintCGFadeScript, riddButtonCGFadeScript;
 	public FadeInOutTMP riddTextFadeScript;
 	public FadeInOutImage plainGoldEggFadeScript;
 
 	void Start () {
-		riddleBtn = riddleBtnObj.GetComponent<Button>();
-		riddleImg = riddleBtnObj.GetComponent<Image>();
+		if (!riddleBtn) { riddleBtn = riddleBtnObj.GetComponent<Button>(); }
+		if (!riddleImg) { riddleImg = riddleBtnObj.GetComponent<Image>(); }
 		riddleBtn.onClick.AddListener(ShowRiddleText);
-		riddTextFadeScript.fadeDelayDur = riddCGFadeScript.fadeDuration;
-		plainGoldEggFadeScript.fadeDelayDur = riddCGFadeScript.fadeDuration;
+		riddTextFadeScript.fadeDelayDur = riddButtonCGFadeScript.fadeDuration;
+		plainGoldEggFadeScript.fadeDelayDur = riddButtonCGFadeScript.fadeDuration;
 	}
 	
-	void Update () {
-		if (slideInScript.isUp && slideInScript.introDone && !riddBtnOn) {
-			if (clickOnEggsScript.goldenEggFound == 1) {
-				riddleBtn.interactable = false;
-				riddCGFadeScript.maxAlpha = 0.5f;
-			}
-			else {
-				riddleBtn.interactable = true;
-			}
-			riddCGFadeScript.FadeIn();
-			riddBtnOn = true;
+	// void Update () {
+	// 	if (slideInScript.isUp && slideInScript.introDone && !riddBtnOn) {
+	// 		if (clickOnEggsScript.goldenEggFound == 1) {
+	// 			riddleBtn.interactable = false;
+	// 			riddButtonCGFadeScript.maxAlpha = 0.5f;
+	// 		}
+	// 		else {
+	// 			riddleBtn.interactable = true;
+	// 		}
+	// 		riddButtonCGFadeScript.FadeIn();
+	// 		riddBtnOn = true;
 
-			dontCloseMenu.SetActive(true);
+	// 		dontCloseMenu.SetActive(true);
+	// 	}
+
+	// 	if (!slideInScript.isUp && riddBtnOn) {
+	// 		riddBtnOn = false;
+	// 		if (!riddButtonCGFadeScript.hidden && !riddButtonCGFadeScript.fadingOut) {
+	// 			riddButtonCGFadeScript.FadeOut();
+	// 			riddleBtn.interactable = false;
+	// 		}
+	// 	}
+
+	// 	if (slideInScript.moveDown && riddTextOn) {
+	// 		riddTextFadeScript.fadeDelayDur = 0f;
+	// 		plainGoldEggFadeScript.fadeDelayDur = 0f;
+	// 		riddTextFadeScript.FadeOut();
+	// 		plainGoldEggFadeScript.FadeOut();
+	// 	}
+	// }
+
+	public void ShowRiddleButton () {
+		if (clickOnEggsScript.goldenEggFound == 1) {
+			riddleBtn.interactable = false;
+			riddButtonCGFadeScript.maxAlpha = 0.5f;
 		}
-
-		if (!slideInScript.isUp && riddBtnOn) {
-			riddBtnOn = false;
-			if (!riddCGFadeScript.hidden && !riddCGFadeScript.fadingOut) {
-				riddCGFadeScript.FadeOut();
-				riddleBtn.interactable = false;
-			}
+		else {
+			riddleBtn.interactable = true;
 		}
-
-		if (slideInScript.moveDown && riddTextOn) {
+		riddButtonCGFadeScript.FadeIn();
+		riddBtnOn = true;
+		dontCloseMenu.SetActive(true);
+	}
+	public void HideRiddleButton () {
+		riddBtnOn = false;
+		if (!riddButtonCGFadeScript.hidden && !riddButtonCGFadeScript.fadingOut) {
+			riddButtonCGFadeScript.FadeOut();
+			riddleBtn.interactable = false;
+		}
+	}
+	public void HideRiddleText () {
+		if (riddTextOn) {
 			riddTextFadeScript.fadeDelayDur = 0f;
 			plainGoldEggFadeScript.fadeDelayDur = 0f;
 			riddTextFadeScript.FadeOut();
@@ -66,8 +94,8 @@ public class HelperBirdRiddle : MonoBehaviour {
 		riddleHints[random].SetActive(true);
 		riddleCurntActive = riddleHints[random];
 
-		riddTextFadeScript.fadeDelayDur = riddCGFadeScript.fadeDuration;
-		plainGoldEggFadeScript.fadeDelayDur = riddCGFadeScript.fadeDuration;
+		riddTextFadeScript.fadeDelayDur = riddButtonCGFadeScript.fadeDuration;
+		plainGoldEggFadeScript.fadeDelayDur = riddButtonCGFadeScript.fadeDuration;
 		riddTextFadeScript.FadeIn();
 		plainGoldEggFadeScript.FadeIn();
 		
@@ -77,7 +105,7 @@ public class HelperBirdRiddle : MonoBehaviour {
 
 		hintCGFadeScript.FadeOut();
 		hintBtn.interactable = false;
-		riddCGFadeScript.FadeOut();
+		riddButtonCGFadeScript.FadeOut();
 		riddleBtn.interactable = false;
 	}
 }

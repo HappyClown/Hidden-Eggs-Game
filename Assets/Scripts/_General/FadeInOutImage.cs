@@ -67,7 +67,7 @@ public class FadeInOutImage : MonoBehaviour
 
 	IEnumerator FadingIn() {
 		while (fadingIn) {
-			print(this.gameObject.name+" is fdinin in.");
+			//print(this.gameObject.name+" is fdinin in.");
 			t += Time.deltaTime / fadeDuration;
 			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(0f, maxAlpha, t));
 			if (t >= 1f) {

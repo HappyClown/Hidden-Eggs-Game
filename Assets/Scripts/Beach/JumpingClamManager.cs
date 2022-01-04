@@ -9,7 +9,7 @@ public class JumpingClamManager : MonoBehaviour {
 
 	void Update () 
 	{
-		if (puzzUnlockScript.puzzUnlocked && !startAnim)
+		if (puzzUnlockScript.puzzIntroDone && !startAnim)
 		{
 			foreach(JumpingClam jumpClamScript in jumpingClamScripts)
 			{
