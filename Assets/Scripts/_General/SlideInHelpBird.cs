@@ -123,11 +123,9 @@ public class SlideInHelpBird : MonoBehaviour {
 	// Move the bird up or down depending on its current state.
 	public void MoveBirdUpDown() {
 		curHelpBirdPos = helpBirdTrans.position;
-		if(myHint){
-			myHint.resetHint = true;
-		}
-		if (moveDown || isDown) { // 1 is not necessary since 1 is always the lerp's max value, just there to visualize the rule of three. 
+		if (moveDown || isDown) { 
 			if (!isDown) { 
+				// 1 is not necessary since 1 is always the lerp's max value, just there to visualize the rule of three. 
 				newDuration = duration * lerpValue / 1; 
 			} else { 
 				newDuration = duration; 
@@ -147,6 +145,10 @@ public class SlideInHelpBird : MonoBehaviour {
 			// If the helper bird is already moving up or down stop the coroutine before starting a new one.
 			if (activeCoroutine != null) {
 				StopCoroutine(activeCoroutine);
+			}
+			// Because this script is also used in puzzles it first needs to check if the variable exists AKA if the player is currently in a main scene.
+			if (myHint) {
+				myHint.ResetHint();
 			}
 			activeCoroutine = StartCoroutine(MoveUp());
 			return;

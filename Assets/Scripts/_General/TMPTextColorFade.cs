@@ -58,10 +58,10 @@ public class TMPTextColorFade : MonoBehaviour {
 		iniCol = tmp.color;
 		// Set the alpha to 0 while keeping its RGB values the same.
 		tmp.color = new Color(iniCol.r, iniCol.g, iniCol.b, 0);
-		if (this.gameObject.GetComponent<TMPWarpText>()) {
+		if (!warpScript && this.gameObject.GetComponent<TMPWarpText>()) {
 			warpScript = this.gameObject.GetComponent<TMPWarpText>();
 		}
-		if (this.gameObject.GetComponent<TMPMotionHandler>()) {
+		if (!handlerScript && this.gameObject.GetComponent<TMPMotionHandler>()) {
 			handlerScript = this.gameObject.GetComponent<TMPMotionHandler>();
 		}
 	}
@@ -76,7 +76,7 @@ public class TMPTextColorFade : MonoBehaviour {
 	/// When started, gradually fades in text.
 	/// </summary>
 	/// <returns></returns>
-	public IEnumerator StartTextFadeIn() {
+	IEnumerator StartTextFadeIn() {
 		textState = TextState.fadingIn;
 		TMP_TextInfo textInfo = m_TextComponent.textInfo;
 		Color32[] newVertexColors;
@@ -246,6 +246,9 @@ public class TMPTextColorFade : MonoBehaviour {
 		TMP_TextInfo textInfo = m_TextComponent.textInfo;
 		Color32[] newVertexColors;
 		Color32 c0 = m_TextComponent.color;
+		
+		// This is probably not great here but the text wasn't warping right away and I dont feel like looking into more. Thank you for you understanding. 
+		if (warpScript) warpScript.warpOnce = true;
 
 		// Get the vertex colors of the mesh used by this text element (character or sprite).
 		newVertexColors = textInfo.meshInfo[materialIndex].colors32;

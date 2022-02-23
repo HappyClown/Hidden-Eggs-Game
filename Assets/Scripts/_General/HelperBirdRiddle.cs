@@ -29,40 +29,9 @@ public class HelperBirdRiddle : MonoBehaviour {
 		riddTextFadeScript.fadeDelayDur = riddButtonCGFadeScript.fadeDuration;
 		plainGoldEggFadeScript.fadeDelayDur = riddButtonCGFadeScript.fadeDuration;
 	}
-	
-	// void Update () {
-	// 	if (slideInScript.isUp && slideInScript.introDone && !riddBtnOn) {
-	// 		if (clickOnEggsScript.goldenEggFound == 1) {
-	// 			riddleBtn.interactable = false;
-	// 			riddButtonCGFadeScript.maxAlpha = 0.5f;
-	// 		}
-	// 		else {
-	// 			riddleBtn.interactable = true;
-	// 		}
-	// 		riddButtonCGFadeScript.FadeIn();
-	// 		riddBtnOn = true;
-
-	// 		dontCloseMenu.SetActive(true);
-	// 	}
-
-	// 	if (!slideInScript.isUp && riddBtnOn) {
-	// 		riddBtnOn = false;
-	// 		if (!riddButtonCGFadeScript.hidden && !riddButtonCGFadeScript.fadingOut) {
-	// 			riddButtonCGFadeScript.FadeOut();
-	// 			riddleBtn.interactable = false;
-	// 		}
-	// 	}
-
-	// 	if (slideInScript.moveDown && riddTextOn) {
-	// 		riddTextFadeScript.fadeDelayDur = 0f;
-	// 		plainGoldEggFadeScript.fadeDelayDur = 0f;
-	// 		riddTextFadeScript.FadeOut();
-	// 		plainGoldEggFadeScript.FadeOut();
-	// 	}
-	// }
 
 	public void ShowRiddleButton () {
-		if (clickOnEggsScript.goldenEggFound == 1) {
+		if (GlobalVariables.globVarScript.riddleSolved) {
 			riddleBtn.interactable = false;
 			riddButtonCGFadeScript.maxAlpha = 0.5f;
 		}

@@ -22,7 +22,6 @@ public class RotationBurst : MonoBehaviour {
 	private float curRotSpeed, curRot; // curRotDur = spin duration!
 	private float direction = 1f;
 	private float iniZRot;
-
 	private float angleLerp;
 	private float targetRot;
 	public int curRotAmnt;
@@ -132,6 +131,21 @@ public class RotationBurst : MonoBehaviour {
 				//reset sound
 				rotationSoundOn = false;
 			}
+		}
+	}
+
+	public IEnumerator ShrinkTipTrails() {
+		float iniTrailTime = tipTrails[0].time;
+		float percent = 1f;
+		float trailTime = 1;
+		while (trailTime > 0) {
+			percent -= Time.deltaTime/0.5f;
+			trailTime = iniTrailTime*percent;
+			foreach(TrailRenderer tipTrail in tipTrails)
+			{
+				tipTrail.time = trailTime;
+			}
+			yield return null;
 		}
 	}
 

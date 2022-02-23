@@ -8,16 +8,14 @@ public class LevelCompEggCounter : MonoBehaviour {
 	public float eggAmnt;
 	private float prevEggAmnt;
 	
-	void Update () {
-		if (eggAmnt != prevEggAmnt) {
-			// tmp.text = "x" + eggAmnt;
-			if (eggAmnt < 10) {
-				tmp.text = "0" + eggAmnt;
-			}
-			else {
-				tmp.text = "" + eggAmnt;
-			}
+	public void AddEgg() {
+		print ("eggamount plus wanonejuan");
+		eggAmnt++;
+		if (eggAmnt < 10) {
+			tmp.text = "0" + eggAmnt;
 		}
-		prevEggAmnt = eggAmnt;
+		else {
+			tmp.text = "" + eggAmnt;
+		}
 	}
 }

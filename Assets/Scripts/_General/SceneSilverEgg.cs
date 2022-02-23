@@ -49,7 +49,7 @@ public class SceneSilverEgg : MonoBehaviour {
 				//Debug.Log("A Silver egg moves from puzz to pan! Dun dun duuuunnnn");
 				if (lerpTimer >= 1) {
 					this.transform.position = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.position;
-					clickOnEggsScript.EggMoving(false); // if egg pos = panel pos
+					clickOnEggsScript.EggMoving(false, false, true); // if egg pos = panel pos
 					sendToPanel = false;
 					this.transform.parent = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.parent;
 					this.transform.localScale = iniScale;
@@ -61,7 +61,7 @@ public class SceneSilverEgg : MonoBehaviour {
 					trailFX.Stop(true);
 					if (lastSpawned) {	
 						// Sequence finished.
-						ClickOnEggs.inASequence = false;
+						//ClickOnEggs.inASequence = false;
 						lastSpawned = false;
 					}
 				}

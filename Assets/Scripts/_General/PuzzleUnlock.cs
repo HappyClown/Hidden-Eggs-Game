@@ -8,6 +8,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	public Animator anim;
 	public PuzzPieceAnimEvents PuzzPieceFXsScript;
 	public FadeInOutSprite pointerFadeScript;
+	public GameObject darkenScreenCanvas;
 
 	[Header("Unlocked Area")]
 	public bool puzzIntroDone;
@@ -47,6 +48,7 @@ public class PuzzleUnlock : MonoBehaviour {
 		anim.enabled = true;
 		anim.SetTrigger("PuzzPiecePop");
 		//Play FX's through animation events
+		darkenScreenCanvas.SetActive(true);
 		darkScreenFadeScript.FadeIn();
 		sceneTapScript.canTapEggRidPanPuz = false;
 		sceneTapScript.canTapHelpBird = false;
@@ -95,7 +97,9 @@ public class PuzzleUnlock : MonoBehaviour {
 	}
 	public void LoadPuzzleIntro() {
 		puzzIntroDone = GlobalVariables.globVarScript.puzzIntroDone;
-		ActivatePuzzle();
+		if (puzzIntroDone) {
+			ActivatePuzzle();
+		}
 	}
 	void SavePuzzleIntro() {
 		GlobalVariables.globVarScript.puzzIntroDone = puzzIntroDone;

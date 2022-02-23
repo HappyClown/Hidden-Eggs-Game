@@ -41,11 +41,8 @@ public class HelperBirdHint : MonoBehaviour {
 	}
 
 	public void StartHint() {
-		if (hintManScript.hintAvailable) {
-			hintManScript.startHint = true;
-			//sound long
-			audioHelperBirdScript.hintSndOnLong();
-		}
+		hintManScript.StartHint();
+		audioHelperBirdScript.hintSndOnLong();
 		// Else possible just restart the hint from teh bird, can happen if the hint ball is far away from the bird the player can have time to press the hint button before the hint ball comes back and then nothing happens, which isn't super bad either, but it feels weird to press the button only to have nothing happen.
 		slideInScript.MoveBirdUpDown();
 		hintCGFadeScript.FadeOut();

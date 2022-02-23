@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GoldenEggAnimEvents : MonoBehaviour {
-	public ParticleSystem fallSparkles, landingBurst, flash, shafts, glow, backSparkle, shineSparkle, burstSparkles;
+	public ParticleSystem fallSparkles, landingBurst, flash, shafts, /* glow, */ backSparkle, /* shineSparkle, */ burstSparkles;
 	public Animator anim;
 	public SpriteRenderer overlaySprite;
 
@@ -37,20 +37,20 @@ public class GoldenEggAnimEvents : MonoBehaviour {
 		shafts.Play();
 	}
 
-	public void PlayGlow() {
-		glow.gameObject.SetActive(true);
-		glow.Play();
-	}
+	// public void PlayGlow() {
+	// 	glow.gameObject.SetActive(true);
+	// 	glow.Play();
+	// }
 
 	public void PlayBackSparkles() {
 		backSparkle.gameObject.SetActive(true);
 		backSparkle.Play();
 	}
 
-	public void PlayShineSparkle() {
-		shineSparkle.gameObject.SetActive(true);
-		shineSparkle.Play();
-	}
+	// public void PlayShineSparkle() {
+	// 	shineSparkle.gameObject.SetActive(true);
+	// 	shineSparkle.Play();
+	// }
 
 	public void PlayBurstSparkles() {
 		burstSparkles.gameObject.SetActive(true);

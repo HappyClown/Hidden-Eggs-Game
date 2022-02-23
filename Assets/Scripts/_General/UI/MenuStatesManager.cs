@@ -95,6 +95,7 @@ public class MenuStatesManager : MonoBehaviour {
 
 	void TurnOn() {
 		sceneUICG.interactable = false;
+		menuCG.gameObject.SetActive(true);
 		menuStates = MenuStates.TurningOn;
 		if (puzzEngScript) {
 			puzzEngScript.canPlay = false;
@@ -112,7 +113,7 @@ public class MenuStatesManager : MonoBehaviour {
 		}
 		if (lvlTapManScript) {
 			lvlTapManScript.ZoomOutCameraReset();
-		}	
+		}
 	}
 
 	void TurningOn() {
@@ -133,7 +134,6 @@ public class MenuStatesManager : MonoBehaviour {
 		}
 
 		if (inputDetScript.Tapped) {
-			Debug.Log("lalallaa");
 			UpdateMousePos();
 			hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
 			if (hit && !hit.collider.CompareTag("PuzzlePauseMenu") || !hit) {
@@ -174,15 +174,18 @@ public class MenuStatesManager : MonoBehaviour {
 					sceneTapScript.TapLevelStuffTrue();
 				}
 			}
+			if (menuCG.gameObject.activeSelf) {
+				menuCG.gameObject.SetActive(false);
+			}
 		}
 	}
 
 	void IsOff() {
-		
 	}
 
 	void PuzzleConfTurnOn() {
 		sceneUICG.interactable = false;
+		puzzleConfCG.gameObject.SetActive(true);
 		puzzleConfStates = MenuStates.TurningOn;
 		if (puzzEngScript) {
 			puzzEngScript.canPlay = false;
@@ -261,10 +264,12 @@ public class MenuStatesManager : MonoBehaviour {
 					sceneTapScript.TapLevelStuffTrue();
 			}
 		}
+		if (puzzleConfCG.gameObject.activeSelf) {
+			puzzleConfCG.gameObject.SetActive(false);
+		}
 	}
 
 	void PuzzleConfIsOff() {
-		
 	}
 
 	public void UpdateMousePos() {

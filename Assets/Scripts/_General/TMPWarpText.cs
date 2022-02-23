@@ -10,8 +10,8 @@ public class TMPWarpText : MonoBehaviour {
 	public AnimationCurve VertexCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(0.5f, 1.0f), new Keyframe(1, 0f));
 	public float CurveScale = 1.0f;
 	//public bool rotateChars;
-	[Header ("References")]
-	public TMPMotionHandler handlerScript;
+	// [Header ("References")]
+	// public TMPMotionHandler handlerScript;
 	[Header ("Info")]
 	public bool warping;
 	public TMP_Text m_TextComponent;

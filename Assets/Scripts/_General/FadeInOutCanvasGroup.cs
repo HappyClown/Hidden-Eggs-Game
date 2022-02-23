@@ -62,7 +62,6 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 
 	IEnumerator FadingIn() {
 		while (fadingIn) {
-			print(this.gameObject.name+" is fdinin in.");
 			t += Time.deltaTime / fadeDuration;
 			canvasG.alpha = Mathf.SmoothStep(0f, maxAlpha, t);
 			if (t >= 1f) {
@@ -73,6 +72,7 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 			}
 			yield return null;
 		}
+		SetCanvasOptions(true);
 		activeRoutine = null;
 	}
 

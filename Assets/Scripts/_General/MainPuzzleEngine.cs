@@ -124,28 +124,6 @@ public class MainPuzzleEngine : MonoBehaviour
 			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
 			// Turn off interaction for all three level select dots.
 			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
-
-			// #region Click On SilverEggs
-			// // Clicking on a silver egg.
-			// if (myInput.Tapped) {
-			// 	UpdateMousePos();
-			// 	hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
-			// 	if (hit) {
-			// 		if (hit.collider.CompareTag("Egg")) {
-			// 			SilverEggs silEggTappedScript = hit.collider.gameObject.GetComponent<SilverEggs>();
-			// 			silEggTappedScript.StartSilverEggAnim();
-			// 			hit.collider.enabled = false;
-			// 			//SFX CLICK SILVER EGG
-			// 			audioSceneParkPuzzScript.silverEgg();
-			// 			if (!silEggTappedScript.hollow) { mySilverEggMan.silverEggsPickedUp++; }
-			// 			mySilverEggMan.SaveSilverEggsToCorrectFile();
-			// 			mySilverEggMan.SaveNewSilEggsFound(mySilverEggMan.allSilEggs.IndexOf(hit.collider.gameObject));
-			// 			mySilverEggMan.amntSilEggsTapped++;
-			// 			SilverEggsCheck(); // Check if the Silver Eggs have all been collected.
-			// 		}
-			// 	}
-			// }
-			// #endregion
 		}
 
 		if (waitMethod) {
@@ -245,11 +223,8 @@ public class MainPuzzleEngine : MonoBehaviour
 	public void ChangeLevelSetup() {
 		// Close up current level.
 		canPlay = false;
-
 		mySelectButton.UninteractableThreeDots();
-
 		LvlStuffFadeOut();
-		
 		setupChsnLvl = true;
 	}
 
@@ -287,25 +262,15 @@ public class MainPuzzleEngine : MonoBehaviour
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
-
-	// public void UpdateMousePos() {
-	// 	mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
-	// 	mousePos2D = new Vector2 (mousePos.x, mousePos.y);
-	// }
 	#endregion
 
 	#region Coroutines
 	// All silver eggs picked up, what happenes?
 	public IEnumerator PuzzleComplete () {
 		yield return new WaitForSeconds(0.5f);
-
-		//Debug.Log("Puzzle Completed cognraturations!!!");
-
 		yield return new WaitForSeconds(0.5f);
-
 		audioSceneParkPuzzScript.StopSceneMusic();
 		audioSceneParkPuzzScript.PlayTransitionMusic();
-
 		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.parkName);
 	}
 	#endregion

@@ -200,7 +200,7 @@ public class AudioSceneGeneral : MonoBehaviour
 
         //stop current music
         StopSceneMusic();
-        Debug.Log("ASG - Current Music Stopped :");
+        //Debug.Log("ASG - Current Music Stopped :");
 		PlayTransitionMusic();
         
         puzzleAnimationStop();

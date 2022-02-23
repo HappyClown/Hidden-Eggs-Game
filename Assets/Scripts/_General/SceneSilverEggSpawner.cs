@@ -5,46 +5,54 @@ using UnityEngine.SceneManagement;
 
 public class SceneSilverEggSpawner : MonoBehaviour {
 	[Header("Settings")]
-	public bool spawnSilverEggs;
 	public float silverEggSpawnDelay;
 	[Header ("References")]
 	public List<GameObject> silEggs;
-	public ClickOnEggs clickOnEggsScript;
+	public ClickOnEggs clickOnEggs;
+	public SceneEggMovement sceneEggMovement;
 	[Header ("Info")]
+	public bool spawnSilverEggs;
 	public int puzzSilEggCount;
 	public int sceneSilEggCount;
 	public List<int> puzzSilEggCountList;
 	public List<int> sceneSilEggCountList;
-	private int silEggSpawned;
 
-	void Awake () {
-		SetCorrectLevelLists();
-		SetListCounts();
-	}
-	void Update () {
-		// Wait until no other sequences are playing to start the Silver Eggs sequence.
-		if (spawnSilverEggs && !ClickOnEggs.inASequence) {
-			// In a sequence.
-			ClickOnEggs.inASequence = true;
-			for(int i = sceneSilEggCount; i < puzzSilEggCount; i++) {
-				silEggSpawned++;
-				silEggs[puzzSilEggCountList[i]].SetActive(true);
-				silEggs[puzzSilEggCountList[i]].GetComponent<SceneSilverEgg>().SendToPanel(puzzSilEggCountList[i], silverEggSpawnDelay * silEggSpawned);
-				if (i == puzzSilEggCount - 1) {
-					silEggs[puzzSilEggCountList[i]].GetComponent<SceneSilverEgg>().lastSpawned = true;
-				}
-			}
-			clickOnEggsScript.checkLvlCompleteF = silverEggSpawnDelay * silEggSpawned;
-			spawnSilverEggs = false;
-		}
-	}
 	// If new Silver Eggs have been collected in the puzzle, send them to the Egg Panel.
-	public void SpawnNewSilverEggs() {
+	public void NewSilverEggsCheck() {
 		SetCorrectLevelLists();
 		SetListCounts();
-		if (puzzSilEggCount > sceneSilEggCount) { // Meaning I have new silver eggs to send to the panel.
-			spawnSilverEggs = true;
+		// Check if there are new silver eggs to send to the panel.
+		if (puzzSilEggCount > sceneSilEggCount) { 
+			QueueSequenceManager.AddSequenceToQueue(StartSilverEggSpawnSequence);
 		}
+	}
+	// Start the coroutine sequence to spawn the silver eggs.
+	public void StartSilverEggSpawnSequence() {
+		StartCoroutine(SpawnSilverEggs());
+	}
+
+	IEnumerator SpawnSilverEggs() {
+		float timer = 0f;
+		int silEggsToSpawn = puzzSilEggCount - sceneSilEggCount;
+		int silEggSpawned = 0;
+		while (silEggSpawned < silEggsToSpawn) {
+			// Waiting time before spawning each silver egg.
+			while (timer < silverEggSpawnDelay) {
+				timer += Time.deltaTime;
+				yield return null;
+			}
+			timer = 0f;
+			// Spawn the next silver egg.
+			silEggs[puzzSilEggCountList[sceneSilEggCount]].SetActive(true);
+			sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(silEggs[puzzSilEggCountList[sceneSilEggCount]], clickOnEggs.silverEggSpots[sceneSilEggCount], 0+sceneSilEggCount, null, false, true, false));
+			GlobalVariables.globVarScript.sceneSilEggsCount.Add(sceneSilEggCount); 
+			GlobalVariables.globVarScript.SaveEggState();
+			sceneSilEggCount++;
+			silEggSpawned++;
+		}
+		// Save silver eggs that were put in the panel.
+		clickOnEggs.AddEggsFound();
+		yield return null;
 	}
 	// Assign the Silver Egg lists to variables.
 	public void SetCorrectLevelLists() {

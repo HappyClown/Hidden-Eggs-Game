@@ -307,10 +307,10 @@ public class HopscotchRiddle : MonoBehaviour
     }
 
 	public void HopscotchRiddleSolved () {
-		if (clickOnEggsScript.goldenEggFound == 0) {
-			clickOnEggsScript.goldenEggFound = 1;
-			clickOnEggsScript.AddEggsFound();
-		}
+		// if (clickOnEggsScript.goldenEggFound == 0) {
+		// 	clickOnEggsScript.goldenEggFound = 1;
+		// 	clickOnEggsScript.AddEggsFound();
+		// }
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

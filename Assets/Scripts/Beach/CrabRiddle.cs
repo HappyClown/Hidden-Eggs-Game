@@ -162,10 +162,10 @@ public class CrabRiddle : MonoBehaviour {
 	}
 
 	public void CrabRiddleSolved () {
-		if (clickOnEggsScript.goldenEggFound == 0) {
-			clickOnEggsScript.goldenEggFound = 1;
-			clickOnEggsScript.AddEggsFound();
-		}
+		// if (clickOnEggsScript.goldenEggFound == 0) {
+		// 	clickOnEggsScript.goldenEggFound = 1;
+		// 	clickOnEggsScript.AddEggsFound();
+		// }
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

@@ -13,10 +13,12 @@ public class SceneEggMovement : MonoBehaviour {
 	[Header("Egg Movement")]
 	public float moveDuration;
 	public AnimationCurve animCurve;
-	public Vector3 cornerScale, cornerRotation;
+	public Vector3 normalEggCornerScale, cornerRotation;
 	private Vector3 adjustedCornerScale;
 
-	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, GameObject panelPosition, int eggNumber) {
+	public IEnumerator MoveSceneEggToCorner(GameObject sceneEgg, GameObject panelPosition, int eggNumber, Vector3? customCornerScale = null, bool regEgg = true, bool silEgg = false, bool golEgg = false) {
+		// Tell the egg panel that an egg is moving so it should open.
+		clickOnEggs.EggMoving(true);
 		// Ask to do pop animation, grab the animator on the scene egg, enable it, play the animation.
 		Animator animator = sceneEgg.GetComponent<Animator>();
 		animator.enabled = true;
@@ -28,6 +30,13 @@ public class SceneEggMovement : MonoBehaviour {
 		animator.enabled = false;
 		// Once animation is done, activate the trail FX and move the egg to its given panel position while taking into account panel size changes caused by camera zooming.
 		float timer = 0f;
+		Vector3 cornerScale;
+		if (customCornerScale != null) {
+			cornerScale = (Vector3)customCornerScale;
+		}
+		else {
+			cornerScale = normalEggCornerScale;
+		}
 		Vector3 startPos = new Vector3 (sceneEgg.transform.position.x, sceneEgg.transform.position.y, -5f);
 		Vector3 startScale = sceneEgg.transform.localScale;
 		float targetZ = startPos.z + 0.5f; 
@@ -44,7 +53,7 @@ public class SceneEggMovement : MonoBehaviour {
 			yield return null;
 		}
 		// Egg has arrived to its position in the egg panel, signal that one less egg is moving.
-		clickOnEggs.EggMoving(false);
+		clickOnEggs.EggMoving(false, regEgg, silEgg, golEgg);
 		sceneEgg.transform.parent = clickOnEggs.eggPanel.transform;
 		sceneEgg.transform.position = new Vector3(panelPosition.transform.position.x, panelPosition.transform.position.y, panelPosition.transform.position.z-(eggNumber*0.01f));
 		sceneEgg.transform.localScale = cornerScale;

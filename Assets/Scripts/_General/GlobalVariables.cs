@@ -163,7 +163,7 @@ public class GlobalVariables : MonoBehaviour
 			if(clickOnEggsScript != null && eggsFoundBools.Count < 1) {
 				foreach(GameObject egg in clickOnEggsScript.eggs) 
 				{
-					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+					eggsFoundBools.Add(false);
 					eggsFoundOrder.Add(0);
 				}
 			}
@@ -212,7 +212,7 @@ public class GlobalVariables : MonoBehaviour
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
 					//Debug.Log("should be filling eggsFoundBool & eggsFoundOrder lists");
-					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+					eggsFoundBools.Add(false);
 					eggsFoundOrder.Add(0);
 				}
 			}
@@ -261,7 +261,7 @@ public class GlobalVariables : MonoBehaviour
 				foreach(GameObject egg in clickOnEggsScript.eggs)
 				{
 					// Debug.Log("should be filling eggsfoundbool array");
-					eggsFoundBools.Add(egg.GetComponent<EggGoToCorner>().eggFound);
+					eggsFoundBools.Add(false);
 					eggsFoundOrder.Add(0);
 				}
 			}

@@ -13,10 +13,10 @@ public class TMPMotionHandler : MonoBehaviour {
 
 	// If possible call this somewhere else then in Start().
 	void Start() {
-		GenerateOrders();
 		if (m_TextComponent == null) {
 			m_TextComponent = this.gameObject.GetComponent<TMP_Text>();
 		}
+		GenerateOrders();
 	}
 
 	void Update() {
@@ -32,8 +32,10 @@ public class TMPMotionHandler : MonoBehaviour {
 
 	// Create a list to be used by other TMP motion scripts.
 	public void GenerateOrders() {
+		m_TextComponent.ForceMeshUpdate();
 		// Store textInfo and characterCount values.
 		textInfo = m_TextComponent.textInfo;
+		//print(m_TextComponent.textInfo.characterCount);
 		characterCount = textInfo.characterCount;
 		// Clear all the order lists.
 		leftRightOrder.Clear();

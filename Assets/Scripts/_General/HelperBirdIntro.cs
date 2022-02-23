@@ -10,7 +10,7 @@ public class HelperBirdIntro : MonoBehaviour {
 	[Header("Dissolve")]
 	public float dissDuration;
 	public Material dissMat;
-	public bool waitToStartSeq;
+	public GameObject birdBWObj;
 	private float dissAmnt;
 	private bool isDissolving, isDissolved, birdTapped;
 	public GameObject inSceneBirdBtnObj, birdObj;
@@ -38,10 +38,16 @@ public class HelperBirdIntro : MonoBehaviour {
 			inSceneBirdBtnObj.SetActive(true);
 			dissMat.SetFloat("_Threshold", 1.01f);
 			birdTapped = true;
+			shakeParSys[0].gameObject.SetActive(false);
+			birdBWObj.SetActive(false);
+			anim.enabled = false;
 			this.enabled = false;
 		}
 		else {
 			dissMat.SetFloat("_Threshold", 0f);
+			shakeParSys[0].gameObject.SetActive(true);
+			birdBWObj.SetActive(true);
+			anim.enabled = true;
 		}
 		//ogBirdPos = birdObj.transform.position;
 		if (!audioSceneGenScript) {
@@ -69,9 +75,6 @@ public class HelperBirdIntro : MonoBehaviour {
 				QueueSequenceManager.AddSequenceToQueue(StartBirdIntroSequence);
 				inputDetScript.cancelDoubleTap = true;
 				//birdObj.transform.position = ogBirdPos;
-				dissParSys.Play();
-				sceneTapEnabScript.canTapPauseBtn = false;
-				audioSceneGenScript.unfrozenBirdSnd();
 			}
 			// Periodically shake the bird to attract the player's attention
 			timer += Time.deltaTime;
@@ -98,6 +101,10 @@ public class HelperBirdIntro : MonoBehaviour {
 	}
 	// Dissolve the bird's B&W material.
 	IEnumerator DissolveHelpBird() {
+		dissParSys.gameObject.SetActive(true);
+		dissParSys.Play();
+		sceneTapEnabScript.canTapPauseBtn = false;
+		audioSceneGenScript.unfrozenBirdSnd();
 		while (dissAmnt <= 1) {
 			dissAmnt += Time.deltaTime / dissDuration;
 			dissMat.SetFloat("_Threshold", dissAmnt);
@@ -112,6 +119,9 @@ public class HelperBirdIntro : MonoBehaviour {
 		dissParSys.Stop();
 		inSceneBirdBtnObj.SetActive(true);
 		slideInScript.MoveBirdUpDown();
+		shakeParSys[0].gameObject.SetActive(false);
+		birdBWObj.SetActive(false);
+		anim.enabled = false;
 		this.enabled = false;
 	}
 }

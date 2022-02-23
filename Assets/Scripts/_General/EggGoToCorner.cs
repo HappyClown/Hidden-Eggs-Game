@@ -63,8 +63,8 @@ public class EggGoToCorner : MonoBehaviour
 			this.GetComponent<Collider2D>().enabled = false;
 			if (!amIGolden) { 
 				clickOnEggsScript.eggsFound++; 
-				clickOnEggsScript.eggsInPanel++;
-				if (clickOnEggsScript.eggsInPanel == puzzUnlockScript.puzzUnlockAmnt) {
+				clickOnEggsScript.regularEggsFound++;
+				if (clickOnEggsScript.regularEggsFound == puzzUnlockScript.puzzUnlockAmnt) {
 					puzzUnlockScript.ActivatePuzzle();
 				}
 			}
@@ -109,10 +109,10 @@ public class EggGoToCorner : MonoBehaviour
 				moveThisEgg = false;
 				clickOnEggsScript.EggMoving(false);
 				if (!amIGolden) {
-					clickOnEggsScript.eggsInPanel++; 
-					puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.eggsInPanel);
+					clickOnEggsScript.regularEggsFound++; 
+					puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.regularEggsFound);
 				} else {
-					clickOnEggsScript.AdjustGoldenEggCount(); 
+					//clickOnEggsScript.AdjustGoldenEggCount(); 
 					goldenEgg.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
 				}
 				clickOnEggsScript.UpdateEggsString();

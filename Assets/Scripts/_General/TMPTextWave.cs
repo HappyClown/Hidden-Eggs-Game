@@ -54,6 +54,7 @@ public class TMPTextWave : MonoBehaviour {
 		
 		textInfo = m_TextComponent.textInfo;
 		characterCount = textInfo.characterCount;
+		lastChar = characterCount;
 		
 		if (randomOrder) {
 			charOrder = handlerScript.randomOrder;
@@ -84,6 +85,7 @@ public class TMPTextWave : MonoBehaviour {
 				StartCoroutine(ContinuousWave(verts, matIndex, vertIndex, charOrder[curChar]));
 			}
 			curChar++;
+			
 			// Delay between every text character.
 			yield return new WaitForSeconds(timeBetweenChar);
 		}

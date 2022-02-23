@@ -18,15 +18,12 @@ public class LevelCompHelpBird : MonoBehaviour {
 	public FadeInOutTMP congratsTextFadeScript;
 	public FadeInOutCanvasGroup counterCGFadeScript;
 	public FadeInOutCanvasGroup backBtnCGFadeScript;
-
+	public GameObject congratsTextCanvasGO, eggCounterCanvasGO, EndLvlButtCanvasGO;
+	public GameObject helpBirdParentGO;
 	public AudioHelperBird audioHelperBirdScript;
 
 	[Header ("Info")]
 	public bool moveUp;
-	public bool waitForBubIn, waitForConTxtOut, waitForCountOut;
-	private float lerp;
-	private bool moveDown, shown, hidden;
-	private bool adjustingBubSize;
 	private float newBubSize, prevBubSize, curBubSize, bubLerp;
 
 	private bool audioBirdPop = false;
@@ -34,86 +31,97 @@ public class LevelCompHelpBird : MonoBehaviour {
 	void Start () {
 		if (!audioHelperBirdScript) {audioHelperBirdScript = GameObject.Find("Audio").GetComponent<AudioHelperBird>();}
 	}
-	
-	void Update () {
-		if (moveUp) {
-			lerp += Time.deltaTime / moveDur;
-			helperBird.transform.position = Vector3.Lerp(hiddenTrans.position, shownTrans.position, moveCurve.Evaluate(lerp));
 
-			if(!audioBirdPop){			
-			//AUDIO SWOOSH BIRD
-			audioHelperBirdScript.youDidItSnd();
-			audioBirdPop = true;
-			}
-
-			if (lerp >= 1f) {
-				helperBird.transform.position = shownTrans.position;
-				lerp = 0f;
-				moveUp = false;
-				waitForBubIn = true;
-				textBubFadeScript.FadeIn();
-				textBubPointerFadeScript.FadeIn();
-				AdjustBubSize(bubSizeA);
-			 }
-		}
-		if (waitForBubIn && textBubFadeScript.shown) {
-			congratsTextAnim.SetTrigger("PopIn");
-			congratsTextFadeScript.FadeIn();
-			waitForBubIn = false;
-
-				//AUDIO BIRD HELP SOUND
-				audioHelperBirdScript.birdHelpSound();
-		}
-		if (waitForConTxtOut) {
-			if (congratsTextFadeScript.shown) {
-				congratsTextFadeScript.FadeOut();
-			}
-			if (congratsTextFadeScript.hidden && counterCGFadeScript.hidden) {
-				AdjustBubSize(bubSizeB);
-			}
-			if (congratsTextFadeScript.hidden && counterCGFadeScript.hidden && curBubSize == bubSizeB) {
-				counterCGFadeScript.FadeIn();
-				waitForConTxtOut = false;
-
-				//AUDIO BIRD HELP SOUND
-				audioHelperBirdScript.birdHelpSound();
-			}
-		}
-		if (waitForCountOut) {
-			if (counterCGFadeScript.shown) {
-				counterCGFadeScript.FadeOut();
-			}
-			if (counterCGFadeScript.hidden && backBtnCGFadeScript.hidden) {
-				AdjustBubSize(bubSizeC);
-			}
-			if (counterCGFadeScript.hidden && backBtnCGFadeScript.hidden && curBubSize == bubSizeC) {
-				backBtnCGFadeScript.FadeIn();
-				waitForConTxtOut = false;
-
-				
-				//AUDIO BIRD HELP SOUND
-				audioHelperBirdScript.birdHelpSound();
-			}
-		}
-
-		if (adjustingBubSize) {
-			bubLerp += Time.deltaTime / bubAdjustDur;
-			curBubSize = Mathf.Lerp(prevBubSize, newBubSize, bubLerp);
-			textBubSpriteRend.size = new Vector2(curBubSize, textBubSpriteRend.size.y);
-			if (bubLerp >= 1f) {
-				bubLerp = 0f;
-				curBubSize = newBubSize;
-				adjustingBubSize = false;
-			}
-		}
+	public void StartLevelCompBird() {
+		this.enabled = true;
+		helpBirdParentGO.SetActive(true);
+		helperBird.SetActive(true);
+		StartCoroutine(MoveBirdUp());
 	}
 
-	void AdjustBubSize(float targetBubSize) {
+	IEnumerator MoveBirdUp() {
+		float timer = 0f;
+		audioHelperBirdScript.youDidItSnd();
+		audioBirdPop = true;
+		// Move the bird up.
+		while (timer < 1) {
+			timer += Time.deltaTime / moveDur;
+			helperBird.transform.position = Vector3.Lerp(hiddenTrans.position, shownTrans.position, moveCurve.Evaluate(timer));
+			yield return null;
+		}
+		helperBird.transform.position = shownTrans.position;
+		timer = 0f;
+		moveUp = false;
+		textBubFadeScript.gameObject.SetActive(true);
+		textBubFadeScript.FadeIn();
+		textBubPointerFadeScript.FadeIn();
+		AdjustBubSize(bubSizeA);
+		// Wait for the text bubble to fully fade in.
+		while (timer < textBubFadeScript.fadeDuration) {
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		// Once the text bubble has appeared, fade in the congrats text.
+		congratsTextCanvasGO.SetActive(true);
+		congratsTextAnim.SetTrigger("PopIn");
+		congratsTextFadeScript.FadeIn();
+		//AUDIO BIRD HELP SOUND
+		audioHelperBirdScript.birdHelpSound();
+	}
+
+	public IEnumerator SwitchTextBubbleContent() {
+		float timer = 0f;
+		congratsTextFadeScript.FadeOut();
+		// Wait for the congratulations text to fully fade out.
+		while (timer < congratsTextFadeScript.fadeDuration) {
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		timer = 0f;
+		congratsTextCanvasGO.SetActive(false);
+		StartCoroutine(AdjustBubSize(bubSizeB));
+		// Wait for the bubble size to get adjusted.
+		while (timer < bubAdjustDur) {
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		eggCounterCanvasGO.SetActive(true);
+		counterCGFadeScript.FadeIn();
+		audioHelperBirdScript.birdHelpSound();
+	}
+
+	public IEnumerator SetupEndLevelButton() {
+		float timer = 0f;
+		counterCGFadeScript.FadeOut();
+		while (timer < counterCGFadeScript.fadeDuration) {
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		timer = 0f;
+		eggCounterCanvasGO.SetActive(false);
+		StartCoroutine(AdjustBubSize(bubSizeC));
+		while (timer < bubAdjustDur) {
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		EndLvlButtCanvasGO.SetActive(true);
+		backBtnCGFadeScript.FadeIn();
+		audioHelperBirdScript.birdHelpSound();
+	}
+
+	IEnumerator AdjustBubSize(float targetBubSize) {
 		if (curBubSize == 0) {
 			curBubSize = textBubSpriteRend.size.x;
 		}
 		prevBubSize = curBubSize;
 		newBubSize = targetBubSize;
-		adjustingBubSize = true;
+		while (bubLerp < 1f) {
+			bubLerp += Time.deltaTime / bubAdjustDur;
+			curBubSize = Mathf.Lerp(prevBubSize, newBubSize, bubLerp);
+			textBubSpriteRend.size = new Vector2(curBubSize, textBubSpriteRend.size.y);
+			yield return null;
+		}
+		bubLerp = 0f;
+		curBubSize = newBubSize;
 	}
 }

@@ -34,6 +34,7 @@ public class RainbowRiddle : MonoBehaviour
 				basket.SetActive(false);
 			}
 			goldenEgg.SetActive(true);
+			this.enabled = false;
 		}
     }
 
@@ -76,9 +77,7 @@ public class RainbowRiddle : MonoBehaviour
 						basketNumber = 0;
 						RainbowRiddleSolved();
 						// Activate the Golden Egg sequence.
-						goldenEgg.SetActive(true);
-						goldenEggScript.waitingToStartSeq = true;
-						goldenEggScript.CannotTaps();
+						QueueSequenceManager.AddSequenceToQueue(goldenEggScript.StartGoldenEggSequence);
 						// Disable all basket colliders.
 						foreach (GameObject basket in fruitBaskets)
 						{
@@ -109,10 +108,10 @@ public class RainbowRiddle : MonoBehaviour
     }
 
     public void RainbowRiddleSolved () {
-		if (clickOnEggsScript.goldenEggFound == 0) {
-			clickOnEggsScript.goldenEggFound = 1;
-			clickOnEggsScript.AddEggsFound();
-		}
+		// if (clickOnEggsScript.goldenEggFound == 0) {
+		// 	clickOnEggsScript.goldenEggFound = 1;
+		// 	//clickOnEggsScript.AddEggsFound();
+		// }
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

@@ -21,113 +21,100 @@ public class LevelComplete : MonoBehaviour
 	public LevelCompleteEggSpawner levelCompleteEggSpaScript;
 	public LevelCompleteEggBag levelCompleteEggbagScript;
 	public LevelCompHelpBird lvlCompBirdScript;
+	public GameObject titleCG;
 	public TMPTextColorFade congratsColorFadeScript;
 	public TMPTextWave congratsWaveScript;
 	public FadeInOutImage coverFadeScript;
-	public FadeInOutSprite[] eggsFadeScripts;
-	public FadeInOutSprite lineFadeScript;
-	public FadeInOutTMP totalCounterFadeScript;
+	public GameObject coverCanvasObject;
+	//public FadeInOutSprite[] eggsFadeScripts;
+	//public FadeInOutTMP totalCounterFadeScript;
+	public GameObject splineWalkerGO;
 	public SplineWalker splineWalkerScript;
 	public ParticleSystem splineWalkerFX;
 	public Button endLvlBtn;
-	//public Button tapBtn;
 	public AudioSceneGeneral audioSceneGenScript;
 	public AudioLevelCompleteAnim audioLevelCompleteScript;
 	public inputDetector inputDetScript;
 
 	[Header ("Info")]
-	public bool waitingToStartSeq;
-	public bool inLvlCompSeqSetup;
-	private bool inLvlCompSeqEnd;
 	private bool tapToLeave;
 	private float timer;
 	#endregion
 
 	void Start () {
-		//tapBtn.onClick.AddListener(TapBtnPress);
 		if (!audioSceneGenScript) {audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();}
 		if (!audioLevelCompleteScript) {audioLevelCompleteScript = GameObject.Find("Audio").GetComponent<AudioLevelCompleteAnim>();}
 		endLvlBtn.onClick.AddListener(EndLevel);
 	}
-	
-	void Update () {
-		if (waitingToStartSeq && !ClickOnEggs.inASequence && clickOnEggsScript.eggMoving <= 0) {
+
+	public void StartLevelCompleteSequence() {
 			clickOnEggsScript.openEggPanel = false;
 			clickOnEggsScript.lockDropDownPanel = false;
-			inLvlCompSeqSetup = true;
 			// In a sequence.
-			ClickOnEggs.inASequence = true;
-			waitingToStartSeq = false;
 			clickOnEggsScript.menuStatesScript.menuStates = MenuStatesManager.MenuStates.TurnOff;
-			//endLvlBtn.interactable = false;
 			sceneTapEnabScript.canTapEggRidPanPuz = false;
 			sceneTapEnabScript.canTapHelpBird = false;
 			sceneTapEnabScript.canTapPauseBtn = false;
 			sceneTapEnabScript.canTapLvlComp = true;
+			StartCoroutine(LevelCompleteSequence());
+	}
+	
+	void Update () {
+		if (Input.GetKeyDown("t")) {
+			StartLevelCompleteSequence();
 		}
-
-		if (inLvlCompSeqSetup) {
+		if (tapToLeave && inputDetScript.Tapped) {
+			endLvlBtn.interactable = false;
+			EndLevel();
+			this.enabled = false;
+		}
+	}
+	IEnumerator LevelCompleteSequence() {
+		while (timer < endLevel) {
 			timer += Time.deltaTime;
-			if (timer > darkenScreen && !darkenScreenStarted) {
+			if (timer >= darkenScreen && !darkenScreenStarted) {
+				coverCanvasObject.SetActive(true);
 				coverFadeScript.FadeIn();
 				lvlTapManScript.ZoomOutCameraReset();
 				darkenScreenStarted = true;
 			}
 			if (timer >= birdIn && !birdInStarted) {
-				lvlCompBirdScript.moveUp = true;
+				lvlCompBirdScript.StartLevelCompBird();
 				birdInStarted = true;
 			}
-			if (timer > showCongrats && !showCongratsStarted) {
-				// AUDIO - CONGRATS TITLE STARTS APPEARING!
+			if (timer >= showBag && !showBagStarted) {
+				levelCompleteEggbagScript.MakeCurrentBagAppear();
+				showBagStarted = true;
+			}
+			if (timer >= spawnEggs && !spawnEggsStarted) {
+				//levelCompleteEggSpaScript.StartAllEggSpawn();
+				levelCompleteEggSpaScript.StartCoroutine(levelCompleteEggSpaScript.StartAllEggs());
+				spawnEggsStarted = true;
+			}
+			if (timer >= showTotalCounter && !showTotalCounterStarted) {
+				lvlCompBirdScript.StartCoroutine(lvlCompBirdScript.SwitchTextBubbleContent());
+				showTotalCounterStarted = true;
+			}
+			if (timer >= startTmpWave && !tmpWaveStarted) {
+				titleCG.SetActive(true);
+				congratsWaveScript.waveOn = true;
+				tmpWaveStarted = true;
+			}
+			if (timer >= showCongrats && !showCongratsStarted) {
 				audioLevelCompleteScript.congratsTxtSnd();
-
 				congratsColorFadeScript.startFadeIn = true;
+				splineWalkerGO.SetActive(true);
 				splineWalkerScript.isPlaying = true;
 				splineWalkerFX.Play();
 				showCongratsStarted = true;
 			}
-			if (timer > startTmpWave && !tmpWaveStarted) {
-				congratsWaveScript.waveOn = true;
-				tmpWaveStarted = true;
-			}
-			// if (timer > showEggs && !showEggsStarted) { 
-			// 	if (eggsFadeScripts.Length > 0) {
-			// 		foreach (FadeInOutSprite eggFadeScript in eggsFadeScripts)
-			// 		{
-			// 			eggFadeScript.FadeIn();
-			// 		}
-			// 	}
-			// 	showEggsStarted = true;
-			// }
-			if (timer > showTotalCounter && !showTotalCounterStarted) {
-				// lineFadeScript.FadeIn();
-				// totalCounterFadeScript.FadeIn();
-				lvlCompBirdScript.waitForConTxtOut = true;
-				showTotalCounterStarted = true;
-			}
-			if (timer > spawnEggs && !spawnEggsStarted) {
-				levelCompleteEggSpaScript.StartAllEggSpawn();
-				spawnEggsStarted = true;
-			}
-			if (timer > showBag && !showBagStarted) {
-				levelCompleteEggbagScript.MakeCurrentBagAppear();
-				showBagStarted = true;
-			}
-			// if (timer > showBagGlow && !showBagGlowStarted) {
-			// 	// levelCompleteEggbagScript.StartCurrentBagGlow();
-			// 	// levelCompleteEggbagScript.bagAnim.SetTrigger("Rise");
-			// 	showBagGlowStarted = true;
-			// }
-			if (timer > endLevel && !levelEnded) {
-				lvlCompBirdScript.waitForCountOut = true;
+			if (timer >= endLevel && !levelEnded) {
+				lvlCompBirdScript.StartCoroutine(lvlCompBirdScript.SetupEndLevelButton());
 				tapToLeave = true;
 				levelEnded = true;
+				this.enabled = true;
 			}
-
-			if (tapToLeave && inputDetScript.Tapped) {
-				endLvlBtn.interactable = false;
-				EndLevel();
-			}
+			yield return null;
 		}
 	}
 

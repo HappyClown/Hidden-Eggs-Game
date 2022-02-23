@@ -22,11 +22,11 @@ public class RotateXYZDrawer : PropertyDrawer
 		EditorGUI.indentLevel = 0;
 
 		var rotXBool = new Rect(position.x, position.y, 10, EditorGUI.GetPropertyHeight(property, label, true));
-		 Debug.Log("rotXBool width = " + rotXBool.width);
+		 //Debug.Log("rotXBool width = " + rotXBool.width);
 		rotXBool.width = 5;
 		rotXBool.xMax = 30;
 		var rotYBool = new Rect(position.x, position.y + 15, position.width - 50, EditorGUI.GetPropertyHeight(property, label, true));
-		 Debug.Log("rotYBool width = " + rotYBool.width);
+		 //Debug.Log("rotYBool width = " + rotYBool.width);
 		rotYBool.width = 500;
 		var rotZBool = new Rect(position.x, position.y + 30, 150, EditorGUI.GetPropertyHeight(property, label, true));
 

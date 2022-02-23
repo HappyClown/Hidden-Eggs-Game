@@ -92,14 +92,14 @@ public class inputDetector : MonoBehaviour {
 				singleTap = true;
 				tapPosition = Input.mousePosition;
 				tapped = true;
-				tapInputResponse.Tapped();
+				if (tapInputResponse) tapInputResponse.Tapped();
 			}
 			if(Input.touchCount == 1 && isPhoneDevice && !isDragging){
 				singleTap = true;
 				if(Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled && !isDragging){					
 					tapPosition = Input.touches[0].position;
 					tapped = true;
-					tapInputResponse.Tapped();
+					if (tapInputResponse) tapInputResponse.Tapped();
 				}
 			}
 		}

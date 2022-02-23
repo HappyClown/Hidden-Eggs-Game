@@ -104,7 +104,7 @@ public class Scale : MonoBehaviour
 			float secTime = Mathf.Abs((3 - weight)/lerpTime);
 			float restTime = 1 - secTime;
 			temporalTime += (Time.deltaTime /(arwRotSecPerPound *lerpTime * secTime ));
-			Debug.Log("temporalTime: "+temporalTime.ToString()+"  secTime: "+secTime.ToString()+" weight: "+weight.ToString());
+			//Debug.Log("temporalTime: "+temporalTime.ToString()+"  secTime: "+secTime.ToString()+" weight: "+weight.ToString());
 			if(temporalTime <= 1){
 				arrow.transform.localRotation = Quaternion.Lerp(startRot, arwRots[3].localRotation, temporalTime); 
 			}else{

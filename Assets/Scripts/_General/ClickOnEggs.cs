@@ -13,9 +13,10 @@ public class ClickOnEggs : MonoBehaviour {
 	public bool seqChecker; // to delete
 
 	[Header("Initial Sequence")]
+	public bool iniDelayOffForTesting;
 	public bool iniSeq;
 	public float iniSeqTimer;
-	public float iniDelay; // waiting for titlecard to fade away
+	public float iniDelay; // Waiting for the titlecard to fade away.
 	public float checkNewSilEggsF;
 	public float checkLvlCompleteF, allowTapF;
 	public bool iniSilEggCheckB, iniLvlCompCheckB;
@@ -35,6 +36,12 @@ public class ClickOnEggs : MonoBehaviour {
 	public PuzzleUnlock puzzUnlockScript;
 	public string puzzleSceneName;
 	public GameObject puzzleConfirmationUI;
+	[Header("Golden Egg")]
+	public GameObject goldenEggSpot;
+	public GameObject goldenEggGO;
+	public GameObject smallGoldenEggForPanel;
+	public int goldenEggFound;
+	public Vector3 goldenEggCornerScale;
 
 	[Header("Egg Panel")]
 	public GameObject eggPanel;
@@ -42,10 +49,8 @@ public class ClickOnEggs : MonoBehaviour {
 	public List<FadeInOutSprite> eggShadowsFades;
 	public List<GameObject> silverEggSpots;
 	public SceneSilverEggSpawner sceneSilEggSpaScript;
-	public GameObject goldenEggSpot;
-	public int goldenEggFound;
 	private Coroutine panelMoveCoroutine;
-	public int eggsInPanel;
+	public int regularEggsFound;
 	public int startEggFound;
 	public GameObject eggPanelHidden;
 	public GameObject eggPanelShown;
@@ -57,11 +62,8 @@ public class ClickOnEggs : MonoBehaviour {
 	public GameObject dropDrowArrow;
 	public List<GameObject> eggs;
 	private float timer;
-	//[HideInInspector]
 	public int eggMoving;
-	//[HideInInspector]
 	public bool lockDropDownPanel;
-	//[HideInInspector]
 	public bool openEggPanel;
 
 	[Header("Level Complete")]
@@ -77,10 +79,8 @@ public class ClickOnEggs : MonoBehaviour {
 	public SceneFade sceneFadeScript;
 	public AudioSceneGeneral audioSceneGenScript;
 	public MenuStatesManager menuStatesScript;
-	// Birdstory 2.0
 	public SceneEggMovement sceneEggMovement;
 	public EggsSaveLoad eggsSaveLoad;
-
 	private ParentStartLoadOrder parentStartLoadOrder;
 
 
@@ -95,12 +95,9 @@ public class ClickOnEggs : MonoBehaviour {
 		AdjustLevelComplete(); // Check if level has already been completed. (bool)
 		yield return null;
 		MakeSilverEggsAppear(); // Make the silver eggs already found appear in the egg panel.
+		MakeGoldenEggAppear(); // Make the golden egg appear if the riddle is solved.
 		yield return null;
-		AdjustSilverEggCount(); // Silver egg text.
-		AdjustGoldenEggCount(); // Golden egg text.
-		AdjustTotalEggsFound();	// Total eggs found = to what it was last time the scene was openned. // Not sure if this is needed.
-		UpdateEggsString();
-		audioSceneGenScript =  GameObject.Find ("Audio").GetComponent<AudioSceneGeneral>();
+		if (!audioSceneGenScript) audioSceneGenScript = GameObject.Find("Audio").GetComponent<AudioSceneGeneral>();
 		parentStartLoadOrder.goNext = true;
 		iniSeq = true;
 		StartCoroutine(InitialSequence());
@@ -110,36 +107,39 @@ public class ClickOnEggs : MonoBehaviour {
 	}
 
 	IEnumerator InitialSequence() {
-		while (iniDelay > 0) {
-			iniDelay -= Time.deltaTime;
-			yield return null;
+		if (!iniDelayOffForTesting) {
+			while (iniDelay > 0) {
+				iniDelay -= Time.deltaTime;
+				yield return null;
+			}
 		}
 		puzzUnlockScript.LoadPuzzleIntro();
 		eggsSaveLoad.SetEggStates();
+		panelMoveCoroutine = StartCoroutine(EggPanelInteraction(false));
 		while (iniSeqTimer < allowTapF) {
 			iniSeqTimer += Time.deltaTime;
 			if (iniSeqTimer > checkNewSilEggsF && !iniSilEggCheckB) { 
-					sceneSilEggSpaScript.SpawnNewSilverEggs();
-					 iniSilEggCheckB = true; 
-					 allowTapF += checkLvlCompleteF;
+					sceneSilEggSpaScript.NewSilverEggsCheck();
+					iniSilEggCheckB = true;
+					allowTapF += checkLvlCompleteF;
 			}
-			if (iniSeqTimer > checkLvlCompleteF && !iniLvlCompCheckB) { 
-				if (totalEggsFound == eggsNeeded && !levelComplete) { 
-					PlayLvlCompleteSeq(); 
-				}
-				iniLvlCompCheckB = true; 
-			}
+			// if (iniSeqTimer > checkLvlCompleteF && !iniLvlCompCheckB) { 
+			// 	if (totalEggsFound == eggsNeeded && !levelComplete) { 
+			// 		PlayLvlCompleteSeq(); 
+			// 	}
+			// 	iniLvlCompCheckB = true; 
+			// }
 			if (iniSeqTimer > allowTapF) { 
-				if (!levelCompleteScript.inLvlCompSeqSetup) {
+				//if (!levelCompleteScript.inLvlCompSeqSetup) {
 					sceneTapEnabScript.canTapEggRidPanPuz = true;
 					sceneTapEnabScript.canTapHelpBird = true;
 					sceneTapEnabScript.canTapPauseBtn = true; 
-				}
+				//}
 				iniSeq = false; 
 			}
 			yield return null;
 		}
-		//yield return null;
+		AddEggsFound();
 	}
 
 	public void TapChecks() {
@@ -154,19 +154,18 @@ public class ClickOnEggs : MonoBehaviour {
 					myInputDetector.cancelDoubleTap = true;
 					// Starts a movement coroutine for the egg found.
 					GameObject eggGO = hit.collider.gameObject;
-					int eggIndex = eggs.IndexOf(eggGO);
-					eggsSaveLoad.SaveEgg(eggIndex);
 					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(eggGO, eggSpots[eggsFound], eggsFound));
 					hit.collider.enabled = false;
 					eggsFound++;
-					EggMoving(true);
-					openEggPanel = true;
+					//openEggPanel = true;
 					// SFX Open Panel
-					if (!openEggPanel) { openEggPanel = true; audioSceneGenScript.openPanel(); }
+					//if (!openEggPanel) { openEggPanel = true; audioSceneGenScript.openPanel(); }
 					// SFX Click Egg
 					audioSceneGenScript.ClickEggsSound(eggGO);
 					//Play egg  click sound
 					AddEggsFound();
+					int eggIndex = eggs.IndexOf(eggGO);
+					eggsSaveLoad.SaveEgg(eggIndex);
 					return;
 				}
 				// - Go To Puzzle Scene - //
@@ -183,23 +182,26 @@ public class ClickOnEggs : MonoBehaviour {
 				// - Opening Egg Panel Manually - //
 				if (hit.collider.CompareTag("EggPanel")) {
 					if (lockDropDownPanel) {
-						openEggPanel = false;
 						lockDropDownPanel = false;
+						if (eggMoving > 0) {
+							return;
+						}
+						//openEggPanel = false;
 						if (panelMoveCoroutine != null) {
 							StopCoroutine(panelMoveCoroutine);
 						}
 						panelMoveCoroutine = StartCoroutine(EggPanelInteraction(false));
-						audioSceneGenScript.closePanel();
+						//audioSceneGenScript.closePanel();
 						return;
 					}
 					if (eggMoving <= 0)	{
-						openEggPanel = true;
+						//openEggPanel = true;
 						lockDropDownPanel = true;
 						if (panelMoveCoroutine != null) {
 							StopCoroutine(panelMoveCoroutine);
 						}
 						panelMoveCoroutine = StartCoroutine(EggPanelInteraction(true));
-						audioSceneGenScript.openPanel();
+						//audioSceneGenScript.openPanel();
 					}
 					if (eggMoving > 0) {
 						lockDropDownPanel = true;
@@ -210,17 +212,13 @@ public class ClickOnEggs : MonoBehaviour {
 			if (sceneTapEnabScript.canTapGoldEgg) {
 				// - Golden Egg Tapped - //
 				if ((hit.collider.CompareTag("GoldenEgg"))) {
-					EggGoToCorner eggScript = hit.collider.gameObject.GetComponent<EggGoToCorner>();
-					eggScript.EggFound();
 					hit.collider.enabled = false;
 					sceneTapEnabScript.canTapEggRidPanPuz = true;
 					sceneTapEnabScript.canTapHelpBird = true;
 					sceneTapEnabScript.canTapPauseBtn = true;
 					sceneTapEnabScript.canTapGoldEgg = false;
-					//AdjustGoldenEggCount();
 					AddEggsFound();
-					eggScript.SaveEggToCorrectFile();
-					// SFX Click GOLD Egg
+					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(goldenEggGO, goldenEggSpot, 31, goldenEggCornerScale, false, false, true));
 					audioSceneGenScript.goldEggSound();
 					audioSceneGenScript.goldEggShimmerStopSound();
 				}
@@ -229,14 +227,7 @@ public class ClickOnEggs : MonoBehaviour {
 		}
 	}
 
-	void Update () {
-		if (seqChecker != inASequence) { //delete this later plzzz ty
-			seqChecker = inASequence;
-			//Debug.Log("Cmon just say inASequence is: " + seqChecker);
-		}
-	}
-
-	public void EggMoving(bool startOfMovement, bool iAmEgg = true) {
+	public void EggMoving(bool startOfMovement, bool regEgg = true, bool silEgg = false, bool golEgg = false) {
 		if (startOfMovement) {
 			eggMoving++;
 			if (panelMoveCoroutine != null) {
@@ -246,11 +237,23 @@ public class ClickOnEggs : MonoBehaviour {
 		}
 		else { 
 			eggMoving--;
-			if (iAmEgg) { 
-				eggsInPanel++;
-				puzzUnlockScript.PuzzleUnlockCheck(eggsInPanel);
+			// Check what kind of egg just arrived in the panel, if any.
+			if (regEgg) { 
+				regularEggsFound++;
+				puzzUnlockScript.PuzzleUnlockCheck(regularEggsFound);
 				UpdateEggsString();
 			}
+			else if (silEgg) {
+				silverEggsFound++;
+				UpdateEggsString(false, true);
+			}
+			else if (golEgg) {
+				goldenEggFound++;
+				goldenEggGO.SetActive(false);
+				smallGoldenEggForPanel.SetActive(true);
+				UpdateEggsString(false, false, true);
+			}
+			// Close the panel if there are no more eggs moving (eggMoving is also used to open the panel even when no actual eggs are moving).
 			if (eggMoving <= 0 && !lockDropDownPanel) {
 				eggMoving = 0;
 				if (panelMoveCoroutine != null) {
@@ -274,6 +277,7 @@ public class ClickOnEggs : MonoBehaviour {
 			//print(distPercent);
 			adjustedDur = panelMoveDuration * distPercent;
 			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y, 180);
+			audioSceneGenScript.openPanel();
 		}
 		else {
 			// Hide egg panel.
@@ -281,6 +285,7 @@ public class ClickOnEggs : MonoBehaviour {
 			distPercent = Vector3.Distance(eggPanel.transform.position, eggPanelHidden.transform.position) / Vector3.Distance(eggPanelShown.transform.position, eggPanelHidden.transform.position);
 			adjustedDur = panelMoveDuration * distPercent;
 			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y, 0);
+			audioSceneGenScript.closePanel();
 		}
 		while (timer < 1f) {
 			// Update target pos every tick to go along with camera movement and scaling
@@ -291,23 +296,17 @@ public class ClickOnEggs : MonoBehaviour {
 		panelMoveCoroutine = null;
 	}
 
-	void OnDisable () {
-		inASequence = false;
-		//Debug.Log("Oh no, ClickOnEggs has been disabled! Bummer.");
-	}
-
 	#region Methods
-
-	public void UpdateEggsString() {
-		totalEggsFound = /* startEggFound +  */eggsInPanel + silverEggsFound + goldenEggFound;
+	public void UpdateEggsString(bool updateRegularEgg = true, bool updateSilverEgg = false, bool updateGoldenEgg = false) {
+		totalEggsFound = regularEggsFound + silverEggsFound + goldenEggFound;
 		
 		eggCounterText.text = "Eggs Found: " + totalEggsFound + "/" + eggsNeeded;
 
-		regEggCounterText.text = "" + (/* startEggFound +  */eggsInPanel) + "/" + totalRegEggs;
+		if (updateRegularEgg) regEggCounterText.text = "" + (regularEggsFound) + "/" + totalRegEggs;
 		
-		silverEggCounterText.text = "" + silverEggsFound + "/6";
+		if (updateSilverEgg) silverEggCounterText.text = "" + silverEggsFound + "/6";
 		
-		goldenEggCounterText.text = "" + goldenEggFound + "/1";
+		if (updateGoldenEgg) goldenEggCounterText.text = "" + goldenEggFound + "/1";
 	}
 
 	public void AddEggsFound() {
@@ -320,14 +319,13 @@ public class ClickOnEggs : MonoBehaviour {
 			PlayLvlCompleteSeq();
 		}
 	}
-
 	public void PlayLvlCompleteSeq() {
-		levelCompleteScript.waitingToStartSeq = true;
+		QueueSequenceManager.AddSequenceToQueue(levelCompleteScript.StartLevelCompleteSequence);
 	}
 
 	#region Save & Load methods
 	// --- Dependant On Scene Name --- //
-	public void MakeSilverEggsAppear() { // Could be merged with AdjustSilverEggCount since they will always be called together IF we implement the egg panel in the puzzle scene 
+	void MakeSilverEggsAppear() { // Could be merged with AdjustSilverEggCount since they will always be called together IF we implement the egg panel in the puzzle scene 
 		if (GlobalVariables.globVarScript.sceneSilEggsCount.Count > 0)
 		{
 			foreach(int silEggInPanel in GlobalVariables.globVarScript.sceneSilEggsCount)
@@ -335,22 +333,17 @@ public class ClickOnEggs : MonoBehaviour {
 				silverEggsInPanel[silEggInPanel].SetActive(true);
 				silEggsShadFades[silEggInPanel].FadeIn();
 			}
+			silverEggsFound = GlobalVariables.globVarScript.sceneSilEggsCount.Count;
+			UpdateEggsString(false, true);
 		}
 	}
-
-	public void AdjustSilverEggCount() {
-		silverEggsFound = GlobalVariables.globVarScript.sceneSilEggsCount.Count;
-		UpdateEggsString();
-	}
-
-	public void AdjustGoldenEggCount() {
-		if (GlobalVariables.globVarScript.riddleSolved) { goldenEggFound = 1; } else { goldenEggFound = 0; }
-		UpdateEggsString();
-	}
-
-	public void AdjustTotalEggsFound() {
-		totalEggsFound = GlobalVariables.globVarScript.totalEggsFound;
-		UpdateEggsString();
+	// If the riddle has previously been solved, make the golden egg appear in the gg panel.
+	void MakeGoldenEggAppear() {
+		if (GlobalVariables.globVarScript.riddleSolved) {
+			goldenEggFound = 1;
+			smallGoldenEggForPanel.SetActive(true);
+			UpdateEggsString(false, false, true);
+		}
 	}
 
 	public void SaveLevelComplete() {
