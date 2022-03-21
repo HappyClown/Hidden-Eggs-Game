@@ -7,16 +7,12 @@ using TMPro;
 public class BackToMenu : MonoBehaviour 
 {
 	[Header("Background Stuff")]
-	public List<MoveCloud> cloudsToMove;
-	public FadeInOutImage titleFade;
-	public FadeInOutSprite solidBGFade;
+	//public List<MoveCloud> cloudsToMove;
+	// public FadeInOutImage titleFade;
+	// public FadeInOutSprite solidBGFade;
 
 	[Header("Button Fade Attributes")]
-	public bool fadeBtnIn;
-	private float btnWaitTimer;
 	public float btnFadeInWait;
-	public FadeInOutImage rstBtnFadeScript;
-	public FadeInOutImage playBtnFadeScript;
 	public List<GameObject> levelButtons;
 
 	[Header("References")]
@@ -28,38 +24,10 @@ public class BackToMenu : MonoBehaviour
 
 	[Header("Back To Menu Button")]
 	public Button backToMenuBtn;
-	public FadeInOutBoth backToMenuFadeScript;
-	public FadeInOutImage backToMenuIconFadeScript;
-	public FadeInOutCanvasGroup deleteSaveBtnCGFadeScript;
 
 	void Start () 
 	{
 		backToMenuBtn.onClick.AddListener(GoToMenu);
-	}
-
-	void Update ()  
-	{
-		// -- Fade Menu Buttons In -- //
-		if (fadeBtnIn)
-		{
-			btnWaitTimer += Time.deltaTime; 
-			if (btnWaitTimer >= btnFadeInWait)
-			{
-				playBtnFadeScript.FadeIn();
-				rstBtnFadeScript.FadeIn();
-				deleteSaveBtnCGFadeScript.FadeIn();
-				fadeBtnIn = false;
-				hubScript.ResetHubSeasons();
-				foreach(SeasonGlows seasonGlowScript in seasonGlowScripts)
-				{
-					seasonGlowScript.ResetGlowAlphas();
-				}
-				edgeFirefliesScript.StopFireflyFX();
-				btnWaitTimer = 0f;
-				//this.gameObject.SetActive(false);
-				//backToMenuBtn.enabled = false;
-			}
-		}
 	}
 
 	void GoToMenu ()
@@ -75,15 +43,6 @@ public class BackToMenu : MonoBehaviour
 		{
 			levelButton.SetActive(false);
 		}
-		//backToMenuBtn.enabled = false;
-		// - MAKE THE CLOUDS CLOSE - //
-		foreach(MoveCloud cloud in cloudsToMove)
-		{
-			cloud.MoveIn();
-		}
-		// - FADE OUT BACKTOMENU BTN - //
-		// backToMenuFadeScript.FadeOut();
-		// backToMenuIconFadeScript.FadeOut();
 		foreach (FadeInOutCanvasGroup hubCanvasGroupFadeScript in hubScript.hubCanvasGroupFadeScripts)
 		{
 			hubCanvasGroupFadeScript.FadeOut();
@@ -93,12 +52,22 @@ public class BackToMenu : MonoBehaviour
 		{
 			seasonLockScript.BackToMenu();
 		}
-		// - FADE IN TITLE - //
-		titleFade.FadeIn();
-		// - FADE IN SOLID BACKGROUND - //
-		solidBGFade.FadeIn();
-		// - FADE IN ALL BUTTONS - //
-		fadeBtnIn = true;
-		mainMenuScript.ResetStory();	
+		StartCoroutine(MainMenuTransition());
+	}
+
+	IEnumerator MainMenuTransition() {
+		mainMenuScript.PartialMainMenuFade(true, true, false);
+		float timer = 0f;
+		while (timer < btnFadeInWait) {
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		mainMenuScript.PartialMainMenuFade(true, false, true);
+		hubScript.ResetHubSeasons();
+		foreach(SeasonGlows seasonGlowScript in seasonGlowScripts)
+		{
+			seasonGlowScript.ResetGlowAlphas();
+		}
+		edgeFirefliesScript.StopFireflyFX();
 	}
 }

@@ -159,15 +159,15 @@ public class AudioManagerHubMenu : MonoBehaviour
         //hubMusic.setParameterValue("nbEggsBySeason",nbEggsBySeason);
 
         //ajout sfx pour quand les nuages se tassent 
-        if(fadeInOutStory.getFadingOut() && !CloudsIn)
-        {
-            CloudsMoving();
-            CloudsIn = true;
-        }
-        if(!fadeInOutStory.getFadingOut())
-        {
-            CloudsIn = false;
-        }
+        // if(fadeInOutStory.getFadingOut() && !CloudsIn)
+        // {
+        //     CloudsMoving();
+        //     CloudsIn = true;
+        // }
+        // if(!fadeInOutStory.getFadingOut())
+        // {
+        //     CloudsIn = false;
+        // }
 
 
         //Dissolving Sound when map is uncovered
@@ -334,7 +334,7 @@ public class AudioManagerHubMenu : MonoBehaviour
     public void BackBtnSound()
     {
         ButtonSound();
-        Debug.Log("Audio: Transition To Menu Music");
+        //Debug.Log("Audio: Transition To Menu Music");
         TransitionMenu();
     }
     public void ButtonSound()

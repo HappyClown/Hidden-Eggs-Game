@@ -4,21 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class FadeInOutCanvasGroup : MonoBehaviour {
+	[Header("Values")]
+	public float fadeDuration;
 	private float t;
 	public float fadeDelayDur;
 	[Range(0f, 1f)]
 	public float maxAlpha = 1f;
-	public float fadeDuration;
+	[Header("Options")]
+	public bool inactiveOnFadeOut;
 	public bool fadeOnStart = true;
-	public bool fadeDelay, disableOnFadeOut;
+	public bool fadeDelay;
 	public CanvasGroup canvasG;
 	[Header("Canvas Group Options")]
 	public bool cgOptionsOnFadeStart;
 	public bool interactable, blocksRaycasts, ignoreParentGroups;
+	[Header("State")]
+	public StartState myStartState;
 	public enum StartState {
 		startShown, startHidden
 	}
-	public StartState myStartState;
 	public bool fadingOut, fadingIn, hidden, shown;
 	private Coroutine activeRoutine;
 
@@ -51,7 +55,7 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 				hidden = true;
 				if(shown)
 				shown = false;				
-				if(disableOnFadeOut) {
+				if(inactiveOnFadeOut) {
 					this.gameObject.SetActive(false);
 				}
 			}

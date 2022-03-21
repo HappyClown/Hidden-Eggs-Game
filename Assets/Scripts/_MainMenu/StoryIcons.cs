@@ -5,7 +5,6 @@ using UnityEngine;
 public class StoryIcons : MonoBehaviour {
 	public float duration;
 	public float minScale, maxScale;
-	public FadeInOutSprite nextIconFadeScript;
 	public Transform nextIconTrans;
 	private bool scaling, scaleDown, scaleUp;
 	private float timer;
@@ -14,7 +13,7 @@ public class StoryIcons : MonoBehaviour {
 	[Header ("Button version")]
 	public FadeInOutCanvasGroup btnCGFadeScript;
 
-
+	// This Update method is allowed to live because the Next button is almost always on and is always scaling when it is on.
 	void Update () {
 		if (scaling) {
 			timer += Time.deltaTime / duration;
@@ -40,16 +39,6 @@ public class StoryIcons : MonoBehaviour {
 			}
 		}
 	}
-	
-	public void ShowNextIcon() {
-		nextIconFadeScript.FadeIn();
-		nextIconTrans.localScale = new Vector3(minScale, minScale, minScale);
-		scaling = true;
-		scaleDown = false;
-		scaleUp = true;
-		startScale = minScale;
-		targetScale = maxScale;
-	}
 
 	public void ShowNextButton() {
 		btnCGFadeScript.FadeIn();
@@ -59,10 +48,6 @@ public class StoryIcons : MonoBehaviour {
 		scaleUp = true;
 		startScale = minScale;
 		targetScale = maxScale;
-	}
-
-	public void HideNextIcon() {
-		nextIconFadeScript.FadeOut();
 	}
 
 	public void HideNextButton() {

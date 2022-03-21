@@ -169,4 +169,9 @@ public class StoryGustMotions : MonoBehaviour {
 			gust.transform.localScale = new Vector3(iniScale, iniScale, iniScale);
 		}
 	}
+
+	public void TurnGustOnOff(bool showGust = false) {
+		if (showGust) gust.SetActive(true);
+		else if (!showGust) gust.SetActive(false);
+	}
 }

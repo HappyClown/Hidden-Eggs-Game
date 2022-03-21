@@ -20,6 +20,7 @@ public class StoryEggManager : MonoBehaviour {
 	public bool randomFallingEggs;
 	//private List<int> intsForRandom;
 	private List<int> eggFallingOrder = new List<int>();
+	public ParticleSystem burstPartSys;
 
 	void Start () {
 		// The first egg spawns immediately.
@@ -74,6 +75,7 @@ public class StoryEggManager : MonoBehaviour {
 			eggSpawnTimer += Time.deltaTime;
 			if (eggSpawnTimer >= timeBetweenFallEggs) {
 				eggSpawnTimer = 0f;
+				burstPartSys.gameObject.SetActive(true);
 				storyEggScripts[currentEggNum].fadeToSceneEgg = true;
 				currentEggNum++;
 				if (currentEggNum > fallingEggStartTrans.Count - 1) {

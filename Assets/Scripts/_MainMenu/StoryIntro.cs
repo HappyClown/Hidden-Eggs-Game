@@ -35,7 +35,7 @@ public class StoryIntro : MonoBehaviour {
 	public List<bool> boardBools = new List<bool>();
 
 	public enum IntroStates {
-		TitleScreen, OnceUponATime, TimeFlying, Gust, TheAccident, GustsMishap, TimeConfused, EggsFalling, TimeToTheRescue, TheOneEgg, TheQuest
+		TitleScreen, OnceUponATime, TimeFlying, Gust, TheAccident, GustsMishap, TimeConfused, EggsFalling, TimeToTheRescue, TheOneEgg, TheQuest, WrapUp
 	}
 	public IntroStates introStates; 
 
@@ -46,7 +46,7 @@ public class StoryIntro : MonoBehaviour {
 		// For testing purposes, should be commented out OR set to the first IntroState.
 		if (testing) {
 			boardTimer = 0f;
-			boardEvents.Clear();
+			// boardEvents.Clear();
 			boardEvents = timeToTheRescueEvents;
 			boardBools.Clear();
 			for(int i = 0; i < timeToTheRescueEvents.Count; i++)
@@ -87,28 +87,25 @@ public class StoryIntro : MonoBehaviour {
 					TheOneEgg(); break;
 				case IntroStates.TheQuest:
 					TheQuest(); break;
+				case IntroStates.WrapUp:
+					WrapUp(); break;
 			}
 		}
 	}
 	void TitleScreen() {
-		//AUDIO : intro music
-		//audioManHubMenuScript.TransitionIntro();
-
-		//ResetStory();
-		if (!menuFaded) {
-			mainMenuScript.FadeMainMenu();
-			menuFaded = true;
+		// Hello, hello! This might be what you're looking for, the waiting time has been hardcoded into the script due to lazyness, tsk. tsk.. tsk...
+		if (boardTimer < 0.5f) {
+			boardTimer += Time.deltaTime;
 		}
-		if (mainMenuScript.titleFade.hidden/*  && mainMenuScript.playBtnFadeScript.hidden */ && mainMenuScript.resetBtnFadeScript.hidden) {
+		else {
 			introStates = IntroStates.OnceUponATime;
 			storyBoardTextNum = 0;
-			//boardEvents.Clear();
 			boardEvents = onceUponATimeEvents;
-			//boardBools.Clear();
 			for(int i = 0; i < onceUponATimeEvents.Count; i++)
 			{
 				boardBools.Add(false);
 			}
+			boardTimer = 0f;
 			tapTime = 999999f;
 		}
 	}
@@ -121,23 +118,22 @@ public class StoryIntro : MonoBehaviour {
 			storyScrollBGScript.SetUpClouds(storyScrollBGScript.regularSidewaysBGs, storyScrollBGScript.regSideScrollSpeed, true, true);
 			storySingleCloudScript.PlayClouds(storySingleCloudScript.xPartSys);
 			boardBools[0] = true;
-
 			//AUDIO wind
 			audioIntroScript.introWindLoopSFX();
-
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			// Turn off the main menu cluds and opaque background. This will get turned on again before the last story board since they need to fade out and show the hub.
+			mainMenuScript.backgroundStuffParent.SetActive(false);
 			storyTextScript.SetupText(storyBoardTextNum);
 			storyBoardTextNum++;
 			boardBools[1] = true;
-		}		
+		}
 		if (boardTimer >= boardEvents[2] && !boardBools[2]) {
 			if (!storyTimeMoScript.timeMovesIn) {
+				storyTimeMoScript.normalTime.SetActive(true);
 				storyTimeMoScript.timeMovesIn = true;
-
 				// AUDIO - TIME DIVES IN!
 				audioIntroScript.introTimeHoverLoopSFX();
-
 			}
 			boardBools[2] = true;
 		}
@@ -161,7 +157,7 @@ public class StoryIntro : MonoBehaviour {
 				boardTimer = 0f;
 				storyTextScript.ChangeTextFade(storyBoardTextNum);
 				storyBoardTextNum++;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = timeFlyingEvents;
 				boardBools.Clear();
 				for(int i = 0; i < timeFlyingEvents.Count; i++)
@@ -210,7 +206,7 @@ public class StoryIntro : MonoBehaviour {
 				storyTimeMoScript.normalTime.SetActive(false);
 				storyTextScript.TurnTextOff();
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = gustEvents;
 				boardBools.Clear();
 				for(int i = 0; i < gustEvents.Count; i++)
@@ -246,6 +242,7 @@ public class StoryIntro : MonoBehaviour {
 			audioIntroScript.introWindLoopSFX();
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
+			storyGustScript.TurnGustOnOff(true);
 			storyGustScript.SetupXMove(storyGustScript.startTrans.position.x, storyGustScript.midTrans.position.x, storyGustScript.moveInDur, storyGustScript.moveInXCurve);
 			storyGustScript.yHover = true;
 			boardBools[1] = true;
@@ -282,7 +279,7 @@ public class StoryIntro : MonoBehaviour {
 			if (boardBools[5] && blackScreenFadeScript.shown) {
 				introStates = IntroStates.TheAccident;
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = theAccidentEvents;
 				boardBools.Clear();
 				for(int i = 0; i < theAccidentEvents.Count; i++)
@@ -372,7 +369,7 @@ public class StoryIntro : MonoBehaviour {
 			if (boardBools[5] && blackScreenFadeScript.shown) {
 				introStates = IntroStates.GustsMishap;
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = gustsMishapEvents;
 				boardBools.Clear();
 				for(int i = 0; i < gustsMishapEvents.Count; i++)
@@ -401,7 +398,7 @@ public class StoryIntro : MonoBehaviour {
 			storyGustScript.ChangeScale();
 			// Back to the distorted sky.
 			// boardTimer = 0f;
-			// boardEvents.Clear();
+			// // boardEvents.Clear();
 			// boardEvents = gustsMishapEvents;
 			// boardBools.Clear();
 			// for(int i = 0; i < gustsMishapEvents.Count; i++)
@@ -463,7 +460,7 @@ public class StoryIntro : MonoBehaviour {
 			if (boardBools[5] && blackScreenFadeScript.shown) {
 				introStates = IntroStates.TimeConfused;
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = timeConfusedEvents;
 				boardBools.Clear();
 				for(int i = 0; i < timeConfusedEvents.Count; i++)
@@ -482,7 +479,7 @@ public class StoryIntro : MonoBehaviour {
 		if (blackScreenFadeScript.shown && !boardBools[0]/*  || Input.GetKeyDown("space") */) {
 			//
 			// boardTimer = 0f;
-			// boardEvents.Clear();
+			// // boardEvents.Clear();
 			// boardEvents = timeConfusedEvents;
 			// boardBools.Clear();
 			// for(int i = 0; i < timeConfusedEvents.Count; i++)
@@ -490,6 +487,7 @@ public class StoryIntro : MonoBehaviour {
 			// 	boardBools.Add(false);
 			// }
 			//
+			storyGustScript.TurnGustOnOff(false);
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
 			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.bewilderedTime);
@@ -550,7 +548,7 @@ public class StoryIntro : MonoBehaviour {
 				storyEggManScript.ResetEggs();
 				introStates = IntroStates.EggsFalling;
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = eggsFallingEvents;
 				boardBools.Clear();
 				for(int i = 0; i < eggsFallingEvents.Count; i++)
@@ -570,7 +568,7 @@ public class StoryIntro : MonoBehaviour {
 		if (blackScreenFadeScript.shown && !boardBools[0]) {
 			//
 			// boardTimer = 0f;
-			// boardEvents.Clear();
+			// // boardEvents.Clear();
 			// boardEvents = eggsFallingEvents;
 			// boardBools.Clear();
 			// for(int i = 0; i < eggsFallingEvents.Count; i++)
@@ -585,7 +583,6 @@ public class StoryIntro : MonoBehaviour {
 			storyTimeMoScript.timeSpins = false;
 			storyScrollBGScript.SetUpClouds(storyScrollBGScript.verticalBGs, storyScrollBGScript.verticalScrollSpeed, false);
 			storySingleCloudScript.PlayClouds(storySingleCloudScript.yPartSys, storySingleCloudScript.vertSpeedMult, true);
-
 			//AUDIO
 			audioIntroScript.introWindLoopSFX();
 		}
@@ -636,7 +633,7 @@ public class StoryIntro : MonoBehaviour {
 				storyEggManScript.ResetEggs();
 				introStates = IntroStates.TimeToTheRescue;
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = timeToTheRescueEvents;
 				boardBools.Clear();
 				for(int i = 0; i < timeToTheRescueEvents.Count; i++)
@@ -659,7 +656,7 @@ public class StoryIntro : MonoBehaviour {
 			blackScreenFadeScript.FadeOut();
 			storyTextScript.TurnTextOff();
 			storyTimeMoScript.ChangeCurrentTime(storyTimeMoScript.divingTime);
-
+			storyEggManScript.ResetEggs();
 			//AUDIO
 			audioIntroScript.introWindLoopSFX();
 		}
@@ -718,7 +715,7 @@ public class StoryIntro : MonoBehaviour {
 			if (boardBools[5] && blackScreenFadeScript.shown) {
 				introStates = IntroStates.TheOneEgg;
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = theOneEggEvents;
 				boardBools.Clear();
 				for(int i = 0; i < theOneEggEvents.Count; i++)
@@ -755,8 +752,6 @@ public class StoryIntro : MonoBehaviour {
 			storyTextScript.SetupText(storyBoardTextNum);
 			storyBoardTextNum++;
 			boardBools[0] = true;
-
-							
 			//AUDIO SINGLE EGG SPIN?
 			audioIntroScript.introSingleEggSpinLoopSFX();
 		}
@@ -779,7 +774,6 @@ public class StoryIntro : MonoBehaviour {
 			if (hit && hit.collider.tag == "Egg") {
 				// TheOneEgg is set inactive in the StoryTimeMotion script.
 				storyOneEggScript.EggTap();
-				storyOneEggScript.tapIconFadeScript.FadeOut();
 				storyTimeMoScript.timeDivesThrough = true;	
 
 				//AUDIO TIME DIVE?
@@ -805,7 +799,7 @@ public class StoryIntro : MonoBehaviour {
 		if (boardBools[3] && blackScreenFadeScript.shown) {
 			introStates = IntroStates.TheQuest;
 			boardTimer = 0f;
-			boardEvents.Clear();
+			// boardEvents.Clear();
 			boardEvents = theQuestEvents;
 			boardBools.Clear();
 			for(int i = 0; i < theQuestEvents.Count; i++)
@@ -814,7 +808,8 @@ public class StoryIntro : MonoBehaviour {
 			}
 			exitingBoard = false;
 			tapTime = 99999f;
-
+			// This is a backup system. :) Leave me alone. Dont ask any questions. Nothing to see here. This is fine.
+			if (storyOneEggScript.tapIcon.activeSelf) storyOneEggScript.tapIcon.SetActive(false);
 			//AUDIO
 			audioIntroScript.STOP_introWindLoopSFX();
 		}
@@ -830,7 +825,9 @@ public class StoryIntro : MonoBehaviour {
 			storySingleCloudScript.StopActivePartSys();
 			// mainMenuScript.ToHub(); Without the hubScript.startHubActive = true; so that it fades out the main menu but only shows the grey village
 			storyOneEggScript.behindTheOneEgg.SetActive(true);
-			mainMenuScript.ToHub(false);
+			// Reactivate the main menu clouds and opaque background so that they can fade out and part to show the hub.
+			mainMenuScript.backgroundStuffParent.SetActive(true);
+			mainMenuScript.ToHubDirectly(false);
 			storyOneEggScript.eggTrailFX.Stop();
 			// Make sure the summer dissolve is reset.
 			hubScript.dissolveMats[0].SetFloat ("_Threshold", 0f);
@@ -895,9 +892,9 @@ public class StoryIntro : MonoBehaviour {
 				boardBools[6] = true;
 			}
 			if (boardBools[6]) {
-				introStates = IntroStates.TitleScreen;
+				introStates = IntroStates.WrapUp;
 				boardTimer = 0f;
-				boardEvents.Clear();
+				// boardEvents.Clear();
 				boardEvents = onceUponATimeEvents;
 				boardBools.Clear();
 				for(int i = 0; i < onceUponATimeEvents.Count; i++)
@@ -906,12 +903,22 @@ public class StoryIntro : MonoBehaviour {
 				}
 				exitingBoard = false;
 				tapTime = 99999f;
-				inStoryIntro = false;
-				mainMenuScript.fullIntro = false;
 			}
 		}
 	}
 	
+	void WrapUp() {
+		if (boardTimer < 3f) {
+			boardTimer += Time.deltaTime;
+		}
+		else {
+			//ResetStory();
+			introStates = IntroStates.TitleScreen;
+			boardTimer = 0f;
+			inStoryIntro = false;
+			this.gameObject.SetActive(false);
+		}
+	}
 	void ResetStory() {
 		menuFaded = false;
 		storyTimeMoScript.ResetNormalTime();

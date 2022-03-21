@@ -27,64 +27,99 @@ public class Hub : MonoBehaviour {
 	public bool startHubActive;
 	[Header("References")]
 	public DissolveSeasons dissolveSeasonsScript;
+	public SeasonLock seasonLock;
 	public BackToMenu backToMenuScript;
 	public EdgeFireflies edgeFirefliesScript;
 	
-	void Start () {
-		ResetHubSeasons();
-		hubActiveWaitTimer = hubActiveWait;
+	// void Start () {
+	// 	//ResetHubSeasons();
+	// 	//hubActiveWaitTimer = hubActiveWait;
+	// }
+
+	// void Update () {
+	// 	// - Start Countdown Timer before Dissolves - //
+	// 	if (startHubActive) {
+	// 		if (hubActiveWaitTimer == hubActiveWait) {
+	// 			dissolveSeasonsScript.SeasonDissolveCheck(); 
+	// 			// Add the materials that need to be dissolved to a list.
+	// 			DecideDissolve();
+	// 			hubActiveWaitTimer -= hubActiveFaster;
+	// 		}
+	// 		hubActiveWaitTimer -= Time.deltaTime;
+	// 	}
+	// 	// - Start Dissolving Unlocked Seasons - //
+	// 	if(hubActiveWaitTimer <= 0f && !inHub) {
+	// 		startHubActive = false;
+	// 		hubActiveWaitTimer = hubActiveWait;
+	// 		inHub = true;
+	// 		dissolving = true;
+	// 		hubActiveFaster = 0f;
+	// 	}
+	// 	// - Dissolve All Seasons - //
+	// 	if (dissolving && inHub) {
+	// 		if (dissAmnt < 1.01f && matsToDissolve.Count > 0) {
+	// 			dissAmnt += Time.deltaTime * dissSpeed;
+	// 			foreach(Material matToDiss in matsToDissolve)
+	// 			{
+	// 				matToDiss.SetFloat ("_Threshold", dissAmnt);
+	// 			}
+	// 		}
+	// 		else {
+	// 			dissolveSeasonsScript.SaveSeasonDissolves();
+	// 			//EnableSeasonObjs();
+	// 			matsToDissolve.Clear();
+	// 			dissolving = false;
+	// 			dissolveDone = true;
+	// 			EnableHubObjects();
+	// 		}
+	// 	}
+	// }
+	public void ActivateHub() {
+		StartCoroutine(HubActivation());
 	}
 
-	void Update () {
-		// - Start Countdown Timer before Dissolves - //
-		if (startHubActive) {
-			if (hubActiveWaitTimer == hubActiveWait) {
-				dissolveSeasonsScript.SeasonDissolveCheck(); 
-				DecideDissolve();
-				hubActiveWaitTimer -= hubActiveFaster;
-			}
+	IEnumerator HubActivation() {
+		ResetHubSeasons();
+		hubActiveWaitTimer = hubActiveWait;
+		//hubActiveWaitTimer -= hubActiveFaster;
+		while (hubActiveWaitTimer > 0f) {
 			hubActiveWaitTimer -= Time.deltaTime;
+			yield return null;
 		}
-		// - Start Dissolving Unlocked Seasons - //
-		if(hubActiveWaitTimer <= 0f && !inHub) {
-			startHubActive = false;
-			hubActiveWaitTimer = hubActiveWait;
-			inHub = true;
-			dissolving = true;
-			hubActiveFaster = 0f;
-		}
-		// - Dissolve All Seasons - //
-		if (dissolving && inHub) {
-			if (dissAmnt < 1.01f && matsToDissolve.Count > 0) {
+		hubActiveWaitTimer = hubActiveWait;
+		inHub = true;
+		//hubActiveFaster = 0f;
+		// Check the save files to know which season has already been dissolved.
+		dissolveSeasonsScript.SeasonDissolveCheck(); 
+		// Add the materials that need to be dissolved to a list.
+		DecideDissolve();
+		// Check if the player found new eggs for the locked seasons.
+		seasonLock.StartSeasonUnlockChecks();
+		// If there are any seasons to dissolve.
+		if (matsToDissolve.Count > 0) {
+			while (dissAmnt < 1.01f) {
 				dissAmnt += Time.deltaTime * dissSpeed;
 				foreach(Material matToDiss in matsToDissolve)
 				{
 					matToDiss.SetFloat ("_Threshold", dissAmnt);
 				}
+				yield return null;
 			}
-			else {
-				dissolveSeasonsScript.SaveSeasonDissolves();
-				//EnableSeasonObjs();
-				matsToDissolve.Clear();
-				dissolving = false;
-				dissolveDone = true;
-				EnableHubObjects();
-			}
+			// Save the state of any season that has just fully dissolved.
+			dissolveSeasonsScript.SaveSeasonDissolves();
+			matsToDissolve.Clear();
 		}
+		dissolveDone = true;
+		EnableHubObjects();
 	}
 
-	void EnableHubObjects() { // Enable general Village objects (UI, etc) 
-		//backToMenuScript.backToMenuFadeScript.FadeIn();
-		//backToMenuScript.backToMenuIconFadeScript.FadeIn();
+	// Enable general Village objects (UI, etc) 
+	void EnableHubObjects() { 
 		hubCGInteractFadeScript.FadeIn();
 		hubCGUninteractFadeScript.FadeIn();
-		// foreach (FadeInOutCanvasGroup hubCanvasGroupFadeScript in hubCanvasGroupFadeScripts)
-		// {
-		// 	hubCanvasGroupFadeScript.FadeIn();
-		// }
 	}
-
-	public void EnableSeasonObjs() { // Enable Season objects (Scene buttons) 
+	// Enable Season objects (Scene buttons)
+	public void EnableSeasonObjs() {  
 		backToMenuScript.backToMenuBtn.enabled = true;
 		// foreach true...
 		if (GlobalVariables.globVarScript.dissSeasonsBools[0]) {
@@ -93,13 +128,12 @@ public class Hub : MonoBehaviour {
 				if (!summerObj.activeSelf) { summerObj.SetActive(true); }
 			}
 			seasonGlowsScripts[0].StartLevelGlows();
-			//edgeFirefliesScript.StartFireflyFX();
 		}
 		// ...
 	}
-	
-	void DecideDissolve () { // Decide which seasons to dissolve or have already colored
-		// If a season hasnt fully dissolved once and the player has enough eggs dissSeason[i] will be true and its corresponding material will be added to the dissolve list.
+	// Decide which seasons to dissolve or have already colored
+	// If a season hasnt fully dissolved once and the player has enough eggs dissSeason[i] will be true and its corresponding material will be added to the dissolve list.
+	void DecideDissolve () { 
 		for (int i = 0; i < dissolveSeasonsScript.dissSeasonsTemp.Count; i++)
 		{
 			if (dissolveSeasonsScript.dissSeasonsTemp[i]) {
@@ -111,8 +145,8 @@ public class Hub : MonoBehaviour {
 			}
 		}
 	}
-
-	public void ResetHubSeasons() { // Run this to either reset the dissolves or not. 
+	// Run this to either reset the dissolves or not.
+	public void ResetHubSeasons() {  
 		inHub = false;
 		dissAmnt = 0f;
 		matsToDissolve.Clear();

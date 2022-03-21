@@ -60,6 +60,7 @@ public class StoryTimeMotions : MonoBehaviour {
 	public AnimationCurve glideAnimCurve;
 	public FadeInOutSprite glidingTimeFadeScript;
 	public Animator glideAnim;
+	private bool startHovering;
 	[Header ("Audio reference")]
 	public AudioIntro audioIntroScript;
 	public bool audioSpin = true;
@@ -311,10 +312,14 @@ public class StoryTimeMotions : MonoBehaviour {
 	void TimeGlides() {
 		lerpValue += Time.deltaTime / glideDur;
 		currentTime.transform.position = Vector3.Lerp(glideStartTrans.position, glideEndTrans.position, glideAnimCurve.Evaluate(lerpValue));
+		if (lerpValue >= 0.5f && !startHovering) {
+			startHovering = true;
+			glideAnim.SetTrigger("StartHovering");
+
+		}
 		if (lerpValue >= 1f) {
 			lerpValue = 0f;
 			timeGlides = false;
-			glideAnim.SetTrigger("StartHovering");
 		}
 	}
 

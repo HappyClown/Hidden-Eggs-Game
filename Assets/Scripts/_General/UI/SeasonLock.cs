@@ -38,102 +38,201 @@ public class SeasonLock : MonoBehaviour {
 		checkSeason = false;
 		maxEggsPerSec *= Time.deltaTime;
 
-		myAudio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSeasonUnlockAnim>();
+		if (!myAudio) myAudio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSeasonUnlockAnim>();
 	}
 	
-	void Update () {
-		if(myHubScript.inHub){
-			if(!checkSeason){
-				// Check if the season is already unlocked.
-				CheckUnlock();
-				if(locked){
-					// Set up the banner and the closed lock. 
-					SetUpTitle();
-					CalculateEggReqs();
-				}
-				checkSeason = true;
+	// void Update () {
+	// 	if(myHubScript.inHub){
+	// 		if(!checkSeason){
+	// 			// Check if the season is already unlocked.
+	// 			CheckUnlock();
+	// 			if(locked){
+	// 				// Set up the banner and the closed lock. 
+	// 				SetUpTitle();
+	// 				CalculateEggReqs();
+	// 			}
+	// 			checkSeason = true;
+	// 		}
+	// 		// Check if new eggs were found.
+	// 		if(settingUp && myHubScript.dissolveDone) {
+	// 			// Debug.Log(lastEggVal);
+	// 			// Debug.Log(newEggVal);
+	// 			if (lastEggVal == newEggVal) {
+	// 				myHubScript.EnableSeasonObjs();
+	// 				settingUp = false;
+	// 			}
+	// 			timer += Time.deltaTime;
+	// 			if (timer >= scaleUpTime && !scaledUp) {
+	// 				// AUDIO - LOCK SCALES UP!
+	// 				//myAudio.lockScaleUpSnd();
+	// 				groupAnim.SetTrigger("ScaleUp");
+	// 				scaledUp = true;
+	// 			}
+	// 			if(timer >= setUpTime){
+	// 				settingUp = false;
+	// 				if (lastEggVal != newEggVal) {
+	// 					lerpEggAmnt = true;
+	// 				}
+	// 				timer = 0f;
+	// 			}
+	// 		}
+	// 		// Decrease the egg required counter.
+	// 		if (lerpEggAmnt) {
+	// 			// Gradually increase the count going down speed, up to a maximum speed amount.
+	// 			if (curEggReqSpeed < maxEggsPerSec) {
+	// 				curEggReqSpeed += Time.deltaTime / eggReqSpeedDamp;
+	// 			}
+	// 			lastEggVal -= curEggReqSpeed;
+	// 			// Trigger an animation every time the unlock counter amount changes.
+	// 			if (eggAmntForAnim != Mathf.RoundToInt(lastEggVal)) {
+	// 				// AUDIO - COUNTER GOES DOWN BY ONE!
+	// 				myAudio.eggCounterSnd();
+	// 				eggReqAnim.SetTrigger("ScaleCounter");
+	// 				oneReqSparkFX.Play();
+	// 			}
+	// 			eggAmntForAnim = Mathf.RoundToInt(lastEggVal);
+	// 			myEggCounter.text = eggAmntForAnim.ToString();
+	// 			if (lastEggVal <= newEggVal) {
+	// 				lerpEggAmnt = false;
+	// 				lastEggVal = newEggVal;
+	// 				multiReqSparkFX.Play();
+	// 				SaveNewLastEggVal();
+	// 				if (lastEggVal <= 0) {
+	// 					startLockAnimDelay = true;
+	// 				}
+	// 				else {
+	// 					enableSeasonObjsDelay = true;
+	// 				}
+	// 			}
+	// 		}
+	// 		// Start the season unlocked sequence.
+	// 		if (startLockAnimDelay) {
+	// 			removeLockAnimDelay -= Time.deltaTime;
+	// 			if (removeLockAnimDelay <= 0f) {
+	// 				unlockAnim.enabled = true;
+	// 				unlockAnim.SetTrigger("UnlockSeason");
+	// 				FadeOutBanner();
+	// 				startLockAnimDelay = false;
+	// 				locked = false;
+	// 				SaveNewLastEggVal();
+	// 				Debug.Log("this is where it saves really this time; " + Time.time);
+	// 			}
+	// 		}
+	// 		// Enable the level glows, buttons, etc.
+	// 		if (enableSeasonObjsDelay) {
+	// 			seasonObjsTimer += Time.deltaTime;
+	// 			if (seasonObjsTimer >= scaleDownDelay) {
+	// 				// AUDIO - LOCK SCALES DOWN!
+	// 				//myAudio.lockScaleDown();
+	// 				groupAnim.SetTrigger("ScaleDown");
+	// 			}
+	// 			if (seasonObjsTimer >= seasonObjsDelay) {
+	// 				myHubScript.EnableSeasonObjs();
+	// 				enableSeasonObjsDelay = false;
+	// 				seasonObjsTimer = 0f;
+	// 			}
+	// 		}
+	// 	}
+	// }
+	public void StartSeasonUnlockChecks() {
+		StartCoroutine(SeasonUnlockSequence());
+	}
+	IEnumerator SeasonUnlockSequence() {
+		// Check if the season is already unlocked.
+		CheckUnlock();
+		if(locked){
+			// Set up the banner and the closed lock. 
+			SetUpTitle();
+			CalculateEggReqs();
+		}
+		// Wait for the all the seasons to dissolve.
+		while (!myHubScript.dissolveDone) {
+			yield return null;
+		}
+		settingUp = true;
+		// No new egg was found since the last time the player entered the hub, go directly to jail do not pass go.
+		if (lastEggVal == newEggVal) {
+			myHubScript.EnableSeasonObjs();
+			settingUp = false;
+		}
+		// New eggs were found. Scale up the lock and count down the eggs left required to unlock. 
+		while (settingUp) {
+			timer += Time.deltaTime;
+			// Scale up the lock.
+			if (timer >= scaleUpTime && !scaledUp) {
+				groupAnim.SetTrigger("ScaleUp");
+				scaledUp = true;
+				//myAudio.lockScaleUpSnd();
 			}
-			// Check if new eggs were found.
-			if(settingUp && myHubScript.dissolveDone) {
-				// Debug.Log(lastEggVal);
-				// Debug.Log(newEggVal);
-				if (lastEggVal == newEggVal) {
-					myHubScript.EnableSeasonObjs();
-					settingUp = false;
+			// Exit the initial part of the setup.
+			if (timer >= setUpTime) {
+				settingUp = false;
+				lerpEggAmnt = true;
+				timer = 0f;
+			}
+			yield return null;
+		}
+		while (lerpEggAmnt) {
+			// Ramp up the speed at which the egg count goes down, up to a maximum speed.
+			if (curEggReqSpeed < maxEggsPerSec) {
+				curEggReqSpeed += Time.deltaTime / eggReqSpeedDamp;
+			}
+			lastEggVal -= curEggReqSpeed;
+			// Trigger an animation every time the unlock counter amount changes.
+			if (eggAmntForAnim != Mathf.RoundToInt(lastEggVal)) {
+				// AUDIO - COUNTER GOES DOWN BY ONE!
+				myAudio.eggCounterSnd();
+				eggReqAnim.SetTrigger("ScaleCounter");
+				oneReqSparkFX.Play();
+			}
+			eggAmntForAnim = Mathf.RoundToInt(lastEggVal);
+			myEggCounter.text = eggAmntForAnim.ToString();
+			// Counter has reached the new egg value.
+			if (lastEggVal <= newEggVal) {
+				lerpEggAmnt = false;
+				lastEggVal = newEggVal;
+				multiReqSparkFX.Play();
+				SaveNewLastEggVal();
+				if (lastEggVal <= 0) {
+					startLockAnimDelay = true;
 				}
-				timer += Time.deltaTime;
-				if (timer >= scaleUpTime && !scaledUp) {
-					// AUDIO - LOCK SCALES UP!
-					//myAudio.lockScaleUpSnd();
-					groupAnim.SetTrigger("ScaleUp");
-					scaledUp = true;
-				}
-				if(timer >= setUpTime){
-					settingUp = false;
-					if (lastEggVal != newEggVal) {
-						lerpEggAmnt = true;
-					}
-					timer = 0f;
+				else {
+					enableSeasonObjsDelay = true;
 				}
 			}
-			// Decrease the egg required counter.
-			if (lerpEggAmnt) {
-				// Gradually increase the count going down speed, up to a maximum speed amount.
-				if (curEggReqSpeed < maxEggsPerSec) {
-					curEggReqSpeed += Time.deltaTime / eggReqSpeedDamp;
-				}
-				lastEggVal -= curEggReqSpeed;
-				// Trigger an animation every time the unlock counter amount changes.
-				if (eggAmntForAnim != Mathf.RoundToInt(lastEggVal)) {
-					// AUDIO - COUNTER GOES DOWN BY ONE!
-					myAudio.eggCounterSnd();
-					eggReqAnim.SetTrigger("ScaleCounter");
-					oneReqSparkFX.Play();
-				}
-				eggAmntForAnim = Mathf.RoundToInt(lastEggVal);
-				myEggCounter.text = eggAmntForAnim.ToString();
-				if (lastEggVal <= newEggVal) {
-					lerpEggAmnt = false;
-					lastEggVal = newEggVal;
-					multiReqSparkFX.Play();
-					SaveNewLastEggVal();
-					if (lastEggVal <= 0) {
-						startLockAnimDelay = true;
-					}
-					else {
-						enableSeasonObjsDelay = true;
-					}
-				}
+			yield return null;
+		}
+		// All the eggs required to unlock the season have been found. Play the unlock animation and unlock the season.
+		while (startLockAnimDelay) {
+			removeLockAnimDelay -= Time.deltaTime;
+			if (removeLockAnimDelay <= 0f) {
+				unlockAnim.enabled = true;
+				unlockAnim.SetTrigger("UnlockSeason");
+				FadeOutBanner();
+				startLockAnimDelay = false;
+				locked = false;
+				SaveNewLastEggVal();
+				//Debug.Log("this is where it saves really this time; " + Time.time);
 			}
-			// Start the season unlocked sequence.
-			if (startLockAnimDelay) {
-				removeLockAnimDelay -= Time.deltaTime;
-				if (removeLockAnimDelay <= 0f) {
-					unlockAnim.enabled = true;
-					unlockAnim.SetTrigger("UnlockSeason");
-					FadeOutBanner();
-					startLockAnimDelay = false;
-					locked = false;
-					SaveNewLastEggVal();
-					Debug.Log("this is where it saves really this time; " + Time.time);
-				}
+			yield return null;
+		}
+		// Still some eggs left in before the unlock, enable the hub objects.
+		while (enableSeasonObjsDelay) {
+			seasonObjsTimer += Time.deltaTime;
+			if (seasonObjsTimer >= scaleDownDelay) {
+				// AUDIO - LOCK SCALES DOWN!
+				//myAudio.lockScaleDown();
+				groupAnim.SetTrigger("ScaleDown");
 			}
-			// Enable the level glows, buttons, etc.
-			if (enableSeasonObjsDelay) {
-				seasonObjsTimer += Time.deltaTime;
-				if (seasonObjsTimer >= scaleDownDelay) {
-					// AUDIO - LOCK SCALES DOWN!
-					//myAudio.lockScaleDown();
-					groupAnim.SetTrigger("ScaleDown");
-				}
-				if (seasonObjsTimer >= seasonObjsDelay) {
-					myHubScript.EnableSeasonObjs();
-					enableSeasonObjsDelay = false;
-					seasonObjsTimer = 0f;
-				}
+			if (seasonObjsTimer >= seasonObjsDelay) {
+				myHubScript.EnableSeasonObjs();
+				enableSeasonObjsDelay = false;
+				seasonObjsTimer = 0f;
 			}
+			yield return null;
 		}
 	}
+
 	void CheckUnlock(){
 		locked = GlobalVariables.globVarScript.fallLocked;
 		//Check if the season is already unlocked
@@ -163,7 +262,7 @@ public class SeasonLock : MonoBehaviour {
 		closedLock.gameObject.GetComponent<FadeInOutImage>().FadeIn();
 		backColorFadeScript.gameObject.SetActive(true);
 		backColorFadeScript.FadeIn();
-		settingUp = true;
+		// settingUp = true;
 		// Debug.Log("I'm here  setup should be true");
 	}
 	void UnlockSequence(){

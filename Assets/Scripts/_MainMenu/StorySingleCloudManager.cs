@@ -15,13 +15,17 @@ public class StorySingleCloudManager : MonoBehaviour {
 	[Header ("Scripts")]
 	public StoryScrollingBG storyScrollBGScript;
 
-	void Update () {
-		if (slowDownClouds) {
-			SlowDownClouds();
-		}
-	}
+	// void Update () {
+	// 	if (slowDownClouds) {
+	// 		SlowDownClouds();
+	// 	}
+	// }
 	
 	public void PlayClouds(ParticleSystem partSys, float speedMult = 0, bool prewarmed = false) {
+		partSys.gameObject.SetActive(true);
+		if (activePartSys != null && activePartSys != partSys) {
+			activePartSys.gameObject.SetActive(false);
+		}
 		activePartSys = partSys;
 		// Store the Particle System's components to allow modifications.
 		var ps = partSys.main;
@@ -62,7 +66,8 @@ public class StorySingleCloudManager : MonoBehaviour {
 	}
 	public void SlowDownCloudsSetup(ParticleSystem partSys) {
 		activePartSys = partSys;
-		slowDownClouds = true;
+		//slowDownClouds = true;
+		StartCoroutine(SlowDownClouds());
 		// Enable Velocity Over Lifetime to slow down active particles with the SpeedModifier attribute.
 		// Enable Color Over Lifetime to have the clouds on screen fade out at the end of their life. // Consider extending their life?
 		var vol = partSys.velocityOverLifetime;
@@ -71,18 +76,28 @@ public class StorySingleCloudManager : MonoBehaviour {
 		col.enabled = true;
 		//speed modifier lerp down from 1 - 0 (based on clouds slowdown speed?)
 	}
-	void SlowDownClouds() {
+	IEnumerator SlowDownClouds() {
 		var vol = activePartSys.velocityOverLifetime;
 		float speedModValue = storyScrollBGScript.ScrollValue / storyScrollBGScript.ScrollSpeed;
-		vol.speedModifier = speedModValue;
-		if (speedModValue <= 0f) {
-			slowDownClouds = false;
+		while (speedModValue > 0f) {
+			speedModValue = storyScrollBGScript.ScrollValue / storyScrollBGScript.ScrollSpeed;
+			vol.speedModifier = speedModValue;
+			yield return null;
 		}
 	}
+	// void SlowDownClouds() {
+	// 	var vol = activePartSys.velocityOverLifetime;
+	// 	float speedModValue = storyScrollBGScript.ScrollValue / storyScrollBGScript.ScrollSpeed;
+	// 	vol.speedModifier = speedModValue;
+	// 	if (speedModValue <= 0f) {
+	// 		slowDownClouds = false;
+	// 	}
+	// }
 	public void StopActivePartSys() {
 		// Stop the active particle systems.
 		activePartSys.Clear();
 		activePartSys.Stop();
+		activePartSys.gameObject.SetActive(false);
 	}
 	#region Non particle system single clouds.
 	// public List<StorySingleCloud> singleClouds;

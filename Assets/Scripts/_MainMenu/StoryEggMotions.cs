@@ -88,6 +88,7 @@ public class StoryEggMotions : MonoBehaviour {
 
 	// For the "TimeConfused" storyboard.
 	public void SpawnEggInBag() {
+		this.gameObject.SetActive(true);
 		spawnInBag = true;
 		if (bewilderedTime.transform.eulerAngles.y > 90 && bewilderedTime.transform.eulerAngles.y < 270/*  || bewilderedTime.transform.eulerAngles.y < -90 && bewilderedTime.transform.eulerAngles.y >- 180 */) {
 			xMoveDist = Mathf.Abs(xMoveDist) * -1;
@@ -102,12 +103,9 @@ public class StoryEggMotions : MonoBehaviour {
 		endX = eggSpawnTrans.position.x + xMoveDist;
 		startY = eggSpawnTrans.position.y;
 		endY = eggSpawnTrans.position.y + yMoveDist;
-
-		
 		// AUDIO - EGG COMES OUT OF BAG!
 		audioIntroScript.introEggDropBasketSFX();
 		audioEggOutBag = false;
-		
 	}
 
 	void OutOfBag() {
@@ -115,16 +113,17 @@ public class StoryEggMotions : MonoBehaviour {
 			lerpValue += Time.deltaTime / eggFlyDuration;
 			newX = Mathf.LerpUnclamped(startX, endX, xAnimCurve.Evaluate(lerpValue));
 			newY = Mathf.LerpUnclamped(startY, endY, yAnimCurve.Evaluate(lerpValue));
-
 			this.transform.position = new Vector3(newX, newY, this.transform.position.z);
 		}
 		else {
 			spawnInBag = false;
 			lerpValue = 0f;
+			this.gameObject.SetActive(false);
 		}
 	}
 	// For the "EggsFalling" storyboard.
 	public void SpawnEggsAtTop(Vector3 startPos, Vector3 endPos) {
+		this.gameObject.SetActive(true);
 		this.transform.localScale = new Vector3(fallEggScale, fallEggScale, fallEggScale);
 		this.transform.position = startPos;
 		fallFromTop = true;
@@ -241,6 +240,7 @@ public class StoryEggMotions : MonoBehaviour {
 	}
 
 	public void Reset() {
+		this.gameObject.SetActive(false);
 		spawnInBag = rotate = fallFromTop = hover = fallDown = false;
 		this.transform.position = fallEggSpawnTrans[0].position;
 		lerpValue = 0f;

@@ -72,6 +72,7 @@ public class StoryOneEgg : MonoBehaviour {
 	}
 	// Start the egg tap animation.
 	public void EggTap() {
+		tapIconFadeScript.FadeOut();
 		oneEggAnim.SetTrigger("EggPop");
 		eggClickFX.Play(true);
 		// AUDIO - EGG CLICKED/TAPPED!
