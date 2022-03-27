@@ -16,18 +16,18 @@ public class DissolveSeasons : MonoBehaviour {
 	
 	public void SeasonDissolveCheck () {
 
-		bool change = false;
+		//bool change = false;
 		if (!GlobalVariables.globVarScript.dissSeasonsBools[0] && hubEggcountsScript.TotEgg >= summerAmnt) {
-			dissSeasonsTemp[0] = true; change = true;
+			dissSeasonsTemp[0] = true; //change = true;
 		}
 		if (!GlobalVariables.globVarScript.dissSeasonsBools[1] && hubEggcountsScript.TotEgg >= fallAmnt) {
-			dissSeasonsTemp[1] = true; change = true;
+			dissSeasonsTemp[1] = true; //change = true;
 		}
 		if (!GlobalVariables.globVarScript.dissSeasonsBools[2] && hubEggcountsScript.TotEgg >= winterAmnt) {
-			dissSeasonsTemp[2] = true; change = true;
+			dissSeasonsTemp[2] = true; //change = true;
 		}
 		if (!GlobalVariables.globVarScript.dissSeasonsBools[3] && hubEggcountsScript.TotEgg >= springAmnt) {
-			dissSeasonsTemp[3] = true; change = true;
+			dissSeasonsTemp[3] = true; //change = true;
 		}
 
 		// Debug.Log("Was a new season unlocked? " + change);

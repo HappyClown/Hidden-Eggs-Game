@@ -156,9 +156,9 @@ public class MainMenu : MonoBehaviour {
 			deleteSaveBtnCGFadeScript.gameObject.SetActive(false);
 		}
 		if (startHubActive) {
-			hubScript.startHubActive = true;
+			hubScript.ActivateHub();
 		}
-			seasonLockScripts[0].StartSeasonUnlockChecks();
+			//seasonLockScripts[0].StartSeasonUnlockChecks();
 	}
 
 	public void DeleteSaveFile() {

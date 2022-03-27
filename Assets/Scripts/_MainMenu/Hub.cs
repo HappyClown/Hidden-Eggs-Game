@@ -17,10 +17,14 @@ public class Hub : MonoBehaviour {
 	public List<Material> matsToDissolve;
 	public bool dissolveDone;
 	[Header("Season Objects")]
+	public GameObject[] seasonsBWObjects; // These need to match the order of the DissolveMats list.
 	public List<GameObject> summerButtons;
 	public List<GameObject> summerGlows;
 	public List<SeasonGlows> seasonGlowsScripts;
 	public List<GameObject> fallObjs;
+	[Header("Hub Objects")]
+	public GameObject coloredVillageGO;
+	public GameObject fireflyParentGO;
 	[Header("What To Do Bools")]
 	public bool dissolving;
 	public bool inHub;
@@ -80,8 +84,18 @@ public class Hub : MonoBehaviour {
 
 	IEnumerator HubActivation() {
 		ResetHubSeasons();
+		// Activate Hub objects that need to be there as soon as the main menu clouds part.
+		EnableHubObjects();
+		// Check the save files to know which season has already been dissolved.
+		dissolveSeasonsScript.SeasonDissolveCheck(); 
+		// Turn on the black and white versions that have been disolved.
+		for (int i = 0; i < 4; i++) {
+			if (!GlobalVariables.globVarScript.dissSeasonsBools[i]) {
+				seasonsBWObjects[i].SetActive(true);
+			}
+		}
+		// Setup a timer before activating dissolve effects, HUD elements, etc.
 		hubActiveWaitTimer = hubActiveWait;
-		//hubActiveWaitTimer -= hubActiveFaster;
 		while (hubActiveWaitTimer > 0f) {
 			hubActiveWaitTimer -= Time.deltaTime;
 			yield return null;
@@ -89,12 +103,8 @@ public class Hub : MonoBehaviour {
 		hubActiveWaitTimer = hubActiveWait;
 		inHub = true;
 		//hubActiveFaster = 0f;
-		// Check the save files to know which season has already been dissolved.
-		dissolveSeasonsScript.SeasonDissolveCheck(); 
 		// Add the materials that need to be dissolved to a list.
 		DecideDissolve();
-		// Check if the player found new eggs for the locked seasons.
-		seasonLock.StartSeasonUnlockChecks();
 		// If there are any seasons to dissolve.
 		if (matsToDissolve.Count > 0) {
 			while (dissAmnt < 1.01f) {
@@ -109,15 +119,24 @@ public class Hub : MonoBehaviour {
 			dissolveSeasonsScript.SaveSeasonDissolves();
 			matsToDissolve.Clear();
 		}
+		// The SeasonLock scripts rely on this variable to continue running their checks, keep that in mind.
 		dissolveDone = true;
-		EnableHubObjects();
+		EnableHubHUDObjects();
+		// Check if the player found new eggs for the locked seasons.
+		seasonLock.StartSeasonUnlockChecks();
 	}
 
+	
+	void EnableHubObjects() {
+		coloredVillageGO.SetActive(true);
+	}
 	// Enable general Village objects (UI, etc) 
-	void EnableHubObjects() { 
+	void EnableHubHUDObjects() { 
 		hubCGInteractFadeScript.FadeIn();
 		hubCGUninteractFadeScript.FadeIn();
+		fireflyParentGO.SetActive(true);
 	}
+
 	// Enable Season objects (Scene buttons)
 	public void EnableSeasonObjs() {  
 		backToMenuScript.backToMenuBtn.enabled = true;
