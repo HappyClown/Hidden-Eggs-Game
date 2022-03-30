@@ -64,6 +64,7 @@ public class BackToMenu : MonoBehaviour
 		}
 		mainMenuScript.PartialMainMenuFade(true, false, true);
 		hubScript.ResetHubSeasons();
+		hubScript.TurnOffHubObjects();
 		foreach(SeasonGlows seasonGlowScript in seasonGlowScripts)
 		{
 			seasonGlowScript.ResetGlowAlphas();

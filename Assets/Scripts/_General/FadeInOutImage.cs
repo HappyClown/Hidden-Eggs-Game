@@ -98,6 +98,9 @@ public class FadeInOutImage : MonoBehaviour
 	public void FadeIn () {
 		if (!this.gameObject.activeSelf) {
 			this.gameObject.SetActive(true);
+			if(img == null) {
+				img = this.gameObject.GetComponent<Image>();
+			}
 		}
 		
 		if (!fadingIn && !shown) {

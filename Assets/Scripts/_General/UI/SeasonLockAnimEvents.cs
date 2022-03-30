@@ -16,28 +16,40 @@ public class SeasonLockAnimEvents : MonoBehaviour {
 
 	public SeasonLock seasonLockScript;
 
-	void Update () {
-		if (scaleDownReqSparks) {
-			// Only works like this if the scale goes from 1 to 0. If not, additional calculations need to be made. 
+	// void Update () {
+	// 	if (scaleDownReqSparks) {
+	// 		// Only works like this if the scale goes from 1 to 0. If not, additional calculations need to be made. 
+	// 		newReqSparkScale -= Time.deltaTime / reqSparkDownDuration;
+	// 		Vector3 newScaleVec = new Vector3(newReqSparkScale, newReqSparkScale, newReqSparkScale);
+	// 		oneReqSparkTrans.localScale = newScaleVec;
+	// 		multiReqSparkTrans.localScale = newScaleVec;
+	// 		if (newReqSparkScale <= 0f) {
+	// 			scaleDownReqSparks = false;
+	// 		}
+	// 	}
+	// }
+	IEnumerator ScaleDownSparks() {
+		while (newReqSparkScale > 0f) {
 			newReqSparkScale -= Time.deltaTime / reqSparkDownDuration;
 			Vector3 newScaleVec = new Vector3(newReqSparkScale, newReqSparkScale, newReqSparkScale);
 			oneReqSparkTrans.localScale = newScaleVec;
 			multiReqSparkTrans.localScale = newScaleVec;
-			if (newReqSparkScale <= 0f) {
-				scaleDownReqSparks = false;
-			}
+			yield return null;
 		}
 	}
 	
 	void PlayFlashFX() {
+		flashFX.gameObject.SetActive(true);
 		flashFX.Play();
 	}
 
 	void PlaySparksFX() {
+		sparksFX.gameObject.SetActive(true);
 		sparksFX.Play();
 	}
 
 	void PlaySparkleDustFX() {
+		sparkleDustFX.gameObject.SetActive(true);
 		sparkleDustFX.Play();
 	}
 
@@ -46,11 +58,13 @@ public class SeasonLockAnimEvents : MonoBehaviour {
 	}
 
 	void PlayShaftsFX() {
+		shaftsFX.gameObject.SetActive(true);
 		shaftsFX.Play();
 	}
 
 	void ScaleDownReqSparks() {
-		scaleDownReqSparks = true;
+		//scaleDownReqSparks = true;
+		StartCoroutine(ScaleDownSparks());
 		newReqSparkScale = 1f;
 	}
 

@@ -160,6 +160,7 @@ public class SeasonLock : MonoBehaviour {
 			timer += Time.deltaTime;
 			// Scale up the lock.
 			if (timer >= scaleUpTime && !scaledUp) {
+				groupAnim.enabled = true;
 				groupAnim.SetTrigger("ScaleUp");
 				scaledUp = true;
 				//myAudio.lockScaleUpSnd();
@@ -182,7 +183,9 @@ public class SeasonLock : MonoBehaviour {
 			if (eggAmntForAnim != Mathf.RoundToInt(lastEggVal)) {
 				// AUDIO - COUNTER GOES DOWN BY ONE!
 				myAudio.eggCounterSnd();
+				eggReqAnim.enabled = true;
 				eggReqAnim.SetTrigger("ScaleCounter");
+				oneReqSparkFX.gameObject.SetActive(true);
 				oneReqSparkFX.Play();
 			}
 			eggAmntForAnim = Mathf.RoundToInt(lastEggVal);
@@ -191,6 +194,7 @@ public class SeasonLock : MonoBehaviour {
 			if (lastEggVal <= newEggVal) {
 				lerpEggAmnt = false;
 				lastEggVal = newEggVal;
+				multiReqSparkFX.gameObject.SetActive(true);
 				multiReqSparkFX.Play();
 				SaveNewLastEggVal();
 				if (lastEggVal <= 0) {
@@ -222,6 +226,7 @@ public class SeasonLock : MonoBehaviour {
 			if (seasonObjsTimer >= scaleDownDelay) {
 				// AUDIO - LOCK SCALES DOWN!
 				//myAudio.lockScaleDown();
+				groupAnim.enabled = true;
 				groupAnim.SetTrigger("ScaleDown");
 			}
 			if (seasonObjsTimer >= seasonObjsDelay) {

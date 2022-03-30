@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour {
 
 		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
 		{
-			levelTitleScript.CloseTitle();
+			levelTitleScript.ResetTitle();
 		}
 		foreach(LevelFireflies levelFireflies in levelFirefliesScripts)
 		{
@@ -76,7 +76,7 @@ public class MainMenu : MonoBehaviour {
 
 		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
 		{
-			levelTitleScript.CloseTitle();
+			levelTitleScript.ResetTitle();
 		}
 		foreach(LevelFireflies levelFireflies in levelFirefliesScripts)
 		{
@@ -132,11 +132,11 @@ public class MainMenu : MonoBehaviour {
 		if (fadeElements) {
 			if (fadeIn) {
 				titleAndBtnsCGFadeScript.FadeIn();
-				deleteSaveBtnCGFadeScript.FadeIn();
+				//deleteSaveBtnCGFadeScript.FadeIn();
 			}
 			else {
 				titleAndBtnsCGFadeScript.FadeOut();
-				deleteSaveBtnCGFadeScript.FadeOut();
+				//deleteSaveBtnCGFadeScript.FadeOut();
 			}
 		}
 	}
@@ -152,9 +152,9 @@ public class MainMenu : MonoBehaviour {
 			titleAndBtnsCGFadeScript.FadeOut();
 			titleAndBtnsCGFadeScript.fadeDuration = ogDuration;
 		}
-		if (deleteSaveBtnCGFadeScript.gameObject.activeSelf) {
-			deleteSaveBtnCGFadeScript.gameObject.SetActive(false);
-		}
+		// if (deleteSaveBtnCGFadeScript.gameObject.activeSelf) {
+		// 	deleteSaveBtnCGFadeScript.gameObject.SetActive(false);
+		// }
 		if (startHubActive) {
 			hubScript.ActivateHub();
 		}

@@ -126,7 +126,7 @@ public class Hub : MonoBehaviour {
 		seasonLock.StartSeasonUnlockChecks();
 	}
 
-	
+
 	void EnableHubObjects() {
 		coloredVillageGO.SetActive(true);
 	}
@@ -164,6 +164,14 @@ public class Hub : MonoBehaviour {
 			}
 		}
 	}
+	// Turn off various Hub objects when going back to main menu.
+	public void TurnOffHubObjects() {
+		for (int i = 0; i < seasonsBWObjects.Length; i++)
+		{
+			seasonsBWObjects[i].SetActive(false);
+		}
+		coloredVillageGO.SetActive(false);
+	} 
 	// Run this to either reset the dissolves or not.
 	public void ResetHubSeasons() {  
 		inHub = false;
