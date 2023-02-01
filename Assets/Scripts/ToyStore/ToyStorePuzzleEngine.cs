@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class ToyStorePuzzleEngine : MainPuzzleEngine {
 
-	private delegate void VoidDelegate();
-	private VoidDelegate voidDelegate;
+	//private delegate void VoidDelegate();
+	//private VoidDelegate voidDelegate;
 	public ToyStorePuzzleLevel[] myLvls;
 	public ToyStorePuzzlePiece holdedPiece;
 	public float mouseRadius, liftDiff;
 	private bool raycastDone, puzzleDone, holdingPiece;
 	public Vector2 clickdiff, holdedPos;
+	public PuzzleCell[] mainGrid;
+	public Sprite emptyCell, targetCell, highlightCell;
+	public Color emptyCellColor, targetCellColor, highlightCellColor;
+
 	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
@@ -24,7 +28,8 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		// }
 
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
-		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
+		//tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
+		tutorialDone = true; //change this 
 		raycastDone = false;
 		/* if(currentLevel >= mylevels.Length){
 			currentLevel = mylevels.Length - 1;
@@ -56,7 +61,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 			//SET BEHAVIOR HERE			
-			/*if(myInput.Tapped && !holdingPiece){//Rotate free piece when tapped
+			if(myInput.Tapped && !holdingPiece){//Rotate free piece when tapped
 				UpdateMousePos(myInput.TapPosition);
 				RotatePiece(mousePos2D);							
 			}else if(myInput.isDragging){//check if dragging to move pieces
@@ -64,7 +69,10 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				if(holdingPiece){
 					holdedPos = mousePos2D - clickdiff;
 					holdedPiece.transform.position = new Vector3(holdedPos.x, holdedPos.y, -liftDiff );
-					int matchNum = 0;
+					if(CheckPlacingPos(mousePos2D)){
+						Debug.Log("X I love u");
+					}
+					/*int matchNum = 0;
 					foreach (PuzzleCell cell in holdedPiece.mycells)
 					{
 						foreach (PuzzleCell cell2 in myLvls[curntLvl-1].gridCells)
@@ -85,7 +93,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 						{
 							spRend.gameObject.SetActive(false);																
 						}
-					}
+					}*/
 				}else{
 					holdedPiece = SelectPiece(mousePos2D);
 					if(holdedPiece){
@@ -98,11 +106,17 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				}
 			}else{
 				if(holdingPiece){
-					myLvls[curntLvl-1].CheckPiece(holdedPiece);
+					if(CheckPlacingPos(mousePos2D)){
+						Debug.Log("X I love u");
+					}
+					else{
+						holdedPiece.ResetPiece();
+					}
+					//myLvls[curntLvl-1].CheckPiece(holdedPiece);
 					holdedPiece = null;
 					holdingPiece = false;				
 				}
-			}*/
+			}
 			
 			if(Input.GetKey("r")){
 				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
@@ -199,6 +213,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
+		SetUpGrid();
 		initialSetupOn = false;
 		iniSeqStart = true;
 	}
@@ -262,12 +277,6 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		}
 	}
 
-	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun)
-	{
-		methToRun();
-	}
-
 	// Once animations are finished, run the next level setup.
 	public new void NextLevelSetup() {
 		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
@@ -281,25 +290,11 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
-
+		SetUpGrid();		
 		itemHolder.SetActive(false);
 		itemHolder = lvlItemHolders[curntLvl - 1];
 		itemsWait = true;
 		//clamLevelChangeScript.bootFront.sortingLayerName = "Default";
-	}
-
-	// Prepare to change level after a level selection button has been pressed.
-	public new void ChangeLevelSetup()
-	{
-		// Close up current level.
-		canPlay = false;
-			//myLvls[curntLvl-1].CleanClamBubbles();
-
-		mySelectButton.UninteractableThreeDots();
-
-		LvlStuffFadeOut();
-
-		setupChsnLvl = true;
 	}
 
 	// Setup the chosen level after waiting for setupLvlWaitTime (minimum the fade out duration of the items).
@@ -315,6 +310,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			CleanGrid();
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
+			SetUpGrid();
 			itemHolder = lvlItemHolders[curntLvl - 1];
 			itemsWait = true;
 			setupChsnLvl = false;
@@ -339,16 +335,6 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	public void EndOfLevelEvent() {
 		//clamLevelChangeScript.LevelChangeEvent();
 	}
-
-	public new void SaveMaxLvl()
-	{
-		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
-		{
-			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
-			GlobalVariables.globVarScript.SaveEggState();
-		}
-	}
-
 	#endregion
 
 	#region Coroutines
@@ -375,42 +361,57 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	}
 
 	void CleanGrid(){
-		/*for (int i = 0; i < gridCells.Length; i++)
+		foreach (PuzzleCell cell in mainGrid)
 		{
-			gridCells[i].occupied = false;
-		}*/
+			cell.occupied = false;
+			SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+			spRend.sprite = emptyCell; spRend.color = emptyCellColor;
+			cell.goalCell = false;
+		}
+	}
+	void SetUpGrid(){
+		foreach (PuzzleCell cell in myLvls[curntLvl-1].goalCells)
+		{
+			cell.goalCell = true;
+			SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+			spRend.sprite = targetCell; spRend.color = targetCellColor;
+		}
 	}
 	//Particular Puzzle functions
 	//Rotate a piece if is available
-	void RotatePiece(Vector2 pos){
-		foreach ( ToyStorePuzzlePiece piece in myLvls[curntLvl-1].myPieces)
-		{
-			foreach (PuzzleCell cell in piece.mycells)
-			{
-				if(Vector2.Distance(pos,cell.gameObject.transform.position) < mouseRadius){
-					if(!piece.placed){
-						piece.RotatePiece();
-						break;
-					}
-				}
+	void RotatePiece(Vector2 pos){		
+		hit = Physics2D.Raycast(pos, Vector3.forward, 50f);//Create raycast on the mouse position
+		if (hit){
+			if (hit.collider.CompareTag("Puzzle")) {//check if raycast hits puzzle piece
+				Debug.Log(hit.collider.gameObject.name);
+				ToyStorePuzzlePiece toRotPiece =  hit.collider.gameObject.GetComponent<ToyStorePuzzlePiece>();//Assign puzzle piece to variable
+				toRotPiece.RotatePiece();//Call rotate function on the puzzle piece
 			}
 		}
 	}
 	//Select Piece to hold
 	ToyStorePuzzlePiece SelectPiece(Vector2 pos){
-		ToyStorePuzzlePiece selectedPiece = null;
-		foreach ( ToyStorePuzzlePiece piece in myLvls[curntLvl-1].myPieces)
-		{
-			foreach (PuzzleCell cell in piece.mycells)
-			{
-				if(Vector2.Distance(pos,cell.gameObject.transform.position) < mouseRadius){
-					if(!piece.movingBack){
-						selectedPiece = piece;
-					}
+		hit = Physics2D.Raycast(pos, Vector3.forward, 50f);//Create raycast on the mouse position
+		if (hit){
+			if (hit.collider.CompareTag("Puzzle")) {//check if raycast hits puzzle piece
+				Debug.Log(hit.collider.gameObject.name);
+				ToyStorePuzzlePiece toMovePiece =  hit.collider.gameObject.GetComponent<ToyStorePuzzlePiece>();//assign selected piece
+				if(!toMovePiece.movingBack){//check if piece was not moving back to original position
+					toMovePiece.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+					return toMovePiece; //returns selected puzzle piece
 				}
 			}
 		}
-		return selectedPiece;
+		return null; //retuns empty if nothing is selected
+	}
+	bool CheckPlacingPos(Vector2 pos){
+		hit = Physics2D.Raycast(pos, Vector3.forward, 50f);//Create raycast on the mouse position
+		if (hit){
+			if (hit.collider.CompareTag("InCrate")) {//check if raycast hits puzzle piece
+				return true;
+			}
+		}
+		return false;
 	}
 }
 

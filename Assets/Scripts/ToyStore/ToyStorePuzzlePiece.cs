@@ -44,6 +44,7 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	public void ResetPiece(){
 		this.gameObject.transform.rotation = initialRotation;
 		this.gameObject.transform.position = startPos;
+		this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
 	}
 	public void BackToStart(float backDuration){
 		movingBack = true;

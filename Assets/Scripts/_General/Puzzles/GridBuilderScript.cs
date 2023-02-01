@@ -153,4 +153,16 @@ public class GridBuilderScript : MonoBehaviour {
 			cell.gameObject.GetComponent<SpriteRenderer>().enabled = true;
 		}
 	}
+	public void RemoveColliders(){
+		PuzzleCell[] cells = this.GetComponentsInChildren<PuzzleCell>();
+		foreach (PuzzleCell cell in cells){
+			cell.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+		}
+	}
+	public void EnableColliders(){
+		PuzzleCell[] cells = this.GetComponentsInChildren<PuzzleCell>();
+		foreach (PuzzleCell cell in cells){
+			cell.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+		}
+	}
 }

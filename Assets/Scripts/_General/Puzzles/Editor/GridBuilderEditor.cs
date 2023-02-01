@@ -56,6 +56,12 @@ public class GridBuilderEditor : Editor {
 		if(GUILayout.Button("Enable Grid Sprites")){
 			myScrypt.EnableSprites();
 		}
+		if(GUILayout.Button("Remove Grid Colliders")){
+			myScrypt.RemoveColliders();
+		}
+		if(GUILayout.Button("Enable Grid Colliders")){
+			myScrypt.EnableColliders();
+		}
         GUILayout.EndVertical();
 	}
 }

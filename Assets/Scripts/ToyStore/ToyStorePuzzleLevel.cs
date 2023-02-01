@@ -6,7 +6,7 @@ public class ToyStorePuzzleLevel : MonoBehaviour {
 	public bool levelComplete, finished;
 	public float snapRadius, backDuration;
 	public ToyStorePuzzlePiece[] myPieces;
-	public PuzzleCell[] gridCells;
+	public PuzzleCell[] goalCells;
 
 	// Use this for initialization
 	void Start () {

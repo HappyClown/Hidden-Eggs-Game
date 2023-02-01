@@ -34,8 +34,8 @@ public class MainPuzzleEngine : MonoBehaviour
 	[HideInInspector]
 	public bool setupChsnLvl;
 	// For Delegate Method
-	private delegate void VoidDelegate();
-	private VoidDelegate voidDelegate; 
+	public delegate void VoidDelegate();
+	public VoidDelegate voidDelegate; 
 	[HideInInspector]
 	public bool waitMethod;
 	[Tooltip("For now, minimum the lenght of the silver egg tap anim.")] 
@@ -199,7 +199,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	}
 
 	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun) {
+	public void RunAfter(VoidDelegate methToRun) {
 		methToRun();
 	}
 
