@@ -31505,12 +31505,29 @@ MonoBehaviour:
   - {fileID: 840587374}
   - {fileID: 327650218}
   - {fileID: 249888119}
+  TopCells:
+  - {fileID: 163073806}
+  - {fileID: 688988762}
+  - {fileID: 1809191447}
+  - {fileID: 354362528}
+  - {fileID: 26821687}
+  - {fileID: 1056786972}
+  - {fileID: 179005653}
+  - {fileID: 1497828078}
+  - {fileID: 138592800}
+  - {fileID: 366418804}
+  - {fileID: 623539633}
+  - {fileID: 1330727157}
+  - {fileID: 840587374}
+  - {fileID: 327650218}
+  - {fileID: 249888119}
+  droppingCell: {fileID: 0}
   emptyCell: {fileID: 21300000, guid: d278ab49f593d174c8d792a3a7e5fe07, type: 3}
   targetCell: {fileID: 21300000, guid: f5104a91e8c689b4fa7e803b04dc5754, type: 3}
   highlightCell: {fileID: 21300000, guid: 82b731b51944e644c81e615da06bd785, type: 3}
   emptyCellColor: {r: 0.05962267, g: 0.745283, b: 0, a: 1}
   targetCellColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightCellColor: {r: 0, g: 0, b: 0, a: 0}
+  highlightCellColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!4 &779247402
 Transform:
   m_ObjectHideFlags: 0
@@ -49410,6 +49427,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mycells: []
+  mostLeftCell: {fileID: 0}
+  mostRightCell: {fileID: 0}
+  inBetweenCells: 0
   startPos: {x: 0, y: 0, z: 0}
   outPos: {x: 0, y: 0, z: 0}
   placedPos: {x: 0, y: 0, z: 0}
@@ -62204,7 +62224,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.93, y: 6.54}
+  m_Offset: {x: 2.9300003, y: 6.54}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -62215,7 +62235,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.81, y: 2.28}
+  m_Size: {x: 6.275893, y: 2.2799997}
   m_EdgeRadius: 0
 --- !u!1 &1659951962
 GameObject:

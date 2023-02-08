@@ -11,7 +11,8 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	public float mouseRadius, liftDiff;
 	private bool raycastDone, puzzleDone, holdingPiece;
 	public Vector2 clickdiff, holdedPos;
-	public PuzzleCell[] mainGrid;
+	public PuzzleCell[] mainGrid, TopCells;
+	public PuzzleCell droppingCell;
 	public Sprite emptyCell, targetCell, highlightCell;
 	public Color emptyCellColor, targetCellColor, highlightCellColor;
 
@@ -62,15 +63,18 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 			//SET BEHAVIOR HERE			
 			if(myInput.Tapped && !holdingPiece){//Rotate free piece when tapped
-				UpdateMousePos(myInput.TapPosition);
-				RotatePiece(mousePos2D);							
-			}else if(myInput.isDragging){//check if dragging to move pieces
-				UpdateMousePos(myInput.draggingPosition);
-				if(holdingPiece){
-					holdedPos = mousePos2D - clickdiff;
-					holdedPiece.transform.position = new Vector3(holdedPos.x, holdedPos.y, -liftDiff );
-					if(CheckPlacingPos(mousePos2D)){
-						Debug.Log("X I love u");
+				UpdateMousePos(myInput.TapPosition);//convert mouse pos to screen pos
+				RotatePiece(mousePos2D);//execute rotate piece function							
+			}else if(myInput.isDragging){//check if the user is dragging
+				UpdateMousePos(myInput.draggingPosition);//convert mouse pos to screen pos
+				if(holdingPiece){//check if a piece is being holded
+					holdedPos = mousePos2D - clickdiff;//Convert the piece position based in mouse pos
+					holdedPiece.transform.position = new Vector3(holdedPos.x, holdedPos.y, -liftDiff );//update piece position
+					
+					if(CheckPlacingPos(mousePos2D)){//highlight grid if in the dropZone
+						SetDroppingCell();
+					}else{
+						CleanHightlight();
 					}
 					/*int matchNum = 0;
 					foreach (PuzzleCell cell in holdedPiece.mycells)
@@ -94,23 +98,24 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 							spRend.gameObject.SetActive(false);																
 						}
 					}*/
-				}else{
-					holdedPiece = SelectPiece(mousePos2D);
-					if(holdedPiece){
-						if(holdedPiece.placed){
+				}else{//if there is no holded piece, we have to check if is possible to hold one
+					holdedPiece = SelectPiece(mousePos2D); //check if there is a piece in the dragging position
+					if(holdedPiece){// check if a piece is assigned
+						/*if(holdedPiece.placed){
 							myLvls[curntLvl-1].FreeCells(holdedPiece);
-						}
+						}*/
 						holdingPiece = true;
+						//set a click difference in between the center of the piece and the clicked pos
 						clickdiff = mousePos2D - new Vector2(holdedPiece.gameObject.transform.position.x, holdedPiece.gameObject.transform.position.y);
 					}
 				}
 			}else{
 				if(holdingPiece){
-					if(CheckPlacingPos(mousePos2D)){
-						Debug.Log("X I love u");
+					if(CheckPlacingPos(mousePos2D)){//set behavior for piece when placed in the right area
+						Debug.Log("Placed in good pos");
 					}
 					else{
-						holdedPiece.ResetPiece();
+						holdedPiece.ResetPiece(); //reset piece position if released in a wrong area
 					}
 					//myLvls[curntLvl-1].CheckPiece(holdedPiece);
 					holdedPiece = null;
@@ -412,6 +417,45 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			}
 		}
 		return false;
+	}
+	void SetDroppingCell(){
+		int toHighlight = 0;
+		PuzzleCell tempCell = null;
+		CleanHightlight();
+		float dist = 100000;
+		foreach (PuzzleCell cell in TopCells)
+		{
+			if(Mathf.Abs(cell.gameObject.transform.position.x - holdedPiece.mostLeftCell.gameObject.transform.position.x) < dist){
+				droppingCell = cell;
+				dist = Mathf.Abs(cell.gameObject.transform.position.x - holdedPiece.mostLeftCell.gameObject.transform.position.x);
+			}
+		}
+		toHighlight = droppingCell.CheckDown().CheckTimes;		
+		Debug.Log("im here!!!     "+toHighlight.ToString());
+		tempCell = null;
+		for (int i = 0; i < toHighlight; i++)
+		{
+			tempCell = droppingCell.CheckDownAmmount(i);
+			if(!tempCell.goalCell && !tempCell.occupied){
+				SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+				spRend.sprite = highlightCell; spRend.color = highlightCellColor;
+			}
+		}
+	}
+	void CleanHightlight(){
+		int toHighlight = 0;
+		PuzzleCell tempCell = null;
+		if(droppingCell){
+			toHighlight = droppingCell.CheckDown().CheckTimes;			
+			for (int i = 0; i < toHighlight; i++)
+			{
+				tempCell = droppingCell.CheckDownAmmount(i);
+				if(!tempCell.goalCell && !tempCell.occupied){
+					SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+					spRend.sprite = emptyCell; spRend.color = emptyCellColor;
+				}
+			}
+		}
 	}
 }
 

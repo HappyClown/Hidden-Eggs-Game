@@ -6,6 +6,8 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 
 	
 	public PuzzleCell[] mycells;
+	public PuzzleCell mostLeftCell, mostRightCell;
+	public int inBetweenCells;
 	public Vector3 startPos,outPos, placedPos;
 	public SpriteRenderer[] pieceSprites;
 	public bool placed, movingBack;
@@ -14,11 +16,15 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	public AnimationCurve movingCurve;
 	private Quaternion initialRotation;
 
+	void Awake () {
+		mycells = this.gameObject.GetComponentsInChildren<PuzzleCell>();
+	}
 	// Use this for initialization
 	void Start () {
 		initialRotation = this.gameObject.transform.rotation;
 		startPos = this.gameObject.transform.position;
 		outPos = startPos;
+		SetEdgeCells();
 	}
 	
 	// Update is called once per frame
@@ -40,15 +46,34 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	}
 	public void RotatePiece(){
 		this.gameObject.transform.Rotate(0,0,rotationValue);
+		SetEdgeCells();
 	}
 	public void ResetPiece(){
 		this.gameObject.transform.rotation = initialRotation;
 		this.gameObject.transform.position = startPos;
 		this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+		SetEdgeCells();
 	}
 	public void BackToStart(float backDuration){
 		movingBack = true;
 		outPos = this.transform.position;
 		duration = backDuration;
+	}
+	public void SetEdgeCells(){
+		float minX = 10000;
+		float maxX = -10000;
+		foreach (PuzzleCell cell in mycells){
+			if(cell.gameObject.transform.position.x < minX){
+				mostLeftCell = cell;
+				minX = cell.gameObject.transform.position.x;
+			}
+			if(cell.gameObject.transform.position.x > maxX){
+				mostRightCell = cell;
+				maxX = cell.gameObject.transform.position.x;
+			}
+		}
+		float cellRadious = this.gameObject.GetComponent<GridBuilderScript>().cellSize;
+		Debug.Log("maxX"+maxX.ToString()+"   minX"+minX.ToString()+"   Rad"+cellRadious.ToString());
+		inBetweenCells = (int)((maxX - minX)/cellRadious)+1;
 	}
 }
