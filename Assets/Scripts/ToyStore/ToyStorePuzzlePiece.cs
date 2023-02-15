@@ -46,6 +46,21 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	}
 	public void RotatePiece(){
 		this.gameObject.transform.Rotate(0,0,rotationValue);
+		foreach (PuzzleCell cell in mycells)
+		{
+			PuzzleCell tempcell;
+			tempcell = cell.cellLeft;
+			cell.cellLeft = cell.cellDown;
+			cell.cellDown = cell.cellRight;
+			cell.cellRight = cell.cellUp;
+			cell.cellUp = tempcell;
+			bool tempEdge;
+			tempEdge = cell.edgeLeft;
+			cell.edgeLeft = cell.edgeDown;
+			cell.edgeDown = cell.edgeRight;
+			cell.edgeRight = cell.edgeUp;
+			cell.edgeUp = tempEdge;			
+		}
 		SetEdgeCells();
 	}
 	public void ResetPiece(){
@@ -73,7 +88,6 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 			}
 		}
 		float cellRadious = this.gameObject.GetComponent<GridBuilderScript>().cellSize;
-		Debug.Log("maxX"+maxX.ToString()+"   minX"+minX.ToString()+"   Rad"+cellRadious.ToString());
 		inBetweenCells = (int)((maxX - minX)/cellRadious)+1;
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	private bool raycastDone, puzzleDone, holdingPiece;
 	public Vector2 clickdiff, holdedPos;
 	public PuzzleCell[] mainGrid, TopCells;
-	public PuzzleCell droppingCell;
+	private PuzzleCell droppingCell;
 	public Sprite emptyCell, targetCell, highlightCell;
 	public Color emptyCellColor, targetCellColor, highlightCellColor;
 
@@ -419,7 +419,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		return false;
 	}
 	void SetDroppingCell(){
-		int toHighlight = 0;
+		int toHighlightH = 0;		
 		PuzzleCell tempCell = null;
 		CleanHightlight();
 		float dist = 100000;
@@ -430,29 +430,47 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				dist = Mathf.Abs(cell.gameObject.transform.position.x - holdedPiece.mostLeftCell.gameObject.transform.position.x);
 			}
 		}
-		toHighlight = droppingCell.CheckDown().CheckTimes;		
-		Debug.Log("im here!!!     "+toHighlight.ToString());
-		tempCell = null;
-		for (int i = 0; i < toHighlight; i++)
-		{
-			tempCell = droppingCell.CheckDownAmmount(i);
-			if(!tempCell.goalCell && !tempCell.occupied){
-				SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
-				spRend.sprite = highlightCell; spRend.color = highlightCellColor;
+		toHighlightH = holdedPiece.inBetweenCells;
+		if(droppingCell.CheckRight().CheckTimes >= (toHighlightH -1)){
+			int toHighlightV = 0;
+			for (int i = 0; i < toHighlightH; i++)
+			{
+				toHighlightV = droppingCell.CheckRightAmmount(i).CheckDown().CheckTimes;
+				tempCell = null;
+				for (int j = 0; j <= toHighlightV; j++)
+				{
+					tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
+					if(!tempCell.occupied){
+						SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+						spRend.color = highlightCellColor;
+					}
+				}
 			}
-		}
+			
+		}		
 	}
 	void CleanHightlight(){
-		int toHighlight = 0;
+		int toHighlightH = 0;		
+		toHighlightH = holdedPiece.inBetweenCells;
 		PuzzleCell tempCell = null;
 		if(droppingCell){
-			toHighlight = droppingCell.CheckDown().CheckTimes;			
-			for (int i = 0; i < toHighlight; i++)
-			{
-				tempCell = droppingCell.CheckDownAmmount(i);
-				if(!tempCell.goalCell && !tempCell.occupied){
-					SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
-					spRend.sprite = emptyCell; spRend.color = emptyCellColor;
+			if(droppingCell.CheckRight().CheckTimes >= (toHighlightH -1)){
+				int toHighlightV = 0;
+				for (int i = 0; i < toHighlightH; i++)
+				{
+					toHighlightV = droppingCell.CheckRightAmmount(i).CheckDown().CheckTimes;			
+					for (int j = 0; j <= toHighlightV; j++)
+					{
+						tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
+						if(tempCell.goalCell && !tempCell.occupied){
+							SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+							spRend.color = targetCellColor;
+						}
+						else if(!tempCell.occupied){
+							SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+							spRend.color = emptyCellColor;
+						}
+					}
 				}
 			}
 		}

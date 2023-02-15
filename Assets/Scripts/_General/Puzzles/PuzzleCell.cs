@@ -12,7 +12,7 @@ public class PuzzleCell : MonoBehaviour {
 	//the bools define if the cell is next to an edge of the board or if it is the goal;
 	public bool edgeUp, edgeDown, edgeLeft, edgeRight;
 	//the occupied bool defines if the cell has something on it
-	public bool occupied, goalCell;
+	public bool occupied, goalCell,ignoreGoal;
 	//Ammount of times it goes the check
 	public int CheckTimes;
 	// Use this for initialization
@@ -28,7 +28,10 @@ public class PuzzleCell : MonoBehaviour {
 	public PuzzleCell CheckUp( int myNum = 0){
 		CheckTimes = myNum;
 		//The cell returns itself if the cell next to it in the selected direction is occupied or if there is an edge 
-		if(edgeUp || goalCell){
+		if(goalCell && !ignoreGoal){
+			return this;
+		}
+		else if(edgeUp){
 			return this;
 		}
 		else if(cellUp.occupied){
@@ -42,7 +45,10 @@ public class PuzzleCell : MonoBehaviour {
 	}
 	public PuzzleCell CheckDown( int myNum = 0){
 		CheckTimes = myNum;
-		if(edgeDown || goalCell){
+		if(goalCell && !ignoreGoal){
+			return this;
+		}
+		else if(edgeDown){
 			return this;
 		}
 		else if(cellDown.occupied){
@@ -55,7 +61,10 @@ public class PuzzleCell : MonoBehaviour {
 	}
 	public PuzzleCell CheckLeft( int myNum = 0){
 		CheckTimes = myNum;
-		if(edgeLeft || goalCell){
+		if(goalCell && !ignoreGoal){
+			return this;
+		}
+		else if(edgeLeft){
 			return this;
 		}
 		else if(cellLeft.occupied){
@@ -68,7 +77,10 @@ public class PuzzleCell : MonoBehaviour {
 	}
 	public PuzzleCell CheckRight( int myNum = 0){
 		CheckTimes = myNum;
-		if(edgeRight || goalCell){
+		if(goalCell && !ignoreGoal){
+			return this;
+		}
+		else if(edgeRight){
 			return this;
 		}
 		else if(cellRight.occupied){
