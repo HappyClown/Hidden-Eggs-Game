@@ -12,7 +12,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	private bool raycastDone, puzzleDone, holdingPiece;
 	public Vector2 clickdiff, holdedPos;
 	public PuzzleCell[] mainGrid, TopCells;
-	private PuzzleCell droppingCell;
+	private PuzzleCell droppingCell, gridCellTarget;
 	public Sprite emptyCell, targetCell, highlightCell;
 	public Color emptyCellColor, targetCellColor, highlightCellColor;
 
@@ -73,6 +73,9 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					
 					if(CheckPlacingPos(mousePos2D)){//highlight grid if in the dropZone
 						SetDroppingCell();
+						if(FitPiece(droppingCell)){
+							Debug.Log("yay it fits" + gridCellTarget.gameObject.name);
+						}
 					}else{
 						CleanHightlight();
 					}
@@ -474,6 +477,81 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				}
 			}
 		}
+	}
+	bool FitPiece(PuzzleCell myDrop){
+		gridCellTarget = null;
+		bool itFits = false;
+		int curretCheck = 0;
+		curretCheck = myDrop.CheckDown().CheckTimes;
+		PuzzleCell cellToStart = myDrop.CheckDownAmmount(curretCheck);		
+		while(curretCheck > 0){
+			if(CheckCells(holdedPiece,cellToStart)){
+				curretCheck = 0;
+				gridCellTarget = cellToStart;
+				itFits = true;				
+			}else{
+				curretCheck -= 1;
+				cellToStart = myDrop.CheckDownAmmount(curretCheck);
+			}
+		}
+		return itFits;
+	}
+	bool CheckCells(ToyStorePuzzlePiece holded, PuzzleCell toDrop){
+		bool fit = true;		
+		PlaceCell(holded.mostLeftCell,toDrop);
+		foreach (PuzzleCell cell in holded.mycells)
+		{
+			if(!cell.placed){
+				fit = false;
+			}
+		}		
+		if(!fit){
+			foreach (PuzzleCell cell in holded.mycells)
+			{
+				cell.placed = false;
+			}
+		}
+		return fit;
+	}
+	void PlaceCell(PuzzleCell toCheck, PuzzleCell toDrop){
+		List<ToyStoreCellCecker> newCheck = new List<ToyStoreCellCecker>();
+		ToyStoreCellCecker currentCheck = new ToyStoreCellCecker();
+		currentCheck.pieceCell = toCheck;
+		currentCheck.gridCell = toDrop;
+		currentCheck.cellChecked = false;
+		newCheck.Add(currentCheck);
+		/*if(!toDrop.occupied){
+			if(toCheck.placed){
+				
+			}else{
+				toCheck.placed = true;
+				if(toCheck.edgeDown){
+					if(toCheck.edgeRight){
+						if(toCheck.edgeLeft){
+							if(!toCheck.edgeUp){
+								if(!toDrop.edgeUp){
+									PlaceCell(toCheck.cellUp,toDrop.cellUp);
+								}else{
+									return;
+								}
+							}						
+						}else if(!toDrop.edgeLeft){
+							PlaceCell(toCheck.cellLeft,toDrop.cellLeft);
+						}else{
+							return;
+						}
+					}else if(!toDrop.edgeRight){
+						PlaceCell(toCheck.cellRight,toDrop.cellRight);
+					}else{
+						return;
+					}	
+				}else if(!toDrop.edgeDown){
+					PlaceCell(toCheck.cellDown,toDrop.cellDown);
+				}else{
+					return;
+				}	
+			}
+		}*/
 	}
 }
 

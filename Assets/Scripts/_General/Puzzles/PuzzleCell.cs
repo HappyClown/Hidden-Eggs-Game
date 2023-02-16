@@ -12,7 +12,7 @@ public class PuzzleCell : MonoBehaviour {
 	//the bools define if the cell is next to an edge of the board or if it is the goal;
 	public bool edgeUp, edgeDown, edgeLeft, edgeRight;
 	//the occupied bool defines if the cell has something on it
-	public bool occupied, goalCell,ignoreGoal;
+	public bool occupied, goalCell,ignoreGoal,placed;
 	//Ammount of times it goes the check
 	public int CheckTimes;
 	// Use this for initialization
