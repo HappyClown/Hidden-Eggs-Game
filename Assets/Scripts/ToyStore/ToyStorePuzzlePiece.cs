@@ -64,7 +64,6 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 		SetEdgeCells();
 	}
 	public void ResetPiece(){
-		this.gameObject.transform.rotation = initialRotation;
 		this.gameObject.transform.position = startPos;
 		this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
 		SetEdgeCells();

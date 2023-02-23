@@ -14,7 +14,9 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	public PuzzleCell[] mainGrid, TopCells;
 	private PuzzleCell droppingCell, gridCellTarget;
 	public Sprite emptyCell, targetCell, highlightCell;
-	public Color emptyCellColor, targetCellColor, highlightCellColor;
+	public Color emptyCellColor, targetCellColor, highlightCellColor, fallingCellColor;
+	public List<ToyStoreCellChecker> newCheck = new List<ToyStoreCellChecker>();
+
 
 	void Start () {
 		canPlay = false;
@@ -445,7 +447,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
 					if(!tempCell.occupied){
 						SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
-						spRend.color = highlightCellColor;
+						spRend.color = highlightCellColor;spRend.sprite = highlightCell;
 					}
 				}
 			}
@@ -467,11 +469,11 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 						tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
 						if(tempCell.goalCell && !tempCell.occupied){
 							SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
-							spRend.color = targetCellColor;
+							spRend.color = targetCellColor;spRend.sprite = targetCell;
 						}
 						else if(!tempCell.occupied){
 							SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
-							spRend.color = emptyCellColor;
+							spRend.color = emptyCellColor;spRend.sprite = emptyCell;
 						}
 					}
 				}
@@ -498,60 +500,101 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	}
 	bool CheckCells(ToyStorePuzzlePiece holded, PuzzleCell toDrop){
 		bool fit = true;		
-		PlaceCell(holded.mostLeftCell,toDrop);
+		fit = PlaceCell(holded.mostLeftCell,toDrop);			
 		foreach (PuzzleCell cell in holded.mycells)
 		{
-			if(!cell.placed){
-				fit = false;
-			}
-		}		
-		if(!fit){
-			foreach (PuzzleCell cell in holded.mycells)
-			{
-				cell.placed = false;
-			}
+			cell.placed = false;
 		}
 		return fit;
 	}
-	void PlaceCell(PuzzleCell toCheck, PuzzleCell toDrop){
-		List<ToyStoreCellCecker> newCheck = new List<ToyStoreCellCecker>();
-		ToyStoreCellCecker currentCheck = new ToyStoreCellCecker();
-		currentCheck.pieceCell = toCheck;
-		currentCheck.gridCell = toDrop;
-		currentCheck.cellChecked = false;
-		newCheck.Add(currentCheck);
-		/*if(!toDrop.occupied){
-			if(toCheck.placed){
-				
-			}else{
-				toCheck.placed = true;
-				if(toCheck.edgeDown){
-					if(toCheck.edgeRight){
-						if(toCheck.edgeLeft){
-							if(!toCheck.edgeUp){
-								if(!toDrop.edgeUp){
-									PlaceCell(toCheck.cellUp,toDrop.cellUp);
-								}else{
-									return;
-								}
-							}						
-						}else if(!toDrop.edgeLeft){
-							PlaceCell(toCheck.cellLeft,toDrop.cellLeft);
-						}else{
-							return;
+	bool PlaceCell(PuzzleCell toCheck, PuzzleCell toDrop){
+		ToyStoreCellChecker currentCheck = new ToyStoreCellChecker(toCheck,toDrop,false);
+		currentCheck.pieceCell.placed = true;
+		if(!currentCheck.gridCell.occupied){
+			currentCheck.cellFits = true;
+		}		
+		newCheck.Add(currentCheck);		
+		int count = 0;
+		//Debug.Log(holdedPiece.mycells.Length.ToString());		
+		while(newCheck.Count < holdedPiece.mycells.Length){
+			count ++;
+			Debug.Log("Loop num = " + count.ToString());
+			foreach (ToyStoreCellChecker cellCheck in newCheck)
+			{
+				if(cellCheck.pieceCell.cellDown && !cellCheck.pieceCell.cellDown.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellDown,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellDown){
+							currentCheck.gridCell = cellCheck.gridCell.cellDown;
+							if(!currentCheck.gridCell.occupied){
+								currentCheck.cellFits = true;
+							}
 						}
-					}else if(!toDrop.edgeRight){
-						PlaceCell(toCheck.cellRight,toDrop.cellRight);
-					}else{
-						return;
-					}	
-				}else if(!toDrop.edgeDown){
-					PlaceCell(toCheck.cellDown,toDrop.cellDown);
-				}else{
-					return;
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
+				}else if(cellCheck.pieceCell.cellUp && !cellCheck.pieceCell.cellUp.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellUp,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellUp){
+							currentCheck.gridCell = cellCheck.gridCell.cellUp;
+							if(!currentCheck.gridCell.occupied){
+								currentCheck.cellFits = true;
+							}
+						}
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
+				}else if(cellCheck.pieceCell.cellRight && !cellCheck.pieceCell.cellRight.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellRight,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellRight){
+							currentCheck.gridCell = cellCheck.gridCell.cellRight;
+							if(!currentCheck.gridCell.occupied){
+								currentCheck.cellFits = true;
+							}
+						}
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
+				}else if(cellCheck.pieceCell.cellLeft && !cellCheck.pieceCell.cellLeft.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellLeft,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellLeft){
+							currentCheck.gridCell = cellCheck.gridCell.cellLeft;
+							if(!currentCheck.gridCell.occupied){
+								currentCheck.cellFits = true;
+							}
+						}
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
 				}	
 			}
-		}*/
+		}	
+		bool cellFits = true;
+		for (int i = 0; i < newCheck.Count; i++)
+		{
+			if(!newCheck[i].cellFits){
+				cellFits = false;
+			}
+		}
+		if(cellFits){
+			for (int i = 0; i < newCheck.Count; i++)
+			{
+				newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color = fallingCellColor;
+				newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
+				Debug.Log(newCheck[i].gridCell.gameObject.name);
+			}
+		}
+		//newCheck[0].gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
+		//Debug.LogError("pamelachu");
+		newCheck.Clear();
+		return cellFits;
 	}
 }
 
