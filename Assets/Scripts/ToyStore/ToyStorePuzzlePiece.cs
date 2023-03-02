@@ -8,11 +8,11 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	public PuzzleCell[] mycells;
 	public PuzzleCell mostLeftCell, mostRightCell;
 	public int inBetweenCells;
-	public Vector3 startPos,outPos, placedPos;
+	public Vector3 startPos,dropPos, placedPos;
 	public SpriteRenderer[] pieceSprites;
-	public bool placed, movingBack;
+	public bool moving;
 	//reference variables for rotation, hard code the rotation value
-	private float currentRotation, rotationValue = -90f, moveTimer, duration;
+	private float currentRotation, rotationValue = -90f, moveTimer, duration = 6f;
 	public AnimationCurve movingCurve;
 	private Quaternion initialRotation;
 
@@ -23,23 +23,22 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	void Start () {
 		initialRotation = this.gameObject.transform.rotation;
 		startPos = this.gameObject.transform.position;
-		outPos = startPos;
 		SetEdgeCells();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(movingBack){
+		if(moving){
 			moveTimer += Time.deltaTime * duration;
-			this.gameObject.transform.position = Vector3.MoveTowards(outPos,startPos,moveTimer);
+			this.gameObject.transform.position = Vector3.MoveTowards(dropPos,placedPos,moveTimer);
 			//this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position,startPos,0.1f);
 			/*if(moveTimer >= 1){
 				moveTimer = 0;
 				movingBack = false;
 			}*/
-			if(Vector3.Distance(this.gameObject.transform.position,startPos) <= 0.1f){
-				this.gameObject.transform.position = startPos;
-				movingBack = false;
+			if(Vector3.Distance(this.gameObject.transform.position,placedPos) <= 0.1f){
+				this.gameObject.transform.position = placedPos;
+				moving = false;
 				moveTimer = 0;
 			}
 		}
@@ -68,10 +67,11 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 		this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
 		SetEdgeCells();
 	}
-	public void BackToStart(float backDuration){
-		movingBack = true;
-		outPos = this.transform.position;
-		duration = backDuration;
+	public void SetTargetPos(Vector3 targetPos){
+		this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + targetPos.x,this.gameObject.transform.position.y,this.gameObject.transform.position.z);
+		moving = true;
+		dropPos = this.transform.position;
+		placedPos = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y + targetPos.y,this.gameObject.transform.position.z);
 	}
 	public void SetEdgeCells(){
 		float minX = 10000;

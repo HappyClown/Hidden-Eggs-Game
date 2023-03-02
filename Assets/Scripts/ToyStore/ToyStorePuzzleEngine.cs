@@ -77,38 +77,14 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 						SetDroppingCell();
 						if(FitPiece(droppingCell)){
 							Debug.Log("yay it fits" + gridCellTarget.gameObject.name);
+							newCheck.Clear();
 						}
 					}else{
 						CleanHightlight();
 					}
-					/*int matchNum = 0;
-					foreach (PuzzleCell cell in holdedPiece.mycells)
-					{
-						foreach (PuzzleCell cell2 in myLvls[curntLvl-1].gridCells)
-						{
-							if(Vector2.Distance(cell.gameObject.transform.position,cell2.transform.position) < myLvls[curntLvl-1].snapRadius && !cell2.occupied){
-								matchNum ++;
-							}
-						}						
-					}
-					Debug.Log(matchNum);
-					if(matchNum == holdedPiece.mycells.Length){
-						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
-						{
-							spRend.gameObject.SetActive(true);																
-						}
-					}else{
-						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
-						{
-							spRend.gameObject.SetActive(false);																
-						}
-					}*/
 				}else{//if there is no holded piece, we have to check if is possible to hold one
 					holdedPiece = SelectPiece(mousePos2D); //check if there is a piece in the dragging position
 					if(holdedPiece){// check if a piece is assigned
-						/*if(holdedPiece.placed){
-							myLvls[curntLvl-1].FreeCells(holdedPiece);
-						}*/
 						holdingPiece = true;
 						//set a click difference in between the center of the piece and the clicked pos
 						clickdiff = mousePos2D - new Vector2(holdedPiece.gameObject.transform.position.x, holdedPiece.gameObject.transform.position.y);
@@ -117,7 +93,17 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			}else{
 				if(holdingPiece){
 					if(CheckPlacingPos(mousePos2D)){//set behavior for piece when placed in the right area
-						Debug.Log("Placed in good pos");
+						SetDroppingCell();
+						if(FitPiece(droppingCell)){
+							Debug.Log("This is a good position o yeah baby");
+							for (int i = 0; i < newCheck.Count ; i++)
+							{
+								newCheck[i].gridCell.occupied = true;
+							}
+							Vector3 ToDropPos = gridCellTarget.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
+							holdedPiece.SetTargetPos(ToDropPos);
+							newCheck.Clear();
+						}
 					}
 					else{
 						holdedPiece.ResetPiece(); //reset piece position if released in a wrong area
@@ -406,7 +392,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			if (hit.collider.CompareTag("Puzzle")) {//check if raycast hits puzzle piece
 				Debug.Log(hit.collider.gameObject.name);
 				ToyStorePuzzlePiece toMovePiece =  hit.collider.gameObject.GetComponent<ToyStorePuzzlePiece>();//assign selected piece
-				if(!toMovePiece.movingBack){//check if piece was not moving back to original position
+				if(!toMovePiece.moving){//check if piece was not moving back to original position
 					toMovePiece.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 					return toMovePiece; //returns selected puzzle piece
 				}
@@ -526,7 +512,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellDown){
 							currentCheck.gridCell = cellCheck.gridCell.cellDown;
-							if(!currentCheck.gridCell.occupied){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -539,7 +525,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellUp){
 							currentCheck.gridCell = cellCheck.gridCell.cellUp;
-							if(!currentCheck.gridCell.occupied){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -552,7 +538,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellRight){
 							currentCheck.gridCell = cellCheck.gridCell.cellRight;
-							if(!currentCheck.gridCell.occupied){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -565,7 +551,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellLeft){
 							currentCheck.gridCell = cellCheck.gridCell.cellLeft;
-							if(!currentCheck.gridCell.occupied){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -590,10 +576,11 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
 				Debug.Log(newCheck[i].gridCell.gameObject.name);
 			}
+		}else{
+			newCheck.Clear();
 		}
 		//newCheck[0].gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
 		//Debug.LogError("pamelachu");
-		newCheck.Clear();
 		return cellFits;
 	}
 }
