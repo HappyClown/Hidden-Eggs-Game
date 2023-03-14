@@ -12,12 +12,13 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	public SpriteRenderer[] pieceSprites;
 	public bool moving;
 	//reference variables for rotation, hard code the rotation value
-	private float currentRotation, rotationValue = -90f, moveTimer, duration = 6f;
+	public float currentRotation, rotationValue = -90f, moveTimer, duration = 1f, cellRadius = 0f;
 	public AnimationCurve movingCurve;
 	private Quaternion initialRotation;
 
 	void Awake () {
 		mycells = this.gameObject.GetComponentsInChildren<PuzzleCell>();
+		cellRadius = this.gameObject.GetComponent<GridBuilderScript>().cellSize;
 	}
 	// Use this for initialization
 	void Start () {
@@ -29,8 +30,11 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(moving){
-			moveTimer += Time.deltaTime * duration;
-			this.gameObject.transform.position = Vector3.MoveTowards(dropPos,placedPos,moveTimer);
+			moveTimer += Time.deltaTime;
+			if(moveTimer >= duration){
+				this.gameObject.transform.position += Vector3.down*cellRadius;
+				moveTimer = 0;
+			}			
 			//this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position,startPos,0.1f);
 			/*if(moveTimer >= 1){
 				moveTimer = 0;
@@ -67,11 +71,11 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 		this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
 		SetEdgeCells();
 	}
-	public void SetTargetPos(Vector3 targetPos){
-		this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + targetPos.x,this.gameObject.transform.position.y,this.gameObject.transform.position.z);
+	public void SetTargetPos(Vector3 targetPos, Vector3 startCellPos){
+		this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + targetPos.x,this.gameObject.transform.position.y + startCellPos.y,this.gameObject.transform.position.z);
 		moving = true;
 		dropPos = this.transform.position;
-		placedPos = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y + targetPos.y,this.gameObject.transform.position.z);
+		placedPos = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y + targetPos.y - startCellPos.y,this.gameObject.transform.position.z);
 	}
 	public void SetEdgeCells(){
 		float minX = 10000;
@@ -86,7 +90,6 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 				maxX = cell.gameObject.transform.position.x;
 			}
 		}
-		float cellRadious = this.gameObject.GetComponent<GridBuilderScript>().cellSize;
-		inBetweenCells = (int)((maxX - minX)/cellRadious)+1;
+		inBetweenCells = (int)((maxX - minX)/cellRadius)+1;
 	}
 }

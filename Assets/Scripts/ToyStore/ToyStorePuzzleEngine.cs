@@ -14,7 +14,8 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	public PuzzleCell[] mainGrid, TopCells;
 	private PuzzleCell droppingCell, gridCellTarget;
 	public Sprite emptyCell, targetCell, highlightCell;
-	public Color emptyCellColor, targetCellColor, highlightCellColor, fallingCellColor;
+	public Color emptyCellColor, targetCellColor, highlightPlaceableColor, highlightWrongColor, fallingCellColor;
+	public bool highlightCols, highlighTarget;
 	public List<ToyStoreCellChecker> newCheck = new List<ToyStoreCellChecker>();
 
 
@@ -100,9 +101,13 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 							{
 								newCheck[i].gridCell.occupied = true;
 							}
-							Vector3 ToDropPos = gridCellTarget.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
-							holdedPiece.SetTargetPos(ToDropPos);
+							Vector3 toDropPos = gridCellTarget.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
+							Vector3 toStartPos = droppingCell.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
+							holdedPiece.SetTargetPos(toDropPos,toStartPos);
 							newCheck.Clear();
+							CleanHightlight();
+						}else{
+							holdedPiece.ResetPiece(); //reset piece position if released in a wrong cell
 						}
 					}
 					else{
@@ -410,8 +415,6 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		return false;
 	}
 	void SetDroppingCell(){
-		int toHighlightH = 0;		
-		PuzzleCell tempCell = null;
 		CleanHightlight();
 		float dist = 100000;
 		foreach (PuzzleCell cell in TopCells)
@@ -421,6 +424,11 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				dist = Mathf.Abs(cell.gameObject.transform.position.x - holdedPiece.mostLeftCell.gameObject.transform.position.x);
 			}
 		}
+		
+	}
+	void HighlightCells(bool higlightGreen){
+		PuzzleCell tempCell = null;
+		int toHighlightH = 0;
 		toHighlightH = holdedPiece.inBetweenCells;
 		if(droppingCell.CheckRight().CheckTimes >= (toHighlightH -1)){
 			int toHighlightV = 0;
@@ -433,12 +441,16 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
 					if(!tempCell.occupied){
 						SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
-						spRend.color = highlightCellColor;spRend.sprite = highlightCell;
+						if(higlightGreen){
+							spRend.color = highlightPlaceableColor;spRend.sprite = highlightCell;
+						}else{
+							spRend.color = highlightWrongColor;spRend.sprite = highlightCell;
+						}
 					}
 				}
 			}
 			
-		}		
+		}
 	}
 	void CleanHightlight(){
 		int toHighlightH = 0;		
@@ -496,7 +508,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	bool PlaceCell(PuzzleCell toCheck, PuzzleCell toDrop){
 		ToyStoreCellChecker currentCheck = new ToyStoreCellChecker(toCheck,toDrop,false);
 		currentCheck.pieceCell.placed = true;
-		if(!currentCheck.gridCell.occupied){
+		if(!currentCheck.gridCell.occupied && currentCheck.gridCell.goalCell){
 			currentCheck.cellFits = true;
 		}		
 		newCheck.Add(currentCheck);		
@@ -512,7 +524,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellDown){
 							currentCheck.gridCell = cellCheck.gridCell.cellDown;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -525,7 +537,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellUp){
 							currentCheck.gridCell = cellCheck.gridCell.cellUp;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -538,7 +550,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellRight){
 							currentCheck.gridCell = cellCheck.gridCell.cellRight;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -551,7 +563,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellLeft){
 							currentCheck.gridCell = cellCheck.gridCell.cellLeft;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -561,6 +573,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					break;
 				}	
 			}
+			//Debug.Break();
 		}	
 		bool cellFits = true;
 		for (int i = 0; i < newCheck.Count; i++)
@@ -570,13 +583,21 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			}
 		}
 		if(cellFits){
+			if(highlightCols){
+				HighlightCells(true);
+			}
 			for (int i = 0; i < newCheck.Count; i++)
 			{
-				newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color = fallingCellColor;
-				newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
+				if(highlighTarget){
+					newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color = fallingCellColor;
+					newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
+				}				
 				Debug.Log(newCheck[i].gridCell.gameObject.name);
-			}
+			}						
 		}else{
+			if(highlightCols){
+				HighlightCells(false);
+			}
 			newCheck.Clear();
 		}
 		//newCheck[0].gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
