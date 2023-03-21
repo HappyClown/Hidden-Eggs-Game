@@ -508,7 +508,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	bool PlaceCell(PuzzleCell toCheck, PuzzleCell toDrop){
 		ToyStoreCellChecker currentCheck = new ToyStoreCellChecker(toCheck,toDrop,false);
 		currentCheck.pieceCell.placed = true;
-		if(!currentCheck.gridCell.occupied && currentCheck.gridCell.goalCell){
+		if(!currentCheck.gridCell.occupied){
 			currentCheck.cellFits = true;
 		}		
 		newCheck.Add(currentCheck);		
@@ -524,7 +524,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellDown){
 							currentCheck.gridCell = cellCheck.gridCell.cellDown;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -537,7 +537,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellUp){
 							currentCheck.gridCell = cellCheck.gridCell.cellUp;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -550,7 +550,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellRight){
 							currentCheck.gridCell = cellCheck.gridCell.cellRight;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
@@ -563,7 +563,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(cellCheck.gridCell){
 						if(cellCheck.gridCell.cellLeft){
 							currentCheck.gridCell = cellCheck.gridCell.cellLeft;
-							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp && currentCheck.gridCell.goalCell){
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
 								currentCheck.cellFits = true;
 							}
 						}
