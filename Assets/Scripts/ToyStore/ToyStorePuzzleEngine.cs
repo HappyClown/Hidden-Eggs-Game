@@ -441,8 +441,11 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
 					if(!tempCell.occupied){
 						SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+						Color newColor;
 						if(higlightGreen){
-							spRend.color = highlightPlaceableColor;spRend.sprite = highlightCell;
+							newColor = highlightPlaceableColor;
+							newColor.a = tempCell.goalCell ? newColor.a  : (newColor.a * 0.5f);
+							spRend.color = newColor;spRend.sprite = highlightCell;
 						}else{
 							spRend.color = highlightWrongColor;spRend.sprite = highlightCell;
 						}
