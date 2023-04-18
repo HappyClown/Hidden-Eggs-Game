@@ -456,10 +456,20 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		}
 	}
 	void CleanHightlight(){
-		int toHighlightH = 0;		
+		/*int toHighlightH = 0;		
 		toHighlightH = holdedPiece.inBetweenCells;
-		PuzzleCell tempCell = null;
-		if(droppingCell){
+		PuzzleCell tempCell = null;*/
+		foreach (PuzzleCell cell in mainGrid)
+		{
+			if(cell.goalCell && !cell.occupied){
+				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+				spRend.color = targetCellColor;spRend.sprite = targetCell;
+			}else if(!cell.occupied){
+				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+				spRend.color = emptyCellColor;spRend.sprite = emptyCell;
+			}
+		}
+		/*if(droppingCell){
 			if(droppingCell.CheckRight().CheckTimes >= (toHighlightH -1)){
 				int toHighlightV = 0;
 				for (int i = 0; i < toHighlightH; i++)
@@ -479,7 +489,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					}
 				}
 			}
-		}
+		}*/
 	}
 	bool FitPiece(PuzzleCell myDrop){
 		gridCellTarget = null;

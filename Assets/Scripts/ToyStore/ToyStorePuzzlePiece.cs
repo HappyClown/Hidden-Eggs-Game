@@ -7,8 +7,8 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	
 	public PuzzleCell[] mycells;
 	public PuzzleCell mostLeftCell, mostRightCell;
-	public int inBetweenCells;
-	public Vector3 startPos,dropPos, placedPos;
+	public int inBetweenCells, cellNum;
+	public Vector3 startPos, dropPos, placedPos;
 	public SpriteRenderer[] pieceSprites;
 	public bool moving;
 	//reference variables for rotation, hard code the rotation value
@@ -40,7 +40,7 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 				moveTimer = 0;
 				movingBack = false;
 			}*/
-			if(Vector3.Distance(this.gameObject.transform.position,placedPos) <= 0.1f){
+			if(Vector2.Distance(this.gameObject.transform.position,placedPos) <= 0.1f){
 				this.gameObject.transform.position = placedPos;
 				moving = false;
 				moveTimer = 0;
@@ -72,7 +72,7 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 		SetEdgeCells();
 	}
 	public void SetTargetPos(Vector3 targetPos, Vector3 startCellPos){
-		this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + targetPos.x,this.gameObject.transform.position.y + startCellPos.y,this.gameObject.transform.position.z);
+		this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x + startCellPos.x,this.gameObject.transform.position.y + startCellPos.y,this.gameObject.transform.position.z);
 		moving = true;
 		dropPos = this.transform.position;
 		placedPos = new Vector3(this.gameObject.transform.position.x,this.gameObject.transform.position.y + targetPos.y - startCellPos.y,this.gameObject.transform.position.z);
