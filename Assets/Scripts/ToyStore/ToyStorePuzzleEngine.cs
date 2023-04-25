@@ -106,6 +106,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 							holdedPiece.SetTargetPos(toDropPos,toStartPos);
 							newCheck.Clear();
 							CleanHightlight();
+							myLvls[curntLvl-1].SetSpawn(holdedPiece.type,holdedPiece.version);
 						}else{
 							holdedPiece.ResetPiece(); //reset piece position if released in a wrong cell
 						}

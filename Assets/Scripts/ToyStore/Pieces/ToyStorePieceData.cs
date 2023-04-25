@@ -7,5 +7,6 @@ public class ToyStorePieceData : ScriptableObject
     public float pieceWeight;
     public GameObject piecePrefab;
     public bool inGame;
-    public string type;
+    public int type,version;
+    public Vector3 spotPos;
 }
