@@ -65,10 +65,10 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 			//SET BEHAVIOR HERE			
-			if(myInput.Tapped && !holdingPiece){//Rotate free piece when tapped
+			if(myInput.Tapped && !holdingPiece && !myLvls[curntLvl-1].pieceBadPlaced){//Rotate free piece when tapped
 				UpdateMousePos(myInput.TapPosition);//convert mouse pos to screen pos
 				RotatePiece(mousePos2D);//execute rotate piece function							
-			}else if(myInput.isDragging){//check if the user is dragging
+			}else if(myInput.isDragging && !myLvls[curntLvl-1].pieceBadPlaced){//check if the user is dragging
 				UpdateMousePos(myInput.draggingPosition);//convert mouse pos to screen pos
 				if(holdingPiece){//check if a piece is being holded
 					holdedPos = mousePos2D - clickdiff;//Convert the piece position based in mouse pos
@@ -77,7 +77,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 					if(CheckPlacingPos(mousePos2D)){//highlight grid if in the dropZone
 						SetDroppingCell();
 						if(FitPiece(droppingCell)){
-							Debug.Log("yay it fits" + gridCellTarget.gameObject.name);
+							Debug.Log("yay it fits" + gridCellTarget.gameObject.name);							
 							newCheck.Clear();
 						}
 					}else{
@@ -104,9 +104,42 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 							Vector3 toDropPos = gridCellTarget.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
 							Vector3 toStartPos = droppingCell.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
 							holdedPiece.SetTargetPos(toDropPos,toStartPos);
+							bool pieceInGoal = true;
+							for (int i = 0; i < newCheck.Count ; i++)
+							{
+								if(!newCheck[i].gridCell.goalCell){
+									//newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;
+									foreach (PuzzleCell inHolded in holdedPiece.mycells)
+									{
+										inHolded.gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;	
+									}
+									pieceInGoal = false;									
+								}
+								int downTimes = 0;
+								downTimes = newCheck[i].gridCell.CheckDown().CheckTimes;
+								if(downTimes > 0){	
+									for (int j = 0; j < downTimes; j++)
+									{
+										if(newCheck[i].gridCell.CheckDownAmmount(j).goalCell && !newCheck[i].gridCell.CheckDownAmmount(j).occupied){
+											foreach (PuzzleCell inHolded in holdedPiece.mycells)
+											{
+												inHolded.gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;	
+											}
+											//newCheck[i].gridCell.CheckDownAmmount(j).gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;
+											pieceInGoal = false;
+										}
+									}								
+								}							
+							}
 							newCheck.Clear();
-							CleanHightlight();
-							myLvls[curntLvl-1].SetSpawn(holdedPiece.type,holdedPiece.version);
+							if(!pieceInGoal){
+								//holdedPiece.destroyOnFall = true;
+								myLvls[curntLvl-1].pieceBadPlaced = true;
+								Debug.Log("You dummy, FAILED!");
+							}else{
+								CleanHightlight();
+								myLvls[curntLvl-1].SetSpawn(holdedPiece.type,holdedPiece.version);
+							}
 						}else{
 							holdedPiece.ResetPiece(); //reset piece position if released in a wrong cell
 						}
@@ -121,7 +154,12 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			}
 			
 			if(Input.GetKey("r")){
+				for (int i = 0; i < mainGrid.Length; i++)
+				{
+					mainGrid[i].occupied = false;
+				}
 				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
+				CleanHightlight();
 			}
 		}
 		else
@@ -465,7 +503,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			if(cell.goalCell && !cell.occupied){
 				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
 				spRend.color = targetCellColor;spRend.sprite = targetCell;
-			}else if(!cell.occupied){
+			}else if(!cell.goalCell){
 				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
 				spRend.color = emptyCellColor;spRend.sprite = emptyCell;
 			}
@@ -609,9 +647,9 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				Debug.Log(newCheck[i].gridCell.gameObject.name);
 			}						
 		}else{
-			if(highlightCols){
+			/*if(highlightCols){
 				HighlightCells(false);
-			}
+			}*/
 			newCheck.Clear();
 		}
 		//newCheck[0].gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;

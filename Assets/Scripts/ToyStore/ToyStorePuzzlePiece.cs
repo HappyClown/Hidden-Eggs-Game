@@ -10,7 +10,7 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 	public int inBetweenCells, cellNum;
 	public Vector3 startPos, dropPos, placedPos;
 	public SpriteRenderer[] pieceSprites;
-	public bool moving;
+	public bool moving, destroyOnFall = false;
 	//reference variables for rotation, hard code the rotation value
 	public float currentRotation, rotationValue = -90f, moveTimer, duration = 1f, cellRadius = 0f;
 	public AnimationCurve movingCurve;
@@ -45,7 +45,9 @@ public class ToyStorePuzzlePiece : MonoBehaviour {
 				this.gameObject.transform.position = placedPos;
 				moving = false;
 				moveTimer = 0;
-				Destroy(this.gameObject);
+				if(destroyOnFall){
+					Destroy(this.gameObject);
+				}				
 			}
 		}
 	}

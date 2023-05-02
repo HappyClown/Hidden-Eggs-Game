@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ToyStorePuzzleLevel : MonoBehaviour {
-	public bool levelComplete, finished;
+	public bool levelComplete, finished, pieceBadPlaced;
 	public float snapRadius, backDuration;
 	public List<PuzzleCell> goalCells = new List<PuzzleCell>();
 	public List<ToyStorePieceData> pieces = new List<ToyStorePieceData>();
 	public GameObject[] spawnSpots;
+	public GameObject pieceHolder;
 		
 	// Update is called once per frame
 	void Update () {
 	}
 	public void SetUpLevel(){
+		pieceBadPlaced = false;
 		ResetLevel();
 		foreach (GameObject spawnSpot in spawnSpots)
 		{
@@ -34,6 +36,9 @@ public class ToyStorePuzzleLevel : MonoBehaviour {
 			piece.inGame = false;
 			piece.spotPos = Vector3.zero;
 		}
+		 foreach (Transform child in pieceHolder.transform) {
+			Destroy(child.gameObject);
+		}	
 	}
 	public void SpawnPiece(Vector3 pos, int type, int version){
 		float val = 0;
@@ -89,7 +94,7 @@ public class ToyStorePuzzleLevel : MonoBehaviour {
 				acumulated += pieces[i].pieceWeight;
 			}
 			if(acumulated >= selectedVal){
-				Instantiate(pieces[i].piecePrefab,pos,Quaternion.identity);
+				Instantiate(pieces[i].piecePrefab,pos,Quaternion.identity,pieceHolder.transform);
 				pieces[i].inGame = true;
 				pieces[i].spotPos = pos;
 				i = pieces.Count;
