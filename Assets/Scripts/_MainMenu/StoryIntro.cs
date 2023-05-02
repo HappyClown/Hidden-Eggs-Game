@@ -122,7 +122,7 @@ public class StoryIntro : MonoBehaviour {
 			audioIntroScript.introWindLoopSFX();
 		}
 		if (boardTimer >= boardEvents[1] && !boardBools[1]) {
-			// Turn off the main menu cluds and opaque background. This will get turned on again before the last story board since they need to fade out and show the hub.
+			// Turn off the main menu clouds and opaque background. This will get turned on again before the last story board since they need to fade out and show the hub.
 			mainMenuScript.backgroundStuffParent.SetActive(false);
 			storyTextScript.SetupText(storyBoardTextNum);
 			storyBoardTextNum++;
@@ -823,7 +823,8 @@ public class StoryIntro : MonoBehaviour {
 			// turn off the scrolling clouds
 			storyScrollBGScript.TurnOffScrollClouds();
 			storySingleCloudScript.StopActivePartSys();
-			// mainMenuScript.ToHub(); Without the hubScript.startHubActive = true; so that it fades out the main menu but only shows the grey village
+			//mainMenuScript.ToHub(); // Without the hubScript.startHubActive = true; so that it fades out the main menu but only shows the grey village
+			hubScript.ActivateHubNoUI();
 			storyOneEggScript.behindTheOneEgg.SetActive(true);
 			// Reactivate the main menu clouds and opaque background so that they can fade out and part to show the hub.
 			mainMenuScript.backgroundStuffParent.SetActive(true);
@@ -887,6 +888,7 @@ public class StoryIntro : MonoBehaviour {
 				storyOneEggScript.theOneEggFadeScript.FadeOut();
 				// Regular hub gets activated
 				hubScript.startHubActive = true;
+				hubScript.ActivateHub();
 				// Relative to the Hub script's hubActiveWait float amount. hubActiveWait - hubActiveFaster = delay after click.
 				hubScript.hubActiveFaster = 2.5f;
 				boardBools[6] = true;

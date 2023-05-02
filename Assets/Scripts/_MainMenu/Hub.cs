@@ -81,7 +81,19 @@ public class Hub : MonoBehaviour {
 	public void ActivateHub() {
 		StartCoroutine(HubActivation());
 	}
-
+	public void ActivateHubNoUI() {
+		ResetHubSeasons();
+		// Activate Hub objects that need to be there as soon as the main menu clouds part.
+		EnableHubObjects();
+		// Check the save files to know which season has already been dissolved.
+		dissolveSeasonsScript.SeasonDissolveCheck(); 
+		// Turn on the black and white versions that have been disolved.
+		for (int i = 0; i < 4; i++) {
+			if (!GlobalVariables.globVarScript.dissSeasonsBools[i]) {
+				seasonsBWObjects[i].SetActive(true);
+			}
+		}
+	}
 	IEnumerator HubActivation() {
 		ResetHubSeasons();
 		// Activate Hub objects that need to be there as soon as the main menu clouds part.
