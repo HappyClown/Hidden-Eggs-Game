@@ -7,14 +7,14 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	//private delegate void VoidDelegate();
 	//private VoidDelegate voidDelegate;
 	public ToyStorePuzzleLevel[] myLvls;
-	public ToyStorePuzzlePiece holdedPiece;
+	public ToyStorePuzzlePiece holdedPiece,lastPiece;
 	public float mouseRadius, liftDiff;
 	private bool raycastDone, puzzleDone, holdingPiece;
 	public Vector2 clickdiff, holdedPos;
 	public PuzzleCell[] mainGrid, TopCells;
 	private PuzzleCell droppingCell, gridCellTarget;
 	public Sprite emptyCell, targetCell, highlightCell;
-	public Color emptyCellColor, targetCellColor, highlightPlaceableColor, highlightWrongColor, fallingCellColor;
+	public ToyStoreColorLibrary myColors;
 	public bool highlightCols, highlighTarget;
 	public List<ToyStoreCellChecker> newCheck = new List<ToyStoreCellChecker>();
 
@@ -107,50 +107,47 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 							bool pieceInGoal = true;
 							for (int i = 0; i < newCheck.Count ; i++)
 							{
-								if(!newCheck[i].gridCell.goalCell){
-									//newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;
-									foreach (PuzzleCell inHolded in holdedPiece.mycells)
-									{
-										inHolded.gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;	
-									}
+								if(!newCheck[i].gridCell.goalCell){									
 									pieceInGoal = false;									
 								}
 								int downTimes = 0;
 								downTimes = newCheck[i].gridCell.CheckDown().CheckTimes;
-								if(downTimes > 0){	
-									for (int j = 0; j < downTimes; j++)
+								if(downTimes > 0 && pieceInGoal){	
+									for (int j = 0; j <= downTimes; j++)
 									{
 										if(newCheck[i].gridCell.CheckDownAmmount(j).goalCell && !newCheck[i].gridCell.CheckDownAmmount(j).occupied){
-											foreach (PuzzleCell inHolded in holdedPiece.mycells)
-											{
-												inHolded.gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;	
-											}
-											//newCheck[i].gridCell.CheckDownAmmount(j).gameObject.GetComponent<SpriteRenderer>().color = highlightWrongColor;
 											pieceInGoal = false;
 										}
 									}								
 								}							
 							}
-							newCheck.Clear();
 							if(!pieceInGoal){
+								foreach (PuzzleCell inHolded in holdedPiece.mycells)
+								{
+									inHolded.gameObject.GetComponent<SpriteRenderer>().color = myColors.highlightWrongColor;	
+								}
 								//holdedPiece.destroyOnFall = true;
 								myLvls[curntLvl-1].pieceBadPlaced = true;
 								Debug.Log("You dummy, FAILED!");
+								lastPiece = holdedPiece;
+								holdedPiece = null;
 							}else{
-								CleanHightlight();
+								//CleanHightlight();
 								myLvls[curntLvl-1].SetSpawn(holdedPiece.type,holdedPiece.version);
-							}
+								lastPiece = holdedPiece;
+								holdedPiece = null;
+							}							
 						}else{
 							holdedPiece.ResetPiece(); //reset piece position if released in a wrong cell
+							holdedPiece = null;
 						}
 					}
 					else{
 						holdedPiece.ResetPiece(); //reset piece position if released in a wrong area
-					}
-					//myLvls[curntLvl-1].CheckPiece(holdedPiece);
-					holdedPiece = null;
-					holdingPiece = false;				
-				}
+						holdedPiece = null;
+					}			
+				}				
+				holdingPiece = false;
 			}
 			
 			if(Input.GetKey("r")){
@@ -160,6 +157,25 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 				}
 				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
 				CleanHightlight();
+				holdedPiece = null;
+			}
+			if(Input.GetKey("u")){
+				for (int i = 0; i < newCheck.Count ; i++){
+					newCheck[i].gridCell.occupied = false;
+				}
+				foreach (PuzzleCell inHolded in lastPiece.mycells)
+				{
+					inHolded.gameObject.GetComponent<SpriteRenderer>().color = myColors.pieceCellColor;	
+				}
+				lastPiece.moving = false;
+				lastPiece.ResetPiece();
+				CleanHightlight();
+				if(myLvls[curntLvl-1].pieceBadPlaced){
+					myLvls[curntLvl-1].pieceBadPlaced = false;
+				}else{
+					myLvls[curntLvl-1].DestroyLastSpawn();
+				}	
+				lastPiece = null;			
 			}
 		}
 		else
@@ -405,7 +421,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		{
 			cell.occupied = false;
 			SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
-			spRend.sprite = emptyCell; spRend.color = emptyCellColor;
+			spRend.sprite = emptyCell; spRend.color =  myColors.emptyCellColor;
 			cell.goalCell = false;
 		}
 	}
@@ -414,7 +430,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		{
 			cell.goalCell = true;
 			SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
-			spRend.sprite = targetCell; spRend.color = targetCellColor;
+			spRend.sprite = targetCell; spRend.color =  myColors.targetCellColor;
 		}
 	}
 	//Particular Puzzle functions
@@ -482,11 +498,11 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 						SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
 						Color newColor;
 						if(higlightGreen){
-							newColor = highlightPlaceableColor;
+							newColor =  myColors.highlightPlaceableColor;
 							newColor.a = tempCell.goalCell ? newColor.a  : (newColor.a * 0.5f);
 							spRend.color = newColor;spRend.sprite = highlightCell;
 						}else{
-							spRend.color = highlightWrongColor;spRend.sprite = highlightCell;
+							spRend.color =  myColors.highlightWrongColor;spRend.sprite = highlightCell;
 						}
 					}
 				}
@@ -495,6 +511,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		}
 	}
 	void CleanHightlight(){
+		newCheck.Clear();
 		/*int toHighlightH = 0;		
 		toHighlightH = holdedPiece.inBetweenCells;
 		PuzzleCell tempCell = null;*/
@@ -502,10 +519,10 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		{
 			if(cell.goalCell && !cell.occupied){
 				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
-				spRend.color = targetCellColor;spRend.sprite = targetCell;
+				spRend.color =  myColors.targetCellColor;spRend.sprite = targetCell;
 			}else if(!cell.goalCell){
 				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
-				spRend.color = emptyCellColor;spRend.sprite = emptyCell;
+				spRend.color =  myColors.emptyCellColor;spRend.sprite = emptyCell;
 			}
 		}
 		/*if(droppingCell){
@@ -641,7 +658,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			for (int i = 0; i < newCheck.Count; i++)
 			{
 				if(highlighTarget){
-					newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color = fallingCellColor;
+					newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color =  myColors.fallingCellColor;
 					newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
 				}				
 				Debug.Log(newCheck[i].gridCell.gameObject.name);

@@ -8,7 +8,8 @@ public class ToyStorePuzzleLevel : MonoBehaviour {
 	public List<PuzzleCell> goalCells = new List<PuzzleCell>();
 	public List<ToyStorePieceData> pieces = new List<ToyStorePieceData>();
 	public GameObject[] spawnSpots;
-	public GameObject pieceHolder;
+	public GameObject pieceHolder,lastSpawned;
+	private int lastSpawnedType, lastSpawnedVersion;
 		
 	// Update is called once per frame
 	void Update () {
@@ -94,10 +95,13 @@ public class ToyStorePuzzleLevel : MonoBehaviour {
 				acumulated += pieces[i].pieceWeight;
 			}
 			if(acumulated >= selectedVal){
-				Instantiate(pieces[i].piecePrefab,pos,Quaternion.identity,pieceHolder.transform);
+				GameObject currentSpawn = Instantiate(pieces[i].piecePrefab,pos,Quaternion.identity,pieceHolder.transform);
 				pieces[i].inGame = true;
 				pieces[i].spotPos = pos;
 				i = pieces.Count;
+				lastSpawned = currentSpawn;
+				lastSpawnedType = currentSpawn.gameObject.GetComponent<ToyStorePuzzlePiece>().type;
+				lastSpawnedVersion = currentSpawn.gameObject.GetComponent<ToyStorePuzzlePiece>().version;
 			}			
 		}
 		typesInGame.Clear();
@@ -110,5 +114,15 @@ public class ToyStorePuzzleLevel : MonoBehaviour {
 				pieces[i].inGame = false;
 			}
 		}
+	}
+	public void DestroyLastSpawn(){
+		GameObject toDestroy = lastSpawned;
+		for (int i = 0; i < pieces.Count; i++)
+		{
+			if(pieces[i].type == lastSpawnedType && pieces[i].version == lastSpawnedVersion){
+				pieces[i].inGame = false;
+			}
+		}
+		Destroy(toDestroy);
 	}
 }
