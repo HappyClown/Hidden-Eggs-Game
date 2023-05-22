@@ -55,6 +55,7 @@ public class SilverEggSequence : MonoBehaviour
 		}
 
 		if (startSeq) {
+			Debug.Log("im here blablabla");
 			if (startMoveDelay > 0f) { startMoveDelay -= Time.deltaTime; }
 			else {
 				lerpTime += Time.deltaTime / moveDuration;

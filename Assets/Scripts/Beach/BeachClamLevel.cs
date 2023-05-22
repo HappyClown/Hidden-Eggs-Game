@@ -6,7 +6,7 @@ public class BeachClamLevel : MonoBehaviour {
 
 	public ClamSpot[] clamSpots;
 	public BeachClam[] myClams;
-	public bool levelLoading, levelComplete;
+	public bool levelLoading, levelComplete, tutorialLevel;
 
 /// test for sounds ////
 	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
@@ -26,12 +26,17 @@ public class BeachClamLevel : MonoBehaviour {
 				}
 			}
 			int rand = Random.Range(0,availableSpots.Count);
+			if(tutorialLevel){
+				rand = 0;
+			}
 			clam.gameObject.transform.position = availableSpots[rand].gameObject.transform.position;
+			availableSpots[rand].occupied = true;
+			
 			//clam.clamAnim.SetTrigger("ShowClam");
 			// Start anim trigger delay.
 			//clam.myClosedClam.FadeIn();
 			clam.ShowClams();
-			availableSpots[rand].occupied = true;
+			
 			availableSpots.Clear();
 		}
 		foreach (ClamSpot clamSpot in clamSpots)

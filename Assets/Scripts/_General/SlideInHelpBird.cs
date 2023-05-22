@@ -22,7 +22,7 @@ public class SlideInHelpBird : MonoBehaviour {
 	[Header("Bird Movement")]
 	public float duration;
 	private float newDuration = 0.001f;
-	public bool moveUp, moveDown, isUp, isDown = true, allowClick = true;
+	public bool moveUp, moveDown, isUp, isDown = true, allowClick = true, inPuzzle = false;
 	public Transform helpBirdTrans, hiddenHelpBirdPos, shownHelpBirdPos;
 	public Vector3 curHelpBirdPos;
 	private float totalDist;
@@ -165,9 +165,11 @@ public class SlideInHelpBird : MonoBehaviour {
 				StopCoroutine(activeCoroutine);
 			}
 			inputDetector.cancelDoubleTap = true;
-			helperBirdHint.HideHintButton();
-			helperBirdRiddle.HideRiddleButton();
-			helperBirdRiddle.HideRiddleText();
+			if(!inPuzzle){
+				helperBirdHint.HideHintButton();
+				helperBirdRiddle.HideRiddleButton();
+				helperBirdRiddle.HideRiddleText();
+			}			
 			activeCoroutine = StartCoroutine(MoveDown());
 		}
 	}

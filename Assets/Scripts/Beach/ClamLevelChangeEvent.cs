@@ -83,6 +83,7 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 	}
 
 	public void LevelChangeEvent() {
+		Debug.Log("lol");
 		endEventOn = true;
 		bootFront.sortingLayerName = "SilverEgg";
 		foreach (ParticleSystem sandPart in sandPartSys) 
