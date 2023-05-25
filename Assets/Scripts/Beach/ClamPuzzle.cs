@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ClamPuzzle : MainPuzzleEngine {
-	private Ray2D ray;
 	public BeachClamLevel Tutorial;
 	public BeachClamLevel[] myLvls;
 	public List<BeachClam> openedClams;
@@ -31,8 +30,14 @@ public class ClamPuzzle : MainPuzzleEngine {
 			RunBasics(canPlay);	
 			if (myLvls[curntLvl-1].levelComplete) {
 				/* Debug.Log("ya win m8!"); */
-				SilverEggsSetup();
-				clamLevelChangeScript.LevelChangeEvent();
+				if(tutorialDone){
+					SilverEggsSetup();
+					clamLevelChangeScript.LevelChangeEvent();
+				}
+				else{
+					ChosenLevelSetup(curntLvl+1);
+					tutorialDone = true;
+				}
 			}
 			#region Click
 			//check if player tapped

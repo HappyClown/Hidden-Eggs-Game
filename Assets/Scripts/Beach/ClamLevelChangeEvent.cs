@@ -34,6 +34,7 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 			}
 			if (endEventTimer >= activateEggsF && !activateEggsB) {
 				activateEggsB = true;
+				Debug.Log("sending to move the mf");
 				clamPuzzleScript.scrnDarkImgScript.FadeIn();
 				foreach(GameObject silEgg in silverEggManScript.activeSilverEggs)
 				{

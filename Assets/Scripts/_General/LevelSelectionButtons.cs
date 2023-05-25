@@ -40,19 +40,21 @@ public class LevelSelectionButtons : MonoBehaviour {
 	public void InteractableThreeDots(int maxLvl, int curntLvl)
 	{
 		if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
-		for (int i = 0; i < maxLvl && i < lvlSelectButtons.Length; i++)
-		{
-			if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
+		else{
+			for (int i = 0; i < maxLvl && i < lvlSelectButtons.Length; i++)
 			{
-				lvlSelectButtons[i].GetComponent<Button>().interactable = false;
-				lvlSelectScalers[i].ScaleUp();
+				if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
+				{
+					lvlSelectButtons[i].GetComponent<Button>().interactable = false;
+					lvlSelectScalers[i].ScaleUp();
+				}
+				else 
+				{
+					lvlSelectButtons[i].GetComponent<Button>().interactable = true; 
+					lvlSelectScalers[i].ScaleDown();
+				}
 			}
-			else 
-			{
-				lvlSelectButtons[i].GetComponent<Button>().interactable = true; 
-				lvlSelectScalers[i].ScaleDown();
-			}
-		}
+		}		
 	}
  	/// <summary>
     /// Make level select buttons uninteractable between levels.

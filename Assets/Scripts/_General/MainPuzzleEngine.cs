@@ -115,7 +115,9 @@ public class MainPuzzleEngine : MonoBehaviour
 		}
 		else {
 			// Run the first setup when the puzzle is open
-			if (initialSetupOn) { InitialSetup(); }
+			if (initialSetupOn) { 
+				Debug.Log("initializing..");
+				InitialSetup(); }
 			// After the initial set up run the first sequence will play.
 			if (iniSeqStart) {
 				//run a delay time for everything to be ready
@@ -140,7 +142,6 @@ public class MainPuzzleEngine : MonoBehaviour
 					 //compare sequence timer to playable time, then allow player to play and finish the initial sequence
 					if (seqTimer > iniCanPlayF) { 
 						//----------Helper bird stuff here
-
 						if (tutorialDone) {
 							canPlay = true; 
 							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
@@ -188,8 +189,12 @@ public class MainPuzzleEngine : MonoBehaviour
 	// Once, when the scene is openned.
 	public void InitialSetup() {
 		//if player already completed all the levels, start from the first one, also set up the first one if is the first time
-		if (maxLvl > 3 || maxLvl < 1) { 
+		if (maxLvl > lvlItemHolders.Count || maxLvl < 1) {			
 			curntLvl = 1; 
+			//for debuging we can switch tutolrial done manually
+			if(tutorialDone){
+				curntLvl = 2; 
+			}
 		}
 		else { 
 			//start the middle level if player already completed some of the levels
@@ -216,9 +221,9 @@ public class MainPuzzleEngine : MonoBehaviour
 			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
 
-		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
-		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0) {
-			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform) {
+		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
+		if (mySilverEggMan.lvlSilverEggs[curntLvl - 2].transform.childCount > 0) {
+			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 2].transform) {
 				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
 				//Debug.Log(silEgg.name + "has been added to the active Silver Egg List!");
 			}
