@@ -12,11 +12,17 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	[Tooltip("Populate with all the OTHER level's CustomButtonClick scripts.")]
 	public List<CustomButtonClick> customButtonClickScripts;
 	public ZoomAtHub myZoom;
-	public LevelTitleVillage myTitle;
+	public LevelInfoPopup infoPopup;
 	public SeasonGlows seasonGlowsScript;
 	public LevelFireflies levelFirefliesScript;
+	private bool selectedOnce;
+	public bool NE, SE, GE;
 
 	public void OnPointerClick(PointerEventData pointerEventData) {
+		if (!selectedOnce) {
+			selectedOnce = true;
+			GetSceneInfo();
+		}
 		// Debug.Log("Button clicked on " + pointerEventData.pointerCurrentRaycast.gameObject.name);
 		// Load proper scene
 		//OpenScene();
@@ -28,7 +34,7 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 				seasonGlowsScript.LevelSelect(myLvlNumber);
 			}
 			levelSelected = true;
-			myTitle.OpenTitle();
+			infoPopup.OpenTitle(this);
 			levelFirefliesScript.PlayLevelFireflies();
 		}
 		else {		
@@ -39,5 +45,29 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 
 	public void OpenScene () {
 		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(sceneName);
+	}
+	public void GetSceneInfo() {
+		if(sceneName == GlobalVariables.globVarScript.marketName){
+			if(GlobalVariables.globVarScript.marketNE)
+				NE = true;
+			if(GlobalVariables.globVarScript.marketSE)
+				SE = true;
+			if(GlobalVariables.globVarScript.marketGE)
+				GE = true;
+		}else if(sceneName == GlobalVariables.globVarScript.parkName){
+			if(GlobalVariables.globVarScript.parkNE)
+				NE = true;
+			if(GlobalVariables.globVarScript.parkSE)
+				SE = true;
+			if(GlobalVariables.globVarScript.parkGE)
+				GE = true;
+		}else if(sceneName == GlobalVariables.globVarScript.beachName){
+			if(GlobalVariables.globVarScript.beachNE)
+				NE = true;
+			if(GlobalVariables.globVarScript.beachSE)
+				SE = true;
+			if(GlobalVariables.globVarScript.beachGE)
+				GE = true;
+		}
 	}
 }

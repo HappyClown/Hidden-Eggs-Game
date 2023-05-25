@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour {
 	[Header("Buttons")]
 	public Button playBtn;
 	public Button resetBtn;
+	public Button newGameNoStory;
 
 	[Header("Delete Save Button")]
 	public Button deleteSaveBtn;
@@ -34,6 +35,7 @@ public class MainMenu : MonoBehaviour {
 		playBtn.onClick.AddListener(PlayBtn);
 		resetBtn.onClick.AddListener(DeleteSaveFile);
 		resetBtn.onClick.AddListener(NewGameBtn);
+		newGameNoStory.onClick.AddListener(NewGameNoStoryBtn);
 		deleteSaveBtn.onClick.AddListener(DeleteSaveFile);
 		// if (GlobalVariables.globVarScript.toHub) { // Goes straight to hub
 		// 	ToHub();
@@ -87,6 +89,26 @@ public class MainMenu : MonoBehaviour {
 			customButtonScript.levelSelected = false;
 		}
 	}
+	void NewGameNoStoryBtn() {
+		DeleteSaveFile();
+		// Fade out the main menu title, buttons, full blue background and part clouds.
+		PartialMainMenuFade();
+		// Starts countdown timer to doing Village stuff 
+		hubScript.ActivateHub();
+
+		foreach(LevelTitleVillage levelTitleScript in levelTitleScripts)
+		{
+			levelTitleScript.ResetTitle();
+		}
+		foreach(LevelFireflies levelFireflies in levelFirefliesScripts)
+		{
+			levelFireflies.StopLevelFireflies();
+		}
+		foreach(CustomButtonClick customButtonScript in customButtonScripts)
+		{
+			customButtonScript.levelSelected = false;
+		}
+	}
 
 	void MoveClouds(bool moveCloudsIn = false) {
 		if (moveCloudsIn) {
@@ -102,21 +124,6 @@ public class MainMenu : MonoBehaviour {
 			}
 		}
 	}
-
-	// public void FullMainMenuFade(bool fadeIn = false) {
-	// 	if (fadeIn) {
-	// 		titleAndBtnsCGFadeScript.FadeIn();
-	// 		deleteSaveBtnCGFadeScript.FadeIn(); // Temporary
-	// 		solidBGFade.FadeIn();
-	// 		MoveClouds(true);
-	// 	}
-	// 	else {
-	// 		titleAndBtnsCGFadeScript.FadeOut();
-	// 		deleteSaveBtnCGFadeScript.FadeOut(); // Temporary
-	// 		solidBGFade.FadeOut();
-	// 		MoveClouds();
-	// 	}
-	// }
 
 	public void PartialMainMenuFade(bool fadeIn = false, bool fadeBackground = true, bool fadeElements = true) {
 		if (fadeBackground) {
