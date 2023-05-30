@@ -9,6 +9,7 @@ public class BeachClam : MonoBehaviour {
 	public Animator clamAnim;
 	public GameObject ClamSpriteParent;
 	public BeachBubbles[] myBubbles;
+	public bool bubblesAssigned;
 	private CircleCollider2D myCollider;
 	[Tooltip("Time before clam dissapears after match")]
 	public float timeDelay;
@@ -125,6 +126,7 @@ public class BeachClam : MonoBehaviour {
 		{
 			bubbles.activeClam = false;
 		}
+		bubblesAssigned = false;
 	}
 	public void CleanBubbles(){
 		foreach (BeachBubbles bubbles in myBubbles)

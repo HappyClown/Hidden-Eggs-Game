@@ -19,24 +19,12 @@ public class BeachBubbles : MonoBehaviour {
 	private bool activeSprite;
 	private bool fadeInOutSprite;
 	private float currentTime;
-	private Vector3 StartPosition;
+	public Vector3 StartPosition;
 	private SpriteRenderer mySprite;
 	public ParticleSystem bubblePopFX;
 	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
 
-	// Use this for initialization
-	void Start () {
-		activeClam = false;
-		gameObject.transform.localScale = gameObject.transform.localScale * (bubbleSize);
-		StartPosition = gameObject.transform.localPosition;
-		currentTime = 0;
-		mySprite = this.gameObject.GetComponent<SpriteRenderer>();
-		myFade = this.gameObject.GetComponent<FadeInOutSprite>();
-		mySprite.enabled = false;
-		activeSprite = false;
-		fadeInOutSprite = false;
-		myFade.FadeOut();	
-	}
+	
 	// Update is called once per frame
 	void Update () {
 		if(activeClam && !activeSprite){
@@ -79,11 +67,15 @@ public class BeachBubbles : MonoBehaviour {
 		}
 	}
 	public void ResetBubble(){
-		currentTime = 0;
-		gameObject.transform.localPosition = StartPosition;
-		activeSprite = false;
-		mySprite.enabled = false;
-		// mySprite.color = new Color( mySprite.color.r, mySprite.color.g, mySprite.color.b, 0f);
 		activeClam = false;
+		gameObject.transform.localScale = gameObject.transform.localScale * (bubbleSize);
+		StartPosition = gameObject.transform.localPosition;
+		currentTime = 0;
+		mySprite = this.gameObject.GetComponent<SpriteRenderer>();
+		myFade = this.gameObject.GetComponent<FadeInOutSprite>();
+		mySprite.enabled = false;
+		activeSprite = false;
+		fadeInOutSprite = false;
+		myFade.FadeOut();	
 	}
 }

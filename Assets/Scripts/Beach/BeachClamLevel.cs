@@ -7,6 +7,7 @@ public class BeachClamLevel : MonoBehaviour {
 	public ClamSpot[] clamSpots;
 	public BeachClam[] myClams;
 	public bool levelLoading, levelComplete, tutorialLevel;
+	public Shuffle_Shell_Bubble_Library[] bubbleLibrary;
 
 /// test for sounds ////
 	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
@@ -58,6 +59,7 @@ public class BeachClamLevel : MonoBehaviour {
 			availableSpots[rand].occupied = true;
 			availableSpots.Clear();
 		}
+		SetUpBubbles();
 		//test sounds
 		setUpSounds();
 		audioBeachPuzzleScript.newLevel();
@@ -92,6 +94,10 @@ public class BeachClamLevel : MonoBehaviour {
 		{
 			clamSpot.occupied = false;
 		}
+		for (int i = 0; i < bubbleLibrary.Length; i++)
+		{
+			bubbleLibrary[i].used = false;
+		}
 		levelComplete = false;
 	}
 	public void CheckClams(){
@@ -110,6 +116,46 @@ public class BeachClamLevel : MonoBehaviour {
 		foreach (BeachClam clam in myClams)
 		{
 			clam.CleanBubbles();
+		}
+	}
+	private void SetUpBubbles(){
+		for (int i = 0; i < myClams.Length; i++)
+		{
+			if(!myClams[i].bubblesAssigned){
+				List<Shuffle_Shell_Bubble_Library> availableBubbles = new List<Shuffle_Shell_Bubble_Library>();
+				for (int j = 0; j < bubbleLibrary.Length; j++)
+				{
+					if(!bubbleLibrary[j].used){
+						availableBubbles.Add(bubbleLibrary[i]);
+					}
+				}
+				int bubbletoTake = Random.Range(0,availableBubbles.Count);
+				for (int k = 0; k < myClams[i].myBubbles.Length; k++)
+				{
+					Color newColor = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<SpriteRenderer>().color;
+					myClams[i].myBubbles[k].lifeTimedelay = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().lifeTimedelay;
+					myClams[i].myBubbles[k].bubbleSize = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().bubbleSize;
+					myClams[i].myBubbles[k].curveMultiplier = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().curveMultiplier;
+					myClams[i].myBubbles[k].Speed = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().Speed;
+					myClams[i].myBubbles[k].gameObject.GetComponent<SpriteRenderer>().sprite = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<SpriteRenderer>().sprite;
+					myClams[i].myBubbles[k].gameObject.GetComponent<SpriteRenderer>().color = newColor;
+					myClams[i].myBubbles[k].ResetBubble();
+
+					myClams[i].myMatch.myBubbles[k].lifeTimedelay = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().lifeTimedelay;
+					myClams[i].myMatch.myBubbles[k].bubbleSize = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().bubbleSize;
+					myClams[i].myMatch.myBubbles[k].curveMultiplier = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().curveMultiplier;
+					myClams[i].myMatch.myBubbles[k].Speed = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<BeachBubbles>().Speed;
+					myClams[i].myMatch.myBubbles[k].gameObject.GetComponent<SpriteRenderer>().sprite = availableBubbles[bubbletoTake].libBubbles[k].gameObject.GetComponent<SpriteRenderer>().sprite;
+					myClams[i].myMatch.myBubbles[k].gameObject.GetComponent<SpriteRenderer>().color = newColor;
+					myClams[i].myMatch.myBubbles[k].ResetBubble();
+
+					availableBubbles[bubbletoTake].used = true;
+				}
+				availableBubbles.Clear();
+				myClams[i].bubblesAssigned = true;
+				myClams[i].myMatch.bubblesAssigned = true;
+			}
+			
 		}
 	}
 }
