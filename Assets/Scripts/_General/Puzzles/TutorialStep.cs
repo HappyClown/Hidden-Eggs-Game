@@ -12,5 +12,7 @@ public class TutorialStep : MonoBehaviour
     public StepTypes stepType;
     public Vector3 pos1, pos2;
     public GameObject[] masks;
-    public bool stepDone;
+    public GameObject[] messages;
+    public bool stepDone = false, loaded = false;
+
 }

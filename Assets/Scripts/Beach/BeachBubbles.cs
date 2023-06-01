@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BeachBubbles : MonoBehaviour {
 
-	[Range(0.1f,1f)]
+	[Range(0.1f,2.5f)]
 	public float bubbleSize = 1f;
 	[Range(1f,7f)]
 	public float Speed;
@@ -68,7 +68,7 @@ public class BeachBubbles : MonoBehaviour {
 	}
 	public void ResetBubble(){
 		activeClam = false;
-		gameObject.transform.localScale = gameObject.transform.localScale * (bubbleSize);
+		gameObject.transform.localScale = Vector3.one * (bubbleSize);
 		StartPosition = gameObject.transform.localPosition;
 		currentTime = 0;
 		mySprite = this.gameObject.GetComponent<SpriteRenderer>();

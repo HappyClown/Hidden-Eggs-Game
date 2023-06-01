@@ -58,6 +58,10 @@ public class BeachClamLevel : MonoBehaviour {
 			clam.ClamSpriteParent.transform.localRotation = availableSpots[rand].gameObject.transform.localRotation;
 			availableSpots[rand].occupied = true;
 			availableSpots.Clear();
+			clam.canTap = true;
+			if(tutorialLevel){
+				clam.canTap = false;
+			}
 		}
 		SetUpBubbles();
 		//test sounds

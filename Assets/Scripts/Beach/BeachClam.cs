@@ -14,7 +14,7 @@ public class BeachClam : MonoBehaviour {
 	[Tooltip("Time before clam dissapears after match")]
 	public float timeDelay;
 	private float timer;
-	public bool Tapped, open, matched, failed, closed, forceClose;
+	public bool Tapped, open, matched, failed, closed, forceClose, canTap;
 
 	public bool clamWaiting;
 	private bool setFadeDurToPlay;
@@ -33,13 +33,12 @@ public class BeachClam : MonoBehaviour {
 		Tapped = open = matched = failed = forceClose =  false;
 		closed = true;
 		timer = 0;
-
 		//snd
 		audioBeachPuzzleScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 	}
 	
 	void Update () {
-		if(Tapped){
+		if(Tapped && canTap){
 			if(closed){
 				//clam sound
 				audioBeachPuzzleScript.playOceanSound(clamSound);

@@ -85,7 +85,7 @@ public class MainPuzzleEngine : MonoBehaviour
 		//controls if a level needs to be setted up
 		setupLevel = false;
 		//Set helperbird in puzzle mode
-		slideInHelpScript.inPuzzle = true;
+		slideInHelpScript.inPuzzle = true;		
 	}
 	
 	public void RunBasics (bool playing) {
