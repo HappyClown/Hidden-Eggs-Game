@@ -37,8 +37,9 @@ public class BeachClam : MonoBehaviour {
 		audioBeachPuzzleScript =  GameObject.Find ("Audio").GetComponent<AudioSceneBeachPuzzle>();
 	}
 	
-	void Update () {
-		if(Tapped && canTap){
+	void Update () {		
+		myCollider.enabled = canTap;		
+		if(Tapped){
 			if(closed){
 				//clam sound
 				audioBeachPuzzleScript.playOceanSound(clamSound);
