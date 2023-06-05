@@ -93,6 +93,10 @@ public class MainMenu : MonoBehaviour {
 		DeleteSaveFile();
 		// Fade out the main menu title, buttons, full blue background and part clouds.
 		PartialMainMenuFade();
+		// This is just a fail-safe check in case the Hub object is deactivate.
+		if (!hubScript.gameObject.activeSelf) {
+			hubScript.gameObject.SetActive(true);
+		}
 		// Starts countdown timer to doing Village stuff 
 		hubScript.ActivateHub();
 
