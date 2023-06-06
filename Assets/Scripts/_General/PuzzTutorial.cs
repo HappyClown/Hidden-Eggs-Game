@@ -11,11 +11,11 @@ public class PuzzTutorial : MonoBehaviour {
 	public MainPuzzleEngine mainPuzzScript;
 	public SceneTapEnabler sceneTapScript;
 	public AudioHelperBird audioHelperBirdScript;
-	public bool showTut;
+	public bool showTut, loadingStep, firstStep, finalStep;
 	public bool tutOpen, tabPlaced;
 	public TutorialStep[] tutorialSteps;
-	public TutorialStep currentStepScript;
 	public int currentStep = 0, maxStep = 0;
+	public float stepTimeDelay = 0.0f, stepTimer = 0.0f; 
 	public GameObject tapIcon;
 
 	public void StartTutorial () {

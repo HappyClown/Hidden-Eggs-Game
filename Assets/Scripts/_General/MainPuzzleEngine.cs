@@ -9,7 +9,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public RaycastHit2D hit;
 	public Vector2 mousePos2D;
 	public Vector3 mousePos;
-	public bool tutorialDone;
+	public bool tutorialDone, skiptutorial;
 	public int curntLvl;
 	#endregion
 	#region Basic Scripts Sources
@@ -142,7 +142,7 @@ public class MainPuzzleEngine : MonoBehaviour
 					 //compare sequence timer to playable time, then allow player to play and finish the initial sequence
 					if (seqTimer > iniCanPlayF) { 
 						//----------Helper bird stuff here
-						if (tutorialDone) {
+						if (tutorialDone || skiptutorial) {
 							canPlay = true; 
 							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
 							sceneTapScript.canTapPauseBtn = true;
@@ -192,7 +192,7 @@ public class MainPuzzleEngine : MonoBehaviour
 		if (maxLvl > lvlItemHolders.Count || maxLvl < 1) {			
 			curntLvl = 1; 
 			//for debuging we can switch tutolrial done manually
-			if(tutorialDone){
+			if(tutorialDone || skiptutorial){
 				curntLvl = 2; 
 			}
 		}

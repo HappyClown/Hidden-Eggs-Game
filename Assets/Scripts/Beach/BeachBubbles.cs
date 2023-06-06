@@ -16,7 +16,7 @@ public class BeachBubbles : MonoBehaviour {
 	public FadeInOutSprite myFade;
 	public float lifeTime;
 	public bool activeClam;
-	private bool activeSprite;
+	private bool activeSprite, posSetted = false;
 	private bool fadeInOutSprite;
 	private float currentTime;
 	public Vector3 StartPosition;
@@ -69,7 +69,11 @@ public class BeachBubbles : MonoBehaviour {
 	public void ResetBubble(){
 		activeClam = false;
 		gameObject.transform.localScale = Vector3.one * (bubbleSize);
-		StartPosition = gameObject.transform.localPosition;
+		if(!posSetted){
+			posSetted = true;
+			StartPosition = gameObject.transform.localPosition;
+		}
+		gameObject.transform.localPosition = StartPosition;
 		currentTime = 0;
 		mySprite = this.gameObject.GetComponent<SpriteRenderer>();
 		myFade = this.gameObject.GetComponent<FadeInOutSprite>();

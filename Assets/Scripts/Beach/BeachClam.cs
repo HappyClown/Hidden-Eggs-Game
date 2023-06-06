@@ -38,76 +38,77 @@ public class BeachClam : MonoBehaviour {
 	}
 	
 	void Update () {		
-		myCollider.enabled = canTap;		
-		if(Tapped){
-			if(closed){
-				//clam sound
-				audioBeachPuzzleScript.playOceanSound(clamSound);
+		if(canTap){
+			if(Tapped){
+				if(closed){
+					//clam sound
+					audioBeachPuzzleScript.playOceanSound(clamSound);
 
-				myCollider.enabled = false;
-				open = true;
-				closed = false;
-				myOpenClam.fadeDelay = false;
-				myOpenClam.FadeIn();
-				myClosedClam.fadeDelay = true;
-				myClosedClam.FadeOut();
+					myCollider.enabled = false;
+					open = true;
+					closed = false;
+					myOpenClam.fadeDelay = false;
+					myOpenClam.FadeIn();
+					myClosedClam.fadeDelay = true;
+					myClosedClam.FadeOut();
 
-				foreach (BeachBubbles bubbles in myBubbles)
-				{
-					bubbles.ResetBubble();
-					bubbles.activeClam = true;
+					foreach (BeachBubbles bubbles in myBubbles)
+					{
+						bubbles.ResetBubble();
+						bubbles.activeClam = true;
+					}
+					Tapped = false;
 				}
-				Tapped = false;
 			}
-		}
-		if(failed){
-			if(closed){
-				myCollider.enabled = true;
-				myClosedClam.fadeDelay = false;
-				myClosedClam.FadeIn();
-				myOpenClam.fadeDelay = true;
-				myOpenClam.FadeOut();
-				failed = false;
-				
-			}
-			if(open /* && put delay for sound*/|| forceClose){
-				open = false;
-				closed = true;
-				forceClose = false;
+			if(failed){
+				if(closed){
+					myCollider.enabled = true;
+					myClosedClam.fadeDelay = false;
+					myClosedClam.FadeIn();
+					myOpenClam.fadeDelay = true;
+					myOpenClam.FadeOut();
+					failed = false;
+					
+				}
+				if(open /* && put delay for sound*/|| forceClose){
+					open = false;
+					closed = true;
+					forceClose = false;
 
-				//failed match sound .. should put a delay or something
-				//audioBeachPuzzleScript.failSFX();
+					//failed match sound .. should put a delay or something
+					//audioBeachPuzzleScript.failSFX();
+				}
 			}
-		}
-		if(open && myMatch.matched){
-			timer += Time.deltaTime;
-			if(timer >= timeDelay  && open){
-				myOpenClam.FadeOut();
-				matched = true;
-				open = false;
+			if(open && myMatch.matched){
+				timer += Time.deltaTime;
+				if(timer >= timeDelay  && open){
+					myOpenClam.FadeOut();
+					matched = true;
+					open = false;
 
-				//"matched" and "dissolve" sound
-				audioBeachPuzzleScript.BubblesSFX();
-				audioBeachPuzzleScript.addToMusicList(clamSound);
+					//"matched" and "dissolve" sound
+					audioBeachPuzzleScript.BubblesSFX();
+					audioBeachPuzzleScript.addToMusicList(clamSound);
+				}
 			}
-		}
-	
-		if (setFadeDurToPlay) {
-			showClamTimer += Time.deltaTime;
-			if (showClamTimer >= clamUpDelay && clamWaiting) {
-				clamAnim.SetTrigger("ShowClam");
-				myClosedClam.FadeIn();
-				clamWaiting = false;
+		
+			if (setFadeDurToPlay) {
+				showClamTimer += Time.deltaTime;
+				if (showClamTimer >= clamUpDelay && clamWaiting) {
+					clamAnim.SetTrigger("ShowClam");
+					myClosedClam.FadeIn();
+					clamWaiting = false;
 
-				//sound clam pop
-				audioBeachPuzzleScript.clamPopOutSFX();
+					//sound clam pop
+					audioBeachPuzzleScript.clamPopOutSFX();
+				}
+				if (showClamTimer >= (clamUpDelay + iniFadeInDur) && setFadeDurToPlay) {
+					myClosedClam.fadeDuration = playFadeInDur;
+					showClamTimer = 0f;
+					setFadeDurToPlay = false;
+				}
 			}
-			if (showClamTimer >= (clamUpDelay + iniFadeInDur) && setFadeDurToPlay) {
-				myClosedClam.fadeDuration = playFadeInDur;
-				showClamTimer = 0f;
-				setFadeDurToPlay = false;
-			}
-		}
+		}		
 	}
 	public void ResetClams(){
 		myCollider = this.gameObject.GetComponent<CircleCollider2D>();
