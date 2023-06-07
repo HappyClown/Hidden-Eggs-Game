@@ -99,6 +99,7 @@
      <Compile Include="Assets\Scripts\_General\DeleteSaveButton.cs" />
      <Compile Include="Assets\__BirdStory2.0 NEW STUFF\SceneEggAnimator.cs" />
      <Compile Include="Assets\Scripts\_General\PuzzPieceAnimEvents.cs" />
+     <Compile Include="Assets\Scripts\Beach\ShellShuffleTutorial.cs" />
      <Compile Include="Assets\Scripts\_MainMenu\StoryEggManager.cs" />
      <Compile Include="Assets\Scripts\Park\KiteLevelChangeAnim.cs" />
      <Compile Include="Assets\Scripts\Park\HopscotchRiddle.cs" />
@@ -155,6 +156,7 @@
      <Compile Include="Assets\Scripts\_MainMenu\StoryGustMotions.cs" />
      <Compile Include="Assets\Scripts\Beach\BeachClam.cs" />
      <Compile Include="Assets\Scripts\_General\QueueSequenceManager.cs" />
+     <Compile Include="Assets\Scripts\ToyStore\ToyStoreCellChecker.cs" />
      <Compile Include="Assets\Scripts\_General\FadeInOutSprite.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioSeasonUnlockAnim.cs" />
      <Compile Include="Assets\Scripts\Theater\TheaterPuzzleCellConn.cs" />
@@ -185,6 +187,7 @@
      <Compile Include="Assets\Scripts\_General\GlowOnOff.cs" />
      <Compile Include="Assets\Scripts\SubclassTest\GreatBigPuzzleEngine.cs" />
      <Compile Include="Assets\Scripts\Cafe\CafePuzzleCell.cs" />
+     <Compile Include="Assets\Scripts\ToyStore\Pieces\ToyStorePieceData.cs" />
      <Compile Include="Assets\Scripts\_MainMenu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\_General\LoadSceneButton.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioSceneBeachPuzzle.cs" />
@@ -251,14 +254,18 @@
      <Compile Include="Assets\Scripts\_MainMenu\MoveCloud.cs" />
      <Compile Include="Assets\Scripts\_General\GeneralSaveLoadManager.cs" />
      <Compile Include="Assets\Scripts\Park\TileRotation.cs" />
+     <Compile Include="Assets\Scripts\_General\Puzzles\TutorialUiAnimation.cs" />
      <Compile Include="Assets\Scripts\_General\SceneFade.cs" />
      <Compile Include="Assets\Scripts\_General\UI\SeasonLockAnimEvents.cs" />
      <Compile Include="Assets\Scripts\_MainMenu\StoryScrollingBG.cs" />
      <Compile Include="Assets\Scripts\_General\RotateXYZ.cs" />
      <Compile Include="Assets\Scripts\SubclassTest\PuzzleEngineZ.cs" />
+     <Compile Include="Assets\Scripts\Beach\Shuffle_Shell_Bubble_Library.cs" />
      <Compile Include="Assets\Scripts\_General\FadeInOutTMP.cs" />
      <Compile Include="Assets\Scripts\_MainMenu\StorySingleCloudManager.cs" />
+     <Compile Include="Assets\Scripts\_General\Puzzles\TutorialStep.cs" />
      <Compile Include="Assets\Scripts\_General\FadeChildren.cs" />
+     <Compile Include="Assets\Scripts\_General\Puzzles\ToyStoreLevelBuilderScript.cs" />
      <Compile Include="Assets\Scripts\_General\ParentToOnAwake.cs" />
      <Compile Include="Assets\Scripts\_MainMenu\VillageSaveLoadManager.cs" />
      <Compile Include="Assets\Scripts\_General\SceneSilverEgg.cs" />
@@ -276,8 +283,10 @@
      <Compile Include="Assets\Scripts\Park\LeafTurnTransformPooler.cs" />
      <Compile Include="Assets\SetPosScaleRotToAnim.cs" />
      <Compile Include="Assets\Scripts\Spline\Bezier.cs" />
+     <Compile Include="Assets\Scripts\ToyStore\ToyStoreColorLibrary.cs" />
      <Compile Include="Assets\Scripts\_General\Camera\ZoomAtHub.cs" />
      <Compile Include="Assets\Scripts\ToyStore\ToyStorePuzzleEngine.cs" />
+     <Compile Include="Assets\Scripts\_General\Puzzles\CuOutMask.cs" />
      <Compile Include="Assets\Scripts\Market\Items.cs" />
      <Compile Include="Assets\Scripts\_General\PuzzlePauseMenuBtn.cs" />
      <Compile Include="Assets\Scripts\_General\FadeInOutImage.cs" />
@@ -989,11 +998,11 @@
     <Reference Include="UnityEngine.Purchasing.SecurityStub">
         <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-        <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Searcher.Editor">
         <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+        <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -1057,6 +1066,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Coffee.UnmaskForUGUI">
+        <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\Coffee.UnmaskForUGUI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
         <HintPath>F:\_GAME PROTOTYPES\BirdStory\Hidden-Eggs-Game\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
