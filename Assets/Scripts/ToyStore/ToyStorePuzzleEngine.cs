@@ -1,16 +1,24 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ToyStorePuzzleEngine : MainPuzzleEngine {
 
-	private delegate void VoidDelegate();
-	private VoidDelegate voidDelegate;
+	//private delegate void VoidDelegate();
+	//private VoidDelegate voidDelegate;
 	public ToyStorePuzzleLevel[] myLvls;
-	public ToyStorePuzzlePiece holdedPiece;
+	public ToyStorePuzzlePiece holdedPiece,lastPiece;
 	public float mouseRadius, liftDiff;
 	private bool raycastDone, puzzleDone, holdingPiece;
 	public Vector2 clickdiff, holdedPos;
+	public PuzzleCell[] mainGrid, TopCells;
+	private PuzzleCell droppingCell, gridCellTarget;
+	public Sprite emptyCell, targetCell, highlightCell;
+	public ToyStoreColorLibrary myColors;
+	public bool highlightCols, highlighTarget;
+	public List<ToyStoreCellChecker> newCheck = new List<ToyStoreCellChecker>();
+
+
 	void Start () {
 		canPlay = false;
 		initialSetupOn = true;
@@ -24,7 +32,8 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		// }
 
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
-		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
+		//tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
+		tutorialDone = true; //change this 
 		raycastDone = false;
 		/* if(currentLevel >= mylevels.Length){
 			currentLevel = mylevels.Length - 1;
@@ -56,56 +65,117 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 
 			if (mySelectButton.buttonsOff) { mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
 			//SET BEHAVIOR HERE			
-			/*if(myInput.Tapped && !holdingPiece){//Rotate free piece when tapped
-				UpdateMousePos(myInput.TapPosition);
-				RotatePiece(mousePos2D);							
-			}else if(myInput.isDragging){//check if dragging to move pieces
-				UpdateMousePos(myInput.draggingPosition);
-				if(holdingPiece){
-					holdedPos = mousePos2D - clickdiff;
-					holdedPiece.transform.position = new Vector3(holdedPos.x, holdedPos.y, -liftDiff );
-					int matchNum = 0;
-					foreach (PuzzleCell cell in holdedPiece.mycells)
-					{
-						foreach (PuzzleCell cell2 in myLvls[curntLvl-1].gridCells)
-						{
-							if(Vector2.Distance(cell.gameObject.transform.position,cell2.transform.position) < myLvls[curntLvl-1].snapRadius && !cell2.occupied){
-								matchNum ++;
-							}
-						}						
-					}
-					Debug.Log(matchNum);
-					if(matchNum == holdedPiece.mycells.Length){
-						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
-						{
-							spRend.gameObject.SetActive(true);																
+			if(myInput.Tapped && !holdingPiece && !myLvls[curntLvl-1].pieceBadPlaced){//Rotate free piece when tapped
+				UpdateMousePos(myInput.TapPosition);//convert mouse pos to screen pos
+				RotatePiece(mousePos2D);//execute rotate piece function							
+			}else if(myInput.isDragging && !myLvls[curntLvl-1].pieceBadPlaced){//check if the user is dragging
+				UpdateMousePos(myInput.draggingPosition);//convert mouse pos to screen pos
+				if(holdingPiece){//check if a piece is being holded
+					holdedPos = mousePos2D - clickdiff;//Convert the piece position based in mouse pos
+					holdedPiece.transform.position = new Vector3(holdedPos.x, holdedPos.y, -liftDiff );//update piece position
+					
+					if(CheckPlacingPos(mousePos2D)){//highlight grid if in the dropZone
+						SetDroppingCell();
+						if(FitPiece(droppingCell)){
+							Debug.Log("yay it fits" + gridCellTarget.gameObject.name);							
+							newCheck.Clear();
 						}
 					}else{
-						foreach (SpriteRenderer spRend in holdedPiece.pieceSprites)
-						{
-							spRend.gameObject.SetActive(false);																
-						}
+						CleanHightlight();
 					}
-				}else{
-					holdedPiece = SelectPiece(mousePos2D);
-					if(holdedPiece){
-						if(holdedPiece.placed){
-							myLvls[curntLvl-1].FreeCells(holdedPiece);
-						}
+				}else{//if there is no holded piece, we have to check if is possible to hold one
+					holdedPiece = SelectPiece(mousePos2D); //check if there is a piece in the dragging position
+					if(holdedPiece){// check if a piece is assigned
 						holdingPiece = true;
+						//set a click difference in between the center of the piece and the clicked pos
 						clickdiff = mousePos2D - new Vector2(holdedPiece.gameObject.transform.position.x, holdedPiece.gameObject.transform.position.y);
 					}
 				}
 			}else{
 				if(holdingPiece){
-					myLvls[curntLvl-1].CheckPiece(holdedPiece);
-					holdedPiece = null;
-					holdingPiece = false;				
-				}
-			}*/
+					if(CheckPlacingPos(mousePos2D)){//set behavior for piece when placed in the right area
+						SetDroppingCell();
+						if(FitPiece(droppingCell)){
+							Debug.Log("This is a good position o yeah baby");
+							for (int i = 0; i < newCheck.Count ; i++)
+							{
+								newCheck[i].gridCell.occupied = true;
+							}
+							Vector3 toDropPos = gridCellTarget.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
+							Vector3 toStartPos = droppingCell.gameObject.transform.position - holdedPiece.mostLeftCell.gameObject.transform.position;
+							holdedPiece.SetTargetPos(toDropPos,toStartPos);
+							bool pieceInGoal = true;
+							for (int i = 0; i < newCheck.Count ; i++)
+							{
+								if(!newCheck[i].gridCell.goalCell){									
+									pieceInGoal = false;									
+								}
+								int downTimes = 0;
+								downTimes = newCheck[i].gridCell.CheckDown().CheckTimes;
+								if(downTimes > 0 && pieceInGoal){	
+									for (int j = 0; j <= downTimes; j++)
+									{
+										if(newCheck[i].gridCell.CheckDownAmmount(j).goalCell && !newCheck[i].gridCell.CheckDownAmmount(j).occupied){
+											pieceInGoal = false;
+										}
+									}								
+								}							
+							}
+							if(!pieceInGoal){
+								foreach (PuzzleCell inHolded in holdedPiece.mycells)
+								{
+									inHolded.gameObject.GetComponent<SpriteRenderer>().color = myColors.highlightWrongColor;	
+								}
+								//holdedPiece.destroyOnFall = true;
+								myLvls[curntLvl-1].pieceBadPlaced = true;
+								Debug.Log("You dummy, FAILED!");
+								lastPiece = holdedPiece;
+								holdedPiece = null;
+							}else{
+								//CleanHightlight();
+								myLvls[curntLvl-1].SetSpawn(holdedPiece.type,holdedPiece.version);
+								lastPiece = holdedPiece;
+								holdedPiece = null;
+							}							
+						}else{
+							holdedPiece.ResetPiece(); //reset piece position if released in a wrong cell
+							holdedPiece = null;
+						}
+					}
+					else{
+						holdedPiece.ResetPiece(); //reset piece position if released in a wrong area
+						holdedPiece = null;
+					}			
+				}				
+				holdingPiece = false;
+			}
 			
 			if(Input.GetKey("r")){
+				for (int i = 0; i < mainGrid.Length; i++)
+				{
+					mainGrid[i].occupied = false;
+				}
 				myLvls[curntLvl-1].ResetLevel();myLvls[curntLvl-1].SetUpLevel();
+				CleanHightlight();
+				holdedPiece = null;
+			}
+			if(Input.GetKey("u")){
+				for (int i = 0; i < newCheck.Count ; i++){
+					newCheck[i].gridCell.occupied = false;
+				}
+				foreach (PuzzleCell inHolded in lastPiece.mycells)
+				{
+					inHolded.gameObject.GetComponent<SpriteRenderer>().color = myColors.pieceCellColor;	
+				}
+				lastPiece.moving = false;
+				lastPiece.ResetPiece();
+				CleanHightlight();
+				if(myLvls[curntLvl-1].pieceBadPlaced){
+					myLvls[curntLvl-1].pieceBadPlaced = false;
+				}else{
+					myLvls[curntLvl-1].DestroyLastSpawn();
+				}	
+				lastPiece = null;			
 			}
 		}
 		else
@@ -199,6 +269,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
+		SetUpGrid();
 		initialSetupOn = false;
 		iniSeqStart = true;
 	}
@@ -262,12 +333,6 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		}
 	}
 
-	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun)
-	{
-		methToRun();
-	}
-
 	// Once animations are finished, run the next level setup.
 	public new void NextLevelSetup() {
 		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())
@@ -281,25 +346,11 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 		CleanGrid();
 		myLvls[curntLvl-1].ResetLevel();
 		myLvls[curntLvl-1].SetUpLevel();
-
+		SetUpGrid();		
 		itemHolder.SetActive(false);
 		itemHolder = lvlItemHolders[curntLvl - 1];
 		itemsWait = true;
 		//clamLevelChangeScript.bootFront.sortingLayerName = "Default";
-	}
-
-	// Prepare to change level after a level selection button has been pressed.
-	public new void ChangeLevelSetup()
-	{
-		// Close up current level.
-		canPlay = false;
-			//myLvls[curntLvl-1].CleanClamBubbles();
-
-		mySelectButton.UninteractableThreeDots();
-
-		LvlStuffFadeOut();
-
-		setupChsnLvl = true;
 	}
 
 	// Setup the chosen level after waiting for setupLvlWaitTime (minimum the fade out duration of the items).
@@ -315,6 +366,7 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 			CleanGrid();
 			myLvls[curntLvl-1].ResetLevel();
 			myLvls[curntLvl-1].SetUpLevel();
+			SetUpGrid();
 			itemHolder = lvlItemHolders[curntLvl - 1];
 			itemsWait = true;
 			setupChsnLvl = false;
@@ -339,16 +391,6 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	public void EndOfLevelEvent() {
 		//clamLevelChangeScript.LevelChangeEvent();
 	}
-
-	public new void SaveMaxLvl()
-	{
-		if (maxLvl > GlobalVariables.globVarScript.puzzMaxLvl)
-		{
-			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
-			GlobalVariables.globVarScript.SaveEggState();
-		}
-	}
-
 	#endregion
 
 	#region Coroutines
@@ -375,42 +417,261 @@ public class ToyStorePuzzleEngine : MainPuzzleEngine {
 	}
 
 	void CleanGrid(){
-		/*for (int i = 0; i < gridCells.Length; i++)
+		foreach (PuzzleCell cell in mainGrid)
 		{
-			gridCells[i].occupied = false;
-		}*/
+			cell.occupied = false;
+			SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+			spRend.sprite = emptyCell; spRend.color =  myColors.emptyCellColor;
+			cell.goalCell = false;
+		}
+	}
+	void SetUpGrid(){
+		foreach (PuzzleCell cell in myLvls[curntLvl-1].goalCells)
+		{
+			cell.goalCell = true;
+			SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+			spRend.sprite = targetCell; spRend.color =  myColors.targetCellColor;
+		}
 	}
 	//Particular Puzzle functions
 	//Rotate a piece if is available
-	void RotatePiece(Vector2 pos){
-		foreach ( ToyStorePuzzlePiece piece in myLvls[curntLvl-1].myPieces)
-		{
-			foreach (PuzzleCell cell in piece.mycells)
-			{
-				if(Vector2.Distance(pos,cell.gameObject.transform.position) < mouseRadius){
-					if(!piece.placed){
-						piece.RotatePiece();
-						break;
-					}
-				}
+	void RotatePiece(Vector2 pos){		
+		hit = Physics2D.Raycast(pos, Vector3.forward, 50f);//Create raycast on the mouse position
+		if (hit){
+			if (hit.collider.CompareTag("Puzzle")) {//check if raycast hits puzzle piece
+				Debug.Log(hit.collider.gameObject.name);
+				ToyStorePuzzlePiece toRotPiece =  hit.collider.gameObject.GetComponent<ToyStorePuzzlePiece>();//Assign puzzle piece to variable
+				toRotPiece.RotatePiece();//Call rotate function on the puzzle piece
 			}
 		}
 	}
 	//Select Piece to hold
 	ToyStorePuzzlePiece SelectPiece(Vector2 pos){
-		ToyStorePuzzlePiece selectedPiece = null;
-		foreach ( ToyStorePuzzlePiece piece in myLvls[curntLvl-1].myPieces)
-		{
-			foreach (PuzzleCell cell in piece.mycells)
-			{
-				if(Vector2.Distance(pos,cell.gameObject.transform.position) < mouseRadius){
-					if(!piece.movingBack){
-						selectedPiece = piece;
-					}
+		hit = Physics2D.Raycast(pos, Vector3.forward, 50f);//Create raycast on the mouse position
+		if (hit){
+			if (hit.collider.CompareTag("Puzzle")) {//check if raycast hits puzzle piece
+				Debug.Log(hit.collider.gameObject.name);
+				ToyStorePuzzlePiece toMovePiece =  hit.collider.gameObject.GetComponent<ToyStorePuzzlePiece>();//assign selected piece
+				if(!toMovePiece.moving){//check if piece was not moving back to original position
+					toMovePiece.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+					return toMovePiece; //returns selected puzzle piece
 				}
 			}
 		}
-		return selectedPiece;
+		return null; //retuns empty if nothing is selected
+	}
+	bool CheckPlacingPos(Vector2 pos){
+		hit = Physics2D.Raycast(pos, Vector3.forward, 50f);//Create raycast on the mouse position
+		if (hit){
+			if (hit.collider.CompareTag("InCrate")) {//check if raycast hits puzzle piece
+				return true;
+			}
+		}
+		return false;
+	}
+	void SetDroppingCell(){
+		CleanHightlight();
+		float dist = 100000;
+		foreach (PuzzleCell cell in TopCells)
+		{
+			if(Mathf.Abs(cell.gameObject.transform.position.x - holdedPiece.mostLeftCell.gameObject.transform.position.x) < dist){
+				droppingCell = cell;
+				dist = Mathf.Abs(cell.gameObject.transform.position.x - holdedPiece.mostLeftCell.gameObject.transform.position.x);
+			}
+		}
+		
+	}
+	void HighlightCells(bool higlightGreen){
+		PuzzleCell tempCell = null;
+		int toHighlightH = 0;
+		toHighlightH = holdedPiece.inBetweenCells;
+		if(droppingCell.CheckRight().CheckTimes >= (toHighlightH -1)){
+			int toHighlightV = 0;
+			for (int i = 0; i < toHighlightH; i++)
+			{
+				toHighlightV = droppingCell.CheckRightAmmount(i).CheckDown().CheckTimes;
+				tempCell = null;
+				for (int j = 0; j <= toHighlightV; j++)
+				{
+					tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
+					if(!tempCell.occupied){
+						SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+						Color newColor;
+						if(higlightGreen){
+							newColor =  myColors.highlightPlaceableColor;
+							newColor.a = tempCell.goalCell ? newColor.a  : (newColor.a * 0.5f);
+							spRend.color = newColor;spRend.sprite = highlightCell;
+						}else{
+							spRend.color =  myColors.highlightWrongColor;spRend.sprite = highlightCell;
+						}
+					}
+				}
+			}
+			
+		}
+	}
+	void CleanHightlight(){
+		newCheck.Clear();
+		/*int toHighlightH = 0;		
+		toHighlightH = holdedPiece.inBetweenCells;
+		PuzzleCell tempCell = null;*/
+		foreach (PuzzleCell cell in mainGrid)
+		{
+			if(cell.goalCell && !cell.occupied){
+				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+				spRend.color =  myColors.targetCellColor;spRend.sprite = targetCell;
+			}else if(!cell.goalCell){
+				SpriteRenderer spRend = cell.gameObject.GetComponent<SpriteRenderer>();
+				spRend.color =  myColors.emptyCellColor;spRend.sprite = emptyCell;
+			}
+		}
+		/*if(droppingCell){
+			if(droppingCell.CheckRight().CheckTimes >= (toHighlightH -1)){
+				int toHighlightV = 0;
+				for (int i = 0; i < toHighlightH; i++)
+				{
+					toHighlightV = droppingCell.CheckRightAmmount(i).CheckDown().CheckTimes;			
+					for (int j = 0; j <= toHighlightV; j++)
+					{
+						tempCell = droppingCell.CheckRightAmmount(i).CheckDownAmmount(j);
+						if(tempCell.goalCell && !tempCell.occupied){
+							SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+							spRend.color = targetCellColor;spRend.sprite = targetCell;
+						}
+						else if(!tempCell.occupied){
+							SpriteRenderer spRend = tempCell.gameObject.GetComponent<SpriteRenderer>();
+							spRend.color = emptyCellColor;spRend.sprite = emptyCell;
+						}
+					}
+				}
+			}
+		}*/
+	}
+	bool FitPiece(PuzzleCell myDrop){
+		gridCellTarget = null;
+		bool itFits = false;
+		int curretCheck = 0;
+		curretCheck = myDrop.CheckDown().CheckTimes;
+		PuzzleCell cellToStart = myDrop.CheckDownAmmount(curretCheck);		
+		while(curretCheck > 0){
+			if(CheckCells(holdedPiece,cellToStart)){
+				curretCheck = 0;
+				gridCellTarget = cellToStart;
+				itFits = true;				
+			}else{
+				curretCheck -= 1;
+				cellToStart = myDrop.CheckDownAmmount(curretCheck);
+			}
+		}
+		return itFits;
+	}
+	bool CheckCells(ToyStorePuzzlePiece holded, PuzzleCell toDrop){
+		bool fit = true;		
+		fit = PlaceCell(holded.mostLeftCell,toDrop);			
+		foreach (PuzzleCell cell in holded.mycells)
+		{
+			cell.placed = false;
+		}
+		return fit;
+	}
+	bool PlaceCell(PuzzleCell toCheck, PuzzleCell toDrop){
+		ToyStoreCellChecker currentCheck = new ToyStoreCellChecker(toCheck,toDrop,false);
+		currentCheck.pieceCell.placed = true;
+		if(!currentCheck.gridCell.occupied){
+			currentCheck.cellFits = true;
+		}		
+		newCheck.Add(currentCheck);		
+		int count = 0;
+		//Debug.Log(holdedPiece.mycells.Length.ToString());		
+		while(newCheck.Count < holdedPiece.mycells.Length){
+			count ++;
+			Debug.Log("Loop num = " + count.ToString());
+			foreach (ToyStoreCellChecker cellCheck in newCheck)
+			{
+				if(cellCheck.pieceCell.cellDown && !cellCheck.pieceCell.cellDown.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellDown,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellDown){
+							currentCheck.gridCell = cellCheck.gridCell.cellDown;
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+								currentCheck.cellFits = true;
+							}
+						}
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
+				}else if(cellCheck.pieceCell.cellUp && !cellCheck.pieceCell.cellUp.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellUp,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellUp){
+							currentCheck.gridCell = cellCheck.gridCell.cellUp;
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+								currentCheck.cellFits = true;
+							}
+						}
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
+				}else if(cellCheck.pieceCell.cellRight && !cellCheck.pieceCell.cellRight.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellRight,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellRight){
+							currentCheck.gridCell = cellCheck.gridCell.cellRight;
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+								currentCheck.cellFits = true;
+							}
+						}
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
+				}else if(cellCheck.pieceCell.cellLeft && !cellCheck.pieceCell.cellLeft.placed){
+					currentCheck = new ToyStoreCellChecker(cellCheck.pieceCell.cellLeft,null,false);
+					if(cellCheck.gridCell){
+						if(cellCheck.gridCell.cellLeft){
+							currentCheck.gridCell = cellCheck.gridCell.cellLeft;
+							if(!currentCheck.gridCell.occupied && currentCheck.gridCell.CheckUp().edgeUp){
+								currentCheck.cellFits = true;
+							}
+						}
+					}						
+					currentCheck.pieceCell.placed = true;
+					newCheck.Add(currentCheck);
+					break;
+				}	
+			}
+			//Debug.Break();
+		}	
+		bool cellFits = true;
+		for (int i = 0; i < newCheck.Count; i++)
+		{
+			if(!newCheck[i].cellFits){
+				cellFits = false;
+			}
+		}
+		if(cellFits){
+			if(highlightCols){
+				HighlightCells(true);
+			}
+			for (int i = 0; i < newCheck.Count; i++)
+			{
+				if(highlighTarget){
+					newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().color =  myColors.fallingCellColor;
+					newCheck[i].gridCell.gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
+				}				
+				Debug.Log(newCheck[i].gridCell.gameObject.name);
+			}						
+		}else{
+			/*if(highlightCols){
+				HighlightCells(false);
+			}*/
+			newCheck.Clear();
+		}
+		//newCheck[0].gameObject.GetComponent<SpriteRenderer>().sprite = highlightCell;
+		//Debug.LogError("pamelachu");
+		return cellFits;
 	}
 }
 

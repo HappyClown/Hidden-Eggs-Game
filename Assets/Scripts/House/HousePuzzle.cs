@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HousePuzzle : MainPuzzleEngine {
-	private delegate void VoidDelegate();
-	private VoidDelegate voidDelegate;	
+	//private delegate void VoidDelegate();
+	//private VoidDelegate voidDelegate;	
 	public List<HousePuzzleMainLevel> myLvls;
 	public List<SinkPiece> myPieces;
 	public SinkPiece currentPiece;
@@ -308,13 +308,6 @@ public class HousePuzzle : MainPuzzleEngine {
 			}
 		}
 	}
-
-	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun)
-	{
-		methToRun();
-	}
-
 	// Once animations are finished, run the next level setup.
 	public new void NextLevelSetup() {
 		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>())

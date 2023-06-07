@@ -9,7 +9,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public RaycastHit2D hit;
 	public Vector2 mousePos2D;
 	public Vector3 mousePos;
-	public bool tutorialDone;
+	public bool tutorialDone, skiptutorial;
 	public int curntLvl;
 	#endregion
 	#region Basic Scripts Sources
@@ -34,8 +34,8 @@ public class MainPuzzleEngine : MonoBehaviour
 	[HideInInspector]
 	public bool setupChsnLvl;
 	// For Delegate Method
-	private delegate void VoidDelegate();
-	private VoidDelegate voidDelegate; 
+	public delegate void VoidDelegate();
+	public VoidDelegate voidDelegate; 
 	[HideInInspector]
 	public bool waitMethod;
 	[Tooltip("For now, minimum the lenght of the silver egg tap anim.")] 
@@ -62,7 +62,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public PuzzleComplete puzzleCompScript;
 
 	[Header("Hide In Inspector ^_^")]
-	public bool canPlay;
+	public bool canPlay, resetLevel, setupLevel, finishedLevel;
 	public int lvlToLoad;
 	public float setupLvlWaitTime;
 	public float chngLvlTimer;
@@ -71,47 +71,95 @@ public class MainPuzzleEngine : MonoBehaviour
 
 	public AudioSceneParkPuzzle audioSceneParkPuzzScript;
 
-	void Start () {
+	public void StartSetup () {
+		//initialize puzzle as not playable
 		canPlay = false;
+		//initial setup controls sequeces for loading the puzzle
 		initialSetupOn = true;
+		//-----------check with X how it works again 
 		maxLvl = GlobalVariables.globVarScript.puzzMaxLvl;
+		//Check if the tutorial is been done before
+		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
+		//controls whenever a level has to be reseted
+		resetLevel = false;
+		//controls if a level needs to be setted up
+		setupLevel = false;
+		//Set helperbird in puzzle mode
+		slideInHelpScript.inPuzzle = true;		
 	}
 	
-	void Update () {
-		if (canPlay) {
+	public void RunBasics (bool playing) {
+		//General logic to run while the game is playable
+		if (playing) {
+			//General ui buttons actions			
 			if(mySelectButton.buttonPressed) {
-				lvlToLoad = mySelectButton.lvlToLoad;
+				//assign the level number to load depending on the presed button
+				lvlToLoad = mySelectButton.lvlToLoad;			
+				Debug.Log("toload "+lvlToLoad.ToString()+"---current"+curntLvl.ToString()+"---maxLvl"+maxLvl.ToString());	
+				//check if loading is done and the selected button is different than the current level and less than the max level			
 				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+					//reset the level timer for sequences
 					chngLvlTimer = 0f;
+					//Run changing level function
 					ChangeLevelSetup();
 				}
 				mySelectButton.buttonPressed = false;
 			}
 			if (chngLvlTimer < setupLvlWaitTime) { 
-				chngLvlTimer += Time.deltaTime; 
+				chngLvlTimer += Time.deltaTime;
+				/* Debug.Log("do I ever run? Or am I just lazy like that?"); */ 
 			}
 			if (mySelectButton.buttonsOff) { 
-				mySelectButton.buttonsOff = false; mySelectButton.InteractableThreeDots(maxLvl,curntLvl); 
+				mySelectButton.buttonsOff = false; 
+				mySelectButton.InteractableThreeDots(maxLvl,curntLvl); 
 			}
 		}
 		else {
-			// When this Scene is loaded.
-			if (initialSetupOn) { InitialSetup(); }
-			// After the initial set up run the first sequence.
+			// Run the first setup when the puzzle is open
+			if (initialSetupOn) { 
+				Debug.Log("initializing..");
+				InitialSetup(); }
+			// After the initial set up run the first sequence will play.
 			if (iniSeqStart) {
+				//run a delay time for everything to be ready
 				if (iniSeqDelay > 0) { 
 					iniSeqDelay -= Time.deltaTime; 
 				}
 				else {
+					//after the delay, run timer for level sequence
 					seqTimer += Time.deltaTime;
-					 if (seqTimer > itemSpawnF && !itemSpawnB) { itemSpawnB = true; LvlStuffFadeIn(); }
-					 if (seqTimer > dotsSpawnF && !dotsSpawnB) { dotsSpawnB = true; mySelectButton.EnabledThreeDots(maxLvl); mySelectButton.InteractableThreeDots(maxLvl,curntLvl); }
-					 if (seqTimer > iniCanPlayF) { canPlay = true; iniSeqStart = false; }
+					//compare sequence timer to level items spawn time, then set the level items bool to true to start fading in the items
+					if (seqTimer > itemSpawnF && !itemSpawnB) { 
+						itemSpawnB = true; 
+						LvlStuffFadeIn(); 
+						setupLevel = true;
+					}
+					//compare sequence timer to spawn Ui time, then enable ui buttons
+					if (seqTimer > dotsSpawnF && !dotsSpawnB) { 
+						dotsSpawnB = true; 
+						mySelectButton.EnabledThreeDots(maxLvl); 
+						mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
+					}
+					 //compare sequence timer to playable time, then allow player to play and finish the initial sequence
+					if (seqTimer > iniCanPlayF) { 
+						//----------Helper bird stuff here
+						if (tutorialDone || skiptutorial) {
+							canPlay = true; 
+							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
+							sceneTapScript.canTapPauseBtn = true;
+						}else{
+							slideInHelpScript.MoveBirdUpDown();
+						}
+						iniSeqStart = false;						
+					}
 				}
 			}
+			//wait controller for any level switch
 			if (itemsWait) {
+				//running timer to  wait
 				itemWaitTimer += Time.deltaTime;
 				if (itemWaitTimer > itemWaitAmnt) {
+					//activate selected level items once timer is done and make it playable
 					itemHolder.SetActive(true);
 					LvlStuffFadeIn();
 					itemsWait = false;
@@ -121,11 +169,14 @@ public class MainPuzzleEngine : MonoBehaviour
 				}
 			}
 
-			if (setupChsnLvl) { ChosenLevelSetup(lvlToLoad);}
+			if (setupChsnLvl) { 
+				ChosenLevelSetup(lvlToLoad);}
 			// Turn off interaction for all three level select dots.
-			if (!mySelectButton.buttonsOff) { mySelectButton.buttonsOff = true; mySelectButton.UninteractableThreeDots();}
+			if (!mySelectButton.buttonsOff) { 
+				mySelectButton.buttonsOff = true; 
+				mySelectButton.UninteractableThreeDots();}
 		}
-
+		//waiter method for loading i guess please ecplain X!
 		if (waitMethod) {
 			if (waitTimer > 0) { 
 				waitTimer -= Time.deltaTime; 
@@ -138,14 +189,25 @@ public class MainPuzzleEngine : MonoBehaviour
 	#region Level Change Methods
 	// Once, when the scene is openned.
 	public void InitialSetup() {
-		if (maxLvl > 3 || maxLvl < 1) { 
+		//if player already completed all the levels, start from the first one, also set up the first one if is the first time
+		if (maxLvl > lvlItemHolders.Count || maxLvl < 1) {			
 			curntLvl = 1; 
+			//for debuging we can switch tutolrial done manually
+			if(tutorialDone || skiptutorial){
+				curntLvl = 2; 
+			}
 		}
 		else { 
+			//start the middle level if player already completed some of the levels
 			curntLvl = maxLvl; 
 		}
+		//set holder for selected level
 		itemHolder = lvlItemHolders[curntLvl - 1];
+		//reset selected level
+		resetLevel = true;
+		//disable initial setup controller
 		initialSetupOn = false;
+		//enable initial setup sequece
 		iniSeqStart = true;
 	}
 
@@ -159,10 +221,12 @@ public class MainPuzzleEngine : MonoBehaviour
 			mySilverEggMan.allSilverEggsScripts[eggNumber].hollow = true;
 			Debug.Log(mySilverEggMan.allSilEggs[eggNumber].name + "has been set to hollow, ooouuuhhhh. Like a ghost. A nice ghost. Yeeah.");
 		}
-		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
-		if (mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform.childCount > 0) {
-			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 1].transform) {
+
+		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(true); // CAN probably set it to true in the lvl finished seq or wtv
+		if (mySilverEggMan.lvlSilverEggs[curntLvl - 2].transform.childCount > 0) {
+			foreach (Transform silEgg in mySilverEggMan.lvlSilverEggs[curntLvl - 2].transform) {
 				mySilverEggMan.activeSilverEggs.Add(silEgg.gameObject);
+				//Debug.Log(silEgg.name + "has been added to the active Silver Egg List!");
 			}
 		}
 		mySilverEggMan.silverEggsActive = true;
@@ -170,11 +234,11 @@ public class MainPuzzleEngine : MonoBehaviour
 			mySelectButton.TurnFadeDelayOff(); 
 			mySelectButton.noFadeDelay = true; 
 		}
-		LvlStuffFadeOut();
+		/*LvlStuffFadeOut();
 		foreach(GameObject silEgg in mySilverEggMan.activeSilverEggs) {
 			silEgg.GetComponent<SilverEggSequence>().StartSequence();
 		}
-		scrnDarkImgScript.FadeIn();
+		scrnDarkImgScript.FadeIn();*/
 	}
 
 	// Checks if the player tapped enough silver eggs to move on, change the current level.
@@ -184,8 +248,10 @@ public class MainPuzzleEngine : MonoBehaviour
 				mySilverEggMan.activeSilverEggs.Clear();
 				mySilverEggMan.silverEggsActive = false;
 				mySilverEggMan.amntSilEggsTapped = 0;
-				scrnDarkImgScript.FadeOut();
 				curntLvl++;
+				if (curntLvl != winLvl) {
+					scrnDarkImgScript.FadeOut();
+				}
 				if (curntLvl > maxLvl) { 
 					maxLvl = curntLvl; 
 					SaveMaxLvl(); 
@@ -197,23 +263,25 @@ public class MainPuzzleEngine : MonoBehaviour
 			}
 		}
 	}
-
 	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun) {
+	public void RunAfter(VoidDelegate methToRun) {
 		methToRun();
 	}
 
 	// Once animations are finished, run the next level setup.
 	public void NextLevelSetup() {
-		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>()) {
+		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 3].GetComponentsInChildren<SilverEggs>()) {
 			silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);
 		}
-		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
+		mySilverEggMan.lvlSilverEggs[curntLvl - 3].SetActive(false);
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
-			StartCoroutine(PuzzleComplete());
+			puzzleCompScript.endSeq = true;
+			//StartCoroutine(PuzzleComplete());
 			return;
 		}
+		resetLevel = true;
+		setupLevel = true;
 		itemHolder.SetActive(false);
 		itemHolder = lvlItemHolders[curntLvl - 1];
 		itemsWait = true;
@@ -223,6 +291,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public void ChangeLevelSetup() {
 		// Close up current level.
 		canPlay = false;
+		resetLevel = true;
 		mySelectButton.UninteractableThreeDots();
 		LvlStuffFadeOut();
 		setupChsnLvl = true;
@@ -235,6 +304,9 @@ public class MainPuzzleEngine : MonoBehaviour
 		if (chngLvlTimer > setupLvlWaitTime) {
 			lvlItemHolders[curntLvl - 1].SetActive(false);
 			curntLvl = lvlToLoad;
+			LvlStuffFadeIn();
+			resetLevel = true;
+			setupLevel = true;
 			itemHolder = lvlItemHolders[curntLvl - 1];
 			itemsWait = true;
 			setupChsnLvl = false;
@@ -261,6 +333,15 @@ public class MainPuzzleEngine : MonoBehaviour
 			GlobalVariables.globVarScript.puzzMaxLvl = maxLvl;
 			GlobalVariables.globVarScript.SaveEggState();
 		}
+	}
+	public void UpdateMousePos(Vector3? val = null)
+	{
+		if (val == null)
+		{
+			val = myInput.TapPosition;
+		}
+		mousePos = Camera.main.ScreenToWorldPoint((Vector3)val);
+		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 	}
 	#endregion
 

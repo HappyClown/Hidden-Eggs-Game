@@ -18,14 +18,14 @@ public class FadeInOutManager : MonoBehaviour {
 			MyFadeInOut =  MyParent.GetComponentsInChildren<FadeInOutSprite>();
 			foreach (FadeInOutSprite myFade in MyFadeInOut)
 			{
-				if(myFade.hidden && !myFade.shown){
+				if(myFade.hidden && !myFade.shown && myFade.myStartState == FadeInOutSprite.StartState.startShown){
 					myFade.FadeIn();
 				}
 			}
 		}
 		foreach (FadeInOutSprite myFade in FIFadeScripts)
 		{
-			if(myFade.hidden && !myFade.shown){
+			if(myFade.hidden && !myFade.shown && myFade.myStartState == FadeInOutSprite.StartState.startShown){
 				myFade.FadeIn();
 			}
 		}

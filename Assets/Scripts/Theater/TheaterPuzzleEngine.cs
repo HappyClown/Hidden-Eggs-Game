@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TheaterPuzzleEngine : MainPuzzleEngine {
 
-	private delegate void VoidDelegate();
-	private VoidDelegate voidDelegate;
+	//private delegate void VoidDelegate();
+	//private VoidDelegate voidDelegate;
 	public TheaterPuzzleLevel[] myLvls;
 	public TheaterPuzzlePiece holdedPiece;
 	public float mouseRadius, liftDiff;
@@ -264,12 +264,6 @@ public class TheaterPuzzleEngine : MainPuzzleEngine {
 				waitTimer = waitTime;
 			}
 		}
-	}
-
-	// Lets you feed set a method as a parameter in a method.
-	void RunAfter(VoidDelegate methToRun)
-	{
-		methToRun();
 	}
 
 	// Once animations are finished, run the next level setup.

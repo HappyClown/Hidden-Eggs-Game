@@ -22,7 +22,7 @@ public class CafePuzzleEngine : MainPuzzleEngine {
 		// }
 
 		//if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
-		tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
+		//tutorialDone = GlobalVariables.globVarScript.puzzIntroDone;
 		raycastDone = false;
 		/* if(currentLevel >= mylevels.Length){
 			currentLevel = mylevels.Length - 1;

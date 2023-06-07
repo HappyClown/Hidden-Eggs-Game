@@ -22,7 +22,7 @@ public class SlideInHelpBird : MonoBehaviour {
 	[Header("Bird Movement")]
 	public float duration;
 	private float newDuration = 0.001f;
-	public bool moveUp, moveDown, isUp, isDown = true, allowClick = true;
+	public bool moveUp, moveDown, isUp, isDown = true, allowClick = true, inPuzzle = false;
 	public Transform helpBirdTrans, hiddenHelpBirdPos, shownHelpBirdPos;
 	public Vector3 curHelpBirdPos;
 	private float totalDist;
@@ -56,12 +56,15 @@ public class SlideInHelpBird : MonoBehaviour {
 			// Update the percentage of the way the bird has moved.
 			distLeft = Vector2.Distance(helpBirdTrans.position, shownHelpBirdPos.position);
 			distPercent = (totalDist - distLeft) / totalDist;
-			// Fade in the shadow at the bottom of the screen.
-			if (shadowAlpha < 1) { shadowAlpha = distPercent; }
-			shadow.color = new Color(1,1,1, shadowAlpha);
-			// Continue to fade out the text buble even if the bird is going up.
-			if (txtBubAlpha > 0) { txtBubAlpha -= Time.deltaTime / txtBubFadeTime; }
-			txtBubble.color = new Color(1,1,1, txtBubAlpha);
+			//check if bird s in puzzle
+			if(!inPuzzle){
+				// Fade in the shadow at the bottom of the screen.
+				if (shadowAlpha < 1) { shadowAlpha = distPercent; }
+				shadow.color = new Color(1,1,1, shadowAlpha);
+				// Continue to fade out the text buble even if the bird is going up.
+				if (txtBubAlpha > 0) { txtBubAlpha -= Time.deltaTime / txtBubFadeTime; }
+				txtBubble.color = new Color(1,1,1, txtBubAlpha);
+			}
 			yield return null;
 		}
 		lerpValue = 1;
@@ -73,7 +76,7 @@ public class SlideInHelpBird : MonoBehaviour {
 			helperBirdHint.ShowHintButton();
 			helperBirdRiddle.ShowRiddleButton();
 		}
-		while (txtBubAlpha < 1) {
+		while (txtBubAlpha < 1 && !inPuzzle) {
 			// Fade in bird parchment
 			if (txtBubAlpha < 1) {
 				txtBubAlpha += Time.deltaTime / txtBubFadeTime; 
@@ -106,17 +109,22 @@ public class SlideInHelpBird : MonoBehaviour {
 			// Update the percentage of the way the bird has moved.
 			distLeft = Vector2.Distance(helpBirdTrans.position, shownHelpBirdPos.position);
 			distPercent = (totalDist - distLeft) / totalDist;
-			// Fade in the shadow at the bottom of the screen.
-			if (shadowAlpha > 0) { shadowAlpha = distPercent; }
-			shadow.color = new Color(1,1,1, shadowAlpha);
-			// Fade out text bubble.
-			if (txtBubAlpha > 0) { txtBubAlpha -= Time.deltaTime / txtBubFadeTime; }
-			txtBubble.color = new Color(1,1,1, txtBubAlpha);
+			//check if bird s in puzzle
+			if(!inPuzzle){
+				// Fade in the shadow at the bottom of the screen.
+				if (shadowAlpha > 0) { shadowAlpha = distPercent; }
+				shadow.color = new Color(1,1,1, shadowAlpha);
+				// Fade out text bubble.
+				if (txtBubAlpha > 0) { txtBubAlpha -= Time.deltaTime / txtBubFadeTime; }
+				txtBubble.color = new Color(1,1,1, txtBubAlpha);
+			}
 			yield return null;
 		}
 		moveDown = false;
 		isDown = true;
-		txtBubble.gameObject.SetActive(false);
+		if(!inPuzzle){
+			txtBubble.gameObject.SetActive(false);
+		}
 		dialogueObjectParent.SetActive(false);
 		helpBirdTrans.position = hiddenHelpBirdPos.position;
 	}
@@ -129,7 +137,9 @@ public class SlideInHelpBird : MonoBehaviour {
 				newDuration = duration * lerpValue / 1; 
 			} else { 
 				newDuration = duration; 
+				if(!inPuzzle){
 				txtBubble.gameObject.SetActive(true); 
+				}
 				dialogueObjectParent.SetActive(true);
 			} 
 			lerpValue = 0;
@@ -165,16 +175,18 @@ public class SlideInHelpBird : MonoBehaviour {
 				StopCoroutine(activeCoroutine);
 			}
 			inputDetector.cancelDoubleTap = true;
-			helperBirdHint.HideHintButton();
-			helperBirdRiddle.HideRiddleButton();
-			helperBirdRiddle.HideRiddleText();
+			if(!inPuzzle){
+				helperBirdHint.HideHintButton();
+				helperBirdRiddle.HideRiddleButton();
+				helperBirdRiddle.HideRiddleText();
+			}			
 			activeCoroutine = StartCoroutine(MoveDown());
 		}
 	}
 	void DialogueBoxChecks() {
 		// Am I in a scene or a puzzle.
 		// Check if the intro has been shown.
-		if (!introDone) {
+		if (!introDone && !inPuzzle) {
 			helpIntroText.StartIntroText();
 		}
 	}

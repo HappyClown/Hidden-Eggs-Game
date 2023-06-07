@@ -8,7 +8,7 @@ public class Items : MonoBehaviour
 	public Sprite itemWithShadow;
 	public int weight;
 	public Vector3 initialPos;
-	public bool inCrate;
+	public bool inCrate, initialized = false;
 	//public float fadeSpeed;
 	public bool fadingOut;
 	public bool fadingIn;
@@ -85,8 +85,11 @@ public class Items : MonoBehaviour
 
 
 	public void BackToInitialPos ()
-	{
-		this.transform.position = initialPos;
+	{	if(initialized){
+			this.transform.position = initialPos;
+		}else{
+			initialized = true;
+		}
 		this.inCrate = false;
 	}
 }
