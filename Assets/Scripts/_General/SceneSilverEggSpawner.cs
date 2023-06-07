@@ -53,6 +53,7 @@ public class SceneSilverEggSpawner : MonoBehaviour {
 		// Save silver eggs that were put in the panel.
 		clickOnEggs.AddEggsFound();
 		yield return null;
+		QueueSequenceManager.SequenceComplete();
 	}
 	// Assign the Silver Egg lists to variables.
 	public void SetCorrectLevelLists() {

@@ -315,7 +315,7 @@ public class ClickOnEggs : MonoBehaviour {
 	}
 	// - Play the level complete sequence - //
 	public void LevelCompleteCheck() {
-		if (totalEggsFound == eggsNeeded && !levelComplete && !iniSeq) {
+		if (totalEggsFound >= eggsNeeded && !levelComplete && !iniSeq) {
 			PlayLvlCompleteSeq();
 		}
 	}
