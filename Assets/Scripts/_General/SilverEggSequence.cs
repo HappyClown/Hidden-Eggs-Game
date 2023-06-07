@@ -59,6 +59,7 @@ public class SilverEggSequence : MonoBehaviour
 			else {
 				lerpTime += Time.deltaTime / moveDuration;
 				Debug.Log("moving the mf");
+				Debug.Break();
 				float animCurveTime = moveAnimCurve.Evaluate(lerpTime);
 				float newY = yAnimCurve.Evaluate(lerpTime) * newYMagnitude;
 
@@ -117,7 +118,7 @@ public class SilverEggSequence : MonoBehaviour
 
 	public void StartSequence() {
 		startSeq = true;
-		startPos = this.transform.localPosition;
+		startPos = this.transform.position;
 		startScale = this.transform.localScale;
 
 		//audioScenePuzzScript.SilverEggTrailSFX();
