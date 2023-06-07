@@ -44,7 +44,7 @@ public class SceneSilverEggSpawner : MonoBehaviour {
 			timer = 0f;
 			// Spawn the next silver egg.
 			silEggs[puzzSilEggCountList[sceneSilEggCount]].SetActive(true);
-			sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(silEggs[puzzSilEggCountList[sceneSilEggCount]], clickOnEggs.silverEggSpots[sceneSilEggCount], 0+sceneSilEggCount, null, false, true, false));
+			sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(silEggs[puzzSilEggCountList[sceneSilEggCount]], clickOnEggs.silverEggSpots[sceneSilEggCount], 0+sceneSilEggCount, Vector3.one, false, true, false));
 			GlobalVariables.globVarScript.sceneSilEggsCount.Add(sceneSilEggCount); 
 			GlobalVariables.globVarScript.SaveEggState();
 			sceneSilEggCount++;
