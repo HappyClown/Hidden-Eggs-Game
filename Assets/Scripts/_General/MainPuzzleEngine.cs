@@ -334,9 +334,13 @@ public class MainPuzzleEngine : MonoBehaviour
 			GlobalVariables.globVarScript.SaveEggState();
 		}
 	}
-	public void UpdateMousePos()
+	public void UpdateMousePos(Vector3? val = null)
 	{
-		mousePos = Camera.main.ScreenToWorldPoint(myInput.TapPosition);
+		if (val == null)
+		{
+			val = myInput.TapPosition;
+		}
+		mousePos = Camera.main.ScreenToWorldPoint((Vector3)val);
 		mousePos2D = new Vector2 (mousePos.x, mousePos.y);
 	}
 	#endregion
