@@ -36,7 +36,7 @@ public class HelperBirdIntro : MonoBehaviour {
 		birdIntroSaveScript.LoadBirdIntro();
 		if (slideInScript.introDone) {
 			inSceneBirdBtnObj.SetActive(true);
-			dissMat.SetFloat("_Threshold", 1.01f);
+			dissMat.SetFloat("_DissolveAmount", 0f);
 			birdTapped = true;
 			shakeParSys[0].gameObject.SetActive(false);
 			birdBWObj.SetActive(false);
@@ -44,7 +44,7 @@ public class HelperBirdIntro : MonoBehaviour {
 			this.enabled = false;
 		}
 		else {
-			dissMat.SetFloat("_Threshold", 0f);
+			dissMat.SetFloat("_DissolveAmount", 1f);
 			shakeParSys[0].gameObject.SetActive(true);
 			birdBWObj.SetActive(true);
 			anim.enabled = true;
@@ -105,9 +105,10 @@ public class HelperBirdIntro : MonoBehaviour {
 		dissParSys.Play();
 		sceneTapEnabScript.canTapPauseBtn = false;
 		audioSceneGenScript.unfrozenBirdSnd();
-		while (dissAmnt <= 1) {
-			dissAmnt += Time.deltaTime / dissDuration;
-			dissMat.SetFloat("_Threshold", dissAmnt);
+		dissAmnt = dissDuration;
+		while (dissAmnt > 0) {
+			dissAmnt -= Time.deltaTime;
+			dissMat.SetFloat("_DissolveAmount", dissAmnt);
 			curShapeSize = Mathf.Lerp(minShapeSize, maxShapeSize, dissAmnt);
 			var shapeMod = dissParSys.shape;
 			shapeMod.radius = curShapeSize;
