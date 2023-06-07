@@ -168,7 +168,7 @@ public class GlobalVariables : MonoBehaviour
 				}
 			}
 
-			///camilo script to count eggs for the titles
+			// Camilo script to count eggs for the titles.
 			int eggsFoundAmmount = 0;
 			if(silverEggsCount == 6){
 				marketSE = true;
@@ -184,7 +184,7 @@ public class GlobalVariables : MonoBehaviour
 			if(eggsFoundAmmount == (eggsFoundBools.Count-1) && eggsFoundAmmount > 0)			{
 				marketNE = true;
 			}
-			//end camiloScript
+			// End camiloScript.
 
 			hubTotalEggsFound += totalEggsFound;
 		}	
@@ -299,5 +299,16 @@ public class GlobalVariables : MonoBehaviour
 		BeachSaveLoadManager.DeleteBeachSaveFile();
 		VillageSaveLoadManager.DeleteVillageSaveFile();
 		GeneralSaveLoadManager.DeleteGeneralSaveFile();
+
+		// This is for when a new game is started without exiting the MainMenu+Hub scene.
+		marketNE = false;
+		marketSE = false; 
+		marketGE = false; 
+		parkNE = false;
+		parkSE = false;
+		parkGE = false;
+		beachNE = false;
+		beachSE = false;
+		beachGE = false;
 	}
 }
