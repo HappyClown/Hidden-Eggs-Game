@@ -92,11 +92,12 @@ public class MainPuzzleEngine : MonoBehaviour
 		//General logic to run while the game is playable
 		if (playing) {
 			//General ui buttons actions			
-			if(mySelectButton.buttonPressed) {	
+			if(mySelectButton.buttonPressed) {
+				//assign the level number to load depending on the presed button
+				lvlToLoad = mySelectButton.lvlToLoad;			
+				Debug.Log("toload "+lvlToLoad.ToString()+"---current"+curntLvl.ToString()+"---maxLvl"+maxLvl.ToString());	
 				//check if loading is done and the selected button is different than the current level and less than the max level			
 				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
-					//assign the level number to load depending on the presed button
-					lvlToLoad = mySelectButton.lvlToLoad;
 					//reset the level timer for sequences
 					chngLvlTimer = 0f;
 					//Run changing level function
@@ -269,13 +270,14 @@ public class MainPuzzleEngine : MonoBehaviour
 
 	// Once animations are finished, run the next level setup.
 	public void NextLevelSetup() {
-		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 2].GetComponentsInChildren<SilverEggs>()) {
+		foreach(SilverEggs silEggs in mySilverEggMan.lvlSilverEggs[curntLvl - 3].GetComponentsInChildren<SilverEggs>()) {
 			silEggs.ResetSilEgg(); Debug.Log(silEggs.gameObject.name);
 		}
-		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);
+		mySilverEggMan.lvlSilverEggs[curntLvl - 3].SetActive(false);
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
-			StartCoroutine(PuzzleComplete());
+			puzzleCompScript.endSeq = true;
+			//StartCoroutine(PuzzleComplete());
 			return;
 		}
 		resetLevel = true;

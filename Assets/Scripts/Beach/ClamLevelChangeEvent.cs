@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ClamLevelChangeEvent : MonoBehaviour {
 	private float endEventTimer;
-	public SpriteRenderer bootFront;
+	public SpriteRenderer chest, coral;
+	public Sprite closedChest, openChest;
 	public List<ParticleSystem> sandPartSys;
 	public bool endEventOn;
 	public float stuffFadeOutF, animStartF, activateEggsF, changeBootOrderF, finished;
@@ -29,11 +30,13 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 				{
 					sandPart.GetComponent<Renderer>().sortingLayerName = "SilverEgg";
 				}
-				bootFront.sortingLayerName = "SilverEgg";
+				chest.sortingLayerName = "SilverEgg";
+				coral.sortingLayerName = "SilverEgg";
 				animStartB = true;
 			}
 			if (endEventTimer >= activateEggsF && !activateEggsB) {
 				activateEggsB = true;
+				chest.sprite = openChest;
 				Debug.Log("sending to move the mf");
 				clamPuzzleScript.scrnDarkImgScript.FadeIn();
 				foreach(GameObject silEgg in silverEggManScript.activeSilverEggs)
@@ -47,14 +50,16 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 				{
 					sandPart.GetComponent<Renderer>().sortingLayerName = "Default";
 				}
-				bootFront.sortingLayerName = "Default";
-				if (bootFront.sortingOrder != 0) {
-					bootFront.sortingOrder = 0;
+				chest.sortingLayerName = "Default";
+				coral.sortingLayerName = "Default";
+				if (chest.sortingOrder != 0) {
+					chest.sortingOrder = 0;
+					coral.sortingOrder = 0;
 				}
 				changeBootOrderB = true;
 			}
 			// Reset all the variables.
-			if (endEventTimer >= finished) {
+			if (endEventTimer >= finished) {				
 				endEventOn = false;
 				endEventTimer = 0f;
 				stuffFadeOutB = false;
@@ -75,9 +80,11 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 				{
 					sandPart.GetComponent<Renderer>().sortingLayerName = "Default";
 				}
-				bootFront.sortingLayerName = "Default";
-				if (bootFront.sortingOrder != 0) {
-					bootFront.sortingOrder = 0;
+				chest.sortingLayerName = "Default";
+				coral.sortingLayerName = "Default";
+				if (chest.sortingOrder != 0) {
+					chest.sortingOrder = 0;
+					coral.sortingOrder = 0;
 				}
 			}
 		}
@@ -86,14 +93,19 @@ public class ClamLevelChangeEvent : MonoBehaviour {
 	public void LevelChangeEvent() {
 		Debug.Log("lol");
 		endEventOn = true;
-		bootFront.sortingLayerName = "SilverEgg";
+		chest.sortingLayerName = "SilverEgg";
+		coral.sortingLayerName = "SilverEgg";
 		foreach (ParticleSystem sandPart in sandPartSys) 
 		{
 			sandPart.GetComponent<Renderer>().sortingLayerName = "SilverEgg";
 		}
-		if (bootFront.sortingOrder != 1) {
-			bootFront.sortingOrder = 1;
+		if (chest.sortingOrder != 1) {
+			chest.sortingOrder = 1;
+			coral.sortingOrder = 1;
 		}
 		//Debug.Log("Hello, LevelChangeEvent speaking.");
+	}
+	public void ResetChestSprite(){
+		chest.sprite = closedChest;
 	}
 }

@@ -18,26 +18,33 @@ public class ClamPuzzle : MainPuzzleEngine {
 
 	void Update () {
 		if(resetLevel){
-				myLvls[curntLvl-1].ResetLevel();	
-				resetLevel = false;
+			clamLevelChangeScript.ResetChestSprite();
+			myLvls[curntLvl-1].ResetLevel();	
+			resetLevel = false;
 		}
 		if(setupLevel){
-				myLvls[curntLvl-1].SetUpLevel();					
-				clamLevelChangeScript.bootFront.sortingLayerName = "Default";
-				setupLevel = false;
+			myLvls[curntLvl-1].SetUpLevel();					
+			clamLevelChangeScript.chest.sortingLayerName = "Default";
+			clamLevelChangeScript.coral.sortingLayerName = "Default";
+			setupLevel = false;
 		}
 		if (canPlay) {
 			RunBasics(canPlay);	
 			if (myLvls[curntLvl-1].levelComplete) {
 				/* Debug.Log("ya win m8!"); */
-				if(tutorialDone){
+				if(!tutorialDone){
+					tutorialDone = true;
+				}
+				SilverEggsSetup();
+				clamLevelChangeScript.LevelChangeEvent();
+				/*if(tutorialDone){
 					SilverEggsSetup();
 					clamLevelChangeScript.LevelChangeEvent();
 				}
 				else{
 					ChosenLevelSetup(curntLvl+1);
 					tutorialDone = true;
-				}
+				}*/
 			}
 			#region Click
 			//check if player tapped

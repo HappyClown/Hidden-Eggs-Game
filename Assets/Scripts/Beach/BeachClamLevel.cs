@@ -26,6 +26,10 @@ public class BeachClamLevel : MonoBehaviour {
 					availableSpots.Add(spot);
 				}
 			}
+			foreach (ClamSpot item in availableSpots)
+			{	
+				Debug.Log(item.gameObject.name);
+			}
 			int rand = Random.Range(0,availableSpots.Count);
 			if(tutorialLevel){
 				rand = 0;
@@ -54,7 +58,7 @@ public class BeachClamLevel : MonoBehaviour {
 				}
 			}
 			int rand = Random.Range(0,availableSpots.Count);
-			Debug.Log(availableSpots.Count);
+			//Debug.Log(availableSpots.Count);
 			clam.ClamSpriteParent.transform.localRotation = availableSpots[rand].gameObject.transform.localRotation;
 			availableSpots[rand].occupied = true;
 			availableSpots.Clear();
@@ -130,7 +134,7 @@ public class BeachClamLevel : MonoBehaviour {
 				for (int j = 0; j < bubbleLibrary.Length; j++)
 				{
 					if(!bubbleLibrary[j].used){
-						availableBubbles.Add(bubbleLibrary[i]);
+						availableBubbles.Add(bubbleLibrary[j]);
 					}
 				}
 				int bubbletoTake = Random.Range(0,availableBubbles.Count);

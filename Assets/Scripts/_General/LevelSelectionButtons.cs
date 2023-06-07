@@ -24,11 +24,10 @@ public class LevelSelectionButtons : MonoBehaviour {
      /// <returns>Activate the level selection dots according with the max level number.</returns>
 	public void EnabledThreeDots(int maxLvl)
 	{
-		if (maxLvl == 0) { lvlSelectButtons[0].SetActive(true); }
-		for(int i = 0; i < maxLvl && i < lvlSelectButtons.Length; i++)
+		for(int i = 1; i < maxLvl && i <= lvlSelectButtons.Length; i++)
 		{ 
-			if (!lvlSelectButtons[i].activeSelf) 
-			{ lvlSelectButtons[i].SetActive(true); } 
+			if (!lvlSelectButtons[i-1].activeSelf) 
+			{ lvlSelectButtons[i-1].SetActive(true); } 
 		}
 	}
 
@@ -41,17 +40,17 @@ public class LevelSelectionButtons : MonoBehaviour {
 	{
 		if (maxLvl == 0) { lvlSelectScalers[0].ScaleUp(); }
 		else{
-			for (int i = 0; i < maxLvl && i < lvlSelectButtons.Length; i++)
+			for (int i = 1; i < maxLvl && i <= lvlSelectButtons.Length; i++)
 			{
-				if (lvlSelectButtons[i] == lvlSelectButtons[curntLvl - 1])
+				if (lvlSelectButtons[i-1] == lvlSelectButtons[curntLvl - 2])
 				{
-					lvlSelectButtons[i].GetComponent<Button>().interactable = false;
-					lvlSelectScalers[i].ScaleUp();
+					lvlSelectButtons[i-1].GetComponent<Button>().interactable = false;
+					lvlSelectScalers[i-1].ScaleUp();
 				}
 				else 
 				{
-					lvlSelectButtons[i].GetComponent<Button>().interactable = true; 
-					lvlSelectScalers[i].ScaleDown();
+					lvlSelectButtons[i-1].GetComponent<Button>().interactable = true; 
+					lvlSelectScalers[i-1].ScaleDown();
 				}
 			}
 		}		
