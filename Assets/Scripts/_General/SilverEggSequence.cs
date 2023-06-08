@@ -62,7 +62,7 @@ public class SilverEggSequence : MonoBehaviour
 				float animCurveTime = moveAnimCurve.Evaluate(lerpTime);
 				float newY = yAnimCurve.Evaluate(lerpTime) * newYMagnitude;
 
-				this.transform.position = Vector3.Lerp(startPos, endPos.position, animCurveTime);
+				this.transform.localPosition = Vector3.Lerp(startPos, endPos.position, animCurveTime);
 				this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + newY, this.transform.position.z);
 				this.transform.localScale = Vector3.Lerp(startScale, endScale, animCurveTime);
 

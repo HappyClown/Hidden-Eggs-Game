@@ -11,7 +11,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 	public List<Items> currentLvlItems;
 	public float maxZPos, ammontZ, currentZPos;
 	public float itemScaleMult;
-	private bool holdingItem;
+	private bool holdingItem, crateDownB;
 	private GameObject heldItem;
 	[Header("Crate")]
 	public float crateMoveSpeed;
@@ -38,6 +38,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 
 	void Start () {
 		StartSetup();	
+		crateDownB = false;
 		//mySilverEggMan.silverEggsPickedUp = GlobalVariables.globVarScript.silverEggsCount;
 		if (setupLvlWaitTime < refItemScript.fadeDuration) setupLvlWaitTime = refItemScript.fadeDuration;
 		audioSceneMarketPuz =  GameObject.Find ("Audio").GetComponent<AudioSceneMarketPuzzle>();		
@@ -57,11 +58,13 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 			RunBasics(canPlay);
 			// Current level complete.
 			if (curntPounds == crateScript.reqPounds && curntAmnt == crateScript.reqItems && !holdingItem) { 
-				SilverEggsSetup();
-				LevelFinishedSequence(); }
+				LevelFinishedSequence(); 
+				SilverEggsSetup();				
+				mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(false);		
+			}
 			#region Click
 			// Click //
-			if (myInput.dragStarted && !holdingItem) {
+			if (myInput.isDragging && !holdingItem) {
 				UpdateMousePos(myInput.draggingPosition);
 				hit = Physics2D.Raycast(mousePos2D, Vector3.forward, 50f);
 				Debug.Log(mousePos2D);
@@ -207,12 +210,14 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 		currentLvlItems.Clear();
 		itemHolder.gameObject.GetComponentsInChildren<Items>(currentLvlItems);
 	}
-	private void SetUpLevel(){
+	private void SetUpLevel(){		
 		
-		crateDownB = true; 
-		crateAnim.SetTrigger("MoveDown"); 
-		audioSceneMarketPuz.crateSlideDown(); 
-		StartCoroutine(MoveCrateDown()); 
+		if(!crateDownB){			
+			crateAnim.SetTrigger("MoveDown"); 
+			audioSceneMarketPuz.crateSlideDown(); 
+			StartCoroutine(MoveCrateDown()); 
+			crateDownB = true;
+		} 
 		
 		lvlItemHolders[curntLvl - 1].SetActive(true); 
 		for (int i = 0; i < resetItemsButtonScript.items.Count; i++) // CONSIDER SAVING THE ITEM SCRIPTS TO ANOTHER LIST TO AVOID LOOPING 7 to 12 GETCOMPONENTS AT A TIME
@@ -240,9 +245,9 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 	#region Coroutines
 	// Move crate to the right.
 	public IEnumerator MoveCrateRight () {
+		
 		//Make it skip a frame to make sure that the animation has time to start.
 		yield return new WaitForSeconds(0.0001f);
-
 		while (crateAnim.transform.parent.rotation != crateInSceneTransform.rotation)
 		{
 			float Zangle = crateAnim.transform.parent.eulerAngles.z;
@@ -257,7 +262,6 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 			yield return null;
 		}
 		crateAnim.SetTrigger("MoveRight");
-
 		//SFX MOVE CRATE
 		audioSceneMarketPuz.crateSlideRight();
 
@@ -268,14 +272,13 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 			//Debug.Log("Playing anim move right.");
 			yield return null;
 		}
-		
 		scaleScript.itemOnScale = null; // Deleted both scale lines if we want scale arrow to reset after silver eggs have been clicked. 
 		scaleScript.isAnItemOnScale = false; //
 
 		crateParent.transform.parent.position = crateTopTransform.position;
 		crateParent.transform.parent.rotation = crateTopTransform.rotation;
 
-		mySilverEggMan.lvlSilverEggs[curntLvl - 1].SetActive(true);
+		mySilverEggMan.lvlSilverEggs[curntLvl - 2].SetActive(true);
 		resetItemsButtonScript.EndOfLevelReset();
 		itemHolder.SetActive(false);
 		scrnDarkImgScript.FadeIn();
@@ -283,6 +286,7 @@ public class MarketPuzzleEngine : MainPuzzleEngine {
 		//SFX MOVE CRATE
 		audioSceneMarketPuz.crateSlideDown();
 		StartCoroutine(MoveCrateDown());
+		crateDownB = true;
 	}
 	
 

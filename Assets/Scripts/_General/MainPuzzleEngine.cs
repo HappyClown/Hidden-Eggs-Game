@@ -52,7 +52,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public float seqTimer;
 	public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
 	[HideInInspector]
-	public bool iniSeqStart, crateDownB, reqDownB, itemSpawnB, dotsSpawnB;
+	public bool iniSeqStart, reqDownB, itemSpawnB, dotsSpawnB;
 
 	[Header("Scripts")]
 	public FadeInOutImage scrnDarkImgScript;
