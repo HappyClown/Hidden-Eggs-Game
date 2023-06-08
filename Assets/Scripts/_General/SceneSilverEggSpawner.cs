@@ -54,6 +54,7 @@ public class SceneSilverEggSpawner : MonoBehaviour {
 		clickOnEggs.AddEggsFound();
 		yield return null;
 		QueueSequenceManager.SequenceComplete();
+		clickOnEggs.LevelCompleteCheck();
 	}
 	// Assign the Silver Egg lists to variables.
 	public void SetCorrectLevelLists() {

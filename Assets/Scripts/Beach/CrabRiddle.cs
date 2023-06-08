@@ -50,14 +50,14 @@ public class CrabRiddle : MonoBehaviour {
 
 	void Update () { 
 		if (Vector2.Distance(crab.transform.position, moveDest) > 0.05f) {
-			crabAnim.SetBool("PlayCrabWalk", true);
+			//crabAnim.SetBool("PlayCrabWalk", true);
 			canClick = false;
 		}
 		else {
 			crab.transform.position = moveDest;
-			crabAnim.SetBool("PlayCrabWalk", false);
+			//crabAnim.SetBool("PlayCrabWalk", false);
 			if(crabReturning) {
-				crabAnim.SetTrigger("PlayCrabClaws");
+				//crabAnim.SetTrigger("PlayCrabClaws");
 				audioSceneBeachScript.crabClawsSFX();
 			}
 			canClick = true;
@@ -91,7 +91,7 @@ public class CrabRiddle : MonoBehaviour {
 						}
 						if (moveAmount == 0) {
 							audioSceneBeachScript.crabClawsSFX();
-							crabAnim.SetTrigger("PlayCrabClaws");
+							//crabAnim.SetTrigger("PlayCrabClaws");
 						}
 						moveAmount = 0;
 						moveDest = crabOGPos;
@@ -168,6 +168,8 @@ public class CrabRiddle : MonoBehaviour {
 		// }
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
+		// Activate the Golden Egg sequence.
+		QueueSequenceManager.AddSequenceToQueue(goldenEggScript.StartGoldenEggSequence);
 	}
 
 }

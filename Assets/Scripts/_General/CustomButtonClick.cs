@@ -17,6 +17,7 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	public LevelFireflies levelFirefliesScript;
 	private bool selectedOnce;
 	public bool NE, SE, GE;
+	public Sprite mySceneLogo;
 
 	public void OnPointerClick(PointerEventData pointerEventData) {
 		if (!selectedOnce) {

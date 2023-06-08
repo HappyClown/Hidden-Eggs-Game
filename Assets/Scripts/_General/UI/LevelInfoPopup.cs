@@ -20,6 +20,7 @@ public class LevelInfoPopup : MonoBehaviour
 	private Coroutine currentCoroutine;
 	public AudioManagerHubMenu audioManHubMenuScript;
     public CustomButtonClick customButtonClick;
+	public Image sceneLogo;
 
 	IEnumerator OpeningTitle() {
 		while (lerpValue < 1) {
@@ -110,5 +111,7 @@ public class LevelInfoPopup : MonoBehaviour
 		else{
 			goldenEgg.sprite = spriteEmptyEgg;
 			GShadow.gameObject.SetActive(false);}
+		
+		sceneLogo.sprite = customButtonClick.mySceneLogo;
 	}
 }
