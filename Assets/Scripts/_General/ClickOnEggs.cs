@@ -276,7 +276,7 @@ public class ClickOnEggs : MonoBehaviour {
 			distPercent = Vector2.Distance(eggPanel.transform.position, eggPanelShown.transform.position) / Vector2.Distance(eggPanelShown.transform.position, eggPanelHidden.transform.position);
 			//print(distPercent);
 			adjustedDur = panelMoveDuration * distPercent;
-			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y, 180);
+			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y, 0);
 			audioSceneGenScript.openPanel();
 		}
 		else {
@@ -284,7 +284,7 @@ public class ClickOnEggs : MonoBehaviour {
 			targetPos = eggPanelHidden.transform.localPosition;
 			distPercent = Vector3.Distance(eggPanel.transform.position, eggPanelHidden.transform.position) / Vector3.Distance(eggPanelShown.transform.position, eggPanelHidden.transform.position);
 			adjustedDur = panelMoveDuration * distPercent;
-			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y, 0);
+			dropDrowArrow.transform.eulerAngles = new Vector3(dropDrowArrow.transform.eulerAngles.x, dropDrowArrow.transform.eulerAngles.y, 180);
 			audioSceneGenScript.closePanel();
 		}
 		while (timer < 1f) {
