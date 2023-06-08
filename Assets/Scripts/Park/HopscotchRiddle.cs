@@ -313,5 +313,7 @@ public class HopscotchRiddle : MonoBehaviour
 		// }
 		GlobalVariables.globVarScript.riddleSolved = true;
 		GlobalVariables.globVarScript.SaveEggState();
+		// Activate the Golden Egg sequence.
+		QueueSequenceManager.AddSequenceToQueue(goldenEggScript.StartGoldenEggSequence);
 	}
 }

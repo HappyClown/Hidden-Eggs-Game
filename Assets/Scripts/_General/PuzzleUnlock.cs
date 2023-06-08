@@ -16,6 +16,7 @@ public class PuzzleUnlock : MonoBehaviour {
 	public ParticleSystem puzzShimFX, puzzDustFX, puzzFireworkFX;
 	public int puzzUnlockAmnt;
 	public Animation puzzAnim;
+	public ScenePuzzObjectAnim complexPuzzObjectAnim;
 	private bool unlockInQueue = false;
 
 	[Header("References")]
@@ -87,6 +88,7 @@ public class PuzzleUnlock : MonoBehaviour {
 		puzzDustFX.gameObject.SetActive(true);
 		puzzDustFX.Play(true);
 		if (puzzAnim) { puzzAnim.Play(); }
+		else if (complexPuzzObjectAnim) { complexPuzzObjectAnim.StartAnim(); }
 		if (pointerFadeScript.gameObject.activeSelf) { 
 			pointerFadeScript.gameObject.SetActive(false);
 		}
