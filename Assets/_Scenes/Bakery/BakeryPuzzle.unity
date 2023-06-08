@@ -265,6 +265,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!212 &29007630
 SpriteRenderer:
@@ -5830,6 +5832,8 @@ MonoBehaviour:
   edgeRight: 0
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &220084669
 MonoBehaviour:
@@ -6696,7 +6700,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -7017,6 +7021,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &482159210
 MonoBehaviour:
@@ -18115,6 +18121,8 @@ MonoBehaviour:
   edgeRight: 0
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &736576666
 MonoBehaviour:
@@ -18408,6 +18416,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &746516288
 MonoBehaviour:
@@ -19031,6 +19041,8 @@ MonoBehaviour:
   edgeRight: 0
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &763860304
 MonoBehaviour:
@@ -19378,6 +19390,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &830228869
 MonoBehaviour:
@@ -19873,6 +19887,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &891240297
 MonoBehaviour:
@@ -20727,6 +20743,8 @@ MonoBehaviour:
   edgeRight: 0
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &1041699080
 MonoBehaviour:
@@ -32042,6 +32060,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &1394448041
 MonoBehaviour:
@@ -32293,6 +32313,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &1470499042
 MonoBehaviour:
@@ -48498,14 +48520,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slideInHelpScript: {fileID: 1728802418}
-  tutFadeScripts:
-  - {fileID: 1267425095}
   inputDetScript: {fileID: 2115131373}
   levelSelectScript: {fileID: 2115131377}
   mainPuzzScript: {fileID: 2115131372}
   sceneTapScript: {fileID: 2115131376}
-  darkScreenFadeScript: {fileID: 1550955791}
   audioHelperBirdScript: {fileID: 1380894833}
+  showTut: 0
+  loadingStep: 0
+  firstStep: 0
+  finalStep: 0
+  tutOpen: 0
+  tabPlaced: 0
+  tutorialSteps: []
+  currentStep: 0
+  maxStep: 0
+  stepTimeDelay: 0
+  stepTimer: 0
+  tapIcon: {fileID: 0}
 --- !u!114 &1728802418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48535,6 +48566,7 @@ MonoBehaviour:
   isUp: 0
   isDown: 1
   allowClick: 0
+  inPuzzle: 0
   helpBirdTrans: {fileID: 975228028}
   hiddenHelpBirdPos: {fileID: 725671714}
   shownHelpBirdPos: {fileID: 1877149685}
@@ -58774,6 +58806,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &1903375151
 MonoBehaviour:
@@ -63771,6 +63805,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &1927673222
 MonoBehaviour:
@@ -69196,6 +69232,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!114 &1994607280
 MonoBehaviour:
@@ -69663,6 +69701,8 @@ MonoBehaviour:
   edgeRight: 1
   occupied: 0
   goalCell: 1
+  ignoreGoal: 0
+  placed: 0
   CheckTimes: 0
 --- !u!212 &2011039752
 SpriteRenderer:
@@ -69823,6 +69863,28 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 634416860}
+    - target: {fileID: 114554503347980576, guid: 3f7590356a743604fb777e4025228310,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c9e5e759d8b9a4489bb26b61cb92503,
+        type: 2}
+    - target: {fileID: 114554503347980576, guid: 3f7590356a743604fb777e4025228310,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114833094040635484, guid: 3f7590356a743604fb777e4025228310,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6c9e5e759d8b9a4489bb26b61cb92503,
+        type: 2}
+    - target: {fileID: 114833094040635484, guid: 3f7590356a743604fb777e4025228310,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f7590356a743604fb777e4025228310, type: 3}
 --- !u!1 &2037455890 stripped
@@ -70041,6 +70103,7 @@ MonoBehaviour:
   mousePos2D: {x: 0, y: 0}
   mousePos: {x: 0, y: 0, z: 0}
   tutorialDone: 0
+  skiptutorial: 0
   curntLvl: 0
   myInput: {fileID: 2115131373}
   mySilverEggMan: {fileID: 2115131374}
@@ -70068,7 +70131,6 @@ MonoBehaviour:
   dotsSpawnF: 0.25
   iniCanPlayF: 0.5
   iniSeqStart: 0
-  crateDownB: 0
   reqDownB: 0
   itemSpawnB: 0
   dotsSpawnB: 0
@@ -70078,6 +70140,9 @@ MonoBehaviour:
   slideInHelpScript: {fileID: 1728802418}
   puzzleCompScript: {fileID: 0}
   canPlay: 0
+  resetLevel: 0
+  setupLevel: 0
+  finishedLevel: 0
   lvlToLoad: 0
   setupLvlWaitTime: 0.5
   chngLvlTimer: 0
