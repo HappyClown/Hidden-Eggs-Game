@@ -317,11 +317,11 @@ public class MainPuzzleEngine : MonoBehaviour
 
 	#region General Methods
 	public void LvlStuffFadeIn() {
-		levelsStuff[curntLvl -1].StartLvlFadeIn();
 		Debug.Log("Should fade in stuff."); // Fade in tiles
 		if (!lvlItemHolders[curntLvl -1].activeSelf) {
 			lvlItemHolders[curntLvl -1].SetActive(true);
 		}
+		levelsStuff[curntLvl -1].StartLvlFadeIn();		
 	}
 
 	public void LvlStuffFadeOut() { // Fade out tiles, tile backs, kite, backshadow. 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShellShuffleTutorial : PuzzTutorial
 {
+    public BeachClamLevel tutLvl;
     public  BeachClam[] step1Clams, step2Clams, step3Clams;
     public List<BeachClam> currentStepClams = new List<BeachClam>(); 
 	public TutorialStep currentStepScript;
@@ -28,17 +29,17 @@ public class ShellShuffleTutorial : PuzzTutorial
                 if(!currentStepScript.stepDone){
                     if(currentStepClams[0].Tapped){
                         tapItemAnimation.myFade.FadeOut();
-                        currentStepClams[0].canTap = false;
+                        currentStepClams[0].myCollider.enabled = false;
                     }
                     if(currentStepClams[0].open && !currentStepClams[1].open && tapItemAnimation.myFade.hidden){
                         tapIcon.transform.position = currentStepClams[1].gameObject.transform.position;
                         tapItemAnimation.myFade.FadeIn();
-                        currentStepClams[1].canTap = true;
+                        currentStepClams[1].myCollider.enabled = true;
                         audioHelperBirdScript.birdHelpSound();
                     }
                     if(currentStepClams[1].Tapped){
                         tapItemAnimation.myFade.FadeOut();
-                        currentStepClams[1].canTap = false;
+                        currentStepClams[1].myCollider.enabled = false;
                         currentStepScript.stepDone = true;
                     }                    
                 }else{
@@ -46,27 +47,28 @@ public class ShellShuffleTutorial : PuzzTutorial
                     currentStepClams.Clear();
                     loadingStep = true;
                 }
-            }else if(currentStep == 0 && !loadingStep){
-                LoadNextStep();
             }else if(loadingStep){
                 stepTimer += Time.deltaTime;
-                if(stepTimer >= stepTimeDelay){
+                if(stepTimer >= stepTimeDelay){                   
+                    stepTimer = 0;
+                    loadingStep = false;
+                    foreach (BeachClam lvlClams in tutLvl.myClams)
+                    {
+                        lvlClams.myCollider.enabled = false;
+                    }                 
+                    currentStepScript.gameObject.SetActive(false);
                     if(firstStep){
-                       LoadNextStep();
-                       firstStep = false;
+                        //LoadNextStep();
+                        firstStep = false;
                     }else{
-                        stepTimer = 0;
-                        loadingStep = false;                    
-                        currentStepScript.gameObject.SetActive(false);
                         currentStep ++;
-                        if(currentStep >= tutorialSteps.Length ){
-                            finalStep = true;
-                        }else{
-                            currentStepScript = tutorialSteps[currentStep];
-                        }
-                        LoadNextStep();
+                    }                        
+                    if(currentStep >= tutorialSteps.Length ){
+                        finalStep = true;
+                    }else{
+                        currentStepScript = tutorialSteps[currentStep];
                     }
-                    
+                    LoadNextStep();                    
                 }
             }
         }else{
@@ -99,7 +101,7 @@ public class ShellShuffleTutorial : PuzzTutorial
         currentStepScript.masks[1].gameObject.transform.position = currentStepClams[1].gameObject.transform.position;
         tapIcon.transform.position = currentStepClams[0].gameObject.transform.position;
         tapItemAnimation.myFade.FadeIn();
-        currentStepClams[0].canTap = true;
+        currentStepClams[0].myCollider.enabled = true;
         mainPuzzScript.canPlay = true;
         audioHelperBirdScript.birdHelpSound();
     }
