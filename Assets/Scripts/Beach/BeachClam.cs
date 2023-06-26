@@ -78,6 +78,7 @@ public class BeachClam : MonoBehaviour {
 				}
 			
 			if(open && myMatch.matched){
+				Debug.Log("is supposed to work");
 				timer += Time.deltaTime;
 				if(timer >= timeDelay  && open){
 					myOpenClam.FadeOut();
