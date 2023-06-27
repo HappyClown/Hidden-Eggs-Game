@@ -59,8 +59,8 @@ public class HelpIntroText : MonoBehaviour {
 			yield return null;
 		}
 		sentenceCount++;
-		CheckIfDone();
 		inTxtTransition = false;
+		CheckIfDone();
 	}
 	void CheckIfDone() {
 		if (sentenceCount >= maxSentence) {
@@ -71,12 +71,19 @@ public class HelpIntroText : MonoBehaviour {
 			sentenceCount = 0;
 			//introOn = false;
 			slideInHelpScript.ShowButtonsAfterIntro();
+			// Bandaid for the second intro text reappearing when click is spammed really fast.
+			// Turn off all intro texts.
+			// for (int i = 0; i < introTMPs.Count; i++)
+			// {
+			// 	introTMPs[i].enabled = false;
+			// }
 			// Disable the script to avoid running the Update method for no reason.
 			this.enabled = false;
 			// Sequence finished.
 			QueueSequenceManager.SequenceComplete();
 		}
 		else {
+			inTxtTransition = true;
 			StartCoroutine(ShowIntroText());
 		}
 	}

@@ -28,21 +28,21 @@ public class EggsSaveLoad : MonoBehaviour
                 egg.GetComponent<Collider2D>().enabled = false;
                 // Add to the eggsFound and eggsInPanel totals.
                 clickOnEggs.eggsFound++;
-                clickOnEggs.regularEggsFound++;
+                clickOnEggs.regularEggsInPanel++;
                 // Fade in the egg panel egg shadow or set its alpha to 1.
             }
         }
         // After all the found eggs have been put in the egg panel, adjust other scene variables.
         // Check if the puzzle should be unlocked.
-        clickOnEggs.puzzUnlockScript.PuzzleUnlockCheck(clickOnEggs.regularEggsFound);
+        clickOnEggs.puzzUnlockScript.PuzzleUnlockCheck(clickOnEggs.regularEggsInPanel);
         // Update the egg panel's egg counts.
         clickOnEggs.UpdateEggsString();
         //add up total eggs found AddEggsFound (clickoneggs) which also checks for level complete
 	}
     public void SaveEgg(int _eggIndex) {
-		GlobalVariables.globVarScript.totalEggsFound = clickOnEggs.totalEggsFound;
+		GlobalVariables.globVarScript.totalEggsFound = clickOnEggs.eggsFound;
 		GlobalVariables.globVarScript.eggsFoundBools[_eggIndex] = true;
-		GlobalVariables.globVarScript.eggsFoundOrder[_eggIndex] = clickOnEggs.eggsFound-1;
+		GlobalVariables.globVarScript.eggsFoundOrder[_eggIndex] = clickOnEggs.regEggsFound-1;
 		GlobalVariables.globVarScript.SaveEggState();
 	}
 }

@@ -36,7 +36,6 @@ public class PuzzleComplete : MonoBehaviour {
 		audioScenePuzGenScript = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioScenePuzzleGeneric>();
 	}
 
-
 	void Update () {
 		if (endSeq && !masksFromMid) {
 			seqTimer += Time.deltaTime;
@@ -99,6 +98,11 @@ public class PuzzleComplete : MonoBehaviour {
 			Reset();
 		}
 	}
+
+public void StartPuzzleCompleteSequence() {
+	this.gameObject.SetActive(true);
+	endSeq = true;
+}
 
 	void Revealing() {
 		revTimer += Time.deltaTime / revealDur;

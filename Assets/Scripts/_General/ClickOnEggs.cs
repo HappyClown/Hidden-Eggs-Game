@@ -23,6 +23,11 @@ public class ClickOnEggs : MonoBehaviour {
 
 	[Header("Egg Info")]
 	public int eggsFound;
+	public int regEggsFound;
+	public int regularEggsInPanel;
+	public int silverEggsInPanel;
+	public int goldenEggInPanel;
+	public int totalEggsInPanel;
 	[Tooltip("Total amount of regular eggs in the scene.")]
 	public int totalRegEggs;
 	public TextMeshProUGUI eggCounterText, regEggCounterText, silverEggCounterText, goldenEggCounterText;
@@ -40,7 +45,6 @@ public class ClickOnEggs : MonoBehaviour {
 	public GameObject goldenEggSpot;
 	public GameObject goldenEggGO;
 	public GameObject smallGoldenEggForPanel;
-	public int goldenEggFound;
 	public Vector3 goldenEggCornerScale;
 
 	[Header("Egg Panel")]
@@ -50,14 +54,13 @@ public class ClickOnEggs : MonoBehaviour {
 	public List<GameObject> silverEggSpots;
 	public SceneSilverEggSpawner sceneSilEggSpaScript;
 	private Coroutine panelMoveCoroutine;
-	public int regularEggsFound;
 	public int startEggFound;
 	public GameObject eggPanelHidden;
 	public GameObject eggPanelShown;
 	public float panelMoveSpeed;
 	public float panelMoveDuration;
 	public float basePanelOpenTime;
-	public List<GameObject> silverEggsInPanel;
+	public List<GameObject> silverEggsForPanel;
 	public List<FadeInOutSprite> silEggsShadFades;
 	public GameObject dropDrowArrow;
 	public List<GameObject> eggs;
@@ -67,9 +70,7 @@ public class ClickOnEggs : MonoBehaviour {
 	public bool openEggPanel;
 
 	[Header("Level Complete")]
-	public int totalEggsFound;
 	public int eggsNeeded;
-	public int silverEggsFound;
 	public bool levelComplete;
 	public LevelComplete levelCompleteScript;
 
@@ -115,6 +116,7 @@ public class ClickOnEggs : MonoBehaviour {
 		}
 		puzzUnlockScript.LoadPuzzleIntro();
 		eggsSaveLoad.SetEggStates();
+		regEggsFound = regularEggsInPanel;
 		panelMoveCoroutine = StartCoroutine(EggPanelInteraction(false));
 		while (iniSeqTimer < allowTapF) {
 			iniSeqTimer += Time.deltaTime;
@@ -154,9 +156,10 @@ public class ClickOnEggs : MonoBehaviour {
 					myInputDetector.cancelDoubleTap = true;
 					// Starts a movement coroutine for the egg found.
 					GameObject eggGO = hit.collider.gameObject;
-					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(eggGO, eggSpots[eggsFound], eggsFound));
+					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(eggGO, eggSpots[regEggsFound], regEggsFound));
 					hit.collider.enabled = false;
 					eggsFound++;
+					regEggsFound++;
 					//openEggPanel = true;
 					// SFX Open Panel
 					//if (!openEggPanel) { openEggPanel = true; audioSceneGenScript.openPanel(); }
@@ -217,6 +220,7 @@ public class ClickOnEggs : MonoBehaviour {
 					sceneTapEnabScript.canTapHelpBird = true;
 					sceneTapEnabScript.canTapPauseBtn = true;
 					sceneTapEnabScript.canTapGoldEgg = false;
+					eggsFound++;
 					AddEggsFound();
 					sceneEggMovement.StartCoroutine(sceneEggMovement.MoveSceneEggToCorner(goldenEggGO, goldenEggSpot, 31, goldenEggCornerScale, false, false, true));
 					audioSceneGenScript.goldEggSound();
@@ -239,16 +243,16 @@ public class ClickOnEggs : MonoBehaviour {
 			eggMoving--;
 			// Check what kind of egg just arrived in the panel, if any.
 			if (regEgg) { 
-				regularEggsFound++;
-				puzzUnlockScript.PuzzleUnlockCheck(regularEggsFound);
+				regularEggsInPanel++;
+				puzzUnlockScript.PuzzleUnlockCheck(regularEggsInPanel);
 				UpdateEggsString();
 			}
 			else if (silEgg) {
-				silverEggsFound++;
+				silverEggsInPanel++;
 				UpdateEggsString(false, true);
 			}
 			else if (golEgg) {
-				goldenEggFound++;
+				goldenEggInPanel++;
 				goldenEggGO.SetActive(false);
 				smallGoldenEggForPanel.SetActive(true);
 				UpdateEggsString(false, false, true);
@@ -298,24 +302,25 @@ public class ClickOnEggs : MonoBehaviour {
 
 	#region Methods
 	public void UpdateEggsString(bool updateRegularEgg = true, bool updateSilverEgg = false, bool updateGoldenEgg = false) {
-		totalEggsFound = regularEggsFound + silverEggsFound + goldenEggFound;
+		totalEggsInPanel = regularEggsInPanel + silverEggsInPanel + goldenEggInPanel;
 		
-		eggCounterText.text = "Eggs Found: " + totalEggsFound + "/" + eggsNeeded;
+		eggCounterText.text = "Eggs Found: " + totalEggsInPanel + "/" + eggsNeeded;
 
-		if (updateRegularEgg) regEggCounterText.text = "" + (regularEggsFound) + "/" + totalRegEggs;
+		if (updateRegularEgg) regEggCounterText.text = "" + (regularEggsInPanel) + "/" + totalRegEggs;
 		
-		if (updateSilverEgg) silverEggCounterText.text = "" + silverEggsFound + "/6";
+		if (updateSilverEgg) silverEggCounterText.text = "" + silverEggsInPanel + "/6";
 		
-		if (updateGoldenEgg) goldenEggCounterText.text = "" + goldenEggFound + "/1";
+		if (updateGoldenEgg) goldenEggCounterText.text = "" + goldenEggInPanel + "/1";
 	}
 
 	public void AddEggsFound() {
-		totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
+		//totalEggsFound = eggsFound + silverEggsFound + goldenEggFound;
 		LevelCompleteCheck();
 	}
 	// - Play the level complete sequence - //
 	public void LevelCompleteCheck() {
-		if (totalEggsFound >= eggsNeeded && !levelComplete && !iniSeq) {
+		print("EggsFOund: "+eggsFound+" on eggsNeeded: "+eggsNeeded);
+		if (eggsFound >= eggsNeeded && !levelComplete && !iniSeq) {
 			PlayLvlCompleteSeq();
 		}
 	}
@@ -330,19 +335,21 @@ public class ClickOnEggs : MonoBehaviour {
 		{
 			foreach(int silEggInPanel in GlobalVariables.globVarScript.sceneSilEggsCount)
 			{
-				silverEggsInPanel[silEggInPanel].SetActive(true);
+				silverEggsForPanel[silEggInPanel].SetActive(true);
 				silEggsShadFades[silEggInPanel].FadeIn();
+				eggsFound++;
 			}
-			silverEggsFound = GlobalVariables.globVarScript.sceneSilEggsCount.Count;
+			silverEggsInPanel = GlobalVariables.globVarScript.sceneSilEggsCount.Count;
 			UpdateEggsString(false, true);
 		}
 	}
 	// If the riddle has previously been solved, make the golden egg appear in the gg panel.
 	void MakeGoldenEggAppear() {
 		if (GlobalVariables.globVarScript.riddleSolved) {
-			goldenEggFound = 1;
+			goldenEggInPanel = 1;
 			smallGoldenEggForPanel.SetActive(true);
 			UpdateEggsString(false, false, true);
+			eggsFound++;
 		}
 	}
 

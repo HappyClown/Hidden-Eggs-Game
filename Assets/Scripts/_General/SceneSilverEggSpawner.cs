@@ -49,9 +49,9 @@ public class SceneSilverEggSpawner : MonoBehaviour {
 			GlobalVariables.globVarScript.SaveEggState();
 			sceneSilEggCount++;
 			silEggSpawned++;
+			clickOnEggs.eggsFound++;
 		}
 		// Save silver eggs that were put in the panel.
-		clickOnEggs.AddEggsFound();
 		yield return null;
 		QueueSequenceManager.SequenceComplete();
 		clickOnEggs.LevelCompleteCheck();

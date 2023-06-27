@@ -9,11 +9,16 @@ public class AdjustCamSize : MonoBehaviour
 	//public int adaptPosition;
 
 	//public float defaultWidth;
+	public bool adjustCamSize = true;
+	public bool useSafeArea = false;
 	public float defaultHeight;
 	public float camAspect;
+	public float safeCamAspect;
 
 	public float screenWidth;
 	public float screenHeight;
+	public float safeScreenWidth;
+	public float safeScreenHeight;
 	// public float screenAspect;
 	public bool adjustCamSizeToWidth;
 
@@ -31,32 +36,50 @@ public class AdjustCamSize : MonoBehaviour
 
 	void Awake () 
 	{
-		if (!cam) { cam = this.GetComponent<Camera>(); }
-		//CameraPos = Camera.main.transform.position;
+		if (adjustCamSize) {
+			if (!cam) { cam = this.GetComponent<Camera>(); }
+			defaultHeight = Camera.main.orthographicSize;
 
-		defaultHeight = Camera.main.orthographicSize;
-		//defaultWidth = Camera.main.orthographicSize * Camera.main.aspect;
 
-		camAspect = Camera.main.aspect;
+			screenWidth = Screen.width;
+			screenHeight = Screen.height;
+			camAspect = Camera.main.aspect;
 
-		screenWidth = Screen.width;
-		screenHeight = Screen.height;
+			safeScreenWidth = Screen.safeArea.width;
+			safeScreenHeight = Screen.safeArea.height;
+			safeCamAspect = safeScreenWidth/safeScreenHeight;
+			
+			// Only adjust the camera size if the aspect ratio is smaller (shape of the screen is more square, then )
+			if (useSafeArea) {
+				if (safeCamAspect < desiredAspectRatio) {
+					if (adjustCamSizeToWidth)
+					{
+						cam.orthographicSize = (desiredAspectRatio / safeCamAspect) * defaultHeight;
+					}
 
-		//screenAspect = screenWidth / screenHeight;
+					screenToWorldSideScreen = cam.ScreenToWorldPoint(new Vector3(safeScreenWidth, 0, 0));
 
-		if (adjustCamSizeToWidth)
-		{
-			cam.orthographicSize = (desiredAspectRatio / camAspect) * defaultHeight;
+					if (lvlTapManScript != null) { adjustedMaxX = screenToWorldSideScreen.x - (lvlTapManScript.minCameraSize * safeCamAspect); }
+				}
+			}
+			else {
+				if (camAspect < desiredAspectRatio) {
+					if (adjustCamSizeToWidth)
+					{
+						cam.orthographicSize = (desiredAspectRatio / camAspect) * defaultHeight;
+					}
+
+					screenToWorldSideScreen = cam.ScreenToWorldPoint(new Vector3(screenWidth, 0, 0));
+
+					if (lvlTapManScript != null) { adjustedMaxX = screenToWorldSideScreen.x - (lvlTapManScript.minCameraSize * camAspect); }
+				}
+			}
 		}
-
-		screenToWorldSideScreen = cam.ScreenToWorldPoint(new Vector3(screenWidth, 0, 0));
-
-		if (lvlTapManScript != null) { adjustedMaxX = screenToWorldSideScreen.x - (lvlTapManScript.minCameraSize * camAspect); }
 	}
 	
 
-	void Update () 
-	{
+	// void Update () 
+	// {
 	
 		// if (maintainWidth) 
 		// {
@@ -69,5 +92,5 @@ public class AdjustCamSize : MonoBehaviour
 		// 	//CameraPos.x was added in case camera in case camera's x is not in 0
 		// 	Camera.main.transform.position= new Vector3(CameraPos.x + adaptPosition*(defaultWidth-Camera.main.orthographicSize*Camera.main.aspect) ,CameraPos.y,CameraPos.z);
 		// }
-	}
+	// }
 }

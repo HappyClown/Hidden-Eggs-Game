@@ -61,10 +61,10 @@ public class EggGoToCorner : MonoBehaviour
 			this.transform.eulerAngles = cornerRot;
 			this.transform.localScale = cornerEggScale;
 			this.GetComponent<Collider2D>().enabled = false;
+			clickOnEggsScript.eggsFound++; 
 			if (!amIGolden) { 
-				clickOnEggsScript.eggsFound++; 
-				clickOnEggsScript.regularEggsFound++;
-				if (clickOnEggsScript.regularEggsFound == puzzUnlockScript.puzzUnlockAmnt) {
+				clickOnEggsScript.regularEggsInPanel++;
+				if (clickOnEggsScript.regularEggsInPanel == puzzUnlockScript.puzzUnlockAmnt) {
 					puzzUnlockScript.ActivatePuzzle();
 				}
 			}
@@ -109,8 +109,8 @@ public class EggGoToCorner : MonoBehaviour
 				moveThisEgg = false;
 				clickOnEggsScript.EggMoving(false);
 				if (!amIGolden) {
-					clickOnEggsScript.regularEggsFound++; 
-					puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.regularEggsFound);
+					clickOnEggsScript.regularEggsInPanel++; 
+					puzzUnlockScript.PuzzleUnlockCheck(clickOnEggsScript.regularEggsInPanel);
 				} else {
 					//clickOnEggsScript.AdjustGoldenEggCount(); 
 					goldenEgg.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
@@ -168,7 +168,7 @@ public class EggGoToCorner : MonoBehaviour
 
 
 	public void SaveEggToCorrectFile() {
-		GlobalVariables.globVarScript.totalEggsFound = clickOnEggsScript.totalEggsFound;
+		GlobalVariables.globVarScript.totalEggsFound = clickOnEggsScript.totalEggsInPanel;
 		GlobalVariables.globVarScript.eggsFoundBools[myEggIndex] = this.eggFound;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

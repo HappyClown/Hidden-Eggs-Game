@@ -45,15 +45,15 @@ public class SceneSilverEgg : MonoBehaviour {
 				}
 				lerpTimer += Time.deltaTime / moveDuration;
 				this.transform.localScale = Vector3.Lerp(iniScale, iniScale * moveWithCamScript.newScale, lerpTimer);
-				this.transform.position = Vector3.Lerp(iniPos, clickOnEggsScript.silverEggsInPanel[posInPanel].transform.position, animCurve.Evaluate(lerpTimer));
+				this.transform.position = Vector3.Lerp(iniPos, clickOnEggsScript.silverEggsForPanel[posInPanel].transform.position, animCurve.Evaluate(lerpTimer));
 				//Debug.Log("A Silver egg moves from puzz to pan! Dun dun duuuunnnn");
 				if (lerpTimer >= 1) {
-					this.transform.position = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.position;
+					this.transform.position = clickOnEggsScript.silverEggsForPanel[posInPanel].transform.position;
 					clickOnEggsScript.EggMoving(false, false, true); // if egg pos = panel pos
 					sendToPanel = false;
-					this.transform.parent = clickOnEggsScript.silverEggsInPanel[posInPanel].transform.parent;
+					this.transform.parent = clickOnEggsScript.silverEggsForPanel[posInPanel].transform.parent;
 					this.transform.localScale = iniScale;
-					clickOnEggsScript.silverEggsFound++;
+					clickOnEggsScript.silverEggsInPanel++;
 					clickOnEggsScript.AddEggsFound();
 					clickOnEggsScript.UpdateEggsString();
 					myEggPanelShadow = clickOnEggsScript.silEggsShadFades[posInPanel];

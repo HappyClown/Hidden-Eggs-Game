@@ -276,7 +276,7 @@ public class MainPuzzleEngine : MonoBehaviour
 		mySilverEggMan.lvlSilverEggs[curntLvl - 3].SetActive(false);
 		chngLvlTimer = 0f;
 		if (curntLvl >= winLvl) {
-			puzzleCompScript.endSeq = true;
+			puzzleCompScript.StartPuzzleCompleteSequence();
 			//StartCoroutine(PuzzleComplete());
 			return;
 		}
