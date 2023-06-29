@@ -17,6 +17,7 @@ public class PuzzTutorial : MonoBehaviour {
 	public int currentStep = 0, maxStep = 0;
 	public float stepTimeDelay = 0.0f, stepTimer = 0.0f; 
 	public GameObject tapIcon;
+	public ParchmentSlider myParchment;
 
 	public void StartTutorial () {
 		if (!audioHelperBirdScript) {
@@ -76,7 +77,7 @@ public class PuzzTutorial : MonoBehaviour {
 		}
 	}
 
-	void SaveIntroDone () {
+	public void SaveIntroDone () {
 		GlobalVariables.globVarScript.puzzIntroDone = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

@@ -37,7 +37,7 @@ public class ShellShuffleTutorial : PuzzTutorial
                         currentStepClams[1].myCollider.enabled = true;
                         audioHelperBirdScript.birdHelpSound();
                     }
-                    if(currentStepClams[1].Tapped){
+                    if(currentStepClams[1].Tapped || currentStepClams[1].matched){
                         tapItemAnimation.myFade.FadeOut();
                         currentStepClams[1].myCollider.enabled = false;
                         currentStepScript.stepDone = true;
@@ -67,12 +67,36 @@ public class ShellShuffleTutorial : PuzzTutorial
                         finalStep = true;
                     }else{
                         currentStepScript = tutorialSteps[currentStep];
-                    }
-                    LoadNextStep();                    
+                        LoadNextStep();
+                    }                                        
                 }
             }
         }else{
-
+            if(myParchment.hidden){
+                stepTimer += Time.deltaTime;
+                if(stepTimer >= stepTimeDelay){
+                    currentStepScript.gameObject.SetActive(false);
+                    stepTimer = 0;
+                    myParchment.SlideIn();
+                    myParchment.hidden = false;
+                    audioHelperBirdScript.birdHelpSound();
+                }
+            }
+            if(myParchment.inpos){
+                if(inputDetScript.Tapped){
+                    myParchment.SlideOut();
+                    audioHelperBirdScript.birdHelpSound();
+                    slideInHelpScript.MoveBirdUpDown();
+                    foreach (BeachClam clam in tutLvl.myClams)
+                    {
+                        if(!clam.matched){
+                            clam.myCollider.enabled = true;
+                        }
+                    }
+                    SaveIntroDone();
+                }
+            }
+            
         }        
         
     }

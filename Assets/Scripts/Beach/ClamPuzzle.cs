@@ -32,19 +32,21 @@ public class ClamPuzzle : MainPuzzleEngine {
 			RunBasics(canPlay);	
 			if (myLvls[curntLvl-1].levelComplete) {
 				/* Debug.Log("ya win m8!"); */
-				if(!tutorialDone){
+				/*if(!tutorialDone){
 					tutorialDone = true;
 				}
 				SilverEggsSetup();
-				clamLevelChangeScript.LevelChangeEvent();
-				/*if(tutorialDone){
+				clamLevelChangeScript.LevelChangeEvent();*/
+				if(tutorialDone){
 					SilverEggsSetup();
 					clamLevelChangeScript.LevelChangeEvent();
 				}
 				else{
-					ChosenLevelSetup(curntLvl+1);
+					chngLvlTimer = 0;
+					lvlToLoad = curntLvl+1;
 					tutorialDone = true;
-				}*/
+					ChangeLevelSetup();
+				}
 			}
 			#region Click
 			//check if player tapped

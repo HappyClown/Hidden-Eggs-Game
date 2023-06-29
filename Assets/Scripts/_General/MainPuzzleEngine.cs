@@ -105,10 +105,10 @@ public class MainPuzzleEngine : MonoBehaviour
 				}
 				mySelectButton.buttonPressed = false;
 			}
-			if (chngLvlTimer < setupLvlWaitTime) { 
+			/*if (chngLvlTimer < setupLvlWaitTime) { 
 				chngLvlTimer += Time.deltaTime;
-				/* Debug.Log("do I ever run? Or am I just lazy like that?"); */ 
-			}
+				//Debug.Log("do I ever run? Or am I just lazy like that?"); 
+			}*/
 			if (mySelectButton.buttonsOff) { 
 				mySelectButton.buttonsOff = false; 
 				mySelectButton.InteractableThreeDots(maxLvl,curntLvl); 

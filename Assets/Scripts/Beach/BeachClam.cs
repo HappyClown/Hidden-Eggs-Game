@@ -76,6 +76,7 @@ public class BeachClam : MonoBehaviour {
 					//failed match sound .. should put a delay or something
 					//audioBeachPuzzleScript.failSFX();
 				}
+			}
 			
 			if(open && myMatch.matched){
 				Debug.Log("is supposed to work");
@@ -89,7 +90,7 @@ public class BeachClam : MonoBehaviour {
 					audioBeachPuzzleScript.addToMusicList(clamSound);
 				}
 			}
-		}	
+			
 		if (setFadeDurToPlay) {
 			showClamTimer += Time.deltaTime;
 			if (showClamTimer >= clamUpDelay && clamWaiting) {
