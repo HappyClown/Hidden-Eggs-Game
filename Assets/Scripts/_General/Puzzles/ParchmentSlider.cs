@@ -30,7 +30,7 @@ public class ParchmentSlider : MonoBehaviour
             slideTimer += Time.deltaTime;
             float posValue = slideCurve.Evaluate(slideTimer/slideTime);
             Debug.Log(posValue);
-            this.transform.position = Vector3.Lerp(currentPos.position,targetPos.position,posValue);
+            this.transform.position = Vector3.MoveTowards(currentPos.position,targetPos.position,posValue);
             if(slideTimer >= slideTime){
                 moving = false;
                 this.transform.position = targetPos.position;
