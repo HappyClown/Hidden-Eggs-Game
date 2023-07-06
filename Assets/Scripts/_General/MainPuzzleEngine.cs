@@ -50,9 +50,9 @@ public class MainPuzzleEngine : MonoBehaviour
 
 	[Header("Initial Sequence")]
 	public float seqTimer;
-	public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
+	public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF, helpBirdF;
 	[HideInInspector]
-	public bool iniSeqStart, reqDownB, itemSpawnB, dotsSpawnB;
+	public bool iniSeqStart, reqDownB, itemSpawnB, dotsSpawnB,helperBirdSpawnB;
 
 	[Header("Scripts")]
 	public FadeInOutImage scrnDarkImgScript;
@@ -140,6 +140,13 @@ public class MainPuzzleEngine : MonoBehaviour
 						mySelectButton.EnabledThreeDots(maxLvl); 
 						mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
 					}
+					//Set Helper Bird Timer
+					if(seqTimer > helpBirdF && !helperBirdSpawnB){
+						if (!tutorialDone && !skiptutorial) {						
+							slideInHelpScript.MoveBirdUpDown();
+							helperBirdSpawnB = true;	
+						}					
+					}
 					 //compare sequence timer to playable time, then allow player to play and finish the initial sequence
 					if (seqTimer > iniCanPlayF) { 
 						//----------Helper bird stuff here
@@ -147,8 +154,6 @@ public class MainPuzzleEngine : MonoBehaviour
 							canPlay = true; 
 							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
 							sceneTapScript.canTapPauseBtn = true;
-						}else{
-							slideInHelpScript.MoveBirdUpDown();
 						}
 						iniSeqStart = false;						
 					}

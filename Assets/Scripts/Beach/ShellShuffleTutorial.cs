@@ -9,13 +9,14 @@ public class ShellShuffleTutorial : PuzzTutorial
     public List<BeachClam> currentStepClams = new List<BeachClam>(); 
 	public TutorialStep currentStepScript;
     public TutorialUiAnimation tapItemAnimation;
+    public bool tutorialFinished;
     void Start()
     {
         StartTutorial();
         maxStep = tutorialSteps.Length;
         currentStepScript = tutorialSteps[currentStep];
         tapItemAnimation =  tapIcon.GetComponent<TutorialUiAnimation>();
-        finalStep = false;
+        tutorialFinished = finalStep = false;
         firstStep = loadingStep = true;
     }
 
@@ -35,7 +36,6 @@ public class ShellShuffleTutorial : PuzzTutorial
                         tapIcon.transform.position = currentStepClams[1].gameObject.transform.position;
                         tapItemAnimation.myFade.FadeIn();
                         currentStepClams[1].myCollider.enabled = true;
-                        audioHelperBirdScript.birdHelpSound();
                     }
                     if(currentStepClams[1].Tapped || currentStepClams[1].matched){
                         tapItemAnimation.myFade.FadeOut();
@@ -57,10 +57,7 @@ public class ShellShuffleTutorial : PuzzTutorial
                         lvlClams.myCollider.enabled = false;
                     }                 
                     currentStepScript.gameObject.SetActive(false);
-                    if(firstStep){
-                        //LoadNextStep();
-                        firstStep = false;
-                    }else{
+                    if(!firstStep){
                         currentStep ++;
                     }                        
                     if(currentStep >= tutorialSteps.Length ){
@@ -72,6 +69,15 @@ public class ShellShuffleTutorial : PuzzTutorial
                 }
             }
         }else{
+            if(tutorialFinished){
+                foreach (BeachClam clam in tutLvl.myClams)
+                {
+                    if(!clam.matched){
+                        clam.myCollider.enabled = true;
+                    }
+                }
+                tutorialFinished = false;
+            }
             if(myParchment.hidden){
                 stepTimer += Time.deltaTime;
                 if(stepTimer >= stepTimeDelay){
@@ -87,12 +93,7 @@ public class ShellShuffleTutorial : PuzzTutorial
                     myParchment.SlideOut();
                     audioHelperBirdScript.birdHelpSound();
                     slideInHelpScript.MoveBirdUpDown();
-                    foreach (BeachClam clam in tutLvl.myClams)
-                    {
-                        if(!clam.matched){
-                            clam.myCollider.enabled = true;
-                        }
-                    }
+                    tutorialFinished = true;                    
                     SaveIntroDone();
                 }
             }
@@ -125,6 +126,12 @@ public class ShellShuffleTutorial : PuzzTutorial
         currentStepScript.masks[1].gameObject.transform.position = currentStepClams[1].gameObject.transform.position;
         tapIcon.transform.position = currentStepClams[0].gameObject.transform.position;
         tapItemAnimation.myFade.FadeIn();
+        if(firstStep){
+            firstStep = false;
+            tapItemAnimation.myFade.fadeDelay = false;
+            currentStepScript.loading = true;
+            currentStepScript.screenFade.FadeIn();
+        }   
         currentStepClams[0].myCollider.enabled = true;
         mainPuzzScript.canPlay = true;
         audioHelperBirdScript.birdHelpSound();

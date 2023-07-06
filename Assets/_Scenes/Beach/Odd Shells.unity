@@ -9916,12 +9916,14 @@ MonoBehaviour:
   stepType: 0
   pos1: {x: 0, y: 0, z: 0}
   pos2: {x: 0, y: 0, z: 0}
+  screenFade: {fileID: 1311445624}
   masks:
   - {fileID: 1254930067}
   - {fileID: 845690921}
   messages: []
   stepDone: 0
   loaded: 0
+  loading: 0
 --- !u!114 &157771523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31413,6 +31415,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 199665871810349206, guid: 660a19170640c5f46bfc57b245400e86,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 660a19170640c5f46bfc57b245400e86, type: 3}
 --- !u!198 &380027127 stripped
@@ -37219,12 +37226,14 @@ MonoBehaviour:
   stepType: 0
   pos1: {x: 0, y: 0, z: 0}
   pos2: {x: 0, y: 0, z: 0}
+  screenFade: {fileID: 1733471445}
   masks:
   - {fileID: 505595601}
   - {fileID: 681491510}
   messages: []
   stepDone: 0
   loaded: 0
+  loading: 0
 --- !u!1 &415733028
 GameObject:
   m_ObjectHideFlags: 0
@@ -49105,7 +49114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &505595602
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54894,6 +54903,7 @@ GameObject:
   - component: {fileID: 533284057}
   - component: {fileID: 533284056}
   - component: {fileID: 533284055}
+  - component: {fileID: 533284058}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
@@ -54972,6 +54982,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533284053}
   m_CullTransparentMesh: 1
+--- !u!114 &533284058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533284053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.2
+  fadeDelayDur: 0
+  maxAlpha: 0.702
+  inactiveOnFadeOut: 0
+  fadeInOnStart: 0
+  fadeDelay: 0
+  img: {fileID: 0}
+  myStartState: 0
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
+  t: 0
 --- !u!1 &534009063
 GameObject:
   m_ObjectHideFlags: 0
@@ -57734,16 +57769,18 @@ MonoBehaviour:
   - {fileID: 1145809272}
   itemHolder: {fileID: 0}
   seqTimer: 0
-  iniSeqDelay: 2.8
+  iniSeqDelay: 1
   crateDownF: 0
   reqDownF: 0
-  itemSpawnF: 0.15
+  itemSpawnF: 2.5
   dotsSpawnF: 0.25
-  iniCanPlayF: 1.51
+  iniCanPlayF: 3
+  helpBirdF: 0.5
   iniSeqStart: 0
   reqDownB: 0
   itemSpawnB: 0
   dotsSpawnB: 0
+  helperBirdSpawnB: 0
   scrnDarkImgScript: {fileID: 671249642}
   sceneTapScript: {fileID: 654759649}
   menuStatesScript: {fileID: 654759650}
@@ -58493,7 +58530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &681491511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -82770,12 +82807,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 0.5
-  fadeDelayDur: 0.2
+  fadeDuration: 0.2
+  fadeDelayDur: 1.5
   maxAlpha: 1
   inactiveOnFadeOut: 1
   fadeInOnStart: 0
-  fadeDelay: 0
+  fadeDelay: 1
   img: {fileID: 0}
   myStartState: 1
   fadingOut: 0
@@ -86453,6 +86490,7 @@ GameObject:
   - component: {fileID: 1311445623}
   - component: {fileID: 1311445622}
   - component: {fileID: 1311445621}
+  - component: {fileID: 1311445624}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
@@ -86531,6 +86569,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311445619}
   m_CullTransparentMesh: 1
+--- !u!114 &1311445624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311445619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.2
+  fadeDelayDur: 0
+  maxAlpha: 0.702
+  inactiveOnFadeOut: 0
+  fadeInOnStart: 0
+  fadeDelay: 0
+  img: {fileID: 0}
+  myStartState: 0
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 0
+  shown: 0
+  t: 0
 --- !u!1001 &1311948372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87348,6 +87411,7 @@ MonoBehaviour:
   currentStepClams: []
   currentStepScript: {fileID: 0}
   tapItemAnimation: {fileID: 0}
+  tutorialFinished: 0
 --- !u!1 &1339587057
 GameObject:
   m_ObjectHideFlags: 0
@@ -110965,13 +111029,14 @@ GameObject:
   - component: {fileID: 1733471443}
   - component: {fileID: 1733471442}
   - component: {fileID: 1733471444}
+  - component: {fileID: 1733471445}
   m_Layer: 5
   m_Name: Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1733471441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -111043,6 +111108,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TargetUnmask: {fileID: 505595603}
+--- !u!114 &1733471445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733471440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba46c191b60650469b7e49ce60a1ed2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.75
+  fadeDelayDur: 0
+  maxAlpha: 0.702
+  inactiveOnFadeOut: 0
+  fadeInOnStart: 0
+  fadeDelay: 0
+  img: {fileID: 0}
+  myStartState: 1
+  fadingOut: 0
+  fadingIn: 0
+  hidden: 1
+  shown: 0
+  t: 0
 --- !u!1 &1735999925
 GameObject:
   m_ObjectHideFlags: 0
@@ -120752,12 +120842,14 @@ MonoBehaviour:
   stepType: 0
   pos1: {x: 0, y: 0, z: 0}
   pos2: {x: 0, y: 0, z: 0}
+  screenFade: {fileID: 533284058}
   masks:
   - {fileID: 815661457}
   - {fileID: 1136971483}
   messages: []
   stepDone: 0
   loaded: 0
+  loading: 0
 --- !u!114 &1898577607
 MonoBehaviour:
   m_ObjectHideFlags: 0

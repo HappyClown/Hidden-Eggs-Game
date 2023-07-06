@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayFX : MonoBehaviour {
 	public ParticleSystem partFX;
 
-	void PlayParticleFX () {
+	public void PlayParticleFX () {
 		partFX.Play();
 	}
 }

@@ -27,7 +27,7 @@ public class PuzzTutorial : MonoBehaviour {
 
 	public void StartTutorialInitialSequence () {
 		// Set the tutorial as "open", used to see if the player can play the puzzle or not.
-		if (slideInHelpScript.isUp && !tutOpen) {
+		if (slideInHelpScript.isUp && !tutOpen && mainPuzzScript.itemSpawnB) {
 			tutOpen = true;
 		}
 		// Set the tutorial as "closed", used to allow the player to interact with the puzzle.
