@@ -66,7 +66,7 @@ public class LevelInfoPopup : MonoBehaviour
 		closed = false;
 		openingTitle = false;
 		open = false;
-		currentLenght = myRectTransform.sizeDelta.x;
+		currentLenght = myRectTransform.sizeDelta.y;
 		lerpValue = 0;
 		if (currentCoroutine != null) {
 			StopCoroutine(currentCoroutine);
@@ -109,6 +109,7 @@ public class LevelInfoPopup : MonoBehaviour
 			goldenEgg.sprite = spriteGoldenEgg;
 			GShadow.gameObject.SetActive(true);}
 		else{
+			print("Hello this is mr shouldbeemptygoldenegg speaking.");
 			goldenEgg.sprite = spriteEmptyEgg;
 			GShadow.gameObject.SetActive(false);}
 		

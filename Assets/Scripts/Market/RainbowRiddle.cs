@@ -75,7 +75,7 @@ public class RainbowRiddle : MonoBehaviour
 					// - PUZZLE SOLVED - //
 					if (basketNumber >= 6) {
 						basketNumber = 0;
-						RainbowRiddleSolved();
+						clickOnEggsScript.RiddleSolved();
 						// Activate the Golden Egg sequence.
 						QueueSequenceManager.AddSequenceToQueue(goldenEggScript.StartGoldenEggSequence);
 						// Disable all basket colliders.

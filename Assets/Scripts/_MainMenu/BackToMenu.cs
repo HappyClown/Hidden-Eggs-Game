@@ -6,10 +6,11 @@ using TMPro;
 
 public class BackToMenu : MonoBehaviour 
 {
-	[Header("Background Stuff")]
-	//public List<MoveCloud> cloudsToMove;
+	// [Header("Background Stuff")]
+	// public List<MoveCloud> cloudsToMove;
 	// public FadeInOutImage titleFade;
 	// public FadeInOutSprite solidBGFade;
+	public LevelInfoPopup levelInfoPopup;
 
 	[Header("Button Fade Attributes")]
 	public float btnFadeInWait;
@@ -52,6 +53,7 @@ public class BackToMenu : MonoBehaviour
 		{
 			seasonLockScript.BackToMenu();
 		}
+		levelInfoPopup.CloseTitle();
 		StartCoroutine(MainMenuTransition());
 	}
 

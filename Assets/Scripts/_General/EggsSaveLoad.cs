@@ -7,7 +7,7 @@ public class EggsSaveLoad : MonoBehaviour
     public ClickOnEggs clickOnEggs;
     public SceneEggMovement sceneEggMovement;
 
-	public void SetEggStates() {
+	public void SetRegularEggStates() {
         // Load in the scene eggs that have already been found.
         for (int i = 0; i < clickOnEggs.eggs.Count; i++)
         {
@@ -27,7 +27,7 @@ public class EggsSaveLoad : MonoBehaviour
                 // Disable the egg's collider.
                 egg.GetComponent<Collider2D>().enabled = false;
                 // Add to the eggsFound and eggsInPanel totals.
-                clickOnEggs.eggsFound++;
+                clickOnEggs.AddEggFound();
                 clickOnEggs.regularEggsInPanel++;
                 // Fade in the egg panel egg shadow or set its alpha to 1.
             }
@@ -39,7 +39,7 @@ public class EggsSaveLoad : MonoBehaviour
         clickOnEggs.UpdateEggsString();
         //add up total eggs found AddEggsFound (clickoneggs) which also checks for level complete
 	}
-    public void SaveEgg(int _eggIndex) {
+    public void SaveRegularEgg(int _eggIndex) {
 		GlobalVariables.globVarScript.totalEggsFound = clickOnEggs.eggsFound;
 		GlobalVariables.globVarScript.eggsFoundBools[_eggIndex] = true;
 		GlobalVariables.globVarScript.eggsFoundOrder[_eggIndex] = clickOnEggs.regEggsFound-1;

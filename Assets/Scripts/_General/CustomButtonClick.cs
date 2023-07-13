@@ -20,15 +20,9 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	public Sprite mySceneLogo;
 
 	public void OnPointerClick(PointerEventData pointerEventData) {
-		if (!selectedOnce) {
-			selectedOnce = true;
-			GetSceneInfo();
-		}
-		// Debug.Log("Button clicked on " + pointerEventData.pointerCurrentRaycast.gameObject.name);
-		// Load proper scene
-		//OpenScene();
-		//Select Level / deselect other levels
+		// Select Level
 		if (!levelSelected) {
+			GetSceneInfo();
 			foreach(CustomButtonClick customButtonClickScript in customButtonClickScripts)
 			{
 				customButtonClickScript.levelSelected = false;
@@ -49,26 +43,17 @@ public class CustomButtonClick : MonoBehaviour, IPointerClickHandler {
 	}
 	public void GetSceneInfo() {
 		if(sceneName == GlobalVariables.globVarScript.marketName){
-			if(GlobalVariables.globVarScript.marketNE)
-				NE = true;
-			if(GlobalVariables.globVarScript.marketSE)
-				SE = true;
-			if(GlobalVariables.globVarScript.marketGE)
-				GE = true;
+			NE = GlobalVariables.globVarScript.marketNE;
+			SE = GlobalVariables.globVarScript.marketSE;
+			GE = GlobalVariables.globVarScript.marketGE;
 		}else if(sceneName == GlobalVariables.globVarScript.parkName){
-			if(GlobalVariables.globVarScript.parkNE)
-				NE = true;
-			if(GlobalVariables.globVarScript.parkSE)
-				SE = true;
-			if(GlobalVariables.globVarScript.parkGE)
-				GE = true;
+			NE = GlobalVariables.globVarScript.parkNE;
+			SE = GlobalVariables.globVarScript.parkSE;
+			GE = GlobalVariables.globVarScript.parkGE;
 		}else if(sceneName == GlobalVariables.globVarScript.beachName){
-			if(GlobalVariables.globVarScript.beachNE)
-				NE = true;
-			if(GlobalVariables.globVarScript.beachSE)
-				SE = true;
-			if(GlobalVariables.globVarScript.beachGE)
-				GE = true;
+			NE = GlobalVariables.globVarScript.beachNE;
+			SE = GlobalVariables.globVarScript.beachSE;
+			GE = GlobalVariables.globVarScript.beachGE;
 		}
 	}
 }

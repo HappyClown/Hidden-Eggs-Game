@@ -61,7 +61,7 @@ public class EggGoToCorner : MonoBehaviour
 			this.transform.eulerAngles = cornerRot;
 			this.transform.localScale = cornerEggScale;
 			this.GetComponent<Collider2D>().enabled = false;
-			clickOnEggsScript.eggsFound++; 
+			clickOnEggsScript.AddEggFound(); 
 			if (!amIGolden) { 
 				clickOnEggsScript.regularEggsInPanel++;
 				if (clickOnEggsScript.regularEggsInPanel == puzzUnlockScript.puzzUnlockAmnt) {

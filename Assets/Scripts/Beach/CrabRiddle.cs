@@ -98,7 +98,8 @@ public class CrabRiddle : MonoBehaviour {
 						//audioSceneBeachScript.crabWalkSFX();
 					}
 					if (moveAmount >= movesToWin) {
-						CrabRiddleSolved ();
+						//CrabRiddleSolved ();
+						clickOnEggsScript.RiddleSolved();
 						// Activate the Golden Egg sequence.
 						goldenEgg.SetActive(true);
 						goldenEggScript.waitingToStartSeq = true;
@@ -118,21 +119,6 @@ public class CrabRiddle : MonoBehaviour {
 					moveAmount = 0;
 					moveDest = crabOGPos;
 				}
-				// - Player clicks anywhere else - //
-				// if (!hit.collider.CompareTag("Riddle")) {
-				// 	if (moveAmount > 0) {
-				// 		crabReturning = true;
-				// 		audioSceneBeachScript.crabWalkSFX();
-				// 	}
-				// 	moveAmount = 0;
-				// 	moveDest = crabOGPos;
-					//audioSceneBeachScript.crabWalkSFX();
-					// foreach (GameObject move in moves)
-					// {
-					// 	move.GetComponent<BoxCollider2D>().enabled = false;
-					// }	
-					// moves[0].GetComponent<BoxCollider2D>().enabled = true;
-				//}
 			}
 			else{
 				if (moveAmount > 0 && moveAmount < movesToWin) {
