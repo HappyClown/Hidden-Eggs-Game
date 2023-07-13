@@ -16,7 +16,6 @@ public class LevelSelectionButtons : MonoBehaviour {
 	public bool buttonsOff;
 	public bool buttonPressed;
 	public int lvlToLoad;
-
 	 /// <summary>
      /// Enable the level button Dots.
      /// </summary>

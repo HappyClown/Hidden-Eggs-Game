@@ -21,8 +21,6 @@ public class BeachClam : MonoBehaviour {
 	public float clamUpDelay;
 	private float showClamTimer;
 	public float iniFadeInDur, playFadeInDur;
-	private PlayFX mySandParticlesFx;
-
 	//tests for sounds
 	public AudioSceneBeachPuzzle audioBeachPuzzleScript;
 	public string clamSound;
@@ -82,10 +80,7 @@ public class BeachClam : MonoBehaviour {
 				Debug.Log("is supposed to work");
 				timer += Time.deltaTime;
 				if(timer >= timeDelay  && open){
-					if(!mySandParticlesFx){
-						mySandParticlesFx = this.gameObject.GetComponentInChildren<PlayFX>();
-					}
-					mySandParticlesFx.PlayParticleFX();
+					clamAnim.SetTrigger("ShowClam");
 					myOpenClam.FadeOut();
 					matched = true;
 					open = false;

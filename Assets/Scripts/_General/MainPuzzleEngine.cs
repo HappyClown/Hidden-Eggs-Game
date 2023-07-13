@@ -135,7 +135,7 @@ public class MainPuzzleEngine : MonoBehaviour
 						setupLevel = true;
 					}
 					//compare sequence timer to spawn Ui time, then enable ui buttons
-					if (seqTimer > dotsSpawnF && !dotsSpawnB) { 
+					if (seqTimer > dotsSpawnF && !dotsSpawnB && curntLvl > 0) { 
 						dotsSpawnB = true; 
 						mySelectButton.EnabledThreeDots(maxLvl); 
 						mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
