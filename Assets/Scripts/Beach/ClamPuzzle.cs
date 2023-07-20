@@ -45,6 +45,9 @@ public class ClamPuzzle : MainPuzzleEngine {
 					chngLvlTimer = 0;
 					lvlToLoad = curntLvl+1;
 					tutorialDone = true;
+					selectButtonInOut.MoveInOut();
+					mySelectButton.EnabledThreeDots(lvlToLoad); 
+					mySelectButton.InteractableThreeDots(lvlToLoad,lvlToLoad);
 					ChangeLevelSetup();
 				}
 			}

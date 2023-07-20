@@ -35,7 +35,8 @@ public class ShellShuffleTutorial : PuzzTutorial
                     if(currentStepClams[0].open && !currentStepClams[1].open && tapItemAnimation.myFade.hidden){
                         tapIcon.transform.position = currentStepClams[1].gameObject.transform.position;
                         tapItemAnimation.myFade.FadeIn();
-                        currentStepClams[1].myCollider.enabled = true;
+                        currentStepClams[1].myCollider.enabled = true;                        
+                        audioHelperBirdScript.birdHelpSound();
                     }
                     if(currentStepClams[1].Tapped || currentStepClams[1].matched){
                         tapItemAnimation.myFade.FadeOut();
@@ -81,7 +82,11 @@ public class ShellShuffleTutorial : PuzzTutorial
             if(myParchment.hidden){
                 stepTimer += Time.deltaTime;
                 if(stepTimer >= stepTimeDelay){
-                    currentStepScript.gameObject.SetActive(false);
+                    //currentStepScript.gameObject.SetActive(false);
+                    foreach (GameObject mask in currentStepScript.masks)
+                    {
+                        mask.SetActive(false);
+                    }
                     stepTimer = 0;
                     myParchment.SlideIn();
                     myParchment.hidden = false;
@@ -90,7 +95,8 @@ public class ShellShuffleTutorial : PuzzTutorial
             }
             if(myParchment.inpos){
                 if(inputDetScript.Tapped){
-                    myParchment.SlideOut();
+                    myParchment.SlideOut();                    
+                    currentStepScript.screenFade.FadeOut();
                     audioHelperBirdScript.birdHelpSound();
                     slideInHelpScript.MoveBirdUpDown();
                     tutorialFinished = true;                    

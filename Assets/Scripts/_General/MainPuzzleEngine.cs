@@ -19,6 +19,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public SilverEggsManager mySilverEggMan;
 	[Header("Selection Buttons")]
 	public LevelSelectionButtons mySelectButton;
+	public MoveInOutUI selectButtonInOut;
 	[Header("Fade in out variables")]
 	public FadeInOutManager[] levelsStuff;
 	#endregion
@@ -97,7 +98,7 @@ public class MainPuzzleEngine : MonoBehaviour
 				lvlToLoad = mySelectButton.lvlToLoad;			
 				Debug.Log("toload "+lvlToLoad.ToString()+"---current"+curntLvl.ToString()+"---maxLvl"+maxLvl.ToString());	
 				//check if loading is done and the selected button is different than the current level and less than the max level			
-				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+				if (curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
 					//reset the level timer for sequences
 					chngLvlTimer = 0f;
 					//Run changing level function
@@ -135,10 +136,11 @@ public class MainPuzzleEngine : MonoBehaviour
 						setupLevel = true;
 					}
 					//compare sequence timer to spawn Ui time, then enable ui buttons
-					if (seqTimer > dotsSpawnF && !dotsSpawnB && curntLvl > 0) { 
-						dotsSpawnB = true; 
-						mySelectButton.EnabledThreeDots(maxLvl); 
-						mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
+					if (seqTimer > dotsSpawnF && !dotsSpawnB) { 
+						dotsSpawnB = true;
+						if(tutorialDone){
+							selectButtonInOut.MoveInOut();
+						}
 					}
 					//Set Helper Bird Timer
 					if(seqTimer > helpBirdF && !helperBirdSpawnB){
@@ -151,8 +153,9 @@ public class MainPuzzleEngine : MonoBehaviour
 					if (seqTimer > iniCanPlayF) { 
 						//----------Helper bird stuff here
 						if (tutorialDone || skiptutorial) {
-							canPlay = true; 
-							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
+							canPlay = true;
+							mySelectButton.EnabledThreeDots(curntLvl); 
+							mySelectButton.InteractableThreeDots(curntLvl, curntLvl);
 							sceneTapScript.canTapPauseBtn = true;
 						}
 						iniSeqStart = false;						
