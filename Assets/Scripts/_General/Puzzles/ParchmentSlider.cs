@@ -29,14 +29,15 @@ public class ParchmentSlider : MonoBehaviour
         if(moving){
             slideTimer += Time.deltaTime;
             float posValue = slideCurve.Evaluate(slideTimer/slideTime);
-            Debug.Log(posValue);
+            //Debug.Log(posValue);
             this.transform.position = Vector3.MoveTowards(currentPos.position,targetPos.position,posValue);
             if(slideTimer >= slideTime){
                 moving = false;
                 this.transform.position = targetPos.position;
-                if(movingIn){
-                    textFade.FadeIn();
+                if(movingIn){                    
                     inpos = true;
+                }else{
+                    hidden = true;
                 }                
             }
         }
@@ -44,10 +45,12 @@ public class ParchmentSlider : MonoBehaviour
     public void SlideIn(){
         moving = true;
         myFade.FadeIn();
+        textFade.FadeIn();
         currentPos = this.gameObject.transform;
         targetPos = insidePos;
         slideTimer = 0;
         movingIn = true;
+        hidden = false;
     }
     public void SlideOut(){
         currentPos = this.gameObject.transform;

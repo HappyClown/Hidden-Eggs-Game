@@ -10,6 +10,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public Vector2 mousePos2D;
 	public Vector3 mousePos;
 	public bool tutorialDone, skiptutorial;
+	public PuzzTutorial myTutorial;
 	public int curntLvl;
 	#endregion
 	#region Basic Scripts Sources
@@ -154,8 +155,8 @@ public class MainPuzzleEngine : MonoBehaviour
 						//----------Helper bird stuff here
 						if (tutorialDone || skiptutorial) {
 							canPlay = true;
-							mySelectButton.EnabledThreeDots(curntLvl); 
-							mySelectButton.InteractableThreeDots(curntLvl, curntLvl);
+							mySelectButton.EnabledThreeDots(maxLvl); 
+							mySelectButton.InteractableThreeDots(curntLvl, maxLvl);
 							sceneTapScript.canTapPauseBtn = true;
 						}
 						iniSeqStart = false;						

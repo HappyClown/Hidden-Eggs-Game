@@ -42,13 +42,18 @@ public class ClamPuzzle : MainPuzzleEngine {
 					clamLevelChangeScript.LevelChangeEvent();
 				}
 				else{
-					chngLvlTimer = 0;
-					lvlToLoad = curntLvl+1;
-					tutorialDone = true;
-					selectButtonInOut.MoveInOut();
-					mySelectButton.EnabledThreeDots(lvlToLoad); 
-					mySelectButton.InteractableThreeDots(lvlToLoad,lvlToLoad);
-					ChangeLevelSetup();
+					if(myTutorial.tutorialFinished){
+						chngLvlTimer = 0;
+						lvlToLoad = curntLvl+1;
+						maxLvl = lvlToLoad;
+						SaveMaxLvl(); 
+						tutorialDone = true;
+						selectButtonInOut.MoveInOut();
+						mySelectButton.EnabledThreeDots(maxLvl); 
+						mySelectButton.InteractableThreeDots(lvlToLoad,maxLvl);
+						ChangeLevelSetup();
+					}
+					
 				}
 			}
 			#region Click

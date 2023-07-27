@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PuzzTutorial : MonoBehaviour {
 	public SlideInHelpBird slideInHelpScript;
@@ -11,13 +12,16 @@ public class PuzzTutorial : MonoBehaviour {
 	public MainPuzzleEngine mainPuzzScript;
 	public SceneTapEnabler sceneTapScript;
 	public AudioHelperBird audioHelperBirdScript;
-	public bool showTut, loadingStep, firstStep, finalStep;
+	public bool showTut, loadingStep, firstStep, finalStep, textIn;	
+    public bool tutorialFinished;
 	public bool tutOpen, tabPlaced;
 	public TutorialStep[] tutorialSteps;
 	public int currentStep = 0, maxStep = 0;
 	public float stepTimeDelay = 0.0f, stepTimer = 0.0f; 
 	public GameObject tapIcon;
 	public ParchmentSlider myParchment;
+	public TextMeshProUGUI myParchtmentText;
+	public string tutorialFinishedMessage;
 
 	public void StartTutorial () {
 		if (!audioHelperBirdScript) {

@@ -14,7 +14,8 @@ public class TutorialStep : MonoBehaviour
     public FadeInOutImage screenFade;
     public GameObject[] masks;
     public GameObject[] messages;
-    public bool stepDone = false, loaded = false, loading = false;
+    public bool stepDone = false, loaded = false, loading = false, hasText = false;
+    public string textContent;
     
      void Update()
     {
