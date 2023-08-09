@@ -132,6 +132,6 @@ public class LevelComplete : MonoBehaviour
 		levelCompleteEggbagScript.levelsCompleted++;
 		levelCompleteEggbagScript.SaveLevelsCompleted();
 		GlobalVariables.globVarScript.toHub = true;
-		GlobalVariables.globVarScript.sceneFadeScript.SwitchSceneWhiteFade(GlobalVariables.globVarScript.menuName);
+		GlobalVariables.globVarScript.sceneFadeScript.SwitchScene(GlobalVariables.globVarScript.menuName, true);
 	}
 }

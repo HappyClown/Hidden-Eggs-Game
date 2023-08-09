@@ -35,7 +35,7 @@ public class FadeInOutCanvasGroup : MonoBehaviour {
 		else if (myStartState == StartState.startHidden) {
 			canvasG.alpha = 0f;
 			hidden = true;
-			SetCanvasOptions(false);
+			if (!cgOptionsOnFadeStart) SetCanvasOptions(false);
 		}
 		if (maxAlpha <= 0f) { 
 			maxAlpha = 1f; 
