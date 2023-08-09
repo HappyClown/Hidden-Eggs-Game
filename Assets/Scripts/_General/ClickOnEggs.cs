@@ -110,6 +110,7 @@ public class ClickOnEggs : MonoBehaviour {
 	}
 
 	IEnumerator InitialSequence() {
+		panelMoveCoroutine = StartCoroutine(EggPanelInteraction(false));
 		if (!iniDelayOffForTesting) {
 			while (iniDelay > 0) {
 				iniDelay -= Time.deltaTime;
@@ -119,7 +120,6 @@ public class ClickOnEggs : MonoBehaviour {
 		puzzUnlockScript.LoadPuzzleIntro();
 		eggsSaveLoad.SetRegularEggStates();
 		regEggsFound = regularEggsInPanel;
-		panelMoveCoroutine = StartCoroutine(EggPanelInteraction(false));
 		while (iniSeqTimer < allowTapF) {
 			iniSeqTimer += Time.deltaTime;
 			if (iniSeqTimer > checkNewSilEggsF && !iniSilEggCheckB) { 
