@@ -26,10 +26,10 @@ public class BeachClamLevel : MonoBehaviour {
 					availableSpots.Add(spot);
 				}
 			}
-			foreach (ClamSpot item in availableSpots)
-			{	
-				Debug.Log(item.gameObject.name);
-			}
+			// foreach (ClamSpot item in availableSpots)
+			// {	
+			// 	Debug.Log(item.gameObject.name);
+			// }
 			int rand = Random.Range(0,availableSpots.Count);
 			if(tutorialLevel){
 				rand = 0;
@@ -82,12 +82,12 @@ public class BeachClamLevel : MonoBehaviour {
 		{	
 			if(iterator%2==0){
 				clam.clamSound = randomOceanSound;
-				Debug.Log("Clam # :"+iterator+" SFX : "+clam.clamSound);
+				//Debug.Log("Clam # :"+iterator+" SFX : "+clam.clamSound);
 			}
 			else{
 				randomOceanSound = audioBeachPuzzleScript.chooseRandomSound();
 				clam.clamSound = randomOceanSound;
-				Debug.Log("Clam # :"+iterator+" SFX : "+clam.clamSound);
+				//Debug.Log("Clam # :"+iterator+" SFX : "+clam.clamSound);
 			}
 			iterator++;
 		}

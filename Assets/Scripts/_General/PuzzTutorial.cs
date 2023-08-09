@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PuzzTutorial : MonoBehaviour {
 	public SlideInHelpBird slideInHelpScript;
@@ -11,12 +12,16 @@ public class PuzzTutorial : MonoBehaviour {
 	public MainPuzzleEngine mainPuzzScript;
 	public SceneTapEnabler sceneTapScript;
 	public AudioHelperBird audioHelperBirdScript;
-	public bool showTut, loadingStep, firstStep, finalStep;
+	public bool showTut, loadingStep, firstStep, finalStep, textIn;	
+    public bool tutorialFinished;
 	public bool tutOpen, tabPlaced;
 	public TutorialStep[] tutorialSteps;
 	public int currentStep = 0, maxStep = 0;
 	public float stepTimeDelay = 0.0f, stepTimer = 0.0f; 
 	public GameObject tapIcon;
+	public ParchmentSlider myParchment;
+	public TextMeshProUGUI myParchtmentText;
+	public string tutorialFinishedMessage;
 
 	public void StartTutorial () {
 		if (!audioHelperBirdScript) {
@@ -26,7 +31,7 @@ public class PuzzTutorial : MonoBehaviour {
 
 	public void StartTutorialInitialSequence () {
 		// Set the tutorial as "open", used to see if the player can play the puzzle or not.
-		if (slideInHelpScript.isUp && !tutOpen) {
+		if (slideInHelpScript.isUp && !tutOpen && mainPuzzScript.itemSpawnB) {
 			tutOpen = true;
 		}
 		// Set the tutorial as "closed", used to allow the player to interact with the puzzle.
@@ -76,7 +81,7 @@ public class PuzzTutorial : MonoBehaviour {
 		}
 	}
 
-	void SaveIntroDone () {
+	public void SaveIntroDone () {
 		GlobalVariables.globVarScript.puzzIntroDone = true;
 		GlobalVariables.globVarScript.SaveEggState();
 	}

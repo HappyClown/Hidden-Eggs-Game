@@ -49,15 +49,19 @@ public class FadeInOutImage : MonoBehaviour
 
 	IEnumerator FadingOut () {
 		while (fadingOut) {
-			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(maxAlpha, 0f, t));
-			if (t >= 1f) {
-				fadingOut = false;
-				hidden = true;
-				if(shown)
-				shown = false;				
-				if(inactiveOnFadeOut) {
-					this.gameObject.SetActive(false);
+			if(t < 0){
+				t += Time.deltaTime;
+			}else{
+				t += Time.deltaTime / fadeDuration;
+				img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(maxAlpha, 0f, t));
+				if (t >= 1f) {
+					fadingOut = false;
+					hidden = true;
+					if(shown)
+					shown = false;				
+					if(inactiveOnFadeOut) {
+						this.gameObject.SetActive(false);
+					}
 				}
 			}
 			yield return null;
@@ -68,13 +72,18 @@ public class FadeInOutImage : MonoBehaviour
 	IEnumerator FadingIn() {
 		while (fadingIn) {
 			//print(this.gameObject.name+" is fdinin in.");
-			t += Time.deltaTime / fadeDuration;
-			img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(0f, maxAlpha, t));
-			if (t >= 1f) {
-				shown = true;
-				fadingIn = false;
-				if(hidden)
-				hidden = false;
+			if(t < 0){
+				t += Time.deltaTime;
+			}else{
+				t += Time.deltaTime / fadeDuration;
+						
+				img.color = new Color(img.color.r, img.color.g, img.color.b, Mathf.SmoothStep(0f, maxAlpha, t));
+				if (t >= 1f) {
+					shown = true;
+					fadingIn = false;
+					if(hidden)
+					hidden = false;
+				}
 			}
 			yield return null;
 		}

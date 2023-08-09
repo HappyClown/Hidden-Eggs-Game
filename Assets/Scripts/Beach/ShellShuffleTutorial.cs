@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ShellShuffleTutorial : PuzzTutorial
 {
-    public  BeachClam[] step1Clams, step2Clams, step3Clams;
+    public BeachClamLevel tutLvl;
+    public BeachClam[] step1Clams, step2Clams, step3Clams, step4Clams;
     public List<BeachClam> currentStepClams = new List<BeachClam>(); 
 	public TutorialStep currentStepScript;
     public TutorialUiAnimation tapItemAnimation;
@@ -14,7 +15,7 @@ public class ShellShuffleTutorial : PuzzTutorial
         maxStep = tutorialSteps.Length;
         currentStepScript = tutorialSteps[currentStep];
         tapItemAnimation =  tapIcon.GetComponent<TutorialUiAnimation>();
-        finalStep = false;
+        tutorialFinished = finalStep = textIn = false;
         firstStep = loadingStep = true;
     }
 
@@ -28,49 +29,96 @@ public class ShellShuffleTutorial : PuzzTutorial
                 if(!currentStepScript.stepDone){
                     if(currentStepClams[0].Tapped){
                         tapItemAnimation.myFade.FadeOut();
-                        currentStepClams[0].canTap = false;
+                        currentStepClams[0].myCollider.enabled = false;
                     }
                     if(currentStepClams[0].open && !currentStepClams[1].open && tapItemAnimation.myFade.hidden){
                         tapIcon.transform.position = currentStepClams[1].gameObject.transform.position;
                         tapItemAnimation.myFade.FadeIn();
-                        currentStepClams[1].canTap = true;
+                        currentStepClams[1].myCollider.enabled = true;                        
                         audioHelperBirdScript.birdHelpSound();
                     }
-                    if(currentStepClams[1].Tapped){
+                    if(currentStepClams[1].Tapped || currentStepClams[1].matched){
                         tapItemAnimation.myFade.FadeOut();
-                        currentStepClams[1].canTap = false;
-                        currentStepScript.stepDone = true;
+                        currentStepClams[1].myCollider.enabled = false;
+                        if(!currentStepScript.hasText){
+                            currentStepScript.stepDone = true;
+                        }else if(!textIn){
+                            myParchment.SlideIn();
+                            myParchtmentText.text = currentStepScript.textContent;
+                            textIn = true;
+                        }
+                    }
+                    if(textIn && myParchment.inpos){
+                        if(inputDetScript.Tapped){
+                            myParchment.SlideOut(); 
+                            currentStepScript.stepDone = true;
+                            textIn = false;
+                        }
                     }                    
                 }else{
                     currentStepScript.loaded = false;
                     currentStepClams.Clear();
                     loadingStep = true;
                 }
-            }else if(currentStep == 0 && !loadingStep){
-                LoadNextStep();
             }else if(loadingStep){
                 stepTimer += Time.deltaTime;
-                if(stepTimer >= stepTimeDelay){
-                    if(firstStep){
-                       LoadNextStep();
-                       firstStep = false;
-                    }else{
-                        stepTimer = 0;
-                        loadingStep = false;                    
-                        currentStepScript.gameObject.SetActive(false);
+                if(stepTimer >= stepTimeDelay){                   
+                    stepTimer = 0;
+                    loadingStep = false;
+                    foreach (BeachClam lvlClams in tutLvl.myClams)
+                    {
+                        lvlClams.myCollider.enabled = false;
+                    }                 
+                    if(!firstStep){
                         currentStep ++;
-                        if(currentStep >= tutorialSteps.Length ){
-                            finalStep = true;
-                        }else{
-                            currentStepScript = tutorialSteps[currentStep];
+                    }                        
+                    if(currentStep >= tutorialSteps.Length ){
+                        finalStep = true;
+                        foreach (BeachClam clam in tutLvl.myClams)
+                        {
+                            if(!clam.matched){
+                                clam.myCollider.enabled = true;
+                            }
                         }
+                        foreach (GameObject mask in currentStepScript.masks)
+                        {
+                            mask.SetActive(false);
+                        }
+                        currentStepScript.screenFade.FadeOut(); 
+                    }else{
+                        currentStepScript.gameObject.SetActive(false);
+                        currentStepScript = tutorialSteps[currentStep];
                         LoadNextStep();
-                    }
-                    
+                    }                                        
                 }
             }
-        }else{
-
+        }else if(tutLvl.levelComplete){   
+            Debug.Log("I am here!!");         
+           if(myParchment.hidden){
+                stepTimer += Time.deltaTime;
+                if(stepTimer >= stepTimeDelay){
+                    //currentStepScript.gameObject.SetActive(false);
+                    // foreach (GameObject mask in currentStepScript.masks)
+                    // {
+                    //     mask.SetActive(false);
+                    // }
+                    stepTimer = 0;
+                    myParchment.SlideIn();
+                    myParchtmentText.text = tutorialFinishedMessage;
+                    audioHelperBirdScript.birdHelpSound();
+                }
+            }
+            if(myParchment.inpos){
+                if(inputDetScript.Tapped){
+                    myParchment.SlideOut();                    
+                    //currentStepScript.screenFade.FadeOut();
+                    audioHelperBirdScript.birdHelpSound();
+                    slideInHelpScript.MoveBirdUpDown();
+                    tutorialFinished = true;                    
+                    SaveIntroDone();
+                }
+            }
+            
         }        
         
     }
@@ -82,14 +130,20 @@ public class ShellShuffleTutorial : PuzzTutorial
                 currentStepClams.Add(clam);
             }
         }
-            if(currentStep == 1){
+        if(currentStep == 1){
             foreach (BeachClam clam in step2Clams)
             {
                 currentStepClams.Add(clam);
             }
         }
-            if(currentStep == 2){
+        if(currentStep == 2){
             foreach (BeachClam clam in step3Clams)
+            {
+                currentStepClams.Add(clam);
+            }            
+        }
+         if(currentStep == 3){
+            foreach (BeachClam clam in step4Clams)
             {
                 currentStepClams.Add(clam);
             }
@@ -99,7 +153,13 @@ public class ShellShuffleTutorial : PuzzTutorial
         currentStepScript.masks[1].gameObject.transform.position = currentStepClams[1].gameObject.transform.position;
         tapIcon.transform.position = currentStepClams[0].gameObject.transform.position;
         tapItemAnimation.myFade.FadeIn();
-        currentStepClams[0].canTap = true;
+        if(firstStep){
+            firstStep = false;
+            tapItemAnimation.myFade.fadeDelay = false;
+            currentStepScript.loading = true;
+            currentStepScript.screenFade.FadeIn();
+        }   
+        currentStepClams[0].myCollider.enabled = true;
         mainPuzzScript.canPlay = true;
         audioHelperBirdScript.birdHelpSound();
     }

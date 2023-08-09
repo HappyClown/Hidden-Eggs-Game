@@ -10,6 +10,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public Vector2 mousePos2D;
 	public Vector3 mousePos;
 	public bool tutorialDone, skiptutorial;
+	public PuzzTutorial myTutorial;
 	public int curntLvl;
 	#endregion
 	#region Basic Scripts Sources
@@ -19,6 +20,7 @@ public class MainPuzzleEngine : MonoBehaviour
 	public SilverEggsManager mySilverEggMan;
 	[Header("Selection Buttons")]
 	public LevelSelectionButtons mySelectButton;
+	public MoveInOutUI selectButtonInOut;
 	[Header("Fade in out variables")]
 	public FadeInOutManager[] levelsStuff;
 	#endregion
@@ -50,9 +52,9 @@ public class MainPuzzleEngine : MonoBehaviour
 
 	[Header("Initial Sequence")]
 	public float seqTimer;
-	public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF;
+	public float iniSeqDelay, crateDownF, reqDownF, itemSpawnF, dotsSpawnF, iniCanPlayF, helpBirdF;
 	[HideInInspector]
-	public bool iniSeqStart, reqDownB, itemSpawnB, dotsSpawnB;
+	public bool iniSeqStart, reqDownB, itemSpawnB, dotsSpawnB,helperBirdSpawnB;
 
 	[Header("Scripts")]
 	public FadeInOutImage scrnDarkImgScript;
@@ -97,7 +99,7 @@ public class MainPuzzleEngine : MonoBehaviour
 				lvlToLoad = mySelectButton.lvlToLoad;			
 				Debug.Log("toload "+lvlToLoad.ToString()+"---current"+curntLvl.ToString()+"---maxLvl"+maxLvl.ToString());	
 				//check if loading is done and the selected button is different than the current level and less than the max level			
-				if (chngLvlTimer >= setupLvlWaitTime && curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
+				if (curntLvl != lvlToLoad && maxLvl >= lvlToLoad){
 					//reset the level timer for sequences
 					chngLvlTimer = 0f;
 					//Run changing level function
@@ -105,10 +107,10 @@ public class MainPuzzleEngine : MonoBehaviour
 				}
 				mySelectButton.buttonPressed = false;
 			}
-			if (chngLvlTimer < setupLvlWaitTime) { 
+			/*if (chngLvlTimer < setupLvlWaitTime) { 
 				chngLvlTimer += Time.deltaTime;
-				/* Debug.Log("do I ever run? Or am I just lazy like that?"); */ 
-			}
+				//Debug.Log("do I ever run? Or am I just lazy like that?"); 
+			}*/
 			if (mySelectButton.buttonsOff) { 
 				mySelectButton.buttonsOff = false; 
 				mySelectButton.InteractableThreeDots(maxLvl,curntLvl); 
@@ -136,19 +138,26 @@ public class MainPuzzleEngine : MonoBehaviour
 					}
 					//compare sequence timer to spawn Ui time, then enable ui buttons
 					if (seqTimer > dotsSpawnF && !dotsSpawnB) { 
-						dotsSpawnB = true; 
-						mySelectButton.EnabledThreeDots(maxLvl); 
-						mySelectButton.InteractableThreeDots(maxLvl,curntLvl);
+						dotsSpawnB = true;
+						if(tutorialDone){
+							selectButtonInOut.MoveInOut();
+						}
+					}
+					//Set Helper Bird Timer
+					if(seqTimer > helpBirdF && !helperBirdSpawnB){
+						if (!tutorialDone && !skiptutorial) {						
+							slideInHelpScript.MoveBirdUpDown();
+							helperBirdSpawnB = true;	
+						}					
 					}
 					 //compare sequence timer to playable time, then allow player to play and finish the initial sequence
 					if (seqTimer > iniCanPlayF) { 
 						//----------Helper bird stuff here
 						if (tutorialDone || skiptutorial) {
-							canPlay = true; 
-							mySelectButton.InteractableThreeDots(maxLvl, curntLvl);
+							canPlay = true;
+							mySelectButton.EnabledThreeDots(maxLvl); 
+							mySelectButton.InteractableThreeDots(curntLvl, maxLvl);
 							sceneTapScript.canTapPauseBtn = true;
-						}else{
-							slideInHelpScript.MoveBirdUpDown();
 						}
 						iniSeqStart = false;						
 					}
@@ -317,11 +326,11 @@ public class MainPuzzleEngine : MonoBehaviour
 
 	#region General Methods
 	public void LvlStuffFadeIn() {
-		levelsStuff[curntLvl -1].StartLvlFadeIn();
 		Debug.Log("Should fade in stuff."); // Fade in tiles
 		if (!lvlItemHolders[curntLvl -1].activeSelf) {
 			lvlItemHolders[curntLvl -1].SetActive(true);
 		}
+		levelsStuff[curntLvl -1].StartLvlFadeIn();		
 	}
 
 	public void LvlStuffFadeOut() { // Fade out tiles, tile backs, kite, backshadow. 
