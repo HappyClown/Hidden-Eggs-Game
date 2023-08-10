@@ -21,22 +21,38 @@
 sysinfo.txt
 
 Library/
-
-fmod_editor\.log
-
-fmod\.log
+UserSettings/
+Logs/
 
 Assets/Shaders/Hub2dDissolveMaterials/2dDissolveSummer\.mat
 
-Logs/
-
+#old FMOD stuffs
+fmod_editor\.log
+fmod\.log
 Assets/FMODStudioCache.asset
-
-UserSettings/
-
 Assets/FMODStudioCache.asset.meta
+Assets\Editor\FMODMigrationUtil.cs
+Assets\Editor Default Resources\FMOD
+Assets\Gizmos\FMODEmitter.tiff
+Assets/Plugins/FMOD
+Assets\ResonanceAudio
+#If we have issues, also ignore all the other fmod related files in Assets/Plugins
+# *[Ff][Mm][Oo][Dd]*         //Wildcard to test maybe
 
-# Wwise
+
+# Wwise Unity Integration Sources
+logRunSetup
+WwiseUnityIntegration_Android_Src.zip
+WwiseUnityIntegration_iOS_Src.zip
+WwiseUnityIntegration_Mac_Src.zip
+WwiseUnityIntegration_Windows_Src.zip
+
+
+# Lets ignore the Wwise Project itself ... Uncomment if we want to sync it.
+# Note: the important WWise Banks will be built in Assets/StreamingAssets/GeneratedSoundBanks
+WwiseProject/
+
+# Temp files Inside the Wwise Project
 .backup*
 .cache*
 *.akd
