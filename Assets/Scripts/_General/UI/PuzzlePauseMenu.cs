@@ -11,9 +11,13 @@ public class PuzzlePauseMenu : MonoBehaviour {
 	//public LevelTapMannager myTap;
 	public Slider musicSlider, sfxSlider/*, panningSlider*/;
 	void Awake(){
-		myAudio = GameObject.FindGameObjectWithTag("GlobalVariables").GetComponent<AudioVolumeSettings>();
-		sfxVolume = PlayerPrefs.GetFloat("sfxVolume",myAudio.SFXVolume);
-		musicVolume = PlayerPrefs.GetFloat("musicVolume",myAudio.MusicVolume);
+		//GOOD VERSION****
+		// myAudio = GameObject.FindGameObjectWithTag("GlobalVariables").GetComponent<AudioVolumeSettings>();
+		// sfxVolume = PlayerPrefs.GetFloat("sfxVolume",myAudio.SFXVolume);
+		// musicVolume = PlayerPrefs.GetFloat("musicVolume",myAudio.MusicVolume);
+
+
+
 		//panningLevel =  PlayerPrefs.GetFloat("panningLevel",myTap.panningSpeed);
 		// int tempsfxMute = 0;
 		// int tempMusicMute = 0;
@@ -25,72 +29,76 @@ public class PuzzlePauseMenu : MonoBehaviour {
 		// if(musicMute == 1){myAudio.Paused = true;}else{myAudio.Paused = false;}
 	}
 	void Start(){
-		myAudio.SFXVolume = sfxVolume;
-		myAudio.MusicVolume = musicVolume;
-		//myTap.panningSpeed = panningLevel;
-		if(myAudio.Muted){	sfxSlider.value = 0;}else{	sfxSlider.value = sfxVolume;}
-		if(myAudio.Paused){	musicSlider.value = 0;}else{	musicSlider.value = musicVolume;}
-		//panningSlider.value = panningLevel;
-		sfxSlider.onValueChanged.AddListener(delegate {ChangeSFXVolume(); });
-		musicSlider.onValueChanged.AddListener(delegate {ChangeMusicVolume(); });
-		//panningSlider.onValueChanged.AddListener(delegate {ChangePanning(); });
+		// myAudio.SFXVolume = sfxVolume;
+		// myAudio.MusicVolume = musicVolume;
+
+		//myTap.panningSpeed = panningLevel;       //already commented
+
+		// if(myAudio.Muted){	sfxSlider.value = 0;}else{	sfxSlider.value = sfxVolume;}
+		// if(myAudio.Paused){	musicSlider.value = 0;}else{	musicSlider.value = musicVolume;}
+
+		//panningSlider.value = panningLevel;        //already commented
+
+		// sfxSlider.onValueChanged.AddListener(delegate {ChangeSFXVolume(); });
+		// musicSlider.onValueChanged.AddListener(delegate {ChangeMusicVolume(); });
+
+		//panningSlider.onValueChanged.AddListener(delegate {ChangePanning(); }); //already commented
 	}
 	/*public void ChangePanning(){
 		panningLevel = myTap.panningSpeed = panningSlider.value;
 		PlayerPrefs.SetFloat("panningLevel",panningLevel);
 	}*/
 	public void ChangeSFXVolume(){
-		sfxVolume = myAudio.SFXVolume = sfxSlider.value;
-		PlayerPrefs.SetFloat("sfxVolume",sfxVolume);
-		myAudio.sliderSFX(); //slider sound
+		// sfxVolume = myAudio.SFXVolume = sfxSlider.value;
+		// PlayerPrefs.SetFloat("sfxVolume",sfxVolume);
+		// myAudio.sliderSFX(); //slider sound
 		
 	}
 	public void ChangeMusicVolume(){
-		musicVolume = myAudio.MusicVolume = musicSlider.value;
-		PlayerPrefs.SetFloat("musicVolume",musicVolume);
-		myAudio.sliderSFX(); //slider sound
+		// musicVolume = myAudio.MusicVolume = musicSlider.value;
+		// PlayerPrefs.SetFloat("musicVolume",musicVolume);
+		// myAudio.sliderSFX(); //slider sound
 		
 	}
 	public void SetMute(bool value){
-		//myAudio.Muted = value;
-		if(value){		
-			sfxMute = 1;
-			//sfxSlider.value = 0;
-			myAudio.SFXVolume = 0;
-		}
-		else{
-			sfxMute = 0;
-			if(sfxVolume <= 0){
-				myAudio.SFXVolume = minVolumeReset;
-				sfxVolume = minVolumeReset;
-				sfxSlider.value = sfxVolume;
-				PlayerPrefs.SetFloat("sfxVolume",sfxVolume);
-			}else{
-				myAudio.SFXVolume = sfxVolume;
-			}
-		}
-		myAudio.muteSFX(); //ui sound
+		// //myAudio.Muted = value;
+		// if(value){		
+		// 	sfxMute = 1;
+		// 	//sfxSlider.value = 0;
+		// 	myAudio.SFXVolume = 0;
+		// }
+		// else{
+		// 	sfxMute = 0;
+		// 	if(sfxVolume <= 0){
+		// 		myAudio.SFXVolume = minVolumeReset;
+		// 		sfxVolume = minVolumeReset;
+		// 		sfxSlider.value = sfxVolume;
+		// 		PlayerPrefs.SetFloat("sfxVolume",sfxVolume);
+		// 	}else{
+		// 		myAudio.SFXVolume = sfxVolume;
+		// 	}
+		// }
+		// myAudio.muteSFX(); //ui sound
 	}
 	public void SetPause(bool value){
-		//myAudio.Paused = value;
-		if(value){		
-			musicMute = 1;
-			myAudio.MusicVolume = 0;
-			//musicSlider.value = 0;
-		}
-		else{
-			musicMute = 0;
-			if(musicVolume <= 0){
-				myAudio.MusicVolume = minVolumeReset;
-				musicVolume = minVolumeReset;
-				musicSlider.value = musicVolume;
-				PlayerPrefs.SetFloat("musicVolume",musicVolume);
-			}else{
-				myAudio.MusicVolume = musicVolume;
-			}
+		// //myAudio.Paused = value;
+		// if(value){		
+		// 	musicMute = 1;
+		// 	myAudio.MusicVolume = 0;
+		// 	//musicSlider.value = 0;
+		// }
+		// else{
+		// 	musicMute = 0;
+		// 	if(musicVolume <= 0){
+		// 		myAudio.MusicVolume = minVolumeReset;
+		// 		musicVolume = minVolumeReset;
+		// 		musicSlider.value = musicVolume;
+		// 		PlayerPrefs.SetFloat("musicVolume",musicVolume);
+		// 	}else{
+		// 		myAudio.MusicVolume = musicVolume;
+		// 	}
 		}
 
-		myAudio.muteMusicSFX(); //ui sound
+		//myAudio.muteMusicSFX(); //ui sound
 
 	}
-}

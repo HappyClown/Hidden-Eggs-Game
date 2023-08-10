@@ -8,13 +8,13 @@ using UnityEngine.SceneManagement;
 public class AudioKiteAnim : MonoBehaviour 
 {
 
-    [FMODUnity.EventRef]
-    public string kiteMovingEvent=  "event:/SFX/Puzzle_Park/KiteMoving";
-    public FMOD.Studio.EventInstance kiteMovingSound ;
+    //[FMODUnity.EventRef]
+    // public string kiteMovingEvent=  "event:/SFX/Puzzle_Park/KiteMoving";
+    // //public FMOD.Studio.EventInstance kiteMovingSound ;
 
-    [FMODUnity.EventRef]
-    public string kiteFlyingEvent = "event:/SFX/Puzzle_Park/KiteFlying";
-    public FMOD.Studio.EventInstance kiteFlyingSound ;
+    // [FMODUnity.EventRef]
+    // public string kiteFlyingEvent = "event:/SFX/Puzzle_Park/KiteFlying";
+    //public FMOD.Studio.EventInstance kiteFlyingSound ;
 
 	void Start () 
 	{
@@ -33,13 +33,13 @@ public class AudioKiteAnim : MonoBehaviour
     //Button generic
     public void KiteMovingSFX(){
 
-        kiteMovingSound = FMODUnity.RuntimeManager.CreateInstance(kiteMovingEvent);
-        kiteMovingSound.start();
+        //kiteMovingSound = FMODUnity.RuntimeManager.CreateInstance(kiteMovingEvent);
+        //kiteMovingSound.start();
     }
     public void KiteFlyingSFX()
     {
-        kiteFlyingSound = FMODUnity.RuntimeManager.CreateInstance(kiteFlyingEvent);
-        kiteFlyingSound.start();
+        //kiteFlyingSound = FMODUnity.RuntimeManager.CreateInstance(kiteFlyingEvent);
+        //kiteFlyingSound.start();
     }
 
 }

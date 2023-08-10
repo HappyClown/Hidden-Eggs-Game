@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class AudioSceneBeach : MonoBehaviour
 {
-	[Header("Crab Walk SFX")]
-    [FMODUnity.EventRef]
-    public string crabWalkEvent;
-    public FMOD.Studio.EventInstance crabWalkSound;
+	// [Header("Crab Walk SFX")]
+    // [FMODUnity.EventRef]
+    // public string crabWalkEvent;
+    // public FMOD.Studio.EventInstance crabWalkSound;
 
-    [Header("Crab Claws SFX")]
-    [FMODUnity.EventRef]
-    public string crabClawsEvent;
-    public FMOD.Studio.EventInstance crabClawsSound;
+    // [Header("Crab Claws SFX")]
+    // [FMODUnity.EventRef]
+    // public string crabClawsEvent;
+    // public FMOD.Studio.EventInstance crabClawsSound;
     
     void Start () 
 	{
@@ -27,14 +27,14 @@ public class AudioSceneBeach : MonoBehaviour
 
     public void crabWalkSFX()
     {
-        crabWalkSound = FMODUnity.RuntimeManager.CreateInstance(crabWalkEvent);
-        crabWalkSound.start();
+        // crabWalkSound = FMODUnity.RuntimeManager.CreateInstance(crabWalkEvent);
+        // crabWalkSound.start();
 
     }
         public void crabClawsSFX()
     {
-        crabClawsSound = FMODUnity.RuntimeManager.CreateInstance(crabClawsEvent);
-        crabClawsSound.start();
+        // crabClawsSound = FMODUnity.RuntimeManager.CreateInstance(crabClawsEvent);
+        // crabClawsSound.start();
 
     }
 

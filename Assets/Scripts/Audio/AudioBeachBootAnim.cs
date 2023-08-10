@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 public class AudioBeachBootAnim : MonoBehaviour 
 {
 
-    [FMODUnity.EventRef]
-    public string bootShakeEvent = "event:/SFX/Puzzle_Beach/BootShake";
-    public FMOD.Studio.EventInstance bootShakeSound;
+    //[FMODUnity.EventRef]
+    //public string bootShakeEvent = "event:/SFX/Puzzle_Beach/BootShake";
+    //public FMOD.Studio.EventInstance bootShakeSound;
 
 	void Start () 
 	{
@@ -28,8 +28,8 @@ public class AudioBeachBootAnim : MonoBehaviour
 
     public void bootShakeSFX()
     {
-        bootShakeSound = FMODUnity.RuntimeManager.CreateInstance(bootShakeEvent);
-        bootShakeSound.start();
+        //bootShakeSound = FMODUnity.RuntimeManager.CreateInstance(bootShakeEvent);
+        //bootShakeSound.start();
     }
 
 }

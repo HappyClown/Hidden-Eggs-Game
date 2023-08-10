@@ -19,30 +19,30 @@ public class AudioVolumeSettings : MonoBehaviour
    // public Button XBtn;
 
 
-    [FMODUnity.EventRef]
-    public string buttonEvent = "event:/SFX/SFX_General/Button";
-    public FMOD.Studio.EventInstance buttonSound;
+    // [FMODUnity.EventRef]
+    // public string buttonEvent = "event:/SFX/SFX_General/Button";
+    // public FMOD.Studio.EventInstance buttonSound;
 
-    [FMODUnity.EventRef]
-    public string muteEvent_perc = "event:/SFX/SFX_General/muteButton_perc";
-    public FMOD.Studio.EventInstance muteSound_perc;
+    // [FMODUnity.EventRef]
+    // public string muteEvent_perc = "event:/SFX/SFX_General/muteButton_perc";
+    // public FMOD.Studio.EventInstance muteSound_perc;
 
-    [FMODUnity.EventRef]
-    public string unMuteEvent_perc = "event:/SFX/SFX_General/unMuteButton_perc";
-    public FMOD.Studio.EventInstance unMuteSound_perc;
+    // [FMODUnity.EventRef]
+    // public string unMuteEvent_perc = "event:/SFX/SFX_General/unMuteButton_perc";
+    // public FMOD.Studio.EventInstance unMuteSound_perc;
 
-    [FMODUnity.EventRef]
-    public string muteEvent_harp = "event:/SFX/SFX_General/muteButton_harp";
-    public FMOD.Studio.EventInstance muteSound_harp;
+    // [FMODUnity.EventRef]
+    // public string muteEvent_harp = "event:/SFX/SFX_General/muteButton_harp";
+    // public FMOD.Studio.EventInstance muteSound_harp;
 
-    [FMODUnity.EventRef]
-    public string unMuteEvent_harp = "event:/SFX/SFX_General/unMuteButton_harp";
-    public FMOD.Studio.EventInstance unMuteSound_harp;
+    // [FMODUnity.EventRef]
+    // public string unMuteEvent_harp = "event:/SFX/SFX_General/unMuteButton_harp";
+    // public FMOD.Studio.EventInstance unMuteSound_harp;
 
     
-    [FMODUnity.EventRef]
-    public string sliderEvent = "event:/SFX/SFX_General/sliderSound";
-    public FMOD.Studio.EventInstance sliderSnd;
+    // [FMODUnity.EventRef]
+    // public string sliderEvent = "event:/SFX/SFX_General/sliderSound";
+    // public FMOD.Studio.EventInstance sliderSnd;
 
 //  [FMODUnity.EventRef]
 //  public string PausebuttonEvent = "event:/SFX/SFX_General/PauseButton";
@@ -50,42 +50,42 @@ public class AudioVolumeSettings : MonoBehaviour
 
     
 
-    FMOD.Studio.Bus Music;
-    FMOD.Studio.Bus SFX;
-    FMOD.Studio.Bus Master;
+    // FMOD.Studio.Bus Music;
+    // FMOD.Studio.Bus SFX;
+    // FMOD.Studio.Bus Master;
 
 
-    //On the slider keep the values between 0 and 1 ;
-    [Range(0, 1)]
-    public float MusicVolume = 0.5f;
-    [Range(0, 1)]
-    public float SFXVolume = 0.5f;
+    // //On the slider keep the values between 0 and 1 ;
+    // [Range(0, 1)]
+    // public float MusicVolume = 0.5f;
+    // [Range(0, 1)]
+    // public float SFXVolume = 0.5f;
 
-    float MasterVolume = 4.0f;
+    // float MasterVolume = 4.0f;
 
 
-    public bool Muted;
-    public bool Paused;
+    // public bool Muted;
+    // public bool Paused;
 
 
 
 
     void Awake(){
-        Music = FMODUnity.RuntimeManager.GetBus("bus:/Master/MUSIC");
-        SFX = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
-        Master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
+        // Music = FMODUnity.RuntimeManager.GetBus("bus:/Master/MUSIC");
+        // SFX = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
+        // Master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
 
     }
 
     void Update() 
     {
-        Music.setVolume(MusicVolume);
-        SFX.setVolume(SFXVolume);
-        Master.setVolume(MasterVolume);
+    //     Music.setVolume(MusicVolume);
+    //     SFX.setVolume(SFXVolume);
+    //     Master.setVolume(MasterVolume);
 
-       FMODUnity.RuntimeManager.PauseAllEvents(Paused);
+    //    FMODUnity.RuntimeManager.PauseAllEvents(Paused);
 
-       FMODUnity.RuntimeManager.MuteAllEvents(Muted);
+    //    FMODUnity.RuntimeManager.MuteAllEvents(Muted);
     }
 
     	void Start () 
@@ -114,31 +114,31 @@ public class AudioVolumeSettings : MonoBehaviour
         public void buttonSFX()
     {
         //button sound
-        buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
-        buttonSound.start();
+       // buttonSound = FMODUnity.RuntimeManager.CreateInstance(buttonEvent);
+        //buttonSound.start();
     }
     public void muteSFX()
     {
-        if(SFXVolume == 0){
-            unMuteSound_perc = FMODUnity.RuntimeManager.CreateInstance(unMuteEvent_perc);
-            unMuteSound_perc.start();
-        }
-        else if(SFXVolume != 0){
-            muteSound_perc = FMODUnity.RuntimeManager.CreateInstance(muteEvent_perc);
-            muteSound_perc.start();
-        }
+        // if(SFXVolume == 0){
+        //     unMuteSound_perc = FMODUnity.RuntimeManager.CreateInstance(unMuteEvent_perc);
+        //     unMuteSound_perc.start();
+        // }
+        // else if(SFXVolume != 0){
+        //     muteSound_perc = FMODUnity.RuntimeManager.CreateInstance(muteEvent_perc);
+        //     muteSound_perc.start();
+        // }
     }
 
         public void muteMusicSFX()
     {
-        if(MusicVolume == 0){
-            unMuteSound_harp = FMODUnity.RuntimeManager.CreateInstance(unMuteEvent_harp);
-            unMuteSound_harp.start();
-        }
-        else if(MusicVolume != 0){
-            muteSound_harp = FMODUnity.RuntimeManager.CreateInstance(muteEvent_harp);
-            muteSound_harp.start();
-        }
+        // if(MusicVolume == 0){
+        //     unMuteSound_harp = FMODUnity.RuntimeManager.CreateInstance(unMuteEvent_harp);
+        //     unMuteSound_harp.start();
+        // }
+        // else if(MusicVolume != 0){
+        //     muteSound_harp = FMODUnity.RuntimeManager.CreateInstance(muteEvent_harp);
+        //     muteSound_harp.start();
+        // }
     }
 
 

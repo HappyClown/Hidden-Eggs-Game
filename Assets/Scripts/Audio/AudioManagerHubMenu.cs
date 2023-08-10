@@ -11,130 +11,130 @@ public class AudioManagerHubMenu : MonoBehaviour
     //  MUSIC
     ///////////////////////////
 
-    [Header("Menu Music")]
-    [FMODUnity.EventRef]
-    public string menuEvent;
-    public FMOD.Studio.EventInstance menuMusic;
+    //[Header("Menu Music")]
+    //[FMODUnity.EventRef]
+    // public string menuEvent;
+    // //public FMOD.Studio.EventInstance menuMusic;
 
     
-    [Header("Hub Music")]
-    [FMODUnity.EventRef]
-    public string MusicEvent;
-    public FMOD.Studio.EventInstance hubMusic;
+    // [Header("Hub Music")]
+    // //[FMODUnity.EventRef]
+    // public string MusicEvent;
+    // //public FMOD.Studio.EventInstance hubMusic;
 
-    [Header("Intro Music")]
-    [FMODUnity.EventRef]
-    public string introMusicEvent = "event:/Music/MusicScenes/MenuToIntro"; 
-    public FMOD.Studio.EventInstance introMusic;
+    // [Header("Intro Music")]
+    // //[FMODUnity.EventRef]
+    // public string introMusicEvent = "event:/Music/MusicScenes/MenuToIntro"; 
+    //public FMOD.Studio.EventInstance introMusic;
 
-    public FMOD.Studio.ParameterInstance Summer;
-    public FMOD.Studio.ParameterInstance Autumn;
-    public FMOD.Studio.ParameterInstance Winter;
-    public FMOD.Studio.ParameterInstance Spring;
+    //public FMOD.Studio.ParameterInstance Summer;
+    //public FMOD.Studio.ParameterInstance Autumn;
+    //public FMOD.Studio.ParameterInstance Winter;
+    //public FMOD.Studio.ParameterInstance Spring;
 
-    [Header("Pour tests")]
-    public float SummerOn;
-    public float AutumnOn;
-    public float WinterOn;
-    public float SpringOn;
+    //[Header("Pour tests")]
+    // public float SummerOn;
+    // public float AutumnOn;
+    // public float WinterOn;
+    // public float SpringOn;
 
     ////////////////////////////
     //  SFX & BUTTONS
     ///////////////////////////
 
-    [Header("SFX")]
-    [FMODUnity.EventRef]
-    public string ButtonSndEvent = "event:/SFX/SFX_General/Button";
-    public FMOD.Studio.EventInstance buttonSnd;
+    //[Header("SFX")]
+    //[FMODUnity.EventRef]
+    // public string ButtonSndEvent = "event:/SFX/SFX_General/Button";
+    // //public FMOD.Studio.EventInstance buttonSnd;
 
-    [FMODUnity.EventRef]
-    public string SFX_MapUncover = "event:/SFX/SFX_General/HubUncoverFX";
-    public FMOD.Studio.EventInstance mapSnd;
+    // //[FMODUnity.EventRef]
+    // public string SFX_MapUncover = "event:/SFX/SFX_General/HubUncoverFX";
+    // //public FMOD.Studio.EventInstance mapSnd;
 
-    [FMODUnity.EventRef]
-    public string SFX_Clouds = "event:/SFX/SFX_General/CloudsMoving";
-    public FMOD.Studio.EventInstance CloudsSnd;
+    // //[FMODUnity.EventRef]
+    // public string SFX_Clouds = "event:/SFX/SFX_General/CloudsMoving";
+    // //public FMOD.Studio.EventInstance CloudsSnd;
 
-    [FMODUnity.EventRef]
-    public string SFX_Zoom  = "event:/SFX/SFX_General/Zoom";
-    public FMOD.Studio.EventInstance ZoomSnd;
+    // //[FMODUnity.EventRef]
+    // public string SFX_Zoom  = "event:/SFX/SFX_General/Zoom";
+    // //public FMOD.Studio.EventInstance ZoomSnd;
 
-    //-- stat paper --
-    [FMODUnity.EventRef]
-    public string SFX_statPaperOn  = "event:/SFX/SFX_General/StatsPaperVillageOn";
-    public FMOD.Studio.EventInstance SFX_statPaperOnSnd;
+    // //-- stat paper --
+    // //[FMODUnity.EventRef]
+    // public string SFX_statPaperOn  = "event:/SFX/SFX_General/StatsPaperVillageOn";
+    // //public FMOD.Studio.EventInstance SFX_statPaperOnSnd;
 
-    [FMODUnity.EventRef]
-    public string SFX_statPaperOff  = "event:/SFX/SFX_General/StatsPaperVillageOff";
-    public FMOD.Studio.EventInstance SFX_statPaperOffSnd;
+    // //[FMODUnity.EventRef]
+    // public string SFX_statPaperOff  = "event:/SFX/SFX_General/StatsPaperVillageOff";
+    // //public FMOD.Studio.EventInstance SFX_statPaperOffSnd;
 
-    [Header("Loops Map Glow & Scene Selection")]
+    // [Header("Loops Map Glow & Scene Selection")]
 
-    [FMODUnity.EventRef]
-    public string SFX_ShimyLoopMenu = "event:/SFX/SFX_General/shimyLoopMenu";
-    public FMOD.Studio.EventInstance shimyLoopMenuSnd;
+    // //[FMODUnity.EventRef]
+    // public string SFX_ShimyLoopMenu = "event:/SFX/SFX_General/shimyLoopMenu";
+    // //public FMOD.Studio.EventInstance shimyLoopMenuSnd;
 
-    [FMODUnity.EventRef]
-    public string MarketAmbiance = "event:/SFX/Market/AmbianceMarketDreamy";
-    public FMOD.Studio.EventInstance marketAmbianceSnd;
+    // //[FMODUnity.EventRef]
+    // public string MarketAmbiance = "event:/SFX/Market/AmbianceMarketDreamy";
+    // //public FMOD.Studio.EventInstance marketAmbianceSnd;
 
-    [FMODUnity.EventRef]
-    public string ParkAmbiance = "event:/SFX/Park/AmbianceParkDreamy";
-    public FMOD.Studio.EventInstance parkAmbianceSnd;
+    // //[FMODUnity.EventRef]
+    // public string ParkAmbiance = "event:/SFX/Park/AmbianceParkDreamy";
+    // //public FMOD.Studio.EventInstance parkAmbianceSnd;
 
-    [FMODUnity.EventRef]
-    public string BeachAmbiance = "event:/SFX/Beach/AmbianceBeachDreamy";
-    public FMOD.Studio.EventInstance beachAmbianceSnd;
+    // [FMODUnity.EventRef]
+    // public string BeachAmbiance = "event:/SFX/Beach/AmbianceBeachDreamy";
+    // public FMOD.Studio.EventInstance beachAmbianceSnd;
     
-    [Header("Buttons")]
-    public Button BtnPlay;
-    public Button BtnNewGame;
-    public Button BackMenuBtn;
+    // [Header("Buttons")]
+    // public Button BtnPlay;
+    // public Button BtnNewGame;
+    // public Button BackMenuBtn;
 
 
     //TEST level glow & ambiance
-    private FMOD.Studio.EventInstance currentMusic;
+    // private FMOD.Studio.EventInstance currentMusic;
 
-    private FMOD.Studio.EventInstance soundSelectedScene;
+    // private FMOD.Studio.EventInstance soundSelectedScene;
 
-    public int currentlevelSelected = -1;
+    // public int currentlevelSelected = -1;
 
     //TEST
-    public int nbEggsBySeason;
+    // public int nbEggsBySeason;
 
-    public bool dissolvingSnd = false;
+    //public bool dissolvingSnd = false;
 
-    public int nbUnlockedSeasons = 1; //defaut : summer
+    // public int nbUnlockedSeasons = 1; //defaut : summer
 
-    public bool CloudsIn = false;
+    // public bool CloudsIn = false;
 
     
-    [Header("Scripts References")]
+    // [Header("Scripts References")]
 
-    public Hub hubscript;
+    // public Hub hubscript;
 
-    public FadeInOutTMP fadeInOutStory; //quick fix, find a better system
+    // public FadeInOutTMP fadeInOutStory; //quick fix, find a better system
 
-    public bool audioIntro_ON = true;
+    // public bool audioIntro_ON = true;
 
-    public AudioIntro audioIntroScript;
+    // public AudioIntro audioIntroScript;
 
     void Start()
     {
-        BtnPlay.onClick.AddListener(PlaySound);
-        BtnNewGame.onClick.AddListener(NewGameSound);
-        BackMenuBtn.onClick.AddListener(BackBtnSound);
+        // BtnPlay.onClick.AddListener(PlaySound);
+        // BtnNewGame.onClick.AddListener(NewGameSound);
+        // BackMenuBtn.onClick.AddListener(BackBtnSound);
 
-        menuMusic = FMODUnity.RuntimeManager.CreateInstance(menuEvent);
-        hubMusic = FMODUnity.RuntimeManager.CreateInstance(MusicEvent);
-        introMusic = FMODUnity.RuntimeManager.CreateInstance(introMusicEvent);
+        // menuMusic = FMODUnity.RuntimeManager.CreateInstance(menuEvent);
+        // hubMusic = FMODUnity.RuntimeManager.CreateInstance(MusicEvent);
+        // introMusic = FMODUnity.RuntimeManager.CreateInstance(introMusicEvent);
 
-        UnlockedSeasonMusic(); //to check which seasons are unlocked
+        //UnlockedSeasonMusic(); //to check which seasons are unlocked
         //play the associated hub music
-        hubMusic.setParameterValue("Summer", SummerOn);
-        hubMusic.setParameterValue("Autumn", AutumnOn);
-        hubMusic.setParameterValue("Winter", WinterOn);
-        hubMusic.setParameterValue("Spring", SpringOn);
+        // hubMusic.setParameterValue("Summer", SummerOn);
+        // hubMusic.setParameterValue("Autumn", AutumnOn);
+        // hubMusic.setParameterValue("Winter", WinterOn);
+        // hubMusic.setParameterValue("Spring", SpringOn);
 
         //hubMusic.setParameterValue("nbEggsBySeason",nbEggsBySeason); //TEST
 
@@ -142,19 +142,19 @@ public class AudioManagerHubMenu : MonoBehaviour
 
         //---TEST: LOOPS Menu Glow etc
 
-        shimyLoopMenuSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_ShimyLoopMenu);
+        //shimyLoopMenuSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_ShimyLoopMenu);
 
-        currentMusic = menuMusic;
+        //currentMusic = menuMusic;
 
-        if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
+        // if (!audioIntroScript) {audioIntroScript = GameObject.Find("Audio").GetComponent<AudioIntro>();}
     }
     void Update()
     {
         //EggBySeason();
-        hubMusic.setParameterValue("Summer", SummerOn);
-        hubMusic.setParameterValue("Autumn", AutumnOn);
-        hubMusic.setParameterValue("Winter", WinterOn);
-        hubMusic.setParameterValue("Spring", SpringOn);
+        // hubMusic.setParameterValue("Summer", SummerOn);
+        // hubMusic.setParameterValue("Autumn", AutumnOn);
+        // hubMusic.setParameterValue("Winter", WinterOn);
+        // hubMusic.setParameterValue("Spring", SpringOn);
 
         //hubMusic.setParameterValue("nbEggsBySeason",nbEggsBySeason);
 
@@ -171,15 +171,15 @@ public class AudioManagerHubMenu : MonoBehaviour
 
 
         //Dissolving Sound when map is uncovered
-        if(hubscript.dissolving && !dissolvingSnd)
-        {
-            MapUncover();
-            dissolvingSnd =true;
-        }
-        if(!hubscript.dissolving)
-        {
-            dissolvingSnd =false;
-        }
+        // if(hubscript.dissolving && !dissolvingSnd)
+        // {
+        //     MapUncover();
+        //     dissolvingSnd =true;
+        // }
+        // if(!hubscript.dissolving)
+        // {
+        //     dissolvingSnd =false;
+        // }
     }
 
     ///////////////////
@@ -202,32 +202,32 @@ public class AudioManagerHubMenu : MonoBehaviour
 
         //DEFAULT : SUMMER
 
-        switch(nbUnlockedSeasons){
-            case 1: 
-                SpringOn = 0;
-                WinterOn = 0;
-                AutumnOn = 0;
-                SummerOn = 1f;
-            break;
-            case 2:                    
-                SpringOn = 0;
-                WinterOn = 0;
-                AutumnOn = 1f;
-                SummerOn = 0;
-            break;
-            case 3:
-                SpringOn = 0;
-                WinterOn = 1f;
-                AutumnOn = 0;
-                SummerOn = 0;
-            break;
-            case 4: 
-                SpringOn = 1f;
-                WinterOn = 0;
-                AutumnOn = 0;
-                SummerOn = 0;
-            break;
-        }
+        // switch(nbUnlockedSeasons){
+        //     case 1: 
+        //         SpringOn = 0;
+        //         WinterOn = 0;
+        //         AutumnOn = 0;
+        //         SummerOn = 1f;
+        //     break;
+        //     case 2:                    
+        //         SpringOn = 0;
+        //         WinterOn = 0;
+        //         AutumnOn = 1f;
+        //         SummerOn = 0;
+        //     break;
+        //     case 3:
+        //         SpringOn = 0;
+        //         WinterOn = 1f;
+        //         AutumnOn = 0;
+        //         SummerOn = 0;
+        //     break;
+        //     case 4: 
+        //         SpringOn = 1f;
+        //         WinterOn = 0;
+        //         AutumnOn = 0;
+        //         SummerOn = 0;
+        //     break;
+        // }
     }
 
 
@@ -239,40 +239,40 @@ public class AudioManagerHubMenu : MonoBehaviour
     /// ----- MUSIC START  -----///
     public void PlayHubMusic()
     {
-        hubMusic.start();
-        currentMusic = hubMusic;
+        // hubMusic.start();
+        // currentMusic = hubMusic;
     }
 
     public void PlayMenuMusic()
     {
-        menuMusic.start();
-        currentMusic = menuMusic;
+        // menuMusic.start();
+        // currentMusic = menuMusic;
     }
 
     public void PlayIntroMusic()
     {
-        introMusic.start();
-        currentMusic = introMusic;
+        // introMusic.start();
+        // currentMusic = introMusic;
     }
 
     /// ----- MUSIC STOP  -----///
     public void StopMenuMusicFade()
     {
         //SceneMusicFadeOut(alphafade,fadePara);
-       menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    //    menuMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     public void StopHubMusicFade()
     {
         //SceneMusicFadeOut(alphafade,fadePara);
-        hubMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        AmbianceGlowStop();
-        ShimyLoopSoundStop();
+        // hubMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        // AmbianceGlowStop();
+        // ShimyLoopSoundStop();
 
     }
         public void StopIntroMusicFade()
     {
-        introMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        // introMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
     }
 
@@ -280,31 +280,31 @@ public class AudioManagerHubMenu : MonoBehaviour
     /// ----- TRANSITION TO HUB -----///
     public void TransitionHub()
     {
-        StopMenuMusicFade(); //stop menu music
-        PlayHubMusic(); //start hub music
-        StopIntroMusicFade();
+        // StopMenuMusicFade(); //stop menu music
+        // PlayHubMusic(); //start hub music
+        // StopIntroMusicFade();
     }
 
     public void TransitionIntro()
     {
-        StopMenuMusicFade(); //stop menu music
-        PlayIntroMusic(); //start intro music
-        StopHubMusicFade(); //stop hub music
+        // StopMenuMusicFade(); //stop menu music
+        // PlayIntroMusic(); //start intro music
+        // StopHubMusicFade(); //stop hub music
     }
 
     public void TransitionMenu()
     { 
-        StopHubMusicFade(); //stop hub music
-        StopIntroMusicFade(); //stop intro music
-        PlayMenuMusic(); //start menu music
-        AmbianceGlowStop();
-        ShimyLoopSoundStop();
+        // StopHubMusicFade(); //stop hub music
+        // StopIntroMusicFade(); //stop intro music
+        // PlayMenuMusic(); //start menu music
+        // AmbianceGlowStop();
+        // ShimyLoopSoundStop();
     }
 
-    public FMOD.Studio.EventInstance getCurrentMusic()
-    {
-        return currentMusic;
-    }
+    // public FMOD.Studio.EventInstance getCurrentMusic()
+    // {
+    //     return currentMusic;
+    // }
 
 
     /////////////////////
@@ -314,33 +314,33 @@ public class AudioManagerHubMenu : MonoBehaviour
     /// ----- PLAY BUTTON SOUND -----///
     public void PlaySound()
     {
-        ButtonSound();
-        CloudsMoving();
-        TransitionHub();
+        // ButtonSound();
+        // CloudsMoving();
+        // TransitionHub();
     }
 
     /// ----- NEW GAME BUTTON SOUND -----///
     public void NewGameSound()
     {
-        nbUnlockedSeasons =1; //return to summer
-        ButtonSound();
-        CloudsMoving(); 
-        MapUncover();
-        TransitionIntro();
+        // nbUnlockedSeasons =1; //return to summer
+        // ButtonSound();
+        // CloudsMoving(); 
+        // MapUncover();
+        // TransitionIntro();
         //TransitionHub();
     }
 
         /// ----- BACK TO MENU BUTTON -----///
     public void BackBtnSound()
     {
-        ButtonSound();
+        //ButtonSound();
         //Debug.Log("Audio: Transition To Menu Music");
-        TransitionMenu();
+        //TransitionMenu();
     }
     public void ButtonSound()
     {
-        buttonSnd = FMODUnity.RuntimeManager.CreateInstance(ButtonSndEvent);
-        buttonSnd.start();
+        // buttonSnd = FMODUnity.RuntimeManager.CreateInstance(ButtonSndEvent);
+        // buttonSnd.start();
     }
 
 
@@ -349,27 +349,27 @@ public class AudioManagerHubMenu : MonoBehaviour
     public void MapUncover()
     {
         //To script with the hub music system in conjunction with the "Hub.cs" script
-        mapSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_MapUncover);
-        mapSnd.start();
+        // mapSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_MapUncover);
+        // mapSnd.start();
     }
 
     public void CloudsMoving()
     {
-        CloudsSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_Clouds);
-        CloudsSnd.start();
+        // CloudsSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_Clouds);
+        // CloudsSnd.start();
     }
 
     //------Stats Paper Map------//
     
     public void StatPaperSound_on(){
-        SFX_statPaperOnSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_statPaperOn);
-        SFX_statPaperOnSnd.start();
+        // SFX_statPaperOnSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_statPaperOn);
+        // SFX_statPaperOnSnd.start();
 
     }
 
     public void StatPaperSound_off(){
-        SFX_statPaperOffSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_statPaperOff);
-        SFX_statPaperOffSnd.start();
+        // SFX_statPaperOffSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_statPaperOff);
+        // SFX_statPaperOffSnd.start();
 
     }
 
@@ -378,25 +378,25 @@ public class AudioManagerHubMenu : MonoBehaviour
 
     public void ZoomSound()
     {
-        ZoomSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_Zoom);
-        ZoomSnd.start();
+        // ZoomSnd = FMODUnity.RuntimeManager.CreateInstance(SFX_Zoom);
+        // ZoomSnd.start();
     }
 
     //--------LOOP map selection-----//
 
     public void ShimyLoopSoundStart()
     {
-        shimyLoopMenuSnd.start();
+        // shimyLoopMenuSnd.start();
     }
 
         public void ShimyLoopSoundStop()
     {
-        shimyLoopMenuSnd.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        // shimyLoopMenuSnd.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     public void AmbianceGlowStart(int levelSelected)
     {
-        currentlevelSelected = levelSelected;
+        //currentlevelSelected = levelSelected;
 
         /*
         //QUICK TEST NOT IDEAL
@@ -416,14 +416,14 @@ public class AudioManagerHubMenu : MonoBehaviour
         }
         */
         
-        soundSelectedScene.start();
+        //soundSelectedScene.start();
 
         //Debug.Log("AUDIO : AMB start");
-        ButtonSound();
+        //ButtonSound();
     }
     public void AmbianceGlowStop()
     {
-        soundSelectedScene.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //soundSelectedScene.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         //Debug.Log("AUDIO : AMB stop");
     }
 

@@ -14,51 +14,51 @@ public class MusicMuteButt : MonoBehaviour {
 	void Start () {
 		button = this.GetComponent<Button>();
 		if(inpPuzzle){
-			mute = MyPuzzleMenu.myAudio.Paused;
+			//mute = MyPuzzleMenu.myAudio.Paused;
 		}
 		else{
-			mute = myMenu.myAudio.Paused;
+			//mute = myMenu.myAudio.Paused;
 		}
 		button.onClick.AddListener(delegate {ButtonPressed(); });
 	}
 	
 	// Update is called once per frame
 	void Update(){
-		if(inpPuzzle){
-			if(MyPuzzleMenu.myAudio.MusicVolume == 0){
-				onIcon.SetActive(false);
-				offIcon.SetActive(true);
-				mute = true;
-			}else{
-				onIcon.SetActive(true);
-				offIcon.SetActive(false);
-				mute = false;
-			}
-		}
-		else{
-			if(myMenu.myAudio.MusicVolume == 0){
-				onIcon.SetActive(false);
-				offIcon.SetActive(true);
-				mute = true;
-			}else{
-				onIcon.SetActive(true);
-				offIcon.SetActive(false);
-				mute = false;
-			}
-		}
+		// if(inpPuzzle){
+		// 	if(MyPuzzleMenu.myAudio.MusicVolume == 0){
+		// 		onIcon.SetActive(false);
+		// 		offIcon.SetActive(true);
+		// 		mute = true;
+		// 	}else{
+		// 		onIcon.SetActive(true);
+		// 		offIcon.SetActive(false);
+		// 		mute = false;
+		// 	}
+		// }
+		// else{
+		// 	if(myMenu.myAudio.MusicVolume == 0){
+		// 		onIcon.SetActive(false);
+		// 		offIcon.SetActive(true);
+		// 		mute = true;
+		// 	}else{
+		// 		onIcon.SetActive(true);
+		// 		offIcon.SetActive(false);
+		// 		mute = false;
+		// 	}
+		// }
 	}
 	public void ButtonPressed () {
-		if(mute){
-			mute = false;
-		}
-		else{
-			mute = true;
-		}
-		if(inpPuzzle){
-			MyPuzzleMenu.SetPause(mute);
-		}
-		else{
-			myMenu.SetPause(mute);
-		}
+		// if(mute){
+		// 	mute = false;
+		// }
+		// else{
+		// 	mute = true;
+		// }
+		// if(inpPuzzle){
+		// 	MyPuzzleMenu.SetPause(mute);
+		// }
+		// else{
+		// 	myMenu.SetPause(mute);
+		// }
 	}
 }

@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class AudioScenePark : MonoBehaviour 
 {
-	[Header("Golden Egg Children Game SFX")]
-    [FMODUnity.EventRef]
-    public string childrenGameEvent;
-    public FMOD.Studio.EventInstance childrenGameSound;
+	// [Header("Golden Egg Children Game SFX")]
+    // [FMODUnity.EventRef]
+    // public string childrenGameEvent;
+    // public FMOD.Studio.EventInstance childrenGameSound;
     
     void Start () 
 	{
@@ -22,8 +22,8 @@ public class AudioScenePark : MonoBehaviour
 
     public void goldenEggGameSFX()
     {
-        childrenGameSound = FMODUnity.RuntimeManager.CreateInstance(childrenGameEvent);
-        childrenGameSound.start();
+        // childrenGameSound = FMODUnity.RuntimeManager.CreateInstance(childrenGameEvent);
+        // childrenGameSound.start();
 
         //random sounds ftm but it could be nice to have a sequence depending of the numbers ..
     }

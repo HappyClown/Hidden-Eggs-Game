@@ -61,7 +61,7 @@ public class StoryIntro : MonoBehaviour {
 	
 	void Update () {
 		//Debug.Log(introStates);
-		audioManHubMenuScript.audioIntro_ON = inStoryIntro;
+		//audioManHubMenuScript.audioIntro_ON = inStoryIntro;  TEMPORARY COMMENTED AUDIO 
 
 		if (inStoryIntro) {
 			switch(introStates) {
@@ -834,9 +834,11 @@ public class StoryIntro : MonoBehaviour {
 			hubScript.dissolveMats[0].SetFloat ("_Threshold", 0f);
 
 			//AUDIO : HUB MUSIC + CLOUDS
-			audioManHubMenuScript.audioIntro_ON = false;
-			audioManHubMenuScript.CloudsMoving();
-			audioManHubMenuScript.TransitionHub();
+			
+			//TEMPORARY COMMENTED AUDIO RELATED
+			// audioManHubMenuScript.audioIntro_ON = false;
+			// audioManHubMenuScript.CloudsMoving();
+			// audioManHubMenuScript.TransitionHub();
 		}
 		if (boardTimer < boardEvents[boardEvents.Count - 1] + tapTime) {
 			boardTimer += Time.deltaTime;

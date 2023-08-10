@@ -8,26 +8,26 @@ using UnityEngine.SceneManagement;
 public class AudioTransitions : MonoBehaviour
 
 {	
-    [Header("SFX Custom Button")]
-    [FMODUnity.EventRef]
-    public string SFXCustomButton;
-    public FMOD.Studio.EventInstance CustomBtnSnd;
+    // [Header("SFX Custom Button")]
+    // [FMODUnity.EventRef]
+    // public string SFXCustomButton;
+    // public FMOD.Studio.EventInstance CustomBtnSnd;
 
-    [Header("Transition to Scene")]
-    public SceneFade sceneScript;
+    // [Header("Transition to Scene")]
+    // public SceneFade sceneScript;
 
-    [Header("Transition From Hub")]
-    public AudioManagerHubMenu audioManHubScript;
+    // [Header("Transition From Hub")]
+    // public AudioManagerHubMenu audioManHubScript;
 
-    [Header("Cue Title Card Transition")]
-    [FMODUnity.EventRef]
-    public string transEvent;
-    public FMOD.Studio.EventInstance transMusic;
+    // [Header("Cue Title Card Transition")]
+    // [FMODUnity.EventRef]
+    // public string transEvent;
+    // public FMOD.Studio.EventInstance transMusic;
 
 
     void Start()
     {
-        transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
+        //transMusic = FMODUnity.RuntimeManager.CreateInstance(transEvent);
         //currentScene = SceneManager.GetActiveScene().name; 
         //Init_DictMusicTransitions();
     }
@@ -43,14 +43,14 @@ void Update()
     {
 
 
-		if(audioManHubScript)
-		{
-			btnSound(); //for the custom button sound of the hub 
-            audioManHubScript.StopHubMusicFade();
-            audioManHubScript.StopIntroMusicFade();
+		// if(audioManHubScript)
+		// {
+		// 	btnSound(); //for the custom button sound of the hub 
+        //     audioManHubScript.StopHubMusicFade();
+        //     audioManHubScript.StopIntroMusicFade();
 
-            transMusic.start();
-		}
+        //     transMusic.start();
+		// }
 		
 		/*
         if(sceneName == GlobalVariables.globVarScript.menuName)
@@ -94,8 +94,8 @@ void Update()
 
     public void btnSound()
     {
-        CustomBtnSnd = FMODUnity.RuntimeManager.CreateInstance(SFXCustomButton);
-        CustomBtnSnd.start();
+        // CustomBtnSnd = FMODUnity.RuntimeManager.CreateInstance(SFXCustomButton);
+        // CustomBtnSnd.start();
     }
 
 

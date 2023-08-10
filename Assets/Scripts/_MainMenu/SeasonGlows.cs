@@ -68,10 +68,11 @@ public class SeasonGlows : MonoBehaviour {
 
 	public void LevelSelect(int lvlSelected) {
 
-		if(lvlSelected != audioManHubMenuScript.currentlevelSelected){
-			audioManHubMenuScript.AmbianceGlowStop();
-			audioManHubMenuScript.AmbianceGlowStart(lvlSelected);
-		}
+		//TEMPORARY COMMENTED - AUDIO RELATED
+		// if(lvlSelected != audioManHubMenuScript.currentlevelSelected){
+		// 	audioManHubMenuScript.AmbianceGlowStop();
+		// 	audioManHubMenuScript.AmbianceGlowStart(lvlSelected);
+		// }
 
 		inCycle = false;
 		for (int i = 0; i < levelGlowScripts.Count; i++)
