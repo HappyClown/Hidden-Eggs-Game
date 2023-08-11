@@ -11,6 +11,11 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID PLAY_NEW_SOUND_SFX = 431205792U;
+    } // namespace EVENTS
+
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
